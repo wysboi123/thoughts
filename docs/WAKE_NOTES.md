@@ -2,6 +2,15 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-24 — Overnight shift armed (→ 05:00 UTC)
+
+- Schedule locked: `docs/SCHEDULE.md` — work **23:00–05:00 UTC**, stop, resume daily
+- Timers: `overnight-stop-5am-utc` (once) + `overnight-daily-resume` (cron 23:00 UTC) + hourly checkpoints
+- Shipped **Haze Haven v0.1–v0.2**: loft/ramp, 6 sit seats, nameplates, emote bar (1/2/3), proximity glow
+- Shipped **Slow Orbit v0**: spherical planet gravity stick, beads, soft complete HUD
+- Still waiting on Perplexity Q-001–003 — paste answers into `docs/research/` anytime
+- Studio: `games/haze-haven` and `games/slow-orbit` → `rojo serve`
+
 ## 2026-09-24 — Perplexity = Google
 
 - Wired research protocol: `docs/RESEARCH_QUEUE.md` + `docs/research/`

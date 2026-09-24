@@ -32,7 +32,9 @@ Publish from Studio when you’re happy: **File → Publish to Roblox**.
 
 ## Overnight contract
 
-When you message OpenClaw / Colin “make games” or go idle with this repo connected:
+**Shift:** 23:00 → 05:00 UTC daily (`docs/SCHEDULE.md`). Stop at 5 AM. Continue every night.
+
+When you message OpenClaw / Colin “make games” or the daily timer fires:
 
 1. I pick or continue a game under `games/`
 2. I queue research for you in `docs/RESEARCH_QUEUE.md` (**Perplexity = my Google**)
@@ -40,7 +42,7 @@ When you message OpenClaw / Colin “make games” or go idle with this repo con
 4. I commit + push on a `cursor/*-debf` branch
 5. You wake up to a PR + playable place file instructions
 
-See `docs/HEAD_CODER_PLAYBOOK.md`. Paste open queries into Perplexity anytime; drop answers in `docs/research/`.
+See `docs/HEAD_CODER_PLAYBOOK.md`.
 
 ## Games
 

@@ -22,6 +22,10 @@ Femmy runs **Perplexity** on anything the head coder asks. Do not fake sources.
 - Femmy returns answers into `docs/research/` (or chat)
 - Prefer queued research over guessing on API deprecations, ToS edges, monetization, and “what works on Roblox now”
 
+## Schedule
+
+See `docs/SCHEDULE.md`. Default night window: **23:00–05:00 UTC**. Stop at 5 AM. Resume daily.
+
 ## Overnight loop (every session)
 
 1. **Scan** `games/` + `docs/GAME_BACKLOG.md` for the next ship target

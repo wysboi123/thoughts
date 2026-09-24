@@ -1,10 +1,8 @@
 --!strict
--- Remotes are created only on the server. Clients wait for them.
-
 local RunService = game:GetService("RunService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-local FOLDER_NAME = "HazeRemotes"
+local FOLDER_NAME = "OrbitRemotes"
 
 local function getFolder(): Folder
 	if RunService:IsServer() then
@@ -17,9 +15,8 @@ local function getFolder(): Folder
 		created.Parent = ReplicatedStorage
 		return created
 	end
-
 	local folder = ReplicatedStorage:WaitForChild(FOLDER_NAME, 10)
-	assert(folder and folder:IsA("Folder"), "HazeRemotes folder missing")
+	assert(folder and folder:IsA("Folder"), "OrbitRemotes missing")
 	return folder
 end
 
@@ -35,18 +32,12 @@ local function getRemote(name: string): RemoteEvent
 		remote.Parent = folder
 		return remote
 	end
-
 	local remote = folder:WaitForChild(name, 10)
 	assert(remote and remote:IsA("RemoteEvent"), "Remote missing: " .. name)
 	return remote
 end
 
-local Remotes = {
-	OrbCollected = getRemote("OrbCollected"),
-	FloatBoost = getRemote("FloatBoost"),
-	EmoteRequest = getRemote("EmoteRequest"),
-	EmotePlayed = getRemote("EmotePlayed"),
-	VibeCountChanged = getRemote("VibeCountChanged"),
+return {
+	BeadCollected = getRemote("BeadCollected"),
+	OrbitComplete = getRemote("OrbitComplete"),
 }
-
-return Remotes

@@ -4,6 +4,7 @@
 local Config = {
 	GameName = "Haze Haven",
 	Tagline = "float soft. collect vibes. stay awhile.",
+	Version = "0.2",
 
 	Spawn = Vector3.new(0, 8, 0),
 
@@ -11,6 +12,13 @@ local Config = {
 		Size = Vector3.new(48, 2, 48),
 		Color = Color3.fromRGB(62, 52, 78),
 		Material = Enum.Material.SmoothPlastic,
+	},
+
+	Loft = {
+		Size = Vector3.new(28, 1.5, 28),
+		Position = Vector3.new(0, 18, -36),
+		Color = Color3.fromRGB(55, 48, 72),
+		RampLength = 22,
 	},
 
 	FloatPad = {
@@ -25,6 +33,29 @@ local Config = {
 		RespawnSeconds = 12,
 		HoverHeight = 1.4,
 		HoverSpeed = 1.6,
+	},
+
+	Sit = {
+		SeatColor = Color3.fromRGB(90, 70, 120),
+		CushionColor = Color3.fromRGB(140, 100, 160),
+	},
+
+	Emote = {
+		FloatBoost = 28,
+		FloatDuration = 2.8,
+		WaveDuration = 2.2,
+		Cooldown = 1.2,
+	},
+
+	Proximity = {
+		Radius = 14,
+		GlowColor = Color3.fromRGB(180, 140, 255),
+		Brightness = 1.6,
+		Range = 12,
+	},
+
+	Nameplate = {
+		Offset = Vector3.new(0, 3.2, 0),
 	},
 
 	Atmosphere = {

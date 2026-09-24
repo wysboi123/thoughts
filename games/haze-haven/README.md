@@ -1,12 +1,11 @@
 # Haze Haven
 
-Chill float hangout. Soft dusk skybox energy, float pads, vibe orbs. No combat.
+Chill float hangout. Soft dusk energy, loft, sit spots, emote bar, proximity glow. No combat.
 
 ## Play in Studio
 
 ```bash
 cd games/haze-haven
-# if needed: rokit install
 rojo build -o HazeHaven.rbxl
 rojo serve
 ```
@@ -15,23 +14,19 @@ rojo serve
 2. Rojo plugin → **Connect**  
 3. Press **Play**
 
-## Loop
+## Loop (v0.2)
 
-- Spawn on the lounge pad
-- Touch **float pads** (cyan) to get a soft upward boost
-- Collect **vibe orbs** (magenta) — server tracks your count
-- HUD shows orb count bottom-left
+- Spawn on the lounge pad → walk or float up the ramp to the **loft**
+- Touch **float pads** (cyan) for soft boosts
+- Collect **vibe orbs** (magenta) — count on HUD + nameplate
+- Sit on cushions or press **2 / Sit**
+- Emotes: **1 Wave · 2 Sit · 3 Float** (bar at bottom)
+- Stand near a friend → soft purple proximity glow
 
-## Files
+## Layout
 
 | Path | Role |
 | --- | --- |
-| `src/shared/Config.luau` | Tunables |
-| `src/shared/Remotes.luau` | RemoteEvent bootstrap |
-| `src/server/init.server.luau` | World build + orb authority |
-| `src/client/init.client.luau` | HUD + float FX |
-| `src/world/` | Static world markers (built at runtime too) |
-
-## Next slices
-
-See repo `docs/GAME_BACKLOG.md` — loft area, sit spots, emote wheel.
+| `src/shared/` | Config, Remotes, Emotes |
+| `src/server/` | WorldBuilder, Orb/Float/Emote/Nameplate services |
+| `src/client/` | Hud, EmoteWheel, ProximityGlow, FloatFx |
