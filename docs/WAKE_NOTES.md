@@ -2,6 +2,12 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-24 — Perplexity = Google
+
+- Wired research protocol: `docs/RESEARCH_QUEUE.md` + `docs/research/`
+- Queued **Q-001** (hangout retention), **Q-002** (sit/emote/proximity), **Q-003** (Open Cloud publish)
+- Femmy: paste those three into Perplexity whenever; drop answers in `docs/research/`
+
 ## 2026-09-24 — Pipeline + Haze Haven v0
 
 - Scaffolded overnight Roblox lab (Rojo layout, playbook, backlog)

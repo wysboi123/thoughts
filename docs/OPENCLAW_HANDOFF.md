@@ -19,6 +19,7 @@ Copy-paste into OpenClaw / Cursor once the Gateway sees this repo:
 Head coder mode on.
 Repo: this Roblox overnight lab.
 Follow docs/HEAD_CODER_PLAYBOOK.md.
+Perplexity is your Google — queue research in docs/RESEARCH_QUEUE.md; I’ll paste answers into docs/research/.
 Tonight: continue top item in docs/GAME_BACKLOG.md.
 Commit + push + wake note. Don’t wait for me.
 ```

@@ -35,11 +35,12 @@ Publish from Studio when you’re happy: **File → Publish to Roblox**.
 When you message OpenClaw / Colin “make games” or go idle with this repo connected:
 
 1. I pick or continue a game under `games/`
-2. I write Luau (Rojo filesystem-first)
-3. I commit + push on a `cursor/*-debf` branch
-4. You wake up to a PR + playable place file instructions
+2. I queue research for you in `docs/RESEARCH_QUEUE.md` (**Perplexity = my Google**)
+3. I write Luau (Rojo filesystem-first)
+4. I commit + push on a `cursor/*-debf` branch
+5. You wake up to a PR + playable place file instructions
 
-See `docs/HEAD_CODER_PLAYBOOK.md`.
+See `docs/HEAD_CODER_PLAYBOOK.md`. Paste open queries into Perplexity anytime; drop answers in `docs/research/`.
 
 ## Games
 

@@ -14,15 +14,24 @@ Chill, floaty, dreamy experiences — lounge hangouts, soft physics, ambient loo
 
 **Hard rule:** stay inside [Roblox Community Standards](https://en.help.roblox.com/hc/en-us/articles/203313410). No drug use, smoking, paraphernalia, or “get high” framing. Translate the vibe into atmosphere: haze colors, slow drift, soft audio cues (placeholders), cozy social spaces.
 
+## Research: Perplexity is Google
+
+Femmy runs **Perplexity** on anything the head coder asks. Do not fake sources.
+
+- Queue paste-ready prompts in `docs/RESEARCH_QUEUE.md`
+- Femmy returns answers into `docs/research/` (or chat)
+- Prefer queued research over guessing on API deprecations, ToS edges, monetization, and “what works on Roblox now”
+
 ## Overnight loop (every session)
 
 1. **Scan** `games/` + `docs/GAME_BACKLOG.md` for the next ship target
-2. **Branch** `cursor/<game-or-feature>-debf` off `main`
-3. **Build** Luau modules (server / client / shared) via Rojo layout
-4. **Self-check** naming, RemoteEvents, no infinite loops without `task.wait`
-5. **Commit + push** with a clear message
-6. **PR** titled for humans: what shipped + how to Play-test in Studio
-7. **Leave a wake note** in `docs/WAKE_NOTES.md` (append, newest on top)
+2. **Check** `docs/RESEARCH_QUEUE.md` + `docs/research/` — apply answers; queue new gaps
+3. **Branch** `cursor/<game-or-feature>-debf` off `main`
+4. **Build** Luau modules (server / client / shared) via Rojo layout
+5. **Self-check** naming, RemoteEvents, no infinite loops without `task.wait`
+6. **Commit + push** with a clear message
+7. **PR** titled for humans: what shipped + how to Play-test in Studio
+8. **Leave a wake note** in `docs/WAKE_NOTES.md` (append, newest on top) — include open Perplexity queries
 
 ## Definition of done (one overnight slice)
 
