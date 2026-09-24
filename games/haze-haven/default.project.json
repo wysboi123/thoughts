@@ -1,0 +1,75 @@
+{
+  "name": "HazeHaven",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "Shared": {
+        "$path": "src/shared"
+      }
+    },
+    "ServerScriptService": {
+      "Server": {
+        "$path": "src/server"
+      }
+    },
+    "StarterPlayer": {
+      "StarterPlayerScripts": {
+        "Client": {
+          "$path": "src/client"
+        }
+      }
+    },
+    "Workspace": {
+      "$properties": {
+        "Gravity": 56
+      }
+    },
+    "Lighting": {
+      "$properties": {
+        "Ambient": [0.35, 0.32, 0.45],
+        "Brightness": 1.4,
+        "ClockTime": 20.5,
+        "FogColor": [0.45, 0.38, 0.55],
+        "FogEnd": 420,
+        "FogStart": 40,
+        "OutdoorAmbient": [0.4, 0.35, 0.5],
+        "GlobalShadows": true
+      },
+      "HazeAtmosphere": {
+        "$className": "Atmosphere",
+        "$properties": {
+          "Density": 0.45,
+          "Offset": 0.2,
+          "Color": [0.55, 0.48, 0.7],
+          "Decay": [0.35, 0.3, 0.45],
+          "Glare": 0.15,
+          "Haze": 1.8
+        }
+      },
+      "HazeBloom": {
+        "$className": "BloomEffect",
+        "$properties": {
+          "Enabled": true,
+          "Intensity": 0.55,
+          "Size": 28,
+          "Threshold": 0.85
+        }
+      },
+      "HazeColor": {
+        "$className": "ColorCorrectionEffect",
+        "$properties": {
+          "Enabled": true,
+          "Brightness": 0.02,
+          "Contrast": 0.08,
+          "Saturation": 0.15,
+          "TintColor": [0.95, 0.9, 1]
+        }
+      }
+    },
+    "SoundService": {
+      "$properties": {
+        "AmbientReverb": "ConcertHall"
+      }
+    }
+  }
+}

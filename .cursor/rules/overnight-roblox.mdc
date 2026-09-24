@@ -1,0 +1,10 @@
+# Overnight agent rules — Femmy Roblox lab
+
+When this repo is connected via OpenClaw / Cursor and Femmy is asleep or says to ship:
+
+1. Read `docs/HEAD_CODER_PLAYBOOK.md` and `docs/GAME_BACKLOG.md`
+2. Implement the top unchecked backlog item (or continue the active game)
+3. Keep Roblox Community Standards clean — chill vibe ≠ drug content
+4. Use Rojo layout under `games/<slug>/`
+5. Append `docs/WAKE_NOTES.md`, commit, push on `cursor/*-debf`, open/update PR
+6. Do not wait for confirmation to continue a clearly prioritized backlog item
