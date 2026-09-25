@@ -116,6 +116,15 @@ local function buildApartment(world: Folder)
 	seat.Color = Color3.fromRGB(120, 90, 150)
 	seat.Parent = world
 
+	-- Second couch cushion for friends
+	local seat2 = Instance.new("Seat")
+	seat2.Name = "CouchSeat2"
+	seat2.Size = Vector3.new(3, 0.5, 2)
+	seat2.Position = Vector3.new(-4, 2.7, -8)
+	seat2.Anchored = true
+	seat2.Color = Color3.fromRGB(130, 100, 160)
+	seat2.Parent = world
+
 	-- Stairs to roof
 	for i = 1, 8 do
 		part({
@@ -127,20 +136,7 @@ local function buildApartment(world: Folder)
 		})
 	end
 
-	-- Roof deck
-	part({
-		Name = "RoofDeck",
-		Size = Vector3.new(36, 1, 28),
-		Position = Vector3.new(0, 13, 0),
-		Color = Color3.fromRGB(40, 42, 55),
-		Parent = world,
-	})
-	-- Skylight opening in roof (hole via no part at center — cut with two side pieces already ceiling; roof has center gap)
-	-- Rebuild roof as sides only
-	local roof = world:FindFirstChild("RoofDeck")
-	if roof then
-		roof:Destroy()
-	end
+	-- Roof as sides only (skylight gap)
 	part({
 		Name = "RoofL",
 		Size = Vector3.new(14, 1, 28),
@@ -155,6 +151,72 @@ local function buildApartment(world: Folder)
 		Color = Color3.fromRGB(40, 42, 55),
 		Parent = world,
 	})
+
+	-- Roof props: railings, planters, string lights
+	for _, x in { -17, 17 } do
+		part({
+			Name = "RailZ" .. x,
+			Size = Vector3.new(1, 3, 28),
+			Position = Vector3.new(x, 14.5, 0),
+			Color = Color3.fromRGB(55, 58, 75),
+			Transparency = 0.25,
+			Parent = world,
+		})
+	end
+	for _, z in { -13, 13 } do
+		part({
+			Name = "RailX" .. z,
+			Size = Vector3.new(34, 3, 1),
+			Position = Vector3.new(0, 14.5, z),
+			Color = Color3.fromRGB(55, 58, 75),
+			Transparency = 0.25,
+			Parent = world,
+		})
+	end
+
+	local planterPositions = {
+		Vector3.new(-14, 14, -10),
+		Vector3.new(14, 14, -10),
+		Vector3.new(-14, 14, 10),
+		Vector3.new(14, 14, 10),
+	}
+	for i, pos in planterPositions do
+		part({
+			Name = "Planter" .. i,
+			Size = Vector3.new(3, 1.5, 3),
+			Position = pos,
+			Color = Color3.fromRGB(70, 55, 45),
+			Material = Enum.Material.Concrete,
+			Parent = world,
+		})
+		part({
+			Name = "Plant" .. i,
+			Size = Vector3.new(2, 2.5, 2),
+			Position = pos + Vector3.new(0, 2, 0),
+			Color = Color3.fromRGB(60, 120, 80),
+			Material = Enum.Material.Grass,
+			Parent = world,
+		})
+	end
+
+	for i = 1, 10 do
+		local t = (i - 1) / 9
+		local lightPart = part({
+			Name = "StringLight" .. i,
+			Size = Vector3.new(0.6, 0.6, 0.6),
+			Position = Vector3.new(-12 + t * 24, 16.5, -12),
+			Color = Color3.fromRGB(255, 210, 140),
+			Material = Enum.Material.Neon,
+			Shape = Enum.PartType.Ball,
+			CanCollide = false,
+			Parent = world,
+		})
+		local bulb = Instance.new("PointLight")
+		bulb.Brightness = 1.2
+		bulb.Range = 10
+		bulb.Color = Color3.fromRGB(255, 210, 140)
+		bulb.Parent = lightPart
+	end
 
 	local portal = part({
 		Name = "SkylightPortal",
@@ -233,10 +295,12 @@ local function buildGalaxy(world: Folder)
 		light.Parent = cloud
 	end
 
+	local stars: { BasePart } = {}
 	for i = 1, Config.Star.Count do
 		local angle = (i / Config.Star.Count) * math.pi * 2
+		local radius = if i <= 5 then 18 else 26
 		local pos = Config.GalaxySpawn
-			+ Vector3.new(math.cos(angle) * 18, 3 + (i % 3), math.sin(angle) * 18)
+			+ Vector3.new(math.cos(angle) * radius, 4 + (i % 4), math.sin(angle) * radius)
 		local star = part({
 			Name = "StarMote" .. i,
 			Size = Vector3.new(1.8, 1.8, 1.8),
@@ -254,6 +318,31 @@ local function buildGalaxy(world: Folder)
 		light.Range = 12
 		light.Color = Config.Star.Color
 		light.Parent = star
+		table.insert(stars, star)
+	end
+
+	-- Constellation beams between linked stars
+	for _, link in Config.Star.ConstellationLinks do
+		local a = stars[link[1]]
+		local b = stars[link[2]]
+		if a and b then
+			local att0 = Instance.new("Attachment")
+			att0.Name = "ConstA"
+			att0.Parent = a
+			local att1 = Instance.new("Attachment")
+			att1.Name = "ConstB"
+			att1.Parent = b
+			local beam = Instance.new("Beam")
+			beam.Attachment0 = att0
+			beam.Attachment1 = att1
+			beam.Width0 = 0.15
+			beam.Width1 = 0.15
+			beam.FaceCamera = true
+			beam.Color = ColorSequence.new(Color3.fromRGB(255, 240, 180))
+			beam.Transparency = NumberSequence.new(0.35)
+			beam.LightEmission = 0.8
+			beam.Parent = a
+		end
 	end
 end
 
@@ -285,6 +374,31 @@ world.Name = "CouchGalaxyWorld"
 world.Parent = Workspace
 buildApartment(world)
 buildGalaxy(world)
+
+-- Couch sit sync — broadcast when someone sits / leaves either couch seat
+local function wireCouch(seat: Seat)
+	seat:GetPropertyChangedSignal("Occupant"):Connect(function()
+		local humanoid = seat.Occupant
+		local sittingPlayer: Player? = nil
+		if humanoid then
+			local character = humanoid.Parent
+			if character and character:IsA("Model") then
+				sittingPlayer = Players:GetPlayerFromCharacter(character)
+			end
+		end
+		local name = if sittingPlayer then sittingPlayer.DisplayName else nil
+		Remotes.CouchSitChanged:FireAllClients(seat.Name, name)
+	end)
+end
+
+local couch1 = world:FindFirstChild("CouchSeat")
+local couch2 = world:FindFirstChild("CouchSeat2")
+if couch1 and couch1:IsA("Seat") then
+	wireCouch(couch1)
+end
+if couch2 and couch2:IsA("Seat") then
+	wireCouch(couch2)
+end
 
 for _, child in world:GetChildren() do
 	if child:IsA("BasePart") then

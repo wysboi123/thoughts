@@ -2,7 +2,7 @@
 local Config = {
 	GameName = "Couch Galaxy",
 	Tagline = "roof first. sky second. stay soft.",
-	Version = "0.0",
+	Version = "0.1",
 
 	ApartmentSpawn = Vector3.new(0, 5, 8),
 	GalaxySpawn = Vector3.new(0, 120, 0),
@@ -12,9 +12,19 @@ local Config = {
 	},
 
 	Star = {
-		Count = 8,
+		Count = 10,
 		Color = Color3.fromRGB(255, 230, 160),
 		RespawnSeconds = 10,
+		ConstellationLinks = {
+			{ 1, 2 },
+			{ 2, 3 },
+			{ 3, 4 },
+			{ 4, 5 },
+			{ 5, 1 },
+			{ 6, 7 },
+			{ 7, 8 },
+			{ 8, 9 },
+		},
 	},
 
 	CloudPad = {

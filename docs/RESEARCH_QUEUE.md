@@ -73,6 +73,21 @@ How do you publish a Rojo-built Roblox place using Open Cloud API keys in 2026? 
 Cite official Roblox Open Cloud documentation.
 """
 
+### Q-004 — Roblox free ambient audio asset ids (ToS-safe)
+Status: Open  
+Needed for: Haze Haven audio hooks / Bus Stop rain  
+Paste into Perplexity:
+
+"""
+Find currently usable Roblox audio asset IDs (2026) suitable for chill hangout games:
+1. Soft ambient pad / night ambience (loopable)
+2. Light rain loop
+3. Soft UI / collectible blip
+4. Distant bus / soft whoosh
+
+Prefer free Creator Store / Roblox-provided audio that is allowed for public experiences. List the rbxassetid numbers, titles, and license notes. Flag anything deprecated or removed.
+"""
+
 ---
 
 ## Done

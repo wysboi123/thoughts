@@ -169,12 +169,66 @@ for i = 1, Config.Dew.Count do
 	})
 	dew:SetAttribute("IsDew", true)
 	dew:SetAttribute("HomePosition", pos)
+	local a0 = Instance.new("Attachment")
+	a0.Position = Vector3.new(0, 0.3, 0)
+	a0.Parent = dew
+	local a1 = Instance.new("Attachment")
+	a1.Position = Vector3.new(0, -0.3, 0)
+	a1.Parent = dew
+	local trail = Instance.new("Trail")
+	trail.Attachment0 = a0
+	trail.Attachment1 = a1
+	trail.Lifetime = Config.Dew.TrailLifetime
+	trail.FaceCamera = true
+	trail.Color = ColorSequence.new(Config.Dew.Color, Color3.fromRGB(80, 120, 140))
+	trail.Transparency = NumberSequence.new(0.2, 1)
+	trail.LightEmission = 0.6
+	trail.Parent = dew
 	local light = Instance.new("PointLight")
 	light.Brightness = 2
 	light.Range = 10
 	light.Color = Config.Dew.Color
 	light.Parent = dew
 end
+
+-- Deep mirror room (locked until all three nooks open)
+local deep = Config.DeepRoom
+local deepDoor = makePart({
+	Name = deep.Id .. "Door",
+	Size = Vector3.new(10, 8, 1),
+	Position = deep.DoorPos,
+	Color = Color3.fromRGB(60, 100, 130),
+	Material = Enum.Material.ForceField,
+	Transparency = 0.2,
+	Parent = world,
+})
+doors[deep.Id] = deepDoor
+makePart({
+	Name = deep.Id .. "Floor",
+	Size = Vector3.new(16, 1, 16),
+	Position = deep.RoomPos,
+	Color = Color3.fromRGB(40, 55, 70),
+	Material = Enum.Material.Marble,
+	Parent = world,
+})
+local deepSeat = Instance.new("Seat")
+deepSeat.Name = deep.Id .. "Seat"
+deepSeat.Size = Vector3.new(2, 0.5, 2)
+deepSeat.Position = deep.RoomPos + Vector3.new(0, 1.2, 0)
+deepSeat.Anchored = true
+deepSeat.Color = Color3.fromRGB(120, 180, 200)
+deepSeat.Parent = world
+local deepMist = makePart({
+	Name = deep.Id .. "Mist",
+	Size = Vector3.new(12, 10, 12),
+	Position = deep.RoomPos + Vector3.new(0, 6, 0),
+	Color = Color3.fromRGB(120, 160, 180),
+	Material = Enum.Material.ForceField,
+	CanCollide = false,
+	Transparency = 0.7,
+	Parent = world,
+})
+deepMist.CastShadow = false
 
 local function unlockRoom(roomId: string, player: Player)
 	if unlockedRooms[roomId] then
@@ -196,6 +250,12 @@ local function unlockRoom(roomId: string, player: Player)
 		end)
 	end
 	Remotes.RoomUnlocked:FireClient(player, roomId)
+
+	-- Deep room opens when all three main nooks are unlocked
+	local mainDone = unlockedRooms["NorthNook"] and unlockedRooms["EastNook"] and unlockedRooms["WestNook"]
+	if mainDone and not unlockedRooms[Config.DeepRoom.Id] then
+		unlockRoom(Config.DeepRoom.Id, player)
+	end
 end
 
 local function onPuddle(puddle: BasePart, hit: BasePart)

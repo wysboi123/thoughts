@@ -2,6 +2,15 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-25 02:10 UTC — Checkpoint 2
+
+- **Couch Galaxy v0.1**: roof railings/planters/string lights, dual couch + sit sync HUD, constellation beams
+- **Bus Stop Forever v0**: shelter, benches, looping forever-bus, ticket stubs, proximity glow
+- **Puddle Mirror v0.1**: dew trails + Deep Mirror room after all three nooks
+- 5 experiences total under `games/`
+- Perplexity Q-001–003 still open
+- Next (CP3): Bus Stop v0.1 / Haze Haven hammock / publish checklist
+
 ## 2026-09-25 00:45 UTC — Checkpoint 1b (continued)
 
 - **Puddle Mirror v0**: glass plaza, 3 puddle→nook unlocks, dew collect, ripple FX

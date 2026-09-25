@@ -75,4 +75,35 @@ Remotes.ReturnedHome.OnClientEvent:Connect(function()
 	place.TextColor3 = Color3.fromRGB(140, 130, 170)
 end)
 
-print("[CouchGalaxy] client ready")
+local couchStatus = Instance.new("TextLabel")
+couchStatus.BackgroundTransparency = 1
+couchStatus.AnchorPoint = Vector2.new(0.5, 1)
+couchStatus.Position = UDim2.new(0.5, 0, 1, -100)
+couchStatus.Size = UDim2.fromOffset(360, 20)
+couchStatus.Font = Enum.Font.Gotham
+couchStatus.TextSize = 13
+couchStatus.TextColor3 = Color3.fromRGB(190, 170, 220)
+couchStatus.Text = ""
+couchStatus.Parent = gui
+
+local couchOccupants: { [string]: string } = {}
+Remotes.CouchSitChanged.OnClientEvent:Connect(function(seatName: string, displayName: string?)
+	if displayName then
+		couchOccupants[seatName] = displayName
+	else
+		couchOccupants[seatName] = nil :: any
+	end
+	local names = {}
+	for _, n in couchOccupants do
+		table.insert(names, n)
+	end
+	if #names == 0 then
+		couchStatus.Text = ""
+	elseif #names == 1 then
+		couchStatus.Text = names[1] .. " is on the couch"
+	else
+		couchStatus.Text = table.concat(names, " & ") .. " are on the couch"
+	end
+end)
+
+print("[CouchGalaxy] client ready v" .. Config.Version)
