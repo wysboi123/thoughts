@@ -4,17 +4,14 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 
 ## Active
 
-- [x] **Haze Haven v0** — float pads, vibe orbs, ambient lighting, HUD counter
-- [x] **Haze Haven v0.1** — loft + sit spots + nameplate vibes
-- [x] **Haze Haven v0.2** — emote wheel (wave / sit / float) + friend proximity glow
-- [x] **Slow Orbit v0** — planet walk gravity + orbit beads + soft complete state
-- [x] **Slow Orbit v0.1** — bead trails, moonlet + tether, camera upright assist
-- [x] **Haze Haven v0.3** — ambient audio hooks + soft day/night pulse
-- [x] **Couch Galaxy v0** — apartment → skylight portal → galaxy loft hangout
-- [x] **Puddle Mirror v0** — reflective plaza, puddle ripples unlock nooks
-- [ ] **Couch Galaxy v0.1** — more roof props, friend couch sit sync, star constellation shapes
-- [ ] **Bus Stop Forever v0** — infinite cozy bus-stop social space
-- [ ] **Puddle Mirror v0.1** — deeper mirror rooms + dew trails
+- [x] **Haze Haven v0–v0.3** — lounge, loft, emotes, proximity, day/night, audio hooks
+- [x] **Slow Orbit v0–v0.1** — planet + moonlet, beads, trails, camera
+- [x] **Couch Galaxy v0–v0.1** — roof props, dual couch sit sync, constellation beams
+- [x] **Puddle Mirror v0–v0.1** — puddle unlocks, dew trails, deep mirror room
+- [x] **Bus Stop Forever v0** — shelter, looping calm bus, tickets, proximity glow
+- [ ] **Bus Stop Forever v0.1** — night rain FX, notepad board messages, second shelter
+- [ ] **Haze Haven v0.4** — shared vibe leaderboard (soft) + loft hammock
+- [ ] **Shared polish pass** — README gallery + Studio publish checklist for Femmy
 
 ## Rules for new concepts
 
