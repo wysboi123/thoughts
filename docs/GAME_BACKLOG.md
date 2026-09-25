@@ -8,14 +8,12 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 - [x] **Haze Haven v0.1** — loft + sit spots + nameplate vibes
 - [x] **Haze Haven v0.2** — emote wheel (wave / sit / float) + friend proximity glow
 - [x] **Slow Orbit v0** — planet walk gravity + orbit beads + soft complete state
-- [ ] **Slow Orbit v0.1** — bead trails, second moonlet, camera upright assist polish
-- [ ] **Haze Haven v0.3** — ambient audio hooks + soft day/night pulse (placeholders ok)
-- [ ] **Couch Galaxy v0** — apartment roof → night sky hangout vertical slice
-
-## Next concepts (chill line)
-
-- [ ] **Puddle Mirror** — reflective floor world; stepping ripples open secret rooms
-- [ ] **Bus Stop Forever** — infinite cozy bus-stop social space; buses never rush you
+- [x] **Slow Orbit v0.1** — bead trails, moonlet + tether, camera upright assist
+- [x] **Haze Haven v0.3** — ambient audio hooks + soft day/night pulse
+- [x] **Couch Galaxy v0** — apartment → skylight portal → galaxy loft hangout
+- [ ] **Couch Galaxy v0.1** — more roof props, friend couch sit sync, star constellation shapes
+- [ ] **Puddle Mirror v0** — reflective floor world; ripples open secret rooms
+- [ ] **Bus Stop Forever v0** — infinite cozy bus-stop social space
 
 ## Rules for new concepts
 

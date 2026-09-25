@@ -4,7 +4,7 @@
 local Config = {
 	GameName = "Haze Haven",
 	Tagline = "float soft. collect vibes. stay awhile.",
-	Version = "0.2",
+	Version = "0.3",
 
 	Spawn = Vector3.new(0, 8, 0),
 
@@ -60,6 +60,21 @@ local Config = {
 
 	Atmosphere = {
 		AmbientPulseSeconds = 6,
+		DayNightCycleSeconds = 180,
+		DayClock = 17.5,
+		NightClock = 21.5,
+		DayFog = Color3.fromRGB(140, 120, 160),
+		NightFog = Color3.fromRGB(70, 55, 100),
+	},
+
+	Audio = {
+		-- Drop Roblox audio asset ids here when Femmy uploads / finds free ones.
+		-- 0 = silent placeholder (hooks still run so wiring is ready).
+		AmbientId = 0,
+		OrbCollectId = 0,
+		FloatBoostId = 0,
+		AmbientVolume = 0.25,
+		SfxVolume = 0.4,
 	},
 }
 

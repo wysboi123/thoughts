@@ -10,8 +10,8 @@ This repo is the production floor for OpenClaw + Colin + Cursor. Games live unde
 | --- | --- |
 | OpenClaw iOS | You’re setting it up |
 | Colin | You’re setting it up |
-| Head coder (me) | Online — scaffolding + first game |
-| First experience | **Haze Haven** — chill float hangout |
+| Head coder (me) | Overnight shift active → 05:00 UTC |
+| Experiences | Haze Haven v0.3 · Slow Orbit v0.1 · Couch Galaxy v0 |
 
 ## Quick start (your machine)
 

@@ -2,6 +2,15 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-25 00:40 UTC — Checkpoint 1
+
+- **Slow Orbit v0.1**: bead trails + collect bursts, moonlet/tether, dual-body gravity, scriptable upright camera (RMB orbit)
+- **Haze Haven v0.3**: day/night fog+clock pulse, audio hook module (`Config.Audio` asset ids still 0)
+- **Couch Galaxy v0**: apartment + couch + skylight portal ↔ galaxy loft, cloud pads, star motes
+- Rojo builds verified for all three
+- Perplexity Q-001–003 still open — no answers in `docs/research/` yet
+- Next: Couch Galaxy v0.1 or Puddle Mirror v0
+
 ## 2026-09-24 — Overnight shift armed (→ 05:00 UTC)
 
 - Schedule locked: `docs/SCHEDULE.md` — work **23:00–05:00 UTC**, stop, resume daily

@@ -1,0 +1,69 @@
+{
+  "name": "CouchGalaxy",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "Shared": {
+        "$path": "src/shared"
+      }
+    },
+    "ServerScriptService": {
+      "Server": {
+        "$path": "src/server"
+      }
+    },
+    "StarterPlayer": {
+      "StarterPlayerScripts": {
+        "Client": {
+          "$path": "src/client"
+        }
+      }
+    },
+    "Workspace": {
+      "$properties": {
+        "Gravity": 196.2
+      }
+    },
+    "Lighting": {
+      "$properties": {
+        "Ambient": [0.12, 0.12, 0.2],
+        "Brightness": 0.8,
+        "ClockTime": 22,
+        "FogColor": [0.05, 0.06, 0.12],
+        "FogEnd": 350,
+        "FogStart": 40,
+        "OutdoorAmbient": [0.15, 0.15, 0.25],
+        "GlobalShadows": true
+      },
+      "GalaxyAtmosphere": {
+        "$className": "Atmosphere",
+        "$properties": {
+          "Density": 0.35,
+          "Offset": 0.15,
+          "Color": [0.2, 0.22, 0.4],
+          "Decay": [0.08, 0.08, 0.15],
+          "Glare": 0.1,
+          "Haze": 1.2
+        }
+      },
+      "GalaxyBloom": {
+        "$className": "BloomEffect",
+        "$properties": {
+          "Enabled": true,
+          "Intensity": 0.6,
+          "Size": 30,
+          "Threshold": 0.8
+        }
+      },
+      "GalaxyStars": {
+        "$className": "Sky",
+        "$properties": {
+          "CelestialBodiesShown": true,
+          "StarCount": 3000,
+          "MoonAngularSize": 18,
+          "SunAngularSize": 0
+        }
+      }
+    }
+  }
+}

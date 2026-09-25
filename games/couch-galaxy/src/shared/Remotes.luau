@@ -2,7 +2,7 @@
 local RunService = game:GetService("RunService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-local FOLDER_NAME = "OrbitRemotes"
+local FOLDER_NAME = "GalaxyRemotes"
 
 local function getFolder(): Folder
 	if RunService:IsServer() then
@@ -16,7 +16,7 @@ local function getFolder(): Folder
 		return created
 	end
 	local folder = ReplicatedStorage:WaitForChild(FOLDER_NAME, 10)
-	assert(folder and folder:IsA("Folder"), "OrbitRemotes missing")
+	assert(folder and folder:IsA("Folder"), "GalaxyRemotes missing")
 	return folder
 end
 
@@ -38,7 +38,7 @@ local function getRemote(name: string): RemoteEvent
 end
 
 return {
-	BeadCollected = getRemote("BeadCollected"),
-	OrbitComplete = getRemote("OrbitComplete"),
-	BeadTrailBurst = getRemote("BeadTrailBurst"),
+	StarCollected = getRemote("StarCollected"),
+	EnteredGalaxy = getRemote("EnteredGalaxy"),
+	ReturnedHome = getRemote("ReturnedHome"),
 }
