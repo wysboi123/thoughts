@@ -107,3 +107,37 @@ Remotes.CouchSitChanged.OnClientEvent:Connect(function(seatName: string, display
 end)
 
 print("[CouchGalaxy] client ready v" .. Config.Version)
+
+local SoftGoals = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftGoals"))
+local _, complete = SoftGoals.mount(player:WaitForChild("PlayerGui"), "tonight's soft goals", {
+	{ Id = "couch", Label = "sit on the couch" },
+	{ Id = "galaxy", Label = "visit the galaxy loft" },
+	{ Id = "stars", Label = "collect 3 stars" },
+})
+
+Remotes.EnteredGalaxy.OnClientEvent:Connect(function()
+	complete("galaxy")
+end)
+
+Remotes.StarCollected.OnClientEvent:Connect(function(count: number)
+	if count >= 3 then
+		complete("stars")
+	end
+end)
+
+Remotes.CouchSitChanged.OnClientEvent:Connect(function(_seatName: string, displayName: string?)
+	if displayName == player.DisplayName then
+		complete("couch")
+	end
+end)
+
+task.spawn(function()
+	while true do
+		task.wait(0.5)
+		local character = player.Character
+		local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+		if humanoid and humanoid.SeatPart then
+			complete("couch")
+		end
+	end
+end)

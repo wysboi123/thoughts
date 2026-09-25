@@ -2,7 +2,7 @@
 local Config = {
 	GameName = "Bus Stop Forever",
 	Tagline = "the bus will come. you don't have to.",
-	Version = "0.1",
+	Version = "0.2",
 
 	Spawn = Vector3.new(0, 5, 6),
 

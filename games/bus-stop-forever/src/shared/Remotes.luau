@@ -41,4 +41,5 @@ return {
 	TicketCollected = getRemote("TicketCollected"),
 	BusArrived = getRemote("BusArrived"),
 	BusDeparted = getRemote("BusDeparted"),
+	WaveAtBus = getRemote("WaveAtBus"),
 }

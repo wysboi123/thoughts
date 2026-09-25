@@ -333,8 +333,10 @@ task.spawn(function()
 		end)
 		arrive:Play()
 		arrive.Completed:Wait()
+		bus:SetAttribute("Present", true)
 		Remotes.BusArrived:FireAllClients()
 		task.wait(Config.Bus.DwellSeconds)
+		bus:SetAttribute("Present", false)
 		Remotes.BusDeparted:FireAllClients()
 		local depart = TweenService:Create(
 			bus,
@@ -394,6 +396,40 @@ end)
 
 Players.PlayerRemoving:Connect(function(player)
 	ticketCounts[player.UserId] = nil
+end)
+
+-- Soft wave at the bus — no boarding, just a friendly gesture
+local waveCooldown: { [number]: number } = {}
+bus:SetAttribute("Present", false)
+
+Remotes.WaveAtBus.OnServerEvent:Connect(function(player: Player)
+	if not bus:GetAttribute("Present") then
+		return
+	end
+	local now = os.clock()
+	local last = waveCooldown[player.UserId] or 0
+	if now - last < 2 then
+		return
+	end
+	waveCooldown[player.UserId] = now
+	local character = player.Character
+	local root = character and character:FindFirstChild("HumanoidRootPart")
+	if root and root:IsA("BasePart") then
+		local start = root.CFrame
+		task.spawn(function()
+			for i = 1, 6 do
+				if not root.Parent then
+					return
+				end
+				root.CFrame = start * CFrame.Angles(0, math.sin(i) * 0.5, 0)
+				task.wait(0.1)
+			end
+			if root.Parent then
+				root.CFrame = start
+			end
+		end)
+	end
+	Remotes.WaveAtBus:FireAllClients(player.DisplayName)
 end)
 
 print("[BusStopForever] server ready —", Config.Tagline)

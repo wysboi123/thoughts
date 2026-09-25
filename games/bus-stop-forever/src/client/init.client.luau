@@ -114,6 +114,62 @@ end)
 
 print("[BusStopForever] client ready")
 
+local SoftGoals = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftGoals"))
+local _, complete = SoftGoals.mount(player:WaitForChild("PlayerGui"), "tonight's soft goals", {
+	{ Id = "sit", Label = "sit on a bench" },
+	{ Id = "ticket", Label = "pick up a ticket" },
+	{ Id = "wave", Label = "wave when the bus stops" },
+})
+
+Remotes.TicketCollected.OnClientEvent:Connect(function()
+	complete("ticket")
+end)
+
+local waveBtn = Instance.new("TextButton")
+waveBtn.Name = "WaveButton"
+waveBtn.AnchorPoint = Vector2.new(0.5, 1)
+waveBtn.Position = UDim2.new(0.5, 0, 1, -120)
+waveBtn.Size = UDim2.fromOffset(160, 40)
+waveBtn.BackgroundColor3 = Color3.fromRGB(50, 70, 55)
+waveBtn.Font = Enum.Font.GothamMedium
+waveBtn.TextSize = 16
+waveBtn.TextColor3 = Color3.fromRGB(220, 240, 210)
+waveBtn.Text = "Wave at bus"
+waveBtn.Visible = false
+waveBtn.Parent = gui
+local waveCorner = Instance.new("UICorner")
+waveCorner.CornerRadius = UDim.new(0, 10)
+waveCorner.Parent = waveBtn
+
+waveBtn.MouseButton1Click:Connect(function()
+	Remotes.WaveAtBus:FireServer()
+end)
+
+Remotes.BusArrived.OnClientEvent:Connect(function()
+	waveBtn.Visible = true
+end)
+
+Remotes.BusDeparted.OnClientEvent:Connect(function()
+	waveBtn.Visible = false
+end)
+
+Remotes.WaveAtBus.OnClientEvent:Connect(function(name: string)
+	complete("wave")
+	busStatus.Text = name .. " waved · no rush"
+	busStatus.TextColor3 = Color3.fromRGB(200, 220, 170)
+end)
+
+task.spawn(function()
+	while true do
+		task.wait(0.5)
+		local character = player.Character
+		local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+		if humanoid and humanoid.SeatPart then
+			complete("sit")
+		end
+	end
+end)
+
 -- Soft night rain (visual only — parts fall and despawn)
 if Config.Rain.Enabled then
 	task.spawn(function()

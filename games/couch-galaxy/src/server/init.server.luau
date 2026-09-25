@@ -259,6 +259,40 @@ local function buildGalaxy(world: Folder)
 	})
 	platform.Transparency = 0.15
 
+	-- Galaxy hammock
+	local gOrigin = Config.GalaxySpawn
+	part({
+		Name = "GalaxyHammockPostL",
+		Size = Vector3.new(0.5, 4, 0.5),
+		Position = gOrigin + Vector3.new(-7, 0, -8),
+		Color = Color3.fromRGB(80, 70, 50),
+		Material = Enum.Material.Wood,
+		Parent = world,
+	})
+	part({
+		Name = "GalaxyHammockPostR",
+		Size = Vector3.new(0.5, 4, 0.5),
+		Position = gOrigin + Vector3.new(7, 0, -8),
+		Color = Color3.fromRGB(80, 70, 50),
+		Material = Enum.Material.Wood,
+		Parent = world,
+	})
+	part({
+		Name = "GalaxyHammockCloth",
+		Size = Vector3.new(12, 0.3, 3.5),
+		Position = gOrigin + Vector3.new(0, -1.5, -8),
+		Color = Color3.fromRGB(120, 100, 180),
+		Material = Enum.Material.Fabric,
+		Parent = world,
+	})
+	local gSeat = Instance.new("Seat")
+	gSeat.Name = "GalaxyHammockSeat"
+	gSeat.Size = Vector3.new(3.5, 0.4, 1.8)
+	gSeat.Position = gOrigin + Vector3.new(0, -1, -8)
+	gSeat.Anchored = true
+	gSeat.Color = Color3.fromRGB(150, 130, 200)
+	gSeat.Parent = world
+
 	local returnBeacon = part({
 		Name = "ReturnBeacon",
 		Size = Vector3.new(6, 1, 6),
