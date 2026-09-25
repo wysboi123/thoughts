@@ -2,6 +2,29 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-25 05:00 UTC — OVERNIGHT STOP
+
+Night 1 complete. No new features this wrap.
+
+**Shipped (5 games, all `rojo build` clean)**
+- Haze Haven v0.4 — loft, hammock, emotes, vibe board, day/night, audio hooks
+- Slow Orbit v0.1 — planet + moonlet, trails, upright camera
+- Couch Galaxy v0.1 — roof props, couch sit sync, constellations
+- Puddle Mirror v0.1 — puddle unlocks, dew trails, deep room
+- Bus Stop Forever v0.1 — second shelter, notepad, rain, tickets
+
+**Ops**
+- PR: https://github.com/wysboi123/thoughts/pull/1
+- Publish: `docs/PUBLISH_CHECKLIST.md`
+- Daily resume timer `overnight-daily-resume` **active** (cron 23:00 UTC)
+- Perplexity Q-001–004 still open — drop answers in `docs/research/`
+
+**Next night (23:00 UTC)**
+1. Apply any Perplexity research
+2. Wire audio asset ids
+3. Help Femmy publish first place
+4. Slow Orbit v0.2 / cross-game polish as backlog says
+
 ## 2026-09-25 03:40 UTC — Checkpoint 3 (pre-stop)
 
 - **Bus Stop Forever v0.1**: second shelter, rotating notepad, night rain FX
