@@ -1,6 +1,7 @@
 --!strict
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Workspace = game:GetService("Workspace")
 local TweenService = game:GetService("TweenService")
@@ -70,12 +71,12 @@ status.Parent = gui
 local hint = Instance.new("TextLabel")
 hint.BackgroundTransparency = 1
 hint.Position = UDim2.new(0, 24, 1, -100)
-hint.Size = UDim2.new(0, 320, 0, 20)
+hint.Size = UDim2.new(0, 360, 0, 20)
 hint.Font = Enum.Font.Gotham
 hint.TextSize = 12
 hint.TextXAlignment = Enum.TextXAlignment.Left
 hint.TextColor3 = Color3.fromRGB(130, 150, 190)
-hint.Text = "Cross the tether to the moonlet for violet beads"
+hint.Text = "RMB / drag to orbit · scroll zoom · violet beads on moonlet"
 hint.Parent = gui
 
 Remotes.BeadCollected.OnClientEvent:Connect(function(count: number, target: number)
@@ -121,8 +122,52 @@ Remotes.BeadTrailBurst.OnClientEvent:Connect(function(position: Vector3, color: 
 	end)
 end)
 
--- Camera upright assist: keep camera "up" aligned with planet/moon radial
+-- Camera: smooth radial-up stick + yaw + zoom
 local yaw = 0
+local distance = Config.Camera.Distance
+local smoothedUp = Vector3.new(0, 1, 0)
+local dragging = false
+local lastTouch: Vector2? = nil
+
+UserInputService.InputBegan:Connect(function(input, processed)
+	if processed then
+		return
+	end
+	if input.UserInputType == Enum.UserInputType.MouseButton2 then
+		dragging = true
+	elseif input.UserInputType == Enum.UserInputType.Touch then
+		dragging = true
+		lastTouch = Vector2.new(input.Position.X, input.Position.Y)
+	end
+end)
+
+UserInputService.InputEnded:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton2 or input.UserInputType == Enum.UserInputType.Touch then
+		dragging = false
+		lastTouch = nil
+	end
+end)
+
+UserInputService.InputChanged:Connect(function(input, processed)
+	if processed then
+		return
+	end
+	if input.UserInputType == Enum.UserInputType.MouseWheel then
+		distance = math.clamp(
+			distance - input.Position.Z * 2,
+			Config.Camera.MinDistance,
+			Config.Camera.MaxDistance
+		)
+	elseif dragging and input.UserInputType == Enum.UserInputType.Touch then
+		local pos = Vector2.new(input.Position.X, input.Position.Y)
+		if lastTouch then
+			local delta = pos - lastTouch
+			yaw -= delta.X * Config.Camera.TouchYawSensitivity
+		end
+		lastTouch = pos
+	end
+end)
+
 local function bindCamera(character: Model)
 	local root = character:WaitForChild("HumanoidRootPart", 5)
 	if not root or not root:IsA("BasePart") then
@@ -130,6 +175,9 @@ local function bindCamera(character: Model)
 	end
 
 	camera.CameraType = Enum.CameraType.Scriptable
+	smoothedUp = Vector3.new(0, 1, 0)
+	yaw = 0
+	distance = Config.Camera.Distance
 
 	local conn: RBXScriptConnection?
 	conn = RunService.RenderStepped:Connect(function(dt)
@@ -141,18 +189,16 @@ local function bindCamera(character: Model)
 			return
 		end
 
-		local upAttr = root:GetAttribute("OrbitUp")
-		local up = if typeof(upAttr) == "Vector3" then upAttr.Unit else Vector3.new(0, 1, 0)
+		if dragging and UserInputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton2) then
+			local mouseDelta = UserInputService:GetMouseDelta()
+			yaw -= mouseDelta.X * Config.Camera.YawSensitivity
+		end
 
-		-- Mouse / stick yaw around radial up
-		local mouseDelta = Vector2.zero
-		pcall(function()
-			local UserInputService = game:GetService("UserInputService")
-			if UserInputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton2) then
-				mouseDelta = UserInputService:GetMouseDelta()
-			end
-		end)
-		yaw -= mouseDelta.X * 0.01
+		local upAttr = root:GetAttribute("OrbitUp")
+		local targetUp = if typeof(upAttr) == "Vector3" and upAttr.Magnitude > 0.1 then upAttr.Unit else Vector3.new(0, 1, 0)
+		-- Smooth up so planet↔moonlet handoff doesn't snap the camera
+		smoothedUp = smoothedUp:Lerp(targetUp, math.clamp(Config.Camera.UpLerp + dt * 0.5, 0, 1)).Unit
+		local up = smoothedUp
 
 		local look = root.CFrame.LookVector
 		local flat = look - up * look:Dot(up)
@@ -162,14 +208,15 @@ local function bindCamera(character: Model)
 				flat = up:Cross(Vector3.new(0, 0, 1))
 			end
 		end
-		flat = CFrame.fromAxisAngle(up, yaw) * flat.Unit
+		flat = (CFrame.fromAxisAngle(up, yaw) * flat.Unit)
 
 		local desired = CFrame.lookAt(
-			root.Position - flat * Config.Camera.Distance + up * 6,
-			root.Position + up * 2,
+			root.Position - flat * distance + up * Config.Camera.Height,
+			root.Position + up * Config.Camera.LookAhead,
 			up
 		)
-		camera.CFrame = camera.CFrame:Lerp(desired, math.clamp(Config.Camera.Lerp + dt, 0, 1))
+		local alpha = math.clamp(1 - math.exp(-Config.Camera.Lerp * 60 * dt), 0, 1)
+		camera.CFrame = camera.CFrame:Lerp(desired, alpha)
 	end)
 end
 

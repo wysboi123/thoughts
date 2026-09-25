@@ -63,13 +63,16 @@ function GravityService.attach(character: Model, moonlet: Part)
 		local dir = offset.Unit
 		force.Force = dir * (strength * 20)
 
+		-- Orient feet toward planet with slightly damped look (less jitter)
 		local up = -dir
 		root:SetAttribute("OrbitUp", up)
+		root:SetAttribute("OrbitBody", if center == moonCenter then "Moonlet" else "Planet")
 
 		local look = root.CFrame.LookVector
 		local flatLook = look - up * look:Dot(up)
 		if flatLook.Magnitude > 0.05 then
-			root.CFrame = CFrame.lookAt(root.Position, root.Position + flatLook.Unit, up)
+			local target = CFrame.lookAt(root.Position, root.Position + flatLook.Unit, up)
+			root.CFrame = root.CFrame:Lerp(target, 0.35)
 		else
 			local right = up:Cross(Vector3.new(0, 1, 0))
 			if right.Magnitude < 0.05 then

@@ -46,10 +46,11 @@ See `docs/HEAD_CODER_PLAYBOOK.md`.
 
 ## Games
 
-- [`games/haze-haven`](games/haze-haven) — lounge + loft + hammock, vibe board, emotes (v0.4)
-- [`games/slow-orbit`](games/slow-orbit) — planet + moonlet gravity walk, bead trails (v0.1)
+- [`games/haze-haven`](games/haze-haven) — lounge + loft + hammock, vibe board, soft goals (v0.5)
+- [`games/slow-orbit`](games/slow-orbit) — planet + moonlet, smooth camera, bead trails (v0.2)
 - [`games/couch-galaxy`](games/couch-galaxy) — apartment roof → night sky hangout (v0.1)
 - [`games/puddle-mirror`](games/puddle-mirror) — puddle ripples unlock secret nooks (v0.1)
 - [`games/bus-stop-forever`](games/bus-stop-forever) — calm infinite bus stop + rain (v0.1)
+- [`packages/chill`](packages/chill) — shared PartFactory / RemoteFolder / SoftGoals
 
 Publish steps: [`docs/PUBLISH_CHECKLIST.md`](docs/PUBLISH_CHECKLIST.md)

@@ -2,6 +2,14 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-25 23:00 UTC — Night 2 resume
+
+- Stop timer re-armed → 05:00 UTC; checkpoints ~01:00 and ~03:00
+- No Perplexity answers in `docs/research/` yet (Q-001–004 still open) — did **not** invent audio ids
+- **Slow Orbit v0.2**: smooth up-lerp camera, RMB/touch orbit, scroll zoom, moonlet violet trail ends
+- **Haze Haven v0.5**: soft session goals HUD via new `packages/chill` (SoftGoals, PartFactory, RemoteFolder)
+- Next this night: Couch Galaxy SoftGoals / Bus Stop wave / more polish until 5am
+
 ## 2026-09-25 05:00 UTC — OVERNIGHT STOP
 
 Night 1 complete. No new features this wrap.

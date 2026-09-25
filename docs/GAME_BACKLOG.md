@@ -4,15 +4,17 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 
 ## Active
 
-- [x] **Haze Haven v0–v0.4** — lounge, loft, emotes, hammock, vibe board, day/night, audio hooks
-- [x] **Slow Orbit v0–v0.1** — planet + moonlet, beads, trails, camera
+- [x] **Haze Haven v0–v0.5** — lounge, loft, hammock, emotes, vibe board, soft session goals, Chill pkg
+- [x] **Slow Orbit v0–v0.2** — planet + moonlet, trails, smooth camera stick/zoom
 - [x] **Couch Galaxy v0–v0.1** — roof props, dual couch sit sync, constellation beams
 - [x] **Puddle Mirror v0–v0.1** — puddle unlocks, dew trails, deep mirror room
 - [x] **Bus Stop Forever v0–v0.1** — second shelter, notepad, night rain, tickets
-- [x] **Shared polish** — Studio publish checklist (`docs/PUBLISH_CHECKLIST.md`)
-- [ ] **Night 2** — apply Perplexity answers; wire real audio ids; publish first place with Femmy
-- [ ] **Slow Orbit v0.2** — camera stick polish + moonlet bead trail colors
-- [ ] **Cross-game** — shared `Packages/` chill utilities module (optional)
+- [x] **Shared** — `packages/chill` + publish checklist
+- [ ] **Wire audio** — waiting on Perplexity Q-004 asset ids (do not invent)
+- [ ] **First publish** — Femmy Studio publish using `docs/PUBLISH_CHECKLIST.md`
+- [ ] **Apply Q-001–003** when answers land in `docs/research/`
+- [ ] **Bus Stop Forever v0.2** — optional passenger wave at bus (no boarding pressure)
+- [ ] **Couch Galaxy v0.2** — galaxy hammock + soft goals via Chill.SoftGoals
 
 ## Rules for new concepts
 

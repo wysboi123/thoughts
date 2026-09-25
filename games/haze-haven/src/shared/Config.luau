@@ -4,7 +4,7 @@
 local Config = {
 	GameName = "Haze Haven",
 	Tagline = "float soft. collect vibes. stay awhile.",
-	Version = "0.4",
+	Version = "0.5",
 
 	Spawn = Vector3.new(0, 8, 0),
 

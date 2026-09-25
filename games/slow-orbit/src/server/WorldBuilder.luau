@@ -30,7 +30,7 @@ local function makeSphere(name: string, radius: number, position: Vector3, color
 	return part
 end
 
-local function attachTrail(part: BasePart, color: Color3)
+local function attachTrail(part: BasePart, color: Color3, trailEnd: Color3?)
 	local a0 = Instance.new("Attachment")
 	a0.Name = "TrailA0"
 	a0.Position = Vector3.new(0, 0.4, 0)
@@ -40,6 +40,7 @@ local function attachTrail(part: BasePart, color: Color3)
 	a1.Position = Vector3.new(0, -0.4, 0)
 	a1.Parent = part
 
+	local endColor = trailEnd or Config.Bead.TrailEnd
 	local trail = Instance.new("Trail")
 	trail.Name = "BeadTrail"
 	trail.Attachment0 = a0
@@ -47,7 +48,7 @@ local function attachTrail(part: BasePart, color: Color3)
 	trail.Lifetime = Config.Bead.TrailLifetime
 	trail.MinLength = 0.1
 	trail.FaceCamera = true
-	trail.Color = ColorSequence.new(color, Color3.fromRGB(40, 60, 120))
+	trail.Color = ColorSequence.new(color, endColor)
 	trail.Transparency = NumberSequence.new({
 		NumberSequenceKeypoint.new(0, 0.15),
 		NumberSequenceKeypoint.new(1, 1),
@@ -102,7 +103,14 @@ function WorldBuilder.build(): (Part, Part, Folder)
 	beadsFolder.Name = "OrbitBeads"
 	beadsFolder.Parent = Workspace
 
-	local function spawnBeadRing(count: number, center: Vector3, radius: number, color: Color3, namePrefix: string)
+	local function spawnBeadRing(
+		count: number,
+		center: Vector3,
+		radius: number,
+		color: Color3,
+		trailEnd: Color3,
+		namePrefix: string
+	)
 		for i = 1, count do
 			local theta = (i / count) * math.pi * 2
 			local phi = 0.55 + (i % 4) * 0.28
@@ -125,7 +133,7 @@ function WorldBuilder.build(): (Part, Part, Folder)
 			bead:SetAttribute("HomePosition", pos)
 			bead:SetAttribute("BodyCenter", center)
 			bead.Parent = beadsFolder
-			attachTrail(bead, color)
+			attachTrail(bead, color, trailEnd)
 
 			local pl = Instance.new("PointLight")
 			pl.Brightness = 2.5
@@ -135,12 +143,20 @@ function WorldBuilder.build(): (Part, Part, Folder)
 		end
 	end
 
-	spawnBeadRing(Config.Bead.Count, Config.Planet.Center, Config.Planet.Radius, Config.Bead.Color, "OrbitBead")
+	spawnBeadRing(
+		Config.Bead.Count,
+		Config.Planet.Center,
+		Config.Planet.Radius,
+		Config.Bead.Color,
+		Config.Bead.TrailEnd,
+		"OrbitBead"
+	)
 	spawnBeadRing(
 		Config.Bead.MoonletCount,
 		moonCenter,
 		Config.Moonlet.Radius,
 		Config.Bead.MoonletColor,
+		Config.Bead.MoonletTrailEnd,
 		"MoonBead"
 	)
 

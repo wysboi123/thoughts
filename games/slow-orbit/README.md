@@ -10,10 +10,11 @@ rojo build -o SlowOrbit.rbxl
 rojo serve
 ```
 
-## Loop (v0.1)
+## Loop (v0.2)
 
 - Spawn on the main planet
-- Beads leave soft trails; collecting bursts a neon pop
-- Cross the tether to the **moonlet** for violet beads (weaker local gravity)
-- Hold **RMB** + move mouse to orbit the camera (upright stays radial)
+- Beads leave colored trails (blue on planet, violet on moonlet)
+- Cross the tether to the moonlet for violet beads
+- Camera sticks to radial up with smooth body handoff
+- **RMB / touch-drag** to orbit · **scroll** to zoom
 - Soft complete at target bead count — no fail state
