@@ -2,6 +2,14 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-25 03:40 UTC — Checkpoint 3 (pre-stop)
+
+- **Bus Stop Forever v0.1**: second shelter, rotating notepad, night rain FX
+- **Haze Haven v0.4**: loft hammock + soft “tonight's vibes” board
+- **Publish checklist**: `docs/PUBLISH_CHECKLIST.md` for Femmy Studio publish
+- Stop timer `overnight-stop-5am-utc` still armed; daily resume cron active
+- **Draft for 5am stop:** Night 1 complete — 5 chill games, Rojo-ready. Waiting on Perplexity Q-001–004 + OpenClaw pairing + first Studio publish. Next night: audio ids + publish first place.
+
 ## 2026-09-25 02:10 UTC — Checkpoint 2
 
 - **Couch Galaxy v0.1**: roof railings/planters/string lights, dual couch + sit sync HUD, constellation beams

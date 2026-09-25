@@ -14,16 +14,17 @@ rojo serve
 2. Rojo plugin → **Connect**  
 3. Press **Play**
 
-## Loop (v0.3)
+## Loop (v0.4)
 
 - Spawn on the lounge pad → walk or float up the ramp to the **loft**
 - Touch **float pads** (cyan) for soft boosts
-- Collect **vibe orbs** (magenta) — count on HUD + nameplate
-- Sit on cushions or press **2 / Sit**
-- Emotes: **1 Wave · 2 Sit · 3 Float** (bar at bottom)
+- Collect **vibe orbs** (magenta) — count on HUD + nameplate + **tonight's vibes** board
+- Sit on cushions, loft seats, or the **hammock**
+- Emotes: **1 Wave · 2 Sit · 3 Float**
 - Stand near a friend → soft purple proximity glow
 - Lighting gently pulses dusk↔deeper night
 - Audio: set `Config.Audio.*` rbxassetids when you have tracks
+
 
 ## Layout
 

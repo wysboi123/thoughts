@@ -259,6 +259,73 @@ function WorldBuilder.build(workspace: Workspace): Folder
 	})
 	loftMist.CastShadow = false
 
+	-- Loft hammock (two posts + soft seat)
+	local hammockY = loftPos.Y + 2.2
+	WorldBuilder.makePart({
+		Name = "HammockPostL",
+		Size = Vector3.new(0.6, 5, 0.6),
+		Position = loftPos + Vector3.new(-8, 3.5, 8),
+		Color = Color3.fromRGB(70, 55, 45),
+		Material = Enum.Material.Wood,
+		Parent = world,
+	})
+	WorldBuilder.makePart({
+		Name = "HammockPostR",
+		Size = Vector3.new(0.6, 5, 0.6),
+		Position = loftPos + Vector3.new(8, 3.5, 8),
+		Color = Color3.fromRGB(70, 55, 45),
+		Material = Enum.Material.Wood,
+		Parent = world,
+	})
+	WorldBuilder.makePart({
+		Name = "HammockCloth",
+		Size = Vector3.new(14, 0.35, 4),
+		Position = Vector3.new(loftPos.X, hammockY, loftPos.Z + 8),
+		Color = Color3.fromRGB(160, 120, 180),
+		Material = Enum.Material.Fabric,
+		Parent = world,
+	})
+	local hammockSeat = Instance.new("Seat")
+	hammockSeat.Name = "HammockSeat"
+	hammockSeat.Size = Vector3.new(4, 0.4, 2)
+	hammockSeat.Position = Vector3.new(loftPos.X, hammockY + 0.5, loftPos.Z + 8)
+	hammockSeat.Anchored = true
+	hammockSeat.Color = Color3.fromRGB(180, 140, 200)
+	hammockSeat.Material = Enum.Material.Fabric
+	hammockSeat.Parent = world
+
+	-- Soft vibe board (SurfaceGui filled by client from VibeBoard remote)
+	local vibeBoard = WorldBuilder.makePart({
+		Name = "VibeBoard",
+		Size = Vector3.new(10, 6, 0.4),
+		Position = Vector3.new(0, 6, 22),
+		Color = Color3.fromRGB(40, 32, 55),
+		Parent = world,
+	})
+	local boardGui = Instance.new("SurfaceGui")
+	boardGui.Name = "VibeBoardGui"
+	boardGui.Face = Enum.NormalId.Front
+	boardGui.Parent = vibeBoard
+	local boardTitle = Instance.new("TextLabel")
+	boardTitle.Size = UDim2.new(1, 0, 0.2, 0)
+	boardTitle.BackgroundTransparency = 1
+	boardTitle.Font = Enum.Font.GothamMedium
+	boardTitle.TextSize = 28
+	boardTitle.TextColor3 = Color3.fromRGB(230, 200, 255)
+	boardTitle.Text = "tonight's vibes"
+	boardTitle.Parent = boardGui
+	local boardBody = Instance.new("TextLabel")
+	boardBody.Name = "BoardBody"
+	boardBody.Position = UDim2.new(0, 0, 0.22, 0)
+	boardBody.Size = UDim2.new(1, -20, 0.7, 0)
+	boardBody.BackgroundTransparency = 1
+	boardBody.Font = Enum.Font.Gotham
+	boardBody.TextSize = 22
+	boardBody.TextYAlignment = Enum.TextYAlignment.Top
+	boardBody.TextColor3 = Color3.fromRGB(200, 180, 230)
+	boardBody.Text = "collect orbs · soft ranks only"
+	boardBody.Parent = boardGui
+
 	return world
 end
 

@@ -113,3 +113,35 @@ RunService.Heartbeat:Connect(function()
 end)
 
 print("[BusStopForever] client ready")
+
+-- Soft night rain (visual only — parts fall and despawn)
+if Config.Rain.Enabled then
+	task.spawn(function()
+		local Workspace = game:GetService("Workspace")
+		while true do
+			for _ = 1, 6 do
+				local drop = Instance.new("Part")
+				drop.Name = "RainDrop"
+				drop.Size = Vector3.new(0.12, 1.4, 0.12)
+				drop.Position = Vector3.new((math.random() - 0.5) * 50, 28, (math.random() - 0.5) * 30)
+				drop.Anchored = true
+				drop.CanCollide = false
+				drop.Material = Enum.Material.Neon
+				drop.Color = Color3.fromRGB(160, 180, 200)
+				drop.Transparency = 0.35
+				drop.Parent = Workspace
+				task.spawn(function()
+					for _ = 1, 18 do
+						if not drop.Parent then
+							return
+						end
+						drop.Position = drop.Position + Vector3.new(0, -1.6, 0.15)
+						task.wait(0.03)
+					end
+					drop:Destroy()
+				end)
+			end
+			task.wait(0.12)
+		end
+	end)
+end

@@ -4,14 +4,15 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 
 ## Active
 
-- [x] **Haze Haven v0–v0.3** — lounge, loft, emotes, proximity, day/night, audio hooks
+- [x] **Haze Haven v0–v0.4** — lounge, loft, emotes, hammock, vibe board, day/night, audio hooks
 - [x] **Slow Orbit v0–v0.1** — planet + moonlet, beads, trails, camera
 - [x] **Couch Galaxy v0–v0.1** — roof props, dual couch sit sync, constellation beams
 - [x] **Puddle Mirror v0–v0.1** — puddle unlocks, dew trails, deep mirror room
-- [x] **Bus Stop Forever v0** — shelter, looping calm bus, tickets, proximity glow
-- [ ] **Bus Stop Forever v0.1** — night rain FX, notepad board messages, second shelter
-- [ ] **Haze Haven v0.4** — shared vibe leaderboard (soft) + loft hammock
-- [ ] **Shared polish pass** — README gallery + Studio publish checklist for Femmy
+- [x] **Bus Stop Forever v0–v0.1** — second shelter, notepad, night rain, tickets
+- [x] **Shared polish** — Studio publish checklist (`docs/PUBLISH_CHECKLIST.md`)
+- [ ] **Night 2** — apply Perplexity answers; wire real audio ids; publish first place with Femmy
+- [ ] **Slow Orbit v0.2** — camera stick polish + moonlet bead trail colors
+- [ ] **Cross-game** — shared `Packages/` chill utilities module (optional)
 
 ## Rules for new concepts
 

@@ -1,6 +1,6 @@
 # Bus Stop Forever
 
-Infinite cozy bus stop. Buses arrive, glow, leave — nobody's late. Sit, chat-vibe, collect ticket stubs.
+Infinite cozy bus stop. Buses arrive, glow, leave — nobody's late.
 
 ## Play
 
@@ -10,10 +10,11 @@ rojo build -o BusStopForever.rbxl
 rojo serve
 ```
 
-## Loop (v0)
+## Loop (v0.1)
 
-- Hang under the shelter
-- Sit on benches
-- Watch buses arrive on a calm loop (never rush you aboard)
-- Collect floating **ticket stubs** for a soft counter
+- Hang under the main shelter or the second shelter down the walk
+- Sit on benches; collect ticket stubs
+- Watch the forever-bus loop (never forced aboard)
+- Read the rotating **notes from nowhere** board
+- Soft night rain FX (visual)
 - Proximity glow when friends stand near

@@ -18,6 +18,31 @@ function OrbService.setCount(player: Player, value: number)
 	player:SetAttribute("VibeCount", value)
 	Remotes.OrbCollected:FireClient(player, value)
 	Remotes.VibeCountChanged:FireAllClients(player.UserId, value)
+	OrbService.broadcastBoard()
+end
+
+function OrbService.broadcastBoard()
+	local rows = {}
+	for _, player in Players:GetPlayers() do
+		table.insert(rows, {
+			Name = player.DisplayName,
+			Count = orbCounts[player.UserId] or 0,
+		})
+	end
+	table.sort(rows, function(a, b)
+		return a.Count > b.Count
+	end)
+	local lines = {}
+	for i, row in rows do
+		if i > 5 then
+			break
+		end
+		table.insert(lines, ("· %s  %d"):format(row.Name, row.Count))
+	end
+	if #lines == 0 then
+		table.insert(lines, "collect orbs · soft ranks only")
+	end
+	Remotes.VibeBoard:FireAllClients(table.concat(lines, "\n"))
 end
 
 function OrbService.bindWorld(world: Folder)
@@ -94,10 +119,20 @@ end
 
 function OrbService.onPlayerAdded(player: Player)
 	OrbService.setCount(player, 0)
+	OrbService.broadcastBoard()
 end
 
 function OrbService.onPlayerRemoving(player: Player)
 	orbCounts[player.UserId] = nil
+	task.defer(OrbService.broadcastBoard)
 end
+
+-- Periodic soft refresh so late joiners see the board
+task.spawn(function()
+	while true do
+		task.wait(8)
+		OrbService.broadcastBoard()
+	end
+end)
 
 return OrbService

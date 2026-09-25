@@ -47,6 +47,7 @@ local Remotes = {
 	EmoteRequest = getRemote("EmoteRequest"),
 	EmotePlayed = getRemote("EmotePlayed"),
 	VibeCountChanged = getRemote("VibeCountChanged"),
+	VibeBoard = getRemote("VibeBoard"),
 }
 
 return Remotes

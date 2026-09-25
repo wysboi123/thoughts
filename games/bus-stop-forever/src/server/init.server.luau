@@ -142,6 +142,84 @@ label.TextColor3 = Color3.fromRGB(200, 220, 180)
 label.Text = "NEXT BUS\nwhenever\n\nyou're already\non time"
 label.Parent = gui
 
+-- Second shelter further down the sidewalk
+part({
+	Name = "Shelter2Roof",
+	Size = Vector3.new(12, 0.5, 8),
+	Position = Vector3.new(28, 7, 3),
+	Color = Color3.fromRGB(50, 55, 65),
+	Parent = world,
+})
+part({
+	Name = "Shelter2PostL",
+	Size = Vector3.new(0.6, 7, 0.6),
+	Position = Vector3.new(23, 3.5, 3),
+	Color = Color3.fromRGB(65, 70, 80),
+	Parent = world,
+})
+part({
+	Name = "Shelter2PostR",
+	Size = Vector3.new(0.6, 7, 0.6),
+	Position = Vector3.new(33, 3.5, 3),
+	Color = Color3.fromRGB(65, 70, 80),
+	Parent = world,
+})
+part({
+	Name = "BenchFar",
+	Size = Vector3.new(5, 1, 2),
+	Position = Vector3.new(28, 1.2, 3.5),
+	Color = Color3.fromRGB(95, 75, 55),
+	Material = Enum.Material.Wood,
+	Parent = world,
+})
+local farSeat = Instance.new("Seat")
+farSeat.Name = "BenchSeatFar"
+farSeat.Size = Vector3.new(3.5, 0.4, 1.5)
+farSeat.Position = Vector3.new(28, 1.9, 3.5)
+farSeat.Anchored = true
+farSeat.Color = Color3.fromRGB(115, 90, 65)
+farSeat.Parent = world
+
+-- Community notepad board (rotating soft messages)
+local notepad = part({
+	Name = "NotepadBoard",
+	Size = Vector3.new(5, 3.5, 0.35),
+	Position = Vector3.new(12, 4, 5.5),
+	Color = Color3.fromRGB(45, 42, 38),
+	Parent = world,
+})
+local noteGui = Instance.new("SurfaceGui")
+noteGui.Face = Enum.NormalId.Front
+noteGui.Parent = notepad
+local noteTitle = Instance.new("TextLabel")
+noteTitle.Size = UDim2.new(1, 0, 0.25, 0)
+noteTitle.BackgroundTransparency = 1
+noteTitle.Font = Enum.Font.GothamMedium
+noteTitle.TextSize = 22
+noteTitle.TextColor3 = Color3.fromRGB(230, 210, 170)
+noteTitle.Text = "notes from nowhere"
+noteTitle.Parent = noteGui
+local noteBody = Instance.new("TextLabel")
+noteBody.Name = "NoteBody"
+noteBody.Position = UDim2.new(0, 0, 0.3, 0)
+noteBody.Size = UDim2.new(1, -16, 0.6, 0)
+noteBody.BackgroundTransparency = 1
+noteBody.Font = Enum.Font.Gotham
+noteBody.TextSize = 20
+noteBody.TextWrapped = true
+noteBody.TextColor3 = Color3.fromRGB(210, 200, 180)
+noteBody.Text = Config.Notepad.Messages[1]
+noteBody.Parent = noteGui
+
+task.spawn(function()
+	local i = 1
+	while notepad.Parent do
+		task.wait(Config.Notepad.RotateSeconds)
+		i = (i % #Config.Notepad.Messages) + 1
+		noteBody.Text = Config.Notepad.Messages[i]
+	end
+end)
+
 local spawn = Instance.new("SpawnLocation")
 spawn.Size = Vector3.new(6, 1, 6)
 spawn.Position = Config.Spawn
