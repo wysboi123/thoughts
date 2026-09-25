@@ -2,6 +2,11 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-25 00:45 UTC — Checkpoint 1b (continued)
+
+- **Puddle Mirror v0**: glass plaza, 3 puddle→nook unlocks, dew collect, ripple FX
+- Next at CP2: Bus Stop Forever v0 or Couch Galaxy v0.1
+
 ## 2026-09-25 00:40 UTC — Checkpoint 1
 
 - **Slow Orbit v0.1**: bead trails + collect bursts, moonlet/tether, dual-body gravity, scriptable upright camera (RMB orbit)

@@ -49,3 +49,4 @@ See `docs/HEAD_CODER_PLAYBOOK.md`.
 - [`games/haze-haven`](games/haze-haven) — lounge + loft, emotes, proximity glow, day/night pulse (v0.3)
 - [`games/slow-orbit`](games/slow-orbit) — planet + moonlet gravity walk, bead trails (v0.1)
 - [`games/couch-galaxy`](games/couch-galaxy) — apartment roof → night sky hangout (v0)
+- [`games/puddle-mirror`](games/puddle-mirror) — puddle ripples unlock secret nooks (v0)

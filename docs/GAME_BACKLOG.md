@@ -11,9 +11,10 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 - [x] **Slow Orbit v0.1** — bead trails, moonlet + tether, camera upright assist
 - [x] **Haze Haven v0.3** — ambient audio hooks + soft day/night pulse
 - [x] **Couch Galaxy v0** — apartment → skylight portal → galaxy loft hangout
+- [x] **Puddle Mirror v0** — reflective plaza, puddle ripples unlock nooks
 - [ ] **Couch Galaxy v0.1** — more roof props, friend couch sit sync, star constellation shapes
-- [ ] **Puddle Mirror v0** — reflective floor world; ripples open secret rooms
 - [ ] **Bus Stop Forever v0** — infinite cozy bus-stop social space
+- [ ] **Puddle Mirror v0.1** — deeper mirror rooms + dew trails
 
 ## Rules for new concepts
 
