@@ -8,7 +8,9 @@ Newest first. Overnight agents append after every push.
 - No Perplexity answers in `docs/research/` yet (Q-001–004 still open) — did **not** invent audio ids
 - **Slow Orbit v0.2**: smooth up-lerp camera, RMB/touch orbit, scroll zoom, moonlet violet trail ends
 - **Haze Haven v0.5**: soft session goals HUD via new `packages/chill` (SoftGoals, PartFactory, RemoteFolder)
-- Next this night: Couch Galaxy SoftGoals / Bus Stop wave / more polish until 5am
+- **Couch Galaxy v0.2**: galaxy hammock + SoftGoals
+- **Bus Stop Forever v0.2**: wave-at-bus button (no boarding) + SoftGoals
+- Next this night: more polish until 5am; still blocked on Perplexity for audio ids
 
 ## 2026-09-25 05:00 UTC — OVERNIGHT STOP
 
