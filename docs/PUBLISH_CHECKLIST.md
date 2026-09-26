@@ -6,7 +6,7 @@ Use this when you're ready to put experiences live on Roblox.
 
 1. Install [Rokit](https://github.com/rojo-rbx/rokit) + Rojo Studio plugin
 2. Create a Roblox experience (or one per game) under your account
-3. Optional later: Open Cloud API key for CLI upload (see Perplexity Q-003) — store only in OpenClaw secrets
+3. Optional later: Open Cloud API key for CLI upload (Perplexity Q-003) — store only in OpenClaw secrets
 
 ## Per game
 
@@ -22,22 +22,24 @@ rojo serve
 4. Set experience name, description, genre (hangout / adventure)
 5. Thumbnail: sit/float screenshot, soft lighting — no ToS-risk imagery
 6. Access: Public when ready; Friends for soft launch is fine
+7. Paste URL into [`PUBLISH_STATUS.md`](PUBLISH_STATUS.md)
 
-## Game slugs tonight
+## Game slugs
 
 | Slug | Pitch |
 | --- | --- |
-| `haze-haven` | Chill loft lounge, emotes, vibe board |
-| `slow-orbit` | Walk a tiny planet + moonlet |
+| `haze-haven` | Chill loft lounge — **good first publish** |
+| `slow-orbit` | Purple-dusk planet + moonlet |
 | `couch-galaxy` | Apartment roof → night sky |
 | `puddle-mirror` | Puddles open secret nooks |
 | `bus-stop-forever` | Infinite calm bus stop |
+| `lantern-drift` | Fog lake raft + lanterns |
 
 ## Don't commit
 
 - `.ROBLOSECURITY` / Open Cloud keys
-- Published place IDs with secrets attached
+- Cookie secrets
 
 ## After publish
 
-Paste place URLs into `docs/WAKE_NOTES.md` or OpenClaw so overnight work can target live places later.
+Update `PUBLISH_STATUS.md` + ping OpenClaw so overnight work can target live places later.

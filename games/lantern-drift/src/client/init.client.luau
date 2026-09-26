@@ -34,8 +34,19 @@ tag.Font = Enum.Font.Gotham
 tag.TextSize = 14
 tag.TextXAlignment = Enum.TextXAlignment.Left
 tag.TextColor3 = Color3.fromRGB(190, 170, 150)
-tag.Text = Config.Tagline
+tag.Text = Config.Tagline .. "  ·  v" .. Config.Version
 tag.Parent = gui
+
+local hint = Instance.new("TextLabel")
+hint.BackgroundTransparency = 1
+hint.Position = UDim2.new(0, 24, 0, 86)
+hint.Size = UDim2.new(0, 420, 0, 18)
+hint.Font = Enum.Font.Gotham
+hint.TextSize = 12
+hint.TextXAlignment = Enum.TextXAlignment.Left
+hint.TextColor3 = Color3.fromRGB(160, 140, 120)
+hint.Text = "dock → gangway → raft · two seats · shore lamps stay lit"
+hint.Parent = gui
 
 local counter = Instance.new("TextLabel")
 counter.BackgroundColor3 = Color3.fromRGB(30, 24, 20)

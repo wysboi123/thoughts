@@ -15,7 +15,6 @@ local world = Instance.new("Folder")
 world.Name = "LanternWorld"
 world.Parent = Workspace
 
--- Fog lake (visual plane)
 PartFactory.make({
 	Name = "Lake",
 	Size = Vector3.new(120, 1, 120),
@@ -26,15 +25,85 @@ PartFactory.make({
 	Parent = world,
 })
 
--- Dock
+-- Soft mist banks
+for i, offset in {
+	Vector3.new(-30, 8, -10),
+	Vector3.new(28, 10, 8),
+	Vector3.new(0, 12, -28),
+} do
+	local mist = PartFactory.make({
+		Name = "Mist" .. i,
+		Size = Vector3.new(24, 12, 24),
+		Position = offset,
+		Color = Color3.fromRGB(120, 130, 160),
+		Material = Enum.Material.ForceField,
+		CanCollide = false,
+		Transparency = 0.7,
+		Parent = world,
+	})
+	mist.CastShadow = false
+end
+
+-- Dock + rails
 PartFactory.make({
 	Name = "Dock",
-	Size = Vector3.new(16, 1.5, 10),
-	Position = Vector3.new(0, 1.5, 22),
+	Size = Vector3.new(18, 1.5, 12),
+	Position = Vector3.new(0, 1.5, 24),
 	Color = Color3.fromRGB(80, 60, 45),
 	Material = Enum.Material.Wood,
 	Parent = world,
 })
+for _, x in { -8, 8 } do
+	PartFactory.make({
+		Name = "DockRail" .. x,
+		Size = Vector3.new(0.5, 2.5, 12),
+		Position = Vector3.new(x, 3.2, 24),
+		Color = Color3.fromRGB(70, 55, 40),
+		Material = Enum.Material.Wood,
+		Parent = world,
+	})
+end
+-- Walkway to water
+PartFactory.make({
+	Name = "Gangway",
+	Size = Vector3.new(6, 0.8, 8),
+	Position = Vector3.new(0, 1.2, 14),
+	Color = Color3.fromRGB(75, 58, 42),
+	Material = Enum.Material.Wood,
+	Parent = world,
+})
+
+-- Shore lamps (decorative — not collectible)
+for i, pos in {
+	Vector3.new(-10, 4, 28),
+	Vector3.new(10, 4, 28),
+	Vector3.new(-14, 3.5, 18),
+	Vector3.new(14, 3.5, 18),
+} do
+	local pole = PartFactory.make({
+		Name = "ShorePole" .. i,
+		Size = Vector3.new(0.5, 5, 0.5),
+		Position = pos,
+		Color = Color3.fromRGB(55, 45, 40),
+		Parent = world,
+	})
+	local lamp = PartFactory.make({
+		Name = "ShoreLamp" .. i,
+		Size = Vector3.new(1.4, 1.4, 1.4),
+		Position = pos + Vector3.new(0, 3.2, 0),
+		Color = Config.Shore.LampColor,
+		Material = Enum.Material.Neon,
+		Shape = Enum.PartType.Ball,
+		CanCollide = false,
+		Parent = world,
+	})
+	local light = Instance.new("PointLight")
+	light.Brightness = 2
+	light.Range = 18
+	light.Color = Config.Shore.LampColor
+	light.Parent = lamp
+	pole.Parent = world
+end
 
 local spawn = Instance.new("SpawnLocation")
 spawn.Size = Vector3.new(6, 1, 6)
@@ -46,7 +115,7 @@ spawn.Transparency = 0.4
 spawn.Color = Color3.fromRGB(90, 70, 50)
 spawn.Parent = world
 
--- Soft raft
+-- Soft raft + dual seats
 local raft = PartFactory.make({
 	Name = "Raft",
 	Size = Vector3.new(14, 1.2, 10),
@@ -55,13 +124,45 @@ local raft = PartFactory.make({
 	Material = Enum.Material.Wood,
 	Parent = world,
 })
-local seat = Instance.new("Seat")
-seat.Name = "RaftSeat"
-seat.Size = Vector3.new(3, 0.4, 2)
-seat.Position = Config.RaftStart + Vector3.new(0, 1.2, 0)
-seat.Anchored = true
-seat.Color = Color3.fromRGB(120, 90, 60)
-seat.Parent = world
+local seatA = Instance.new("Seat")
+seatA.Name = "RaftSeatA"
+seatA.Size = Vector3.new(2.8, 0.4, 2)
+seatA.Position = Config.RaftStart + Vector3.new(-2.5, 1.2, 0)
+seatA.Anchored = true
+seatA.Color = Color3.fromRGB(120, 90, 60)
+seatA.Parent = world
+local seatB = Instance.new("Seat")
+seatB.Name = "RaftSeatB"
+seatB.Size = Vector3.new(2.8, 0.4, 2)
+seatB.Position = Config.RaftStart + Vector3.new(2.5, 1.2, 0)
+seatB.Anchored = true
+seatB.Color = Color3.fromRGB(120, 90, 60)
+seatB.Parent = world
+
+-- Small mast light on raft
+local mast = PartFactory.make({
+	Name = "RaftMast",
+	Size = Vector3.new(0.4, 4, 0.4),
+	Position = Config.RaftStart + Vector3.new(0, 3, -3),
+	Color = Color3.fromRGB(70, 55, 40),
+	Material = Enum.Material.Wood,
+	Parent = world,
+})
+local mastLamp = PartFactory.make({
+	Name = "RaftMastLamp",
+	Size = Vector3.new(1.2, 1.2, 1.2),
+	Position = Config.RaftStart + Vector3.new(0, 5.2, -3),
+	Color = Config.Lantern.Color,
+	Material = Enum.Material.Neon,
+	Shape = Enum.PartType.Ball,
+	CanCollide = false,
+	Parent = world,
+})
+local mastLight = Instance.new("PointLight")
+mastLight.Brightness = 2.5
+mastLight.Range = 20
+mastLight.Color = Config.Lantern.Color
+mastLight.Parent = mastLamp
 
 task.spawn(function()
 	local t = 0
@@ -70,15 +171,19 @@ task.spawn(function()
 		t += task.wait(0.03)
 		local x = math.sin(t * Config.Raft.DriftSpeed) * Config.Raft.DriftAmplitude
 		local z = math.cos(t * Config.Raft.DriftSpeed * 0.7) * (Config.Raft.DriftAmplitude * 0.6)
-		raft.Position = base + Vector3.new(x, 0, z)
-		seat.Position = raft.Position + Vector3.new(0, 1.2, 0)
+		local pos = base + Vector3.new(x, 0, z)
+		raft.Position = pos
+		seatA.Position = pos + Vector3.new(-2.5, 1.2, 0)
+		seatB.Position = pos + Vector3.new(2.5, 1.2, 0)
+		mast.Position = pos + Vector3.new(0, 3, -3)
+		mastLamp.Position = pos + Vector3.new(0, 5.2, -3)
 	end
 end)
 
--- Lanterns
 for i = 1, Config.Lantern.Count do
 	local angle = (i / Config.Lantern.Count) * math.pi * 2
-	local pos = Vector3.new(math.cos(angle) * 22, 5 + (i % 3), math.sin(angle) * 22)
+	local radius = 18 + (i % 3) * 4
+	local pos = Vector3.new(math.cos(angle) * radius, 5 + (i % 3), math.sin(angle) * radius)
 	local lantern = PartFactory.make({
 		Name = "Lantern" .. i,
 		Size = Vector3.new(1.6, 2.2, 1.6),
@@ -165,4 +270,4 @@ Players.PlayerRemoving:Connect(function(player)
 	counts[player.UserId] = nil
 end)
 
-print("[LanternDrift] server ready —", Config.Tagline)
+print(("[LanternDrift] server ready v%s — %s"):format(Config.Version, Config.Tagline))

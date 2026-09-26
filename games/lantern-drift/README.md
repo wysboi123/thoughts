@@ -10,10 +10,9 @@ rojo build -o LanternDrift.rbxl
 rojo serve
 ```
 
-## Loop (v0)
+## Loop (v0.1)
 
-- Spawn on the dock
-- Step onto the raft (it gently drifts)
-- Collect floating lanterns
-- Sit on the raft seat
-- Soft goals optional
+- Spawn on the dock (rails + shore lamps)
+- Walk the gangway onto the raft (gentle drift, dual seats, mast lamp)
+- Collect floating lake lanterns
+- Soft goals optional · proximity glow near friends

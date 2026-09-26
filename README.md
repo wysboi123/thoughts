@@ -51,7 +51,7 @@ See `docs/HEAD_CODER_PLAYBOOK.md`.
 - [`games/couch-galaxy`](games/couch-galaxy) — apartment roof → night sky (v0.2)
 - [`games/puddle-mirror`](games/puddle-mirror) — puddle unlocks + deep mirror (v0.2)
 - [`games/bus-stop-forever`](games/bus-stop-forever) — calm bus stop + wave (v0.2)
-- [`games/lantern-drift`](games/lantern-drift) — fog lake raft + lanterns (v0)
+- [`games/lantern-drift`](games/lantern-drift) — fog lake raft + lanterns (v0.1)
 - [`packages/chill`](packages/chill) — PartFactory / RemoteFolder / SoftGoals / Proximity
 
-Publish: [`docs/PUBLISH_CHECKLIST.md`](docs/PUBLISH_CHECKLIST.md) · Gallery: [`docs/GAMES.md`](docs/GAMES.md)
+Publish: [`docs/PUBLISH_CHECKLIST.md`](docs/PUBLISH_CHECKLIST.md) · Status: [`docs/PUBLISH_STATUS.md`](docs/PUBLISH_STATUS.md) · Gallery: [`docs/GAMES.md`](docs/GAMES.md)

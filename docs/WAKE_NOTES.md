@@ -2,6 +2,14 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-26 23:12 UTC — Night 3 resume
+
+- Stop timer re-armed → 05:00 UTC; checkpoints ~01:00 / ~03:00
+- No Perplexity answers yet — audio still unwired
+- **Lantern Drift v0.1**: dock rails, gangway, shore lamps, dual raft seats, mast lamp, mist banks
+- **docs/PUBLISH_STATUS.md** — paste place URLs after Studio publish
+- Next: more polish until 5am; help Femmy publish when online
+
 ## 2026-09-26 05:00 UTC — OVERNIGHT STOP (Night 2)
 
 Night 2 complete. No new features this wrap.
