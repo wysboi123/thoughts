@@ -1,6 +1,6 @@
 # Slow Orbit
 
-Tiny planet + moonlet. Walk the curve. Collect orbit beads. Gravity sticks you to whichever body you're near.
+Tiny planet + moonlet under a **purple dusk** sky. Walk the curve. Collect orbit beads.
 
 ## Play
 
@@ -10,11 +10,10 @@ rojo build -o SlowOrbit.rbxl
 rojo serve
 ```
 
-## Loop (v0.2)
+## Loop (v0.3)
 
-- Spawn on the main planet
-- Beads leave colored trails (blue on planet, violet on moonlet)
-- Cross the tether to the moonlet for violet beads
-- Camera sticks to radial up with smooth body handoff
-- **RMB / touch-drag** to orbit · **scroll** to zoom
-- Soft complete at target bead count — no fail state
+- Spawn on the purple-dusk planet
+- Beads leave violet trails (deeper violet on the moonlet)
+- Cross the tether to the moonlet
+- Camera sticks to radial up — **RMB / touch-drag** orbit · **scroll** zoom
+- Soft session goals + soft complete — no fail state

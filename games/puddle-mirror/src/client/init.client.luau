@@ -97,3 +97,26 @@ Remotes.Ripple.OnClientEvent:Connect(function(position: Vector3, color: Color3)
 end)
 
 print("[PuddleMirror] client ready")
+
+local SoftGoals = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftGoals"))
+local _, complete = SoftGoals.mount(player:WaitForChild("PlayerGui"), "tonight's soft goals", {
+	{ Id = "ripple", Label = "step a puddle" },
+	{ Id = "dew", Label = "collect 3 dew" },
+	{ Id = "deep", Label = "reach the deep mirror" },
+})
+
+Remotes.Ripple.OnClientEvent:Connect(function()
+	complete("ripple")
+end)
+
+Remotes.DewCollected.OnClientEvent:Connect(function(count: number)
+	if count >= 3 then
+		complete("dew")
+	end
+end)
+
+Remotes.RoomUnlocked.OnClientEvent:Connect(function(roomId: string)
+	if roomId == "DeepMirror" then
+		complete("deep")
+	end
+end)

@@ -10,9 +10,10 @@ rojo build -o PuddleMirror.rbxl
 rojo serve
 ```
 
-## Loop (v0.1)
+## Loop (v0.2)
 
 - Walk the mirror plaza
 - Step glowing puddles → ripple FX + unlock nooks
 - Collect dew drops (with soft trails)
-- Unlock all three nooks → **Deep Mirror** chamber opens
+- Unlock all three nooks → **Deep Mirror** chamber
+- Soft session goals (top-right) — optional

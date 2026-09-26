@@ -226,3 +226,34 @@ if player.Character then
 end
 
 print("[SlowOrbit] client ready v" .. Config.Version)
+
+local SoftGoals = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftGoals"))
+local _, complete = SoftGoals.mount(player:WaitForChild("PlayerGui"), "tonight's soft goals", {
+	{ Id = "beads", Label = "collect 5 beads" },
+	{ Id = "moon", Label = "visit the moonlet" },
+	{ Id = "orbit", Label = "soft-complete an orbit" },
+})
+
+Remotes.BeadCollected.OnClientEvent:Connect(function(count: number, _target: number)
+	if count >= 5 then
+		complete("beads")
+	end
+end)
+
+Remotes.OrbitComplete.OnClientEvent:Connect(function()
+	complete("orbit")
+end)
+
+task.spawn(function()
+	while true do
+		task.wait(0.4)
+		local character = player.Character
+		local root = character and character:FindFirstChild("HumanoidRootPart")
+		if root and root:IsA("BasePart") then
+			local body = root:GetAttribute("OrbitBody")
+			if body == "Moonlet" then
+				complete("moon")
+			end
+		end
+	end
+end)

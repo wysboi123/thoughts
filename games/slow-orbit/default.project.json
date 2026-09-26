@@ -5,6 +5,9 @@
     "ReplicatedStorage": {
       "Shared": {
         "$path": "src/shared"
+      },
+      "Chill": {
+        "$path": "../../packages/chill"
       }
     },
     "ServerScriptService": {
@@ -26,33 +29,43 @@
     },
     "Lighting": {
       "$properties": {
-        "Ambient": [0.15, 0.18, 0.28],
-        "Brightness": 1.2,
-        "ClockTime": 0,
-        "FogColor": [0.08, 0.1, 0.18],
-        "FogEnd": 600,
-        "FogStart": 80,
-        "OutdoorAmbient": [0.2, 0.22, 0.35],
+        "Ambient": [0.22, 0.16, 0.32],
+        "Brightness": 1.35,
+        "ClockTime": 19.8,
+        "FogColor": [0.28, 0.18, 0.4],
+        "FogEnd": 520,
+        "FogStart": 60,
+        "OutdoorAmbient": [0.28, 0.2, 0.4],
         "GlobalShadows": true
       },
       "OrbitAtmosphere": {
         "$className": "Atmosphere",
         "$properties": {
-          "Density": 0.25,
-          "Offset": 0.1,
-          "Color": [0.25, 0.3, 0.5],
-          "Decay": [0.1, 0.12, 0.2],
-          "Glare": 0.05,
-          "Haze": 0.8
+          "Density": 0.32,
+          "Offset": 0.15,
+          "Color": [0.45, 0.3, 0.65],
+          "Decay": [0.2, 0.12, 0.3],
+          "Glare": 0.12,
+          "Haze": 1.4
         }
       },
       "OrbitBloom": {
         "$className": "BloomEffect",
         "$properties": {
           "Enabled": true,
-          "Intensity": 0.4,
-          "Size": 24,
-          "Threshold": 0.9
+          "Intensity": 0.55,
+          "Size": 28,
+          "Threshold": 0.85
+        }
+      },
+      "OrbitColor": {
+        "$className": "ColorCorrectionEffect",
+        "$properties": {
+          "Enabled": true,
+          "Brightness": 0.02,
+          "Contrast": 0.1,
+          "Saturation": 0.2,
+          "TintColor": [0.95, 0.88, 1.05]
         }
       }
     }

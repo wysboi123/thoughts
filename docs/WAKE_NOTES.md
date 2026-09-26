@@ -2,6 +2,14 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-26 01:00 UTC — Night 2 checkpoint 1
+
+- Still no Perplexity answers — skipped inventing audio ids
+- **Slow Orbit v0.3**: purple dusk lighting/palette (Femmy override) + SoftGoals
+- **Puddle Mirror v0.2**: Chill SoftGoals wired
+- **docs/GAMES.md** gallery index
+- Next (~03:00): Chill.Proximity helper and/or polish pass before 5am stop
+
 ## 2026-09-25 23:00 UTC — Night 2 resume
 
 - Stop timer re-armed → 05:00 UTC; checkpoints ~01:00 and ~03:00

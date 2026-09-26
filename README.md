@@ -53,4 +53,4 @@ See `docs/HEAD_CODER_PLAYBOOK.md`.
 - [`games/bus-stop-forever`](games/bus-stop-forever) — calm infinite bus stop + rain (v0.1)
 - [`packages/chill`](packages/chill) — shared PartFactory / RemoteFolder / SoftGoals
 
-Publish steps: [`docs/PUBLISH_CHECKLIST.md`](docs/PUBLISH_CHECKLIST.md)
+Publish steps: [`docs/PUBLISH_CHECKLIST.md`](docs/PUBLISH_CHECKLIST.md) · Gallery: [`docs/GAMES.md`](docs/GAMES.md)

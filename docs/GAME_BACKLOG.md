@@ -4,15 +4,16 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 
 ## Active
 
-- [x] **Haze Haven v0–v0.5** — lounge, loft, hammock, emotes, vibe board, soft session goals, Chill pkg
-- [x] **Slow Orbit v0–v0.2** — planet + moonlet, trails, smooth camera stick/zoom
+- [x] **Haze Haven v0–v0.5** — lounge, loft, hammock, emotes, vibe board, soft goals
+- [x] **Slow Orbit v0–v0.3** — purple dusk palette (Femmy override), camera polish, SoftGoals
 - [x] **Couch Galaxy v0–v0.2** — roof props, hammock, soft goals, constellation
-- [x] **Puddle Mirror v0–v0.1** — puddle unlocks, dew trails, deep mirror room
-- [x] **Bus Stop Forever v0–v0.2** — rain, notepad, wave-at-bus (no boarding), soft goals
-- [x] **Shared** — `packages/chill` + publish checklist
+- [x] **Puddle Mirror v0–v0.2** — SoftGoals + Chill package
+- [x] **Bus Stop Forever v0–v0.2** — rain, notepad, wave-at-bus, soft goals
+- [x] **Shared** — `packages/chill` + publish checklist + `docs/GAMES.md` gallery
 - [ ] **Wire audio** — waiting on Perplexity Q-004 asset ids (do not invent)
 - [ ] **First publish** — Femmy Studio publish using `docs/PUBLISH_CHECKLIST.md`
 - [ ] **Apply Q-001–003** when answers land in `docs/research/`
+- [ ] **Night 2 late** — cross-game proximity helper in Chill; optional new concept seed
 
 ## Rules for new concepts
 
@@ -23,6 +24,4 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 
 ## Femmy overrides
 
-Drop a line here or in OpenClaw chat:
-
-> Next night: build Slow Orbit, purple dusk palette, solo first.
+> Next night: build Slow Orbit, purple dusk palette, solo first. ✅ applied in Slow Orbit v0.3
