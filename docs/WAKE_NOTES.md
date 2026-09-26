@@ -2,6 +2,30 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-26 05:00 UTC — OVERNIGHT STOP (Night 2)
+
+Night 2 complete. No new features this wrap.
+
+**Shipped Night 2**
+- Slow Orbit v0.3 — purple dusk (Femmy override) + SoftGoals + camera polish
+- SoftGoals across Haze / Couch / Puddle / Bus / Lantern
+- Chill.Proximity shared + wired into Haze + Bus Stop
+- **Lantern Drift v0** — fog lake raft hangout (6th game)
+- `docs/GAMES.md` gallery
+
+**Lineup (6)**
+Haze Haven 0.5 · Slow Orbit 0.3 · Couch Galaxy 0.2 · Puddle Mirror 0.2 · Bus Stop Forever 0.2 · Lantern Drift 0.0
+
+**Ops**
+- PR: https://github.com/wysboi123/thoughts/pull/1
+- Daily resume `overnight-daily-resume` **still active** (23:00 UTC)
+- Perplexity Q-001–004 still open — no invented audio ids
+
+**Night 3 (23:00 UTC)**
+1. Apply any Perplexity research / wire audio
+2. Help Femmy publish first place (`docs/PUBLISH_CHECKLIST.md`)
+3. Lantern Drift v0.1 polish
+
 ## 2026-09-26 03:00 UTC — Night 2 checkpoint 2 (pre-stop)
 
 - Wired **Chill.Proximity** into Haze Haven + Bus Stop Forever
