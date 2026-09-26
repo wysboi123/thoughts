@@ -47,10 +47,11 @@ See `docs/HEAD_CODER_PLAYBOOK.md`.
 ## Games
 
 - [`games/haze-haven`](games/haze-haven) — lounge + loft + hammock, vibe board, soft goals (v0.5)
-- [`games/slow-orbit`](games/slow-orbit) — planet + moonlet, smooth camera, bead trails (v0.2)
-- [`games/couch-galaxy`](games/couch-galaxy) — apartment roof → night sky hangout (v0.1)
-- [`games/puddle-mirror`](games/puddle-mirror) — puddle ripples unlock secret nooks (v0.1)
-- [`games/bus-stop-forever`](games/bus-stop-forever) — calm infinite bus stop + rain (v0.1)
-- [`packages/chill`](packages/chill) — shared PartFactory / RemoteFolder / SoftGoals
+- [`games/slow-orbit`](games/slow-orbit) — purple dusk planet + moonlet (v0.3)
+- [`games/couch-galaxy`](games/couch-galaxy) — apartment roof → night sky (v0.2)
+- [`games/puddle-mirror`](games/puddle-mirror) — puddle unlocks + deep mirror (v0.2)
+- [`games/bus-stop-forever`](games/bus-stop-forever) — calm bus stop + wave (v0.2)
+- [`games/lantern-drift`](games/lantern-drift) — fog lake raft + lanterns (v0)
+- [`packages/chill`](packages/chill) — PartFactory / RemoteFolder / SoftGoals / Proximity
 
-Publish steps: [`docs/PUBLISH_CHECKLIST.md`](docs/PUBLISH_CHECKLIST.md) · Gallery: [`docs/GAMES.md`](docs/GAMES.md)
+Publish: [`docs/PUBLISH_CHECKLIST.md`](docs/PUBLISH_CHECKLIST.md) · Gallery: [`docs/GAMES.md`](docs/GAMES.md)

@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-26 03:00 UTC — Night 2 checkpoint 2 (pre-stop)
+
+- Wired **Chill.Proximity** into Haze Haven + Bus Stop Forever
+- Seeded **Lantern Drift v0** — fog lake, drifting raft, floating lanterns, SoftGoals
+- **Draft for 05:00 stop:** Night 2 complete — 6 games. Still blocked on Perplexity audio + first Studio publish. Night 3: publish help + Lantern Drift polish.
+- Stop timer should still be armed (~2h left)
+
 ## 2026-09-26 01:00 UTC — Night 2 checkpoint 1
 
 - Still no Perplexity answers — skipped inventing audio ids

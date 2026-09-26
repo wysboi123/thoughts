@@ -82,38 +82,15 @@ Remotes.BusDeparted.OnClientEvent:Connect(function()
 end)
 
 -- Soft proximity glow near other players
-local glowParts: { [Model]: PointLight } = {}
-RunService.Heartbeat:Connect(function()
-	local myChar = player.Character
-	local myRoot = myChar and myChar:FindFirstChild("HumanoidRootPart")
-	if not myRoot or not myRoot:IsA("BasePart") then
-		return
-	end
-	for _, other in Players:GetPlayers() do
-		if other ~= player and other.Character then
-			local root = other.Character:FindFirstChild("HumanoidRootPart")
-			if root and root:IsA("BasePart") then
-				local near = (root.Position - myRoot.Position).Magnitude <= Config.Proximity.Radius
-				local existing = glowParts[other.Character]
-				if near and not existing then
-					local light = Instance.new("PointLight")
-					light.Name = "BusProximity"
-					light.Brightness = 1.4
-					light.Range = 10
-					light.Color = Config.Proximity.GlowColor
-					light.Parent = root
-					glowParts[other.Character] = light
-				elseif not near and existing then
-					existing:Destroy()
-					glowParts[other.Character] = nil
-				end
-			end
-		end
-	end
-end)
+local ChillProximity = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("Proximity"))
+ChillProximity.start(player, {
+	Radius = Config.Proximity.Radius,
+	GlowColor = Config.Proximity.GlowColor,
+	Brightness = 1.4,
+	Range = 10,
+})
 
 print("[BusStopForever] client ready")
-
 local SoftGoals = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftGoals"))
 local _, complete = SoftGoals.mount(player:WaitForChild("PlayerGui"), "tonight's soft goals", {
 	{ Id = "sit", Label = "sit on a bench" },
