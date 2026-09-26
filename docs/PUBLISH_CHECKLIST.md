@@ -23,6 +23,7 @@ rojo serve
 5. Thumbnail: sit/float screenshot, soft lighting — no ToS-risk imagery
 6. Access: Public when ready; Friends for soft launch is fine
 7. Paste URL into [`PUBLISH_STATUS.md`](PUBLISH_STATUS.md)
+8. Use titles/descriptions from [`EXPERIENCE_COPY.md`](EXPERIENCE_COPY.md)
 
 ## Game slugs
 

@@ -54,4 +54,4 @@ See `docs/HEAD_CODER_PLAYBOOK.md`.
 - [`games/lantern-drift`](games/lantern-drift) — fog lake raft + lanterns (v0.1)
 - [`packages/chill`](packages/chill) — PartFactory / RemoteFolder / SoftGoals / Proximity
 
-Publish: [`docs/PUBLISH_CHECKLIST.md`](docs/PUBLISH_CHECKLIST.md) · Status: [`docs/PUBLISH_STATUS.md`](docs/PUBLISH_STATUS.md) · Gallery: [`docs/GAMES.md`](docs/GAMES.md)
+Publish: [`docs/PUBLISH_CHECKLIST.md`](docs/PUBLISH_CHECKLIST.md) · Status: [`docs/PUBLISH_STATUS.md`](docs/PUBLISH_STATUS.md) · Copy: [`docs/EXPERIENCE_COPY.md`](docs/EXPERIENCE_COPY.md) · Gallery: [`docs/GAMES.md`](docs/GAMES.md)
