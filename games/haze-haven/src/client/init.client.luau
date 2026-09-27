@@ -48,6 +48,23 @@ Remotes.EmotePlayed.OnClientEvent:Connect(function(userId: number, emoteId: stri
 	end
 end)
 
+local SoftSit = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftSit"))
+local hazeSit = SoftSit.mount(playerGui, {
+	OneText = function(name)
+		return name .. " is chilling"
+	end,
+	ManyText = function(names)
+		return table.concat(names, " & ") .. " are chilling"
+	end,
+	Color = Color3.fromRGB(200, 180, 230),
+})
+Remotes.SitChanged.OnClientEvent:Connect(function(seatName: string, displayName: string?)
+	hazeSit.set(seatName, displayName)
+	if displayName == player.DisplayName then
+		complete("sit")
+	end
+end)
+
 -- Detect Seat occupant for sit goal
 task.spawn(function()
 	while true do
