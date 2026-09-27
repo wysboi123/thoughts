@@ -17,5 +17,6 @@ Then: `local SoftGoals = require(ReplicatedStorage.Chill.SoftGoals)`
 | `RemoteFolder` | Server-create / client-wait RemoteEvents |
 | `SoftGoals` | Low-pressure session checklist HUD |
 | `Proximity` | Soft PointLight glow for nearby players |
+| `SoftWelcome` | One-shot slide-in welcome toast |
 
 Do not invent Roblox audio asset ids here — wait for Perplexity Q-004 / Femmy paste.

@@ -61,3 +61,7 @@ task.spawn(function()
 end)
 
 print("[HazeHaven] client ready")
+
+local SoftWelcome = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftWelcome"))
+local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Config"))
+SoftWelcome.show(playerGui, Config.GameName, "float soft. collect vibes. stay awhile.")

@@ -125,6 +125,102 @@ local function buildApartment(world: Folder)
 	seat2.Color = Color3.fromRGB(130, 100, 160)
 	seat2.Parent = world
 
+	-- Soft rug under the couch
+	part({
+		Name = "CouchRug",
+		Size = Vector3.new(14, 0.15, 8),
+		Position = Vector3.new(-6, 0.6, -6),
+		Color = Color3.fromRGB(95, 55, 90),
+		Material = Enum.Material.Fabric,
+		Parent = world,
+	})
+
+	-- Coffee table + warm lamp
+	part({
+		Name = "CoffeeTable",
+		Size = Vector3.new(5, 0.4, 2.5),
+		Position = Vector3.new(-6, 1.2, -4),
+		Color = Color3.fromRGB(70, 55, 45),
+		Material = Enum.Material.Wood,
+		Parent = world,
+	})
+	local tableLamp = part({
+		Name = "TableLamp",
+		Size = Vector3.new(0.7, 1.2, 0.7),
+		Position = Vector3.new(-4.5, 2.1, -4),
+		Color = Color3.fromRGB(255, 210, 150),
+		Material = Enum.Material.Neon,
+		Shape = Enum.PartType.Ball,
+		CanCollide = false,
+		Parent = world,
+	})
+	local tableLight = Instance.new("PointLight")
+	tableLight.Brightness = 1.4
+	tableLight.Range = 14
+	tableLight.Color = Color3.fromRGB(255, 200, 150)
+	tableLight.Parent = tableLamp
+
+	-- Bookshelf against the side wall
+	part({
+		Name = "Bookshelf",
+		Size = Vector3.new(0.6, 7, 5),
+		Position = Vector3.new(-17.2, 4, 2),
+		Color = Color3.fromRGB(65, 50, 40),
+		Material = Enum.Material.Wood,
+		Parent = world,
+	})
+	for i = 1, 4 do
+		part({
+			Name = "BookRow" .. i,
+			Size = Vector3.new(0.4, 0.9, 4.2),
+			Position = Vector3.new(-16.8, 1.5 + i * 1.4, 2),
+			Color = Color3.fromHSV(0.7 + i * 0.04, 0.35, 0.55),
+			Material = Enum.Material.SmoothPlastic,
+			Parent = world,
+		})
+	end
+
+	-- Window glow (night city wash)
+	local window = part({
+		Name = "NightWindow",
+		Size = Vector3.new(8, 5, 0.3),
+		Position = Vector3.new(0, 6, -13.8),
+		Color = Color3.fromRGB(90, 120, 200),
+		Material = Enum.Material.Glass,
+		Transparency = 0.35,
+		CanCollide = false,
+		Parent = world,
+	})
+	local windowLight = Instance.new("PointLight")
+	windowLight.Brightness = 1.1
+	windowLight.Range = 16
+	windowLight.Color = Color3.fromRGB(120, 150, 220)
+	windowLight.Parent = window
+
+	-- Floor lamp near stairs
+	part({
+		Name = "FloorLampPole",
+		Size = Vector3.new(0.3, 5, 0.3),
+		Position = Vector3.new(8, 3, -6),
+		Color = Color3.fromRGB(50, 48, 55),
+		Parent = world,
+	})
+	local floorGlow = part({
+		Name = "FloorLampGlow",
+		Size = Vector3.new(1.4, 1.4, 1.4),
+		Position = Vector3.new(8, 5.8, -6),
+		Color = Color3.fromRGB(255, 220, 170),
+		Material = Enum.Material.Neon,
+		Shape = Enum.PartType.Ball,
+		CanCollide = false,
+		Parent = world,
+	})
+	local floorLight = Instance.new("PointLight")
+	floorLight.Brightness = 1.6
+	floorLight.Range = 18
+	floorLight.Color = Color3.fromRGB(255, 215, 160)
+	floorLight.Parent = floorGlow
+
 	-- Stairs to roof
 	for i = 1, 8 do
 		part({
@@ -425,13 +521,11 @@ local function wireCouch(seat: Seat)
 	end)
 end
 
-local couch1 = world:FindFirstChild("CouchSeat")
-local couch2 = world:FindFirstChild("CouchSeat2")
-if couch1 and couch1:IsA("Seat") then
-	wireCouch(couch1)
-end
-if couch2 and couch2:IsA("Seat") then
-	wireCouch(couch2)
+for _, seatName in { "CouchSeat", "CouchSeat2", "GalaxyHammockSeat" } do
+	local seatInst = world:FindFirstChild(seatName)
+	if seatInst and seatInst:IsA("Seat") then
+		wireCouch(seatInst)
+	end
 end
 
 for _, child in world:GetChildren() do

@@ -141,3 +141,14 @@ task.spawn(function()
 		end
 	end
 end)
+
+local ChillProximity = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("Proximity"))
+ChillProximity.start(player, {
+	Radius = Config.Proximity.Radius,
+	GlowColor = Config.Proximity.GlowColor,
+	Brightness = 1.4,
+	Range = 11,
+})
+
+local SoftWelcome = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftWelcome"))
+SoftWelcome.show(player:WaitForChild("PlayerGui"), Config.GameName, "couch first. skylight when you're ready.")

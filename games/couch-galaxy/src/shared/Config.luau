@@ -2,10 +2,15 @@
 local Config = {
 	GameName = "Couch Galaxy",
 	Tagline = "roof first. sky second. stay soft.",
-	Version = "0.2",
+	Version = "0.3",
 
 	ApartmentSpawn = Vector3.new(0, 5, 8),
 	GalaxySpawn = Vector3.new(0, 120, 0),
+
+	Proximity = {
+		Radius = 14,
+		GlowColor = Color3.fromRGB(180, 160, 255),
+	},
 
 	Portal = {
 		Cooldown = 1.5,

@@ -2,6 +2,15 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-27 01:20 UTC — Night 3 checkpoint 1
+
+- **Chill.SoftWelcome** — new shared slide-in toast; wired into all 6 games
+- **Chill.Proximity** — now also Couch / Puddle / Slow Orbit / Lantern (was Haze + Bus)
+- **Couch Galaxy v0.3** — rug, coffee table lamp, bookshelf, night window, floor lamp; hammock in sit sync
+- Versions: Haze 0.6 · Slow Orbit 0.4 · Couch 0.3 · Puddle 0.3 · Bus 0.3 · Lantern 0.2
+- Still no Perplexity answers — audio unwired
+- Next (~03:00): lighting/atmosphere polish or optional 7th seed; keep publish path warm
+
 ## 2026-09-26 23:12 UTC — Night 3 resume
 
 - Stop timer re-armed → 05:00 UTC; checkpoints ~01:00 / ~03:00

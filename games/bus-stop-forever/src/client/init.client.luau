@@ -90,6 +90,9 @@ ChillProximity.start(player, {
 })
 
 print("[BusStopForever] client ready")
+
+local SoftWelcome = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftWelcome"))
+SoftWelcome.show(player:WaitForChild("PlayerGui"), Config.GameName, "the bus will come. you don't have to.")
 local SoftGoals = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftGoals"))
 local _, complete = SoftGoals.mount(player:WaitForChild("PlayerGui"), "tonight's soft goals", {
 	{ Id = "sit", Label = "sit on a bench" },

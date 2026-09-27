@@ -11,7 +11,7 @@ This repo is the production floor for OpenClaw + Colin + Cursor. Games live unde
 | OpenClaw iOS | You’re setting it up |
 | Colin | You’re setting it up |
 | Head coder (me) | Overnight shift active → 05:00 UTC |
-| Experiences | 5 chill games — see Games below |
+| Experiences | 6 chill games — see Games below |
 
 ## Quick start (your machine)
 
@@ -46,12 +46,12 @@ See `docs/HEAD_CODER_PLAYBOOK.md`.
 
 ## Games
 
-- [`games/haze-haven`](games/haze-haven) — lounge + loft + hammock, vibe board, soft goals (v0.5)
-- [`games/slow-orbit`](games/slow-orbit) — purple dusk planet + moonlet (v0.3)
-- [`games/couch-galaxy`](games/couch-galaxy) — apartment roof → night sky (v0.2)
-- [`games/puddle-mirror`](games/puddle-mirror) — puddle unlocks + deep mirror (v0.2)
-- [`games/bus-stop-forever`](games/bus-stop-forever) — calm bus stop + wave (v0.2)
-- [`games/lantern-drift`](games/lantern-drift) — fog lake raft + lanterns (v0.1)
-- [`packages/chill`](packages/chill) — PartFactory / RemoteFolder / SoftGoals / Proximity
+- [`games/haze-haven`](games/haze-haven) — lounge + loft + hammock, vibe board (v0.6)
+- [`games/slow-orbit`](games/slow-orbit) — purple dusk planet + moonlet (v0.4)
+- [`games/couch-galaxy`](games/couch-galaxy) — cozy apt → roof → galaxy loft (v0.3)
+- [`games/puddle-mirror`](games/puddle-mirror) — puddle unlocks + deep mirror (v0.3)
+- [`games/bus-stop-forever`](games/bus-stop-forever) — calm bus stop + wave (v0.3)
+- [`games/lantern-drift`](games/lantern-drift) — fog lake raft + lanterns (v0.2)
+- [`packages/chill`](packages/chill) — SoftGoals / SoftWelcome / Proximity / PartFactory
 
 Publish: [`docs/PUBLISH_CHECKLIST.md`](docs/PUBLISH_CHECKLIST.md) · Status: [`docs/PUBLISH_STATUS.md`](docs/PUBLISH_STATUS.md) · Copy: [`docs/EXPERIENCE_COPY.md`](docs/EXPERIENCE_COPY.md) · Gallery: [`docs/GAMES.md`](docs/GAMES.md)

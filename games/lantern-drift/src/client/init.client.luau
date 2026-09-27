@@ -106,3 +106,6 @@ ChillProximity.start(player, {
 })
 
 print("[LanternDrift] client ready")
+
+local SoftWelcome = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftWelcome"))
+SoftWelcome.show(player:WaitForChild("PlayerGui"), Config.GameName, "dock → raft. lanterns drift with you.")

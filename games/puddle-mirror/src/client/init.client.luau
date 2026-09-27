@@ -120,3 +120,14 @@ Remotes.RoomUnlocked.OnClientEvent:Connect(function(roomId: string)
 		complete("deep")
 	end
 end)
+
+local ChillProximity = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("Proximity"))
+ChillProximity.start(player, {
+	Radius = 12,
+	GlowColor = Color3.fromRGB(140, 200, 220),
+	Brightness = 1.3,
+	Range = 10,
+})
+
+local SoftWelcome = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftWelcome"))
+SoftWelcome.show(player:WaitForChild("PlayerGui"), Config.GameName, "step a puddle. let a nook open.")

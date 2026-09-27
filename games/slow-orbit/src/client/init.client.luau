@@ -257,3 +257,14 @@ task.spawn(function()
 		end
 	end
 end)
+
+local ChillProximity = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("Proximity"))
+ChillProximity.start(player, {
+	Radius = 14,
+	GlowColor = Color3.fromRGB(180, 140, 255),
+	Brightness = 1.4,
+	Range = 11,
+})
+
+local SoftWelcome = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftWelcome"))
+SoftWelcome.show(player:WaitForChild("PlayerGui"), Config.GameName, "purple dusk. walk the curve.")
