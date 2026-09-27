@@ -99,6 +99,29 @@ function WorldBuilder.build(): (Part, Part, Folder)
 	tether.CFrame = CFrame.lookAt(mid, moonCenter)
 	tether.Parent = Workspace
 
+	-- Soft equatorial glow ring (decorative)
+	local ring = Instance.new("Part")
+	ring.Name = "EquatorRing"
+	ring.Shape = Enum.PartType.Cylinder
+	ring.Anchored = true
+	ring.CanCollide = false
+	ring.Material = Enum.Material.ForceField
+	ring.Color = Color3.fromRGB(140, 120, 220)
+	ring.Transparency = 0.65
+	ring.Size = Vector3.new(2, Config.Planet.Radius * 2.15, Config.Planet.Radius * 2.15)
+	ring.CFrame = CFrame.new(Config.Planet.Center) * CFrame.Angles(0, 0, math.rad(90))
+	ring.CastShadow = false
+	ring.Parent = Workspace
+	task.spawn(function()
+		local t = 0
+		while ring.Parent do
+			t += task.wait(0.05)
+			ring.Transparency = 0.55 + math.sin(t * 0.7) * 0.12
+			ring.CFrame = CFrame.new(Config.Planet.Center)
+				* CFrame.Angles(0, t * 0.08, math.rad(90))
+		end
+	end)
+
 	local beadsFolder = Instance.new("Folder")
 	beadsFolder.Name = "OrbitBeads"
 	beadsFolder.Parent = Workspace

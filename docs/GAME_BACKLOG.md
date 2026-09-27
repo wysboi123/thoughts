@@ -5,10 +5,10 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 ## Active
 
 - [x] **Haze Haven v0–v0.8** — loft planters + SoftSit
-- [x] **Slow Orbit v0–v0.5** — aurora ribbons + dusk stars
+- [x] **Slow Orbit v0–v0.6** — equator glow ring + aurora
 - [x] **Couch Galaxy v0–v0.5** — cloud pad bob + portal pulse
-- [x] **Puddle Mirror v0–v0.5** — SoftSit + center pool + mist
-- [x] **Bus Stop Forever v0–v0.5** — sit sync SoftSit + lamps
+- [x] **Puddle Mirror v0–v0.6** — breathing center pool + SoftSit
+- [x] **Bus Stop Forever v0–v0.6** — news box + sidewalk puddle
 - [x] **Lantern Drift v0–v0.4** — breathing lake + lily bob
 - [x] **Shared** — SoftWelcome + SoftSit + Proximity
 - [x] **Star Porch v0–v0.3** — side rails, warm mug table

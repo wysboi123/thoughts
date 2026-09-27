@@ -89,11 +89,20 @@ local centerPool = makePart({
 	Parent = world,
 })
 centerPool.CFrame = CFrame.new(0, 1.1, 0) * CFrame.Angles(0, 0, math.rad(90))
+centerPool:SetAttribute("IsCenterPool", true)
 local centerLight = Instance.new("PointLight")
 centerLight.Brightness = 1.8
 centerLight.Range = 20
 centerLight.Color = Color3.fromRGB(120, 200, 220)
 centerLight.Parent = centerPool
+task.spawn(function()
+	local t = 0
+	while centerPool.Parent do
+		t += task.wait(0.04)
+		centerPool.Transparency = 0.2 + math.sin(t * 0.9) * 0.08
+		centerLight.Brightness = 1.5 + math.sin(t * 1.1) * 0.5
+	end
+end)
 
 -- Plaza benches (sit while waiting for friends)
 for i, x in { -8, 8 } do

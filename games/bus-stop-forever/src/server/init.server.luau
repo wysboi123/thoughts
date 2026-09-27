@@ -172,6 +172,43 @@ for i, x in { -16, 16 } do
 	})
 end
 
+-- Free newspaper box (decorative)
+local news = part({
+	Name = "NewsBox",
+	Size = Vector3.new(2, 3, 1.5),
+	Position = Vector3.new(-10, 2, 8),
+	Color = Color3.fromRGB(50, 90, 70),
+	Material = Enum.Material.Metal,
+	Parent = world,
+})
+local newsGui = Instance.new("SurfaceGui")
+newsGui.Face = Enum.NormalId.Front
+newsGui.Parent = news
+local newsLabel = Instance.new("TextLabel")
+newsLabel.Size = UDim2.fromScale(1, 1)
+newsLabel.BackgroundTransparency = 1
+newsLabel.Font = Enum.Font.GothamMedium
+newsLabel.TextSize = 18
+newsLabel.TextWrapped = true
+newsLabel.TextColor3 = Color3.fromRGB(220, 240, 210)
+newsLabel.Text = "TODAY\n\nstill\nfree"
+newsLabel.Parent = newsGui
+
+-- Soft sidewalk puddle (visual only)
+local sidewalkPuddle = part({
+	Name = "SidewalkPuddle",
+	Size = Vector3.new(0.15, 5, 5),
+	Position = Vector3.new(4, 0.6, 6),
+	Color = Color3.fromRGB(100, 130, 150),
+	Material = Enum.Material.Glass,
+	Transparency = 0.4,
+	CanCollide = false,
+	Shape = Enum.PartType.Cylinder,
+	Parent = world,
+})
+sidewalkPuddle.CFrame = CFrame.new(4, 0.6, 6) * CFrame.Angles(0, 0, math.rad(90))
+sidewalkPuddle:SetAttribute("IsPuddleGlow", true)
+
 -- Timeless timetable board
 local board = part({
 	Name = "Timetable",
@@ -467,6 +504,18 @@ end)
 
 Players.PlayerRemoving:Connect(function(player)
 	ticketCounts[player.UserId] = nil
+end)
+
+-- Soft sidewalk puddle shimmer
+task.spawn(function()
+	local t = 0
+	while world.Parent do
+		t += task.wait(0.05)
+		local puddle = world:FindFirstChild("SidewalkPuddle")
+		if puddle and puddle:IsA("BasePart") then
+			puddle.Transparency = 0.35 + math.sin(t * 1.2) * 0.1
+		end
+	end
 end)
 
 -- Soft wave at the bus — no boarding, just a friendly gesture
