@@ -188,6 +188,23 @@ local raft = PartFactory.make({
 	Material = Enum.Material.Wood,
 	Parent = world,
 })
+-- Soft raft side rails
+local raftRailL = PartFactory.make({
+	Name = "RaftRailL",
+	Size = Vector3.new(0.4, 1.2, 9),
+	Position = Config.RaftStart + Vector3.new(-6.5, 1.2, 0),
+	Color = Color3.fromRGB(80, 60, 45),
+	Material = Enum.Material.Wood,
+	Parent = world,
+})
+local raftRailR = PartFactory.make({
+	Name = "RaftRailR",
+	Size = Vector3.new(0.4, 1.2, 9),
+	Position = Config.RaftStart + Vector3.new(6.5, 1.2, 0),
+	Color = Color3.fromRGB(80, 60, 45),
+	Material = Enum.Material.Wood,
+	Parent = world,
+})
 local seatA = Instance.new("Seat")
 seatA.Name = "RaftSeatA"
 seatA.Size = Vector3.new(2.8, 0.4, 2)
@@ -244,6 +261,8 @@ task.spawn(function()
 		raft.Position = pos
 		seatA.Position = pos + Vector3.new(-2.5, 1.2, 0)
 		seatB.Position = pos + Vector3.new(2.5, 1.2, 0)
+		raftRailL.Position = pos + Vector3.new(-6.5, 1.2, 0)
+		raftRailR.Position = pos + Vector3.new(6.5, 1.2, 0)
 		mast.Position = pos + Vector3.new(0, 3, -3)
 		mastLamp.Position = pos + Vector3.new(0, 5.2, -3)
 	end

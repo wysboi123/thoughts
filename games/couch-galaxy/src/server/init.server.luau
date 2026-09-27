@@ -482,6 +482,7 @@ local function buildGalaxy(world: Folder)
 			local beam = Instance.new("Beam")
 			beam.Attachment0 = att0
 			beam.Attachment1 = att1
+			beam.Name = "ConstBeam"
 			beam.Width0 = 0.15
 			beam.Width1 = 0.15
 			beam.FaceCamera = true
@@ -629,6 +630,14 @@ task.spawn(function()
 					light.Brightness = 1.0 + math.sin(t * 0.7) * 0.3
 				end
 				child.Transparency = 0.2 + math.sin(t * 0.55) * 0.08
+			elseif child:IsA("BasePart") then
+				for _, beam in child:GetChildren() do
+					if beam:IsA("Beam") and beam.Name == "ConstBeam" then
+						local w = 0.12 + math.sin(t * 1.2 + child.Position.X) * 0.05
+						beam.Width0 = w
+						beam.Width1 = w
+					end
+				end
 			end
 		end
 	end

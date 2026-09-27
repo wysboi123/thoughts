@@ -9,7 +9,7 @@ Femmy’s chill Roblox line. All Rojo filesystem-first. Play: `cd games/<slug> &
 | [`couch-galaxy`](../games/couch-galaxy) | 0.6 | climb / float | Soft screen glow → skylight → cloud pads |
 | [`puddle-mirror`](../games/puddle-mirror) | 0.7 | ripple | Nook cushions + glows, SoftSit |
 | [`bus-stop-forever`](../games/bus-stop-forever) | 0.7 | wait / wave | Timetable pulse, news box, sit sync |
-| [`lantern-drift`](../games/lantern-drift) | 0.5 | drift | Dock crate + mooring, breathing lake |
+| [`lantern-drift`](../games/lantern-drift) | 0.6 | drift | Dock crate + mooring, breathing lake |
 | [`star-porch`](../games/star-porch) | 0.4 | sit / glow | Night porch, swaying swing, firefly jar |
 
 Shared: [`packages/chill`](../packages/chill) · Publish: [`PUBLISH_CHECKLIST.md`](PUBLISH_CHECKLIST.md)
