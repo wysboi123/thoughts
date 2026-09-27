@@ -2,6 +2,30 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-27 05:00 UTC — OVERNIGHT STOP (Night 3)
+
+Night 3 complete. No new features this wrap. One digest email sent.
+
+**Shipped Night 3**
+- SoftWelcome (tweened) + SoftSit + SoftWireSeats + Proximity across lineup
+- **Star Porch** 0→0.3 (7th game)
+- Haze 0.8 · Slow Orbit 0.6 · Couch 0.5 · Puddle 0.6 · Bus 0.6 · Lantern 0.4 · Porch 0.3
+- 25 commits since 23:00 UTC
+
+**Blocked**
+- Perplexity Q-001–004 still open — no invented audio ids
+- First Studio publish → `docs/PUBLISH_STATUS.md`
+
+**Ops**
+- PR: https://github.com/wysboi123/thoughts/pull/1
+- Daily resume `overnight-daily-resume` **active** (23:00 UTC)
+- Email: one digest at stop only (Femmy 2026-09-27)
+
+**Night 4 (23:00 UTC)**
+1. Apply any Perplexity research / wire audio
+2. Help Femmy publish first place (Haze recommended)
+3. Light polish only if research still empty
+
 ## 2026-09-27 03:00 UTC — Night 3 checkpoint 2 (quiet)
 
 - Batched polish: **Star Porch 0.3** · **Lantern 0.4** · **Couch 0.5** · **Haze 0.8** · then Bus/Orbit/Puddle 0.6 · SoftWireSeats
