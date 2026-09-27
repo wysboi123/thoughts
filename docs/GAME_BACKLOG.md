@@ -15,7 +15,7 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 - [ ] **Wire audio** — waiting on Perplexity Q-004 (do not invent)
 - [ ] **First publish** — Femmy fills `docs/PUBLISH_STATUS.md`
 - [ ] **Apply Q-001–003** when answers land
-- [ ] **Night 3 late** — light polish until 05:00 stop + digest email
+- [x] **Night 3 late** — CP2 polish + SoftWireSeats (digest email at 05:00)
 
 ## Femmy overrides
 

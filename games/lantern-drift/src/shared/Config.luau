@@ -8,7 +8,7 @@ local Config = {
 	RaftStart = Vector3.new(0, 2, 0),
 
 	Lantern = {
-		Count = 10,
+		Count = 12,
 		Color = Color3.fromRGB(255, 190, 120),
 		RespawnSeconds = 14,
 	},
