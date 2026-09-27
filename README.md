@@ -47,11 +47,11 @@ See `docs/HEAD_CODER_PLAYBOOK.md`.
 ## Games
 
 - [`games/haze-haven`](games/haze-haven) — lounge + loft + hammock, vibe board (v0.9)
-- [`games/slow-orbit`](games/slow-orbit) — purple dusk planet + moonlet (v0.6)
+- [`games/slow-orbit`](games/slow-orbit) — purple dusk planet + moonlet (v0.7)
 - [`games/couch-galaxy`](games/couch-galaxy) — cozy apt → roof → galaxy loft (v0.6)
-- [`games/puddle-mirror`](games/puddle-mirror) — puddle unlocks + deep mirror (v0.6)
-- [`games/bus-stop-forever`](games/bus-stop-forever) — calm bus stop + wave (v0.6)
-- [`games/lantern-drift`](games/lantern-drift) — fog lake raft + lanterns (v0.4)
+- [`games/puddle-mirror`](games/puddle-mirror) — puddle unlocks + deep mirror (v0.7)
+- [`games/bus-stop-forever`](games/bus-stop-forever) — calm bus stop + wave (v0.7)
+- [`games/lantern-drift`](games/lantern-drift) — fog lake raft + lanterns (v0.5)
 - [`games/star-porch`](games/star-porch) — night porch + fireflies (v0.4)
 - [`packages/chill`](packages/chill) — SoftGoals / SoftWelcome / SoftSit / SoftWireSeats / Proximity
 

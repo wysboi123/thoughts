@@ -75,6 +75,24 @@ function WorldBuilder.build(): (Part, Part, Folder)
 	planetLight.Color = Color3.fromRGB(90, 120, 200)
 	planetLight.Parent = planet
 
+	-- Soft surface mottling (decorative craters)
+	for i = 1, 8 do
+		local theta = (i / 8) * math.pi * 2
+		local phi = 0.7 + (i % 3) * 0.25
+		local dir = Vector3.new(math.sin(phi) * math.cos(theta), math.cos(phi), math.sin(phi) * math.sin(theta))
+		local crater = Instance.new("Part")
+		crater.Name = "Crater" .. i
+		crater.Shape = Enum.PartType.Ball
+		crater.Size = Vector3.new(8, 8, 8)
+		crater.Position = Config.Planet.Center + dir.Unit * (Config.Planet.Radius - 1.5)
+		crater.Anchored = true
+		crater.CanCollide = false
+		crater.Material = Enum.Material.Slate
+		crater.Color = Color3.fromRGB(40, 32, 62)
+		crater.Transparency = 0.15
+		crater.Parent = Workspace
+	end
+
 	local moonCenter = Config.Planet.Center + Config.Moonlet.Offset
 	local moonlet = makeSphere("Moonlet", Config.Moonlet.Radius, moonCenter, Config.Moonlet.Color)
 	moonlet:SetAttribute("IsMoonlet", true)

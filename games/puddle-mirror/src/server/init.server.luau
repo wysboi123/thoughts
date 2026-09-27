@@ -189,13 +189,37 @@ for _, room in rooms do
 		Parent = world,
 	})
 
+	makePart({
+		Name = room.Id .. "Cushion",
+		Size = Vector3.new(3.5, 0.6, 3.5),
+		Position = room.RoomPos + Vector3.new(0, 1.0, 0),
+		Color = Color3.fromRGB(80, 120, 140),
+		Material = Enum.Material.Fabric,
+		Parent = world,
+	})
 	local seat = Instance.new("Seat")
 	seat.Name = room.Id .. "Seat"
 	seat.Size = Vector3.new(2, 0.5, 2)
-	seat.Position = room.RoomPos + Vector3.new(0, 1.2, 0)
+	seat.Position = room.RoomPos + Vector3.new(0, 1.4, 0)
 	seat.Anchored = true
 	seat.Color = Color3.fromRGB(100, 140, 160)
 	seat.Parent = world
+	local nookGlow = makePart({
+		Name = room.Id .. "Glow",
+		Size = Vector3.new(1, 1, 1),
+		Position = room.RoomPos + Vector3.new(0, 4, 0),
+		Color = Color3.fromRGB(140, 200, 220),
+		Material = Enum.Material.Neon,
+		Shape = Enum.PartType.Ball,
+		CanCollide = false,
+		Transparency = 0.3,
+		Parent = world,
+	})
+	local nookLight = Instance.new("PointLight")
+	nookLight.Brightness = 1.4
+	nookLight.Range = 12
+	nookLight.Color = Color3.fromRGB(140, 200, 220)
+	nookLight.Parent = nookGlow
 
 	local puddle = makePart({
 		Name = room.Id .. "Puddle",

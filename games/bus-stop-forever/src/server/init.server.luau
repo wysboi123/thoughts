@@ -488,7 +488,7 @@ Players.PlayerRemoving:Connect(function(player)
 	ticketCounts[player.UserId] = nil
 end)
 
--- Soft sidewalk puddle shimmer + lamp flicker
+-- Soft sidewalk puddle shimmer + lamp flicker + timetable pulse
 task.spawn(function()
 	local t = 0
 	while world.Parent do
@@ -503,6 +503,8 @@ task.spawn(function()
 				if light then
 					light.Brightness = 1.5 + math.sin(t * 1.4 + child.Position.X) * 0.35
 				end
+			elseif child.Name == "Timetable" and child:IsA("BasePart") then
+				child.Color = Color3.fromRGB(35, 40, 50):Lerp(Color3.fromRGB(45, 55, 65), (math.sin(t * 0.8) + 1) / 2)
 			end
 		end
 	end

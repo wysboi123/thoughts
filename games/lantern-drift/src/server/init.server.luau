@@ -133,6 +133,34 @@ dockSeat.Anchored = true
 dockSeat.Color = Color3.fromRGB(110, 85, 60)
 dockSeat.Parent = world
 
+-- Soft crate stack + mooring post
+PartFactory.make({
+	Name = "DockCrate",
+	Size = Vector3.new(2.5, 2.5, 2.5),
+	Position = Vector3.new(6, 3.5, 26),
+	Color = Color3.fromRGB(95, 75, 50),
+	Material = Enum.Material.Wood,
+	Parent = world,
+})
+PartFactory.make({
+	Name = "MooringPost",
+	Size = Vector3.new(0.6, 3, 0.6),
+	Position = Vector3.new(8, 3.5, 20),
+	Color = Color3.fromRGB(70, 55, 40),
+	Material = Enum.Material.Wood,
+	Parent = world,
+})
+local ropeCoil = PartFactory.make({
+	Name = "RopeCoil",
+	Size = Vector3.new(1.4, 0.6, 1.4),
+	Position = Vector3.new(8, 2.2, 20),
+	Color = Color3.fromRGB(120, 100, 70),
+	Material = Enum.Material.Fabric,
+	Shape = Enum.PartType.Cylinder,
+	Parent = world,
+})
+ropeCoil.CFrame = CFrame.new(8, 2.2, 20) * CFrame.Angles(0, 0, math.rad(90))
+
 -- Soft lily pads (decorative)
 for i, pos in {
 	Vector3.new(-16, 0.8, 6),
