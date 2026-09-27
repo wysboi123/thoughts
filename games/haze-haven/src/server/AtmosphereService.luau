@@ -25,6 +25,18 @@ function AtmosphereService.start()
 
 			local pulse = (math.sin(t / Config.Atmosphere.AmbientPulseSeconds * math.pi * 2) + 1) / 2
 			Lighting.Brightness = 1.2 + pulse * 0.35
+
+			local world = workspace:FindFirstChild("HazeWorld")
+			if world then
+				for _, child in world:GetChildren() do
+					if child:IsA("BasePart") and string.find(child.Name, "LoftString", 1, true) then
+						local light = child:FindFirstChildOfClass("PointLight")
+						if light then
+							light.Brightness = 0.9 + pulse * 0.5 + math.sin(t + child.Position.X) * 0.15
+						end
+					end
+				end
+			end
 		end
 	end)
 end

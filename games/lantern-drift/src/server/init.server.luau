@@ -258,6 +258,8 @@ task.spawn(function()
 			elseif child:IsA("BasePart") and string.find(child.Name, "Lily", 1, true) then
 				local baseY = 0.8
 				child.Position = Vector3.new(child.Position.X, baseY + math.sin(t * 0.9 + child.Position.X) * 0.08, child.Position.Z)
+			elseif child:IsA("BasePart") and string.find(child.Name, "Mist", 1, true) then
+				child.Transparency = 0.65 + math.sin(t * 0.4 + child.Position.X) * 0.08
 			end
 		end
 	end
