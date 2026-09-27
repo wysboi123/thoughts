@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-27 23:00 UTC — Night 4 resume
+
+- Stop re-armed → 05:00 UTC; quiet CP ~01:00 / ~03:00; **one digest email at stop only**
+- No Perplexity answers in `docs/research/` — audio still unwired (Q-001–004 open)
+- Plan: warm Haze first-publish path + light atmosphere polish (no invented audio ids)
+- Publish: see `docs/PUBLISH_CHECKLIST.md` “First 10 minutes”
+
 ## 2026-09-27 05:00 UTC — OVERNIGHT STOP (Night 3)
 
 Night 3 complete. No new features this wrap. One digest email sent.

@@ -306,7 +306,7 @@ PartFactory.make({
 	Parent = world,
 })
 for _, x in { 5, 11 } do
-	PartFactory.make({
+	local rope = PartFactory.make({
 		Name = "SwingRope" .. x,
 		Size = Vector3.new(0.15, 6, 0.15),
 		Position = Vector3.new(x, 8.5, 6),
@@ -314,8 +314,10 @@ for _, x in { 5, 11 } do
 		CanCollide = false,
 		Parent = world,
 	})
+	rope:SetAttribute("IsSwing", true)
+	rope:SetAttribute("HomePosition", rope.Position)
 end
-PartFactory.make({
+local swingBoard = PartFactory.make({
 	Name = "SwingBoard",
 	Size = Vector3.new(5, 0.4, 2),
 	Position = Vector3.new(8, 5.5, 6),
@@ -323,6 +325,8 @@ PartFactory.make({
 	Material = Enum.Material.Wood,
 	Parent = world,
 })
+swingBoard:SetAttribute("IsSwing", true)
+swingBoard:SetAttribute("HomePosition", swingBoard.Position)
 local swing = Instance.new("Seat")
 swing.Name = "PorchSwing"
 swing.Size = Vector3.new(3.5, 0.4, 1.6)
@@ -330,6 +334,8 @@ swing.Position = Vector3.new(8, 5.9, 6.2)
 swing.Anchored = true
 swing.Color = Color3.fromRGB(140, 110, 80)
 swing.Parent = world
+swing:SetAttribute("IsSwing", true)
+swing:SetAttribute("HomePosition", swing.Position)
 
 -- Soft sit sync
 local SoftWireSeats = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftWireSeats"))
@@ -465,6 +471,12 @@ task.spawn(function()
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then
 					light.Brightness = 0.4 + math.sin(t * 2.2) * 0.25
+				end
+			elseif child:IsA("BasePart") and child:GetAttribute("IsSwing") then
+				local home = child:GetAttribute("HomePosition")
+				if typeof(home) == "Vector3" then
+					local sway = math.sin(t * 0.9) * 0.35
+					child.Position = home + Vector3.new(sway, 0, 0)
 				end
 			end
 		end

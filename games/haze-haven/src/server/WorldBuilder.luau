@@ -103,6 +103,39 @@ function WorldBuilder.build(workspace: Workspace): Folder
 		Parent = world,
 	})
 
+	-- Soft center rug + low table (publish-friendly first room beat)
+	WorldBuilder.makePart({
+		Name = "LoungeRug",
+		Size = Vector3.new(16, 0.2, 12),
+		Position = Vector3.new(0, 1.1, 0),
+		Color = Color3.fromRGB(90, 60, 110),
+		Material = Enum.Material.Fabric,
+		Parent = world,
+	})
+	WorldBuilder.makePart({
+		Name = "LoungeTable",
+		Size = Vector3.new(6, 0.5, 3.5),
+		Position = Vector3.new(0, 1.6, 0),
+		Color = Color3.fromRGB(70, 55, 85),
+		Material = Enum.Material.Wood,
+		Parent = world,
+	})
+	local tableGlow = WorldBuilder.makePart({
+		Name = "LoungeCandle",
+		Size = Vector3.new(0.6, 0.8, 0.6),
+		Position = Vector3.new(0, 2.3, 0),
+		Color = Color3.fromRGB(255, 200, 140),
+		Material = Enum.Material.Neon,
+		Shape = Enum.PartType.Ball,
+		CanCollide = false,
+		Parent = world,
+	})
+	local candleLight = Instance.new("PointLight")
+	candleLight.Brightness = 1.3
+	candleLight.Range = 12
+	candleLight.Color = Color3.fromRGB(255, 200, 150)
+	candleLight.Parent = tableGlow
+
 	local rimY = 3
 	local rimThickness = 2
 	local half = Config.Lounge.Size.X / 2

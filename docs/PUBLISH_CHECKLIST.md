@@ -2,13 +2,31 @@
 
 Use this when you're ready to put experiences live on Roblox.
 
+## First 10 minutes — Haze Haven (recommended)
+
+```bash
+cd games/haze-haven
+rojo build -o HazeHaven.rbxl
+rojo serve
+```
+
+1. Open `HazeHaven.rbxl` in Roblox Studio → Rojo plugin → **Connect**
+2. Press **Play** — sit a cushion, float pad, loft hammock, emote 1/2/3
+3. Stop Play → **File → Publish to Roblox** (create new experience if prompted)
+4. Paste title + description from [`EXPERIENCE_COPY.md`](EXPERIENCE_COPY.md) → Haze Haven
+5. Genre: Hangout (or Adventure). Access: **Friends** for soft launch
+6. Capture one soft screenshot for thumbnail (no ToS-risk framing)
+7. Paste place URL + place id into [`PUBLISH_STATUS.md`](PUBLISH_STATUS.md)
+
+That’s enough for night 4 — overnight agents will track the live place after.
+
 ## One-time setup
 
 1. Install [Rokit](https://github.com/rojo-rbx/rokit) + Rojo Studio plugin
 2. Create a Roblox experience (or one per game) under your account
 3. Optional later: Open Cloud API key for CLI upload (Perplexity Q-003) — store only in OpenClaw secrets
 
-## Per game
+## Per game (same pattern)
 
 ```bash
 cd games/<slug>

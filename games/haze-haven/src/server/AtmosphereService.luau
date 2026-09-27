@@ -34,6 +34,11 @@ function AtmosphereService.start()
 						if light then
 							light.Brightness = 0.9 + pulse * 0.5 + math.sin(t + child.Position.X) * 0.15
 						end
+					elseif child.Name == "LoungeCandle" and child:IsA("BasePart") then
+						local light = child:FindFirstChildOfClass("PointLight")
+						if light then
+							light.Brightness = 1.1 + math.sin(t * 2.4) * 0.35
+						end
 					end
 				end
 			end
