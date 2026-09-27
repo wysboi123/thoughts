@@ -10,6 +10,7 @@ Femmy: after you publish a place in Studio, paste the URL / place id here so ove
 | puddle-mirror | _pending_ | | |
 | bus-stop-forever | _pending_ | | |
 | lantern-drift | _pending_ | | |
+| star-porch | _pending_ | | Night 3 seed |
 
 ## First publish pick
 

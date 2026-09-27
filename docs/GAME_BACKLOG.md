@@ -11,10 +11,11 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 - [x] **Bus Stop Forever v0–v0.3** — SoftWelcome
 - [x] **Lantern Drift v0–v0.2** — SoftWelcome
 - [x] **Shared** — SoftWelcome module + Proximity across lineup
+- [x] **Star Porch v0** — 7th seed: night porch, rockers, swing, fireflies
 - [ ] **Wire audio** — waiting on Perplexity Q-004 (do not invent)
 - [ ] **First publish** — Femmy fills `docs/PUBLISH_STATUS.md`
 - [ ] **Apply Q-001–003** when answers land
-- [ ] **Night 3 late** — optional 7th seed or cross-game lighting polish
+- [ ] **Night 3 late** — Star Porch v0.1 polish / cross-game lighting
 
 ## Femmy overrides
 

@@ -10,6 +10,7 @@ Femmy’s chill Roblox line. All Rojo filesystem-first. Play: `cd games/<slug> &
 | [`puddle-mirror`](../games/puddle-mirror) | 0.3 | ripple | Puddles unlock secret nooks + deep mirror |
 | [`bus-stop-forever`](../games/bus-stop-forever) | 0.3 | wait / wave | Infinite calm bus stop — bus comes, you don’t have to |
 | [`lantern-drift`](../games/lantern-drift) | 0.2 | drift | Fog lake raft + floating lanterns + soft welcome |
+| [`star-porch`](../games/star-porch) | 0.0 | sit / glow | Night porch, rockers, swing, fireflies |
 
 Shared: [`packages/chill`](../packages/chill) · Publish: [`PUBLISH_CHECKLIST.md`](PUBLISH_CHECKLIST.md)
 

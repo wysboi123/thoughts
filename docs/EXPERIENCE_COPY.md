@@ -37,3 +37,9 @@ An infinite calm bus stop. The bus comes and goes; you don't have to. Sit, colle
 **Title:** Lantern Drift  
 **Description:**
 A fog lake at night. Walk the dock, step onto a drifting raft, and gather floating lanterns. Two seats. Soft glow. Stay afloat.
+
+## Star Porch
+
+**Title:** Star Porch  
+**Description:**
+A wooden night porch under soft stars. Rocking chairs, a porch swing, string lights, and fireflies that drift back. Sit outside. Watch the quiet.

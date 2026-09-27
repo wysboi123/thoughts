@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-27 01:35 UTC — Star Porch v0 (7th game)
+
+- Seeded **Star Porch**: deck, string lights, dual rockers, porch swing, sky stars, firefly collect + sit sync
+- SoftGoals / SoftWelcome / Proximity wired; `rojo build` clean
+- Gallery / backlog / publish status / experience copy updated
+- Next (~03:00): Star Porch v0.1 (yard path, rail gap for steps, soft wind chime visual) or lighting polish
+
 ## 2026-09-27 01:20 UTC — Night 3 checkpoint 1
 
 - **Chill.SoftWelcome** — new shared slide-in toast; wired into all 6 games
@@ -9,7 +16,7 @@ Newest first. Overnight agents append after every push.
 - **Couch Galaxy v0.3** — rug, coffee table lamp, bookshelf, night window, floor lamp; hammock in sit sync
 - Versions: Haze 0.6 · Slow Orbit 0.4 · Couch 0.3 · Puddle 0.3 · Bus 0.3 · Lantern 0.2
 - Still no Perplexity answers — audio unwired
-- Next (~03:00): lighting/atmosphere polish or optional 7th seed; keep publish path warm
+- Next: 7th seed (done) → polish until 5am
 
 ## 2026-09-26 23:12 UTC — Night 3 resume
 
