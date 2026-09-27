@@ -1,6 +1,8 @@
 --!strict
 -- One-shot soft welcome toast (session only).
 
+local TweenService = game:GetService("TweenService")
+
 local SoftWelcome = {}
 
 function SoftWelcome.show(playerGui: PlayerGui, titleText: string, bodyText: string)
@@ -12,7 +14,7 @@ function SoftWelcome.show(playerGui: PlayerGui, titleText: string, bodyText: str
 
 	local frame = Instance.new("Frame")
 	frame.AnchorPoint = Vector2.new(0.5, 0)
-	frame.Position = UDim2.new(0.5, 0, 0, -80)
+	frame.Position = UDim2.new(0.5, 0, 0, -90)
 	frame.Size = UDim2.fromOffset(360, 72)
 	frame.BackgroundColor3 = Color3.fromRGB(28, 24, 40)
 	frame.BackgroundTransparency = 0.15
@@ -21,6 +23,12 @@ function SoftWelcome.show(playerGui: PlayerGui, titleText: string, bodyText: str
 	local corner = Instance.new("UICorner")
 	corner.CornerRadius = UDim.new(0, 12)
 	corner.Parent = frame
+
+	local stroke = Instance.new("UIStroke")
+	stroke.Color = Color3.fromRGB(120, 100, 160)
+	stroke.Thickness = 1
+	stroke.Transparency = 0.55
+	stroke.Parent = frame
 
 	local title = Instance.new("TextLabel")
 	title.BackgroundTransparency = 1
@@ -44,20 +52,25 @@ function SoftWelcome.show(playerGui: PlayerGui, titleText: string, bodyText: str
 	body.Text = bodyText
 	body.Parent = frame
 
-	-- Slide in
-	task.spawn(function()
-		for i = 1, 12 do
-			frame.Position = UDim2.new(0.5, 0, 0, -80 + i * 9)
-			task.wait(0.02)
+	local slideIn = TweenService:Create(
+		frame,
+		TweenInfo.new(0.45, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+		{ Position = UDim2.new(0.5, 0, 0, 28) }
+	)
+	slideIn:Play()
+
+	task.delay(4.8, function()
+		if not frame.Parent then
+			return
 		end
-		task.wait(4.5)
-		for i = 1, 12 do
-			frame.BackgroundTransparency = 0.15 + i * 0.07
-			title.TextTransparency = i * 0.08
-			body.TextTransparency = i * 0.08
-			task.wait(0.03)
-		end
-		gui:Destroy()
+		local fadeInfo = TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.In)
+		TweenService:Create(frame, fadeInfo, { BackgroundTransparency = 1 }):Play()
+		TweenService:Create(stroke, fadeInfo, { Transparency = 1 }):Play()
+		TweenService:Create(title, fadeInfo, { TextTransparency = 1 }):Play()
+		TweenService:Create(body, fadeInfo, { TextTransparency = 1 }):Play()
+		task.delay(0.55, function()
+			gui:Destroy()
+		end)
 	end)
 end
 

@@ -6,11 +6,12 @@ Newest first. Overnight agents append after every push.
 
 Shipped since CP1:
 - **Star Porch** 0→0.2 (7th game + jar/moon/path)
-- **SoftSit** shared + Couch / Porch / Lantern / Bus
-- **SoftWelcome** + Proximity across lineup
-- Versions: Haze 0.7 · Orbit 0.5 · Couch 0.4 · Puddle 0.4 · Bus 0.5 · Lantern 0.3 · Porch 0.2
+- **SoftSit** shared — Haze / Couch / Porch / Lantern / Bus / Puddle
+- **SoftWelcome** tween polish + Proximity across lineup
+- Versions: Haze 0.7 · Orbit 0.5 · Couch 0.4 · Puddle 0.5 · Bus 0.5 · Lantern 0.3 · Porch 0.2
 - Still blocked: Perplexity Q-001–004 (audio), first Studio publish
-- Next (~03:00 CP2): more polish; prep 05:00 stop note
+- Timers: CP2 ~03:13 · stop 05:00 · daily resume 23:00 — all armed
+- Next (CP2): final polish stretch; draft 05:00 stop note
 
 ## 2026-09-27 01:30 UTC — Star Porch 0.1 + Bus Stop 0.4
 
