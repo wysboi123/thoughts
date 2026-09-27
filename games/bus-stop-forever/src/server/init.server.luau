@@ -122,6 +122,56 @@ for i, x in { -5, 5 } do
 	seat.Parent = world
 end
 
+-- Soft street lamps
+for i, pos in {
+	Vector3.new(-14, 5, -2),
+	Vector3.new(14, 5, -2),
+	Vector3.new(28, 5, -1),
+} do
+	part({
+		Name = "LampPole" .. i,
+		Size = Vector3.new(0.5, 10, 0.5),
+		Position = pos,
+		Color = Color3.fromRGB(50, 52, 58),
+		Material = Enum.Material.Metal,
+		Parent = world,
+	})
+	local head = part({
+		Name = "LampHead" .. i,
+		Size = Vector3.new(2, 1, 2),
+		Position = pos + Vector3.new(0, 5.5, 0),
+		Color = Color3.fromRGB(255, 230, 170),
+		Material = Enum.Material.Neon,
+		CanCollide = false,
+		Parent = world,
+	})
+	local light = Instance.new("PointLight")
+	light.Brightness = 1.8
+	light.Range = 28
+	light.Color = Color3.fromRGB(255, 220, 160)
+	light.Parent = head
+end
+
+-- Sidewalk planters
+for i, x in { -16, 16 } do
+	part({
+		Name = "Planter" .. i,
+		Size = Vector3.new(3, 1.2, 3),
+		Position = Vector3.new(x, 1.1, 8),
+		Color = Color3.fromRGB(70, 65, 60),
+		Material = Enum.Material.Concrete,
+		Parent = world,
+	})
+	part({
+		Name = "PlanterGreen" .. i,
+		Size = Vector3.new(2.4, 2, 2.4),
+		Position = Vector3.new(x, 2.6, 8),
+		Color = Color3.fromRGB(55, 100, 65),
+		Material = Enum.Material.Grass,
+		Parent = world,
+	})
+end
+
 -- Timeless timetable board
 local board = part({
 	Name = "Timetable",

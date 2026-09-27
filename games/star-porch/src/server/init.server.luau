@@ -64,10 +64,19 @@ for _, x in { -13, 13 } do
 		Parent = world,
 	})
 end
+-- Front rails with gap for steps
 PartFactory.make({
-	Name = "FrontRail",
-	Size = Vector3.new(26, 2, 0.4),
-	Position = Vector3.new(0, 3.5, 11.5),
+	Name = "FrontRailL",
+	Size = Vector3.new(9, 2, 0.4),
+	Position = Vector3.new(-8.5, 3.5, 11.5),
+	Color = Color3.fromRGB(75, 60, 45),
+	Material = Enum.Material.Wood,
+	Parent = world,
+})
+PartFactory.make({
+	Name = "FrontRailR",
+	Size = Vector3.new(9, 2, 0.4),
+	Position = Vector3.new(8.5, 3.5, 11.5),
 	Color = Color3.fromRGB(75, 60, 45),
 	Material = Enum.Material.Wood,
 	Parent = world,
@@ -84,6 +93,60 @@ for i = 1, 3 do
 		Parent = world,
 	})
 end
+
+-- Soft yard path + side bushes
+PartFactory.make({
+	Name = "YardPath",
+	Size = Vector3.new(5, 0.2, 18),
+	Position = Vector3.new(0, 0.6, 22),
+	Color = Color3.fromRGB(95, 85, 70),
+	Material = Enum.Material.Cobblestone,
+	Parent = world,
+})
+for i, pos in {
+	Vector3.new(-10, 1.5, 18),
+	Vector3.new(10, 1.5, 18),
+	Vector3.new(-14, 1.8, 8),
+	Vector3.new(14, 1.8, 8),
+	Vector3.new(-8, 1.4, 26),
+	Vector3.new(8, 1.4, 26),
+} do
+	PartFactory.make({
+		Name = "Bush" .. i,
+		Size = Vector3.new(3.5, 2.8, 3.5),
+		Position = pos,
+		Color = Color3.fromRGB(45, 75, 50),
+		Material = Enum.Material.Grass,
+		Shape = Enum.PartType.Ball,
+		Parent = world,
+	})
+end
+
+-- Visual wind chime (no audio — waiting on Perplexity)
+local chimeAnchor = PartFactory.make({
+	Name = "ChimeBar",
+	Size = Vector3.new(2.5, 0.2, 0.2),
+	Position = Vector3.new(12, 11, 2),
+	Color = Color3.fromRGB(160, 150, 130),
+	Material = Enum.Material.Metal,
+	CanCollide = false,
+	Parent = world,
+})
+for i = 1, 5 do
+	local home = Vector3.new(11 + i * 0.4, 10.2 - i * 0.1, 2)
+	local tube = PartFactory.make({
+		Name = "ChimeTube" .. i,
+		Size = Vector3.new(0.2, 1.2 + i * 0.25, 0.2),
+		Position = home,
+		Color = Color3.fromRGB(180, 190, 200),
+		Material = Enum.Material.Metal,
+		CanCollide = false,
+		Parent = world,
+	})
+	tube:SetAttribute("IsChime", true)
+	tube:SetAttribute("HomePosition", home)
+end
+chimeAnchor.Parent = world
 
 -- String lights under overhang
 for i = 1, 9 do
@@ -207,6 +270,24 @@ wireSeat(rockerL)
 wireSeat(rockerR)
 wireSeat(swing)
 
+-- Soft moon
+local moon = PartFactory.make({
+	Name = "Moon",
+	Size = Vector3.new(14, 14, 14),
+	Position = Vector3.new(-40, 55, -60),
+	Color = Color3.fromRGB(230, 235, 255),
+	Material = Enum.Material.Neon,
+	Shape = Enum.PartType.Ball,
+	CanCollide = false,
+	Transparency = 0.15,
+	Parent = world,
+})
+local moonLight = Instance.new("PointLight")
+moonLight.Brightness = 1.2
+moonLight.Range = 80
+moonLight.Color = Color3.fromRGB(200, 210, 255)
+moonLight.Parent = moon
+
 -- Distant soft stars (decorative)
 for i = 1, 40 do
 	local angle = math.random() * math.pi * 2
@@ -275,7 +356,7 @@ for i = 1, Config.Firefly.Count do
 	end)
 end
 
--- Firefly drift
+-- Firefly drift + soft chime sway
 task.spawn(function()
 	local t = 0
 	while true do
@@ -292,6 +373,16 @@ task.spawn(function()
 						math.sin(t * 2.1 + i * 0.7) * 1.1,
 						math.cos(t * 1.1 + i) * 1.2
 					)
+			end
+		end
+		for _, child in world:GetChildren() do
+			if child:IsA("BasePart") and child:GetAttribute("IsChime") then
+				local home = child:GetAttribute("HomePosition")
+				if typeof(home) == "Vector3" then
+					local sway = math.sin(t * 1.4 + home.X) * 0.15
+					child.CFrame = CFrame.new(home + Vector3.new(sway, 0, sway * 0.4))
+						* CFrame.Angles(0, 0, math.sin(t * 1.6 + home.X) * 0.08)
+				end
 			end
 		end
 	end

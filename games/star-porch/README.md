@@ -10,9 +10,11 @@ rojo build -o StarPorch.rbxl
 rojo serve
 ```
 
-## Loop (v0)
+## Loop (v0.1)
 
-1. Spawn on the porch under string lights
-2. Sit a rocking chair or the porch swing
-3. Touch drifting fireflies (soft collect, they return)
-4. Soft welcome + proximity glow on join
+1. Spawn on the porch under string lights + moon
+2. Walk the yard path / step gap in the rail
+3. Sit a rocking chair or the porch swing
+4. Touch drifting fireflies (soft collect, they return)
+5. Visual wind chime sways (audio blocked on Perplexity)
+6. Soft welcome + proximity glow on join

@@ -2,7 +2,7 @@
 local Config = {
 	GameName = "Star Porch",
 	Tagline = "sit outside. watch the quiet.",
-	Version = "0.0",
+	Version = "0.1",
 
 	Spawn = Vector3.new(0, 4, 10),
 

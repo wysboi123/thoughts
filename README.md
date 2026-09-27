@@ -50,9 +50,9 @@ See `docs/HEAD_CODER_PLAYBOOK.md`.
 - [`games/slow-orbit`](games/slow-orbit) — purple dusk planet + moonlet (v0.4)
 - [`games/couch-galaxy`](games/couch-galaxy) — cozy apt → roof → galaxy loft (v0.3)
 - [`games/puddle-mirror`](games/puddle-mirror) — puddle unlocks + deep mirror (v0.3)
-- [`games/bus-stop-forever`](games/bus-stop-forever) — calm bus stop + wave (v0.3)
+- [`games/bus-stop-forever`](games/bus-stop-forever) — calm bus stop + wave (v0.4)
 - [`games/lantern-drift`](games/lantern-drift) — fog lake raft + lanterns (v0.2)
-- [`games/star-porch`](games/star-porch) — night porch + fireflies (v0)
+- [`games/star-porch`](games/star-porch) — night porch + fireflies (v0.1)
 - [`packages/chill`](packages/chill) — SoftGoals / SoftWelcome / Proximity / PartFactory
 
 Publish: [`docs/PUBLISH_CHECKLIST.md`](docs/PUBLISH_CHECKLIST.md) · Status: [`docs/PUBLISH_STATUS.md`](docs/PUBLISH_STATUS.md) · Copy: [`docs/EXPERIENCE_COPY.md`](docs/EXPERIENCE_COPY.md) · Gallery: [`docs/GAMES.md`](docs/GAMES.md)

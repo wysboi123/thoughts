@@ -2,12 +2,17 @@
 
 Newest first. Overnight agents append after every push.
 
-## 2026-09-27 01:35 UTC — Star Porch v0 (7th game)
+## 2026-09-27 01:30 UTC — Star Porch 0.1 + Bus Stop 0.4
+
+- **Star Porch v0.1**: moon, yard path, bushes, rail gap, visual chime sway
+- **Bus Stop Forever v0.4**: street lamps + sidewalk planters
+- Next (~03:00): more atmosphere / Lantern Drift polish; still blocked on Perplexity audio
+
+## 2026-09-27 01:25 UTC — Star Porch v0 (7th game)
 
 - Seeded **Star Porch**: deck, string lights, dual rockers, porch swing, sky stars, firefly collect + sit sync
 - SoftGoals / SoftWelcome / Proximity wired; `rojo build` clean
 - Gallery / backlog / publish status / experience copy updated
-- Next (~03:00): Star Porch v0.1 (yard path, rail gap for steps, soft wind chime visual) or lighting polish
 
 ## 2026-09-27 01:20 UTC — Night 3 checkpoint 1
 
