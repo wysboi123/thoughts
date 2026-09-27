@@ -45,6 +45,11 @@ local Config = {
 	},
 
 	TargetBeads = 10,
+
+	Proximity = {
+		Radius = 16,
+		GlowColor = Color3.fromRGB(180, 140, 255),
+	},
 }
 
 return Config

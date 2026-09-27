@@ -488,7 +488,7 @@ Players.PlayerRemoving:Connect(function(player)
 	ticketCounts[player.UserId] = nil
 end)
 
--- Soft sidewalk puddle shimmer
+-- Soft sidewalk puddle shimmer + lamp flicker
 task.spawn(function()
 	local t = 0
 	while world.Parent do
@@ -496,6 +496,14 @@ task.spawn(function()
 		local puddle = world:FindFirstChild("SidewalkPuddle")
 		if puddle and puddle:IsA("BasePart") then
 			puddle.Transparency = 0.35 + math.sin(t * 1.2) * 0.1
+		end
+		for _, child in world:GetChildren() do
+			if child:IsA("BasePart") and string.find(child.Name, "LampHead", 1, true) then
+				local light = child:FindFirstChildOfClass("PointLight")
+				if light then
+					light.Brightness = 1.5 + math.sin(t * 1.4 + child.Position.X) * 0.35
+				end
+			end
 		end
 	end
 end)
