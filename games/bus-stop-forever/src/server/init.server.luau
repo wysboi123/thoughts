@@ -267,26 +267,8 @@ farSeat.Anchored = true
 farSeat.Color = Color3.fromRGB(115, 90, 65)
 farSeat.Parent = world
 
-local function wireBench(seat: Seat)
-	seat:GetPropertyChangedSignal("Occupant"):Connect(function()
-		local humanoid = seat.Occupant
-		local sittingPlayer: Player? = nil
-		if humanoid then
-			local character = humanoid.Parent
-			if character and character:IsA("Model") then
-				sittingPlayer = Players:GetPlayerFromCharacter(character)
-			end
-		end
-		local name = if sittingPlayer then sittingPlayer.DisplayName else nil
-		Remotes.BenchSitChanged:FireAllClients(seat.Name, name)
-	end)
-end
-
-for _, child in world:GetChildren() do
-	if child:IsA("Seat") then
-		wireBench(child)
-	end
-end
+local SoftWireSeats = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftWireSeats"))
+SoftWireSeats.wireAll(world, Remotes.BenchSitChanged)
 
 -- Community notepad board (rotating soft messages)
 local notepad = part({

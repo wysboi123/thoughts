@@ -53,6 +53,6 @@ See `docs/HEAD_CODER_PLAYBOOK.md`.
 - [`games/bus-stop-forever`](games/bus-stop-forever) — calm bus stop + wave (v0.6)
 - [`games/lantern-drift`](games/lantern-drift) — fog lake raft + lanterns (v0.4)
 - [`games/star-porch`](games/star-porch) — night porch + fireflies (v0.3)
-- [`packages/chill`](packages/chill) — SoftGoals / SoftWelcome / SoftSit / Proximity / PartFactory
+- [`packages/chill`](packages/chill) — SoftGoals / SoftWelcome / SoftSit / SoftWireSeats / Proximity
 
 Publish: [`docs/PUBLISH_CHECKLIST.md`](docs/PUBLISH_CHECKLIST.md) · Status: [`docs/PUBLISH_STATUS.md`](docs/PUBLISH_STATUS.md) · Copy: [`docs/EXPERIENCE_COPY.md`](docs/EXPERIENCE_COPY.md) · Gallery: [`docs/GAMES.md`](docs/GAMES.md)

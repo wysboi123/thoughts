@@ -505,28 +505,9 @@ world.Parent = Workspace
 buildApartment(world)
 buildGalaxy(world)
 
--- Couch sit sync — broadcast when someone sits / leaves either couch seat
-local function wireCouch(seat: Seat)
-	seat:GetPropertyChangedSignal("Occupant"):Connect(function()
-		local humanoid = seat.Occupant
-		local sittingPlayer: Player? = nil
-		if humanoid then
-			local character = humanoid.Parent
-			if character and character:IsA("Model") then
-				sittingPlayer = Players:GetPlayerFromCharacter(character)
-			end
-		end
-		local name = if sittingPlayer then sittingPlayer.DisplayName else nil
-		Remotes.CouchSitChanged:FireAllClients(seat.Name, name)
-	end)
-end
-
-for _, seatName in { "CouchSeat", "CouchSeat2", "GalaxyHammockSeat" } do
-	local seatInst = world:FindFirstChild(seatName)
-	if seatInst and seatInst:IsA("Seat") then
-		wireCouch(seatInst)
-	end
-end
+-- Couch sit sync — broadcast when someone sits / leaves
+local SoftWireSeats = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftWireSeats"))
+SoftWireSeats.wireAll(world, Remotes.CouchSitChanged)
 
 for _, child in world:GetChildren() do
 	if child:IsA("BasePart") then

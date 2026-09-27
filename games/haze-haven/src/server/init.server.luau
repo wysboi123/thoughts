@@ -21,26 +21,8 @@ EmoteService.start()
 NameplateService.start()
 AtmosphereService.start()
 
-local function wireSeat(seat: Seat)
-	seat:GetPropertyChangedSignal("Occupant"):Connect(function()
-		local humanoid = seat.Occupant
-		local sittingPlayer: Player? = nil
-		if humanoid then
-			local character = humanoid.Parent
-			if character and character:IsA("Model") then
-				sittingPlayer = Players:GetPlayerFromCharacter(character)
-			end
-		end
-		local name = if sittingPlayer then sittingPlayer.DisplayName else nil
-		Remotes.SitChanged:FireAllClients(seat.Name, name)
-	end)
-end
-
-for _, child in world:GetDescendants() do
-	if child:IsA("Seat") then
-		wireSeat(child)
-	end
-end
+local SoftWireSeats = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftWireSeats"))
+SoftWireSeats.wireAll(world, Remotes.SitChanged)
 
 Players.PlayerAdded:Connect(function(player)
 	OrbService.onPlayerAdded(player)

@@ -332,23 +332,10 @@ swing.Color = Color3.fromRGB(140, 110, 80)
 swing.Parent = world
 
 -- Soft sit sync
-local function wireSeat(seat: Seat)
-	seat:GetPropertyChangedSignal("Occupant"):Connect(function()
-		local humanoid = seat.Occupant
-		local sittingPlayer: Player? = nil
-		if humanoid then
-			local character = humanoid.Parent
-			if character and character:IsA("Model") then
-				sittingPlayer = Players:GetPlayerFromCharacter(character)
-			end
-		end
-		local name = if sittingPlayer then sittingPlayer.DisplayName else nil
-		Remotes.SitChanged:FireAllClients(seat.Name, name)
-	end)
-end
-wireSeat(rockerL)
-wireSeat(rockerR)
-wireSeat(swing)
+local SoftWireSeats = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftWireSeats"))
+SoftWireSeats.wire(rockerL, Remotes.SitChanged)
+SoftWireSeats.wire(rockerR, Remotes.SitChanged)
+SoftWireSeats.wire(swing, Remotes.SitChanged)
 
 -- Soft moon
 local moon = PartFactory.make({
@@ -467,6 +454,17 @@ task.spawn(function()
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then
 					light.Brightness = 1.2 + math.sin(t * 3) * 0.5
+				end
+			elseif child.Name == "Moon" and child:IsA("BasePart") then
+				local light = child:FindFirstChildOfClass("PointLight")
+				if light then
+					light.Brightness = 1.0 + math.sin(t * 0.4) * 0.25
+				end
+				child.Transparency = 0.12 + math.sin(t * 0.35) * 0.04
+			elseif child.Name == "WarmMug" and child:IsA("BasePart") then
+				local light = child:FindFirstChildOfClass("PointLight")
+				if light then
+					light.Brightness = 0.4 + math.sin(t * 2.2) * 0.25
 				end
 			end
 		end

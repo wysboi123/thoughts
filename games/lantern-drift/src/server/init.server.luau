@@ -175,23 +175,10 @@ seatB.Anchored = true
 seatB.Color = Color3.fromRGB(120, 90, 60)
 seatB.Parent = world
 
-local function wireSeat(seat: Seat)
-	seat:GetPropertyChangedSignal("Occupant"):Connect(function()
-		local humanoid = seat.Occupant
-		local sittingPlayer: Player? = nil
-		if humanoid then
-			local character = humanoid.Parent
-			if character and character:IsA("Model") then
-				sittingPlayer = Players:GetPlayerFromCharacter(character)
-			end
-		end
-		local name = if sittingPlayer then sittingPlayer.DisplayName else nil
-		Remotes.RaftSitChanged:FireAllClients(seat.Name, name)
-	end)
-end
-wireSeat(seatA)
-wireSeat(seatB)
-wireSeat(dockSeat)
+local SoftWireSeats = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftWireSeats"))
+SoftWireSeats.wire(seatA, Remotes.RaftSitChanged)
+SoftWireSeats.wire(seatB, Remotes.RaftSitChanged)
+SoftWireSeats.wire(dockSeat, Remotes.RaftSitChanged)
 
 -- Small mast light on raft
 local mast = PartFactory.make({
