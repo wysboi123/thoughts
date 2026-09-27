@@ -185,6 +185,42 @@ porchLight.Range = 22
 porchLight.Color = Color3.fromRGB(255, 200, 140)
 porchLight.Parent = porchLamp
 
+-- Firefly jar on the railing (decorative collect vibe)
+PartFactory.make({
+	Name = "JarBase",
+	Size = Vector3.new(1.2, 0.3, 1.2),
+	Position = Vector3.new(10, 3.2, 11),
+	Color = Color3.fromRGB(90, 75, 55),
+	Material = Enum.Material.Wood,
+	Parent = world,
+})
+local jar = PartFactory.make({
+	Name = "FireflyJar",
+	Size = Vector3.new(1.4, 2, 1.4),
+	Position = Vector3.new(10, 4.4, 11),
+	Color = Color3.fromRGB(180, 220, 160),
+	Material = Enum.Material.Glass,
+	Transparency = 0.45,
+	CanCollide = false,
+	Parent = world,
+})
+local jarGlow = PartFactory.make({
+	Name = "JarGlow",
+	Size = Vector3.new(0.7, 0.7, 0.7),
+	Position = Vector3.new(10, 4.2, 11),
+	Color = Config.Firefly.Color,
+	Material = Enum.Material.Neon,
+	Shape = Enum.PartType.Ball,
+	CanCollide = false,
+	Parent = world,
+})
+local jarLight = Instance.new("PointLight")
+jarLight.Brightness = 1.6
+jarLight.Range = 10
+jarLight.Color = Config.Firefly.Color
+jarLight.Parent = jarGlow
+jar.Parent = world
+
 -- Dual rocking chairs (Seats)
 local function makeSeat(name: string, pos: Vector3, color: Color3): Seat
 	PartFactory.make({
@@ -382,6 +418,11 @@ task.spawn(function()
 					local sway = math.sin(t * 1.4 + home.X) * 0.15
 					child.CFrame = CFrame.new(home + Vector3.new(sway, 0, sway * 0.4))
 						* CFrame.Angles(0, 0, math.sin(t * 1.6 + home.X) * 0.08)
+				end
+			elseif child.Name == "JarGlow" and child:IsA("BasePart") then
+				local light = child:FindFirstChildOfClass("PointLight")
+				if light then
+					light.Brightness = 1.2 + math.sin(t * 3) * 0.5
 				end
 			end
 		end

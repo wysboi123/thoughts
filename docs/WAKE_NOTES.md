@@ -2,6 +2,16 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-27 01:40 UTC — Night 3 mid-shift rollup
+
+Shipped since CP1:
+- **Star Porch** 0→0.2 (7th game + jar/moon/path)
+- **SoftSit** shared + Couch / Porch / Lantern / Bus
+- **SoftWelcome** + Proximity across lineup
+- Versions: Haze 0.7 · Orbit 0.5 · Couch 0.4 · Puddle 0.4 · Bus 0.5 · Lantern 0.3 · Porch 0.2
+- Still blocked: Perplexity Q-001–004 (audio), first Studio publish
+- Next (~03:00 CP2): more polish; prep 05:00 stop note
+
 ## 2026-09-27 01:30 UTC — Star Porch 0.1 + Bus Stop 0.4
 
 - **Star Porch v0.1**: moon, yard path, bushes, rail gap, visual chime sway

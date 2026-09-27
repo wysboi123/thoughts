@@ -6,7 +6,7 @@ Femmy’s chill Roblox line. All Rojo filesystem-first. Play: `cd games/<slug> &
 | --- | --- | --- | --- |
 | [`haze-haven`](../games/haze-haven) | 0.7 | float / sit | Soft loft lounge — string lights, emotes, vibe board |
 | [`slow-orbit`](../games/slow-orbit) | 0.5 | orbit | Purple dusk + aurora ribbons + soft stars |
-| [`couch-galaxy`](../games/couch-galaxy) | 0.3 | climb / float | Cozy apt → roof → galaxy loft (rug, lamps, hammock sync) |
+| [`couch-galaxy`](../games/couch-galaxy) | 0.4 | climb / float | Cozy apt → pulsing skylight → galaxy loft |
 | [`puddle-mirror`](../games/puddle-mirror) | 0.4 | ripple | Center pool, plaza benches, mist, secret nooks |
 | [`bus-stop-forever`](../games/bus-stop-forever) | 0.5 | wait / wave | Calm bus stop — sit sync, lamps, wave when it stops |
 | [`lantern-drift`](../games/lantern-drift) | 0.3 | drift | Fog lake raft, dock bench, lily pads, sit sync |

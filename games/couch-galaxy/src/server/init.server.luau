@@ -586,7 +586,7 @@ for _, child in world:GetChildren() do
 	end
 end
 
--- Star hover
+-- Star hover + soft portal / string-light pulse
 task.spawn(function()
 	local t = 0
 	while true do
@@ -596,6 +596,17 @@ task.spawn(function()
 				local home = child:GetAttribute("HomePosition")
 				if typeof(home) == "Vector3" then
 					child.Position = home + Vector3.new(0, math.sin(t * 2 + child.Position.X) * 1.2, 0)
+				end
+			elseif child.Name == "SkylightPortal" and child:IsA("BasePart") then
+				local light = child:FindFirstChildOfClass("PointLight")
+				if light then
+					light.Brightness = 2.4 + math.sin(t * 1.5) * 0.8
+				end
+				child.Transparency = 0.3 + math.sin(t * 1.2) * 0.08
+			elseif string.find(child.Name, "StringLight", 1, true) and child:IsA("BasePart") then
+				local light = child:FindFirstChildOfClass("PointLight")
+				if light then
+					light.Brightness = 1.0 + math.sin(t * 2 + child.Position.X) * 0.35
 				end
 			end
 		end
