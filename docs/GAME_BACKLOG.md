@@ -9,7 +9,7 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 - [x] **Couch Galaxy v0–v0.3** — cozy apt polish + Proximity + SoftWelcome
 - [x] **Puddle Mirror v0–v0.3** — Proximity + SoftWelcome
 - [x] **Bus Stop Forever v0–v0.4** — lamps + planters + SoftWelcome
-- [x] **Lantern Drift v0–v0.2** — SoftWelcome
+- [x] **Lantern Drift v0–v0.3** — dock bench, lilies, sit sync
 - [x] **Shared** — SoftWelcome module + Proximity across lineup
 - [x] **Star Porch v0–v0.1** — moon, yard path, chime sway, rail gap
 - [ ] **Wire audio** — waiting on Perplexity Q-004 (do not invent)

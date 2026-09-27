@@ -115,6 +115,41 @@ spawn.Transparency = 0.4
 spawn.Color = Color3.fromRGB(90, 70, 50)
 spawn.Parent = world
 
+-- Dock bench for waiting
+PartFactory.make({
+	Name = "DockBench",
+	Size = Vector3.new(6, 1, 2),
+	Position = Vector3.new(-4, 2.8, 26),
+	Color = Color3.fromRGB(85, 65, 48),
+	Material = Enum.Material.Wood,
+	Parent = world,
+})
+local dockSeat = Instance.new("Seat")
+dockSeat.Name = "DockSeat"
+dockSeat.Size = Vector3.new(4, 0.4, 1.5)
+dockSeat.Position = Vector3.new(-4, 3.5, 26)
+dockSeat.Anchored = true
+dockSeat.Color = Color3.fromRGB(110, 85, 60)
+dockSeat.Parent = world
+
+-- Soft lily pads (decorative)
+for i, pos in {
+	Vector3.new(-16, 0.8, 6),
+	Vector3.new(18, 0.8, -8),
+	Vector3.new(-8, 0.8, -18),
+	Vector3.new(12, 0.8, 14),
+} do
+	PartFactory.make({
+		Name = "Lily" .. i,
+		Size = Vector3.new(4.5, 0.25, 4.5),
+		Position = pos,
+		Color = Color3.fromRGB(50, 90, 60),
+		Material = Enum.Material.Grass,
+		CanCollide = false,
+		Parent = world,
+	})
+end
+
 -- Soft raft + dual seats
 local raft = PartFactory.make({
 	Name = "Raft",
@@ -138,6 +173,24 @@ seatB.Position = Config.RaftStart + Vector3.new(2.5, 1.2, 0)
 seatB.Anchored = true
 seatB.Color = Color3.fromRGB(120, 90, 60)
 seatB.Parent = world
+
+local function wireSeat(seat: Seat)
+	seat:GetPropertyChangedSignal("Occupant"):Connect(function()
+		local humanoid = seat.Occupant
+		local sittingPlayer: Player? = nil
+		if humanoid then
+			local character = humanoid.Parent
+			if character and character:IsA("Model") then
+				sittingPlayer = Players:GetPlayerFromCharacter(character)
+			end
+		end
+		local name = if sittingPlayer then sittingPlayer.DisplayName else nil
+		Remotes.RaftSitChanged:FireAllClients(seat.Name, name)
+	end)
+end
+wireSeat(seatA)
+wireSeat(seatB)
+wireSeat(dockSeat)
 
 -- Small mast light on raft
 local mast = PartFactory.make({

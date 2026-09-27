@@ -39,4 +39,5 @@ end
 
 return {
 	LanternCollected = getRemote("LanternCollected"),
+	RaftSitChanged = getRemote("RaftSitChanged"),
 }

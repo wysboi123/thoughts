@@ -45,8 +45,39 @@ hint.Font = Enum.Font.Gotham
 hint.TextSize = 12
 hint.TextXAlignment = Enum.TextXAlignment.Left
 hint.TextColor3 = Color3.fromRGB(160, 140, 120)
-hint.Text = "dock → gangway → raft · two seats · shore lamps stay lit"
+hint.Text = "dock bench → gangway → raft · lily pads · shore lamps stay lit"
 hint.Parent = gui
+
+local sitStatus = Instance.new("TextLabel")
+sitStatus.BackgroundTransparency = 1
+sitStatus.AnchorPoint = Vector2.new(0.5, 1)
+sitStatus.Position = UDim2.new(0.5, 0, 1, -100)
+sitStatus.Size = UDim2.fromOffset(360, 20)
+sitStatus.Font = Enum.Font.Gotham
+sitStatus.TextSize = 13
+sitStatus.TextColor3 = Color3.fromRGB(220, 190, 150)
+sitStatus.Text = ""
+sitStatus.Parent = gui
+
+local occupants: { [string]: string } = {}
+Remotes.RaftSitChanged.OnClientEvent:Connect(function(seatName: string, displayName: string?)
+	if displayName then
+		occupants[seatName] = displayName
+	else
+		occupants[seatName] = nil :: any
+	end
+	local names = {}
+	for _, n in occupants do
+		table.insert(names, n)
+	end
+	if #names == 0 then
+		sitStatus.Text = ""
+	elseif #names == 1 then
+		sitStatus.Text = names[1] .. " is drifting"
+	else
+		sitStatus.Text = table.concat(names, " & ") .. " are drifting"
+	end
+end)
 
 local counter = Instance.new("TextLabel")
 counter.BackgroundColor3 = Color3.fromRGB(30, 24, 20)
@@ -68,10 +99,22 @@ Remotes.LanternCollected.OnClientEvent:Connect(function(count: number)
 end)
 
 local _, complete = SoftGoals.mount(player:WaitForChild("PlayerGui"), "tonight's soft goals", {
+	{ Id = "dock", Label = "sit on the dock bench" },
 	{ Id = "raft", Label = "step onto the raft" },
 	{ Id = "sit", Label = "sit and drift" },
 	{ Id = "lanterns", Label = "collect 3 lanterns" },
 })
+
+Remotes.RaftSitChanged.OnClientEvent:Connect(function(seatName: string, displayName: string?)
+	if displayName ~= player.DisplayName then
+		return
+	end
+	if seatName == "DockSeat" then
+		complete("dock")
+	else
+		complete("sit")
+	end
+end)
 
 Remotes.LanternCollected.OnClientEvent:Connect(function(count: number)
 	if count >= 3 then

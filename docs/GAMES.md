@@ -9,7 +9,7 @@ Femmy’s chill Roblox line. All Rojo filesystem-first. Play: `cd games/<slug> &
 | [`couch-galaxy`](../games/couch-galaxy) | 0.3 | climb / float | Cozy apt → roof → galaxy loft (rug, lamps, hammock sync) |
 | [`puddle-mirror`](../games/puddle-mirror) | 0.3 | ripple | Puddles unlock secret nooks + deep mirror |
 | [`bus-stop-forever`](../games/bus-stop-forever) | 0.4 | wait / wave | Calm bus stop — lamps, planters, wave when it stops |
-| [`lantern-drift`](../games/lantern-drift) | 0.2 | drift | Fog lake raft + floating lanterns + soft welcome |
+| [`lantern-drift`](../games/lantern-drift) | 0.3 | drift | Fog lake raft, dock bench, lily pads, sit sync |
 | [`star-porch`](../games/star-porch) | 0.1 | sit / glow | Night porch, moon, rockers, swing, fireflies |
 
 Shared: [`packages/chill`](../packages/chill) · Publish: [`PUBLISH_CHECKLIST.md`](PUBLISH_CHECKLIST.md)
