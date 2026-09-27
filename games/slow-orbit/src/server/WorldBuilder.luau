@@ -160,6 +160,64 @@ function WorldBuilder.build(): (Part, Part, Folder)
 		"MoonBead"
 	)
 
+	-- Soft aurora ribbons (decorative ForceField arcs)
+	local fx = Instance.new("Folder")
+	fx.Name = "OrbitAtmosphere"
+	fx.Parent = Workspace
+	for i = 1, 5 do
+		local ribbon = Instance.new("Part")
+		ribbon.Name = "Aurora" .. i
+		ribbon.Anchored = true
+		ribbon.CanCollide = false
+		ribbon.Material = Enum.Material.ForceField
+		ribbon.Color = Color3.fromHSV(0.72 + i * 0.03, 0.45, 0.85)
+		ribbon.Transparency = 0.55
+		ribbon.Size = Vector3.new(2, 18 + i * 3, 40 + i * 6)
+		local angle = (i / 5) * math.pi * 2
+		local pos = Config.Planet.Center
+			+ Vector3.new(math.cos(angle) * 55, 30 + i * 4, math.sin(angle) * 55)
+		ribbon.CFrame = CFrame.lookAt(pos, Config.Planet.Center)
+			* CFrame.Angles(math.rad(20), 0, math.rad(i * 12))
+		ribbon.CastShadow = false
+		ribbon.Parent = fx
+	end
+
+	-- Distant soft stars
+	for i = 1, 36 do
+		local angle = math.random() * math.pi * 2
+		local elev = math.random() * math.pi * 0.45 + 0.2
+		local dist = 120 + math.random() * 60
+		local star = Instance.new("Part")
+		star.Name = "DuskStar" .. i
+		star.Shape = Enum.PartType.Ball
+		star.Size = Vector3.new(1.2, 1.2, 1.2)
+		star.Anchored = true
+		star.CanCollide = false
+		star.Material = Enum.Material.Neon
+		star.Color = Color3.fromRGB(200, 190, 255)
+		star.Transparency = 0.25
+		star.Position = Config.Planet.Center
+			+ Vector3.new(
+				math.sin(elev) * math.cos(angle) * dist,
+				math.cos(elev) * dist * 0.6,
+				math.sin(elev) * math.sin(angle) * dist
+			)
+		star.Parent = fx
+	end
+
+	-- Gentle aurora sway
+	task.spawn(function()
+		local t = 0
+		while fx.Parent do
+			t += task.wait(0.05)
+			for _, child in fx:GetChildren() do
+				if child:IsA("BasePart") and string.find(child.Name, "Aurora", 1, true) then
+					child.Transparency = 0.5 + math.sin(t * 0.7 + child.Position.X) * 0.12
+				end
+			end
+		end
+	end)
+
 	-- Slow spin the moonlet beads' parent feel: rotate moonlet visually
 	task.spawn(function()
 		while moonlet.Parent do
