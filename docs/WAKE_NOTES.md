@@ -4,9 +4,9 @@ Newest first. Overnight agents append after every push.
 
 ## 2026-09-27 03:00 UTC — Night 3 checkpoint 2 (quiet)
 
-- Batched polish: **Star Porch 0.3** (side rails + mug table) · **Lantern 0.4** (breathing lake) · **Couch 0.5** (cloud bob) · **Haze 0.8** (loft planters)
+- Batched polish: **Star Porch 0.3** · **Lantern 0.4** · **Couch 0.5** · **Haze 0.8** · then Bus/Orbit/Puddle 0.6 · SoftWireSeats
 - No mid-shift email (Femmy policy)
-- **Draft for 05:00 stop:** Night 3 — 7 games. SoftWelcome/SoftSit/Proximity shared. Still blocked on Perplexity audio + first Studio publish. Digest email goes out at stop only.
+- **Draft for 05:00 stop:** Night 3 — 7 games (Haze 0.8 · Orbit 0.6 · Couch 0.5 · Puddle 0.6 · Bus 0.6 · Lantern 0.4 · Porch 0.3). Shared SoftWelcome/SoftSit/SoftWireSeats/Proximity. Blocked: Perplexity Q-001–004 + first Studio publish. **Send ONE digest email at stop.** Night 4: wire audio if answers land; help publish Haze first.
 - Stop timer armed → 05:00 UTC
 
 ## 2026-09-27 01:41 UTC — Email policy
