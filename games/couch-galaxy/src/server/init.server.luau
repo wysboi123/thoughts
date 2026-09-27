@@ -604,6 +604,8 @@ task.spawn(function()
 						light.Brightness = 1.3 + math.sin(t * 1.1 + home.Z) * 0.35
 					end
 				end
+			elseif child.Name == "ReturnBeacon" and child:IsA("BasePart") then
+				child.Transparency = 0.05 + math.sin(t * 1.3) * 0.08
 			end
 		end
 	end

@@ -30,6 +30,12 @@ function SoftGoals.mount(playerGui: PlayerGui, titleText: string, goals: { Goal 
 	corner.CornerRadius = UDim.new(0, 10)
 	corner.Parent = frame
 
+	local stroke = Instance.new("UIStroke")
+	stroke.Color = Color3.fromRGB(100, 85, 140)
+	stroke.Thickness = 1
+	stroke.Transparency = 0.6
+	stroke.Parent = frame
+
 	local title = Instance.new("TextLabel")
 	title.BackgroundTransparency = 1
 	title.Position = UDim2.fromOffset(12, 6)
