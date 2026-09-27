@@ -2,6 +2,11 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-27 01:41 UTC — Email policy
+
+- Femmy: **no email per commit** — **one digest at 05:00 stop** only (`ngkdevid@gmail.com`)
+- Schedule + stop/resume timers updated; mid-shift stays quiet (batch commits, sparse PR updates)
+
 ## 2026-09-27 01:40 UTC — Night 3 mid-shift rollup
 
 Shipped since CP1:
