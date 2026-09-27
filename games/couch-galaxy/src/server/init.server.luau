@@ -586,9 +586,15 @@ for _, child in world:GetChildren() do
 	end
 end
 
--- Star hover + soft portal / string-light pulse
+-- Star hover + soft portal / string-light / cloud pulse
 task.spawn(function()
 	local t = 0
+	local cloudHomes: { [BasePart]: Vector3 } = {}
+	for _, child in world:GetChildren() do
+		if child:IsA("BasePart") and child:GetAttribute("IsCloudPad") then
+			cloudHomes[child] = child.Position
+		end
+	end
 	while true do
 		t += task.wait(0.03)
 		for _, child in world:GetChildren() do
@@ -607,6 +613,15 @@ task.spawn(function()
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then
 					light.Brightness = 1.0 + math.sin(t * 2 + child.Position.X) * 0.35
+				end
+			elseif child:IsA("BasePart") and child:GetAttribute("IsCloudPad") then
+				local home = cloudHomes[child]
+				if home then
+					child.Position = home + Vector3.new(0, math.sin(t * 0.8 + home.X) * 0.55, 0)
+					local light = child:FindFirstChildOfClass("PointLight")
+					if light then
+						light.Brightness = 1.3 + math.sin(t * 1.1 + home.Z) * 0.35
+					end
 				end
 			end
 		end

@@ -45,7 +45,7 @@ hint.Font = Enum.Font.Gotham
 hint.TextSize = 12
 hint.TextXAlignment = Enum.TextXAlignment.Left
 hint.TextColor3 = Color3.fromRGB(160, 140, 120)
-hint.Text = "dock bench → gangway → raft · lily pads · shore lamps stay lit"
+hint.Text = "dock bench → raft · breathing lake · lily pads · shore lamps"
 hint.Parent = gui
 
 local SoftSit = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftSit"))

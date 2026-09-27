@@ -15,7 +15,7 @@ local world = Instance.new("Folder")
 world.Name = "LanternWorld"
 world.Parent = Workspace
 
-PartFactory.make({
+local lake = PartFactory.make({
 	Name = "Lake",
 	Size = Vector3.new(120, 1, 120),
 	Position = Vector3.new(0, 0, 0),
@@ -24,6 +24,7 @@ PartFactory.make({
 	Transparency = 0.35,
 	Parent = world,
 })
+lake:SetAttribute("IsLake", true)
 
 -- Soft mist banks
 for i, offset in {
@@ -265,6 +266,11 @@ task.spawn(function()
 				if typeof(home) == "Vector3" then
 					child.Position = home + Vector3.new(0, math.sin(t * 1.4 + child.Position.X) * 1.2, 0)
 				end
+			elseif child:IsA("BasePart") and child:GetAttribute("IsLake") then
+				child.Transparency = 0.32 + math.sin(t * 0.55) * 0.06
+			elseif child:IsA("BasePart") and string.find(child.Name, "Lily", 1, true) then
+				local baseY = 0.8
+				child.Position = Vector3.new(child.Position.X, baseY + math.sin(t * 0.9 + child.Position.X) * 0.08, child.Position.Z)
 			end
 		end
 	end

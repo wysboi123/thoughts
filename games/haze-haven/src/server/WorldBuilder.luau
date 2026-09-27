@@ -214,6 +214,32 @@ function WorldBuilder.build(workspace: Workspace): Folder
 		bulbLight.Parent = bulb
 	end
 
+	-- Loft corner planters
+	for i, offset in {
+		Vector3.new(10, 1.2, 10),
+		Vector3.new(-10, 1.2, 10),
+		Vector3.new(10, 1.2, -10),
+		Vector3.new(-10, 1.2, -10),
+	} do
+		WorldBuilder.makePart({
+			Name = "LoftPlanter" .. i,
+			Size = Vector3.new(2.5, 1.2, 2.5),
+			Position = loftPos + offset,
+			Color = Color3.fromRGB(70, 55, 80),
+			Material = Enum.Material.Concrete,
+			Parent = world,
+		})
+		WorldBuilder.makePart({
+			Name = "LoftPlant" .. i,
+			Size = Vector3.new(2, 2.2, 2),
+			Position = loftPos + offset + Vector3.new(0, 1.6, 0),
+			Color = Color3.fromRGB(70, 130, 95),
+			Material = Enum.Material.Grass,
+			Shape = Enum.PartType.Ball,
+			Parent = world,
+		})
+	end
+
 	addSeat(world, "SitLoungeA", Vector3.new(10, 1.2, 8), Vector3.new(-1, 0, -0.3))
 	addSeat(world, "SitLoungeB", Vector3.new(-10, 1.2, 6), Vector3.new(1, 0, -0.2))
 	addSeat(world, "SitLoungeC", Vector3.new(6, 1.2, -10), Vector3.new(0, 0, 1))

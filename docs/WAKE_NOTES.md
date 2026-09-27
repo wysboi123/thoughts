@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-27 03:00 UTC — Night 3 checkpoint 2 (quiet)
+
+- Batched polish: **Star Porch 0.3** (side rails + mug table) · **Lantern 0.4** (breathing lake) · **Couch 0.5** (cloud bob) · **Haze 0.8** (loft planters)
+- No mid-shift email (Femmy policy)
+- **Draft for 05:00 stop:** Night 3 — 7 games. SoftWelcome/SoftSit/Proximity shared. Still blocked on Perplexity audio + first Studio publish. Digest email goes out at stop only.
+- Stop timer armed → 05:00 UTC
+
 ## 2026-09-27 01:41 UTC — Email policy
 
 - Femmy: **no email per commit** — **one digest at 05:00 stop** only (`ngkdevid@gmail.com`)

@@ -46,7 +46,7 @@ hint.Font = Enum.Font.Gotham
 hint.TextSize = 12
 hint.TextXAlignment = Enum.TextXAlignment.Left
 hint.TextColor3 = Color3.fromRGB(130, 150, 120)
-hint.Text = "rockers + swing · fireflies drift back"
+hint.Text = "rockers + swing · side table · fireflies drift back"
 hint.Parent = gui
 
 local counter = Instance.new("TextLabel")

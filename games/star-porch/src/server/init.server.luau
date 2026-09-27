@@ -82,6 +82,50 @@ PartFactory.make({
 	Parent = world,
 })
 
+-- Side porch rails
+for _, x in { -13.5, 13.5 } do
+	PartFactory.make({
+		Name = "SideRail" .. x,
+		Size = Vector3.new(0.4, 2, 14),
+		Position = Vector3.new(x, 3.5, 4),
+		Color = Color3.fromRGB(75, 60, 45),
+		Material = Enum.Material.Wood,
+		Parent = world,
+	})
+end
+
+-- Soft side table between rockers
+PartFactory.make({
+	Name = "SideTable",
+	Size = Vector3.new(2.2, 0.3, 2.2),
+	Position = Vector3.new(-4, 2.4, 4.5),
+	Color = Color3.fromRGB(85, 65, 48),
+	Material = Enum.Material.Wood,
+	Parent = world,
+})
+PartFactory.make({
+	Name = "SideTableLeg",
+	Size = Vector3.new(0.4, 1.6, 0.4),
+	Position = Vector3.new(-4, 1.5, 4.5),
+	Color = Color3.fromRGB(70, 55, 40),
+	Material = Enum.Material.Wood,
+	Parent = world,
+})
+local mug = PartFactory.make({
+	Name = "WarmMug",
+	Size = Vector3.new(0.5, 0.55, 0.5),
+	Position = Vector3.new(-4, 2.85, 4.5),
+	Color = Color3.fromRGB(200, 160, 120),
+	Material = Enum.Material.SmoothPlastic,
+	CanCollide = false,
+	Parent = world,
+})
+local mugSteam = Instance.new("PointLight")
+mugSteam.Brightness = 0.6
+mugSteam.Range = 4
+mugSteam.Color = Color3.fromRGB(255, 220, 180)
+mugSteam.Parent = mug
+
 -- Steps down to yard
 for i = 1, 3 do
 	PartFactory.make({
