@@ -64,35 +64,18 @@ local corner = Instance.new("UICorner")
 corner.CornerRadius = UDim.new(0, 10)
 corner.Parent = counter
 
-local sitStatus = Instance.new("TextLabel")
-sitStatus.BackgroundTransparency = 1
-sitStatus.AnchorPoint = Vector2.new(0.5, 1)
-sitStatus.Position = UDim2.new(0.5, 0, 1, -100)
-sitStatus.Size = UDim2.fromOffset(360, 20)
-sitStatus.Font = Enum.Font.Gotham
-sitStatus.TextSize = 13
-sitStatus.TextColor3 = Color3.fromRGB(180, 200, 170)
-sitStatus.Text = ""
-sitStatus.Parent = gui
-
-local occupants: { [string]: string } = {}
+local SoftSit = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftSit"))
+local porchSit = SoftSit.mount(player:WaitForChild("PlayerGui"), {
+	OneText = function(name)
+		return name .. " is on the porch"
+	end,
+	ManyText = function(names)
+		return table.concat(names, " & ") .. " are on the porch"
+	end,
+	Color = Color3.fromRGB(180, 200, 170),
+})
 Remotes.SitChanged.OnClientEvent:Connect(function(seatName: string, displayName: string?)
-	if displayName then
-		occupants[seatName] = displayName
-	else
-		occupants[seatName] = nil :: any
-	end
-	local names = {}
-	for _, n in occupants do
-		table.insert(names, n)
-	end
-	if #names == 0 then
-		sitStatus.Text = ""
-	elseif #names == 1 then
-		sitStatus.Text = names[1] .. " is on the porch"
-	else
-		sitStatus.Text = table.concat(names, " & ") .. " are on the porch"
-	end
+	porchSit.set(seatName, displayName)
 end)
 
 Remotes.FireflyCollected.OnClientEvent:Connect(function(count: number)

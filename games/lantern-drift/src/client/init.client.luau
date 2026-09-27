@@ -48,35 +48,18 @@ hint.TextColor3 = Color3.fromRGB(160, 140, 120)
 hint.Text = "dock bench → gangway → raft · lily pads · shore lamps stay lit"
 hint.Parent = gui
 
-local sitStatus = Instance.new("TextLabel")
-sitStatus.BackgroundTransparency = 1
-sitStatus.AnchorPoint = Vector2.new(0.5, 1)
-sitStatus.Position = UDim2.new(0.5, 0, 1, -100)
-sitStatus.Size = UDim2.fromOffset(360, 20)
-sitStatus.Font = Enum.Font.Gotham
-sitStatus.TextSize = 13
-sitStatus.TextColor3 = Color3.fromRGB(220, 190, 150)
-sitStatus.Text = ""
-sitStatus.Parent = gui
-
-local occupants: { [string]: string } = {}
+local SoftSit = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftSit"))
+local raftSit = SoftSit.mount(player:WaitForChild("PlayerGui"), {
+	OneText = function(name)
+		return name .. " is drifting"
+	end,
+	ManyText = function(names)
+		return table.concat(names, " & ") .. " are drifting"
+	end,
+	Color = Color3.fromRGB(220, 190, 150),
+})
 Remotes.RaftSitChanged.OnClientEvent:Connect(function(seatName: string, displayName: string?)
-	if displayName then
-		occupants[seatName] = displayName
-	else
-		occupants[seatName] = nil :: any
-	end
-	local names = {}
-	for _, n in occupants do
-		table.insert(names, n)
-	end
-	if #names == 0 then
-		sitStatus.Text = ""
-	elseif #names == 1 then
-		sitStatus.Text = names[1] .. " is drifting"
-	else
-		sitStatus.Text = table.concat(names, " & ") .. " are drifting"
-	end
+	raftSit.set(seatName, displayName)
 end)
 
 local counter = Instance.new("TextLabel")

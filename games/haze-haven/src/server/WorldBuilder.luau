@@ -194,6 +194,26 @@ function WorldBuilder.build(workspace: Workspace): Folder
 		})
 	end
 
+	-- Loft string lights
+	for i = 1, 8 do
+		local t = (i - 1) / 7
+		local bulb = WorldBuilder.makePart({
+			Name = "LoftString" .. i,
+			Size = Vector3.new(0.55, 0.55, 0.55),
+			Position = loftPos + Vector3.new(-10 + t * 20, 4.5, -8),
+			Color = Color3.fromRGB(255, 210, 160),
+			Material = Enum.Material.Neon,
+			Shape = Enum.PartType.Ball,
+			CanCollide = false,
+			Parent = world,
+		})
+		local bulbLight = Instance.new("PointLight")
+		bulbLight.Brightness = 1.1
+		bulbLight.Range = 10
+		bulbLight.Color = Color3.fromRGB(255, 210, 150)
+		bulbLight.Parent = bulb
+	end
+
 	addSeat(world, "SitLoungeA", Vector3.new(10, 1.2, 8), Vector3.new(-1, 0, -0.3))
 	addSeat(world, "SitLoungeB", Vector3.new(-10, 1.2, 6), Vector3.new(1, 0, -0.2))
 	addSeat(world, "SitLoungeC", Vector3.new(6, 1.2, -10), Vector3.new(0, 0, 1))

@@ -4,7 +4,7 @@ Femmy’s chill Roblox line. All Rojo filesystem-first. Play: `cd games/<slug> &
 
 | Slug | Version | Verb | One-liner |
 | --- | --- | --- | --- |
-| [`haze-haven`](../games/haze-haven) | 0.6 | float / sit | Soft loft lounge — welcome toast, emotes, vibe board |
+| [`haze-haven`](../games/haze-haven) | 0.7 | float / sit | Soft loft lounge — string lights, emotes, vibe board |
 | [`slow-orbit`](../games/slow-orbit) | 0.5 | orbit | Purple dusk + aurora ribbons + soft stars |
 | [`couch-galaxy`](../games/couch-galaxy) | 0.3 | climb / float | Cozy apt → roof → galaxy loft (rug, lamps, hammock sync) |
 | [`puddle-mirror`](../games/puddle-mirror) | 0.4 | ripple | Center pool, plaza benches, mist, secret nooks |
