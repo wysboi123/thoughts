@@ -2,6 +2,14 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-27 23:05 UTC — Night 4 early slice
+
+- **Publish:** First 10 minutes path for Haze Haven in checklist
+- Haze 0.9 rug/candle · Couch 0.6 soft screen · Porch 0.4 swing sway
+- Lantern 0.5 crate · Bus 0.7 timetable pulse · Puddle 0.7 nook cushions · Orbit 0.7 craters
+- Still no Perplexity — audio unwired
+- Quiet mode; next CP ~01:00
+
 ## 2026-09-27 23:00 UTC — Night 4 resume
 
 - Stop re-armed → 05:00 UTC; quiet CP ~01:00 / ~03:00; **one digest email at stop only**
