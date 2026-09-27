@@ -8,7 +8,7 @@ Femmy’s chill Roblox line. All Rojo filesystem-first. Play: `cd games/<slug> &
 | [`slow-orbit`](../games/slow-orbit) | 0.5 | orbit | Purple dusk + aurora ribbons + soft stars |
 | [`couch-galaxy`](../games/couch-galaxy) | 0.3 | climb / float | Cozy apt → roof → galaxy loft (rug, lamps, hammock sync) |
 | [`puddle-mirror`](../games/puddle-mirror) | 0.4 | ripple | Center pool, plaza benches, mist, secret nooks |
-| [`bus-stop-forever`](../games/bus-stop-forever) | 0.4 | wait / wave | Calm bus stop — lamps, planters, wave when it stops |
+| [`bus-stop-forever`](../games/bus-stop-forever) | 0.5 | wait / wave | Calm bus stop — sit sync, lamps, wave when it stops |
 | [`lantern-drift`](../games/lantern-drift) | 0.3 | drift | Fog lake raft, dock bench, lily pads, sit sync |
 | [`star-porch`](../games/star-porch) | 0.1 | sit / glow | Night porch, moon, rockers, swing, fireflies |
 

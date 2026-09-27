@@ -138,6 +138,23 @@ Remotes.WaveAtBus.OnClientEvent:Connect(function(name: string)
 	busStatus.TextColor3 = Color3.fromRGB(200, 220, 170)
 end)
 
+local SoftSit = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftSit"))
+local benchSit = SoftSit.mount(player:WaitForChild("PlayerGui"), {
+	OneText = function(name)
+		return name .. " is waiting"
+	end,
+	ManyText = function(names)
+		return table.concat(names, " & ") .. " are waiting"
+	end,
+	Color = Color3.fromRGB(190, 200, 170),
+})
+Remotes.BenchSitChanged.OnClientEvent:Connect(function(seatName: string, displayName: string?)
+	benchSit.set(seatName, displayName)
+	if displayName == player.DisplayName then
+		complete("sit")
+	end
+end)
+
 task.spawn(function()
 	while true do
 		task.wait(0.5)

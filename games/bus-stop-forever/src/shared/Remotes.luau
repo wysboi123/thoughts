@@ -42,4 +42,5 @@ return {
 	BusArrived = getRemote("BusArrived"),
 	BusDeparted = getRemote("BusDeparted"),
 	WaveAtBus = getRemote("WaveAtBus"),
+	BenchSitChanged = getRemote("BenchSitChanged"),
 }
