@@ -10,12 +10,13 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 - [x] **Puddle Mirror v0–v0.6** — breathing center pool + SoftSit
 - [x] **Bus Stop Forever v0–v0.6** — news box + sidewalk puddle
 - [x] **Lantern Drift v0–v0.4** — breathing lake + lily bob
-- [x] **Shared** — SoftWelcome + SoftSit + Proximity
+- [x] **Shared** — SoftWelcome + SoftSit + SoftWireSeats + Proximity
 - [x] **Star Porch v0–v0.3** — side rails, warm mug table
+- [x] **Night 3** — complete (05:00 stop + digest email)
 - [ ] **Wire audio** — waiting on Perplexity Q-004 (do not invent)
 - [ ] **First publish** — Femmy fills `docs/PUBLISH_STATUS.md`
 - [ ] **Apply Q-001–003** when answers land
-- [x] **Night 3 late** — CP2 polish + SoftWireSeats (digest email at 05:00)
+- [ ] **Night 4** — audio if answers land; help first Studio publish
 
 ## Femmy overrides
 
