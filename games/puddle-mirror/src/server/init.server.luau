@@ -375,6 +375,27 @@ for _, child in world:GetChildren() do
 	end
 end
 
+local function wireSeat(seat: Seat)
+	seat:GetPropertyChangedSignal("Occupant"):Connect(function()
+		local humanoid = seat.Occupant
+		local sittingPlayer: Player? = nil
+		if humanoid then
+			local character = humanoid.Parent
+			if character and character:IsA("Model") then
+				sittingPlayer = Players:GetPlayerFromCharacter(character)
+			end
+		end
+		local name = if sittingPlayer then sittingPlayer.DisplayName else nil
+		Remotes.SitChanged:FireAllClients(seat.Name, name)
+	end)
+end
+
+for _, child in world:GetChildren() do
+	if child:IsA("Seat") then
+		wireSeat(child)
+	end
+end
+
 Players.PlayerAdded:Connect(function(player)
 	dewCounts[player.UserId] = 0
 	player.CharacterAdded:Connect(function(character)

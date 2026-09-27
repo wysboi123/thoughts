@@ -41,4 +41,5 @@ return {
 	Ripple = getRemote("Ripple"),
 	RoomUnlocked = getRemote("RoomUnlocked"),
 	DewCollected = getRemote("DewCollected"),
+	SitChanged = getRemote("SitChanged"),
 }
