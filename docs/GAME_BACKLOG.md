@@ -7,7 +7,7 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 - [x] **Haze Haven v0–v0.7** — loft string lights + SoftWelcome
 - [x] **Slow Orbit v0–v0.5** — aurora ribbons + dusk stars
 - [x] **Couch Galaxy v0–v0.4** — portal pulse + SoftSit
-- [x] **Puddle Mirror v0–v0.4** — center pool, benches, mist pillars
+- [x] **Puddle Mirror v0–v0.5** — SoftSit + center pool + mist
 - [x] **Bus Stop Forever v0–v0.5** — sit sync SoftSit + lamps
 - [x] **Lantern Drift v0–v0.3** — dock bench, lilies, sit sync
 - [x] **Shared** — SoftWelcome + SoftSit + Proximity

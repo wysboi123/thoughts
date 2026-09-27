@@ -134,6 +134,23 @@ Remotes.RoomUnlocked.OnClientEvent:Connect(function(roomId: string)
 	end
 end)
 
+local SoftSit = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftSit"))
+local mirrorSit = SoftSit.mount(player:WaitForChild("PlayerGui"), {
+	OneText = function(name)
+		return name .. " found a quiet seat"
+	end,
+	ManyText = function(names)
+		return table.concat(names, " & ") .. " found quiet seats"
+	end,
+	Color = Color3.fromRGB(160, 200, 210),
+})
+Remotes.SitChanged.OnClientEvent:Connect(function(seatName: string, displayName: string?)
+	mirrorSit.set(seatName, displayName)
+	if displayName == player.DisplayName and string.find(seatName, "PlazaSeat", 1, true) then
+		complete("bench")
+	end
+end)
+
 local ChillProximity = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("Proximity"))
 ChillProximity.start(player, {
 	Radius = 12,
