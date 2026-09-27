@@ -76,6 +76,64 @@ spawn.Transparency = 0.4
 spawn.Color = Color3.fromRGB(120, 160, 180)
 spawn.Parent = world
 
+-- Center reflection pool (always open)
+local centerPool = makePart({
+	Name = "CenterPool",
+	Size = Vector3.new(0.3, 10, 10),
+	Position = Vector3.new(0, 1.1, 0),
+	Color = Color3.fromRGB(90, 170, 200),
+	Material = Enum.Material.Neon,
+	CanCollide = false,
+	Transparency = 0.25,
+	Shape = Enum.PartType.Cylinder,
+	Parent = world,
+})
+centerPool.CFrame = CFrame.new(0, 1.1, 0) * CFrame.Angles(0, 0, math.rad(90))
+local centerLight = Instance.new("PointLight")
+centerLight.Brightness = 1.8
+centerLight.Range = 20
+centerLight.Color = Color3.fromRGB(120, 200, 220)
+centerLight.Parent = centerPool
+
+-- Plaza benches (sit while waiting for friends)
+for i, x in { -8, 8 } do
+	makePart({
+		Name = "PlazaBench" .. i,
+		Size = Vector3.new(5, 1, 2),
+		Position = Vector3.new(x, 1.2, 10),
+		Color = Color3.fromRGB(80, 100, 110),
+		Material = Enum.Material.SmoothPlastic,
+		Parent = world,
+	})
+	local seat = Instance.new("Seat")
+	seat.Name = "PlazaSeat" .. i
+	seat.Size = Vector3.new(3.5, 0.4, 1.5)
+	seat.Position = Vector3.new(x, 1.9, 10)
+	seat.Anchored = true
+	seat.Color = Color3.fromRGB(100, 130, 145)
+	seat.Parent = world
+end
+
+-- Soft mist pillars at plaza corners
+for i, pos in {
+	Vector3.new(-22, 8, -22),
+	Vector3.new(22, 8, -22),
+	Vector3.new(-22, 8, 22),
+	Vector3.new(22, 8, 22),
+} do
+	local mist = makePart({
+		Name = "MistPillar" .. i,
+		Size = Vector3.new(8, 16, 8),
+		Position = pos,
+		Color = Color3.fromRGB(140, 180, 200),
+		Material = Enum.Material.ForceField,
+		CanCollide = false,
+		Transparency = 0.75,
+		Parent = world,
+	})
+	mist.CastShadow = false
+end
+
 -- Secret nooks around the plaza (blocked by forcefield doors until unlocked)
 local rooms = {
 	{

@@ -100,10 +100,23 @@ print("[PuddleMirror] client ready")
 
 local SoftGoals = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftGoals"))
 local _, complete = SoftGoals.mount(player:WaitForChild("PlayerGui"), "tonight's soft goals", {
+	{ Id = "bench", Label = "sit a plaza bench" },
 	{ Id = "ripple", Label = "step a puddle" },
 	{ Id = "dew", Label = "collect 3 dew" },
 	{ Id = "deep", Label = "reach the deep mirror" },
 })
+
+task.spawn(function()
+	while true do
+		task.wait(0.5)
+		local character = player.Character
+		local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+		local seat = humanoid and humanoid.SeatPart
+		if seat and string.find(seat.Name, "PlazaSeat", 1, true) then
+			complete("bench")
+		end
+	end
+end)
 
 Remotes.Ripple.OnClientEvent:Connect(function()
 	complete("ripple")
