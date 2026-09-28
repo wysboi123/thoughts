@@ -8,7 +8,7 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 - [x] **Slow Orbit v0–v0.9** — tether breathe + dusk stars + equator
 - [x] **Couch Galaxy v0–v0.9** — hammock sway + apt light pulses
 - [x] **Puddle Mirror v0–v1.0** — dew sparkle + plaza mist + deep mirror
-- [x] **Bus Stop Forever v0–v0.9** — shelter glow + news pulse
+- [x] **Bus Stop Forever v0–v1.0** — ticket sparkle + shelter/news pulse
 - [x] **Lantern Drift v0–v0.9** — shore lamps + dock/raft lights
 - [x] **Shared** — SoftWelcome + SoftSit + SoftWireSeats + Proximity
 - [x] **Star Porch v0–v0.7** — sky-star twinkle + fire pit + porch lights

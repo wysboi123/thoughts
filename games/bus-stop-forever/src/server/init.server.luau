@@ -528,6 +528,11 @@ task.spawn(function()
 					light.Brightness = 1.0 + math.sin(t * 1.1) * 0.35
 				end
 				child.Transparency = 0.4 + math.sin(t * 1.1) * 0.08
+			elseif child:IsA("BasePart") and child:GetAttribute("IsTicket") and not child:GetAttribute("Collected") then
+				local light = child:FindFirstChildOfClass("PointLight")
+				if light then
+					light.Brightness = 1.5 + math.sin(t * 2.0 + child.Position.X) * 0.45
+				end
 			end
 		end
 	end
