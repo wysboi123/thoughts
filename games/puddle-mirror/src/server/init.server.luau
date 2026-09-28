@@ -143,7 +143,7 @@ for i, pos in {
 	mist.CastShadow = false
 end
 
--- Plaza mist pillars breathe slowly
+-- Plaza mist pillars breathe + dew sparkle
 task.spawn(function()
 	local t = 0
 	while world.Parent do
@@ -151,6 +151,17 @@ task.spawn(function()
 		for _, child in world:GetChildren() do
 			if child:IsA("BasePart") and string.find(child.Name, "MistPillar", 1, true) then
 				child.Transparency = 0.72 + math.sin(t * 0.45 + child.Position.X * 0.03) * 0.08
+			elseif child:IsA("BasePart") and child:GetAttribute("IsDew") and not child:GetAttribute("Collected") then
+				local light = child:FindFirstChildOfClass("PointLight")
+				if light then
+					light.Brightness = 1.4 + math.sin(t * 2.2 + child.Position.X) * 0.5
+				end
+				child.Transparency = 0.15 + math.sin(t * 1.8 + child.Position.Z) * 0.1
+			elseif child:IsA("BasePart") and string.find(child.Name, "Glow", 1, true) then
+				local light = child:FindFirstChildOfClass("PointLight")
+				if light then
+					light.Brightness = 1.2 + math.sin(t * 1.1 + child.Position.X) * 0.35
+				end
 			end
 		end
 	end

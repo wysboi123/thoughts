@@ -6,9 +6,9 @@ Newest first. Overnight agents append after every push.
 
 - Stop re-armed → 05:00 UTC; quiet CP ~01:00 / ~03:00; **one digest email at stop only**
 - No Perplexity answers in `docs/research/` — audio still unwired (Q-001–004 open)
-- Early slice: Haze **1.1** float-pad pulse · Orbit **0.9** tether · Porch **0.7** sky stars
+- Early slice: Haze **1.1** · Orbit **0.9** · Porch **0.7** · Couch **0.9** · Puddle **1.0** · Lantern **0.9**
 - Publish: still Haze first — `PUBLISH_CHECKLIST.md` First 10 minutes
-- Quiet mode; no mid-shift email
+- Quiet mode; no mid-shift email; next CP ~01:00
 
 ## 2026-09-28 05:00 UTC — OVERNIGHT STOP (Night 4)
 

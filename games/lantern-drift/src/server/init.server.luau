@@ -329,6 +329,11 @@ task.spawn(function()
 				if light then
 					light.Brightness = 2.0 + math.sin(t * 1.6) * 0.4
 				end
+			elseif string.find(child.Name, "ShoreLamp", 1, true) and child:IsA("BasePart") then
+				local light = child:FindFirstChildOfClass("PointLight")
+				if light then
+					light.Brightness = 1.8 + math.sin(t * 1.3 + child.Position.X) * 0.4
+				end
 			elseif child:IsA("BasePart") and child:GetAttribute("IsLake") then
 				child.Transparency = 0.32 + math.sin(t * 0.55) * 0.06
 			elseif child:IsA("BasePart") and string.find(child.Name, "Lily", 1, true) then

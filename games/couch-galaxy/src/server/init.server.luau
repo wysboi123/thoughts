@@ -390,7 +390,7 @@ local function buildGalaxy(world: Folder)
 		Material = Enum.Material.Wood,
 		Parent = world,
 	})
-	part({
+	local hammockCloth = part({
 		Name = "GalaxyHammockCloth",
 		Size = Vector3.new(12, 0.3, 3.5),
 		Position = gOrigin + Vector3.new(0, -1.5, -8),
@@ -398,6 +398,7 @@ local function buildGalaxy(world: Folder)
 		Material = Enum.Material.Fabric,
 		Parent = world,
 	})
+	hammockCloth:SetAttribute("HomePosition", hammockCloth.Position)
 	local gSeat = Instance.new("Seat")
 	gSeat.Name = "GalaxyHammockSeat"
 	gSeat.Size = Vector3.new(3.5, 0.4, 1.8)
@@ -624,6 +625,11 @@ task.spawn(function()
 				end
 			elseif child.Name == "ReturnBeacon" and child:IsA("BasePart") then
 				child.Transparency = 0.05 + math.sin(t * 1.3) * 0.08
+			elseif child.Name == "GalaxyHammockCloth" and child:IsA("BasePart") then
+				local home = child:GetAttribute("HomePosition")
+				if typeof(home) == "Vector3" then
+					child.Position = home + Vector3.new(0, math.sin(t * 0.9) * 0.12, 0)
+				end
 			elseif child.Name == "SoftScreen" and child:IsA("BasePart") then
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then
