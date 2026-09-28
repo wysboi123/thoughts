@@ -5,7 +5,7 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 ## Active
 
 - [x] **Haze Haven v0–v1.0** — welcome sign + mist breathe + publish-ready lounge
-- [x] **Slow Orbit v0–v0.7** — soft craters + equator ring
+- [x] **Slow Orbit v0–v0.8** — dusk star twinkle + equator ring
 - [x] **Couch Galaxy v0–v0.6** — soft screen glow
 - [x] **Puddle Mirror v0–v0.8** — deep mirror wall + nook cushions
 - [x] **Bus Stop Forever v0–v0.7** — timetable pulse

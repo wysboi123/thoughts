@@ -5,7 +5,7 @@ Femmy’s chill Roblox line. All Rojo filesystem-first. Play: `cd games/<slug> &
 | Slug | Version | Verb | One-liner |
 | --- | --- | --- | --- |
 | [`haze-haven`](../games/haze-haven) | 1.0 | float / sit | Welcome sign, mist breathe, loft lounge, SoftSit |
-| [`slow-orbit`](../games/slow-orbit) | 0.7 | orbit | Purple dusk + craters + equator ring |
+| [`slow-orbit`](../games/slow-orbit) | 0.8 | orbit | Dusk star twinkle + aurora + equator ring |
 | [`couch-galaxy`](../games/couch-galaxy) | 0.6 | climb / float | Soft screen glow → skylight → cloud pads |
 | [`puddle-mirror`](../games/puddle-mirror) | 0.8 | ripple | Deep mirror wall + nook cushions, SoftSit |
 | [`bus-stop-forever`](../games/bus-stop-forever) | 0.7 | wait / wave | Timetable pulse, news box, sit sync |

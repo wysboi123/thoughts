@@ -254,6 +254,8 @@ function WorldBuilder.build(): (Part, Part, Folder)
 			for _, child in fx:GetChildren() do
 				if child:IsA("BasePart") and string.find(child.Name, "Aurora", 1, true) then
 					child.Transparency = 0.5 + math.sin(t * 0.7 + child.Position.X) * 0.12
+				elseif child:IsA("BasePart") and string.find(child.Name, "DuskStar", 1, true) then
+					child.Transparency = 0.18 + math.sin(t * 1.6 + child.Position.X * 0.02) * 0.14
 				end
 			end
 		end

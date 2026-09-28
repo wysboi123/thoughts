@@ -2,7 +2,7 @@
 local Config = {
 	GameName = "Slow Orbit",
 	Tagline = "walk the curve. purple dusk. don't rush.",
-	Version = "0.7",
+	Version = "0.8",
 
 	Planet = {
 		Radius = 40,
