@@ -160,6 +160,21 @@ local ropeCoil = PartFactory.make({
 	Parent = world,
 })
 ropeCoil.CFrame = CFrame.new(8, 2.2, 20) * CFrame.Angles(0, 0, math.rad(90))
+local dockLantern = PartFactory.make({
+	Name = "DockLantern",
+	Size = Vector3.new(1.2, 1.2, 1.2),
+	Position = Vector3.new(8, 5.4, 20),
+	Color = Config.Lantern.Color,
+	Material = Enum.Material.Neon,
+	Shape = Enum.PartType.Ball,
+	CanCollide = false,
+	Parent = world,
+})
+local dockLanternLight = Instance.new("PointLight")
+dockLanternLight.Brightness = 2.2
+dockLanternLight.Range = 14
+dockLanternLight.Color = Config.Lantern.Color
+dockLanternLight.Parent = dockLantern
 
 -- Soft lily pads (decorative)
 for i, pos in {
@@ -308,6 +323,11 @@ task.spawn(function()
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then
 					light.Brightness = 2.4 + math.sin(t * 1.1) * 0.35
+				end
+			elseif child.Name == "DockLantern" and child:IsA("BasePart") then
+				local light = child:FindFirstChildOfClass("PointLight")
+				if light then
+					light.Brightness = 2.0 + math.sin(t * 1.6) * 0.4
 				end
 			elseif child:IsA("BasePart") and child:GetAttribute("IsLake") then
 				child.Transparency = 0.32 + math.sin(t * 0.55) * 0.06
