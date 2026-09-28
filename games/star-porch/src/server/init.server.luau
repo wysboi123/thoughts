@@ -514,6 +514,16 @@ task.spawn(function()
 					light.Brightness = 1.4 + math.sin(t * 2.8) * 0.45
 				end
 				child.Transparency = 0.22 + math.sin(t * 3.1) * 0.06
+			elseif child.Name == "PorchLamp" and child:IsA("BasePart") then
+				local light = child:FindFirstChildOfClass("PointLight")
+				if light then
+					light.Brightness = 1.8 + math.sin(t * 1.3) * 0.4
+				end
+			elseif string.find(child.Name, "StringLight", 1, true) and child:IsA("BasePart") then
+				local light = child:FindFirstChildOfClass("PointLight")
+				if light then
+					light.Brightness = 0.95 + math.sin(t * 2.1 + child.Position.X) * 0.35
+				end
 			elseif child:IsA("BasePart") and child:GetAttribute("IsSwing") then
 				local home = child:GetAttribute("HomePosition")
 				if typeof(home) == "Vector3" then

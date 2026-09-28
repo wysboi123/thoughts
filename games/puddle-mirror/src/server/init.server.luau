@@ -143,6 +143,19 @@ for i, pos in {
 	mist.CastShadow = false
 end
 
+-- Plaza mist pillars breathe slowly
+task.spawn(function()
+	local t = 0
+	while world.Parent do
+		t += task.wait(0.05)
+		for _, child in world:GetChildren() do
+			if child:IsA("BasePart") and string.find(child.Name, "MistPillar", 1, true) then
+				child.Transparency = 0.72 + math.sin(t * 0.45 + child.Position.X * 0.03) * 0.08
+			end
+		end
+	end
+end)
+
 -- Secret nooks around the plaza (blocked by forcefield doors until unlocked)
 local rooms = {
 	{

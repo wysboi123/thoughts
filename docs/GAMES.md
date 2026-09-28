@@ -7,10 +7,10 @@ Femmy’s chill Roblox line. All Rojo filesystem-first. Play: `cd games/<slug> &
 | [`haze-haven`](../games/haze-haven) | 1.0 | float / sit | Welcome sign, mist breathe, loft lounge, SoftSit |
 | [`slow-orbit`](../games/slow-orbit) | 0.8 | orbit | Dusk star twinkle + aurora + equator ring |
 | [`couch-galaxy`](../games/couch-galaxy) | 0.7 | climb / float | Soft screen color pulse → skylight → clouds |
-| [`puddle-mirror`](../games/puddle-mirror) | 0.8 | ripple | Deep mirror wall + nook cushions, SoftSit |
+| [`puddle-mirror`](../games/puddle-mirror) | 0.9 | ripple | Plaza mist breathe + deep mirror, SoftSit |
 | [`bus-stop-forever`](../games/bus-stop-forever) | 0.8 | wait / wave | News box + timetable pulse, sit sync |
 | [`lantern-drift`](../games/lantern-drift) | 0.7 | drift | Lantern light pulse + mast lamp, lake mist |
-| [`star-porch`](../games/star-porch) | 0.5 | sit / glow | Yard fire pit, swing sway, firefly jar |
+| [`star-porch`](../games/star-porch) | 0.6 | sit / glow | String lights + porch lamp pulse, fire pit |
 
 Shared: [`packages/chill`](../packages/chill) · Publish: [`PUBLISH_CHECKLIST.md`](PUBLISH_CHECKLIST.md)
 

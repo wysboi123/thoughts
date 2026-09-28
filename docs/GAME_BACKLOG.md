@@ -7,11 +7,11 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 - [x] **Haze Haven v0–v1.0** — welcome sign + mist breathe + publish-ready lounge
 - [x] **Slow Orbit v0–v0.8** — dusk star twinkle + equator ring
 - [x] **Couch Galaxy v0–v0.7** — soft screen color pulse
-- [x] **Puddle Mirror v0–v0.8** — deep mirror wall + nook cushions
+- [x] **Puddle Mirror v0–v0.9** — plaza mist breathe + deep mirror
 - [x] **Bus Stop Forever v0–v0.8** — news box + timetable pulse
 - [x] **Lantern Drift v0–v0.7** — lantern + mast lamp pulse
 - [x] **Shared** — SoftWelcome + SoftSit + SoftWireSeats + Proximity
-- [x] **Star Porch v0–v0.5** — yard fire pit + swaying swing
+- [x] **Star Porch v0–v0.6** — string lights + porch lamp + fire pit
 - [x] **Night 3** — complete
 - [ ] **Wire audio** — waiting on Perplexity Q-004 (do not invent)
 - [ ] **First publish** — Femmy: `PUBLISH_CHECKLIST.md` First 10 minutes
