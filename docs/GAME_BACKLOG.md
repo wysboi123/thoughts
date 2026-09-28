@@ -13,10 +13,11 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 - [x] **Shared** — SoftWelcome + SoftSit + SoftWireSeats + Proximity
 - [x] **Star Porch v0–v0.6** — string lights + porch lamp + fire pit
 - [x] **Night 3** — complete
+- [x] **Night 4** — complete (atmosphere polish; Haze 1.0 publish-ready)
 - [ ] **Wire audio** — waiting on Perplexity Q-004 (do not invent)
 - [ ] **First publish** — Femmy: `PUBLISH_CHECKLIST.md` First 10 minutes
 - [ ] **Apply Q-001–003** when answers land
-- [ ] **Night 4 final** — light polish until 05:00; ONE digest email at stop
+- [ ] **Night 5** — wire audio if research lands; help publish Haze first
 
 ## Femmy overrides
 
