@@ -321,6 +321,34 @@ local deepMist = makePart({
 })
 deepMist.CastShadow = false
 
+local deepMirror = makePart({
+	Name = "DeepMirrorWall",
+	Size = Vector3.new(10, 8, 0.35),
+	Position = deep.RoomPos + Vector3.new(0, 5, -7),
+	Color = Color3.fromRGB(130, 200, 220),
+	Material = Enum.Material.Glass,
+	CanCollide = false,
+	Transparency = 0.35,
+	Parent = world,
+})
+deepMirror:SetAttribute("IsDeepMirror", true)
+local mirrorLight = Instance.new("PointLight")
+mirrorLight.Brightness = 1.4
+mirrorLight.Range = 14
+mirrorLight.Color = Color3.fromRGB(120, 210, 230)
+mirrorLight.Parent = deepMirror
+task.spawn(function()
+	local t = 0
+	while deepMirror.Parent do
+		t += task.wait(0.04)
+		deepMirror.Transparency = 0.32 + math.sin(t * 0.85) * 0.1
+		mirrorLight.Brightness = 1.2 + math.sin(t * 1.05) * 0.45
+		if deepMist.Parent then
+			deepMist.Transparency = 0.68 + math.sin(t * 0.5) * 0.06
+		end
+	end
+end)
+
 local function unlockRoom(roomId: string, player: Player)
 	if unlockedRooms[roomId] then
 		return

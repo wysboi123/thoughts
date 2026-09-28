@@ -2,6 +2,14 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-28 01:00 UTC — Night 4 checkpoint 1 (quiet)
+
+- **Haze 1.0** — spawn welcome sign + mist breathe in `AtmosphereService`
+- **Star Porch 0.5** — yard fire pit glow (no audio)
+- **Puddle 0.8** — deep-room mirror wall pulse
+- Still blocked: Perplexity Q-001–004 · first Studio publish
+- Next CP ~03:00 · stop 05:00 · one digest email at stop only
+
 ## 2026-09-27 23:05 UTC — Night 4 early slice
 
 - **Publish:** First 10 minutes path for Haze Haven in checklist

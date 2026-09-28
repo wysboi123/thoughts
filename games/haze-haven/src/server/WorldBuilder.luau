@@ -373,6 +373,37 @@ function WorldBuilder.build(workspace: Workspace): Folder
 	hammockSeat.Material = Enum.Material.Fabric
 	hammockSeat.Parent = world
 
+	-- Welcome sign near spawn path (pairs with client SoftWelcome toast)
+	local welcomeSign = WorldBuilder.makePart({
+		Name = "WelcomeSign",
+		Size = Vector3.new(12, 5, 0.35),
+		Position = Vector3.new(0, 11, 14),
+		Color = Color3.fromRGB(48, 38, 62),
+		Material = Enum.Material.Wood,
+		Parent = world,
+	})
+	local welcomeGui = Instance.new("SurfaceGui")
+	welcomeGui.Face = Enum.NormalId.Front
+	welcomeGui.Parent = welcomeSign
+	local welcomeTitle = Instance.new("TextLabel")
+	welcomeTitle.Size = UDim2.new(1, 0, 0.45, 0)
+	welcomeTitle.BackgroundTransparency = 1
+	welcomeTitle.Font = Enum.Font.GothamMedium
+	welcomeTitle.TextSize = 32
+	welcomeTitle.TextColor3 = Color3.fromRGB(240, 210, 255)
+	welcomeTitle.Text = Config.GameName
+	welcomeTitle.Parent = welcomeGui
+	local welcomeBody = Instance.new("TextLabel")
+	welcomeBody.Position = UDim2.new(0, 0, 0.48, 0)
+	welcomeBody.Size = UDim2.new(1, -16, 0.5, 0)
+	welcomeBody.BackgroundTransparency = 1
+	welcomeBody.Font = Enum.Font.Gotham
+	welcomeBody.TextSize = 20
+	welcomeBody.TextWrapped = true
+	welcomeBody.TextColor3 = Color3.fromRGB(190, 170, 220)
+	welcomeBody.Text = Config.Tagline
+	welcomeBody.Parent = welcomeGui
+
 	-- Soft vibe board (SurfaceGui filled by client from VibeBoard remote)
 	local vibeBoard = WorldBuilder.makePart({
 		Name = "VibeBoard",

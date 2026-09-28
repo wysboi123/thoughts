@@ -166,6 +166,42 @@ for i, pos in {
 	})
 end
 
+-- Yard fire pit (visual warmth only — no audio ids)
+PartFactory.make({
+	Name = "FirePitRing",
+	Size = Vector3.new(4.5, 0.6, 4.5),
+	Position = Vector3.new(0, 0.85, 26),
+	Color = Color3.fromRGB(70, 65, 60),
+	Material = Enum.Material.Slate,
+	Parent = world,
+})
+for i, offset in { Vector3.new(1.2, 0.35, 0), Vector3.new(-1.1, 0.35, 0.4), Vector3.new(0.2, 0.35, -1.2) } do
+	PartFactory.make({
+		Name = "FirePitLog" .. i,
+		Size = Vector3.new(1.8, 0.5, 0.6),
+		Position = Vector3.new(0, 0.85, 26) + offset,
+		Color = Color3.fromRGB(85, 55, 40),
+		Material = Enum.Material.Wood,
+		Parent = world,
+	})
+end
+local fireGlow = PartFactory.make({
+	Name = "FirePitGlow",
+	Size = Vector3.new(2.2, 1.2, 2.2),
+	Position = Vector3.new(0, 1.35, 26),
+	Color = Color3.fromRGB(255, 140, 60),
+	Material = Enum.Material.Neon,
+	Shape = Enum.PartType.Ball,
+	CanCollide = false,
+	Transparency = 0.25,
+	Parent = world,
+})
+local fireLight = Instance.new("PointLight")
+fireLight.Brightness = 1.6
+fireLight.Range = 18
+fireLight.Color = Color3.fromRGB(255, 150, 80)
+fireLight.Parent = fireGlow
+
 -- Visual wind chime (no audio — waiting on Perplexity)
 local chimeAnchor = PartFactory.make({
 	Name = "ChimeBar",
@@ -472,6 +508,12 @@ task.spawn(function()
 				if light then
 					light.Brightness = 0.4 + math.sin(t * 2.2) * 0.25
 				end
+			elseif child.Name == "FirePitGlow" and child:IsA("BasePart") then
+				local light = child:FindFirstChildOfClass("PointLight")
+				if light then
+					light.Brightness = 1.4 + math.sin(t * 2.8) * 0.45
+				end
+				child.Transparency = 0.22 + math.sin(t * 3.1) * 0.06
 			elseif child:IsA("BasePart") and child:GetAttribute("IsSwing") then
 				local home = child:GetAttribute("HomePosition")
 				if typeof(home) == "Vector3" then
