@@ -2,6 +2,20 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-28 03:00 UTC — Night 4 checkpoint 2 (quiet)
+
+- **Couch 0.7** — SoftScreen cool↔warm color pulse
+- **Bus 0.8** — NewsBox color breathe with timetable
+- **Lantern 0.7** — lantern PointLight pulse + RaftMastLamp flicker
+- Still blocked: Perplexity Q-001–004 · first Studio publish
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
+**Draft for 05:00 stop digest**
+- Night 4 versions: Haze **1.0** · Orbit **0.8** · Couch **0.7** · Puddle **0.8** · Bus **0.8** · Lantern **0.7** · Porch **0.5**
+- Shipped: welcome/mist, fire pit, deep mirror, dusk stars, screen/news/lantern pulses
+- Blocked: Perplexity audio + Studio publish
+- Next night: wire audio if research lands; help publish Haze first
+
 ## 2026-09-28 01:00 UTC — Night 4 checkpoint 1 (quiet)
 
 - **Haze 1.0** — spawn welcome sign + mist breathe in `AtmosphereService`

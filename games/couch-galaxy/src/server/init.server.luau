@@ -629,7 +629,9 @@ task.spawn(function()
 				if light then
 					light.Brightness = 1.0 + math.sin(t * 0.7) * 0.3
 				end
+				local warm = (math.sin(t * 0.55) + 1) / 2
 				child.Transparency = 0.2 + math.sin(t * 0.55) * 0.08
+				child.Color = Color3.fromRGB(90, 110, 160):Lerp(Color3.fromRGB(140, 120, 180), warm)
 			elseif child:IsA("BasePart") then
 				for _, beam in child:GetChildren() do
 					if beam:IsA("Beam") and beam.Name == "ConstBeam" then

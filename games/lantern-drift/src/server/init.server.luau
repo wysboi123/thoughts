@@ -300,6 +300,15 @@ task.spawn(function()
 				if typeof(home) == "Vector3" then
 					child.Position = home + Vector3.new(0, math.sin(t * 1.4 + child.Position.X) * 1.2, 0)
 				end
+				local light = child:FindFirstChildOfClass("PointLight")
+				if light then
+					light.Brightness = 2.7 + math.sin(t * 1.4 + child.Position.X) * 0.4
+				end
+			elseif child.Name == "RaftMastLamp" and child:IsA("BasePart") then
+				local light = child:FindFirstChildOfClass("PointLight")
+				if light then
+					light.Brightness = 2.4 + math.sin(t * 1.1) * 0.35
+				end
 			elseif child:IsA("BasePart") and child:GetAttribute("IsLake") then
 				child.Transparency = 0.32 + math.sin(t * 0.55) * 0.06
 			elseif child:IsA("BasePart") and string.find(child.Name, "Lily", 1, true) then
