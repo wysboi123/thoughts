@@ -18,7 +18,7 @@ rojo serve
 6. Capture one soft screenshot for thumbnail (no ToS-risk framing)
 7. Paste place URL + place id into [`PUBLISH_STATUS.md`](PUBLISH_STATUS.md)
 
-That’s enough for night 4 — overnight agents will track the live place after.
+That’s enough for Night 5 — overnight agents will track the live place after. Paste URL into `PUBLISH_STATUS.md`.
 
 ## One-time setup
 

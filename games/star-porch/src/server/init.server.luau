@@ -524,6 +524,8 @@ task.spawn(function()
 				if light then
 					light.Brightness = 0.95 + math.sin(t * 2.1 + child.Position.X) * 0.35
 				end
+			elseif string.find(child.Name, "SkyStar", 1, true) and child:IsA("BasePart") then
+				child.Transparency = 0.15 + math.sin(t * 1.8 + child.Position.X) * 0.2
 			elseif child:IsA("BasePart") and child:GetAttribute("IsSwing") then
 				local home = child:GetAttribute("HomePosition")
 				if typeof(home) == "Vector3" then

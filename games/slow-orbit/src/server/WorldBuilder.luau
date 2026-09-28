@@ -137,6 +137,9 @@ function WorldBuilder.build(): (Part, Part, Folder)
 			ring.Transparency = 0.55 + math.sin(t * 0.7) * 0.12
 			ring.CFrame = CFrame.new(Config.Planet.Center)
 				* CFrame.Angles(0, t * 0.08, math.rad(90))
+			if tether.Parent then
+				tether.Transparency = 0.62 + math.sin(t * 0.55) * 0.1
+			end
 		end
 	end)
 

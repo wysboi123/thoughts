@@ -39,6 +39,11 @@ function AtmosphereService.start()
 						if light then
 							light.Brightness = 1.1 + math.sin(t * 2.4) * 0.35
 						end
+					elseif child:IsA("BasePart") and string.find(child.Name, "FloatPad", 1, true) then
+						local light = child:FindFirstChildOfClass("PointLight")
+						if light then
+							light.Brightness = 1.7 + pulse * 0.5 + math.sin(t + child.Position.X) * 0.2
+						end
 					elseif child:IsA("BasePart") and string.find(child.Name, "Mist", 1, true) then
 						local base = if child.Name == "LoftMist" then 0.65 else 0.55
 						child.Transparency = base + math.sin(t * 0.45 + child.Position.X * 0.05) * 0.08
