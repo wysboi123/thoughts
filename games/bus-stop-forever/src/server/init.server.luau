@@ -102,6 +102,21 @@ part({
 	Material = Enum.Material.Glass,
 	Parent = world,
 })
+local shelterGlow = part({
+	Name = "ShelterGlow",
+	Size = Vector3.new(14, 0.4, 6),
+	Position = Vector3.new(0, 7.4, 2),
+	Color = Color3.fromRGB(255, 230, 180),
+	Material = Enum.Material.Neon,
+	CanCollide = false,
+	Transparency = 0.45,
+	Parent = world,
+})
+local shelterLight = Instance.new("PointLight")
+shelterLight.Brightness = 1.2
+shelterLight.Range = 16
+shelterLight.Color = Color3.fromRGB(255, 230, 180)
+shelterLight.Parent = shelterGlow
 
 -- Benches
 for i, x in { -5, 5 } do
@@ -507,6 +522,12 @@ task.spawn(function()
 				child.Color = Color3.fromRGB(35, 40, 50):Lerp(Color3.fromRGB(45, 55, 65), (math.sin(t * 0.8) + 1) / 2)
 			elseif child.Name == "NewsBox" and child:IsA("BasePart") then
 				child.Color = Color3.fromRGB(50, 90, 70):Lerp(Color3.fromRGB(65, 110, 85), (math.sin(t * 0.8) + 1) / 2)
+			elseif child.Name == "ShelterGlow" and child:IsA("BasePart") then
+				local light = child:FindFirstChildOfClass("PointLight")
+				if light then
+					light.Brightness = 1.0 + math.sin(t * 1.1) * 0.35
+				end
+				child.Transparency = 0.4 + math.sin(t * 1.1) * 0.08
 			end
 		end
 	end

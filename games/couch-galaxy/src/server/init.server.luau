@@ -632,6 +632,22 @@ task.spawn(function()
 				local warm = (math.sin(t * 0.55) + 1) / 2
 				child.Transparency = 0.2 + math.sin(t * 0.55) * 0.08
 				child.Color = Color3.fromRGB(90, 110, 160):Lerp(Color3.fromRGB(140, 120, 180), warm)
+			elseif child.Name == "NightWindow" and child:IsA("BasePart") then
+				local light = child:FindFirstChildOfClass("PointLight")
+				if light then
+					light.Brightness = 1.0 + math.sin(t * 0.6) * 0.25
+				end
+				child.Transparency = 0.3 + math.sin(t * 0.5) * 0.08
+			elseif child.Name == "FloorLampGlow" and child:IsA("BasePart") then
+				local light = child:FindFirstChildOfClass("PointLight")
+				if light then
+					light.Brightness = 1.4 + math.sin(t * 1.5) * 0.35
+				end
+			elseif child.Name == "TableLamp" and child:IsA("BasePart") then
+				local light = child:FindFirstChildOfClass("PointLight")
+				if light then
+					light.Brightness = 1.2 + math.sin(t * 1.8) * 0.3
+				end
 			elseif child:IsA("BasePart") then
 				for _, beam in child:GetChildren() do
 					if beam:IsA("Beam") and beam.Name == "ConstBeam" then

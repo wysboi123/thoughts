@@ -11,8 +11,8 @@ Newest first. Overnight agents append after every push.
 - Quiet mode; stop 05:00 · **one digest email at stop only**
 
 **Draft for 05:00 stop digest**
-- Night 4 versions: Haze **1.0** · Orbit **0.8** · Couch **0.7** · Puddle **0.9** · Bus **0.8** · Lantern **0.7** · Porch **0.6**
-- Shipped: welcome/mist, fire pit, deep mirror, dusk stars, screen/news/lantern pulses, porch lights, plaza mist
+- Night 4 versions: Haze **1.0** · Orbit **0.8** · Couch **0.8** · Puddle **0.9** · Bus **0.9** · Lantern **0.7** · Porch **0.6**
+- Shipped: welcome/mist, fire pit, deep mirror, dusk stars, screen/news/lantern/shelter/window pulses, porch lights, plaza mist
 - Blocked: Perplexity audio + Studio publish
 - Next night: wire audio if research lands; help publish Haze first
 
