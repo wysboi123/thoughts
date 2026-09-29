@@ -5,12 +5,12 @@ Femmy’s chill Roblox line. All Rojo filesystem-first. Play: `cd games/<slug> &
 | Slug | Version | Verb | One-liner |
 | --- | --- | --- | --- |
 | [`haze-haven`](../games/haze-haven) | 1.3 | float / sit | Lounge rug pulse + vibe board + float pads |
-| [`slow-orbit`](../games/slow-orbit) | 1.0 | orbit | Moonlet glow + tether + equator |
+| [`slow-orbit`](../games/slow-orbit) | 1.1 | orbit | Planet/moonlet glow + tether + equator |
 | [`couch-galaxy`](../games/couch-galaxy) | 1.0 | climb / float | Books/plants breathe + hammock + apt lights |
 | [`puddle-mirror`](../games/puddle-mirror) | 1.1 | ripple | Nook puddle pulse + dew + deep mirror |
-| [`bus-stop-forever`](../games/bus-stop-forever) | 1.0 | wait / wave | Ticket sparkle + shelter/news pulse |
-| [`lantern-drift`](../games/lantern-drift) | 0.9 | drift | Shore lamps + dock/raft lights, lake mist |
-| [`star-porch`](../games/star-porch) | 0.8 | sit / glow | Rocker sway + sky stars + fire pit |
+| [`bus-stop-forever`](../games/bus-stop-forever) | 1.1 | wait / wave | Planter bob + ticket/shelter pulse |
+| [`lantern-drift`](../games/lantern-drift) | 1.0 | drift | Gangway glow + shore/dock lights |
+| [`star-porch`](../games/star-porch) | 0.9 | sit / glow | Firefly jar breathe + rockers + fire pit |
 
 Shared: [`packages/chill`](../packages/chill) · Publish: [`PUBLISH_CHECKLIST.md`](PUBLISH_CHECKLIST.md)
 

@@ -12,8 +12,8 @@ Newest first. Overnight agents append after every push.
 - Quiet mode; stop 05:00 · **one digest email at stop only**
 
 **Draft for 05:00 stop digest**
-- Night 5 versions: Haze **1.3** · Orbit **1.0** · Couch **1.0** · Puddle **1.1** · Bus **1.1** · Lantern **1.0** · Porch **0.9**
-- Shipped: atmosphere polish across lineup (pads, moonlet, rockers, hammock, dew, tickets, gangway, jar)
+- Night 5 versions: Haze **1.3** · Orbit **1.1** · Couch **1.0** · Puddle **1.1** · Bus **1.1** · Lantern **1.0** · Porch **1.0**
+- Shipped: atmosphere polish across lineup (pads, moonlet/planet, rockers, hammock, dew, tickets, gangway, jar, bushes)
 - Blocked: Perplexity audio + Studio publish
 - Next night: wire audio if research lands; help publish Haze first
 

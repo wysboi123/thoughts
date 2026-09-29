@@ -144,6 +144,9 @@ function WorldBuilder.build(): (Part, Part, Folder)
 			if moonLight then
 				moonLight.Brightness = 1.8 + math.sin(t * 0.65) * 0.4
 			end
+			if planetLight.Parent then
+				planetLight.Brightness = 1.1 + math.sin(t * 0.5) * 0.3
+			end
 		end
 	end)
 

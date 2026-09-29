@@ -155,7 +155,7 @@ for i, pos in {
 	Vector3.new(-8, 1.4, 26),
 	Vector3.new(8, 1.4, 26),
 } do
-	PartFactory.make({
+	local bush = PartFactory.make({
 		Name = "Bush" .. i,
 		Size = Vector3.new(3.5, 2.8, 3.5),
 		Position = pos,
@@ -164,6 +164,7 @@ for i, pos in {
 		Shape = Enum.PartType.Ball,
 		Parent = world,
 	})
+	bush:SetAttribute("HomePosition", bush.Position)
 end
 
 -- Yard fire pit (visual warmth only — no audio ids)
