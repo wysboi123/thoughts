@@ -6,8 +6,8 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 
 - [x] **Haze Haven v0–v1.2** — vibe board + loft plants + float pads
 - [x] **Slow Orbit v0–v1.0** — moonlet glow + tether + equator
-- [x] **Couch Galaxy v0–v0.9** — hammock sway + apt light pulses
-- [x] **Puddle Mirror v0–v1.0** — dew sparkle + plaza mist + deep mirror
+- [x] **Couch Galaxy v0–v1.0** — books/plants + hammock + apt lights
+- [x] **Puddle Mirror v0–v1.1** — nook puddle pulse + dew + deep mirror
 - [x] **Bus Stop Forever v0–v1.0** — ticket sparkle + shelter/news pulse
 - [x] **Lantern Drift v0–v0.9** — shore lamps + dock/raft lights
 - [x] **Shared** — SoftWelcome + SoftSit + SoftWireSeats + Proximity

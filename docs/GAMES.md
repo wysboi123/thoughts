@@ -6,8 +6,8 @@ Femmy’s chill Roblox line. All Rojo filesystem-first. Play: `cd games/<slug> &
 | --- | --- | --- | --- |
 | [`haze-haven`](../games/haze-haven) | 1.2 | float / sit | Vibe board + loft plants + float pads |
 | [`slow-orbit`](../games/slow-orbit) | 1.0 | orbit | Moonlet glow + tether + equator |
-| [`couch-galaxy`](../games/couch-galaxy) | 0.9 | climb / float | Hammock sway + window/lamp/screen pulses |
-| [`puddle-mirror`](../games/puddle-mirror) | 1.0 | ripple | Dew sparkle + plaza mist + deep mirror |
+| [`couch-galaxy`](../games/couch-galaxy) | 1.0 | climb / float | Books/plants breathe + hammock + apt lights |
+| [`puddle-mirror`](../games/puddle-mirror) | 1.1 | ripple | Nook puddle pulse + dew + deep mirror |
 | [`bus-stop-forever`](../games/bus-stop-forever) | 1.0 | wait / wave | Ticket sparkle + shelter/news pulse |
 | [`lantern-drift`](../games/lantern-drift) | 0.9 | drift | Shore lamps + dock/raft lights, lake mist |
 | [`star-porch`](../games/star-porch) | 0.8 | sit / glow | Rocker sway + sky stars + fire pit |

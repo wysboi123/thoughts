@@ -170,7 +170,7 @@ local function buildApartment(world: Folder)
 		Parent = world,
 	})
 	for i = 1, 4 do
-		part({
+		local row = part({
 			Name = "BookRow" .. i,
 			Size = Vector3.new(0.4, 0.9, 4.2),
 			Position = Vector3.new(-16.8, 1.5 + i * 1.4, 2),
@@ -178,6 +178,7 @@ local function buildApartment(world: Folder)
 			Material = Enum.Material.SmoothPlastic,
 			Parent = world,
 		})
+		row:SetAttribute("BookHue", 0.7 + i * 0.04)
 	end
 
 	-- Window glow (night city wash)
@@ -302,7 +303,7 @@ local function buildApartment(world: Folder)
 			Material = Enum.Material.Concrete,
 			Parent = world,
 		})
-		part({
+		local plant = part({
 			Name = "Plant" .. i,
 			Size = Vector3.new(2, 2.5, 2),
 			Position = pos + Vector3.new(0, 2, 0),
@@ -310,6 +311,7 @@ local function buildApartment(world: Folder)
 			Material = Enum.Material.Grass,
 			Parent = world,
 		})
+		plant:SetAttribute("HomePosition", plant.Position)
 	end
 
 	for i = 1, 10 do
@@ -653,6 +655,20 @@ task.spawn(function()
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then
 					light.Brightness = 1.2 + math.sin(t * 1.8) * 0.3
+				end
+			elseif string.find(child.Name, "BookRow", 1, true) and child:IsA("BasePart") then
+				local hue = child:GetAttribute("BookHue")
+				if typeof(hue) == "number" then
+					local v = 0.5 + math.sin(t * 0.6 + hue * 10) * 0.08
+					child.Color = Color3.fromHSV(hue, 0.35, v)
+				end
+			elseif string.find(child.Name, "Plant", 1, true)
+				and child:IsA("BasePart")
+				and not string.find(child.Name, "Planter", 1, true)
+			then
+				local home = child:GetAttribute("HomePosition")
+				if typeof(home) == "Vector3" then
+					child.Position = home + Vector3.new(0, math.sin(t * 0.85 + home.X) * 0.12, 0)
 				end
 			elseif child:IsA("BasePart") then
 				for _, beam in child:GetChildren() do

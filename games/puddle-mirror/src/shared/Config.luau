@@ -2,7 +2,7 @@
 local Config = {
 	GameName = "Puddle Mirror",
 	Tagline = "step soft. let the floor answer.",
-	Version = "1.0",
+	Version = "1.1",
 
 	Spawn = Vector3.new(0, 6, 16),
 

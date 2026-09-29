@@ -157,6 +157,12 @@ task.spawn(function()
 					light.Brightness = 1.4 + math.sin(t * 2.2 + child.Position.X) * 0.5
 				end
 				child.Transparency = 0.15 + math.sin(t * 1.8 + child.Position.Z) * 0.1
+			elseif child:IsA("BasePart") and child:GetAttribute("IsPuddle") then
+				local light = child:FindFirstChildOfClass("PointLight")
+				if light then
+					light.Brightness = 1.3 + math.sin(t * 1.0 + child.Position.X) * 0.4
+				end
+				child.Transparency = 0.18 + math.sin(t * 0.9 + child.Position.Z) * 0.08
 			elseif child:IsA("BasePart") and string.find(child.Name, "Glow", 1, true) then
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then

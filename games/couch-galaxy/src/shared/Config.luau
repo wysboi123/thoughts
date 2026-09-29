@@ -2,7 +2,7 @@
 local Config = {
 	GameName = "Couch Galaxy",
 	Tagline = "roof first. sky second. stay soft.",
-	Version = "0.9",
+	Version = "1.0",
 
 	ApartmentSpawn = Vector3.new(0, 5, 8),
 	GalaxySpawn = Vector3.new(0, 120, 0),
