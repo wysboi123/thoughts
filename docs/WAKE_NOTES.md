@@ -2,6 +2,14 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-29 23:57 UTC — Focus cut: keep 4 games
+
+Femmy: drop all games except **Haze Haven**, **Couch Galaxy**, **Bus Stop Forever**, **Star Porch**.
+
+- Removed from repo: `slow-orbit`, `puddle-mirror`, `lantern-drift`
+- Docs/gallery/publish lists updated to the four-game lineup
+- Night 6 continues polish on the kept four only (no invented audio)
+
 ## 2026-09-29 23:23 UTC — Night 6 resume
 
 - Stop re-armed → 05:00 UTC; quiet CP ~01:00 / ~03:00; **one digest email at stop only**

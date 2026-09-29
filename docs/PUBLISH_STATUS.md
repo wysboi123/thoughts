@@ -5,12 +5,9 @@ Femmy: after you publish a place in Studio, paste the URL / place id here so ove
 | Slug | Place URL | Place ID | Notes |
 | --- | --- | --- | --- |
 | haze-haven | _pending_ | | Recommended first publish |
-| slow-orbit | _pending_ | | Purple dusk |
 | couch-galaxy | _pending_ | | |
-| puddle-mirror | _pending_ | | |
 | bus-stop-forever | _pending_ | | |
-| lantern-drift | _pending_ | | |
-| star-porch | _pending_ | | Night 3 seed |
+| star-porch | _pending_ | | |
 
 ## First publish pick
 
