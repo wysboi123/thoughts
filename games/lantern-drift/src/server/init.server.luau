@@ -175,6 +175,7 @@ local ropeCoil = PartFactory.make({
 	Parent = world,
 })
 ropeCoil.CFrame = CFrame.new(8, 2.2, 20) * CFrame.Angles(0, 0, math.rad(90))
+ropeCoil:SetAttribute("HomePosition", Vector3.new(8, 2.2, 20))
 local dockLantern = PartFactory.make({
 	Name = "DockLantern",
 	Size = Vector3.new(1.2, 1.2, 1.2),
@@ -362,6 +363,12 @@ task.spawn(function()
 				child.Position = Vector3.new(child.Position.X, baseY + math.sin(t * 0.9 + child.Position.X) * 0.08, child.Position.Z)
 			elseif child:IsA("BasePart") and string.find(child.Name, "Mist", 1, true) then
 				child.Transparency = 0.65 + math.sin(t * 0.4 + child.Position.X) * 0.08
+			elseif child.Name == "RopeCoil" and child:IsA("BasePart") then
+				local home = child:GetAttribute("HomePosition")
+				if typeof(home) == "Vector3" then
+					child.CFrame = CFrame.new(home + Vector3.new(0, math.sin(t * 1.1) * 0.06, 0))
+						* CFrame.Angles(0, 0, math.rad(90))
+				end
 			end
 		end
 	end

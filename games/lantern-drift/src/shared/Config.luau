@@ -2,7 +2,7 @@
 local Config = {
 	GameName = "Lantern Drift",
 	Tagline = "fog lake. soft raft. stay afloat.",
-	Version = "1.0",
+	Version = "1.1",
 
 	Spawn = Vector3.new(0, 6, 20),
 	RaftStart = Vector3.new(0, 2, 0),

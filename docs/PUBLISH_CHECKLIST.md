@@ -12,13 +12,14 @@ rojo serve
 
 1. Open `HazeHaven.rbxl` in Roblox Studio → Rojo plugin → **Connect**
 2. Press **Play** — sit a cushion, float pad, loft hammock, emote 1/2/3
-3. Stop Play → **File → Publish to Roblox** (create new experience if prompted)
-4. Paste title + description from [`EXPERIENCE_COPY.md`](EXPERIENCE_COPY.md) → Haze Haven
-5. Genre: Hangout (or Adventure). Access: **Friends** for soft launch
-6. Capture one soft screenshot for thumbnail (no ToS-risk framing)
-7. Paste place URL + place id into [`PUBLISH_STATUS.md`](PUBLISH_STATUS.md)
+3. Confirm spawn **WelcomeSign** + SoftWelcome toast (Haze 1.0+ publish beat) before Stop
+4. Stop Play → **File → Publish to Roblox** (create new experience if prompted)
+5. Paste title + description from [`EXPERIENCE_COPY.md`](EXPERIENCE_COPY.md) → Haze Haven
+6. Genre: Hangout (or Adventure). Access: **Friends** for soft launch
+7. Capture one soft screenshot for thumbnail (no ToS-risk framing)
+8. Paste place URL + place id into [`PUBLISH_STATUS.md`](PUBLISH_STATUS.md)
 
-That’s enough for Night 5 — overnight agents will track the live place after. Paste URL into `PUBLISH_STATUS.md`.
+That’s enough for first soft launch. Overnight agents track the live place after you paste URL + place id into `PUBLISH_STATUS.md`.
 
 ## One-time setup
 

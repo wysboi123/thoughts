@@ -147,6 +147,21 @@ PartFactory.make({
 	Material = Enum.Material.Cobblestone,
 	Parent = world,
 })
+local pathGlow = PartFactory.make({
+	Name = "YardPathGlow",
+	Size = Vector3.new(3.2, 0.15, 16),
+	Position = Vector3.new(0, 0.75, 22),
+	Color = Color3.fromRGB(255, 180, 110),
+	Material = Enum.Material.Neon,
+	CanCollide = false,
+	Transparency = 0.55,
+	Parent = world,
+})
+local pathLight = Instance.new("PointLight")
+pathLight.Brightness = 1.0
+pathLight.Range = 12
+pathLight.Color = Color3.fromRGB(255, 170, 100)
+pathLight.Parent = pathGlow
 for i, pos in {
 	Vector3.new(-10, 1.5, 18),
 	Vector3.new(10, 1.5, 18),
@@ -521,6 +536,12 @@ task.spawn(function()
 					light.Brightness = 1.4 + math.sin(t * 2.8) * 0.45
 				end
 				child.Transparency = 0.22 + math.sin(t * 3.1) * 0.06
+			elseif child.Name == "YardPathGlow" and child:IsA("BasePart") then
+				local light = child:FindFirstChildOfClass("PointLight")
+				if light then
+					light.Brightness = 0.85 + math.sin(t * 1.25) * 0.3
+				end
+				child.Transparency = 0.5 + math.sin(t * 1.25) * 0.1
 			elseif child.Name == "PorchLamp" and child:IsA("BasePart") then
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then

@@ -6,19 +6,19 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 
 - [x] **Haze Haven v0–v1.3** — lounge rug + vibe board + float pads
 - [x] **Slow Orbit v0–v1.1** — planet/moonlet glow + tether + equator
-- [x] **Couch Galaxy v0–v1.0** — books/plants + hammock + apt lights
+- [x] **Couch Galaxy v0–v1.1** — couch rug pulse + hammock + apt lights
 - [x] **Puddle Mirror v0–v1.1** — nook puddle pulse + dew + deep mirror
 - [x] **Bus Stop Forever v0–v1.1** — planter bob + ticket/shelter pulse
-- [x] **Lantern Drift v0–v1.0** — gangway glow + shore/dock lights
+- [x] **Lantern Drift v0–v1.1** — rope coil bob + gangway + shore lights
 - [x] **Shared** — SoftWelcome + SoftSit + SoftWireSeats + Proximity
-- [x] **Star Porch v0–v1.0** — bushes + jar + rockers + fire pit
+- [x] **Star Porch v0–v1.1** — yard path glow + jar + rockers
 - [x] **Night 3** — complete
 - [x] **Night 4** — complete
 - [x] **Night 5** — complete (all 7 games at 1.0+)
 - [ ] **Wire audio** — waiting on Perplexity Q-004 (do not invent)
 - [ ] **First publish** — Femmy: `PUBLISH_CHECKLIST.md` First 10 minutes (Haze)
 - [ ] **Apply Q-001–003** when answers land
-- [ ] **Night 6** — wire audio if research lands; help publish Haze first
+- [ ] **Night 6** — polish until 05:00; digest email at stop
 
 ## Femmy overrides
 
