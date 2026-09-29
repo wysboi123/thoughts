@@ -151,6 +151,8 @@ task.spawn(function()
 		for _, child in world:GetChildren() do
 			if child:IsA("BasePart") and string.find(child.Name, "MistPillar", 1, true) then
 				child.Transparency = 0.72 + math.sin(t * 0.45 + child.Position.X * 0.03) * 0.08
+			elseif child.Name == "Plaza" and child:IsA("BasePart") then
+				child.Transparency = 0.22 + math.sin(t * 0.35) * 0.05
 			elseif child:IsA("BasePart") and child:GetAttribute("IsDew") and not child:GetAttribute("Collected") then
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then
