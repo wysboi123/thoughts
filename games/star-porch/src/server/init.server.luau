@@ -331,6 +331,10 @@ end
 
 local rockerL = makeSeat("RockerL", Vector3.new(-6, 2.5, 2), Color3.fromRGB(110, 80, 55))
 local rockerR = makeSeat("RockerR", Vector3.new(-2, 2.5, 2), Color3.fromRGB(105, 78, 52))
+rockerL:SetAttribute("IsRocker", true)
+rockerL:SetAttribute("HomePosition", rockerL.Position)
+rockerR:SetAttribute("IsRocker", true)
+rockerR:SetAttribute("HomePosition", rockerR.Position)
 
 -- Porch swing (hanging seat)
 PartFactory.make({
@@ -526,6 +530,12 @@ task.spawn(function()
 				end
 			elseif string.find(child.Name, "SkyStar", 1, true) and child:IsA("BasePart") then
 				child.Transparency = 0.15 + math.sin(t * 1.8 + child.Position.X) * 0.2
+			elseif child:IsA("BasePart") and child:GetAttribute("IsRocker") then
+				local home = child:GetAttribute("HomePosition")
+				if typeof(home) == "Vector3" then
+					local sway = math.sin(t * 0.7 + home.X) * 0.08
+					child.Position = home + Vector3.new(0, 0, sway)
+				end
 			elseif child:IsA("BasePart") and child:GetAttribute("IsSwing") then
 				local home = child:GetAttribute("HomePosition")
 				if typeof(home) == "Vector3" then

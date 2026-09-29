@@ -49,6 +49,13 @@ function AtmosphereService.start()
 						child.Transparency = base + math.sin(t * 0.45 + child.Position.X * 0.05) * 0.08
 					elseif child.Name == "WelcomeSign" and child:IsA("BasePart") then
 						child.Color = Color3.fromRGB(48, 38, 62):Lerp(Color3.fromRGB(62, 48, 78), pulse)
+					elseif child.Name == "VibeBoard" and child:IsA("BasePart") then
+						child.Color = Color3.fromRGB(40, 32, 55):Lerp(Color3.fromRGB(55, 42, 72), pulse)
+					elseif child:IsA("BasePart") and string.find(child.Name, "LoftPlant", 1, true) then
+						local home = child:GetAttribute("HomePosition")
+						if typeof(home) == "Vector3" then
+							child.Position = home + Vector3.new(0, math.sin(t * 0.8 + home.X) * 0.1, 0)
+						end
 					end
 				end
 			end

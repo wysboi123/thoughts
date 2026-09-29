@@ -2,6 +2,14 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-29 01:00 UTC — Night 5 checkpoint 1 (quiet)
+
+- **Haze 1.2** — vibe board pulse + loft plant bob
+- **Orbit 1.0** — moonlet PointLight breathe
+- **Porch 0.8** — rocker sway (gentle)
+- Still blocked: Perplexity Q-001–004 · first Studio publish
+- Next CP ~03:00 · stop 05:00 · one digest email at stop only
+
 ## 2026-09-28 23:00 UTC — Night 5 resume
 
 - Stop re-armed → 05:00 UTC; quiet CP ~01:00 / ~03:00; **one digest email at stop only**

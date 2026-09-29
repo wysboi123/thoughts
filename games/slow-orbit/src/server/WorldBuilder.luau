@@ -140,6 +140,10 @@ function WorldBuilder.build(): (Part, Part, Folder)
 			if tether.Parent then
 				tether.Transparency = 0.62 + math.sin(t * 0.55) * 0.1
 			end
+			local moonLight = moonlet:FindFirstChildOfClass("PointLight")
+			if moonLight then
+				moonLight.Brightness = 1.8 + math.sin(t * 0.65) * 0.4
+			end
 		end
 	end)
 

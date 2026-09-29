@@ -262,7 +262,7 @@ function WorldBuilder.build(workspace: Workspace): Folder
 			Material = Enum.Material.Concrete,
 			Parent = world,
 		})
-		WorldBuilder.makePart({
+		local plant = WorldBuilder.makePart({
 			Name = "LoftPlant" .. i,
 			Size = Vector3.new(2, 2.2, 2),
 			Position = loftPos + offset + Vector3.new(0, 1.6, 0),
@@ -271,6 +271,7 @@ function WorldBuilder.build(workspace: Workspace): Folder
 			Shape = Enum.PartType.Ball,
 			Parent = world,
 		})
+		plant:SetAttribute("HomePosition", plant.Position)
 	end
 
 	addSeat(world, "SitLoungeA", Vector3.new(10, 1.2, 8), Vector3.new(-1, 0, -0.3))
