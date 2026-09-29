@@ -533,6 +533,11 @@ task.spawn(function()
 				end
 			elseif string.find(child.Name, "SkyStar", 1, true) and child:IsA("BasePart") then
 				child.Transparency = 0.15 + math.sin(t * 1.8 + child.Position.X) * 0.2
+			elseif string.find(child.Name, "Bush", 1, true) and child:IsA("BasePart") then
+				local home = child:GetAttribute("HomePosition")
+				if typeof(home) == "Vector3" then
+					child.Position = home + Vector3.new(0, math.sin(t * 0.7 + home.X) * 0.08, 0)
+				end
 			elseif child:IsA("BasePart") and child:GetAttribute("IsRocker") then
 				local home = child:GetAttribute("HomePosition")
 				if typeof(home) == "Vector3" then

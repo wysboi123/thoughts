@@ -10,7 +10,7 @@ Femmy’s chill Roblox line. All Rojo filesystem-first. Play: `cd games/<slug> &
 | [`puddle-mirror`](../games/puddle-mirror) | 1.1 | ripple | Nook puddle pulse + dew + deep mirror |
 | [`bus-stop-forever`](../games/bus-stop-forever) | 1.1 | wait / wave | Planter bob + ticket/shelter pulse |
 | [`lantern-drift`](../games/lantern-drift) | 1.0 | drift | Gangway glow + shore/dock lights |
-| [`star-porch`](../games/star-porch) | 0.9 | sit / glow | Firefly jar breathe + rockers + fire pit |
+| [`star-porch`](../games/star-porch) | 1.0 | sit / glow | Bushes + jar + rockers + fire pit |
 
 Shared: [`packages/chill`](../packages/chill) · Publish: [`PUBLISH_CHECKLIST.md`](PUBLISH_CHECKLIST.md)
 
