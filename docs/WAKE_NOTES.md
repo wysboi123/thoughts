@@ -2,6 +2,19 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-29 23:45 UTC — Thought Defense v0.1 (hourly batch 1)
+
+- **New game:** `games/thought-defense` — tower defense metaphor
+  - Enemies: Doubt / Worry / Self-Critic
+  - Towers: Affirmation / Gratitude / Humor
+  - Resources: Calm (lives) + Clarity (currency)
+  - Studio Workspace folders: Path, Pads, Towers, Enemies, Decor + Peace Core
+- Rojo build clean (`ThoughtDefense.rbxl`)
+- Schedule flipped to **30 min / hour** + email updates + design consults
+- **Need Femmy:** answers in `docs/DESIGN_CONSULT.md` (title, tone, placement, waves, multiplayer)
+- Next batch: apply design answers · tower upgrades or HUD polish
+- Ops: branch `cursor/roblox-hourly-batch-5a0d`; hourly timer `thought-defense-hourly`
+
 ## 2026-09-29 23:23 UTC — Night 6 resume
 
 - Stop re-armed → 05:00 UTC; quiet CP ~01:00 / ~03:00; **one digest email at stop only**

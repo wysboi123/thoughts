@@ -43,3 +43,9 @@ A fog lake at night. Walk the dock, step onto a drifting raft, and gather floati
 **Title:** Star Porch  
 **Description:**
 A wooden night porch under soft stars. Rocking chairs, a porch swing, string lights, and fireflies that drift back. Sit outside. Watch the quiet.
+
+## Thought Defense
+
+**Title:** Thought Defense  
+**Description:**
+A soft mindscape tower defense. Negative thoughts walk the path — Doubt, Worry, Self-Critic. Plant Affirmation, Gratitude, and Humor. Protect your Peace Core. Metaphor only; stay awhile, clear the noise.

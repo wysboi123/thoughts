@@ -4,6 +4,8 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 
 ## Active
 
+- [ ] **Thought Defense v0.1+** — primary focus (Femmy 2026-09-29). Enemies = negative thoughts; towers = positive thoughts. Consult `docs/DESIGN_CONSULT.md`
+- [ ] **Thought Defense v0.2** — upgrades / second wave set (after design answers)
 - [x] **Haze Haven v0–v1.4** — hammock sway + rug + vibe board + pads
 - [x] **Slow Orbit v0–v1.2** — bead sparkle + planet/moonlet glow
 - [x] **Couch Galaxy v0–v1.1** — couch rug pulse + hammock + apt lights
@@ -16,10 +18,12 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 - [x] **Night 4** — complete
 - [x] **Night 5** — complete (all 7 games at 1.0+)
 - [ ] **Wire audio** — waiting on Perplexity Q-004 (do not invent)
-- [ ] **First publish** — Femmy: `PUBLISH_CHECKLIST.md` First 10 minutes (Haze)
+- [ ] **First publish** — Femmy: `PUBLISH_CHECKLIST.md` First 10 minutes (Haze or Thought Defense)
 - [ ] **Apply Q-001–003** when answers land
-- [ ] **Night 6** — polish until 05:00; digest email at stop
+- [ ] **Hourly batches** — 30 min / hour on Thought Defense until Femmy says stop
 
 ## Femmy overrides
 
 > Slow Orbit purple dusk — ✅ v0.3
+> Thought Defense primary (2026-09-29) — ✅ v0.1 scaffolded
+> Hourly 30-min batches + email updates + design consults — ✅ schedule updated

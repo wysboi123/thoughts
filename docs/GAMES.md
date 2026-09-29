@@ -11,14 +11,17 @@ Femmy’s chill Roblox line. All Rojo filesystem-first. Play: `cd games/<slug> &
 | [`bus-stop-forever`](../games/bus-stop-forever) | 1.2 | wait / wave | Dual shelter glow + tickets + planters |
 | [`lantern-drift`](../games/lantern-drift) | 1.1 | drift | Rope coil bob + gangway + shore lights |
 | [`star-porch`](../games/star-porch) | 1.1 | sit / glow | Yard path glow + jar + rockers |
+| [`thought-defense`](../games/thought-defense) | 0.1 | defend / plant | Negative thoughts vs positive towers |
 
 Shared: [`packages/chill`](../packages/chill) · Publish: [`PUBLISH_CHECKLIST.md`](PUBLISH_CHECKLIST.md)
 
 ## Soft goals + welcome
 
-Most games use `Chill.SoftGoals`, `Chill.SoftWelcome`, `Chill.SoftSit`, and `Chill.Proximity`.
+Most hangout games use `Chill.SoftGoals`, `Chill.SoftWelcome`, `Chill.SoftSit`, and `Chill.Proximity`.
+**Thought Defense** is a tower-defense loop (Calm / Clarity) — see its README.
 
 ## Blocked on Femmy
 
 1. Perplexity answers → `docs/research/` (esp. Q-004 audio ids)
 2. First Studio publish of any place
+3. **Thought Defense design consult** → [`DESIGN_CONSULT.md`](DESIGN_CONSULT.md)
