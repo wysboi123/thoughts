@@ -14,10 +14,11 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 - [x] **Star Porch v0–v1.0** — bushes + jar + rockers + fire pit
 - [x] **Night 3** — complete
 - [x] **Night 4** — complete
+- [x] **Night 5** — complete (all 7 games at 1.0+)
 - [ ] **Wire audio** — waiting on Perplexity Q-004 (do not invent)
 - [ ] **First publish** — Femmy: `PUBLISH_CHECKLIST.md` First 10 minutes (Haze)
 - [ ] **Apply Q-001–003** when answers land
-- [ ] **Night 5 final** — light polish until 05:00; ONE digest email at stop
+- [ ] **Night 6** — wire audio if research lands; help publish Haze first
 
 ## Femmy overrides
 
