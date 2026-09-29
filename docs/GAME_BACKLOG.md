@@ -4,11 +4,11 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 
 ## Active
 
-- [x] **Haze Haven v0–v1.3** — lounge rug + vibe board + float pads
-- [x] **Slow Orbit v0–v1.1** — planet/moonlet glow + tether + equator
+- [x] **Haze Haven v0–v1.4** — hammock sway + rug + vibe board + pads
+- [x] **Slow Orbit v0–v1.2** — bead sparkle + planet/moonlet glow
 - [x] **Couch Galaxy v0–v1.1** — couch rug pulse + hammock + apt lights
 - [x] **Puddle Mirror v0–v1.1** — nook puddle pulse + dew + deep mirror
-- [x] **Bus Stop Forever v0–v1.1** — planter bob + ticket/shelter pulse
+- [x] **Bus Stop Forever v0–v1.2** — dual shelter glow + tickets + planters
 - [x] **Lantern Drift v0–v1.1** — rope coil bob + gangway + shore lights
 - [x] **Shared** — SoftWelcome + SoftSit + SoftWireSeats + Proximity
 - [x] **Star Porch v0–v1.1** — yard path glow + jar + rockers

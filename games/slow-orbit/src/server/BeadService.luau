@@ -92,6 +92,10 @@ function BeadService.bind(folder: Folder)
 						tangent = tangent.Unit
 						local wobble = math.sin(t * 1.2 + child.Position.X) * 0.8
 						child.Position = home + tangent * wobble
+						local light = child:FindFirstChildOfClass("PointLight")
+						if light then
+							light.Brightness = 1.4 + math.sin(t * 1.6 + child.Position.X) * 0.4
+						end
 					end
 				end
 			end

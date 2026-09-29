@@ -357,7 +357,7 @@ function WorldBuilder.build(workspace: Workspace): Folder
 		Material = Enum.Material.Wood,
 		Parent = world,
 	})
-	WorldBuilder.makePart({
+	local hammockCloth = WorldBuilder.makePart({
 		Name = "HammockCloth",
 		Size = Vector3.new(14, 0.35, 4),
 		Position = Vector3.new(loftPos.X, hammockY, loftPos.Z + 8),
@@ -365,6 +365,7 @@ function WorldBuilder.build(workspace: Workspace): Folder
 		Material = Enum.Material.Fabric,
 		Parent = world,
 	})
+	hammockCloth:SetAttribute("HomePosition", hammockCloth.Position)
 	local hammockSeat = Instance.new("Seat")
 	hammockSeat.Name = "HammockSeat"
 	hammockSeat.Size = Vector3.new(4, 0.4, 2)
@@ -373,6 +374,7 @@ function WorldBuilder.build(workspace: Workspace): Folder
 	hammockSeat.Color = Color3.fromRGB(180, 140, 200)
 	hammockSeat.Material = Enum.Material.Fabric
 	hammockSeat.Parent = world
+	hammockSeat:SetAttribute("HomePosition", hammockSeat.Position)
 
 	-- Welcome sign near spawn path (pairs with client SoftWelcome toast)
 	local welcomeSign = WorldBuilder.makePart({

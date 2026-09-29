@@ -267,6 +267,21 @@ part({
 	Color = Color3.fromRGB(65, 70, 80),
 	Parent = world,
 })
+local shelter2Glow = part({
+	Name = "Shelter2Glow",
+	Size = Vector3.new(9, 0.35, 5),
+	Position = Vector3.new(28, 6.5, 3),
+	Color = Color3.fromRGB(255, 230, 180),
+	Material = Enum.Material.Neon,
+	CanCollide = false,
+	Transparency = 0.5,
+	Parent = world,
+})
+local shelter2Light = Instance.new("PointLight")
+shelter2Light.Brightness = 1.0
+shelter2Light.Range = 14
+shelter2Light.Color = Color3.fromRGB(255, 230, 180)
+shelter2Light.Parent = shelter2Glow
 part({
 	Name = "BenchFar",
 	Size = Vector3.new(5, 1, 2),
@@ -529,6 +544,12 @@ task.spawn(function()
 					light.Brightness = 1.0 + math.sin(t * 1.1) * 0.35
 				end
 				child.Transparency = 0.4 + math.sin(t * 1.1) * 0.08
+			elseif child.Name == "Shelter2Glow" and child:IsA("BasePart") then
+				local light = child:FindFirstChildOfClass("PointLight")
+				if light then
+					light.Brightness = 0.9 + math.sin(t * 1.05 + 1) * 0.3
+				end
+				child.Transparency = 0.45 + math.sin(t * 1.05 + 1) * 0.08
 			elseif child:IsA("BasePart") and child:GetAttribute("IsTicket") and not child:GetAttribute("Collected") then
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then

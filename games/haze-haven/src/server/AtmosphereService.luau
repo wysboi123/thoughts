@@ -58,6 +58,16 @@ function AtmosphereService.start()
 						if typeof(home) == "Vector3" then
 							child.Position = home + Vector3.new(0, math.sin(t * 0.8 + home.X) * 0.1, 0)
 						end
+					elseif child.Name == "HammockCloth" and child:IsA("BasePart") then
+						local home = child:GetAttribute("HomePosition")
+						if typeof(home) == "Vector3" then
+							child.Position = home + Vector3.new(0, math.sin(t * 0.95) * 0.12, 0)
+						end
+					elseif child.Name == "HammockSeat" and child:IsA("BasePart") then
+						local home = child:GetAttribute("HomePosition")
+						if typeof(home) == "Vector3" then
+							child.Position = home + Vector3.new(0, math.sin(t * 0.95) * 0.12, 0)
+						end
 					end
 				end
 			end

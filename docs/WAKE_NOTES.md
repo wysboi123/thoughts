@@ -6,9 +6,9 @@ Newest first. Overnight agents append after every push.
 
 - Stop re-armed → 05:00 UTC; quiet CP ~01:00 / ~03:00; **one digest email at stop only**
 - No Perplexity answers in `docs/research/` — audio still unwired (Q-001–004 open)
-- Early slice: Couch **1.1** rug · Lantern **1.1** rope · Porch **1.1** path glow
+- Early slice: Couch **1.1** · Lantern **1.1** · Porch **1.1** · Haze **1.4** · Orbit **1.2** · Bus **1.2**
 - Publish checklist: WelcomeSign verify step added for Haze first soft launch
-- Quiet mode; no mid-shift email
+- Quiet mode; no mid-shift email; next CP ~01:00
 
 ## 2026-09-29 05:00 UTC — OVERNIGHT STOP (Night 5)
 
