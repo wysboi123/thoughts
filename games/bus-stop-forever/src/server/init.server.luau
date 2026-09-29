@@ -177,7 +177,7 @@ for i, x in { -16, 16 } do
 		Material = Enum.Material.Concrete,
 		Parent = world,
 	})
-	part({
+	local green = part({
 		Name = "PlanterGreen" .. i,
 		Size = Vector3.new(2.4, 2, 2.4),
 		Position = Vector3.new(x, 2.6, 8),
@@ -185,6 +185,7 @@ for i, x in { -16, 16 } do
 		Material = Enum.Material.Grass,
 		Parent = world,
 	})
+	green:SetAttribute("HomePosition", green.Position)
 end
 
 -- Free newspaper box (decorative)
@@ -532,6 +533,11 @@ task.spawn(function()
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then
 					light.Brightness = 1.5 + math.sin(t * 2.0 + child.Position.X) * 0.45
+				end
+			elseif string.find(child.Name, "PlanterGreen", 1, true) and child:IsA("BasePart") then
+				local home = child:GetAttribute("HomePosition")
+				if typeof(home) == "Vector3" then
+					child.Position = home + Vector3.new(0, math.sin(t * 0.9 + home.X) * 0.1, 0)
 				end
 			end
 		end

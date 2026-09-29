@@ -2,6 +2,21 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-29 03:00 UTC — Night 5 checkpoint 2 (quiet)
+
+- **Haze 1.3** — lounge rug color pulse
+- **Lantern 1.0** — gangway glow strip
+- **Porch 0.9** — firefly jar breathe
+- **Bus 1.1** — planter green bob
+- Still blocked: Perplexity Q-001–004 · first Studio publish
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
+**Draft for 05:00 stop digest**
+- Night 5 versions: Haze **1.3** · Orbit **1.0** · Couch **1.0** · Puddle **1.1** · Bus **1.1** · Lantern **1.0** · Porch **0.9**
+- Shipped: atmosphere polish across lineup (pads, moonlet, rockers, hammock, dew, tickets, gangway, jar)
+- Blocked: Perplexity audio + Studio publish
+- Next night: wire audio if research lands; help publish Haze first
+
 ## 2026-09-29 01:00 UTC — Night 5 checkpoint 1 (quiet)
 
 - **Haze 1.2** — vibe board pulse + loft plant bob

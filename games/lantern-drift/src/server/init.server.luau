@@ -73,6 +73,21 @@ PartFactory.make({
 	Material = Enum.Material.Wood,
 	Parent = world,
 })
+local gangwayGlow = PartFactory.make({
+	Name = "GangwayGlow",
+	Size = Vector3.new(4.5, 0.2, 6),
+	Position = Vector3.new(0, 1.7, 14),
+	Color = Config.Lantern.Color,
+	Material = Enum.Material.Neon,
+	CanCollide = false,
+	Transparency = 0.55,
+	Parent = world,
+})
+local gangwayLight = Instance.new("PointLight")
+gangwayLight.Brightness = 1.1
+gangwayLight.Range = 12
+gangwayLight.Color = Config.Lantern.Color
+gangwayLight.Parent = gangwayGlow
 
 -- Shore lamps (decorative — not collectible)
 for i, pos in {
@@ -329,6 +344,12 @@ task.spawn(function()
 				if light then
 					light.Brightness = 2.0 + math.sin(t * 1.6) * 0.4
 				end
+			elseif child.Name == "GangwayGlow" and child:IsA("BasePart") then
+				local light = child:FindFirstChildOfClass("PointLight")
+				if light then
+					light.Brightness = 0.95 + math.sin(t * 1.2) * 0.35
+				end
+				child.Transparency = 0.5 + math.sin(t * 1.2) * 0.1
 			elseif string.find(child.Name, "ShoreLamp", 1, true) and child:IsA("BasePart") then
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then

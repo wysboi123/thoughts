@@ -501,6 +501,8 @@ task.spawn(function()
 				if light then
 					light.Brightness = 1.2 + math.sin(t * 3) * 0.5
 				end
+			elseif child.Name == "FireflyJar" and child:IsA("BasePart") then
+				child.Transparency = 0.4 + math.sin(t * 1.5) * 0.1
 			elseif child.Name == "Moon" and child:IsA("BasePart") then
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then
