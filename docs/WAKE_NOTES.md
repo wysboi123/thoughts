@@ -2,6 +2,16 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-30 23:11 UTC — Night resume (mobile overnight)
+
+- Night envelope opened (~23:11 UTC). **Draft C locked** — not re-asking A/B/C.
+- **No Femmy replies** in Gmail (`from:ngkdevid@gmail.com` empty) · DESIGN_CONSULT unchanged → Clarity Pass stays **$2.99/mo** default; ask still open.
+- **Shipped v1.2.0:** waves **6–8** · selected range ring · kindness FX ripples · Peace Core breath · empty-pad pulse · walker slow tint · Draft C tray select stats / plant blurbs · Clarity shop sections + restore + pending Clarity · `docs/SCREENSHOTS.md`
+- Ops: re-armed `overnight-stop-5am-utc` once (~05:00 UTC, delaySeconds≈20903) · confirmed/re-armed `thought-defense-mobile-hourly` (`15 * * * *`) · **did not** re-arm legacy Roblox hourly
+- Branch `cursor/mobile-thought-defense-5a0d` · commit `0e29fe5` · PR https://github.com/wysboi123/thoughts/pull/4
+- ManagePullRequest **missing** this run — push only; parent should refresh PR body if needed
+- Open Femmy asks: Clarity Pass price · bundle id · RevenueCat vs RNIap · brand screenshots · EAS projectId · store products · legal URLs
+
 ## 2026-09-30 22:25 UTC — Mobile hourly (mistargeted timer retarget)
 
 - Timer `thought-defense-hourly` fired with **Roblox** payload — **ignored**; continued mobile pivot
