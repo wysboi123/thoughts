@@ -34,6 +34,8 @@ function AtmosphereService.start()
 						if light then
 							light.Brightness = 0.9 + pulse * 0.5 + math.sin(t + child.Position.X) * 0.15
 						end
+						local warm = (math.sin(t + child.Position.X) + 1) / 2
+						child.Color = Color3.fromRGB(255, 210, 160):Lerp(Color3.fromRGB(255, 235, 200), warm * 0.55)
 					elseif child.Name == "LoungeCandle" and child:IsA("BasePart") then
 						local light = child:FindFirstChildOfClass("PointLight")
 						if light then

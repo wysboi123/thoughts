@@ -2,6 +2,19 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-30 03:00 UTC — Night 6 checkpoint 2 (quiet)
+
+- Active: **Haze 1.8** loft strings · **Couch 1.5** bookshelf · **Bus 1.6** benches · **Porch 1.5** roof overhang
+- Parked trio untouched (files kept — do not erase)
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
+**Draft for 05:00 stop digest**
+- Night 6 active versions: Haze **1.8** · Couch **1.5** · Bus **1.6** · Porch **1.5**
+- Parked (files kept): Orbit **1.2** · Puddle **1.2** · Lantern **1.1**
+- Shipped: focus cut → restore parked → atmosphere polish on active four
+- Blocked: Perplexity audio + Studio publish
+- Next night: wire audio if research lands; help publish Haze; parked games later
+
 ## 2026-09-30 01:00 UTC — Night 6 checkpoint 1 (quiet)
 
 - Active: **Haze 1.7** · **Couch 1.4** · **Bus 1.5** · **Porch 1.4** (table/couch/shelter/deck pulses)

@@ -536,6 +536,9 @@ task.spawn(function()
 			elseif child.Name == "Deck" and child:IsA("BasePart") then
 				local warm = (math.sin(t * 0.5) + 1) / 2
 				child.Color = Color3.fromRGB(90, 70, 50):Lerp(Color3.fromRGB(110, 85, 60), warm * 0.35)
+			elseif child.Name == "RoofOverhang" and child:IsA("BasePart") then
+				local cool = (math.sin(t * 0.4) + 1) / 2
+				child.Color = Color3.fromRGB(45, 40, 50):Lerp(Color3.fromRGB(60, 52, 68), cool * 0.4)
 			elseif child.Name == "FirePitGlow" and child:IsA("BasePart") then
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then

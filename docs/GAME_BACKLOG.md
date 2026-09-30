@@ -4,15 +4,15 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 
 ## Active (focus now)
 
-- [x] **Haze Haven v0–v1.7** — candle color + lounge table + orbs
-- [x] **Couch Galaxy v0–v1.4** — couch fabric warm + table + rug
-- [x] **Bus Stop Forever v0–v1.5** — shelter roof/glass + lamps
-- [x] **Star Porch v0–v1.4** — deck warm + side table + fire pit
+- [x] **Haze Haven v0–v1.8** — loft string warm + candle + table
+- [x] **Couch Galaxy v0–v1.5** — bookshelf warm + couch fabric
+- [x] **Bus Stop Forever v0–v1.6** — bench warm + shelter roof/glass
+- [x] **Star Porch v0–v1.5** — roof overhang + deck + fire pit
 - [x] **Shared** — SoftWelcome + SoftSit + SoftWireSeats + Proximity
 - [ ] **Wire audio** — waiting on Perplexity Q-004 (do not invent)
 - [ ] **First publish** — Femmy: `PUBLISH_CHECKLIST.md` First 10 minutes (Haze)
 - [ ] **Apply Q-001–003** when answers land
-- [ ] **Night 6** — polish active four until 05:00; digest email at stop
+- [ ] **Night 6 final** — light polish until 05:00; ONE digest email at stop
 
 ## Parked for later (files kept — do not erase)
 
