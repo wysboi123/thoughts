@@ -15,6 +15,9 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 ## State
 
 - Version: **0.2.2** (hover upgrade-cost tip; SoftGoals/Restart; Upgrade chrome pending)
-- Blocked on: **Mockup vote A/B/C** (drafts refreshed 18:00 UTC)
+- Path: `games/thought-defense`
+- Branch: `cursor/roblox-hourly-batch-5a0d`
+- PR: https://github.com/wysboi123/thoughts/pull/2
+- Blocked on: **Mockup vote A/B/C** (drafts refreshed — draft-a/b/c JPGs + choose/tweak gallery)
 - Research: `docs/research/TD-upgrade-ui-soft-goals-2026-09-30.md` · Q-005 queued
-- Next: implement Upgrade chrome after vote; optional Perplexity Q-005
+- Next: implement Upgrade chrome after vote
