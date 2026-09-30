@@ -2,6 +2,18 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-30 03:15 UTC — Hourly batch 6 (still waiting on vote)
+
+- **No Femmy vote** — Gmail `from:ngkdevid@gmail.com` empty; mockup threads agent-sent only; DESIGN_CONSULT unchanged
+- **No Upgrade UI Luau** — still blocked on Mockup vote A/B/C
+- Light slice (not last batch’s billboards/rails/halo):
+  - **Wave toast clarity** — tinted toasts; prep/wave show enemy composition; intermission countdown with next-wave preview
+  - **Soft pad hover cue** — client SelectionBox pulse (green plant / red sell)
+- Rojo build clean (`ThoughtDefense.rbxl`)
+- Ops: re-armed `thought-defense-hourly` cron `15 * * * *` (list was empty); emailed short progress + A/B/C ask
+- **PR #2:** ManagePullRequest tool **missing** again — cannot update title/body (do not use `gh` write)
+- Next batch: implement chosen Upgrade UI **only** after vote; otherwise keep waiting; retry ManagePullRequest
+
 ## 2026-09-30 02:15 UTC — Hourly batch 5 (still waiting on vote)
 
 - **No Femmy vote** — Gmail `from:ngkdevid@gmail.com` empty; mockup threads are agent-sent only; DESIGN_CONSULT unchanged

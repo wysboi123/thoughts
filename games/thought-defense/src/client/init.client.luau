@@ -2,6 +2,7 @@
 -- Client HUD + pad click placement / upgrade / sell for Thought Defense.
 
 local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 local Workspace = game:GetService("Workspace")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -189,22 +190,117 @@ buttons.Sell = sellBtn
 
 local toast = Instance.new("TextLabel")
 toast.Name = "Toast"
-toast.Size = UDim2.fromOffset(440, 36)
-toast.Position = UDim2.new(0.5, -220, 0, 152)
+toast.Size = UDim2.fromOffset(520, 44)
+toast.Position = UDim2.new(0.5, -260, 0, 148)
 toast.BackgroundColor3 = Color3.fromRGB(40, 36, 55)
-toast.BackgroundTransparency = 0.2
+toast.BackgroundTransparency = 0.15
 toast.TextColor3 = Color3.fromRGB(240, 230, 255)
 toast.Font = Enum.Font.GothamMedium
 toast.TextSize = 15
 toast.Text = Config.Tagline
+toast.TextWrapped = true
 toast.Parent = gui
 local toastCorner = Instance.new("UICorner")
 toastCorner.CornerRadius = UDim.new(0, 8)
 toastCorner.Parent = toast
 
-local function flash(msg: string)
+local toastStroke = Instance.new("UIStroke")
+toastStroke.Name = "ToastStroke"
+toastStroke.Thickness = 1.5
+toastStroke.Transparency = 0.45
+toastStroke.Color = Color3.fromRGB(160, 170, 210)
+toastStroke.Parent = toast
+
+local toastGen = 0
+local intermissionToken = 0
+
+local TOAST_TINT = {
+	prep = Color3.fromRGB(40, 55, 52),
+	intermission = Color3.fromRGB(45, 50, 70),
+	wave = Color3.fromRGB(70, 42, 58),
+	clear = Color3.fromRGB(42, 58, 52),
+	default = Color3.fromRGB(40, 36, 55),
+}
+
+local function flash(msg: string, tintKey: string?)
+	toastGen += 1
+	local gen = toastGen
 	toast.Text = msg
+	local key = tintKey or "default"
+	local tint = TOAST_TINT.default
+	if key == "prep" then
+		tint = TOAST_TINT.prep
+	elseif key == "intermission" then
+		tint = TOAST_TINT.intermission
+	elseif key == "wave" then
+		tint = TOAST_TINT.wave
+	elseif key == "clear" then
+		tint = TOAST_TINT.clear
+	end
+	toast.BackgroundColor3 = tint
+	toastStroke.Color = if key == "wave"
+		then Color3.fromRGB(220, 140, 160)
+		elseif key == "intermission" then Color3.fromRGB(140, 170, 230)
+		elseif key == "prep" then Color3.fromRGB(130, 200, 180)
+		else Color3.fromRGB(160, 170, 210)
+	task.delay(0.08, function()
+		if gen ~= toastGen then
+			return
+		end
+		toast.BackgroundTransparency = 0.05
+		task.wait(0.12)
+		if gen == toastGen then
+			toast.BackgroundTransparency = 0.15
+		end
+	end)
 end
+
+local function waveComposition(waveIndex: number): string
+	local recipe = Config.Waves[waveIndex]
+	if typeof(recipe) ~= "table" then
+		return "mixed thoughts"
+	end
+	local parts = {}
+	for _, group in recipe do
+		local kindName = group[1]
+		local count = group[2]
+		local kind = Config.EnemyKinds[kindName]
+		local label = if kind then kind.DisplayName else tostring(kindName)
+		table.insert(parts, `{count} {label}`)
+	end
+	if #parts == 0 then
+		return "mixed thoughts"
+	end
+	return table.concat(parts, " · ")
+end
+
+local function stopIntermissionCountdown()
+	intermissionToken += 1
+end
+
+local function startIntermissionCountdown(nextWave: number)
+	stopIntermissionCountdown()
+	local token = intermissionToken
+	local total = Config.SecondsBetweenWaves
+	task.spawn(function()
+		for remaining = total, 1, -1 do
+			if token ~= intermissionToken then
+				return
+			end
+			if latestState and latestState.phase ~= "intermission" then
+				return
+			end
+			local comp = waveComposition(nextWave)
+			flash(
+				`Wave {nextWave - 1} clear · next in {remaining}s — {comp} (or Start early)`,
+				"intermission"
+			)
+			task.wait(1)
+		end
+	end)
+end
+
+local lastPhase: string? = nil
 
 local function updateStartButton()
 	if not latestState then
@@ -241,24 +337,38 @@ Remotes.StateChanged.OnClientEvent:Connect(function(payload)
 	)
 	refreshButtons()
 	updateStartButton()
-	if payload.phase == "prep" then
-		flash("Plant a few positive thoughts, then press Begin.")
-	elseif payload.phase == "intermission" then
-		flash(`Wave clear. Prep for wave {payload.nextWave} — or wait for auto-start.`)
+	local phase = payload.phase
+	local phaseChanged = phase ~= lastPhase
+	lastPhase = phase
+	if not phaseChanged then
+		return
+	end
+	if phase == "prep" then
+		stopIntermissionCountdown()
+		local comp = waveComposition(1)
+		flash(`Plant positive thoughts, then Begin — wave 1: {comp}`, "prep")
+	elseif phase == "intermission" then
+		local nextWave = payload.nextWave or 2
+		startIntermissionCountdown(nextWave)
+	elseif phase == "wave" or phase == "won" or phase == "lost" then
+		stopIntermissionCountdown()
 	end
 end)
 
 Remotes.WaveAnnounce.OnClientEvent:Connect(function(wave: number, maxWaves: number)
-	flash(`Wave {wave}/{maxWaves} — negative thoughts incoming`)
+	stopIntermissionCountdown()
+	local comp = waveComposition(wave)
+	flash(`Wave {wave}/{maxWaves} incoming — {comp}`, "wave")
 	startBtn.Visible = false
 end)
 
 Remotes.ThoughtCleared.OnClientEvent:Connect(function(kind: string, reward: number)
-	flash(`Cleared {kind} (+{reward} Clarity)`)
+	flash(`Cleared {kind} (+{reward} Clarity)`, "clear")
 end)
 
 Remotes.GameOver.OnClientEvent:Connect(function(won: boolean, message: string)
-	flash(message)
+	stopIntermissionCountdown()
+	flash(message, if won then "clear" else "wave")
 	startBtn.Visible = false
 	local banner = Instance.new("TextLabel")
 	banner.Size = UDim2.fromOffset(480, 72)
@@ -346,5 +456,71 @@ UserInputService.TouchTap:Connect(function(positions, processed)
 	end
 end)
 
-flash("Thought Defense v" .. Config.Version .. " — plant, then Begin")
+-- Soft pad hover cue (client-only SelectionBox; does not fight server pad colors)
+local hoverPad: BasePart? = nil
+local hoverBox: SelectionBox? = nil
+local hoverPulse = 0
+
+local function ensureHoverBox(): SelectionBox
+	if hoverBox and hoverBox.Parent then
+		return hoverBox
+	end
+	local box = Instance.new("SelectionBox")
+	box.Name = "PadHoverCue"
+	box.LineThickness = 0.06
+	box.SurfaceTransparency = 0.75
+	box.Color3 = Color3.fromRGB(180, 230, 200)
+	box.SurfaceColor3 = Color3.fromRGB(160, 220, 190)
+	box.Adornee = nil
+	box.Parent = Workspace
+	hoverBox = box
+	return box
+end
+
+local function clearPadHover()
+	if hoverBox then
+		hoverBox.Adornee = nil
+	end
+	hoverPad = nil
+end
+
+local function setPadHover(pad: BasePart?)
+	if pad == hoverPad then
+		return
+	end
+	hoverPad = pad
+	local box = ensureHoverBox()
+	box.Adornee = pad
+	hoverPulse = 0
+	if buildMode == "sell" then
+		box.Color3 = Color3.fromRGB(230, 140, 140)
+		box.SurfaceColor3 = Color3.fromRGB(210, 120, 120)
+	else
+		box.Color3 = Color3.fromRGB(180, 230, 200)
+		box.SurfaceColor3 = Color3.fromRGB(160, 220, 190)
+	end
+end
+
+RunService.RenderStepped:Connect(function(dt)
+	hoverPulse += dt
+	local pad = findPad(mouse.Target)
+	-- Force color refresh when mode changes while still on same pad
+	if pad and pad == hoverPad and hoverBox then
+		if buildMode == "sell" then
+			hoverBox.Color3 = Color3.fromRGB(230, 140, 140)
+			hoverBox.SurfaceColor3 = Color3.fromRGB(210, 120, 120)
+		else
+			hoverBox.Color3 = Color3.fromRGB(180, 230, 200)
+			hoverBox.SurfaceColor3 = Color3.fromRGB(160, 220, 190)
+		end
+	end
+	setPadHover(pad)
+	if hoverBox and hoverPad then
+		local pulse = 0.5 + 0.5 * math.sin(hoverPulse * 5)
+		hoverBox.LineThickness = 0.045 + 0.035 * pulse
+		hoverBox.SurfaceTransparency = 0.82 - 0.12 * pulse
+	end
+end)
+
+flash("Thought Defense v" .. Config.Version .. " — plant, then Begin · hover pads glow", "prep")
 refreshButtons()
