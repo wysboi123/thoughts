@@ -6,8 +6,8 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 
 - [x] **Haze Haven v0–v1.8** — loft string warm + candle + table
 - [x] **Couch Galaxy v0–v1.5** — bookshelf warm + couch fabric
-- [x] **Bus Stop Forever v0–v1.6** — bench warm + shelter roof/glass
-- [x] **Star Porch v0–v1.5** — roof overhang + deck + fire pit
+- [x] **Bus Stop Forever v0–v1.7** — dual shelter roofs + benches
+- [x] **Star Porch v0–v1.6** — house wall + roof + deck + fire pit
 - [x] **Shared** — SoftWelcome + SoftSit + SoftWireSeats + Proximity
 - [ ] **Wire audio** — waiting on Perplexity Q-004 (do not invent)
 - [ ] **First publish** — Femmy: `PUBLISH_CHECKLIST.md` First 10 minutes (Haze)

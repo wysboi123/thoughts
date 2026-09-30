@@ -8,8 +8,8 @@ Femmy’s chill Roblox line. All Rojo filesystem-first. Play: `cd games/<slug> &
 | --- | --- | --- | --- |
 | [`haze-haven`](../games/haze-haven) | 1.8 | float / sit | Loft string warm + candle + table |
 | [`couch-galaxy`](../games/couch-galaxy) | 1.5 | climb / float | Bookshelf warm + couch fabric |
-| [`bus-stop-forever`](../games/bus-stop-forever) | 1.6 | wait / wave | Bench warm + shelter roof/glass |
-| [`star-porch`](../games/star-porch) | 1.5 | sit / glow | Roof overhang + deck + fire pit |
+| [`bus-stop-forever`](../games/bus-stop-forever) | 1.7 | wait / wave | Dual shelter roofs + benches |
+| [`star-porch`](../games/star-porch) | 1.6 | sit / glow | House wall + roof + deck + fire pit |
 
 ## Parked for later (files kept)
 

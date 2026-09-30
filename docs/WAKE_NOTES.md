@@ -9,7 +9,7 @@ Newest first. Overnight agents append after every push.
 - Quiet mode; stop 05:00 · **one digest email at stop only**
 
 **Draft for 05:00 stop digest**
-- Night 6 active versions: Haze **1.8** · Couch **1.5** · Bus **1.6** · Porch **1.5**
+- Night 6 active versions: Haze **1.8** · Couch **1.5** · Bus **1.7** · Porch **1.6**
 - Parked (files kept): Orbit **1.2** · Puddle **1.2** · Lantern **1.1**
 - Shipped: focus cut → restore parked → atmosphere polish on active four
 - Blocked: Perplexity audio + Studio publish

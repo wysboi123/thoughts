@@ -543,6 +543,8 @@ task.spawn(function()
 				child.Transparency = 0.3 + math.sin(t * 0.7) * 0.08
 			elseif child.Name == "ShelterRoof" and child:IsA("BasePart") then
 				child.Color = Color3.fromRGB(55, 60, 70):Lerp(Color3.fromRGB(70, 75, 85), (math.sin(t * 0.65) + 1) / 2)
+			elseif child.Name == "Shelter2Roof" and child:IsA("BasePart") then
+				child.Color = Color3.fromRGB(50, 55, 65):Lerp(Color3.fromRGB(65, 70, 80), (math.sin(t * 0.65 + 1) + 1) / 2)
 			elseif child:IsA("BasePart")
 				and string.find(child.Name, "Bench", 1, true)
 				and not string.find(child.Name, "Seat", 1, true)
