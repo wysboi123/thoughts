@@ -7,8 +7,9 @@ Newest first. Overnight agents append after every push.
 - **No Femmy vote** — Gmail `from:ngkdevid@gmail.com` empty for Thought Defense / mockup / A·B·C; DESIGN_CONSULT unchanged
 - **No Luau** — Upgrade UI still blocked on Mockup vote A/B/C
 - Doc polish: gallery captions + root consult table clarifying the single open question
-- Ops: re-arm `thought-defense-hourly` (subscriptions were empty); email reminder to pick A/B/C; PR #2 title/body refresh for v0.2 + mockups
-- Next batch: implement chosen Upgrade UI **only** after vote; otherwise keep waiting
+- Ops: re-armed `thought-defense-hourly` cron `15 * * * *` (list was empty); emailed A/B/C reminder to ngkdevid@gmail.com
+- **PR #2:** ManagePullRequest tool missing in this run (same gap as mockup batch) — intended title/body: “Thought Defense v0.2 + Upgrade UI mockups (vote A/B/C)” + v0.2 summary + mockup paths + vote ask
+- Next batch: implement chosen Upgrade UI **only** after vote; otherwise keep waiting; retry PR title/body update
 
 ## 2026-09-30 00:25 UTC — Upgrade UI mockups (hourly batch 3)
 
