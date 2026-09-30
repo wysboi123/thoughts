@@ -2,6 +2,15 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-30 23:00 UTC — Night 7 resume
+
+- Stop re-armed → 05:00 UTC (`overnight-stop-5am-utc`); quiet CP ~01:00 / ~03:00
+- No Perplexity answers in `docs/research/` — audio still unwired (Q-001–004 open)
+- Continuing USP deepen on active four (Haze / Couch / Bus / Porch); parked untouched
+- Early Night 7: Chill package polish (SoftCompany pulse, SoftWelcome themes, SoftGoals fade, SoftSit fade) + per-game USP hooks → target Haze **2.0** · Couch **1.7** · Bus **1.9** · Porch **1.8**
+- PR: https://github.com/wysboi123/thoughts/pull/3 (USP branch)
+- Quiet mode; **no mid-shift email**; one digest at 05:00 stop only
+
 ## 2026-09-30 05:00 UTC — OVERNIGHT STOP (Night 6)
 
 Night 6 complete. No new features this wrap. One digest email sent.
