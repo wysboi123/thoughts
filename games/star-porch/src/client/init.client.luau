@@ -184,6 +184,7 @@ local function findJarLight(): PointLight?
 	return nil
 end
 
+local porchCompanyWelcomed = false
 SoftCompany.mount(playerGui, player, {
 	Radius = Config.Proximity.Radius,
 	Color = Color3.fromRGB(180, 200, 170),
@@ -199,6 +200,10 @@ SoftCompany.mount(playerGui, player, {
 				light.Brightness = math.max(light.Brightness, 2.2)
 				light.Range = math.max(light.Range, 14)
 			end
+		end
+		if n >= 1 and not porchCompanyWelcomed then
+			porchCompanyWelcomed = true
+			SoftWelcome.show(playerGui, "porch company", "someone nearby — jar feels warmer", porchStyle)
 		end
 	end,
 })

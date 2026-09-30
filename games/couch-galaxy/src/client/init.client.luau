@@ -109,10 +109,20 @@ Remotes.StarCollected.OnClientEvent:Connect(function(count: number)
 	counter.Text = ("Stars  %d"):format(count)
 end)
 
+local galaxyWelcomed = false
+local couchStyle = {
+	AccentColor = Color3.fromRGB(140, 120, 200),
+	FrameColor = Color3.fromRGB(26, 20, 40),
+}
+
 Remotes.EnteredGalaxy.OnClientEvent:Connect(function()
 	inGalaxy = true
 	applyGalaxyLighting()
 	refreshPlace(false)
+	if not galaxyWelcomed then
+		galaxyWelcomed = true
+		SoftWelcome.show(playerGui, "galaxy loft", "second world · beacon home when ready", couchStyle)
+	end
 end)
 
 Remotes.ReturnedHome.OnClientEvent:Connect(function()
@@ -196,7 +206,4 @@ SoftCompany.mount(playerGui, player, {
 	end,
 })
 
-SoftWelcome.show(playerGui, Config.GameName, "two worlds, one couch. roof first.", {
-	AccentColor = Color3.fromRGB(140, 120, 200),
-	FrameColor = Color3.fromRGB(26, 20, 40),
-})
+SoftWelcome.show(playerGui, Config.GameName, "two worlds, one couch. roof first.", couchStyle)
