@@ -13,11 +13,12 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 
 ## State
 
-- Version: **0.2** (mockup batch; still 0.2 until UI lands)
+- Version: **0.2** (still 0.2 until Upgrade UI Luau lands after vote)
 - Path: `games/thought-defense`
 - Branch: `cursor/roblox-hourly-batch-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/2
-- Blocked on: **Mockup vote A/B/C** (Upgrade UI); also open title/tone/placement/mode/MP; audio ids (Q-004)
-- Open consult: Mockup vote — Selection panel / Context bar / Tray dual-mode
+- Blocked on: **Mockup vote A/B/C** (Upgrade UI) — last checked 2026-09-30 01:15 UTC, no reply
+- Open consult (only): Mockup vote — A Selection panel / B Context bar / C Tray dual-mode
 - Specs: `games/thought-defense/docs/UI_MOCKUPS.md`
 - Gallery: `games/thought-defense/docs/mockups/index.html`
+- Also open (not this batch): title/tone/placement/mode/MP; audio ids (Q-004)

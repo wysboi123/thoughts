@@ -55,8 +55,9 @@ You said click-to-upgrade via a **UI button** is okay. Three concepts are ready 
 **Gallery (open locally):** [mockups/index.html](mockups/index.html)  
 **PNGs:** [mockup-01](mockups/mockup-01-selection-panel.png) · [mockup-02](mockups/mockup-02-context-bar.png) · [mockup-03](mockups/mockup-03-tray-dual-mode.png)
 
-**Your pick?** Reply **A / B / C** (or a hybrid, e.g. “B + keep pad-click upgrade”).  
-Implementation is blocked on this answer.
+**Your pick?** Reply **A / B / C** (or a hybrid, e.g. “B + keep pad-click upgrade”) in chat, email to the agent, or by editing this file.  
+Open the gallery locally or view PNGs in the repo if images do not render in email/PR.  
+Implementation is blocked on this answer — hourly batches will keep waiting (no Luau until you vote).
 
 ---
 

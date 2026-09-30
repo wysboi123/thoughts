@@ -2,6 +2,14 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-30 01:15 UTC — Hourly batch 4 (waited on vote)
+
+- **No Femmy vote** — Gmail `from:ngkdevid@gmail.com` empty for Thought Defense / mockup / A·B·C; DESIGN_CONSULT unchanged
+- **No Luau** — Upgrade UI still blocked on Mockup vote A/B/C
+- Doc polish: gallery captions + root consult table clarifying the single open question
+- Ops: re-arm `thought-defense-hourly` (subscriptions were empty); email reminder to pick A/B/C; PR #2 title/body refresh for v0.2 + mockups
+- Next batch: implement chosen Upgrade UI **only** after vote; otherwise keep waiting
+
 ## 2026-09-30 00:25 UTC — Upgrade UI mockups (hourly batch 3)
 
 - **No Luau** this batch — Femmy OK’d Upgrade **button**; waiting on mockup pick
