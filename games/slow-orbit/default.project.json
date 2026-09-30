@@ -1,0 +1,73 @@
+{
+  "name": "SlowOrbit",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "Shared": {
+        "$path": "src/shared"
+      },
+      "Chill": {
+        "$path": "../../packages/chill"
+      }
+    },
+    "ServerScriptService": {
+      "Server": {
+        "$path": "src/server"
+      }
+    },
+    "StarterPlayer": {
+      "StarterPlayerScripts": {
+        "Client": {
+          "$path": "src/client"
+        }
+      }
+    },
+    "Workspace": {
+      "$properties": {
+        "Gravity": 0
+      }
+    },
+    "Lighting": {
+      "$properties": {
+        "Ambient": [0.22, 0.16, 0.32],
+        "Brightness": 1.35,
+        "ClockTime": 19.8,
+        "FogColor": [0.28, 0.18, 0.4],
+        "FogEnd": 520,
+        "FogStart": 60,
+        "OutdoorAmbient": [0.28, 0.2, 0.4],
+        "GlobalShadows": true
+      },
+      "OrbitAtmosphere": {
+        "$className": "Atmosphere",
+        "$properties": {
+          "Density": 0.32,
+          "Offset": 0.15,
+          "Color": [0.45, 0.3, 0.65],
+          "Decay": [0.2, 0.12, 0.3],
+          "Glare": 0.12,
+          "Haze": 1.4
+        }
+      },
+      "OrbitBloom": {
+        "$className": "BloomEffect",
+        "$properties": {
+          "Enabled": true,
+          "Intensity": 0.55,
+          "Size": 28,
+          "Threshold": 0.85
+        }
+      },
+      "OrbitColor": {
+        "$className": "ColorCorrectionEffect",
+        "$properties": {
+          "Enabled": true,
+          "Brightness": 0.02,
+          "Contrast": 0.1,
+          "Saturation": 0.2,
+          "TintColor": [0.95, 0.88, 1.05]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "name": "LanternDrift",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "Shared": { "$path": "src/shared" },
+      "Chill": { "$path": "../../packages/chill" }
+    },
+    "ServerScriptService": {
+      "Server": { "$path": "src/server" }
+    },
+    "StarterPlayer": {
+      "StarterPlayerScripts": {
+        "Client": { "$path": "src/client" }
+      }
+    },
+    "Workspace": {
+      "$properties": { "Gravity": 90 }
+    },
+    "Lighting": {
+      "$properties": {
+        "Ambient": [0.18, 0.16, 0.28],
+        "Brightness": 0.9,
+        "ClockTime": 21,
+        "FogColor": [0.2, 0.18, 0.3],
+        "FogEnd": 180,
+        "FogStart": 20,
+        "OutdoorAmbient": [0.22, 0.2, 0.32],
+        "GlobalShadows": true
+      },
+      "LanternAtmosphere": {
+        "$className": "Atmosphere",
+        "$properties": {
+          "Density": 0.5,
+          "Offset": 0.25,
+          "Color": [0.35, 0.3, 0.5],
+          "Decay": [0.15, 0.12, 0.25],
+          "Glare": 0.08,
+          "Haze": 2.2
+        }
+      },
+      "LanternBloom": {
+        "$className": "BloomEffect",
+        "$properties": {
+          "Enabled": true,
+          "Intensity": 0.7,
+          "Size": 32,
+          "Threshold": 0.75
+        }
+      }
+    }
+  }
+}

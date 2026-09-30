@@ -11,7 +11,7 @@ This repo is the production floor for OpenClaw + Colin + Cursor. Games live unde
 | OpenClaw iOS | You’re setting it up |
 | Colin | You’re setting it up |
 | Head coder (me) | Overnight shift active → 05:00 UTC |
-| Experiences | 4 chill games — see Games below |
+| Experiences | 4 active + 3 parked — see Games below |
 
 ## Quick start (your machine)
 
@@ -46,14 +46,19 @@ See `docs/HEAD_CODER_PLAYBOOK.md`.
 
 ## Games
 
-Active lineup (Femmy 2026-09-29):
+**Active** (focus now):
 
 - [`games/haze-haven`](games/haze-haven) — lounge + loft + hammock, vibe board
 - [`games/couch-galaxy`](games/couch-galaxy) — cozy apt → roof → galaxy loft
 - [`games/bus-stop-forever`](games/bus-stop-forever) — calm bus stop + wave
 - [`games/star-porch`](games/star-porch) — night porch + fireflies
-- [`packages/chill`](packages/chill) — SoftGoals / SoftWelcome / SoftSit / SoftWireSeats / Proximity
 
-Dropped: Slow Orbit, Puddle Mirror, Lantern Drift.
+**Parked for later** (files kept — do not erase):
+
+- [`games/slow-orbit`](games/slow-orbit) — purple dusk planet + moonlet
+- [`games/puddle-mirror`](games/puddle-mirror) — puddle unlocks + deep mirror
+- [`games/lantern-drift`](games/lantern-drift) — fog lake raft + lanterns
+
+Shared: [`packages/chill`](packages/chill) — SoftGoals / SoftWelcome / SoftSit / SoftWireSeats / Proximity
 
 Publish: [`docs/PUBLISH_CHECKLIST.md`](docs/PUBLISH_CHECKLIST.md) · Status: [`docs/PUBLISH_STATUS.md`](docs/PUBLISH_STATUS.md) · Copy: [`docs/EXPERIENCE_COPY.md`](docs/EXPERIENCE_COPY.md) · Gallery: [`docs/GAMES.md`](docs/GAMES.md)

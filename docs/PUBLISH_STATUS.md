@@ -2,12 +2,22 @@
 
 Femmy: after you publish a place in Studio, paste the URL / place id here so overnight agents can track live targets.
 
+### Active
+
 | Slug | Place URL | Place ID | Notes |
 | --- | --- | --- | --- |
 | haze-haven | _pending_ | | Recommended first publish |
 | couch-galaxy | _pending_ | | |
 | bus-stop-forever | _pending_ | | |
 | star-porch | _pending_ | | |
+
+### Parked for later
+
+| Slug | Place URL | Place ID | Notes |
+| --- | --- | --- | --- |
+| slow-orbit | _pending_ | | Parked — files kept |
+| puddle-mirror | _pending_ | | Parked — files kept |
+| lantern-drift | _pending_ | | Parked — files kept |
 
 ## First publish pick
 

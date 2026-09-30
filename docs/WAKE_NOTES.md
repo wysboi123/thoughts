@@ -2,14 +2,20 @@
 
 Newest first. Overnight agents append after every push.
 
-## 2026-09-29 23:57 UTC — Focus cut: keep 4 games
+## 2026-09-30 00:00 UTC — Parked games restored (do not erase)
 
-Femmy: drop all games except **Haze Haven**, **Couch Galaxy**, **Bus Stop Forever**, **Star Porch**.
+Femmy: work on dropped games later — **do not erase files**.
 
-- Removed from repo: `slow-orbit`, `puddle-mirror`, `lantern-drift`
-- Docs/gallery/publish lists updated to the four-game lineup
-- Post-cut polish: Haze **1.5** · Couch **1.2** · Bus **1.3** · Porch **1.2**
-- Night 6 continues on the kept four only (no invented audio)
+- Restored `slow-orbit`, `puddle-mirror`, `lantern-drift` from git
+- Marked **Parked for later** in gallery/backlog/publish docs (not deleted)
+- Active focus still: Haze · Couch · Bus · Porch
+
+## 2026-09-29 23:57 UTC — Focus: 4 active games
+
+Femmy: focus overnight polish on **Haze Haven**, **Couch Galaxy**, **Bus Stop Forever**, **Star Porch**.
+
+- Post-focus polish: Haze **1.5** · Couch **1.2** · Bus **1.3** · Porch **1.2**
+- (Briefly deleted parked trio — restored 2026-09-30; keep files forever unless Femmy says otherwise)
 
 ## 2026-09-29 23:23 UTC — Night 6 resume
 

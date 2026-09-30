@@ -44,7 +44,9 @@ rojo serve
 7. Paste URL into [`PUBLISH_STATUS.md`](PUBLISH_STATUS.md)
 8. Use titles/descriptions from [`EXPERIENCE_COPY.md`](EXPERIENCE_COPY.md)
 
-## Game slugs (active)
+## Game slugs
+
+### Active
 
 | Slug | Pitch |
 | --- | --- |
@@ -52,6 +54,14 @@ rojo serve
 | `couch-galaxy` | Apartment roof → night sky |
 | `bus-stop-forever` | Infinite calm bus stop |
 | `star-porch` | Night porch + fireflies |
+
+### Parked for later (files kept — do not erase)
+
+| Slug | Pitch |
+| --- | --- |
+| `slow-orbit` | Purple-dusk planet + moonlet |
+| `puddle-mirror` | Puddles open secret nooks |
+| `lantern-drift` | Fog lake raft + lanterns |
 
 ## Don't commit
 
