@@ -6,7 +6,12 @@
 
 **Current HUD (audit):** Top bar (title + Calm / Clarity / Wave) · toast · Begin/Start wave · bottom tray (Affirmation / Gratitude / Humor Plant + Sell). v0.2 already upgrades on **pad click** server-side; Femmy OK’d an explicit **Upgrade button** instead of (or in addition to) silent pad-click upgrade.
 
-**Visuals:** [mockups/index.html](mockups/index.html) · PNGs below.
+**Visuals (2026-09-30 refresh):** [mockups/index.html](mockups/index.html)  
+- Draft A: [mockups/draft-a-selection-panel.jpg](mockups/draft-a-selection-panel.jpg)  
+- Draft B: [mockups/draft-b-context-bar.jpg](mockups/draft-b-context-bar.jpg)  
+- Draft C: [mockups/draft-c-tray-dual-mode.jpg](mockups/draft-c-tray-dual-mode.jpg)  
+(Earlier PNGs `mockup-01/02/03-*.png` kept as archive.)
+
 
 ---
 
@@ -43,7 +48,7 @@ Prefer bottom sheet (≥44px tap targets). Avoid edge-hug on notched devices (`I
 - **Change:** Pad click = select when occupied (upgrade only via button).
 - **Keep:** Top bar, toast, plant tray, Begin/Start, Sell still reachable from panel (tray Sell can stay for mode toggle or defer to panel).
 
-**Mockup:** [mockups/mockup-01-selection-panel.png](mockups/mockup-01-selection-panel.png)
+**Mockup:** [mockups/draft-a-selection-panel.jpg](mockups/draft-a-selection-panel.jpg)
 
 ---
 
@@ -79,7 +84,7 @@ Full-width bar with large Upgrade tap target; keep ≥12px gap above tray so mis
 - **Change:** Occupied pad click = select (not silent upgrade).
 - **Keep:** Tray layout, top bar, toast, Start.
 
-**Mockup:** [mockups/mockup-02-context-bar.png](mockups/mockup-02-context-bar.png)
+**Mockup:** [mockups/draft-b-context-bar.jpg](mockups/draft-b-context-bar.jpg)
 
 ---
 
@@ -116,7 +121,7 @@ Excellent for thumbs — everything stays in the bottom safe zone. Dimmed plant 
 - **Maybe retire:** Always-visible Sell-as-mode toggle (Sell becomes selected-tower action), or keep both carefully labeled.
 - **Keep:** Top bar, toast, Start.
 
-**Mockup:** [mockups/mockup-03-tray-dual-mode.png](mockups/mockup-03-tray-dual-mode.png)
+**Mockup:** [mockups/draft-c-tray-dual-mode.jpg](mockups/draft-c-tray-dual-mode.jpg)
 
 ---
 
