@@ -2,6 +2,18 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-30 02:15 UTC — Hourly batch 5 (still waiting on vote)
+
+- **No Femmy vote** — Gmail `from:ngkdevid@gmail.com` empty; mockup threads are agent-sent only; DESIGN_CONSULT unchanged
+- **No Upgrade UI Luau** — still blocked on Mockup vote A/B/C
+- Light slice (unrelated to forcing vote):
+  - Enemy billboard **flavor one-liners** (ToS-safe) per Doubt / Worry / Self-Critic
+  - Path **soft edge rails** + Peace Core **halo** pulse
+  - README Studio steps clarified
+- Ops: re-armed `thought-defense-hourly` cron `15 * * * *` (list was empty again); emailed short progress + A/B/C ask
+- **PR #2:** ManagePullRequest tool **still missing** from this run’s catalog — cannot update title/body (do not use `gh` write). Intended: “Thought Defense v0.2 + Upgrade UI mockups (vote A/B/C)” + mockup paths + vote ask
+- Next batch: implement chosen Upgrade UI **only** after vote; otherwise keep waiting; retry ManagePullRequest
+
 ## 2026-09-30 01:15 UTC — Hourly batch 4 (waited on vote)
 
 - **No Femmy vote** — Gmail `from:ngkdevid@gmail.com` empty for Thought Defense / mockup / A·B·C; DESIGN_CONSULT unchanged

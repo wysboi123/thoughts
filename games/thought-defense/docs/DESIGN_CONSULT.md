@@ -32,7 +32,7 @@ Alternates: Mind Garden · Clarity Lane · Soft Siege · Kind Fortress
 
 ### 6. Metaphor depth
 ✅ Light labels only (Doubt / Worry / Affirmation…)  
-□ Short flavor lines on hover  
+✅ Short flavor lines on enemy billboards (v0.2 polish — ToS-safe one-liners)  
 □ Journal / reflection prompts between waves (opt-in)  
 
 ### 7. Difficulty

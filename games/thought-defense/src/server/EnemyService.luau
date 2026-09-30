@@ -28,16 +28,47 @@ local waypoints: { Vector3 }
 local onLeak: ((EnemyRecord) -> ())?
 local onCleared: ((EnemyRecord) -> ())?
 
-local function healthBar(part: BasePart): Frame
+local function pickFlavor(kind: any): string?
+	local lines = kind.Flavor
+	if typeof(lines) ~= "table" or #lines == 0 then
+		return nil
+	end
+	return lines[math.random(1, #lines)]
+end
+
+local function healthBar(part: BasePart, flavor: string?): Frame
 	local gui = Instance.new("BillboardGui")
 	gui.Name = "HealthBar"
-	gui.Size = UDim2.fromOffset(80, 10)
-	gui.StudsOffset = Vector3.new(0, 2.4, 0)
+	gui.Size = UDim2.fromOffset(110, 36)
+	gui.StudsOffset = Vector3.new(0, 2.8, 0)
 	gui.AlwaysOnTop = true
 	gui.Parent = part
 
+	local nameLabel = Instance.new("TextLabel")
+	nameLabel.Name = "KindLabel"
+	nameLabel.Size = UDim2.new(1, 0, 0, 14)
+	nameLabel.Position = UDim2.fromOffset(0, 0)
+	nameLabel.BackgroundTransparency = 1
+	nameLabel.TextColor3 = Color3.fromRGB(230, 210, 240)
+	nameLabel.TextScaled = true
+	nameLabel.Font = Enum.Font.GothamMedium
+	nameLabel.Parent = gui
+
+	local flavorLabel = Instance.new("TextLabel")
+	flavorLabel.Name = "FlavorLabel"
+	flavorLabel.Size = UDim2.new(1, 0, 0, 12)
+	flavorLabel.Position = UDim2.fromOffset(0, 13)
+	flavorLabel.BackgroundTransparency = 1
+	flavorLabel.TextColor3 = Color3.fromRGB(190, 175, 205)
+	flavorLabel.TextScaled = true
+	flavorLabel.Font = Enum.Font.Gotham
+	flavorLabel.Text = flavor or ""
+	flavorLabel.Visible = flavor ~= nil and flavor ~= ""
+	flavorLabel.Parent = gui
+
 	local bg = Instance.new("Frame")
-	bg.Size = UDim2.fromScale(1, 1)
+	bg.Size = UDim2.new(1, -20, 0, 8)
+	bg.Position = UDim2.fromOffset(10, 26)
 	bg.BackgroundColor3 = Color3.fromRGB(40, 30, 45)
 	bg.BorderSizePixel = 0
 	bg.Parent = gui
@@ -48,16 +79,6 @@ local function healthBar(part: BasePart): Frame
 	fill.BackgroundColor3 = Color3.fromRGB(200, 90, 120)
 	fill.BorderSizePixel = 0
 	fill.Parent = bg
-
-	local nameLabel = Instance.new("TextLabel")
-	nameLabel.Name = "KindLabel"
-	nameLabel.Size = UDim2.fromOffset(100, 16)
-	nameLabel.Position = UDim2.fromOffset(-10, -18)
-	nameLabel.BackgroundTransparency = 1
-	nameLabel.TextColor3 = Color3.fromRGB(230, 210, 240)
-	nameLabel.TextScaled = true
-	nameLabel.Font = Enum.Font.Gotham
-	nameLabel.Parent = gui
 
 	return fill
 end
@@ -113,7 +134,7 @@ function EnemyService.spawn(kindName: string): EnemyRecord?
 	part:SetAttribute("EnemyId", id)
 	part:SetAttribute("Kind", kindName)
 
-	local fill = healthBar(part)
+	local fill = healthBar(part, pickFlavor(kind))
 	local gui = part:FindFirstChild("HealthBar")
 	if gui and gui:IsA("BillboardGui") then
 		local label = gui:FindFirstChild("KindLabel")

@@ -7,9 +7,9 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 - [x] **Thought Defense v0.1** — scaffold (path, waves, 3 enemies, 3 towers, HUD)
 - [x] **Thought Defense v0.2** — prep Begin · upgrades L3 · sell · intermission
 - [x] **Thought Defense — Upgrade UI mockups** — 3 concepts + PNGs + gallery (vote open)
-- [ ] **Thought Defense — Upgrade UI Luau** — **blocked on Femmy Mockup vote A/B/C** (checked 01:15 UTC — no vote yet)
+- [ ] **Thought Defense — Upgrade UI Luau** — **blocked on Femmy Mockup vote A/B/C** (checked 02:15 UTC — no vote yet)
 - [ ] **Thought Defense v0.3** — apply Femmy design answers · polish / flavor
-- [ ] **Thought Defense** — primary focus. Consult `docs/DESIGN_CONSULT.md` (only open ask: mockup vote)
+- [x] **Thought Defense — light polish while waiting** — enemy flavor billboards · path rails · Peace Core halo (02:15 UTC)- [ ] **Thought Defense** — primary focus. Consult `docs/DESIGN_CONSULT.md` (only open ask: mockup vote)
 - [x] **Haze Haven v0–v1.4** — hammock sway + rug + vibe board + pads
 - [x] **Slow Orbit v0–v1.2** — bead sparkle + planet/moonlet glow
 - [x] **Couch Galaxy v0–v1.1** — couch rug pulse + hammock + apt lights

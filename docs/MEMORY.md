@@ -17,8 +17,9 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - Path: `games/thought-defense`
 - Branch: `cursor/roblox-hourly-batch-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/2
-- Blocked on: **Mockup vote A/B/C** (Upgrade UI) — last checked 2026-09-30 01:15 UTC, no reply
+- Blocked on: **Mockup vote A/B/C** (Upgrade UI) — last checked 2026-09-30 02:15 UTC, no reply
 - Open consult (only): Mockup vote — A Selection panel / B Context bar / C Tray dual-mode
 - Specs: `games/thought-defense/docs/UI_MOCKUPS.md`
 - Gallery: `games/thought-defense/docs/mockups/index.html`
 - Also open (not this batch): title/tone/placement/mode/MP; audio ids (Q-004)
+- 02:15 polish while waiting: enemy flavor billboards · path rails · Peace Core halo

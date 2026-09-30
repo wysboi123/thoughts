@@ -64,6 +64,12 @@ local Config = {
 			Health = 40,
 			Speed = 8,
 			ClarityReward = 8,
+			-- Soft metaphor only — ToS-safe, never medical/therapy framing
+			Flavor = {
+				"what if…?",
+				"not sure about this",
+				"maybe later",
+			},
 		},
 		Worry = {
 			DisplayName = "Worry",
@@ -72,6 +78,11 @@ local Config = {
 			Health = 24,
 			Speed = 13,
 			ClarityReward = 10,
+			Flavor = {
+				"spinning again",
+				"keep checking",
+				"tiny storm",
+			},
 		},
 		SelfCritic = {
 			DisplayName = "Self-Critic",
@@ -80,6 +91,11 @@ local Config = {
 			Health = 110,
 			Speed = 5.5,
 			ClarityReward = 18,
+			Flavor = {
+				"too loud today",
+				"harsh echo",
+				"not that kind",
+			},
 		},
 	},
 

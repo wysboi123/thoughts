@@ -100,6 +100,24 @@ function WorldBuilder.build(): {
 		if flat.Magnitude > 0.01 then
 			seg.CFrame = CFrame.lookAt(mid, mid + flat)
 		end
+		-- Soft edge rails — clarify the lane without clutter
+		local halfW = Config.Path.Width * 0.5 + 0.35
+		for side = -1, 1, 2 do
+			local rail = PartFactory.make({
+				Name = "PathRail" .. i .. (if side < 0 then "L" else "R"),
+				Size = Vector3.new(0.35, 0.45, length + 0.2),
+				Position = mid,
+				Color = Color3.fromRGB(145, 160, 195),
+				Material = Enum.Material.SmoothPlastic,
+				CanCollide = false,
+				Transparency = 0.35,
+				Parent = pathFolder,
+			})
+			if flat.Magnitude > 0.01 then
+				local look = CFrame.lookAt(mid, mid + flat)
+				rail.CFrame = look * CFrame.new(side * halfW, 0.15, 0)
+			end
+		end
 	end
 	-- Waypoint discs for readability
 	for i, p in points do
@@ -164,6 +182,21 @@ function WorldBuilder.build(): {
 	coreLight.Range = 24
 	coreLight.Parent = core
 
+	-- Soft halo ring under the core (readability + calm glow)
+	local halo = PartFactory.make({
+		Name = "PeaceHalo",
+		Size = Vector3.new(0.4, 14, 14),
+		Position = corePos + Vector3.new(0, 0.4, 0),
+		Color = Color3.fromRGB(140, 220, 210),
+		Material = Enum.Material.Neon,
+		Shape = Enum.PartType.Cylinder,
+		CanCollide = false,
+		Transparency = 0.55,
+		Parent = decor,
+	})
+	halo.Orientation = Vector3.new(0, 0, 90)
+	halo.CastShadow = false
+
 	local coreGui = Instance.new("BillboardGui")
 	coreGui.Size = UDim2.fromOffset(140, 36)
 	coreGui.StudsOffset = Vector3.new(0, 5, 0)
@@ -178,13 +211,16 @@ function WorldBuilder.build(): {
 	coreLabel.Font = Enum.Font.GothamBold
 	coreLabel.Parent = coreGui
 
-	-- Soft pulse on core
+	-- Soft pulse on core + halo
 	task.spawn(function()
 		local t = 0
 		while core.Parent do
 			t += task.wait(0.05)
 			coreLight.Brightness = 1.6 + math.sin(t * 1.4) * 0.5
 			core.Transparency = 0.05 + math.sin(t * 0.9) * 0.05
+			if halo.Parent then
+				halo.Transparency = 0.5 + math.sin(t * 1.1) * 0.12
+			end
 		end
 	end)
 
