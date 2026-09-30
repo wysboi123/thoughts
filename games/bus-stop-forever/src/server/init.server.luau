@@ -539,6 +539,8 @@ task.spawn(function()
 				if light then
 					light.Brightness = 1.8 + math.sin(t * 1.35) * 0.4
 				end
+			elseif child.Name == "ShelterBack" and child:IsA("BasePart") then
+				child.Transparency = 0.3 + math.sin(t * 0.7) * 0.08
 			elseif child.Name == "Timetable" and child:IsA("BasePart") then
 				child.Color = Color3.fromRGB(35, 40, 50):Lerp(Color3.fromRGB(45, 55, 65), (math.sin(t * 0.8) + 1) / 2)
 			elseif child.Name == "NewsBox" and child:IsA("BasePart") then

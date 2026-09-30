@@ -530,6 +530,9 @@ task.spawn(function()
 				if light then
 					light.Brightness = 0.4 + math.sin(t * 2.2) * 0.25
 				end
+			elseif child.Name == "SideTable" and child:IsA("BasePart") then
+				local warm = (math.sin(t * 0.9) + 1) / 2
+				child.Color = Color3.fromRGB(85, 65, 48):Lerp(Color3.fromRGB(110, 85, 60), warm * 0.45)
 			elseif child.Name == "FirePitGlow" and child:IsA("BasePart") then
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then
