@@ -262,13 +262,15 @@ local function refreshTimetable()
 	local waitLine = if n <= 0 then "waiting: alone is fine" elseif n == 1 then "waiting: 1 together" else ("waiting: %d together"):format(n)
 	label.Text = "NEXT BUS\nwhenever\n\n" .. waitLine .. "\nyou're already on time"
 	label.TextColor3 = if n >= 1 then Color3.fromRGB(220, 240, 190) else Color3.fromRGB(200, 220, 180)
-	local glow = world:FindFirstChild("ShelterGlow")
-	if glow and glow:IsA("BasePart") then
-		local light = glow:FindFirstChildOfClass("PointLight")
-		if light then
-			light.Brightness = if n >= 1 then 1.55 else 1.2
+	for _, glowName in { "ShelterGlow", "Shelter2Glow" } do
+		local glow = world:FindFirstChild(glowName)
+		if glow and glow:IsA("BasePart") then
+			local light = glow:FindFirstChildOfClass("PointLight")
+			if light then
+				light.Brightness = if n >= 1 then 1.55 else 1.05
+			end
+			glow.Transparency = if n >= 1 then 0.32 else 0.48
 		end
-		glow.Transparency = if n >= 1 then 0.32 else 0.45
 	end
 end
 

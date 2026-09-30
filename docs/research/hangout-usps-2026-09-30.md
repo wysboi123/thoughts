@@ -27,6 +27,11 @@ Agent research (Context web-answers + Creator Hub / DevForum patterns). Not a Pe
 - DevForum: hangout popularity / intentional co-play signals
 - Context web-answers request `a10f5670-c599-4172-a101-30ae5fb2e959` (2026-09-30)
 
+## Night 7 apply (no Perplexity paste yet)
+
+Agent deepened USPs from this note + Context scan without waiting on Q-001–004:
+SoftCompany pulse, vibe board sync tint, waiting status machine, jar HUD, two-world Lighting.
+
 ## Follow-up for Femmy / Perplexity
 
 Still want Q-001–004 answers in `docs/research/` — especially Q-004 audio ids before wiring sound.
