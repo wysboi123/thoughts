@@ -9,10 +9,11 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 - [x] **Bus Stop Forever v0–v1.7** — dual shelter roofs + benches
 - [x] **Star Porch v0–v1.6** — house wall + roof + deck + fire pit
 - [x] **Shared** — SoftWelcome + SoftSit + SoftWireSeats + Proximity
+- [x] **Night 6** — complete (active-four polish; parked trio kept)
 - [ ] **Wire audio** — waiting on Perplexity Q-004 (do not invent)
 - [ ] **First publish** — Femmy: `PUBLISH_CHECKLIST.md` First 10 minutes (Haze)
 - [ ] **Apply Q-001–003** when answers land
-- [ ] **Night 6 final** — light polish until 05:00; ONE digest email at stop
+- [ ] **Night 7** — wire audio if research lands; help publish Haze; parked later
 
 ## Parked for later (files kept — do not erase)
 

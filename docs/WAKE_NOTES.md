@@ -2,6 +2,31 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-30 05:00 UTC — OVERNIGHT STOP (Night 6)
+
+Night 6 complete. No new features this wrap. One digest email sent.
+
+**Shipped Night 6**
+- Femmy focus: polish **Haze / Couch / Bus / Porch** only
+- Parked (files kept — do not erase): Slow Orbit · Puddle Mirror · Lantern Drift
+- Active versions: Haze **1.8** · Couch **1.5** · Bus **1.7** · Porch **1.6**
+- 10 commits since 2026-09-29 23:00 UTC
+- No invented audio ids; research still empty
+
+**Blocked**
+- Perplexity Q-001–004 still open — no invented audio ids
+- First Studio publish → `docs/PUBLISH_STATUS.md`
+
+**Ops**
+- PR: https://github.com/wysboi123/thoughts/pull/1
+- Daily resume `overnight-daily-resume` **active** (23:00 UTC)
+- Email: one digest at stop only (Femmy policy)
+
+**Night 7 (23:00 UTC)**
+1. Apply any Perplexity research / wire audio
+2. Help Femmy publish first place (Haze recommended)
+3. Continue active-four polish if research empty; parked games only when Femmy asks
+
 ## 2026-09-30 03:00 UTC — Night 6 checkpoint 2 (quiet)
 
 - Active: **Haze 1.8** loft strings · **Couch 1.5** bookshelf · **Bus 1.6** benches · **Porch 1.5** roof overhang
