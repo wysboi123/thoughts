@@ -9,6 +9,9 @@ import Animated, {
   withSequence,
   withTiming,
 } from 'react-native-reanimated';
+import { softHaptic } from '../a11y/haptics';
+import { MIN_TAP, TAP_SLOP } from '../a11y/tapTargets';
+import { useReducedMotion } from '../a11y/useReducedMotion';
 import { colors } from '../theme/colors';
 import { fonts } from '../theme/typography';
 
@@ -33,10 +36,11 @@ export function PadDisc({
   onPress,
 }: Props) {
   const breath = useSharedValue(1);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
-    if (filled) {
-      breath.value = withTiming(1, { duration: 200 });
+    if (filled || reduceMotion) {
+      breath.value = withTiming(1, { duration: reduceMotion ? 0 : 200 });
       return;
     }
     breath.value = withRepeat(
@@ -48,17 +52,26 @@ export function PadDisc({
       false,
     );
     return () => cancelAnimation(breath);
-  }, [filled, breath]);
+  }, [filled, breath, reduceMotion]);
 
   const style = useAnimatedStyle(() => ({
     transform: [{ scale: selected ? 1.06 : breath.value }],
   }));
 
+  const a11yLabel = filled
+    ? `Planted thought ${label}${selected ? ', selected' : ''}`
+    : `Empty pad ${label}. Double tap to plant.`;
+
   return (
     <Animated.View style={[{ position: 'absolute', left, top }, style]}>
       <Pressable
+        accessibilityRole="button"
+        accessibilityLabel={a11yLabel}
+        accessibilityState={{ selected }}
+        hitSlop={TAP_SLOP}
         onPress={(e) => {
           e.stopPropagation?.();
+          softHaptic(filled ? 'tap' : 'plant');
           onPress();
         }}
         style={[
@@ -78,9 +91,9 @@ export function PadDisc({
 
 const styles = StyleSheet.create({
   pad: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
+    width: MIN_TAP + 4,
+    height: MIN_TAP + 4,
+    borderRadius: (MIN_TAP + 4) / 2,
     alignItems: 'center',
     justifyContent: 'center',
   },

@@ -7,6 +7,9 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import { softHaptic } from '../a11y/haptics';
+import { MIN_TAP, TAP_SLOP } from '../a11y/tapTargets';
+import { useReducedMotion } from '../a11y/useReducedMotion';
 import { GAME, upgradeCost } from '../game/config';
 import type { GameState, TowerKind } from '../game/types';
 import { colors } from '../theme/colors';
@@ -39,13 +42,14 @@ export function DualModeTray({
   const selected = state.towers.find((t) => t.padIndex === state.selectedPad);
   const selectMode = selected != null;
   const mode = useSharedValue(selectMode ? 1 : 0);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     mode.value = withTiming(selectMode ? 1 : 0, {
-      duration: 280,
+      duration: reduceMotion ? 0 : 280,
       easing: Easing.out(Easing.cubic),
     });
-  }, [selectMode, mode]);
+  }, [selectMode, mode, reduceMotion]);
 
   const plantRowStyle = useAnimatedStyle(() => ({
     opacity: interpolate(mode.value, [0, 1], [1, 0.38]),
@@ -90,8 +94,16 @@ export function DualModeTray({
           return (
             <Pressable
               key={k}
+              accessibilityRole="button"
+              accessibilityLabel={`${GAME.towers[k].displayName}, ${GAME.towers[k].cost} Clarity`}
+              accessibilityState={{ selected: active, disabled: selectMode }}
+              accessibilityHint="Select this kindness to plant on an empty pad"
+              hitSlop={TAP_SLOP}
               disabled={selectMode}
-              onPress={() => onSelectKind(k)}
+              onPress={() => {
+                softHaptic('tap');
+                onSelectKind(k);
+              }}
               style={[
                 styles.plantCard,
                 active && styles.plantCardActive,
@@ -171,7 +183,9 @@ const styles = StyleSheet.create({
   plantCard: {
     flex: 1,
     alignItems: 'center',
-    paddingVertical: 10,
+    justifyContent: 'center',
+    minHeight: MIN_TAP + 28,
+    paddingVertical: 12,
     paddingHorizontal: 6,
     borderRadius: 16,
     backgroundColor: 'rgba(255,255,255,0.65)',

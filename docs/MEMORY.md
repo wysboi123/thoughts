@@ -13,11 +13,11 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 
 ## State
 
-- Version: **mobile 1.2.0** (waves 6–8 · plan FX · Peace Core breath · pad pulse · shop IAP stub polish · screenshot guide)
+- Version: **mobile 1.2.1** (a11y tap targets · haptics stub · reduced-motion · store asset placeholders; builds on 1.2.0 waves/FX/shop)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
 - Hourly timer: **`thought-defense-mobile-hourly`** (retire mistargeted `thought-defense-hourly` Roblox payload)
-- Stop timer: **`overnight-stop-5am-utc`** once → 05:00 UTC (re-armed 2026-09-30 23:11)
+- Stop timer: **`overnight-stop-5am-utc`** once → 05:00 UTC (confirm each hourly; do not cancel)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**)
-- Next: native IAP · store screenshots (capture guide ready) · EAS preview
+- Next: native IAP · store screenshots capture · EAS preview

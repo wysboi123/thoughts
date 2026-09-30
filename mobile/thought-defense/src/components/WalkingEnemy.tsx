@@ -9,6 +9,7 @@ import Animated, {
   withSequence,
   withTiming,
 } from 'react-native-reanimated';
+import { useReducedMotion } from '../a11y/useReducedMotion';
 import { pointOnPath } from '../game/config';
 import type { Enemy } from '../game/types';
 import { colors } from '../theme/colors';
@@ -41,19 +42,27 @@ export function WalkingEnemy({ enemy, width, height, now }: Props) {
   const opacity = useSharedValue(0);
   const scale = useSharedValue(0.55);
   const bob = useSharedValue(0);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
+    const duration = reduceMotion ? 0 : 90;
     x.value = withTiming(pos.x * width, {
-      duration: 90,
+      duration,
       easing: Easing.linear,
     });
     y.value = withTiming(pos.y * height, {
-      duration: 90,
+      duration,
       easing: Easing.linear,
     });
-  }, [enemy.pathT, width, height, x, y, pos.x, pos.y]);
+  }, [enemy.pathT, width, height, x, y, pos.x, pos.y, reduceMotion]);
 
   useEffect(() => {
+    if (reduceMotion) {
+      opacity.value = 1;
+      scale.value = 1;
+      bob.value = 0;
+      return;
+    }
     opacity.value = withTiming(1, { duration: 420, easing: Easing.out(Easing.cubic) });
     scale.value = withTiming(1, { duration: 480, easing: Easing.out(Easing.back(1.2)) });
     bob.value = withRepeat(
@@ -67,7 +76,7 @@ export function WalkingEnemy({ enemy, width, height, now }: Props) {
     return () => {
       cancelAnimation(bob);
     };
-  }, [enemy.id, opacity, scale, bob]);
+  }, [enemy.id, opacity, scale, bob, reduceMotion]);
 
   const style = useAnimatedStyle(() => ({
     position: 'absolute' as const,
@@ -82,7 +91,11 @@ export function WalkingEnemy({ enemy, width, height, now }: Props) {
   const slowed = now < enemy.slowUntil;
 
   return (
-    <Animated.View style={style}>
+    <Animated.View
+      style={style}
+      accessibilityElementsHidden
+      importantForAccessibility="no-hide-descendants"
+    >
       <View
         style={[
           styles.blob,

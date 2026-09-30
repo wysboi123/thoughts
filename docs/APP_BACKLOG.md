@@ -14,10 +14,11 @@ Priority order. Agents pick the top unchecked item unless Femmy overrides.
 - [x] **Soft goals journal + wave result modal**
 - [x] **v1.1.1 polish** — Draft C tray mode animation · walk-on bob · plan-view legend · soft-goals checked state · shop copy
 - [x] **v1.2.0 night polish** — waves 6–8 · range ring · kindness FX ripples · Peace Core breath · pad pulse · shop restore/sections · screenshot guide
+- [x] **v1.2.1 hourly polish** — ≥44 tap targets · soft haptics stub · Reduce Motion · store asset placeholders
 - [ ] **Native IAP** — wire RevenueCat or react-native-iap; turn off stubMode for store builds
 - [ ] **EAS project** — Femmy: `eas init` + real `projectId` + credentials
 - [ ] **Store products** — create IAP ids in App Store Connect + Play Console
-- [ ] **Store screenshots** — capture 4 frames per `docs/SCREENSHOTS.md`
+- [ ] **Store screenshots** — capture 4 frames per `docs/SCREENSHOTS.md` (+ `docs/STORE_ASSETS.md`)
 - [ ] **Host Privacy/Terms** — public HTTPS URLs for listings
 - [ ] **Preview build** — `eas build --profile preview` for TestFlight / internal testing
 - [ ] **Production submit** — after sandbox IAP verify

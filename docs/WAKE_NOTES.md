@@ -2,6 +2,16 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-30 23:15 UTC — Mobile hourly (distinct from night resume)
+
+- Timer `thought-defense-mobile-hourly` fired while **night shift already running** — this is the **hourly polish slice**, not a second night resume.
+- **No Femmy replies** (`from:ngkdevid@gmail.com` empty) · DESIGN_CONSULT unchanged → Clarity Pass stays **$2.99/mo**; re-asked briefly.
+- **Shipped v1.2.1 (beyond v1.2.0):** accessibility tap targets (≥44) · soft haptics stub (`Vibration`, swap-ready for expo-haptics) · Reduce Motion honors (bob / breath / tray / ripples / home rise) · `docs/STORE_ASSETS.md` + screenshot folder placeholders
+- Did **not** redo night resume v1.2.0 work (waves 6–8 / plan FX / shop / SCREENSHOTS).
+- Ops: confirmed/re-armed `overnight-stop-5am-utc` (do not cancel) · `thought-defense-mobile-hourly` · ManagePullRequest missing — push only
+- Branch `cursor/mobile-thought-defense-5a0d` · commit `59c6401` · PR https://github.com/wysboi123/thoughts/pull/4
+- Ask Femmy: Clarity Pass — keep **$2.99** · **$1.99** · **$3.99** · other?
+
 ## 2026-09-30 23:11 UTC — Night resume (mobile overnight)
 
 - Night envelope opened (~23:11 UTC). **Draft C locked** — not re-asking A/B/C.
@@ -18,7 +28,7 @@ Newest first. Overnight agents append after every push.
 - **Shipped v1.1.1 polish:** Draft C tray plant↔select Reanimated fade/slide · walk-on enemy bob · plan-view legend · soft-goals checked UX · Clarity shop copy
 - **Timer retarget:** unsubscribe/ignore Roblox `thought-defense-hourly`; arm `thought-defense-mobile-hourly` → `mobile/thought-defense` · PR **#4** · Draft C locked
 - Docs: SCHEDULE + MEMORY clarify mobile/PR #4; DESIGN_CONSULT asks Clarity Pass price tier (not A/B/C)
-- Branch `cursor/mobile-thought-defense-5a0d` · PR https://github.com/wysboi123/thoughts/pull/4
+- Branch `cursor/mobile-thought-defense-5a0d` · commit `59c6401` · PR https://github.com/wysboi123/thoughts/pull/4
 - ManagePullRequest **missing** this run — push only; parent should refresh PR body if needed
 - Ask Femmy: Clarity Pass **keep $2.99** / **$1.99** / **$3.99** / other?
 

@@ -6,6 +6,9 @@ import {
   Text,
   type ViewStyle,
 } from 'react-native';
+import { softHaptic } from '../a11y/haptics';
+import { MIN_TAP, TAP_SLOP } from '../a11y/tapTargets';
+import { useReducedMotion } from '../a11y/useReducedMotion';
 import { colors } from '../theme/colors';
 import { fonts } from '../theme/typography';
 
@@ -15,6 +18,7 @@ type Props = {
   variant?: 'primary' | 'ghost' | 'soft';
   disabled?: boolean;
   style?: ViewStyle;
+  accessibilityHint?: string;
 };
 
 export function SoftButton({
@@ -23,20 +27,33 @@ export function SoftButton({
   variant = 'primary',
   disabled,
   style,
+  accessibilityHint,
 }: Props) {
   const scale = useRef(new Animated.Value(1)).current;
+  const reduceMotion = useReducedMotion();
 
-  const pressIn = () =>
+  const pressIn = () => {
+    if (reduceMotion) return;
     Animated.spring(scale, { toValue: 0.96, useNativeDriver: true, friction: 6 }).start();
-  const pressOut = () =>
+  };
+  const pressOut = () => {
+    if (reduceMotion) return;
     Animated.spring(scale, { toValue: 1, useNativeDriver: true, friction: 6 }).start();
+  };
 
   return (
     <Animated.View style={[{ transform: [{ scale }] }, style]}>
       <Pressable
         accessibilityRole="button"
+        accessibilityLabel={label}
+        accessibilityHint={accessibilityHint}
+        accessibilityState={{ disabled: Boolean(disabled) }}
+        hitSlop={TAP_SLOP}
         disabled={disabled}
-        onPress={onPress}
+        onPress={() => {
+          softHaptic('tap');
+          onPress();
+        }}
         onPressIn={pressIn}
         onPressOut={pressOut}
         style={[
@@ -63,10 +80,12 @@ export function SoftButton({
 
 const styles = StyleSheet.create({
   base: {
+    minHeight: MIN_TAP,
     paddingVertical: 14,
     paddingHorizontal: 22,
     borderRadius: 18,
     alignItems: 'center',
+    justifyContent: 'center',
   },
   primary: {
     backgroundColor: colors.brand,

@@ -5,6 +5,7 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import { useReducedMotion } from '../a11y/useReducedMotion';
 import type { SoftFx } from '../game/types';
 import { colors } from '../theme/colors';
 
@@ -19,17 +20,22 @@ function FxRipple({
   item,
   width,
   height,
+  reduceMotion,
 }: {
   item: SoftFx;
   width: number;
   height: number;
+  reduceMotion: boolean;
 }) {
   const progress = useSharedValue(0);
 
   useEffect(() => {
     progress.value = 0;
-    progress.value = withTiming(1, { duration: 520, easing: Easing.out(Easing.cubic) });
-  }, [item.id, progress]);
+    progress.value = withTiming(1, {
+      duration: reduceMotion ? 0 : 520,
+      easing: Easing.out(Easing.cubic),
+    });
+  }, [item.id, progress, reduceMotion]);
 
   const style = useAnimatedStyle(() => ({
     position: 'absolute' as const,
@@ -49,11 +55,19 @@ function FxRipple({
 
 /** Soft kindness ripples when towers fire / thoughts clear. */
 export function SoftFxLayer({ fx, width, height, now }: Props) {
+  const reduceMotion = useReducedMotion();
+  if (reduceMotion) return null;
   const live = fx.filter((f) => now - f.bornAt < 0.55);
   return (
     <>
       {live.map((item) => (
-        <FxRipple key={item.id} item={item} width={width} height={height} />
+        <FxRipple
+          key={item.id}
+          item={item}
+          width={width}
+          height={height}
+          reduceMotion={reduceMotion}
+        />
       ))}
     </>
   );

@@ -8,6 +8,7 @@ import Animated, {
   withSequence,
   withTiming,
 } from 'react-native-reanimated';
+import { useReducedMotion } from '../a11y/useReducedMotion';
 import { colors } from '../theme/colors';
 import { fonts } from '../theme/typography';
 
@@ -22,8 +23,14 @@ type Props = {
 export function PeaceCore({ left, top, themeDawn, stressed }: Props) {
   const pulse = useSharedValue(1);
   const glow = useSharedValue(0.55);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
+    if (reduceMotion) {
+      pulse.value = 1;
+      glow.value = 0.65;
+      return;
+    }
     pulse.value = withRepeat(
       withSequence(
         withTiming(1.08, { duration: stressed ? 700 : 1600, easing: Easing.inOut(Easing.sin) }),
@@ -40,7 +47,7 @@ export function PeaceCore({ left, top, themeDawn, stressed }: Props) {
       -1,
       false,
     );
-  }, [pulse, glow, stressed]);
+  }, [pulse, glow, stressed, reduceMotion]);
 
   const ringStyle = useAnimatedStyle(() => ({
     transform: [{ scale: pulse.value }],
@@ -48,7 +55,12 @@ export function PeaceCore({ left, top, themeDawn, stressed }: Props) {
   }));
 
   return (
-    <View style={[styles.wrap, { left, top }]}>
+    <View
+      style={[styles.wrap, { left, top }]}
+      accessible
+      accessibilityRole="image"
+      accessibilityLabel={stressed ? 'Peace Core, calm is low' : 'Peace Core'}
+    >
       <Animated.View
         style={[
           styles.halo,

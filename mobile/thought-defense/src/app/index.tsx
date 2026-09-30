@@ -2,6 +2,7 @@ import { router } from 'expo-router';
 import React, { useEffect, useRef } from 'react';
 import { Animated, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useReducedMotion } from '../a11y/useReducedMotion';
 import { Atmosphere } from '../components/Atmosphere';
 import { SoftButton } from '../components/SoftButton';
 import { GAME } from '../game/config';
@@ -13,14 +14,19 @@ export default function HomeScreen() {
   const insets = useSafeAreaInsets();
   const { entitlements } = useIap();
   const rise = useRef(new Animated.Value(0)).current;
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
+    if (reduceMotion) {
+      rise.setValue(1);
+      return;
+    }
     Animated.timing(rise, {
       toValue: 1,
       duration: 900,
       useNativeDriver: true,
     }).start();
-  }, [rise]);
+  }, [rise, reduceMotion]);
 
   return (
     <Atmosphere>
