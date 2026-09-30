@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-30 19:24 UTC — Hourly (still no A/B/C)
+
+- No Femmy vote / Gmail reply on Upgrade drafts
+- **v0.2.3:** always-visible **Restart** chip (playtest) + clears GameOver banner
+- Upgrade chrome still blocked — question unchanged: A / B / C (+ tweaks)
+- Short email after push
+
 ## 2026-09-30 18:18 UTC — Hourly (drafts out, still no A/B/C)
 
 - No Femmy vote yet on Upgrade drafts A/B/C

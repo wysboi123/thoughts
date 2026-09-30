@@ -277,6 +277,29 @@ local function flash(msg: string, tintKey: string?)
 	end)
 end
 
+local restartChip = Instance.new("TextButton")
+restartChip.Name = "RestartChip"
+restartChip.Size = UDim2.fromOffset(88, 32)
+restartChip.Position = UDim2.new(0, 16, 1, -160)
+restartChip.BackgroundColor3 = Color3.fromRGB(48, 54, 70)
+restartChip.BackgroundTransparency = 0.15
+restartChip.TextColor3 = Color3.fromRGB(210, 220, 235)
+restartChip.Font = Enum.Font.GothamMedium
+restartChip.TextSize = 13
+restartChip.Text = "Restart"
+restartChip.Parent = gui
+local restartChipCorner = Instance.new("UICorner")
+restartChipCorner.CornerRadius = UDim.new(0, 8)
+restartChipCorner.Parent = restartChip
+restartChip.MouseButton1Click:Connect(function()
+	local banner = gui:FindFirstChild("GameOverBanner")
+	if banner then
+		banner:Destroy()
+	end
+	Remotes.RestartRun:FireServer()
+	flash("Fresh mindscape — plant again, then Begin", "prep")
+end)
+
 local function waveComposition(waveIndex: number): string
 	local recipe = Config.Waves[waveIndex]
 	if typeof(recipe) ~= "table" then

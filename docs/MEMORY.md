@@ -14,7 +14,7 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 
 ## State
 
-- Version: **0.2.2** (hover upgrade-cost tip; SoftGoals/Restart; Upgrade chrome pending)
+- Version: **0.2.3** (Restart chip; hover tip; SoftGoals; Upgrade chrome pending)
 - Path: `games/thought-defense`
 - Branch: `cursor/roblox-hourly-batch-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/2
