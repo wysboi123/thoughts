@@ -2,6 +2,36 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-30 05:00 UTC — OVERNIGHT STOP (Thought Defense night)
+
+HARD STOP. No new features this wrap — docs + digest only. Working tree was clean at stop.
+
+**Night summary (Thought Defense)**
+- Landed **v0.1** scaffold → **v0.2** (prep Begin · pad upgrade L1–L3 · Sell · intermission)
+- Shipped **Upgrade UI mockups A/B/C** (specs + PNGs + gallery) — **Luau blocked** on Femmy vote
+- Wait polish only: flavor billboards · path rails · Peace Core halo · wave toast/hover · Calm leak cue · plant pop · pad ring breath
+- Still **v0.2** (no v0.3 without vote)
+- Versions: Thought Defense **0.2** · prior lineup untouched this TD-focused shift (Haze 1.4 / Orbit 1.2 / etc. from Night 6 start)
+
+**Commits since ~2026-09-29 23:00 UTC** (12, tip `bdefbb2` + this stop):
+- Night 6 start leftovers → Thought Defense v0.1 → v0.2 → mockups → wait/docs → 3 polish batches
+
+**Blocked / open design**
+- **Blocking:** Upgrade UI mockup vote **A / B / C** (or hybrid)
+- Earlier still open: title · tone · placement · session mode · multiplayer · difficulty (defaults in DESIGN_CONSULT)
+- Perplexity Q-001–004 / audio ids · first Studio publish
+
+**Ops**
+- Branch `cursor/roblox-hourly-batch-5a0d` pushed
+- PR: https://github.com/wysboi123/thoughts/pull/2 — ManagePullRequest **missing** this run (parent must update title/body)
+- Timers: re-arm `thought-defense-hourly` `15 * * * *` · ensure `overnight-daily-resume` `0 23 * * *`
+- Email: **one** overnight digest to ngkdevid@gmail.com
+
+**When Femmy replies**
+1. Implement chosen Upgrade UI Luau → v0.3
+2. Apply any other design answers
+3. Hourly batches continue if she wants daytime work
+
 ## 2026-09-30 04:15 UTC — Hourly batch 7 (still waiting on vote)
 
 - **No Femmy vote** — Gmail `from:ngkdevid@gmail.com` empty; mockup threads agent-sent only; DESIGN_CONSULT unchanged

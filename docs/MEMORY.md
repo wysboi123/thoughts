@@ -13,15 +13,15 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 
 ## State
 
+- **2026-09-30 05:00 UTC — OVERNIGHT STOP** (Thought Defense night). No new features at wrap.
 - Version: **0.2** (still 0.2 until Upgrade UI Luau lands after vote)
 - Path: `games/thought-defense`
 - Branch: `cursor/roblox-hourly-batch-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/2
-- Blocked on: **Mockup vote A/B/C** (Upgrade UI) — last checked 2026-09-30 04:15 UTC, no reply
-- Open consult (only): Mockup vote — A Selection panel / B Context bar / C Tray dual-mode
+- Blocked on: **Mockup vote A/B/C** (Upgrade UI) — last checked overnight stop 05:00 UTC, no reply
+- Open consult (blocking): Mockup vote — A Selection panel / B Context bar / C Tray dual-mode
 - Specs: `games/thought-defense/docs/UI_MOCKUPS.md`
 - Gallery: `games/thought-defense/docs/mockups/index.html`
-- Also open (not this batch): title/tone/placement/mode/MP; audio ids (Q-004)
-- 02:15 polish: enemy flavor billboards · path rails · Peace Core halo
-- 03:15 polish while waiting: **wave toast clarity** (composition + countdown tints) · **soft pad hover SelectionBox**
-- 04:15 polish while waiting: **Calm leak cue** · **tower plant/upgrade pop** · **empty pad ring breath**
+- Also open (not blocking Luau): title/tone/placement/mode/MP/difficulty; audio ids (Q-004)
+- Overnight polish while waiting: flavor billboards · path rails · Peace Core halo · wave toast/hover · Calm leak cue · plant pop · pad ring breath
+- Next: implement Upgrade UI only after Femmy A/B/C; hourly timer may continue daytime if she wants
