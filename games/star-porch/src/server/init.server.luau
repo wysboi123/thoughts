@@ -355,6 +355,15 @@ local function refreshJarFill()
 	else
 		jarLabel.Text = "jar\nfull"
 	end
+	local pathGlow = world:FindFirstChild("YardPathGlow")
+	if pathGlow and pathGlow:IsA("BasePart") then
+		local pathLight = pathGlow:FindFirstChildOfClass("PointLight")
+		if pathLight then
+			pathLight.Brightness = 0.85 + fill * 0.9
+			pathLight.Range = 12 + fill * 8
+		end
+		pathGlow.Transparency = 0.55 - fill * 0.2
+	end
 end
 
 -- Dual rocking chairs (Seats)
