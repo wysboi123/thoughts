@@ -88,9 +88,14 @@ function SoftCompany.mount(playerGui: PlayerGui, localPlayer: Player, config: So
 		end
 
 		if n <= 0 then
-			label.Text = aloneLine()
-			if prev > 0 then
+			local alone = aloneLine()
+			label.Text = alone
+			if alone == "" then
+				label.TextTransparency = 1
+			elseif prev > 0 then
 				pulseLeave()
+			else
+				label.TextTransparency = 0.45
 			end
 		elseif n == 1 then
 			label.Text = oneLine()
