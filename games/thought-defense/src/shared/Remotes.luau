@@ -13,6 +13,7 @@ local Remotes = {
 	StartWave = RemoteFolder.event(FOLDER, "StartWave"),
 	WaveAnnounce = RemoteFolder.event(FOLDER, "WaveAnnounce"),
 	ThoughtCleared = RemoteFolder.event(FOLDER, "ThoughtCleared"),
+	CalmLeak = RemoteFolder.event(FOLDER, "CalmLeak"),
 	GameOver = RemoteFolder.event(FOLDER, "GameOver"),
 }
 

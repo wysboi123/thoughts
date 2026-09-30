@@ -63,6 +63,7 @@ end
 
 EnemyService.setCallbacks(function(_rec)
 	state.calm = math.max(0, state.calm - Config.LeakPenalty)
+	Remotes.CalmLeak:FireAllClients(state.calm, Config.LeakPenalty)
 	broadcast()
 	if state.calm <= 0 then
 		fail()

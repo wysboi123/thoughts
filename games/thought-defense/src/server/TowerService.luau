@@ -104,6 +104,22 @@ local function makeProjectile(from: Vector3, to: Vector3, color: Color3)
 	end)
 end
 
+local function popModel(model: BasePart, baseSize: Vector3)
+	task.spawn(function()
+		local start = os.clock()
+		local duration = 0.22
+		while model.Parent and os.clock() - start < duration do
+			local alpha = (os.clock() - start) / duration
+			local bump = 1 + math.sin(alpha * math.pi) * 0.14
+			model.Size = baseSize * bump
+			task.wait()
+		end
+		if model.Parent then
+			model.Size = baseSize
+		end
+	end)
+end
+
 local function refreshVisual(rec: TowerRecord)
 	local stats = TowerService.statsFor(rec.kind, rec.level)
 	if not stats then
@@ -220,6 +236,7 @@ function TowerService.tryPlace(kindName: string, pad: BasePart): (boolean, strin
 	}
 	table.insert(towers, rec)
 	byPadId[padId] = rec
+	popModel(tower, tower.Size)
 	return true, nil
 end
 
@@ -235,6 +252,7 @@ function TowerService.tryUpgrade(padId: number): (boolean, number?, string?)
 	rec.level += 1
 	rec.spent += cost
 	refreshVisual(rec)
+	popModel(rec.model, rec.model.Size)
 	return true, cost, nil
 end
 

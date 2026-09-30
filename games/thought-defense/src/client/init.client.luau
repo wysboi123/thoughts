@@ -366,6 +366,37 @@ Remotes.ThoughtCleared.OnClientEvent:Connect(function(kind: string, reward: numb
 	flash(`Cleared {kind} (+{reward} Clarity)`, "clear")
 end)
 
+local function flashPeaceCore()
+	local world = Workspace:FindFirstChild("ThoughtWorld")
+	local decor = world and world:FindFirstChild("Decor")
+	local core = decor and decor:FindFirstChild("PeaceCore")
+	if not (core and core:IsA("BasePart")) then
+		return
+	end
+	local original = core.Color
+	local light = core:FindFirstChildOfClass("PointLight")
+	local origBright = if light then light.Brightness else nil
+	core.Color = Color3.fromRGB(220, 110, 130)
+	if light then
+		light.Brightness = (origBright or 2) + 1.4
+		light.Color = Color3.fromRGB(255, 140, 160)
+	end
+	task.delay(0.28, function()
+		if core.Parent then
+			core.Color = original
+		end
+		if light and light.Parent then
+			light.Brightness = origBright or 2
+			light.Color = Color3.fromRGB(160, 240, 230)
+		end
+	end)
+end
+
+Remotes.CalmLeak.OnClientEvent:Connect(function(calmLeft: number, penalty: number)
+	flash(`Calm -{penalty} — a thought reached the Peace Core ({calmLeft} left)`, "wave")
+	flashPeaceCore()
+end)
+
 Remotes.GameOver.OnClientEvent:Connect(function(won: boolean, message: string)
 	stopIntermissionCountdown()
 	flash(message, if won then "clear" else "wave")
@@ -522,5 +553,5 @@ RunService.RenderStepped:Connect(function(dt)
 	end
 end)
 
-flash("Thought Defense v" .. Config.Version .. " — plant, then Begin · hover pads glow", "prep")
+flash("Thought Defense v" .. Config.Version .. " — plant, then Begin · empty pads breathe", "prep")
 refreshButtons()

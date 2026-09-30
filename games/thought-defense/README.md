@@ -22,7 +22,7 @@ rojo serve
 
 **Still waiting on Femmy:** Upgrade **button** UX mockup vote **A / B / C** — see `docs/DESIGN_CONSULT.md` and `docs/mockups/`. Pad-click upgrade stays until that lands.
 
-**Recent polish (while waiting):** wave toasts show what’s coming + intermission countdown; pads get a soft hover glow (SelectionBox).
+**Recent polish (while waiting):** wave toasts show what’s coming + intermission countdown; pads get a soft hover glow; Calm leak flashes the Peace Core; towers pop on plant/upgrade; empty pad rings breathe.
 
 ## Workspace layout (Rojo ↔ Studio)
 

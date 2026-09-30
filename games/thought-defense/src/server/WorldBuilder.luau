@@ -251,6 +251,25 @@ function WorldBuilder.build(): {
 		table.insert(pads, pad)
 	end
 
+	-- Soft idle breath on empty pad rings (stops looking “dead” before plant)
+	task.spawn(function()
+		local t = 0
+		while padsFolder.Parent do
+			t += task.wait(0.08)
+			local wave = 0.5 + 0.5 * math.sin(t * 1.35)
+			for _, pad in pads do
+				local ring = pad:FindFirstChild("PadRing")
+				if ring and ring:IsA("BasePart") then
+					if pad:GetAttribute("Occupied") == true then
+						ring.Transparency = 0.72
+					else
+						ring.Transparency = 0.42 + wave * 0.22
+					end
+				end
+			end
+		end
+	end)
+
 	-- Spawn for the player (observer / gardener of thoughts)
 	local spawn = Instance.new("SpawnLocation")
 	spawn.Name = "PlayerSpawn"
