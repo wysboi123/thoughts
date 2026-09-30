@@ -34,7 +34,7 @@ export const PRODUCTS: StoreProduct[] = [
     kind: 'subscription',
     title: 'Clarity Pass',
     blurb:
-      'Monthly comfort: hide soft between-run notes, unlock Dawn & Lantern themes, thank-you badge. Core play stays free.',
+      'A gentle monthly thank-you: quieter between-run notes, Dawn & Lantern themes, and a soft badge. The calm loop stays free — never required to progress.',
     priceHint: '$2.99 / month',
   },
   {
@@ -43,7 +43,7 @@ export const PRODUCTS: StoreProduct[] = [
     androidProductId: 'cosmetic_dawn',
     kind: 'nonconsumable',
     title: 'Dawn Path pack',
-    blurb: 'Warm sunrise path + Peace Core glow. Cosmetic only.',
+    blurb: 'Warm sunrise path tones and a softer Peace Core glow. Looks only — no power.',
     priceHint: '$1.99',
   },
   {
@@ -52,7 +52,7 @@ export const PRODUCTS: StoreProduct[] = [
     androidProductId: 'cosmetic_lantern',
     kind: 'nonconsumable',
     title: 'Lantern Towers pack',
-    blurb: 'Soft lantern skins for Affirmation, Gratitude, and Humor. Cosmetic only.',
+    blurb: 'Soft lantern looks for Affirmation, Gratitude, and Humor. Cosmetic only — same kindness, new light.',
     priceHint: '$1.99',
   },
   {
@@ -61,10 +61,11 @@ export const PRODUCTS: StoreProduct[] = [
     androidProductId: 'clarity_boost_small',
     kind: 'consumable',
     title: 'Small Clarity boost',
-    blurb: '+80 Clarity once — optional comfort, never required to clear waves.',
+    blurb: '+80 Clarity once when you want a little head start. Optional comfort — waves stay clearable for free.',
     priceHint: '$0.99',
     clarityGrant: 80,
   },
 ];
+
 
 export const SUBSCRIPTION_GROUP = 'clarity_pass';

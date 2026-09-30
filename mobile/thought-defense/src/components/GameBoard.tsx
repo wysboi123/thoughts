@@ -80,7 +80,9 @@ export function GameBoard({
       onPress={onBackground}
       style={[styles.board, { width, height, backgroundColor: ground }]}
     >
-      <Text style={styles.compass}>N ↑ · plan view</Text>
+      <Text style={styles.compass}>plan view · N ↑</Text>
+      <Text style={styles.legend}>path → Peace · discs = thoughts you plant</Text>
+
 
       {/* Soft lawn tiles (top-down grid hint) */}
       {[0.2, 0.4, 0.6, 0.8].map((gx) =>
@@ -207,6 +209,17 @@ const styles = StyleSheet.create({
     color: colors.inkSoft,
     zIndex: 2,
   },
+  legend: {
+    position: 'absolute',
+    top: 8,
+    left: 12,
+    fontFamily: fonts.body,
+    fontSize: 9,
+    color: colors.inkSoft,
+    zIndex: 2,
+    maxWidth: '48%',
+  },
+
   lawn: {
     position: 'absolute',
     width: 20,

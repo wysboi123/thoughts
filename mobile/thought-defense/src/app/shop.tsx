@@ -44,8 +44,10 @@ export default function ShopScreen() {
         <SoftButton label="← Home" variant="ghost" onPress={() => router.back()} style={styles.back} />
         <Text style={styles.brand}>Clarity shop</Text>
         <Text style={styles.lead}>
-          Sensible support — core calm loop stays free. No fake timers, no medical claims.
+          Optional comfort only — plant, clear waves, and soft goals stay free. No fake urgency, no
+          medical claims.
         </Text>
+
         {stubMode ? (
           <Text style={styles.stub}>
             Stub IAP mode (Expo Go / missing credentials). Product IDs are ready for App Store & Play.

@@ -2,6 +2,16 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-30 22:25 UTC — Mobile hourly (mistargeted timer retarget)
+
+- Timer `thought-defense-hourly` fired with **Roblox** payload — **ignored**; continued mobile pivot
+- **Shipped v1.1.1 polish:** Draft C tray plant↔select Reanimated fade/slide · walk-on enemy bob · plan-view legend · soft-goals checked UX · Clarity shop copy
+- **Timer retarget:** unsubscribe/ignore Roblox `thought-defense-hourly`; arm `thought-defense-mobile-hourly` → `mobile/thought-defense` · PR **#4** · Draft C locked
+- Docs: SCHEDULE + MEMORY clarify mobile/PR #4; DESIGN_CONSULT asks Clarity Pass price tier (not A/B/C)
+- Branch `cursor/mobile-thought-defense-5a0d` · PR https://github.com/wysboi123/thoughts/pull/4
+- ManagePullRequest **missing** this run — push only; parent should refresh PR body if needed
+- Ask Femmy: Clarity Pass **keep $2.99** / **$1.99** / **$3.99** / other?
+
 ## 2026-09-30 22:00 UTC — Draft C locked + top-down walkers
 
 - **UX vote = C (Tray dual-mode)** — plant cards dim when a thought is selected; Upgrade / Sell / Back

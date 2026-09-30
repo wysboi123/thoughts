@@ -2,8 +2,11 @@ import React, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Animated, {
   Easing,
+  cancelAnimation,
   useAnimatedStyle,
   useSharedValue,
+  withRepeat,
+  withSequence,
   withTiming,
 } from 'react-native-reanimated';
 import { pointOnPath } from '../game/config';
@@ -30,13 +33,14 @@ type Props = {
   now: number;
 };
 
-/** Top-down soft blob that tweens along the path plane. */
+/** Top-down soft blob that tweens along the path plane + gentle walk bob. */
 export function WalkingEnemy({ enemy, width, height, now }: Props) {
   const pos = pointOnPath(enemy.pathT);
   const x = useSharedValue(pos.x * width);
   const y = useSharedValue(pos.y * height);
   const opacity = useSharedValue(0);
   const scale = useSharedValue(0.55);
+  const bob = useSharedValue(0);
 
   useEffect(() => {
     x.value = withTiming(pos.x * width, {
@@ -52,12 +56,23 @@ export function WalkingEnemy({ enemy, width, height, now }: Props) {
   useEffect(() => {
     opacity.value = withTiming(1, { duration: 420, easing: Easing.out(Easing.cubic) });
     scale.value = withTiming(1, { duration: 480, easing: Easing.out(Easing.back(1.2)) });
-  }, [enemy.id, opacity, scale]);
+    bob.value = withRepeat(
+      withSequence(
+        withTiming(-2.4, { duration: 380, easing: Easing.inOut(Easing.sin) }),
+        withTiming(2.4, { duration: 380, easing: Easing.inOut(Easing.sin) }),
+      ),
+      -1,
+      true,
+    );
+    return () => {
+      cancelAnimation(bob);
+    };
+  }, [enemy.id, opacity, scale, bob]);
 
   const style = useAnimatedStyle(() => ({
     position: 'absolute' as const,
     left: x.value - 18,
-    top: y.value - 18,
+    top: y.value - 18 + bob.value,
     opacity: opacity.value,
     transform: [{ scale: scale.value }],
   }));

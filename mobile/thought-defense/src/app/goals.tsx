@@ -69,17 +69,28 @@ export default function GoalsScreen() {
         <SoftButton label="← Home" variant="ghost" onPress={() => router.back()} style={styles.back} />
         <Text style={styles.brand}>Soft goals</Text>
         <Text style={styles.lead}>
-          Gentle session aims — metaphor only, not therapy. Check what feels true, or clear them in a
-          run (Play tracks them automatically).
+          Gentle session aims — metaphor only, not therapy or treatment. Tick what feels true today, or
+          let Play clear them as you plant and wave.
+        </Text>
+        <Text style={styles.progress}>
+          {ORDER.filter((id) => !!manual[id]).length}/5 checked here · Play also tracks the same aims
         </Text>
 
         {ORDER.map((id) => {
           const checked = !!manual[id];
           return (
-            <Pressable key={id} onPress={() => toggleManual(id)} style={styles.card}>
-              <Text style={styles.check}>{checked ? '✓' : '○'}</Text>
+            <Pressable
+              key={id}
+              onPress={() => toggleManual(id)}
+              style={[styles.card, checked && styles.cardDone]}
+              accessibilityRole="checkbox"
+              accessibilityState={{ checked }}
+            >
+              <Text style={[styles.check, checked && styles.checkOn]}>{checked ? '✓' : '○'}</Text>
               <View style={{ flex: 1 }}>
-                <Text style={styles.title}>{SOFT_GOAL_COPY[id].title}</Text>
+                <Text style={[styles.title, checked && styles.titleDone]}>
+                  {SOFT_GOAL_COPY[id].title}
+                </Text>
                 <Text style={styles.blurb}>{SOFT_GOAL_COPY[id].blurb}</Text>
               </View>
             </Pressable>
@@ -88,7 +99,7 @@ export default function GoalsScreen() {
 
         <Text style={styles.h}>Journal-lite</Text>
         <Text style={styles.lead}>
-          One optional note for yourself. Stays on this device. No medical advice.
+          One optional note for yourself. Stays on this device. Not advice — just a place to remember.
         </Text>
         <TextInput
           value={note}
@@ -121,6 +132,12 @@ const styles = StyleSheet.create({
     color: colors.inkSoft,
     marginBottom: 4,
   },
+  progress: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 12,
+    color: colors.calm,
+    marginBottom: 6,
+  },
   card: {
     flexDirection: 'row',
     gap: 12,
@@ -131,14 +148,20 @@ const styles = StyleSheet.create({
     borderColor: colors.line,
     alignItems: 'flex-start',
   },
+  cardDone: {
+    borderColor: colors.brand,
+    backgroundColor: 'rgba(91, 138, 122, 0.12)',
+  },
   check: {
     fontFamily: fonts.bodyBold,
     fontSize: 18,
-    color: colors.brand,
+    color: colors.inkSoft,
     width: 22,
     marginTop: 2,
   },
+  checkOn: { color: colors.brand },
   title: { fontFamily: fonts.bodyBold, fontSize: 15, color: colors.ink },
+  titleDone: { color: colors.brandDeep },
   blurb: { fontFamily: fonts.body, fontSize: 13, color: colors.inkSoft, marginTop: 2, lineHeight: 18 },
   h: {
     fontFamily: fonts.bodyBold,

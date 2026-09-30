@@ -19,11 +19,13 @@ Prior order still applies for cadence: **~30 minutes every hour**, night envelop
 
 | Name | Type | Job |
 | --- | --- | --- |
-| `thought-defense-mobile-hourly` | cron `15 * * * *` | Start next 30-min mobile batch |
+| `thought-defense-mobile-hourly` | cron `15 * * * *` | Start next 30-min **mobile** batch (`mobile/thought-defense`, PR **#4**) |
 | `overnight-stop-5am-utc` | once → 05:00 | Hard stop + digest if inside night window |
 | `overnight-daily-resume` | cron `0 23 * * *` | Night envelope resume |
 
-**Retire:** `thought-defense-hourly` (Roblox TD / Upgrade UI vote loops). Do not re-arm Roblox-only timers.
+**Retire / do not re-arm:** `thought-defense-hourly` — legacy Roblox payload (`games/thought-defense`, Upgrade chrome, PR #2). If it still fires, **ignore Roblox instructions** and run the mobile checklist below; then unsubscribe it and ensure `thought-defense-mobile-hourly` is the only hourly.
+
+**Correct hourly prompt must say:** app `mobile/thought-defense` · branch `cursor/mobile-thought-defense-5a0d` · PR #4 · Draft C locked · no Roblox TD / no PR #2.
 
 ## Night envelope
 

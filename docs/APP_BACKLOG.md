@@ -12,6 +12,7 @@ Priority order. Agents pick the top unchecked item unless Femmy overrides.
 - [x] **Draft C tray dual-mode** — locked UX; plant dim + Upgrade/Sell/Back
 - [x] **Top-down plan view + walking enemies** — Reanimated path tweens
 - [x] **Soft goals journal + wave result modal**
+- [x] **v1.1.1 polish** — Draft C tray mode animation · walk-on bob · plan-view legend · soft-goals checked state · shop copy
 - [ ] **Native IAP** — wire RevenueCat or react-native-iap; turn off stubMode for store builds
 - [ ] **EAS project** — Femmy: `eas init` + real `projectId` + credentials
 - [ ] **Store products** — create IAP ids in App Store Connect + Play Console

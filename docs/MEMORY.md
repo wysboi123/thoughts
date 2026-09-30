@@ -13,8 +13,10 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 
 ## State
 
-- Version: **mobile 1.1.0** (Draft C tray · top-down · walk-on thoughts · soft goals)
+- Version: **mobile 1.1.1** (Draft C tray motion · walk bob · plan legend · soft-goals UX · shop copy)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
-- Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs
+- PR: https://github.com/wysboi123/thoughts/pull/4
+- Hourly timer: **`thought-defense-mobile-hourly`** (retire mistargeted `thought-defense-hourly` Roblox payload)
+- Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm
 - Next: native IAP · store screenshots · EAS preview
