@@ -135,6 +135,37 @@ local function buildApartment(world: Folder)
 		Parent = world,
 	})
 
+	-- Two-worlds plaque (USP beat — roof first)
+	local plaque = part({
+		Name = "TwoWorldsPlaque",
+		Size = Vector3.new(4, 2.2, 0.25),
+		Position = Vector3.new(-12, 4.2, -10.5),
+		Color = Color3.fromRGB(42, 34, 58),
+		Material = Enum.Material.SmoothPlastic,
+		Parent = world,
+	})
+	local plaqueGui = Instance.new("SurfaceGui")
+	plaqueGui.Face = Enum.NormalId.Front
+	plaqueGui.Parent = plaque
+	local plaqueTitle = Instance.new("TextLabel")
+	plaqueTitle.Size = UDim2.new(1, 0, 0.4, 0)
+	plaqueTitle.BackgroundTransparency = 1
+	plaqueTitle.Font = Enum.Font.GothamMedium
+	plaqueTitle.TextSize = 22
+	plaqueTitle.TextColor3 = Color3.fromRGB(220, 200, 255)
+	plaqueTitle.Text = "two worlds"
+	plaqueTitle.Parent = plaqueGui
+	local plaqueBody = Instance.new("TextLabel")
+	plaqueBody.Position = UDim2.new(0, 0, 0.4, 0)
+	plaqueBody.Size = UDim2.new(1, -8, 0.55, 0)
+	plaqueBody.BackgroundTransparency = 1
+	plaqueBody.Font = Enum.Font.Gotham
+	plaqueBody.TextSize = 16
+	plaqueBody.TextWrapped = true
+	plaqueBody.TextColor3 = Color3.fromRGB(170, 155, 200)
+	plaqueBody.Text = "one couch\nroof first"
+	plaqueBody.Parent = plaqueGui
+
 	-- Coffee table + warm lamp
 	part({
 		Name = "CoffeeTable",
