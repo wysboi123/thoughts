@@ -6,8 +6,8 @@ Femmy’s chill Roblox line. All Rojo filesystem-first. Play: `cd games/<slug> &
 
 | Slug | Version | Verb | USP |
 | --- | --- | --- | --- |
-| [`haze-haven`](../games/haze-haven) | 2.0 | float / sit | Vibe sync + SoftCompany |
-| [`couch-galaxy`](../games/couch-galaxy) | 1.8 | climb / float | Two worlds plaque + Lighting |
+| [`haze-haven`](../games/haze-haven) | 2.1 | float / sit | Vibe sync + SoftCompany |
+| [`couch-galaxy`](../games/couch-galaxy) | 1.9 | climb / float | Constellation pulse + two worlds |
 | [`bus-stop-forever`](../games/bus-stop-forever) | 2.0 | wait / wave | Waiting-together status machine |
 | [`star-porch`](../games/star-porch) | 1.9 | sit / glow | Jar fill HUD + path warm |
 

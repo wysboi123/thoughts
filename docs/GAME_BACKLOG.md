@@ -4,8 +4,8 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 
 ## Active (focus now)
 
-- [x] **Haze Haven v0–v2.0** — vibe sync deepen + SoftCompany
-- [x] **Couch Galaxy v0–v1.8** — two-world Lighting + plaque + SoftCompany
+- [x] **Haze Haven v0–v2.1** — vibe sync deepen + SoftCompany
+- [x] **Couch Galaxy v0–v1.9** — constellation pulse + two-world Lighting
 - [x] **Bus Stop Forever v0–v2.0** — waiting-together status machine
 - [x] **Star Porch v0–v1.9** — jar fill HUD + path warm
 - [x] **Shared** — SoftWelcome/Sit/Goals/Company polish (fade + themes)

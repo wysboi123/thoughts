@@ -10,7 +10,7 @@ rojo build -o CouchGalaxy.rbxl
 rojo serve
 ```
 
-## Loop (v1.8)
+## Loop (v1.9)
 
 1. Spawn in the apartment — rug, lamps, bookshelf, dual couch (sit sync)
 2. Climb stairs to the roof (railings, planters, string lights)

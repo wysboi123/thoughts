@@ -636,6 +636,13 @@ task.spawn(function()
 				if typeof(home) == "Vector3" then
 					child.Position = home + Vector3.new(0, math.sin(t * 2 + child.Position.X) * 1.2, 0)
 				end
+				local beam = child:FindFirstChild("ConstBeam")
+				if beam and beam:IsA("Beam") then
+					local pulse = 0.25 + (math.sin(t * 1.1 + child.Position.X) + 1) / 2 * 0.35
+					beam.Transparency = NumberSequence.new(pulse)
+					beam.Width0 = 0.12 + (1 - pulse) * 0.08
+					beam.Width1 = beam.Width0
+				end
 			elseif child.Name == "SkylightPortal" and child:IsA("BasePart") then
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then
