@@ -1,38 +1,42 @@
 import type { EnemyKind, TowerKind, Vec2 } from './types';
 
-/** Tunables ported from Roblox Thought Defense — soft metaphor only. */
+/** Tunables — soft metaphor only. Board coords are plan-view (top-down) 0–1. */
 export const GAME = {
   name: 'Thought Defense',
   tagline: 'plant kindness. clear the noise.',
-  version: '1.0.0-mobile',
+  version: '1.1.0-mobile',
   startingCalm: 20,
   startingClarity: 140,
-  waveCount: 5, // vertical slice (full campaign = 8 later)
+  waveCount: 5,
   secondsBetweenWaves: 8,
   leakPenalty: 1,
   maxTowerLevel: 3,
   upgradeCostFactor: 0.75,
   sellRefundFactor: 0.5,
-  /** Normalized board space 0–1 for path + pads */
+  /**
+   * Serpentine mind-path in plan view (north → south).
+   * Start top-left entrance; Peace Core bottom-center.
+   */
   path: [
-    { x: 0.08, y: 0.18 },
-    { x: 0.08, y: 0.48 },
-    { x: 0.32, y: 0.48 },
-    { x: 0.32, y: 0.72 },
-    { x: 0.58, y: 0.72 },
-    { x: 0.58, y: 0.38 },
-    { x: 0.82, y: 0.38 },
-    { x: 0.82, y: 0.78 },
+    { x: 0.12, y: 0.1 },
+    { x: 0.12, y: 0.42 },
+    { x: 0.38, y: 0.42 },
+    { x: 0.38, y: 0.68 },
+    { x: 0.68, y: 0.68 },
+    { x: 0.68, y: 0.28 },
+    { x: 0.88, y: 0.28 },
+    { x: 0.88, y: 0.78 },
     { x: 0.5, y: 0.88 },
   ] as Vec2[],
+  /** Circular plant beds beside the path (top-down discs) */
   pads: [
-    { x: 0.18, y: 0.32 },
-    { x: 0.2, y: 0.58 },
-    { x: 0.42, y: 0.58 },
-    { x: 0.44, y: 0.82 },
-    { x: 0.7, y: 0.52 },
-    { x: 0.7, y: 0.28 },
-    { x: 0.9, y: 0.55 },
+    { x: 0.24, y: 0.24 },
+    { x: 0.24, y: 0.54 },
+    { x: 0.5, y: 0.54 },
+    { x: 0.52, y: 0.78 },
+    { x: 0.78, y: 0.48 },
+    { x: 0.78, y: 0.18 },
+    { x: 0.88, y: 0.58 },
     { x: 0.62, y: 0.88 },
   ] as Vec2[],
   enemies: {

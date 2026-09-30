@@ -1,5 +1,6 @@
 import { GAME, pointOnPath, upgradeCost } from './config';
-import type { Enemy, EnemyKind, GameState, Tower, TowerKind } from './types';
+import { emptySoftGoals } from './softGoals';
+import type { Enemy, EnemyKind, GameState, SoftGoals, Tower, TowerKind } from './types';
 
 let idSeq = 0;
 const nextId = () => `e${++idSeq}`;
@@ -7,6 +8,10 @@ const nextId = () => `e${++idSeq}`;
 function pickFlavor(kind: EnemyKind): string {
   const list = GAME.enemies[kind].flavors;
   return list[Math.floor(Math.random() * list.length)];
+}
+
+function withGoals(state: GameState, patch: Partial<SoftGoals>): GameState {
+  return { ...state, softGoals: { ...state.softGoals, ...patch } };
 }
 
 export function createInitialState(): GameState {
@@ -25,6 +30,9 @@ export function createInitialState(): GameState {
     intermissionLeft: 0,
     spawnQueue: [],
     waveActive: false,
+    softGoals: emptySoftGoals(),
+    thoughtsCleared: 0,
+    peakWaveReached: 0,
   };
 }
 
@@ -64,6 +72,11 @@ export function selectTowerKind(state: GameState, kind: TowerKind): GameState {
   return { ...state, selectedTower: kind, selectedPad: null, toast: null };
 }
 
+export function clearSelection(state: GameState): GameState {
+  if (state.selectedPad == null) return state;
+  return { ...state, selectedPad: null, toast: 'Back to planting.' };
+}
+
 export function tapPad(state: GameState, padIndex: number): GameState {
   if (state.phase === 'won' || state.phase === 'lost') return state;
   const existing = state.towers.find((t) => t.padIndex === padIndex);
@@ -71,8 +84,12 @@ export function tapPad(state: GameState, padIndex: number): GameState {
     return {
       ...state,
       selectedPad: padIndex,
-      toast: `${GAME.towers[existing.kind].displayName} L${existing.level} — tap Upgrade or Sell`,
+      toast: `Selected · ${GAME.towers[existing.kind].displayName} L${existing.level}`,
     };
+  }
+  // Planting while in select mode still allowed only if no selection? Draft C dims plant — block plant when selected
+  if (state.selectedPad != null) {
+    return { ...state, toast: 'Back to plant first — or tap Upgrade / Sell.' };
   }
   const cost = GAME.towers[state.selectedTower].cost;
   if (state.clarity < cost) {
@@ -84,13 +101,18 @@ export function tapPad(state: GameState, padIndex: number): GameState {
     level: 1,
     cooldown: 0,
   };
-  return {
+  const towers = [...state.towers, tower];
+  let next: GameState = {
     ...state,
     clarity: state.clarity - cost,
-    towers: [...state.towers, tower],
-    selectedPad: padIndex,
+    towers,
+    selectedPad: null,
     toast: `Planted ${GAME.towers[tower.kind].displayName}.`,
   };
+  if (towers.length >= 3) {
+    next = withGoals(next, { plant_three: true });
+  }
+  return next;
 }
 
 export function upgradeSelected(state: GameState): GameState {
@@ -105,14 +127,16 @@ export function upgradeSelected(state: GameState): GameState {
   if (state.clarity < cost) {
     return { ...state, toast: `Upgrade needs ${cost} Clarity.` };
   }
-  const next = [...state.towers];
-  next[idx] = { ...tower, level: tower.level + 1 };
-  return {
+  const nextTowers = [...state.towers];
+  nextTowers[idx] = { ...tower, level: tower.level + 1 };
+  let next: GameState = {
     ...state,
     clarity: state.clarity - cost,
-    towers: next,
+    towers: nextTowers,
     toast: `Deepened to L${tower.level + 1}.`,
   };
+  next = withGoals(next, { upgrade_once: true });
+  return next;
 }
 
 export function sellSelected(state: GameState): GameState {
@@ -141,6 +165,7 @@ export function beginWave(state: GameState): GameState {
     waveActive: true,
     spawnQueue: queue,
     intermissionLeft: 0,
+    selectedPad: null,
     toast: `Wave ${state.waveIndex + 1} — clear the noise.`,
   };
 }
@@ -153,6 +178,14 @@ export function applyClarityBoost(state: GameState, amount: number): GameState {
   };
 }
 
+function finalizeRun(state: GameState): GameState {
+  let next = state;
+  if (state.calm > 10) {
+    next = withGoals(next, { keep_calm: true });
+  }
+  return next;
+}
+
 export function tick(state: GameState, dt: number): GameState {
   if (state.phase === 'won' || state.phase === 'lost') return state;
 
@@ -162,6 +195,7 @@ export function tick(state: GameState, dt: number): GameState {
     enemies: state.enemies.map((e) => ({ ...e })),
     towers: state.towers.map((t) => ({ ...t })),
     spawnQueue: [...state.spawnQueue],
+    softGoals: { ...state.softGoals },
   };
 
   if (next.phase === 'intermission') {
@@ -174,7 +208,6 @@ export function tick(state: GameState, dt: number): GameState {
 
   if (next.phase !== 'wave') return next;
 
-  // Spawns
   const remaining: typeof next.spawnQueue = [];
   for (const job of next.spawnQueue) {
     if (job.at <= next.elapsed) {
@@ -188,6 +221,7 @@ export function tick(state: GameState, dt: number): GameState {
         pathT: 0,
         slowUntil: 0,
         flavor: pickFlavor(job.kind),
+        bornAt: next.elapsed,
       };
       next.enemies.push(enemy);
     } else {
@@ -196,7 +230,6 @@ export function tick(state: GameState, dt: number): GameState {
   }
   next.spawnQueue = remaining;
 
-  // Move enemies
   const survivors: Enemy[] = [];
   for (const enemy of next.enemies) {
     const slowed = next.elapsed < enemy.slowUntil;
@@ -210,7 +243,7 @@ export function tick(state: GameState, dt: number): GameState {
         next.toast = 'The core needs rest. Try again gently.';
         next.enemies = [];
         next.waveActive = false;
-        return next;
+        return finalizeRun(next);
       }
     } else if (enemy.health > 0) {
       survivors.push(enemy);
@@ -218,7 +251,6 @@ export function tick(state: GameState, dt: number): GameState {
   }
   next.enemies = survivors;
 
-  // Towers fire
   for (const tower of next.towers) {
     tower.cooldown = Math.max(0, tower.cooldown - dt);
     if (tower.cooldown > 0 || next.enemies.length === 0) continue;
@@ -243,6 +275,7 @@ export function tick(state: GameState, dt: number): GameState {
       }
       if (e.health <= 0) {
         next.clarity += GAME.enemies[e.kind].clarityReward;
+        next.thoughtsCleared += 1;
       }
     };
     hit(target);
@@ -261,19 +294,25 @@ export function tick(state: GameState, dt: number): GameState {
     next.spawnQueue.length === 0 && next.enemies.length === 0 && next.waveActive;
   if (waveDone) {
     const finished = next.waveIndex + 1;
+    next.peakWaveReached = Math.max(next.peakWaveReached, finished);
+    if (finished >= 1) next = withGoals(next, { clear_wave_one: true });
+    if (finished >= 3) next = withGoals(next, { reach_wave_three: true });
+
     if (finished >= GAME.waveCount) {
       next.phase = 'won';
       next.waveActive = false;
       next.toast = 'Peace held. The noise grew quiet.';
       next.waveIndex = finished;
-    } else {
-      next.waveIndex = finished;
-      next.phase = 'intermission';
-      next.waveActive = false;
-      next.intermissionLeft = GAME.secondsBetweenWaves;
-      next.toast = `Breath between waves — next in ${GAME.secondsBetweenWaves}s`;
+      return finalizeRun(next);
     }
+    next.waveIndex = finished;
+    next.phase = 'intermission';
+    next.waveActive = false;
+    next.intermissionLeft = GAME.secondsBetweenWaves;
+    next.toast = `Breath between waves — next in ${GAME.secondsBetweenWaves}s`;
   }
 
   return next;
 }
+
+export { pointOnPath };

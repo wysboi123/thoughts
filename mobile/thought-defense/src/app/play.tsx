@@ -3,12 +3,15 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Atmosphere } from '../components/Atmosphere';
+import { DualModeTray } from '../components/DualModeTray';
 import { GameBoard } from '../components/GameBoard';
 import { SoftButton } from '../components/SoftButton';
+import { WaveResultModal } from '../components/WaveResultModal';
 import { GAME } from '../game/config';
 import {
   applyClarityBoost,
   beginWave,
+  clearSelection,
   createInitialState,
   selectTowerKind,
   sellSelected,
@@ -16,21 +19,21 @@ import {
   tick,
   upgradeSelected,
 } from '../game/engine';
-import type { GameState, TowerKind } from '../game/types';
+import { softGoalsDone } from '../game/softGoals';
+import type { GameState } from '../game/types';
 import { useIap } from '../iap/IapProvider';
 import { colors } from '../theme/colors';
 import { fonts } from '../theme/typography';
 
-const KINDS: TowerKind[] = ['Affirmation', 'Gratitude', 'Humor'];
-
 export default function PlayScreen() {
   const insets = useSafeAreaInsets();
-  const { width } = useWindowDimensions();
+  const { width, height: winH } = useWindowDimensions();
   const { entitlements, consumePendingClarity } = useIap();
   const [state, setState] = useState<GameState>(() => createInitialState());
 
-  const boardW = Math.min(width - 32, 420);
-  const boardH = boardW * 1.15;
+  const boardW = Math.min(width - 28, 400);
+  // Near-square plan view — reads as top-down map
+  const boardH = Math.min(boardW * 1.05, winH * 0.48);
 
   useEffect(() => {
     let frame = 0;
@@ -62,20 +65,28 @@ export default function PlayScreen() {
     setState((s) => tapPad(s, i));
   }, []);
 
+  const showResult = state.phase === 'won' || state.phase === 'lost';
+
   return (
     <Atmosphere>
-      <View style={[styles.wrap, { paddingTop: insets.top + 8, paddingBottom: insets.bottom + 8 }]}>
+      <View style={[styles.wrap, { paddingTop: insets.top + 6, paddingBottom: insets.bottom + 6 }]}>
         <View style={styles.topRow}>
           <SoftButton label="← Home" variant="ghost" onPress={() => router.back()} style={styles.homeBtn} />
           <Text style={styles.title}>Mindscape</Text>
-          <View style={{ width: 88 }} />
+          <SoftButton
+            label={`Goals ${softGoalsDone(state.softGoals)}/5`}
+            variant="ghost"
+            onPress={() => router.push('/goals')}
+            style={styles.goalsBtn}
+          />
         </View>
 
         <View style={styles.hud}>
           <Text style={styles.stat}>Calm {state.calm}</Text>
           <Text style={styles.stat}>Clarity {state.clarity}</Text>
           <Text style={styles.stat}>
-            Wave {Math.min(state.waveIndex + 1, GAME.waveCount)}/{GAME.waveCount}
+            Wave {Math.min(state.waveIndex + (state.phase === 'won' ? 0 : 1), GAME.waveCount)}/
+            {GAME.waveCount}
           </Text>
         </View>
 
@@ -87,90 +98,86 @@ export default function PlayScreen() {
             width={boardW}
             height={boardH}
             onPad={onPad}
+            onBackground={() => setState((s) => clearSelection(s))}
             themeDawn={entitlements.ownedCosmetics.includes('cosmetic_dawn')}
           />
         </View>
 
-        <View style={styles.tray}>
-          {KINDS.map((k) => (
-            <SoftButton
-              key={k}
-              label={GAME.towers[k].displayName}
-              variant={state.selectedTower === k ? 'primary' : 'soft'}
-              onPress={() => setState((s) => selectTowerKind(s, k))}
-              style={styles.trayBtn}
-            />
-          ))}
-        </View>
+        {(state.phase === 'prep' || state.phase === 'intermission') && (
+          <SoftButton
+            label={state.phase === 'prep' ? 'Begin wave' : `Start next · ${Math.ceil(state.intermissionLeft)}s`}
+            onPress={() => setState((s) => beginWave(s))}
+            style={styles.begin}
+          />
+        )}
 
-        <View style={styles.actions}>
-          {(state.phase === 'prep' || state.phase === 'intermission') && (
-            <SoftButton label="Begin wave" onPress={() => setState((s) => beginWave(s))} />
-          )}
-          {state.selectedPad != null && state.towers.some((t) => t.padIndex === state.selectedPad) && (
-            <>
-              <SoftButton
-                label="Upgrade"
-                variant="soft"
-                onPress={() => setState((s) => upgradeSelected(s))}
-              />
-              <SoftButton label="Sell 50%" variant="ghost" onPress={() => setState((s) => sellSelected(s))} />
-            </>
-          )}
-          {(state.phase === 'won' || state.phase === 'lost') && (
-            <SoftButton label="Try again" onPress={() => setState(createInitialState())} />
-          )}
-          {state.phase === 'wave' && !entitlements.clarityPassActive && (
-            <Text style={styles.softAd}>Soft note between runs (Clarity Pass hides these)</Text>
-          )}
-        </View>
+        <DualModeTray
+          state={state}
+          onSelectKind={(k) => setState((s) => selectTowerKind(s, k))}
+          onUpgrade={() => setState((s) => upgradeSelected(s))}
+          onSell={() => setState((s) => sellSelected(s))}
+          onBack={() => setState((s) => clearSelection(s))}
+        />
+
+        {state.phase === 'wave' && !entitlements.clarityPassActive ? (
+          <Text style={styles.softAd}>Soft between-run notes (Clarity Pass hides these)</Text>
+        ) : null}
       </View>
+
+      <WaveResultModal
+        visible={showResult}
+        state={state}
+        onRetry={() => setState(createInitialState())}
+        onClose={() => {
+          /* keep modal until retry/nav */
+        }}
+      />
     </Atmosphere>
   );
 }
 
 const styles = StyleSheet.create({
-  wrap: { flex: 1, paddingHorizontal: 16 },
+  wrap: { flex: 1, paddingHorizontal: 14 },
   topRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  homeBtn: { paddingVertical: 8, paddingHorizontal: 12 },
+  homeBtn: { paddingVertical: 8, paddingHorizontal: 10 },
+  goalsBtn: { paddingVertical: 8, paddingHorizontal: 10 },
   title: {
     fontFamily: fonts.display,
-    fontSize: 22,
+    fontSize: 20,
     color: colors.brandDeep,
   },
   hud: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginTop: 10,
-    paddingVertical: 10,
+    marginTop: 8,
+    paddingVertical: 8,
     borderRadius: 16,
     backgroundColor: colors.surface,
   },
   stat: {
     fontFamily: fonts.bodyMedium,
     color: colors.ink,
-    fontSize: 14,
+    fontSize: 13,
   },
   toast: {
-    marginTop: 8,
+    marginTop: 6,
     textAlign: 'center',
     fontFamily: fonts.body,
-    fontSize: 13,
+    fontSize: 12,
     color: colors.inkSoft,
-    minHeight: 18,
+    minHeight: 16,
   },
-  boardWrap: { alignItems: 'center', marginTop: 8, flex: 1, justifyContent: 'center' },
-  tray: { flexDirection: 'row', gap: 8, marginTop: 8 },
-  trayBtn: { flex: 1, paddingVertical: 10 },
-  actions: { gap: 8, marginTop: 10 },
+  boardWrap: { alignItems: 'center', marginTop: 6, flexGrow: 1, justifyContent: 'center' },
+  begin: { marginTop: 8 },
   softAd: {
     textAlign: 'center',
+    marginTop: 6,
     fontFamily: fonts.body,
-    fontSize: 11,
+    fontSize: 10,
     color: colors.inkSoft,
   },
 });

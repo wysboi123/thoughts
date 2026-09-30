@@ -9,6 +9,9 @@ Priority order. Agents pick the top unchecked item unless Femmy overrides.
 - [x] **Soft TD vertical slice** — path, pads, 3 towers, 5 waves, upgrades/sell
 - [x] **IAP catalog + stub** — Clarity Pass, Dawn, Lantern, Clarity boost + restore
 - [x] **EAS / store stubs** — app.json ids, eas.json, privacy/terms, listing copy
+- [x] **Draft C tray dual-mode** — locked UX; plant dim + Upgrade/Sell/Back
+- [x] **Top-down plan view + walking enemies** — Reanimated path tweens
+- [x] **Soft goals journal + wave result modal**
 - [ ] **Native IAP** — wire RevenueCat or react-native-iap; turn off stubMode for store builds
 - [ ] **EAS project** — Femmy: `eas init` + real `projectId` + credentials
 - [ ] **Store products** — create IAP ids in App Store Connect + Play Console

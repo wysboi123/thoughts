@@ -1,3 +1,4 @@
+import 'react-native-reanimated';
 import {
   DMSans_400Regular,
   DMSans_500Medium,

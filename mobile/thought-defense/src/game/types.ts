@@ -4,6 +4,15 @@ export type Phase = 'prep' | 'wave' | 'intermission' | 'won' | 'lost';
 
 export type Vec2 = { x: number; y: number };
 
+export type SoftGoalId =
+  | 'plant_three'
+  | 'clear_wave_one'
+  | 'upgrade_once'
+  | 'reach_wave_three'
+  | 'keep_calm';
+
+export type SoftGoals = Record<SoftGoalId, boolean>;
+
 export type Enemy = {
   id: string;
   kind: EnemyKind;
@@ -13,6 +22,8 @@ export type Enemy = {
   pathT: number;
   slowUntil: number;
   flavor: string;
+  /** Mark for entrance tween */
+  bornAt: number;
 };
 
 export type Tower = {
@@ -36,4 +47,7 @@ export type GameState = {
   intermissionLeft: number;
   spawnQueue: { kind: EnemyKind; at: number }[];
   waveActive: boolean;
+  softGoals: SoftGoals;
+  thoughtsCleared: number;
+  peakWaveReached: number;
 };

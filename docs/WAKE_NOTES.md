@@ -2,6 +2,15 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-30 22:00 UTC — Draft C locked + top-down walkers
+
+- **UX vote = C (Tray dual-mode)** — plant cards dim when a thought is selected; Upgrade / Sell / Back
+- Play redesigned as **top-down plan view** (axis-aligned path corridors, disc pads/towers)
+- Enemies **walk on** with Reanimated position tweens + soft labels (Doubt / Worry / Self-Critic)
+- New **Soft goals** journal screen + wave result modal with goal checklist
+- Docs: DESIGN_CONSULT, UI_MOCKUPS, MEMORY — no longer waiting on A/B/C
+- Branch `cursor/mobile-thought-defense-5a0d`
+
 ## 2026-09-30 21:45 UTC — PIVOT: mobile Thought Defense
 
 - Femmy asked to pivot entire workflow → **mobile app** (iOS+Android) with sensible microtransactions + basic subscription

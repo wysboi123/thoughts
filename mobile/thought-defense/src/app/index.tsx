@@ -48,6 +48,7 @@ export default function HomeScreen() {
 
         <View style={styles.cta}>
           <SoftButton label="Enter the mindscape" onPress={() => router.push('/play')} />
+          <SoftButton label="Soft goals journal" variant="soft" onPress={() => router.push('/goals')} />
           <SoftButton label="Clarity shop" variant="soft" onPress={() => router.push('/shop')} />
           <SoftButton
             label="Settings & restore"
