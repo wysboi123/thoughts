@@ -7,11 +7,12 @@ local Config = require(Shared:WaitForChild("Config"))
 local Remotes = require(Shared:WaitForChild("Remotes"))
 
 local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
 local gui = Instance.new("ScreenGui")
 gui.Name = "BusHud"
 gui.ResetOnSpawn = false
 gui.IgnoreGuiInset = true
-gui.Parent = player:WaitForChild("PlayerGui")
+gui.Parent = playerGui
 
 local title = Instance.new("TextLabel")
 title.BackgroundTransparency = 1
@@ -61,26 +62,51 @@ local corner = Instance.new("UICorner")
 corner.CornerRadius = UDim.new(0, 10)
 corner.Parent = counter
 
+-- Waiting-together status machine (survives wave/depart races)
+local phase = "waiting" -- waiting | arrived | departed | waved
+local nearbyCount = 0
+local seatedLocal = false
+local lastWaveName: string? = nil
+
+local function refreshStatus()
+	if phase == "arrived" then
+		busStatus.Text = "bus is here · stay if you want"
+		busStatus.TextColor3 = Color3.fromRGB(200, 220, 170)
+	elseif phase == "departed" then
+		busStatus.Text = "departed · another will come"
+		busStatus.TextColor3 = Color3.fromRGB(150, 160, 140)
+	elseif phase == "waved" then
+		busStatus.Text = (lastWaveName or "someone") .. " waved · no rush"
+		busStatus.TextColor3 = Color3.fromRGB(200, 220, 170)
+	elseif nearbyCount >= 1 then
+		busStatus.Text = ("waiting together · %d near · no rush"):format(nearbyCount)
+		busStatus.TextColor3 = Color3.fromRGB(180, 200, 160)
+	else
+		busStatus.Text = "waiting · no rush"
+		busStatus.TextColor3 = Color3.fromRGB(150, 160, 140)
+	end
+end
+
 Remotes.TicketCollected.OnClientEvent:Connect(function(count: number)
 	counter.Text = ("Tickets  %d"):format(count)
 end)
 
 Remotes.BusArrived.OnClientEvent:Connect(function()
-	busStatus.Text = "bus is here · stay if you want"
-	busStatus.TextColor3 = Color3.fromRGB(200, 220, 170)
+	phase = "arrived"
+	refreshStatus()
 end)
 
 Remotes.BusDeparted.OnClientEvent:Connect(function()
-	busStatus.Text = "departed · another will come"
-	busStatus.TextColor3 = Color3.fromRGB(150, 160, 140)
+	phase = "departed"
+	refreshStatus()
 	task.delay(3, function()
-		if busStatus.Parent then
-			busStatus.Text = "waiting · no rush"
+		if phase == "departed" then
+			phase = "waiting"
+			refreshStatus()
 		end
 	end)
 end)
 
--- Soft proximity glow near other players
 local ChillProximity = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("Proximity"))
 ChillProximity.start(player, {
 	Radius = Config.Proximity.Radius,
@@ -93,8 +119,29 @@ print("[BusStopForever] client ready")
 
 local SoftWelcome = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftWelcome"))
 local SoftCompany = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftCompany"))
-SoftWelcome.show(player:WaitForChild("PlayerGui"), Config.GameName, "the bus will come. you don't have to. wait together.")
-SoftCompany.mount(player:WaitForChild("PlayerGui"), player, {
+local SoftGoals = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftGoals"))
+local busStyle = {
+	AccentColor = Color3.fromRGB(120, 160, 110),
+	FrameColor = Color3.fromRGB(24, 28, 22),
+	TitleColor = Color3.fromRGB(220, 235, 210),
+	BodyColor = Color3.fromRGB(170, 185, 160),
+}
+SoftWelcome.show(playerGui, Config.GameName, "the bus will come. you don't have to. wait together.", busStyle)
+
+local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
+	{ Id = "sit", Label = "sit on a bench" },
+	{ Id = "ticket", Label = "pick up a ticket" },
+	{ Id = "wave", Label = "wave when the bus stops" },
+	{ Id = "together", Label = "wait together on a bench" },
+})
+
+local function tryTogetherGoal()
+	if nearbyCount >= 1 and seatedLocal then
+		complete("together")
+	end
+end
+
+SoftCompany.mount(playerGui, player, {
 	Radius = Config.Proximity.Radius,
 	Color = Color3.fromRGB(190, 200, 170),
 	AloneText = "soft company · alone is fine",
@@ -103,20 +150,12 @@ SoftCompany.mount(player:WaitForChild("PlayerGui"), player, {
 		return ("soft company · %d nearby · wait together"):format(n)
 	end,
 	OnCountChanged = function(n)
-		if n >= 1 and busStatus.Text == "waiting · no rush" then
-			busStatus.Text = "waiting together · no rush"
-			busStatus.TextColor3 = Color3.fromRGB(180, 200, 160)
-		elseif n <= 0 and busStatus.Text == "waiting together · no rush" then
-			busStatus.Text = "waiting · no rush"
-			busStatus.TextColor3 = Color3.fromRGB(150, 160, 140)
+		nearbyCount = n
+		if phase == "waiting" then
+			refreshStatus()
 		end
+		tryTogetherGoal()
 	end,
-})
-local SoftGoals = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftGoals"))
-local _, complete = SoftGoals.mount(player:WaitForChild("PlayerGui"), "tonight's soft goals", {
-	{ Id = "sit", Label = "sit on a bench" },
-	{ Id = "ticket", Label = "pick up a ticket" },
-	{ Id = "wave", Label = "wave when the bus stops" },
 })
 
 Remotes.TicketCollected.OnClientEvent:Connect(function()
@@ -153,12 +192,19 @@ end)
 
 Remotes.WaveAtBus.OnClientEvent:Connect(function(name: string)
 	complete("wave")
-	busStatus.Text = name .. " waved · no rush"
-	busStatus.TextColor3 = Color3.fromRGB(200, 220, 170)
+	lastWaveName = name
+	phase = "waved"
+	refreshStatus()
+	task.delay(4, function()
+		if phase == "waved" then
+			phase = if waveBtn.Visible then "arrived" else "waiting"
+			refreshStatus()
+		end
+	end)
 end)
 
 local SoftSit = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftSit"))
-local benchSit = SoftSit.mount(player:WaitForChild("PlayerGui"), {
+local benchSit = SoftSit.mount(playerGui, {
 	OneText = function(name)
 		return name .. " is waiting"
 	end,
@@ -171,6 +217,10 @@ Remotes.BenchSitChanged.OnClientEvent:Connect(function(seatName: string, display
 	benchSit.set(seatName, displayName)
 	if displayName == player.DisplayName then
 		complete("sit")
+		seatedLocal = true
+		tryTogetherGoal()
+	elseif displayName == nil then
+		-- occupant left this seat; re-check local seat below
 	end
 end)
 
@@ -179,8 +229,11 @@ task.spawn(function()
 		task.wait(0.5)
 		local character = player.Character
 		local humanoid = character and character:FindFirstChildOfClass("Humanoid")
-		if humanoid and humanoid.SeatPart then
+		local onSeat = humanoid and humanoid.SeatPart ~= nil
+		seatedLocal = onSeat == true
+		if seatedLocal then
 			complete("sit")
+			tryTogetherGoal()
 		end
 	end
 end)

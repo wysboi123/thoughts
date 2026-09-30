@@ -1,11 +1,28 @@
 --!strict
--- One-shot soft welcome toast (session only).
+-- One-shot soft welcome toast (session only). Replaces any prior SoftWelcome.
 
 local TweenService = game:GetService("TweenService")
 
+export type SoftWelcomeStyle = {
+	AccentColor: Color3?,
+	FrameColor: Color3?,
+	TitleColor: Color3?,
+	BodyColor: Color3?,
+}
+
 local SoftWelcome = {}
 
-function SoftWelcome.show(playerGui: PlayerGui, titleText: string, bodyText: string)
+function SoftWelcome.show(playerGui: PlayerGui, titleText: string, bodyText: string, style: SoftWelcomeStyle?)
+	local existing = playerGui:FindFirstChild("SoftWelcome")
+	if existing then
+		existing:Destroy()
+	end
+
+	local accent = (style and style.AccentColor) or Color3.fromRGB(120, 100, 160)
+	local frameColor = (style and style.FrameColor) or Color3.fromRGB(28, 24, 40)
+	local titleColor = (style and style.TitleColor) or Color3.fromRGB(230, 220, 255)
+	local bodyColor = (style and style.BodyColor) or Color3.fromRGB(180, 170, 200)
+
 	local gui = Instance.new("ScreenGui")
 	gui.Name = "SoftWelcome"
 	gui.ResetOnSpawn = false
@@ -16,7 +33,7 @@ function SoftWelcome.show(playerGui: PlayerGui, titleText: string, bodyText: str
 	frame.AnchorPoint = Vector2.new(0.5, 0)
 	frame.Position = UDim2.new(0.5, 0, 0, -90)
 	frame.Size = UDim2.fromOffset(360, 72)
-	frame.BackgroundColor3 = Color3.fromRGB(28, 24, 40)
+	frame.BackgroundColor3 = frameColor
 	frame.BackgroundTransparency = 0.15
 	frame.Parent = gui
 
@@ -25,7 +42,7 @@ function SoftWelcome.show(playerGui: PlayerGui, titleText: string, bodyText: str
 	corner.Parent = frame
 
 	local stroke = Instance.new("UIStroke")
-	stroke.Color = Color3.fromRGB(120, 100, 160)
+	stroke.Color = accent
 	stroke.Thickness = 1
 	stroke.Transparency = 0.55
 	stroke.Parent = frame
@@ -37,7 +54,7 @@ function SoftWelcome.show(playerGui: PlayerGui, titleText: string, bodyText: str
 	title.Font = Enum.Font.GothamMedium
 	title.TextSize = 16
 	title.TextXAlignment = Enum.TextXAlignment.Left
-	title.TextColor3 = Color3.fromRGB(230, 220, 255)
+	title.TextColor3 = titleColor
 	title.Text = titleText
 	title.Parent = frame
 
@@ -48,7 +65,7 @@ function SoftWelcome.show(playerGui: PlayerGui, titleText: string, bodyText: str
 	body.Font = Enum.Font.Gotham
 	body.TextSize = 13
 	body.TextXAlignment = Enum.TextXAlignment.Left
-	body.TextColor3 = Color3.fromRGB(180, 170, 200)
+	body.TextColor3 = bodyColor
 	body.Text = bodyText
 	body.Parent = frame
 

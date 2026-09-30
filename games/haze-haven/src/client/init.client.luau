@@ -15,7 +15,7 @@ local FloatFx = require(script:WaitForChild("FloatFx"))
 local AmbientAudio = require(script:WaitForChild("AmbientAudio"))
 local VibeBoard = require(script:WaitForChild("VibeBoard"))
 
-Hud.mount(playerGui)
+local orbCounter = Hud.mount(playerGui)
 EmoteWheel.mount(playerGui)
 ProximityGlow.start(player)
 FloatFx.start(player)
@@ -26,6 +26,7 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	{ Id = "vibes", Label = "collect 3 vibes" },
 	{ Id = "sit", Label = "sit somewhere" },
 	{ Id = "float", Label = "take a float" },
+	{ Id = "sync", Label = "vibe sync near a friend" },
 })
 
 Remotes.OrbCollected.OnClientEvent:Connect(function(count: number)
@@ -82,16 +83,38 @@ print("[HazeHaven] client ready")
 local SoftWelcome = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftWelcome"))
 local SoftCompany = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftCompany"))
 local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Config"))
-SoftWelcome.show(playerGui, Config.GameName, "float soft. vibes sync when friends are near.")
+local hazeStyle = {
+	AccentColor = Color3.fromRGB(160, 120, 210),
+	FrameColor = Color3.fromRGB(28, 22, 42),
+}
+SoftWelcome.show(playerGui, Config.GameName, "float soft. vibes sync when friends are near.", hazeStyle)
 
 local vibeSynced = false
+local syncedColor = Color3.fromRGB(255, 220, 255)
+local normalColor = Color3.fromRGB(240, 200, 230)
+
 SoftCompany.mount(playerGui, player, {
 	Radius = Config.Proximity.Radius,
 	Color = Color3.fromRGB(200, 180, 230),
+	AloneText = "alone is fine · vibes still soft",
+	OneText = "soft company · vibes syncing",
+	ManyText = function(n)
+		return ("soft company · %d nearby · vibes sync"):format(n)
+	end,
 	OnCountChanged = function(n)
-		if n >= 1 and not vibeSynced then
-			vibeSynced = true
-			SoftWelcome.show(playerGui, "vibe sync", "someone nearby — tonight's vibes feel softer")
+		if n >= 1 then
+			complete("sync")
+			if orbCounter and orbCounter.Parent then
+				orbCounter.TextColor3 = syncedColor
+			end
+			if not vibeSynced then
+				vibeSynced = true
+				SoftWelcome.show(playerGui, "vibe sync", "someone nearby — tonight's vibes feel softer", hazeStyle)
+			end
+		else
+			if orbCounter and orbCounter.Parent then
+				orbCounter.TextColor3 = normalColor
+			end
 		end
 	end,
 })

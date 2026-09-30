@@ -1,6 +1,8 @@
 --!strict
 -- Soft session checklist HUD for low-pressure hangout goals.
 
+local TweenService = game:GetService("TweenService")
+
 export type Goal = {
 	Id: string,
 	Label: string,
@@ -63,6 +65,8 @@ function SoftGoals.mount(playerGui: PlayerGui, titleText: string, goals: { Goal 
 		labels[goal.Id] = row
 	end
 
+	local faded = false
+
 	local function complete(id: string)
 		if done[id] then
 			return
@@ -80,9 +84,30 @@ function SoftGoals.mount(playerGui: PlayerGui, titleText: string, goals: { Goal 
 				break
 			end
 		end
-		if all then
+		if all and not faded then
+			faded = true
 			title.Text = "session soft-complete · stay"
 			title.TextColor3 = Color3.fromRGB(180, 230, 200)
+			TweenService:Create(
+				title,
+				TweenInfo.new(0.35, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+				{ TextColor3 = Color3.fromRGB(210, 255, 220) }
+			):Play()
+			task.delay(6, function()
+				if not frame.Parent then
+					return
+				end
+				TweenService:Create(
+					frame,
+					TweenInfo.new(0.8, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+					{ BackgroundTransparency = 0.75 }
+				):Play()
+				TweenService:Create(
+					stroke,
+					TweenInfo.new(0.8, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+					{ Transparency = 0.85 }
+				):Play()
+			end)
 		end
 	end
 

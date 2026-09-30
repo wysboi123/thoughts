@@ -10,7 +10,7 @@ local PartFactory = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild
 
 local counts: { [number]: number } = {}
 local sessionFlies = 0
-local JAR_FILL_CAP = 16
+local JAR_FILL_CAP = Config.JarFillCap
 
 PartFactory.clearDefaults(Workspace)
 local world = Instance.new("Folder")
@@ -490,6 +490,7 @@ for i = 1, Config.Firefly.Count do
 		sessionFlies += 1
 		refreshJarFill()
 		Remotes.FireflyCollected:FireClient(player, counts[player.UserId])
+		Remotes.JarFillChanged:FireAllClients(sessionFlies, JAR_FILL_CAP)
 		task.delay(Config.Firefly.RespawnSeconds, function()
 			if not fly.Parent then
 				return

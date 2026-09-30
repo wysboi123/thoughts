@@ -17,9 +17,10 @@ Then: `local SoftGoals = require(ReplicatedStorage.Chill.SoftGoals)`
 | `RemoteFolder` | Server-create / client-wait RemoteEvents |
 | `SoftGoals` | Low-pressure session checklist HUD |
 | `Proximity` | Soft PointLight glow for nearby players |
-| `SoftWelcome` | One-shot slide-in welcome toast |
-| `SoftSit` | Bottom-center sit-status line for friends |
+| `SoftWelcome` | One-shot toast (replaces prior; optional accent colors) |
+| `SoftSit` | Bottom-center sit-status line (fade in/out) |
 | `SoftWireSeats` | Seat.Occupant → RemoteEvent for SoftSit |
-| `SoftCompany` | Nearby-player “soft company” co-play HUD |
+| `SoftCompany` | Nearby-player co-play HUD (arrive pulse + dynamic copy) |
+| `SoftGoals` | Soft checklist that fades after session complete |
 
 Do not invent Roblox audio asset ids here — wait for Perplexity Q-004 / Femmy paste.

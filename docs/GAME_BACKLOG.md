@@ -4,17 +4,17 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 
 ## Active (focus now)
 
-- [x] **Haze Haven v0–v1.9** — vibe sync + SoftCompany
-- [x] **Couch Galaxy v0–v1.6** — two worlds copy + SoftCompany
-- [x] **Bus Stop Forever v0–v1.8** — waiting together timetable + SoftCompany
-- [x] **Star Porch v0–v1.7** — jar fill + SoftCompany
-- [x] **Shared** — SoftWelcome + SoftSit + SoftWireSeats + Proximity + SoftCompany
+- [x] **Haze Haven v0–v2.0** — vibe sync deepen + SoftCompany
+- [x] **Couch Galaxy v0–v1.7** — two-world Lighting + SoftCompany
+- [x] **Bus Stop Forever v0–v1.9** — waiting-together status machine
+- [x] **Star Porch v0–v1.8** — jar fill HUD + milestones
+- [x] **Shared** — SoftWelcome/Sit/Goals/Company polish (fade + themes)
 - [x] **USP research + priority** — `docs/USPS.md` + research note
 - [x] **Night 6** — complete (active-four polish; parked trio kept)
+- [ ] **Night 7** — in progress (USP deepen; no invented audio)
 - [ ] **Wire audio** — waiting on Perplexity Q-004 (do not invent)
 - [ ] **First publish** — Femmy: `PUBLISH_CHECKLIST.md` First 10 minutes (Haze)
 - [ ] **Apply Q-001–003** when answers land
-- [ ] **Night 7** — wire audio if research lands; help publish Haze; parked later
 
 ## Parked for later (files kept — do not erase)
 

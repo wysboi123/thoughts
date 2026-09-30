@@ -1,5 +1,6 @@
 --!strict
 local Players = game:GetService("Players")
+local Lighting = game:GetService("Lighting")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Shared = ReplicatedStorage:WaitForChild("Shared")
@@ -7,11 +8,12 @@ local Config = require(Shared:WaitForChild("Config"))
 local Remotes = require(Shared:WaitForChild("Remotes"))
 
 local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
 local gui = Instance.new("ScreenGui")
 gui.Name = "GalaxyHud"
 gui.ResetOnSpawn = false
 gui.IgnoreGuiInset = true
-gui.Parent = player:WaitForChild("PlayerGui")
+gui.Parent = playerGui
 
 local title = Instance.new("TextLabel")
 title.BackgroundTransparency = 1
@@ -38,7 +40,7 @@ tag.Parent = gui
 local place = Instance.new("TextLabel")
 place.BackgroundTransparency = 1
 place.Position = UDim2.new(0, 24, 0, 86)
-place.Size = UDim2.new(0, 280, 0, 18)
+place.Size = UDim2.new(0, 320, 0, 18)
 place.Font = Enum.Font.Gotham
 place.TextSize = 13
 place.TextXAlignment = Enum.TextXAlignment.Left
@@ -61,27 +63,71 @@ local corner = Instance.new("UICorner")
 corner.CornerRadius = UDim.new(0, 10)
 corner.Parent = counter
 
+local inGalaxy = false
+
+local SoftCompany = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftCompany"))
+local SoftSit = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftSit"))
+local SoftGoals = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftGoals"))
+local SoftWelcome = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftWelcome"))
+local ChillProximity = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("Proximity"))
+
+local function applyHomeLighting()
+	Lighting.ClockTime = 20.5
+	Lighting.Brightness = 1.4
+	Lighting.Ambient = Color3.fromRGB(70, 55, 90)
+	Lighting.OutdoorAmbient = Color3.fromRGB(50, 40, 70)
+	Lighting.FogColor = Color3.fromRGB(40, 30, 55)
+	Lighting.FogEnd = 220
+end
+
+local function applyGalaxyLighting()
+	Lighting.ClockTime = 0.5
+	Lighting.Brightness = 0.6
+	Lighting.Ambient = Color3.fromRGB(30, 35, 70)
+	Lighting.OutdoorAmbient = Color3.fromRGB(20, 25, 55)
+	Lighting.FogColor = Color3.fromRGB(10, 15, 40)
+	Lighting.FogEnd = 400
+end
+
+applyHomeLighting()
+
+local function refreshPlace(companyNear: boolean)
+	if inGalaxy then
+		place.Text = if companyNear
+			then "galaxy loft · soft company · two worlds"
+			else "galaxy loft · two worlds · beacon home when ready"
+		place.TextColor3 = Color3.fromRGB(200, 190, 255)
+	else
+		place.Text = if companyNear
+			then "couch side · soft company · climb when ready"
+			else "two worlds · one couch · climb to the skylight"
+		place.TextColor3 = Color3.fromRGB(140, 130, 170)
+	end
+end
+
 Remotes.StarCollected.OnClientEvent:Connect(function(count: number)
 	counter.Text = ("Stars  %d"):format(count)
 end)
 
 Remotes.EnteredGalaxy.OnClientEvent:Connect(function()
-	place.Text = "galaxy loft · two worlds · beacon home when ready"
-	place.TextColor3 = Color3.fromRGB(200, 190, 255)
+	inGalaxy = true
+	applyGalaxyLighting()
+	refreshPlace(false)
 end)
 
 Remotes.ReturnedHome.OnClientEvent:Connect(function()
-	place.Text = "two worlds · one couch · climb to the skylight"
-	place.TextColor3 = Color3.fromRGB(140, 130, 170)
+	inGalaxy = false
+	applyHomeLighting()
+	refreshPlace(false)
 end)
 
-local SoftSit = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftSit"))
-local couchSit = SoftSit.mount(player:WaitForChild("PlayerGui"), {
+local couchSit = SoftSit.mount(playerGui, {
 	OneText = function(name)
-		return name .. " is on the couch"
+		return if inGalaxy then (name .. " is in the hammock loft") else (name .. " is on the couch")
 	end,
 	ManyText = function(names)
-		return table.concat(names, " & ") .. " are on the couch"
+		local joined = table.concat(names, " & ")
+		return if inGalaxy then (joined .. " are in the hammock loft") else (joined .. " are on the couch")
 	end,
 	Color = Color3.fromRGB(190, 170, 220),
 })
@@ -91,8 +137,7 @@ end)
 
 print("[CouchGalaxy] client ready v" .. Config.Version)
 
-local SoftGoals = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftGoals"))
-local _, complete = SoftGoals.mount(player:WaitForChild("PlayerGui"), "tonight's soft goals", {
+local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	{ Id = "couch", Label = "sit on the couch" },
 	{ Id = "galaxy", Label = "visit the galaxy loft" },
 	{ Id = "stars", Label = "collect 3 stars" },
@@ -125,7 +170,6 @@ task.spawn(function()
 	end
 end)
 
-local ChillProximity = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("Proximity"))
 ChillProximity.start(player, {
 	Radius = Config.Proximity.Radius,
 	GlowColor = Config.Proximity.GlowColor,
@@ -133,15 +177,26 @@ ChillProximity.start(player, {
 	Range = 11,
 })
 
-local SoftCompany = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftCompany"))
-SoftCompany.mount(player:WaitForChild("PlayerGui"), player, {
+SoftCompany.mount(playerGui, player, {
 	Radius = Config.Proximity.Radius,
 	Color = Color3.fromRGB(190, 170, 220),
-	OneText = "soft company · constellations feel closer",
+	AloneTextFn = function()
+		return if inGalaxy then "soft company · loft is enough" else "soft company · couch is enough"
+	end,
+	OneTextFn = function()
+		return if inGalaxy then "soft company · loft side · two worlds" else "soft company · couch side"
+	end,
 	ManyText = function(n)
-		return ("soft company · %d nearby · two worlds"):format(n)
+		return if inGalaxy
+			then ("soft company · %d nearby · loft side"):format(n)
+			else ("soft company · %d nearby · couch side"):format(n)
+	end,
+	OnCountChanged = function(n)
+		refreshPlace(n >= 1)
 	end,
 })
 
-local SoftWelcome = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftWelcome"))
-SoftWelcome.show(player:WaitForChild("PlayerGui"), Config.GameName, "two worlds, one couch. roof first.")
+SoftWelcome.show(playerGui, Config.GameName, "two worlds, one couch. roof first.", {
+	AccentColor = Color3.fromRGB(140, 120, 200),
+	FrameColor = Color3.fromRGB(26, 20, 40),
+})
