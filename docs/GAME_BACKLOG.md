@@ -6,8 +6,8 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 
 - [x] **Haze Haven v0–v2.0** — vibe sync deepen + SoftCompany
 - [x] **Couch Galaxy v0–v1.8** — two-world Lighting + plaque + SoftCompany
-- [x] **Bus Stop Forever v0–v1.9** — waiting-together status machine
-- [x] **Star Porch v0–v1.8** — jar fill HUD + milestones
+- [x] **Bus Stop Forever v0–v2.0** — waiting-together status machine
+- [x] **Star Porch v0–v1.9** — jar fill HUD + path warm
 - [x] **Shared** — SoftWelcome/Sit/Goals/Company polish (fade + themes)
 - [x] **USP research + priority** — `docs/USPS.md` + research note
 - [x] **Night 6** — complete (active-four polish; parked trio kept)
