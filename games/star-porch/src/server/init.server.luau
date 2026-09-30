@@ -536,6 +536,9 @@ task.spawn(function()
 					light.Brightness = 1.4 + math.sin(t * 2.8) * 0.45
 				end
 				child.Transparency = 0.22 + math.sin(t * 3.1) * 0.06
+			elseif child.Name == "FirePitRing" and child:IsA("BasePart") then
+				local warm = (math.sin(t * 2.8) + 1) / 2
+				child.Color = Color3.fromRGB(70, 65, 60):Lerp(Color3.fromRGB(95, 75, 55), warm * 0.5)
 			elseif child.Name == "YardPathGlow" and child:IsA("BasePart") then
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then

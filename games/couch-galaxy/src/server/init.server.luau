@@ -628,6 +628,9 @@ task.spawn(function()
 			elseif child.Name == "CouchRug" and child:IsA("BasePart") then
 				local warm = (math.sin(t * 0.55) + 1) / 2
 				child.Color = Color3.fromRGB(95, 55, 90):Lerp(Color3.fromRGB(120, 70, 115), warm * 0.55)
+			elseif child.Name == "CoffeeTable" and child:IsA("BasePart") then
+				local warm = (math.sin(t * 0.55) + 1) / 2
+				child.Color = Color3.fromRGB(70, 55, 45):Lerp(Color3.fromRGB(95, 70, 55), warm * 0.5)
 			elseif child.Name == "ReturnBeacon" and child:IsA("BasePart") then
 				child.Transparency = 0.05 + math.sin(t * 1.3) * 0.08
 			elseif child.Name == "GalaxyHammockCloth" and child:IsA("BasePart") then

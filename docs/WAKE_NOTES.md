@@ -8,7 +8,8 @@ Femmy: drop all games except **Haze Haven**, **Couch Galaxy**, **Bus Stop Foreve
 
 - Removed from repo: `slow-orbit`, `puddle-mirror`, `lantern-drift`
 - Docs/gallery/publish lists updated to the four-game lineup
-- Night 6 continues polish on the kept four only (no invented audio)
+- Post-cut polish: Haze **1.5** · Couch **1.2** · Bus **1.3** · Porch **1.2**
+- Night 6 continues on the kept four only (no invented audio)
 
 ## 2026-09-29 23:23 UTC — Night 6 resume
 
