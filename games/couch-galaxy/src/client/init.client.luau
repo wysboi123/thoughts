@@ -43,7 +43,7 @@ place.Font = Enum.Font.Gotham
 place.TextSize = 13
 place.TextXAlignment = Enum.TextXAlignment.Left
 place.TextColor3 = Color3.fromRGB(140, 130, 170)
-place.Text = "you are home · climb to the skylight"
+place.Text = "two worlds · one couch · climb to the skylight"
 place.Parent = gui
 
 local counter = Instance.new("TextLabel")
@@ -66,12 +66,12 @@ Remotes.StarCollected.OnClientEvent:Connect(function(count: number)
 end)
 
 Remotes.EnteredGalaxy.OnClientEvent:Connect(function()
-	place.Text = "galaxy loft · touch the warm beacon to return"
+	place.Text = "galaxy loft · two worlds · beacon home when ready"
 	place.TextColor3 = Color3.fromRGB(200, 190, 255)
 end)
 
 Remotes.ReturnedHome.OnClientEvent:Connect(function()
-	place.Text = "you are home · climb to the skylight"
+	place.Text = "two worlds · one couch · climb to the skylight"
 	place.TextColor3 = Color3.fromRGB(140, 130, 170)
 end)
 
@@ -133,5 +133,15 @@ ChillProximity.start(player, {
 	Range = 11,
 })
 
+local SoftCompany = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftCompany"))
+SoftCompany.mount(player:WaitForChild("PlayerGui"), player, {
+	Radius = Config.Proximity.Radius,
+	Color = Color3.fromRGB(190, 170, 220),
+	OneText = "soft company · constellations feel closer",
+	ManyText = function(n)
+		return ("soft company · %d nearby · two worlds"):format(n)
+	end,
+})
+
 local SoftWelcome = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftWelcome"))
-SoftWelcome.show(player:WaitForChild("PlayerGui"), Config.GameName, "couch first. skylight when you're ready.")
+SoftWelcome.show(player:WaitForChild("PlayerGui"), Config.GameName, "two worlds, one couch. roof first.")

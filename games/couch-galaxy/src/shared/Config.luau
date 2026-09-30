@@ -1,8 +1,8 @@
 --!strict
 local Config = {
 	GameName = "Couch Galaxy",
-	Tagline = "roof first. sky second. stay soft.",
-	Version = "1.5",
+	Tagline = "two worlds, one couch. roof first.",
+	Version = "1.6",
 
 	ApartmentSpawn = Vector3.new(0, 5, 8),
 	GalaxySpawn = Vector3.new(0, 120, 0),

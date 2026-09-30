@@ -237,13 +237,38 @@ local gui = Instance.new("SurfaceGui")
 gui.Face = Enum.NormalId.Front
 gui.Parent = board
 local label = Instance.new("TextLabel")
+label.Name = "TimetableBody"
 label.Size = UDim2.fromScale(1, 1)
 label.BackgroundTransparency = 1
 label.Font = Enum.Font.GothamMedium
-label.TextSize = 28
+label.TextSize = 26
+label.TextWrapped = true
 label.TextColor3 = Color3.fromRGB(200, 220, 180)
-label.Text = "NEXT BUS\nwhenever\n\nyou're already\non time"
+label.Text = "NEXT BUS\nwhenever\n\nwaiting: 0\nyou're already on time"
 label.Parent = gui
+
+local function countWaiting(): number
+	local n = 0
+	for _, child in world:GetDescendants() do
+		if child:IsA("Seat") and child.Occupant then
+			n += 1
+		end
+	end
+	return n
+end
+
+local function refreshTimetable()
+	local n = countWaiting()
+	local waitLine = if n <= 0 then "waiting: alone is fine" elseif n == 1 then "waiting: 1 together" else ("waiting: %d together"):format(n)
+	label.Text = "NEXT BUS\nwhenever\n\n" .. waitLine .. "\nyou're already on time"
+end
+
+task.spawn(function()
+	while board.Parent do
+		refreshTimetable()
+		task.wait(0.75)
+	end
+end)
 
 -- Second shelter further down the sidewalk
 part({

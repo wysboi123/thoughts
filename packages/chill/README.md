@@ -20,5 +20,6 @@ Then: `local SoftGoals = require(ReplicatedStorage.Chill.SoftGoals)`
 | `SoftWelcome` | One-shot slide-in welcome toast |
 | `SoftSit` | Bottom-center sit-status line for friends |
 | `SoftWireSeats` | Seat.Occupant → RemoteEvent for SoftSit |
+| `SoftCompany` | Nearby-player “soft company” co-play HUD |
 
 Do not invent Roblox audio asset ids here — wait for Perplexity Q-004 / Femmy paste.

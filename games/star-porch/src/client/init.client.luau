@@ -46,7 +46,7 @@ hint.Font = Enum.Font.Gotham
 hint.TextSize = 12
 hint.TextXAlignment = Enum.TextXAlignment.Left
 hint.TextColor3 = Color3.fromRGB(130, 150, 120)
-hint.Text = "rockers + swing · side table · fireflies drift back"
+hint.Text = "rockers + swing · jar fills as fireflies return"
 hint.Parent = gui
 
 local counter = Instance.new("TextLabel")
@@ -125,6 +125,19 @@ ChillProximity.start(player, {
 	Range = 10,
 })
 
-SoftWelcome.show(player:WaitForChild("PlayerGui"), Config.GameName, "sit outside. the fireflies come back.")
+local SoftCompany = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftCompany"))
+SoftWelcome.show(player:WaitForChild("PlayerGui"), Config.GameName, "fireflies drift back. the jar remembers.")
+SoftCompany.mount(player:WaitForChild("PlayerGui"), player, {
+	Radius = Config.Proximity.Radius,
+	Color = Color3.fromRGB(180, 200, 170),
+	OneText = "soft company · porch feels warmer",
+	ManyText = function(n)
+		return ("soft company · %d nearby · jar glow"):format(n)
+	end,
+})
+
+Remotes.FireflyCollected.OnClientEvent:Connect(function(count: number)
+	hint.Text = if count <= 1 then "jar remembers · first glow" else ("jar remembers · %d fireflies"):format(count)
+end)
 
 print("[StarPorch] client ready v" .. Config.Version)

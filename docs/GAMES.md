@@ -2,14 +2,14 @@
 
 Femmy’s chill Roblox line. All Rojo filesystem-first. Play: `cd games/<slug> && rojo serve`.
 
-## Active (Night 6 focus)
+## Active (USP pass)
 
-| Slug | Version | Verb | One-liner |
+| Slug | Version | Verb | USP |
 | --- | --- | --- | --- |
-| [`haze-haven`](../games/haze-haven) | 1.8 | float / sit | Loft string warm + candle + table |
-| [`couch-galaxy`](../games/couch-galaxy) | 1.5 | climb / float | Bookshelf warm + couch fabric |
-| [`bus-stop-forever`](../games/bus-stop-forever) | 1.7 | wait / wave | Dual shelter roofs + benches |
-| [`star-porch`](../games/star-porch) | 1.6 | sit / glow | House wall + roof + deck + fire pit |
+| [`haze-haven`](../games/haze-haven) | 1.9 | float / sit | Vibe sync + SoftCompany |
+| [`couch-galaxy`](../games/couch-galaxy) | 1.6 | climb / float | Two worlds, one couch |
+| [`bus-stop-forever`](../games/bus-stop-forever) | 1.8 | wait / wave | Waiting together (timetable) |
+| [`star-porch`](../games/star-porch) | 1.7 | sit / glow | Jar that fills |
 
 ## Parked for later (files kept)
 
@@ -21,11 +21,11 @@ Do not delete. Resume when Femmy asks.
 | [`puddle-mirror`](../games/puddle-mirror) | 1.2 | ripple | Plaza breathe + nook puddles + dew |
 | [`lantern-drift`](../games/lantern-drift) | 1.1 | drift | Rope coil bob + gangway + shore lights |
 
-Shared: [`packages/chill`](../packages/chill) · Publish: [`PUBLISH_CHECKLIST.md`](PUBLISH_CHECKLIST.md)
+Shared: [`packages/chill`](../packages/chill) · USPs: [`USPS.md`](USPS.md) · Publish: [`PUBLISH_CHECKLIST.md`](PUBLISH_CHECKLIST.md)
 
-## Soft goals + welcome
+## Soft goals + welcome + company
 
-Most games use `Chill.SoftGoals`, `Chill.SoftWelcome`, `Chill.SoftSit`, and `Chill.Proximity`.
+Active games use `Chill.SoftGoals`, `Chill.SoftWelcome`, `Chill.SoftSit`, `Chill.Proximity`, and `Chill.SoftCompany`.
 
 ## Blocked on Femmy
 

@@ -92,7 +92,26 @@ ChillProximity.start(player, {
 print("[BusStopForever] client ready")
 
 local SoftWelcome = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftWelcome"))
-SoftWelcome.show(player:WaitForChild("PlayerGui"), Config.GameName, "the bus will come. you don't have to.")
+local SoftCompany = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftCompany"))
+SoftWelcome.show(player:WaitForChild("PlayerGui"), Config.GameName, "the bus will come. you don't have to. wait together.")
+SoftCompany.mount(player:WaitForChild("PlayerGui"), player, {
+	Radius = Config.Proximity.Radius,
+	Color = Color3.fromRGB(190, 200, 170),
+	AloneText = "soft company · alone is fine",
+	OneText = "soft company · waiting together",
+	ManyText = function(n)
+		return ("soft company · %d nearby · wait together"):format(n)
+	end,
+	OnCountChanged = function(n)
+		if n >= 1 and busStatus.Text == "waiting · no rush" then
+			busStatus.Text = "waiting together · no rush"
+			busStatus.TextColor3 = Color3.fromRGB(180, 200, 160)
+		elseif n <= 0 and busStatus.Text == "waiting together · no rush" then
+			busStatus.Text = "waiting · no rush"
+			busStatus.TextColor3 = Color3.fromRGB(150, 160, 140)
+		end
+	end,
+})
 local SoftGoals = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftGoals"))
 local _, complete = SoftGoals.mount(player:WaitForChild("PlayerGui"), "tonight's soft goals", {
 	{ Id = "sit", Label = "sit on a bench" },

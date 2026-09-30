@@ -9,6 +9,8 @@ local Remotes = require(Shared:WaitForChild("Remotes"))
 local PartFactory = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("PartFactory"))
 
 local counts: { [number]: number } = {}
+local sessionFlies = 0
+local JAR_FILL_CAP = 16
 
 PartFactory.clearDefaults(Workspace)
 local world = Instance.new("Folder")
@@ -315,7 +317,19 @@ jarLight.Brightness = 1.6
 jarLight.Range = 10
 jarLight.Color = Config.Firefly.Color
 jarLight.Parent = jarGlow
+jarGlow:SetAttribute("BaseSize", 0.7)
 jar.Parent = world
+
+local function refreshJarFill()
+	local fill = math.clamp(sessionFlies / JAR_FILL_CAP, 0, 1)
+	local base = jarGlow:GetAttribute("BaseSize")
+	local baseN = if typeof(base) == "number" then base else 0.7
+	local size = baseN + fill * 1.1
+	jarGlow.Size = Vector3.new(size, size, size)
+	jarLight.Brightness = 1.4 + fill * 2.4
+	jarLight.Range = 10 + fill * 14
+	jar.Transparency = 0.5 - fill * 0.25
+end
 
 -- Dual rocking chairs (Seats)
 local function makeSeat(name: string, pos: Vector3, color: Color3): Seat
@@ -473,6 +487,8 @@ for i = 1, Config.Firefly.Count do
 		fly.Transparency = 1
 		fly.CanTouch = false
 		counts[player.UserId] = (counts[player.UserId] or 0) + 1
+		sessionFlies += 1
+		refreshJarFill()
 		Remotes.FireflyCollected:FireClient(player, counts[player.UserId])
 		task.delay(Config.Firefly.RespawnSeconds, function()
 			if not fly.Parent then
@@ -515,10 +531,12 @@ task.spawn(function()
 			elseif child.Name == "JarGlow" and child:IsA("BasePart") then
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then
-					light.Brightness = 1.2 + math.sin(t * 3) * 0.5
+					local fill = math.clamp(sessionFlies / JAR_FILL_CAP, 0, 1)
+					light.Brightness = (1.4 + fill * 2.4) + math.sin(t * 3) * (0.35 + fill * 0.25)
 				end
 			elseif child.Name == "FireflyJar" and child:IsA("BasePart") then
-				child.Transparency = 0.4 + math.sin(t * 1.5) * 0.1
+				local fill = math.clamp(sessionFlies / JAR_FILL_CAP, 0, 1)
+				child.Transparency = (0.5 - fill * 0.25) + math.sin(t * 1.5) * 0.06
 			elseif child.Name == "Moon" and child:IsA("BasePart") then
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then
