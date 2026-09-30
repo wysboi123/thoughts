@@ -21,13 +21,11 @@ Research basis (2025–2026 hangout patterns): Roblox rewards **intentional co-p
 | **P2** | Haze Haven | Shared vibe board | Soft ranks without competition toxicity | Already: VibeBoard | ✅ |
 | **Later** | Parked trio | Resume USPs when Femmy unparks | Files kept | — | Parked |
 
-## Implementation order (done this pass)
+## Implementation order
 
-1. Shared `SoftCompany` package  
-2. Haze vibe-sync toast  
-3. Bus timetable waiting count + SoftCompany  
-4. Porch jar fill + SoftCompany  
-5. Couch two-worlds copy + SoftCompany  
+**USP pass (earlier):** SoftCompany → Haze toast → Bus timetable → Porch jar → Couch copy  
+
+**Night 7 deepen:** SoftCompany pulse/dynamic copy · SoftWelcome themes · SoftGoals/Sit fade · Haze board sync tint + proximity boost · Bus status machine + company toast · Porch jar HUD/SurfaceGui · Couch Lighting + plaque + loft toast
 
 ## Copy hooks (thumbnails / description)
 

@@ -656,6 +656,9 @@ task.spawn(function()
 						light.Brightness = 1.3 + math.sin(t * 1.1 + home.Z) * 0.35
 					end
 				end
+			elseif child.Name == "TwoWorldsPlaque" and child:IsA("BasePart") then
+				local warm = (math.sin(t * 0.7) + 1) / 2
+				child.Color = Color3.fromRGB(42, 34, 58):Lerp(Color3.fromRGB(62, 48, 85), warm * 0.55)
 			elseif child.Name == "CouchRug" and child:IsA("BasePart") then
 				local warm = (math.sin(t * 0.55) + 1) / 2
 				child.Color = Color3.fromRGB(95, 55, 90):Lerp(Color3.fromRGB(120, 70, 115), warm * 0.55)
