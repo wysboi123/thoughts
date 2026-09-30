@@ -105,6 +105,7 @@ SoftCompany.mount(playerGui, player, {
 		if n >= 1 then
 			complete("sync")
 			proximity.setBoost(1.35)
+			VibeBoard.setSynced(true)
 			if orbCounter and orbCounter.Parent then
 				orbCounter.TextColor3 = syncedColor
 			end
@@ -114,6 +115,7 @@ SoftCompany.mount(playerGui, player, {
 			end
 		else
 			proximity.setBoost(1)
+			VibeBoard.setSynced(false)
 			if orbCounter and orbCounter.Parent then
 				orbCounter.TextColor3 = normalColor
 			end

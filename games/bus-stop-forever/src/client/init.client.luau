@@ -141,6 +141,7 @@ local function tryTogetherGoal()
 	end
 end
 
+local companyWelcomed = false
 SoftCompany.mount(playerGui, player, {
 	Radius = Config.Proximity.Radius,
 	Color = Color3.fromRGB(190, 200, 170),
@@ -153,6 +154,10 @@ SoftCompany.mount(playerGui, player, {
 		nearbyCount = n
 		if phase == "waiting" then
 			refreshStatus()
+		end
+		if n >= 1 and not companyWelcomed then
+			companyWelcomed = true
+			SoftWelcome.show(playerGui, "waiting together", "someone nearby — the timetable knows", busStyle)
 		end
 		tryTogetherGoal()
 	end,

@@ -420,6 +420,7 @@ function WorldBuilder.build(workspace: Workspace): Folder
 	boardGui.Face = Enum.NormalId.Front
 	boardGui.Parent = vibeBoard
 	local boardTitle = Instance.new("TextLabel")
+	boardTitle.Name = "BoardTitle"
 	boardTitle.Size = UDim2.new(1, 0, 0.2, 0)
 	boardTitle.BackgroundTransparency = 1
 	boardTitle.Font = Enum.Font.GothamMedium
