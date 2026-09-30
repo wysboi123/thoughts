@@ -2,6 +2,20 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-30 21:20 UTC — Femmy asked for 3 UI drafts (choose / tweak)
+
+- Re-served Upgrade drafts **A / B / C** (gallery + JPGs + specs) for vote
+- Also wrapped hourly docs: Thought Defense publish checklist path · status row · experience copy
+- No Luau until pick (or hybrid + tweaks)
+- Night resume ~23:00 UTC · email with A/B/C ask
+
+## 2026-09-30 21:18 UTC — Hourly (docs; still no A/B/C)
+
+- No Femmy vote
+- Docs: Thought Defense publish path in checklist · status row · experience copy refresh
+- No Luau (Upgrade chrome still blocked)
+- Night resume ~23:00 UTC (~1.5h) · short email
+
 ## 2026-09-30 20:29 UTC — Hourly (still no A/B/C)
 
 - No Femmy vote

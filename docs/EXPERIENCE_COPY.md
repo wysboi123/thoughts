@@ -48,4 +48,4 @@ A wooden night porch under soft stars. Rocking chairs, a porch swing, string lig
 
 **Title:** Thought Defense  
 **Description:**
-A soft mindscape tower defense. Negative thoughts walk the path — Doubt, Worry, Self-Critic. Plant Affirmation, Gratitude, and Humor. Protect your Peace Core. Metaphor only; stay awhile, clear the noise.
+A soft mindscape tower defense. Negative thoughts walk the path — Doubt, Worry, Self-Critic. Plant Affirmation, Gratitude, and Humor. Protect your Peace Core. Soft session goals, gentle upgrades. Metaphor only; stay awhile, clear the noise.
