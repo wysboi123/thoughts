@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-30 20:29 UTC — Hourly (still no A/B/C)
+
+- No Femmy vote
+- **v0.2.4:** Restart chip + **R** keyboard shortcut
+- Upgrade chrome still blocked on draft pick A/B/C
+- ~2.5h to night resume (23:00); short email
+
 ## 2026-09-30 19:24 UTC — Hourly (still no A/B/C)
 
 - No Femmy vote / Gmail reply on Upgrade drafts

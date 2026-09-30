@@ -11,7 +11,7 @@ Femmy’s chill Roblox line. All Rojo filesystem-first. Play: `cd games/<slug> &
 | [`bus-stop-forever`](../games/bus-stop-forever) | 1.2 | wait / wave | Dual shelter glow + tickets + planters |
 | [`lantern-drift`](../games/lantern-drift) | 1.1 | drift | Rope coil bob + gangway + shore lights |
 | [`star-porch`](../games/star-porch) | 1.1 | sit / glow | Yard path glow + jar + rockers |
-| [`thought-defense`](../games/thought-defense) | 0.2.3 | defend / plant | SoftGoals · Restart · mockup vote open |
+| [`thought-defense`](../games/thought-defense) | 0.2.4 | defend / plant | SoftGoals · Restart(R) · mockup vote open |
 
 Shared: [`packages/chill`](../packages/chill) · Publish: [`PUBLISH_CHECKLIST.md`](PUBLISH_CHECKLIST.md)
 

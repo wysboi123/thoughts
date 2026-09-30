@@ -286,7 +286,7 @@ restartChip.BackgroundTransparency = 0.15
 restartChip.TextColor3 = Color3.fromRGB(210, 220, 235)
 restartChip.Font = Enum.Font.GothamMedium
 restartChip.TextSize = 13
-restartChip.Text = "Restart"
+restartChip.Text = "Restart (R)"
 restartChip.Parent = gui
 local restartChipCorner = Instance.new("UICorner")
 restartChipCorner.CornerRadius = UDim.new(0, 8)
@@ -298,6 +298,20 @@ restartChip.MouseButton1Click:Connect(function()
 	end
 	Remotes.RestartRun:FireServer()
 	flash("Fresh mindscape — plant again, then Begin", "prep")
+end)
+
+UserInputService.InputBegan:Connect(function(input, processed)
+	if processed then
+		return
+	end
+	if input.KeyCode == Enum.KeyCode.R then
+		local banner = gui:FindFirstChild("GameOverBanner")
+		if banner then
+			banner:Destroy()
+		end
+		Remotes.RestartRun:FireServer()
+		flash("Fresh mindscape — plant again, then Begin (R)", "prep")
+	end
 end)
 
 local function waveComposition(waveIndex: number): string
