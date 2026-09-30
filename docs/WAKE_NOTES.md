@@ -2,6 +2,10 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-30 05:15 UTC — Outside window (no vote)
+
+05:15 hourly fired after 05:00 hard stop; no Femmy Upgrade UI vote in Gmail — waited. Re-armed `thought-defense-hourly` + `overnight-daily-resume`.
+
 ## 2026-09-30 05:00 UTC — OVERNIGHT STOP (Thought Defense night)
 
 HARD STOP. No new features this wrap — docs + digest only. Working tree was clean at stop.
