@@ -6,10 +6,10 @@ Femmy’s chill Roblox line. All Rojo filesystem-first. Play: `cd games/<slug> &
 
 | Slug | Version | Verb | One-liner |
 | --- | --- | --- | --- |
-| [`haze-haven`](../games/haze-haven) | 1.6 | float / sit | Lounge table pulse + orbs + hammock |
-| [`couch-galaxy`](../games/couch-galaxy) | 1.3 | climb / float | Couch base warm + table + rug |
-| [`bus-stop-forever`](../games/bus-stop-forever) | 1.4 | wait / wave | Shelter glass breathe + lamps |
-| [`star-porch`](../games/star-porch) | 1.3 | sit / glow | Side table warm + fire pit + path |
+| [`haze-haven`](../games/haze-haven) | 1.7 | float / sit | Candle color + lounge table + orbs |
+| [`couch-galaxy`](../games/couch-galaxy) | 1.4 | climb / float | Couch fabric warm + table + rug |
+| [`bus-stop-forever`](../games/bus-stop-forever) | 1.5 | wait / wave | Shelter roof/glass + lamps |
+| [`star-porch`](../games/star-porch) | 1.4 | sit / glow | Deck warm + side table + fire pit |
 
 ## Parked for later (files kept)
 

@@ -39,6 +39,7 @@ function AtmosphereService.start()
 						if light then
 							light.Brightness = 1.1 + math.sin(t * 2.4) * 0.35
 						end
+						child.Color = Color3.fromRGB(255, 200, 140):Lerp(Color3.fromRGB(255, 230, 180), (math.sin(t * 2.4) + 1) / 2 * 0.5)
 					elseif child:IsA("BasePart") and string.find(child.Name, "FloatPad", 1, true) then
 						local light = child:FindFirstChildOfClass("PointLight")
 						if light then

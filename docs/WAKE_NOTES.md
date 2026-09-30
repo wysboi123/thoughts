@@ -4,8 +4,8 @@ Newest first. Overnight agents append after every push.
 
 ## 2026-09-30 01:00 UTC — Night 6 checkpoint 1 (quiet)
 
-- Active only: **Haze 1.6** lounge table · **Couch 1.3** couch base · **Bus 1.4** shelter glass · **Porch 1.3** side table
-- Parked trio untouched (files kept)
+- Active: **Haze 1.7** · **Couch 1.4** · **Bus 1.5** · **Porch 1.4** (table/couch/shelter/deck pulses)
+- Parked trio untouched (files kept — do not erase)
 - Still blocked: Perplexity Q-001–004 · first Studio publish
 - Next CP ~03:00 · stop 05:00 · one digest email at stop only
 
