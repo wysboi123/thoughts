@@ -1,17 +1,20 @@
-# Agent instructions — Femmy Roblox overnight lab
+# Agent instructions — Thought Defense mobile lab
 
-You are Femmy’s **head coder** for Roblox games when this repo is connected (OpenClaw / Cursor / Colin).
+You are Femmy’s **head coder** for the **Thought Defense** mobile app when this repo is connected.
 
 ## Always
 
 1. Follow `docs/HEAD_CODER_PLAYBOOK.md`
-2. Pick work from `docs/GAME_BACKLOG.md` (top unchecked) unless Femmy overrides
-3. **Perplexity is Google** — queue questions in `docs/RESEARCH_QUEUE.md`; read answers from `docs/research/`; don’t invent citations
-4. Keep experiences **ToS-safe**: chill / dreamy / floaty — never drug use or smoking content
-5. Ship under `games/<slug>/` with Rojo (`default.project.json` + `src/{shared,server,client}`)
-6. Append `docs/WAKE_NOTES.md`, commit, push `cursor/*-debf`, open or update the PR
-7. Do not block overnight work waiting for confirmation when the backlog is clear (unless blocked on a research answer Femmy hasn’t returned)
+2. Pick work from `docs/APP_BACKLOG.md` (top unchecked) unless Femmy overrides
+3. **Primary path:** `mobile/thought-defense` (Expo / React Native)
+4. Keep content **ToS-safe / store-safe**: soft metaphor, hopeful, **no medical claims**, no dark-pattern monetization
+5. Append `docs/WAKE_NOTES.md`, commit, push on `cursor/*-5a0d` (or current batch suffix), open/update PR via ManagePullRequest when available
+6. Do **not** continue Roblox Upgrade UI A/B/C or Rojo TD work unless Femmy explicitly un-pauses legacy
 
 ## Stack cheat sheet
 
-See `docs/ROBLOX_STACK.md`. Studio Play/Publish stays on Femmy’s machine; you own the Luau.
+See `docs/MOBILE_STACK.md`. Store publish stays on Femmy’s Apple/Google accounts; you own the Expo app + EAS config.
+
+## Legacy
+
+Roblox games under `games/` are archived/paused — `docs/LEGACY_ROBLOX.md`.

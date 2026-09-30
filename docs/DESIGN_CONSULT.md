@@ -1,21 +1,20 @@
-# Thought Defense — design consult
+# Thought Defense — design consult (mobile)
 
-See [games/thought-defense/docs/DESIGN_CONSULT.md](../games/thought-defense/docs/DESIGN_CONSULT.md).
+Femmy: reply in chat, email, or edit this file.
 
-Femmy: reply in chat, email, or edit that file. Hourly agents treat your answers as overrides.
+## Superseded
 
-## Mockup vote (open) — only question this batch
+Roblox Upgrade UI mockup vote **A / B / C** is **cancelled** by the mobile pivot (2026-09-30). Do not implement Roblox Upgrade chrome.
 
-Pick upgrade UI button layout (v0.2 playable; Upgrade **button** UX not built yet):
+## Open asks (mobile)
 
-| | Concept | Best when… |
-| --- | --- | --- |
-| **A** | Selection panel | You want stats + Upgrade + Sell on inspect |
-| **B** | Context bar | You want one slim Upgrade bar (least HUD churn) |
-| **C** | Tray dual-mode | You want Upgrade/Sell in the tray, no new chrome |
+1. Confirm bundle / package id `com.femmy.thoughtdefense` (or provide preferred ids)
+2. Preferred IAP wiring: **RevenueCat** vs raw **react-native-iap** (default recommendation: RevenueCat when you have an account)
+3. Clarity Pass price OK at ~$2.99/mo? Cosmetics ~$1.99? Boost ~$0.99?
+4. Any brand color / name tweak before store screenshots?
 
-Gallery: [`games/thought-defense/docs/mockups/index.html`](../games/thought-defense/docs/mockups/index.html)  
-Drafts: `draft-a-selection-panel.jpg` · `draft-b-context-bar.jpg` · `draft-c-tray-dual-mode.jpg`  
-Specs: [`games/thought-defense/docs/UI_MOCKUPS.md`](../games/thought-defense/docs/UI_MOCKUPS.md)
+## Defaults until overridden
 
-Reply **A / B / C** (or hybrid + tweaks). **Do not implement Upgrade chrome Luau until Femmy replies.**
+- Soft mint-mist brand (not purple-AI / cream-terracotta)
+- Core loop free; Pass = comfort only
+- 5-wave slice now; expand toward 8 later

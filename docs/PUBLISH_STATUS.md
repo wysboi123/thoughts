@@ -1,20 +1,24 @@
-# Publish status
+# Publish status — mobile
 
-Femmy: after you publish a place in Studio, paste the URL / place id here so overnight agents can track live targets.
+Femmy: after TestFlight / Play internal / production links exist, paste them here.
 
-| Slug | Place URL | Place ID | Notes |
+| Platform | Status | URL / id | Notes |
 | --- | --- | --- | --- |
-| haze-haven | _pending_ | | Recommended first publish |
-| slow-orbit | _pending_ | | Purple dusk |
-| couch-galaxy | _pending_ | | |
-| puddle-mirror | _pending_ | | |
-| bus-stop-forever | _pending_ | | |
-| lantern-drift | _pending_ | | |
-| star-porch | _pending_ | | Night 3 seed |
-| thought-defense | _pending_ | | Soft TD · Upgrade UI vote open |
+| iOS App Store Connect | _pending_ | | Bundle `com.femmy.thoughtdefense` |
+| Android Play Console | _pending_ | | Package `com.femmy.thoughtdefense` |
+| EAS projectId | _pending_ | | Set in `mobile/thought-defense/app.json` |
+| TestFlight | _pending_ | | |
+| Play internal testing | _pending_ | | |
 
-## First publish pick
+## IAP
 
-If unsure which to ship first: **Haze Haven** (richest hangout) · **Bus Stop Forever** (simplest social) · or **Thought Defense** if you want the TD line live first.
+| Product | ASC | Play | Sandbox verified |
+| --- | --- | --- | --- |
+| Clarity Pass monthly | _pending_ | _pending_ | no |
+| Dawn Path | _pending_ | _pending_ | no |
+| Lantern Towers | _pending_ | _pending_ | no |
+| Clarity boost small | _pending_ | _pending_ | no |
 
-Steps: [`PUBLISH_CHECKLIST.md`](PUBLISH_CHECKLIST.md)
+## Legacy Roblox places
+
+All Roblox place publishes remain `_pending_` and **paused** — see `LEGACY_ROBLOX.md`.

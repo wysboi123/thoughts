@@ -2,12 +2,26 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-30 21:45 UTC — PIVOT: mobile Thought Defense
+
+- Femmy asked to pivot entire workflow → **mobile app** (iOS+Android) with sensible microtransactions + basic subscription
+- **New app:** `mobile/thought-defense` (Expo SDK 57, Expo Router, TypeScript)
+- Playable soft TD **vertical slice** (5 waves, Affirmation/Gratitude/Humor, upgrades/sell)
+- **IAP:** Clarity Pass monthly + Dawn/Lantern cosmetics + Clarity boost — stub client + product IDs
+- **Publish:** app.json bundle/package placeholders, eas.json, store listing, privacy/terms stubs, EAS docs
+- **Ops rewrite:** SCHEDULE, MEMORY, APP_BACKLOG, PUBLISH_*, GAMES, DESIGN_CONSULT, AGENTS, README
+- **Legacy:** Roblox TD + chill games paused (`docs/LEGACY_ROBLOX.md`); Upgrade A/B/C vote superseded
+- Branch: `cursor/mobile-thought-defense-5a0d`
+- Needs Femmy: Apple/Google accounts, confirm bundle ids, create store IAP products, EAS projectId, legal URLs
+- Timer rename: use `thought-defense-mobile-hourly` (retire Roblox `thought-defense-hourly`)
+
 ## 2026-09-30 21:20 UTC — Femmy asked for 3 UI drafts (choose / tweak)
 
 - Re-served Upgrade drafts **A / B / C** (gallery + JPGs + specs) for vote
 - Also wrapped hourly docs: Thought Defense publish checklist path · status row · experience copy
 - No Luau until pick (or hybrid + tweaks)
 - Night resume ~23:00 UTC · email with A/B/C ask
+- **Superseded later same day by mobile pivot**
 
 ## 2026-09-30 21:18 UTC — Hourly (docs; still no A/B/C)
 

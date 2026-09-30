@@ -1,23 +1,21 @@
-# Agent memory — Thought Defense (local mirror)
+# Agent memory — Thought Defense mobile (local mirror)
 
 Adapter MCP preferred when authenticated. This file is the durable fallback.
 
 ## Decisions
 
-- **2026-09-29:** Primary game is Thought Defense (enemies = negative thoughts, towers = positive thoughts).
-- **Cadence:** ~30 min work every hour; respect usage limits; email Femmy progress each batch.
-- **Consult:** Ask Femmy on design choices periodically (`docs/DESIGN_CONSULT.md`).
-- **Defaults until overridden:** soft pastel tone, pad-only placement, 8-wave campaign, solo, title "Thought Defense".
-- **2026-09-30 v0.2:** Manual prep Begin; pad upgrade L1–L3; Sell 50%; intermission Start.
-- **2026-09-30:** Femmy OK with Upgrade **UI button**. Mockups A/B/C shipped; chrome blocked on vote.
-- **2026-09-30 research:** Agent Context search leans mockup **B** (Context bar) — not binding until Femmy confirms.
+- **2026-09-30 PIVOT:** Primary product is **Thought Defense mobile** (Expo iOS+Android), not Roblox.
+- Keep soft mental-metaphor identity (ToS-safe, hopeful, no medical claims).
+- Sensible monetization: Clarity Pass subscription + cosmetic microtransactions + optional Clarity boost; core loop free.
+- Roblox chill line + Roblox TD under `games/` → **legacy / paused** (`docs/LEGACY_ROBLOX.md`).
+- Upgrade UI drafts A/B/C vote for Roblox → **superseded** by mobile pivot.
+- **Cadence:** ~30 min / hour; night 23:00–05:00 UTC; email `ngkdevid@gmail.com`.
 
 ## State
 
-- Version: **0.2.4** (Restart chip + R key; hover tip; SoftGoals; Upgrade chrome pending)
-- Path: `games/thought-defense`
-- Branch: `cursor/roblox-hourly-batch-5a0d`
-- PR: https://github.com/wysboi123/thoughts/pull/2
-- Blocked on: **Mockup vote A/B/C** (drafts refreshed — draft-a/b/c JPGs + choose/tweak gallery)
-- Research: `docs/research/TD-upgrade-ui-soft-goals-2026-09-30.md` · Q-005 queued
-- Next: implement Upgrade chrome after vote
+- Version: **mobile 1.0.0-slice** (5-wave playable loop + shop + stub IAP)
+- Path: `mobile/thought-defense`
+- Branch: `cursor/mobile-thought-defense-5a0d`
+- PR: open/update for mobile pivot (ManagePullRequest when available)
+- Blocked on Femmy: Apple Developer + Play Console · confirm bundle ids · create IAP product ids · EAS projectId · legal review of Privacy/Terms
+- Next: wire native IAP (RevenueCat or react-native-iap) · store screenshots · EAS preview build
