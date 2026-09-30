@@ -31,6 +31,17 @@ export type Tower = {
   kind: TowerKind;
   level: number;
   cooldown: number;
+  /** Elapsed time of last kindness pulse (for range ring flash) */
+  lastFiredAt: number;
+};
+
+export type SoftFx = {
+  id: string;
+  kind: 'shot' | 'clear';
+  x: number;
+  y: number;
+  bornAt: number;
+  color: string;
 };
 
 export type GameState = {
@@ -50,4 +61,6 @@ export type GameState = {
   softGoals: SoftGoals;
   thoughtsCleared: number;
   peakWaveReached: number;
+  /** Transient soft ripples — pruned in tick */
+  fx: SoftFx[];
 };

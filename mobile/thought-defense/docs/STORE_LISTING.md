@@ -46,6 +46,8 @@ Privacy policy URL: host `docs/PRIVACY_POLICY.md` (or in-app `/privacy`) on a pu
 
 ## Screenshots needed (Femmy)
 
+See `docs/SCREENSHOTS.md` for capture checklist.
+
 1. Home brand screen  
 2. Mid-wave mindscape board  
 3. Clarity shop (Clarity Pass visible)  

@@ -18,7 +18,7 @@ export const SOFT_GOAL_COPY: Record<
   },
   reach_wave_three: {
     title: 'Reach wave three',
-    blurb: 'Hold the Peace Core through early waves.',
+    blurb: 'Hold the Peace Core through early waves (run has 8 waves).',
   },
   keep_calm: {
     title: 'Keep Calm above 10',

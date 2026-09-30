@@ -1,6 +1,7 @@
 import { router } from 'expo-router';
 import React from 'react';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { GAME } from '../game/config';
 import { SOFT_GOAL_COPY, softGoalsDone } from '../game/softGoals';
 import type { GameState, SoftGoalId } from '../game/types';
 import { colors } from '../theme/colors';
@@ -37,7 +38,8 @@ export function WaveResultModal({ visible, state, onRetry, onClose }: Props) {
               : 'The core needs rest. Soft goals still count:'}
           </Text>
           <Text style={styles.count}>
-            {done}/5 soft goals · {state.thoughtsCleared} thoughts cleared
+            {done}/5 soft goals · {state.thoughtsCleared} thoughts cleared · peak wave{' '}
+            {state.peakWaveReached}/{GAME.waveCount}
           </Text>
           {ORDER.map((id) => (
             <View key={id} style={styles.row}>

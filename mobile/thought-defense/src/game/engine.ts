@@ -1,9 +1,11 @@
-import { GAME, pointOnPath, upgradeCost } from './config';
+import { GAME, TOWER_FX_COLOR, pointOnPath, upgradeCost } from './config';
 import { emptySoftGoals } from './softGoals';
-import type { Enemy, EnemyKind, GameState, SoftGoals, Tower, TowerKind } from './types';
+import type { Enemy, EnemyKind, GameState, SoftFx, SoftGoals, Tower, TowerKind } from './types';
 
 let idSeq = 0;
+let fxSeq = 0;
 const nextId = () => `e${++idSeq}`;
+const nextFxId = () => `fx${++fxSeq}`;
 
 function pickFlavor(kind: EnemyKind): string {
   const list = GAME.enemies[kind].flavors;
@@ -16,6 +18,7 @@ function withGoals(state: GameState, patch: Partial<SoftGoals>): GameState {
 
 export function createInitialState(): GameState {
   idSeq = 0;
+  fxSeq = 0;
   return {
     phase: 'prep',
     calm: GAME.startingCalm,
@@ -33,6 +36,7 @@ export function createInitialState(): GameState {
     softGoals: emptySoftGoals(),
     thoughtsCleared: 0,
     peakWaveReached: 0,
+    fx: [],
   };
 }
 
@@ -100,6 +104,7 @@ export function tapPad(state: GameState, padIndex: number): GameState {
     kind: state.selectedTower,
     level: 1,
     cooldown: 0,
+    lastFiredAt: -99,
   };
   const towers = [...state.towers, tower];
   let next: GameState = {
@@ -196,6 +201,7 @@ export function tick(state: GameState, dt: number): GameState {
     towers: state.towers.map((t) => ({ ...t })),
     spawnQueue: [...state.spawnQueue],
     softGoals: { ...state.softGoals },
+    fx: state.fx.filter((f) => state.elapsed + dt - f.bornAt < 0.6).map((f) => ({ ...f })),
   };
 
   if (next.phase === 'intermission') {
@@ -268,6 +274,19 @@ export function tick(state: GameState, dt: number): GameState {
     }
     if (!target) continue;
     tower.cooldown = 1 / stats.fireRate;
+    tower.lastFiredAt = next.elapsed;
+    const padPos = pad;
+    const pushFx = (kind: SoftFx['kind'], x: number, y: number) => {
+      next.fx.push({
+        id: nextFxId(),
+        kind,
+        x,
+        y,
+        bornAt: next.elapsed,
+        color: TOWER_FX_COLOR[tower.kind],
+      });
+    };
+    pushFx('shot', padPos.x, padPos.y);
     const hit = (e: Enemy) => {
       e.health -= stats.damage;
       if (stats.slowFactor < 1) {
@@ -276,6 +295,8 @@ export function tick(state: GameState, dt: number): GameState {
       if (e.health <= 0) {
         next.clarity += GAME.enemies[e.kind].clarityReward;
         next.thoughtsCleared += 1;
+        const clearPos = pointOnPath(e.pathT);
+        pushFx('clear', clearPos.x, clearPos.y);
       }
     };
     hit(target);

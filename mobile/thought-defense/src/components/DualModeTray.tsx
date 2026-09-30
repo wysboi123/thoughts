@@ -61,7 +61,7 @@ export function DualModeTray({
 
   const actionStyle = useAnimatedStyle(() => ({
     opacity: interpolate(mode.value, [0, 0.35, 1], [0, 0.4, 1]),
-    maxHeight: interpolate(mode.value, [0, 1], [0, 64]),
+    maxHeight: interpolate(mode.value, [0, 1], [0, 96]),
     transform: [{ translateY: interpolate(mode.value, [0, 1], [8, 0]) }],
     overflow: 'hidden' as const,
   }));
@@ -71,6 +71,10 @@ export function DualModeTray({
     if (selected.level >= GAME.maxTowerLevel) return 'Maxed';
     return `Upgrade · ${upgradeCost(selected.kind, selected.level)}`;
   })();
+
+  const selectStats = selected
+    ? `${GAME.towers[selected.kind].blurb} · L${selected.level}/${GAME.maxTowerLevel}`
+    : '';
 
   return (
     <View style={styles.tray}>
@@ -113,12 +117,18 @@ export function DualModeTray({
               <Text style={[styles.plantCost, selectMode && styles.dimText]}>
                 {GAME.towers[k].cost}
               </Text>
+              {!selectMode && active ? (
+                <Text style={styles.plantBlurb} numberOfLines={2}>
+                  {GAME.towers[k].blurb}
+                </Text>
+              ) : null}
             </Pressable>
           );
         })}
       </Animated.View>
 
       <Animated.View style={actionStyle} pointerEvents={selectMode ? 'auto' : 'none'}>
+        {selectMode ? <Text style={styles.selectStats}>{selectStats}</Text> : null}
         <View style={styles.actionRow}>
           <SoftButton
             label={upgradeLabel}
@@ -192,8 +202,23 @@ const styles = StyleSheet.create({
     color: colors.clarity,
     marginTop: 2,
   },
+  plantBlurb: {
+    marginTop: 4,
+    fontFamily: fonts.body,
+    fontSize: 9,
+    lineHeight: 12,
+    color: colors.inkSoft,
+    textAlign: 'center',
+  },
   dimText: {
     color: colors.inkSoft,
+  },
+  selectStats: {
+    fontFamily: fonts.body,
+    fontSize: 11,
+    color: colors.inkSoft,
+    textAlign: 'center',
+    marginBottom: 6,
   },
   actionRow: {
     flexDirection: 'row',

@@ -1,9 +1,12 @@
 import React, { useMemo } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { GAME } from '../game/config';
+import { GAME, towerRange } from '../game/config';
 import type { GameState, TowerKind } from '../game/types';
 import { colors } from '../theme/colors';
 import { fonts } from '../theme/typography';
+import { PadDisc } from './PadDisc';
+import { PeaceCore } from './PeaceCore';
+import { SoftFxLayer } from './SoftFxLayer';
 import { WalkingEnemy } from './WalkingEnemy';
 
 type Props = {
@@ -39,6 +42,8 @@ export function GameBoard({
   const pathColor = themeDawn ? '#E8C9A0' : colors.path;
   const pathEdge = themeDawn ? '#F0D4A8' : colors.pathEdge;
   const ground = themeDawn ? 'rgba(232, 201, 160, 0.18)' : 'rgba(91, 138, 122, 0.12)';
+  const selectedTower = state.towers.find((t) => t.padIndex === state.selectedPad);
+  const boardMin = Math.min(width, height);
 
   const segments = useMemo(() => {
     return GAME.path.slice(0, -1).map((a, i) => {
@@ -82,7 +87,6 @@ export function GameBoard({
     >
       <Text style={styles.compass}>plan view · N ↑</Text>
       <Text style={styles.legend}>path → Peace · discs = thoughts you plant</Text>
-
 
       {/* Soft lawn tiles (top-down grid hint) */}
       {[0.2, 0.4, 0.6, 0.8].map((gx) =>
@@ -134,48 +138,50 @@ export function GameBoard({
         <Text style={styles.entranceText}>in</Text>
       </View>
 
-      {/* Peace Core — circular glow from above */}
-      <View
-        style={[
-          styles.coreRing,
-          {
-            left: GAME.path[GAME.path.length - 1].x * width - 36,
-            top: GAME.path[GAME.path.length - 1].y * height - 36,
-            backgroundColor: themeDawn ? colors.coreGlow : colors.core,
-          },
-        ]}
-      >
-        <View style={styles.coreInner}>
-          <Text style={styles.coreLabel}>Peace</Text>
-        </View>
-      </View>
+      <PeaceCore
+        left={GAME.path[GAME.path.length - 1].x * width - 36}
+        top={GAME.path[GAME.path.length - 1].y * height - 36}
+        themeDawn={themeDawn}
+        stressed={state.calm <= 5}
+      />
+
+      {/* Selected tower range ring (Draft C select mode cue) */}
+      {selectedTower ? (
+        <View
+          pointerEvents="none"
+          style={[
+            styles.rangeRing,
+            {
+              left:
+                GAME.pads[selectedTower.padIndex].x * width -
+                towerRange(selectedTower.kind, selectedTower.level) * boardMin,
+              top:
+                GAME.pads[selectedTower.padIndex].y * height -
+                towerRange(selectedTower.kind, selectedTower.level) * boardMin,
+              width: towerRange(selectedTower.kind, selectedTower.level) * boardMin * 2,
+              height: towerRange(selectedTower.kind, selectedTower.level) * boardMin * 2,
+              borderColor: TOWER_COLOR[selectedTower.kind],
+              opacity: state.elapsed - selectedTower.lastFiredAt < 0.25 ? 0.55 : 0.28,
+            },
+          ]}
+        />
+      ) : null}
 
       {/* Pads / towers as top-down discs */}
       {GAME.pads.map((pad, i) => {
         const tower = state.towers.find((t) => t.padIndex === i);
         const selected = state.selectedPad === i;
         return (
-          <Pressable
+          <PadDisc
             key={`pad-${i}`}
-            onPress={(e) => {
-              e.stopPropagation?.();
-              onPad(i);
-            }}
-            style={[
-              styles.pad,
-              {
-                left: pad.x * width - 24,
-                top: pad.y * height - 24,
-                borderColor: selected ? colors.brandDeep : tower ? 'rgba(255,255,255,0.7)' : colors.line,
-                backgroundColor: tower ? TOWER_COLOR[tower.kind] : 'rgba(255,255,255,0.72)',
-                borderWidth: selected ? 3 : 2,
-              },
-            ]}
-          >
-            <Text style={styles.padText}>
-              {tower ? `${TOWER_GLYPH[tower.kind]}${tower.level}` : '+'}
-            </Text>
-          </Pressable>
+            left={pad.x * width - 24}
+            top={pad.y * height - 24}
+            label={tower ? `${TOWER_GLYPH[tower.kind]}${tower.level}` : '+'}
+            filled={!!tower}
+            selected={selected}
+            fillColor={tower ? TOWER_COLOR[tower.kind] : 'rgba(255,255,255,0.72)'}
+            onPress={() => onPad(i)}
+          />
         );
       })}
 
@@ -189,6 +195,8 @@ export function GameBoard({
           now={state.elapsed}
         />
       ))}
+
+      <SoftFxLayer fx={state.fx} width={width} height={height} now={state.elapsed} />
     </Pressable>
   );
 }
@@ -219,7 +227,6 @@ const styles = StyleSheet.create({
     zIndex: 2,
     maxWidth: '48%',
   },
-
   lawn: {
     position: 'absolute',
     width: 20,
@@ -254,40 +261,10 @@ const styles = StyleSheet.create({
     fontSize: 11,
     color: colors.worry,
   },
-  coreRing: {
+  rangeRing: {
     position: 'absolute',
-    width: 72,
-    height: 72,
-    borderRadius: 36,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 2,
-    borderColor: 'rgba(255,255,255,0.75)',
-  },
-  coreInner: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    backgroundColor: 'rgba(255,255,255,0.55)',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  coreLabel: {
-    fontFamily: fonts.bodyMedium,
-    fontSize: 11,
-    color: colors.brandDeep,
-  },
-  pad: {
-    position: 'absolute',
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  padText: {
-    fontFamily: fonts.bodyBold,
-    color: colors.ink,
-    fontSize: 13,
+    borderRadius: 999,
+    borderWidth: 1.5,
+    backgroundColor: 'rgba(255,255,255,0.06)',
   },
 });

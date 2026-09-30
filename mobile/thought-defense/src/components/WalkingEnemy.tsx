@@ -79,6 +79,7 @@ export function WalkingEnemy({ enemy, width, height, now }: Props) {
 
   const age = now - enemy.bornAt;
   const showFlavor = age < 2.2;
+  const slowed = now < enemy.slowUntil;
 
   return (
     <Animated.View style={style}>
@@ -90,6 +91,8 @@ export function WalkingEnemy({ enemy, width, height, now }: Props) {
             width: enemy.kind === 'SelfCritic' ? 40 : enemy.kind === 'Worry' ? 30 : 34,
             height: enemy.kind === 'SelfCritic' ? 40 : enemy.kind === 'Worry' ? 30 : 34,
             borderRadius: enemy.kind === 'SelfCritic' ? 14 : 999,
+            borderColor: slowed ? colors.gratitude : 'rgba(255,255,255,0.45)',
+            opacity: slowed ? 0.85 : 1,
           },
         ]}
       >

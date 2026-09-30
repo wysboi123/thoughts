@@ -5,12 +5,19 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Atmosphere } from '../components/Atmosphere';
 import { SoftButton } from '../components/SoftButton';
 import { useIap } from '../iap/IapProvider';
+import type { StoreProduct } from '../iap/products';
 import { colors } from '../theme/colors';
 import { fonts } from '../theme/typography';
 
+const SECTIONS: { title: string; kind: StoreProduct['kind'] }[] = [
+  { title: 'Clarity Pass', kind: 'subscription' },
+  { title: 'Looks only', kind: 'nonconsumable' },
+  { title: 'Optional boost', kind: 'consumable' },
+];
+
 export default function ShopScreen() {
   const insets = useSafeAreaInsets();
-  const { products, entitlements, purchase, stubMode } = useIap();
+  const { products, entitlements, purchase, restore, stubMode } = useIap();
   const [busy, setBusy] = useState<string | null>(null);
 
   const owned = (id: string) =>
@@ -51,38 +58,83 @@ export default function ShopScreen() {
         {stubMode ? (
           <Text style={styles.stub}>
             Stub IAP mode (Expo Go / missing credentials). Product IDs are ready for App Store & Play.
+            Prices: Pass $2.99/mo · cosmetics $1.99 · boost $0.99 (pending Femmy confirm).
           </Text>
         ) : null}
 
-        {products.map((p) => (
-          <View key={p.id} style={styles.card}>
-            <Text style={styles.title}>{p.title}</Text>
-            <Text style={styles.kind}>
-              {p.kind === 'subscription' ? 'Subscription' : p.kind === 'consumable' ? 'One-time boost' : 'Cosmetic'}
-              {' · '}
-              {p.priceHint}
-            </Text>
-            <Text style={styles.blurb}>{p.blurb}</Text>
-            <Text style={styles.ids}>
-              iOS: {p.iosProductId}
-              {'\n'}
-              Android: {p.androidProductId}
-            </Text>
-            <SoftButton
-              label={
-                owned(p.id) && p.kind !== 'consumable'
-                  ? 'Owned'
-                  : busy === p.id
-                    ? 'Working…'
-                    : p.kind === 'subscription'
-                      ? 'Start Clarity Pass'
-                      : 'Get'
-              }
-              disabled={busy != null || (owned(p.id) && p.kind !== 'consumable')}
-              onPress={() => onBuy(p.id)}
-            />
-          </View>
-        ))}
+        {entitlements.pendingClarity > 0 ? (
+          <Text style={styles.pending}>
+            +{entitlements.pendingClarity} Clarity waiting — opens on next mindscape session.
+          </Text>
+        ) : null}
+
+        <SoftButton
+          label="Restore purchases"
+          variant="soft"
+          onPress={async () => {
+            setBusy('restore');
+            await restore();
+            setBusy(null);
+            Alert.alert(
+              'Restored',
+              stubMode
+                ? 'Re-checked stub entitlements on this device.'
+                : 'Checked store purchases.',
+            );
+          }}
+          disabled={busy != null}
+          style={styles.restore}
+        />
+
+        {SECTIONS.map((section) => {
+          const items = products.filter((p) => p.kind === section.kind);
+          if (items.length === 0) return null;
+          return (
+            <View key={section.kind} style={styles.section}>
+              <Text style={styles.sectionTitle}>{section.title}</Text>
+              {items.map((p) => (
+                <View key={p.id} style={[styles.card, owned(p.id) && p.kind !== 'consumable' && styles.cardOwned]}>
+                  <View style={styles.cardTop}>
+                    <Text style={styles.title}>{p.title}</Text>
+                    {owned(p.id) && p.kind !== 'consumable' ? (
+                      <Text style={styles.badge}>Owned</Text>
+                    ) : null}
+                  </View>
+                  <Text style={styles.kind}>
+                    {p.kind === 'subscription'
+                      ? 'Subscription'
+                      : p.kind === 'consumable'
+                        ? 'One-time boost'
+                        : 'Cosmetic'}
+                    {' · '}
+                    {p.priceHint}
+                  </Text>
+                  <Text style={styles.blurb}>{p.blurb}</Text>
+                  <Text style={styles.ids}>
+                    iOS: {p.iosProductId}
+                    {'\n'}
+                    Android: {p.androidProductId}
+                  </Text>
+                  <SoftButton
+                    label={
+                      owned(p.id) && p.kind !== 'consumable'
+                        ? 'Owned'
+                        : busy === p.id
+                          ? 'Working…'
+                          : p.kind === 'subscription'
+                            ? 'Start Clarity Pass'
+                            : p.kind === 'consumable'
+                              ? 'Get boost'
+                              : 'Get pack'
+                    }
+                    disabled={busy != null || (owned(p.id) && p.kind !== 'consumable')}
+                    onPress={() => onBuy(p.id)}
+                  />
+                </View>
+              ))}
+            </View>
+          );
+        })}
       </ScrollView>
     </Atmosphere>
   );
@@ -105,13 +157,31 @@ const styles = StyleSheet.create({
     color: colors.inkSoft,
   },
   stub: {
-    marginBottom: 14,
+    marginBottom: 12,
     padding: 12,
     borderRadius: 14,
     backgroundColor: colors.surfaceStrong,
     fontFamily: fonts.bodyMedium,
     fontSize: 12,
     color: colors.brand,
+  },
+  pending: {
+    marginBottom: 10,
+    padding: 12,
+    borderRadius: 14,
+    backgroundColor: 'rgba(106, 158, 174, 0.18)',
+    fontFamily: fonts.bodyMedium,
+    fontSize: 13,
+    color: colors.clarity,
+  },
+  restore: { marginBottom: 16 },
+  section: { marginBottom: 8 },
+  sectionTitle: {
+    fontFamily: fonts.bodyBold,
+    fontSize: 14,
+    color: colors.brandDeep,
+    marginBottom: 8,
+    marginTop: 4,
   },
   card: {
     marginBottom: 14,
@@ -122,7 +192,27 @@ const styles = StyleSheet.create({
     borderColor: colors.line,
     gap: 8,
   },
-  title: { fontFamily: fonts.bodyBold, fontSize: 18, color: colors.ink },
+  cardOwned: {
+    borderColor: colors.calm,
+    backgroundColor: 'rgba(91, 138, 122, 0.12)',
+  },
+  cardTop: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 8,
+  },
+  title: { fontFamily: fonts.bodyBold, fontSize: 18, color: colors.ink, flex: 1 },
+  badge: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 11,
+    color: colors.calm,
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 8,
+    backgroundColor: 'rgba(255,255,255,0.7)',
+    overflow: 'hidden',
+  },
   kind: { fontFamily: fonts.bodyMedium, fontSize: 12, color: colors.calm },
   blurb: { fontFamily: fonts.body, fontSize: 14, lineHeight: 20, color: colors.inkSoft },
   ids: {

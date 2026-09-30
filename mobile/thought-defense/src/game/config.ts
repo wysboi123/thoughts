@@ -4,10 +4,10 @@ import type { EnemyKind, TowerKind, Vec2 } from './types';
 export const GAME = {
   name: 'Thought Defense',
   tagline: 'plant kindness. clear the noise.',
-  version: '1.1.0-mobile',
+  version: '1.2.0-mobile',
   startingCalm: 20,
   startingClarity: 140,
-  waveCount: 5,
+  waveCount: 8,
   secondsBetweenWaves: 8,
   leakPenalty: 1,
   maxTowerLevel: 3,
@@ -131,8 +131,29 @@ export const GAME = {
       { kind: 'SelfCritic' as EnemyKind, count: 3, spacing: 1.3 },
       { kind: 'Doubt' as EnemyKind, count: 4, spacing: 0.9 },
     ],
+    [
+      { kind: 'Doubt' as EnemyKind, count: 6, spacing: 0.85 },
+      { kind: 'Worry' as EnemyKind, count: 6, spacing: 0.7 },
+      { kind: 'SelfCritic' as EnemyKind, count: 2, spacing: 1.4 },
+    ],
+    [
+      { kind: 'Worry' as EnemyKind, count: 8, spacing: 0.65 },
+      { kind: 'SelfCritic' as EnemyKind, count: 4, spacing: 1.15 },
+    ],
+    [
+      { kind: 'Doubt' as EnemyKind, count: 7, spacing: 0.8 },
+      { kind: 'Worry' as EnemyKind, count: 7, spacing: 0.6 },
+      { kind: 'SelfCritic' as EnemyKind, count: 5, spacing: 1.05 },
+    ],
   ],
 } as const;
+
+/** Soft FX color per tower kind (plan-view ripples). */
+export const TOWER_FX_COLOR: Record<TowerKind, string> = {
+  Affirmation: '#6BB89A',
+  Gratitude: '#C9A85A',
+  Humor: '#E08A68',
+};
 
 export function pointOnPath(t: number): Vec2 {
   const pts = GAME.path;
@@ -148,4 +169,9 @@ export function pointOnPath(t: number): Vec2 {
 export function upgradeCost(kind: TowerKind, level: number): number {
   const base = GAME.towers[kind].cost;
   return Math.floor(base * level * GAME.upgradeCostFactor);
+}
+
+export function towerRange(kind: TowerKind, level: number): number {
+  const base = GAME.towers[kind].range;
+  return base * (1 + (level - 1) * 0.08);
 }
