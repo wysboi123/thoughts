@@ -36,8 +36,27 @@ Alternates: Mind Garden · Clarity Lane · Soft Siege · Kind Fortress
 □ Journal / reflection prompts between waves (opt-in)  
 
 ### 7. Difficulty
-Current: Calm 20, Clarity 120 start, 8 waves.  
+Current: Calm 20, Clarity 140 start, 8 waves.  
 **Too easy / too hard / about right?** (after you Play-test once)
+
+---
+
+## Mockup vote — Upgrade UI button (THIS BATCH)
+
+You said click-to-upgrade via a **UI button** is okay. Three concepts are ready — **no Luau yet** until you pick.
+
+| Vote | Name | One-liner |
+| --- | --- | --- |
+| **A** | Selection panel | Tap tower → side/bottom panel with stats + Upgrade + Sell |
+| **B** | Context bar | Select tower → floating Upgrade bar above tray (cost/level) |
+| **C** | Tray dual-mode | Tray swaps to Upgrade/Sell; Plant cards dim |
+
+**Specs:** [UI_MOCKUPS.md](UI_MOCKUPS.md)  
+**Gallery (open locally):** [mockups/index.html](mockups/index.html)  
+**PNGs:** [mockup-01](mockups/mockup-01-selection-panel.png) · [mockup-02](mockups/mockup-02-context-bar.png) · [mockup-03](mockups/mockup-03-tray-dual-mode.png)
+
+**Your pick?** Reply **A / B / C** (or a hybrid, e.g. “B + keep pad-click upgrade”).  
+Implementation is blocked on this answer.
 
 ---
 
@@ -50,9 +69,10 @@ Current: Calm 20, Clarity 120 start, 8 waves.
 ## Next consult triggers
 
 - [x] Tower upgrades (v0.2 shipped — L1→L3, sell 50%)
+- [ ] Upgrade **button** UX (mockups ready — waiting on Mockup vote)
 - [ ] Second map
 - [ ] Boss “thought spiral”
 - [ ] Monetization
 
-### This batch’s question
-**Upgrade feel:** Is click-to-upgrade on an existing pad clear enough, or do you want a separate Upgrade button / confirmation?
+### Previous batch question (superseded by Mockup vote)
+~~Upgrade feel: click-to-upgrade vs button?~~ → Femmy: UI button OK → mockups A/B/C above.

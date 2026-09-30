@@ -2,6 +2,19 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-30 00:25 UTC — Upgrade UI mockups (hourly batch 3)
+
+- **No Luau** this batch — Femmy OK’d Upgrade **button**; waiting on mockup pick
+- Shipped 3 concepts in `games/thought-defense/docs/UI_MOCKUPS.md`:
+  - **A** Selection panel — tap tower → panel with Upgrade + Sell + stats
+  - **B** Context bar — floating Upgrade above tray (cost/level)
+  - **C** Tray dual-mode — tray swaps to Upgrade/Sell; Plant cards dim
+- Visuals: `docs/mockups/mockup-01-*.png` … `03` + `mockups/index.html` gallery
+- Design consult updated with **Mockup vote** (A/B/C)
+- Implementation blocked until Femmy replies A / B / C / hybrid
+- Next batch: implement chosen Upgrade UI only after vote · keep pad-click policy per pick
+- Ops: PR #2 · email options to ngkdevid@gmail.com
+
 ## 2026-09-30 00:15 UTC — Thought Defense v0.2 (hourly batch 2)
 
 - **Shipped:** prep **Begin** button · pad **upgrade** L1–L3 · **Sell** (50% Clarity) · intermission Start/auto

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thought Defense — Upgrade UI mockups</title>
+  <style>
+    :root {
+      --bg: #e8eef5;
+      --ink: #2a3344;
+      --muted: #5a6578;
+      --card: #f7fafc;
+      --accent: #6fb8a4;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Trebuchet MS", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 20% 0%, #f5e6d8 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 10%, #dce8f5 0%, transparent 45%),
+        linear-gradient(180deg, #eef3f8, var(--bg));
+      min-height: 100vh;
+      padding: 2rem 1.25rem 3rem;
+    }
+    header {
+      max-width: 1100px;
+      margin: 0 auto 1.75rem;
+    }
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 0.35rem;
+      letter-spacing: -0.02em;
+    }
+    .lede {
+      color: var(--muted);
+      margin: 0;
+      max-width: 42rem;
+      line-height: 1.45;
+    }
+    .vote {
+      margin-top: 1rem;
+      padding: 0.85rem 1rem;
+      background: var(--card);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      font-size: 0.95rem;
+    }
+    .grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+    figure {
+      margin: 0;
+      background: var(--card);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 1px 0 rgba(42, 51, 68, 0.06);
+    }
+    figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background: #d5dde8;
+    }
+    figcaption {
+      padding: 0.9rem 1rem 1.1rem;
+    }
+    figcaption strong {
+      display: block;
+      font-size: 1.05rem;
+      margin-bottom: 0.25rem;
+    }
+    figcaption span {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+    .letter {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #1e4d42;
+      background: #c8e8dc;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      margin-right: 0.35rem;
+      vertical-align: middle;
+    }
+    footer {
+      max-width: 1100px;
+      margin: 1.75rem auto 0;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Thought Defense — Upgrade UI mockups</h1>
+    <p class="lede">
+      Three click-to-upgrade button concepts for Femmy’s soft pastel tower defense.
+      Open this file locally. Specs live in <code>../UI_MOCKUPS.md</code>.
+      Luau not implemented until you vote.
+    </p>
+    <p class="vote">
+      <strong>Please reply A, B, or C</strong> (or a hybrid) in chat / email /
+      <code>DESIGN_CONSULT.md</code>. Next batch implements your pick.
+    </p>
+  </header>
+
+  <div class="grid">
+    <figure>
+      <img src="mockup-01-selection-panel.png" alt="Mockup A: Selection panel with Upgrade and Sell" width="1280" height="720" />
+      <figcaption>
+        <strong><span class="letter">A</span> Selection panel</strong>
+        <span>Tap a planted thought → side/bottom panel with stats, Upgrade, and Sell. Clearest inspect flow.</span>
+      </figcaption>
+    </figure>
+    <figure>
+      <img src="mockup-02-context-bar.png" alt="Mockup B: Context bar with Upgrade above tray" width="1280" height="720" />
+      <figcaption>
+        <strong><span class="letter">B</span> Context bar</strong>
+        <span>Select tower → slim bar above the tray with Upgrade cost/level. Smallest HUD change.</span>
+      </figcaption>
+    </figure>
+    <figure>
+      <img src="mockup-03-tray-dual-mode.png" alt="Mockup C: Tray dual-mode Upgrade Sell focus" width="1280" height="720" />
+      <figcaption>
+        <strong><span class="letter">C</span> Tray dual-mode</strong>
+        <span>Tray swaps to Upgrade/Sell when selected; Plant cards dim. No new floating chrome.</span>
+      </figcaption>
+    </figure>
+  </div>
+
+  <footer>
+    Thought Defense · soft metaphor only · no medical claims · mockups for design vote (not live UI).
+  </footer>
+</body>
+</html>

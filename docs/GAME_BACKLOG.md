@@ -6,6 +6,8 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 
 - [x] **Thought Defense v0.1** — scaffold (path, waves, 3 enemies, 3 towers, HUD)
 - [x] **Thought Defense v0.2** — prep Begin · upgrades L3 · sell · intermission
+- [x] **Thought Defense — Upgrade UI mockups** — 3 concepts + PNGs + gallery (vote open)
+- [ ] **Thought Defense — Upgrade UI Luau** — **blocked on Femmy Mockup vote A/B/C**
 - [ ] **Thought Defense v0.3** — apply Femmy design answers · polish / flavor
 - [ ] **Thought Defense** — primary focus. Consult `docs/DESIGN_CONSULT.md`
 - [x] **Haze Haven v0–v1.4** — hammock sway + rug + vibe board + pads
