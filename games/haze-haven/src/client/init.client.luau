@@ -17,7 +17,7 @@ local VibeBoard = require(script:WaitForChild("VibeBoard"))
 
 local orbCounter = Hud.mount(playerGui)
 EmoteWheel.mount(playerGui)
-ProximityGlow.start(player)
+local proximity = ProximityGlow.start(player)
 FloatFx.start(player)
 AmbientAudio.start()
 VibeBoard.start()
@@ -104,6 +104,7 @@ SoftCompany.mount(playerGui, player, {
 	OnCountChanged = function(n)
 		if n >= 1 then
 			complete("sync")
+			proximity.setBoost(1.35)
 			if orbCounter and orbCounter.Parent then
 				orbCounter.TextColor3 = syncedColor
 			end
@@ -112,6 +113,7 @@ SoftCompany.mount(playerGui, player, {
 				SoftWelcome.show(playerGui, "vibe sync", "someone nearby — tonight's vibes feel softer", hazeStyle)
 			end
 		else
+			proximity.setBoost(1)
 			if orbCounter and orbCounter.Parent then
 				orbCounter.TextColor3 = normalColor
 			end

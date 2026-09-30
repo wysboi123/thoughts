@@ -320,6 +320,23 @@ jarLight.Parent = jarGlow
 jarGlow:SetAttribute("BaseSize", 0.7)
 jar.Parent = world
 
+local jarGui = Instance.new("SurfaceGui")
+jarGui.Name = "JarFillGui"
+jarGui.Face = Enum.NormalId.Front
+jarGui.SizingMode = Enum.SurfaceGuiSizingMode.PixelsPerStud
+jarGui.PixelsPerStud = 50
+jarGui.Parent = jar
+local jarLabel = Instance.new("TextLabel")
+jarLabel.Name = "JarFillLabel"
+jarLabel.Size = UDim2.fromScale(1, 1)
+jarLabel.BackgroundTransparency = 1
+jarLabel.Font = Enum.Font.GothamMedium
+jarLabel.TextSize = 18
+jarLabel.TextWrapped = true
+jarLabel.TextColor3 = Color3.fromRGB(210, 255, 180)
+jarLabel.Text = "jar\nempty"
+jarLabel.Parent = jarGui
+
 local function refreshJarFill()
 	local fill = math.clamp(sessionFlies / JAR_FILL_CAP, 0, 1)
 	local base = jarGlow:GetAttribute("BaseSize")
@@ -329,6 +346,15 @@ local function refreshJarFill()
 	jarLight.Brightness = 1.4 + fill * 2.4
 	jarLight.Range = 10 + fill * 14
 	jar.Transparency = 0.5 - fill * 0.25
+	if fill <= 0 then
+		jarLabel.Text = "jar\nempty"
+	elseif fill < 0.5 then
+		jarLabel.Text = ("jar\n%d/%d"):format(sessionFlies, JAR_FILL_CAP)
+	elseif fill < 1 then
+		jarLabel.Text = "jar\nhalf"
+	else
+		jarLabel.Text = "jar\nfull"
+	end
 end
 
 -- Dual rocking chairs (Seats)

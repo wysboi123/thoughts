@@ -11,12 +11,17 @@ export type ProximityConfig = {
 	Range: number?,
 }
 
+export type ProximityHandle = {
+	setBoost: (mult: number) -> (),
+}
+
 local Proximity = {}
 
-function Proximity.start(localPlayer: Player, config: ProximityConfig)
+function Proximity.start(localPlayer: Player, config: ProximityConfig): ProximityHandle
 	local glowParts: { [Model]: PointLight } = {}
-	local brightness = config.Brightness or 1.4
-	local range = config.Range or 10
+	local baseBrightness = config.Brightness or 1.4
+	local baseRange = config.Range or 10
+	local boost = 1
 
 	local function getRoot(character: Model): BasePart?
 		local root = character:FindFirstChild("HumanoidRootPart")
@@ -24,6 +29,11 @@ function Proximity.start(localPlayer: Player, config: ProximityConfig)
 			return root
 		end
 		return nil
+	end
+
+	local function applyLight(light: PointLight)
+		light.Brightness = baseBrightness * boost
+		light.Range = baseRange * (0.9 + 0.1 * boost)
 	end
 
 	local function setGlow(character: Model, enabled: boolean)
@@ -36,11 +46,12 @@ function Proximity.start(localPlayer: Player, config: ProximityConfig)
 			if not existing then
 				local light = Instance.new("PointLight")
 				light.Name = "ChillProximityGlow"
-				light.Brightness = brightness
-				light.Range = range
 				light.Color = config.GlowColor
 				light.Parent = root
 				glowParts[character] = light
+				applyLight(light)
+			else
+				applyLight(existing)
 			end
 		elseif existing then
 			existing:Destroy()
@@ -70,6 +81,15 @@ function Proximity.start(localPlayer: Player, config: ProximityConfig)
 			setGlow(player.Character, false)
 		end
 	end)
+
+	return {
+		setBoost = function(mult: number)
+			boost = math.max(0.5, mult)
+			for _, light in glowParts do
+				applyLight(light)
+			end
+		end,
+	}
 end
 
 return Proximity
