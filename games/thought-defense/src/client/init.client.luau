@@ -536,6 +536,80 @@ end)
 local hoverPad: BasePart? = nil
 local hoverBox: SelectionBox? = nil
 local hoverPulse = 0
+local hoverTip: BillboardGui? = nil
+
+local function ensureHoverTip(): BillboardGui
+	if hoverTip and hoverTip.Parent then
+		return hoverTip
+	end
+	local tip = Instance.new("BillboardGui")
+	tip.Name = "PadHoverTip"
+	tip.Size = UDim2.fromOffset(160, 28)
+	tip.StudsOffset = Vector3.new(0, 3.2, 0)
+	tip.AlwaysOnTop = true
+	tip.Enabled = false
+	tip.Parent = Workspace
+	local label = Instance.new("TextLabel")
+	label.Name = "Label"
+	label.Size = UDim2.fromScale(1, 1)
+	label.BackgroundColor3 = Color3.fromRGB(28, 34, 48)
+	label.BackgroundTransparency = 0.2
+	label.TextColor3 = Color3.fromRGB(230, 240, 255)
+	label.Font = Enum.Font.GothamMedium
+	label.TextSize = 13
+	label.Text = ""
+	label.Parent = tip
+	local corner = Instance.new("UICorner")
+	corner.CornerRadius = UDim.new(0, 6)
+	corner.Parent = label
+	hoverTip = tip
+	return tip
+end
+
+local function findTowerOnPad(padId: number): BasePart?
+	local world = Workspace:FindFirstChild("ThoughtWorld")
+	local towers = world and world:FindFirstChild("Towers")
+	if not towers then
+		return nil
+	end
+	for _, child in towers:GetChildren() do
+		if child:IsA("BasePart") and child:GetAttribute("PadId") == padId then
+			return child
+		end
+	end
+	return nil
+end
+
+local function upgradeHintForPad(pad: BasePart): string?
+	local padId = pad:GetAttribute("PadId")
+	if typeof(padId) ~= "number" then
+		return nil
+	end
+	if pad:GetAttribute("Occupied") ~= true then
+		return "Empty pad · plant here"
+	end
+	if buildMode == "sell" then
+		return "Sell · reclaim Clarity"
+	end
+	local tower = findTowerOnPad(padId)
+	if not tower then
+		return "Planted thought"
+	end
+	local kindName = tower:GetAttribute("Kind")
+	local level = tower:GetAttribute("Level")
+	if typeof(kindName) ~= "string" or typeof(level) ~= "number" then
+		return "Click to deepen"
+	end
+	local kind = Config.TowerKinds[kindName]
+	if not kind then
+		return "Click to deepen"
+	end
+	if level >= (Config.MaxTowerLevel or 3) then
+		return `{kind.DisplayName} L{level} · maxed`
+	end
+	local cost = math.floor(kind.Cost * (Config.UpgradeCostFactor or 0.75) * level)
+	return `{kind.DisplayName} L{level} · upgrade {cost}`
+end
 
 local function ensureHoverBox(): SelectionBox
 	if hoverBox and hoverBox.Parent then
@@ -557,6 +631,10 @@ local function clearPadHover()
 	if hoverBox then
 		hoverBox.Adornee = nil
 	end
+	if hoverTip then
+		hoverTip.Enabled = false
+		hoverTip.Adornee = nil
+	end
 	hoverPad = nil
 end
 
@@ -568,6 +646,18 @@ local function setPadHover(pad: BasePart?)
 	local box = ensureHoverBox()
 	box.Adornee = pad
 	hoverPulse = 0
+	local tip = ensureHoverTip()
+	if pad then
+		tip.Adornee = pad
+		tip.Enabled = true
+		local label = tip:FindFirstChild("Label")
+		if label and label:IsA("TextLabel") then
+			label.Text = upgradeHintForPad(pad) or ""
+		end
+	else
+		tip.Enabled = false
+		tip.Adornee = nil
+	end
 	if buildMode == "sell" then
 		box.Color3 = Color3.fromRGB(230, 140, 140)
 		box.SurfaceColor3 = Color3.fromRGB(210, 120, 120)
@@ -580,7 +670,7 @@ end
 RunService.RenderStepped:Connect(function(dt)
 	hoverPulse += dt
 	local pad = findPad(mouse.Target)
-	-- Force color refresh when mode changes while still on same pad
+	-- Force color / tip refresh when mode changes while still on same pad
 	if pad and pad == hoverPad and hoverBox then
 		if buildMode == "sell" then
 			hoverBox.Color3 = Color3.fromRGB(230, 140, 140)
@@ -588,6 +678,11 @@ RunService.RenderStepped:Connect(function(dt)
 		else
 			hoverBox.Color3 = Color3.fromRGB(180, 230, 200)
 			hoverBox.SurfaceColor3 = Color3.fromRGB(160, 220, 190)
+		end
+		local tip = ensureHoverTip()
+		local label = tip:FindFirstChild("Label")
+		if label and label:IsA("TextLabel") then
+			label.Text = upgradeHintForPad(pad) or ""
 		end
 	end
 	setPadHover(pad)
@@ -598,5 +693,5 @@ RunService.RenderStepped:Connect(function(dt)
 	end
 end)
 
-flash("Thought Defense v" .. Config.Version .. " — plant, then Begin · empty pads breathe", "prep")
+flash("Thought Defense v" .. Config.Version .. " — plant, then Begin · hover pads for upgrade cost", "prep")
 refreshButtons()

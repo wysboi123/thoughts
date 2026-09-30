@@ -2,6 +2,14 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-30 18:18 UTC — Hourly (drafts out, still no A/B/C)
+
+- No Femmy vote yet on Upgrade drafts A/B/C
+- Synced consult links to new draft JPGs
+- **v0.2.2:** pad hover tip shows empty / upgrade cost / sell / maxed
+- Still waiting: reply A/B/C (+ tweaks) to ship Upgrade chrome
+- Email reminder after this push
+
 ## 2026-09-30 17:55 UTC — Coding + research batch (daytime, Femmy-requested)
 
 - **Research:** `docs/research/TD-upgrade-ui-soft-goals-2026-09-30.md` + queued **Q-005** (TD upgrade UI) — lean mockup **B** pending vote
