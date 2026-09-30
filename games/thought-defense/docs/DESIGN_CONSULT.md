@@ -49,4 +49,10 @@ Current: Calm 20, Clarity 120 start, 8 waves.
 
 ## Next consult triggers
 
-I’ll ask again when we hit: second map, tower upgrades, boss “thought spiral”, or monetization.
+- [x] Tower upgrades (v0.2 shipped — L1→L3, sell 50%)
+- [ ] Second map
+- [ ] Boss “thought spiral”
+- [ ] Monetization
+
+### This batch’s question
+**Upgrade feel:** Is click-to-upgrade on an existing pad clear enough, or do you want a separate Upgrade button / confirmation?

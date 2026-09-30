@@ -1,5 +1,5 @@
 --!strict
--- Positive-thought towers: Affirmation / Gratitude / Humor.
+-- Positive-thought towers: Affirmation / Gratitude / Humor (+ levels).
 
 local RunService = game:GetService("RunService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -12,6 +12,8 @@ export type TowerRecord = {
 	kind: string,
 	pad: BasePart,
 	model: BasePart,
+	level: number,
+	spent: number,
 	lastFire: number,
 }
 
@@ -19,6 +21,7 @@ local TowerService = {}
 
 local towersFolder: Folder
 local towers: { TowerRecord } = {}
+local byPadId: { [number]: TowerRecord } = {}
 
 function TowerService.init(folder: Folder)
 	towersFolder = folder
@@ -26,6 +29,48 @@ end
 
 function TowerService.list(): { TowerRecord }
 	return towers
+end
+
+function TowerService.getByPadId(padId: number): TowerRecord?
+	return byPadId[padId]
+end
+
+function TowerService.statsFor(kindName: string, level: number): {
+	Damage: number,
+	Range: number,
+	FireRate: number,
+	SlowFactor: number,
+	SplashRadius: number,
+	Color: Color3,
+	DisplayName: string,
+}?
+	local kind = Config.TowerKinds[kindName]
+	if not kind then
+		return nil
+	end
+	local mult = 1 + (level - 1) * 0.35
+	return {
+		Damage = kind.Damage * mult,
+		Range = kind.Range * (1 + (level - 1) * 0.08),
+		FireRate = kind.FireRate * (1 + (level - 1) * 0.12),
+		SlowFactor = if kind.SlowFactor < 1
+			then math.max(0.35, kind.SlowFactor - (level - 1) * 0.05)
+			else 1,
+		SplashRadius = kind.SplashRadius * (1 + (level - 1) * 0.1),
+		Color = kind.Color,
+		DisplayName = kind.DisplayName,
+	}
+end
+
+function TowerService.upgradeCost(kindName: string, currentLevel: number): number?
+	local kind = Config.TowerKinds[kindName]
+	if not kind then
+		return nil
+	end
+	if currentLevel >= Config.MaxTowerLevel then
+		return nil
+	end
+	return math.floor(kind.Cost * Config.UpgradeCostFactor * currentLevel)
 end
 
 local function makeProjectile(from: Vector3, to: Vector3, color: Color3)
@@ -59,6 +104,38 @@ local function makeProjectile(from: Vector3, to: Vector3, color: Color3)
 	end)
 end
 
+local function refreshVisual(rec: TowerRecord)
+	local stats = TowerService.statsFor(rec.kind, rec.level)
+	if not stats then
+		return
+	end
+	rec.model.Size = Vector3.new(3.2, 4.2 + rec.level * 0.8, 3.2)
+	rec.model.Position = rec.pad.Position + Vector3.new(0, 2.2 + rec.level * 0.4, 0)
+	local crown = rec.model:FindFirstChild("Glow")
+	if crown and crown:IsA("BasePart") then
+		crown.Size = Vector3.new(1.8, 1.8, 1.8) + Vector3.new(0.3, 0.3, 0.3) * rec.level
+		crown.Position = rec.model.Position + Vector3.new(0, 2.6 + rec.level * 0.35, 0)
+		local light = crown:FindFirstChildOfClass("PointLight")
+		if light then
+			light.Range = stats.Range
+			light.Brightness = 1.2 + rec.level * 0.25
+		end
+	end
+	local ring = rec.model:FindFirstChild("RangeHint")
+	if ring and ring:IsA("BasePart") then
+		ring.Size = Vector3.new(0.2, stats.Range * 2, stats.Range * 2)
+		ring.Position = rec.pad.Position + Vector3.new(0, 0.4, 0)
+	end
+	local gui = rec.model:FindFirstChildOfClass("BillboardGui")
+	if gui then
+		local label = gui:FindFirstChildOfClass("TextLabel")
+		if label then
+			label.Text = `{stats.DisplayName} L{rec.level}`
+		end
+	end
+	rec.model:SetAttribute("Level", rec.level)
+end
+
 function TowerService.tryPlace(kindName: string, pad: BasePart): (boolean, string?)
 	local kind = Config.TowerKinds[kindName]
 	if not kind then
@@ -66,6 +143,11 @@ function TowerService.tryPlace(kindName: string, pad: BasePart): (boolean, strin
 	end
 	if pad:GetAttribute("Occupied") == true then
 		return false, "Pad already holds a thought"
+	end
+
+	local padId = pad:GetAttribute("PadId")
+	if typeof(padId) ~= "number" then
+		return false, "Bad pad"
 	end
 
 	local tower = Instance.new("Part")
@@ -78,6 +160,8 @@ function TowerService.tryPlace(kindName: string, pad: BasePart): (boolean, strin
 	tower.Position = pad.Position + Vector3.new(0, 2.8, 0)
 	tower.Parent = towersFolder
 	tower:SetAttribute("Kind", kindName)
+	tower:SetAttribute("PadId", padId)
+	tower:SetAttribute("Level", 1)
 
 	local crown = Instance.new("Part")
 	crown.Name = "Glow"
@@ -97,20 +181,19 @@ function TowerService.tryPlace(kindName: string, pad: BasePart): (boolean, strin
 	light.Parent = crown
 
 	local gui = Instance.new("BillboardGui")
-	gui.Size = UDim2.fromOffset(120, 28)
+	gui.Size = UDim2.fromOffset(130, 28)
 	gui.StudsOffset = Vector3.new(0, 4.5, 0)
 	gui.AlwaysOnTop = true
 	gui.Parent = tower
 	local label = Instance.new("TextLabel")
 	label.Size = UDim2.fromScale(1, 1)
 	label.BackgroundTransparency = 1
-	label.Text = kind.DisplayName
+	label.Text = `{kind.DisplayName} L1`
 	label.TextColor3 = Color3.fromRGB(255, 255, 255)
 	label.TextScaled = true
 	label.Font = Enum.Font.GothamBold
 	label.Parent = gui
 
-	-- Range ring (visual only)
 	local ring = Instance.new("Part")
 	ring.Name = "RangeHint"
 	ring.Shape = Enum.PartType.Cylinder
@@ -127,13 +210,51 @@ function TowerService.tryPlace(kindName: string, pad: BasePart): (boolean, strin
 	pad:SetAttribute("Occupied", true)
 	pad.Color = kind.Color:Lerp(Color3.fromRGB(40, 40, 50), 0.35)
 
-	table.insert(towers, {
+	local rec: TowerRecord = {
 		kind = kindName,
 		pad = pad,
 		model = tower,
+		level = 1,
+		spent = kind.Cost,
 		lastFire = 0,
-	})
+	}
+	table.insert(towers, rec)
+	byPadId[padId] = rec
 	return true, nil
+end
+
+function TowerService.tryUpgrade(padId: number): (boolean, number?, string?)
+	local rec = byPadId[padId]
+	if not rec then
+		return false, nil, "No tower here"
+	end
+	local cost = TowerService.upgradeCost(rec.kind, rec.level)
+	if not cost then
+		return false, nil, "Already fully grown"
+	end
+	rec.level += 1
+	rec.spent += cost
+	refreshVisual(rec)
+	return true, cost, nil
+end
+
+function TowerService.trySell(padId: number): (boolean, number?, string?)
+	local rec = byPadId[padId]
+	if not rec then
+		return false, nil, "No tower here"
+	end
+	local refund = math.floor(rec.spent * Config.SellRefundFactor)
+	rec.model:Destroy()
+	rec.pad:SetAttribute("Occupied", false)
+	rec.pad.Color = Color3.fromRGB(180, 210, 190)
+	byPadId[padId] = nil
+	for i, t in towers do
+		if t == rec then
+			table.remove(towers, i)
+			break
+		end
+	end
+	return true, refund, nil
 end
 
 function TowerService.start()
@@ -141,18 +262,18 @@ function TowerService.start()
 		local now = os.clock()
 		local enemies = EnemyService.getActive()
 		for _, tower in towers do
-			local kind = Config.TowerKinds[tower.kind]
-			if not kind then
+			local stats = TowerService.statsFor(tower.kind, tower.level)
+			if not stats then
 				continue
 			end
-			local interval = 1 / kind.FireRate
+			local interval = 1 / stats.FireRate
 			if now - tower.lastFire < interval then
 				continue
 			end
 
 			local origin = tower.model.Position
 			local best: any = nil
-			local bestDist = kind.Range
+			local bestDist = stats.Range
 			for _, enemy in enemies do
 				local d = (enemy.model.Position - origin).Magnitude
 				if d <= bestDist then
@@ -165,21 +286,21 @@ function TowerService.start()
 			end
 
 			tower.lastFire = now
-			makeProjectile(origin + Vector3.new(0, 2, 0), best.model.Position, kind.Color)
+			makeProjectile(origin + Vector3.new(0, 2, 0), best.model.Position, stats.Color)
 
-			if kind.SlowFactor < 1 then
-				EnemyService.applySlow(best.id, kind.SlowFactor, 1.4)
+			if stats.SlowFactor < 1 then
+				EnemyService.applySlow(best.id, stats.SlowFactor, 1.4)
 			end
 
-			if kind.SplashRadius > 0 then
+			if stats.SplashRadius > 0 then
 				for _, enemy in enemies do
 					local d = (enemy.model.Position - best.model.Position).Magnitude
-					if d <= kind.SplashRadius then
-						EnemyService.damage(enemy.id, kind.Damage)
+					if d <= stats.SplashRadius then
+						EnemyService.damage(enemy.id, stats.Damage)
 					end
 				end
 			else
-				EnemyService.damage(best.id, kind.Damage)
+				EnemyService.damage(best.id, stats.Damage)
 			end
 		end
 	end)

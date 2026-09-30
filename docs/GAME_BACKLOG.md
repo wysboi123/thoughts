@@ -4,8 +4,10 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 
 ## Active
 
-- [ ] **Thought Defense v0.1+** — primary focus (Femmy 2026-09-29). Enemies = negative thoughts; towers = positive thoughts. Consult `docs/DESIGN_CONSULT.md`
-- [ ] **Thought Defense v0.2** — upgrades / second wave set (after design answers)
+- [x] **Thought Defense v0.1** — scaffold (path, waves, 3 enemies, 3 towers, HUD)
+- [x] **Thought Defense v0.2** — prep Begin · upgrades L3 · sell · intermission
+- [ ] **Thought Defense v0.3** — apply Femmy design answers · polish / flavor
+- [ ] **Thought Defense** — primary focus. Consult `docs/DESIGN_CONSULT.md`
 - [x] **Haze Haven v0–v1.4** — hammock sway + rug + vibe board + pads
 - [x] **Slow Orbit v0–v1.2** — bead sparkle + planet/moonlet glow
 - [x] **Couch Galaxy v0–v1.1** — couch rug pulse + hammock + apt lights

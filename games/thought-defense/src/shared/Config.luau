@@ -5,19 +5,23 @@
 local Config = {
 	GameName = "Thought Defense",
 	Tagline = "plant kindness. clear the noise.",
-	Version = "0.1",
+	Version = "0.2",
 
 	Spawn = Vector3.new(0, 6, 36),
 
 	-- Calm = lives. Clarity = build currency.
 	StartingCalm = 20,
-	StartingClarity = 120,
+	StartingClarity = 140,
 
 	WaveCount = 8,
-	SecondsBetweenWaves = 8,
-	SecondsBeforeFirstWave = 6,
+	SecondsBetweenWaves = 10,
+	SecondsBeforeFirstWave = 0, -- prep is manual via Start Wave
 
 	LeakPenalty = 1, -- Calm lost when a thought reaches the Peace Core
+
+	MaxTowerLevel = 3,
+	UpgradeCostFactor = 0.75, -- upgrade costs base Cost * level * this
+	SellRefundFactor = 0.5, -- refund of total spent
 
 	Path = {
 		-- Waypoints the negative thoughts follow (mind entrance → Peace Core)
@@ -79,7 +83,7 @@ local Config = {
 		},
 	},
 
-	-- Positive-thought towers
+	-- Positive-thought towers (base stats; levels scale damage/range/rate)
 	TowerKinds = {
 		Affirmation = {
 			DisplayName = "Affirmation",
@@ -88,7 +92,7 @@ local Config = {
 			Cost = 50,
 			Range = 16,
 			Damage = 12,
-			FireRate = 1.1, -- shots per second
+			FireRate = 1.1,
 			SlowFactor = 1,
 			SplashRadius = 0,
 		},

@@ -19,8 +19,10 @@ local state = {
 	calm = Config.StartingCalm,
 	clarity = Config.StartingClarity,
 	wave = 0,
-	phase = "prep", -- prep | wave | won | lost
+	nextWave = 1,
+	phase = "prep", -- prep | intermission | wave | won | lost
 	selectedKind = "Affirmation",
+	buildMode = "plant", -- plant | sell
 }
 
 local function broadcast()
@@ -28,10 +30,15 @@ local function broadcast()
 		calm = state.calm,
 		clarity = state.clarity,
 		wave = state.wave,
+		nextWave = state.nextWave,
 		maxWaves = Config.WaveCount,
 		phase = state.phase,
 		selectedKind = state.selectedKind,
+		buildMode = state.buildMode,
 		towers = Config.TowerKinds,
+		maxTowerLevel = Config.MaxTowerLevel,
+		upgradeCostFactor = Config.UpgradeCostFactor,
+		sellRefundFactor = Config.SellRefundFactor,
 	})
 end
 
@@ -54,7 +61,7 @@ local function win()
 	broadcast()
 end
 
-EnemyService.setCallbacks(function(rec)
+EnemyService.setCallbacks(function(_rec)
 	state.calm = math.max(0, state.calm - Config.LeakPenalty)
 	broadcast()
 	if state.calm <= 0 then
@@ -69,29 +76,51 @@ end, function(rec)
 end)
 
 WaveService.setCallbacks(function()
-	-- wave cleared
 	broadcast()
 end, function()
 	if state.calm > 0 then
 		win()
 	end
+end, function(nextWave: number)
+	state.nextWave = nextWave
+	state.wave = math.max(0, nextWave - 1)
+	state.phase = if nextWave == 1 then "prep" else "intermission"
+	broadcast()
 end)
 
 EnemyService.start()
 TowerService.start()
 
-Remotes.SelectTowerKind.OnServerEvent:Connect(function(player: Player, kindName: unknown)
+Remotes.SelectTowerKind.OnServerEvent:Connect(function(_player: Player, kindName: unknown)
 	if typeof(kindName) ~= "string" then
+		return
+	end
+	if kindName == "Sell" then
+		state.buildMode = "sell"
+		broadcast()
 		return
 	end
 	if not Config.TowerKinds[kindName] then
 		return
 	end
+	state.buildMode = "plant"
 	state.selectedKind = kindName
 	broadcast()
 end)
 
-Remotes.PlaceTower.OnServerEvent:Connect(function(player: Player, padId: unknown)
+Remotes.StartWave.OnServerEvent:Connect(function(_player: Player)
+	if state.phase == "lost" or state.phase == "won" then
+		return
+	end
+	if state.phase ~= "prep" and state.phase ~= "intermission" then
+		return
+	end
+	state.phase = "wave"
+	broadcast()
+	WaveService.requestStart()
+end)
+
+Remotes.PlaceTower.OnServerEvent:Connect(function(_player: Player, padId: unknown)
 	if state.phase == "lost" or state.phase == "won" then
 		return
 	end
@@ -100,6 +129,28 @@ Remotes.PlaceTower.OnServerEvent:Connect(function(player: Player, padId: unknown
 	end
 	local pad = world.pads[padId]
 	if not pad then
+		return
+	end
+
+	-- Occupied pad: upgrade in plant mode
+	if pad:GetAttribute("Occupied") == true then
+		local cost = nil
+		local rec = TowerService.getByPadId(padId)
+		if rec then
+			cost = TowerService.upgradeCost(rec.kind, rec.level)
+		end
+		if not cost or state.clarity < cost then
+			return
+		end
+		local ok, spent = TowerService.tryUpgrade(padId)
+		if ok and spent then
+			state.clarity -= spent
+			broadcast()
+		end
+		return
+	end
+
+	if state.buildMode ~= "plant" then
 		return
 	end
 	local kind = Config.TowerKinds[state.selectedKind]
@@ -116,6 +167,42 @@ Remotes.PlaceTower.OnServerEvent:Connect(function(player: Player, padId: unknown
 	end
 end)
 
+Remotes.UpgradeTower.OnServerEvent:Connect(function(_player: Player, padId: unknown)
+	if state.phase == "lost" or state.phase == "won" then
+		return
+	end
+	if typeof(padId) ~= "number" then
+		return
+	end
+	local rec = TowerService.getByPadId(padId)
+	if not rec then
+		return
+	end
+	local cost = TowerService.upgradeCost(rec.kind, rec.level)
+	if not cost or state.clarity < cost then
+		return
+	end
+	local ok, spent = TowerService.tryUpgrade(padId)
+	if ok and spent then
+		state.clarity -= spent
+		broadcast()
+	end
+end)
+
+Remotes.SellTower.OnServerEvent:Connect(function(_player: Player, padId: unknown)
+	if state.phase == "lost" or state.phase == "won" then
+		return
+	end
+	if typeof(padId) ~= "number" then
+		return
+	end
+	local ok, refund = TowerService.trySell(padId)
+	if ok and refund then
+		state.clarity += refund
+		broadcast()
+	end
+end)
+
 Players.PlayerAdded:Connect(function(player)
 	player.CharacterAdded:Connect(function(character)
 		local root = character:WaitForChild("HumanoidRootPart", 5)
@@ -126,20 +213,21 @@ Players.PlayerAdded:Connect(function(player)
 	task.defer(broadcast)
 end)
 
--- Kick off campaign once someone is in
 task.spawn(function()
 	while #Players:GetPlayers() == 0 do
 		task.wait(0.5)
 	end
-	state.phase = "wave"
+	state.phase = "prep"
 	broadcast()
 	WaveService.startCampaign()
-	-- Keep wave number in sync
 	task.spawn(function()
-		while state.phase == "wave" do
-			state.wave = WaveService.getWave()
+		while state.phase ~= "won" and state.phase ~= "lost" do
+			if WaveService.isWaveInProgress() then
+				state.phase = "wave"
+				state.wave = WaveService.getWave()
+			end
 			broadcast()
-			task.wait(1)
+			task.wait(0.75)
 		end
 	end)
 end)

@@ -2,6 +2,15 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-30 00:15 UTC — Thought Defense v0.2 (hourly batch 2)
+
+- **Shipped:** prep **Begin** button · pad **upgrade** L1–L3 · **Sell** (50% Clarity) · intermission Start/auto
+- Starting Clarity 140; no Femmy design answers yet (email unreplied)
+- Consult this batch: is click-to-upgrade clear enough, or want a confirm button?
+- Still open: title / tone / placement / endless / multiplayer (`docs/DESIGN_CONSULT.md`)
+- Next batch: apply answers if any · enemy flavor lines or path polish
+- Ops: PR #2 · timer `thought-defense-hourly` · email after this push
+
 ## 2026-09-29 23:45 UTC — Thought Defense v0.1 (hourly batch 1)
 
 - **New game:** `games/thought-defense` — tower defense metaphor
