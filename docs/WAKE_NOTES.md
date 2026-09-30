@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-09-30 17:55 UTC — Coding + research batch (daytime, Femmy-requested)
+
+- **Research:** `docs/research/TD-upgrade-ui-soft-goals-2026-09-30.md` + queued **Q-005** (TD upgrade UI) — lean mockup **B** pending vote
+- **Shipped v0.2.1:** SoftWelcome · SoftGoals (5 soft session goals) · RestartRun / Try again · GoalProgress remotes · Tower/Enemy clearAll for reset
+- Still **blocked:** Upgrade UI chrome A/B/C (pad-click upgrade remains playable)
+- Ask Femmy: confirm **A / B / C** (research suggests B)
+
 ## 2026-09-30 05:15 UTC — Outside window (no vote)
 
 05:15 hourly fired after 05:00 hard stop; no Femmy Upgrade UI vote in Gmail — waited. Re-armed `thought-defense-hourly` + `overnight-daily-resume`.

@@ -5,7 +5,7 @@
 local Config = {
 	GameName = "Thought Defense",
 	Tagline = "plant kindness. clear the noise.",
-	Version = "0.2",
+	Version = "0.2.1",
 
 	Spawn = Vector3.new(0, 6, 36),
 

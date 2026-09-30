@@ -57,7 +57,10 @@ You said click-to-upgrade via a **UI button** is okay. Three concepts are ready 
 
 **Your pick?** Reply **A / B / C** (or a hybrid, e.g. “B + keep pad-click upgrade”) in chat, email to the agent, or by editing this file.  
 Open the gallery locally or view PNGs in the repo if images do not render in email/PR.  
-Implementation is blocked on this answer — hourly batches will keep waiting (no Luau until you vote).
+Implementation of final chrome is blocked on this answer.
+
+### Research nudge (2026-09-30)
+Agent web research leans **B (Context bar)** for least HUD churn + mobile clarity — see `docs/research/TD-upgrade-ui-soft-goals-2026-09-30.md`. Not a decision until you confirm.
 
 ---
 

@@ -10,9 +10,31 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Shared = ReplicatedStorage:WaitForChild("Shared")
 local Config = require(Shared:WaitForChild("Config"))
 local Remotes = require(Shared:WaitForChild("Remotes"))
+local SoftGoals = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftGoals"))
+local SoftWelcome = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftWelcome"))
 
 local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
+
+SoftWelcome.show(
+	playerGui,
+	Config.GameName,
+	"Plant kindness. Protect your Peace Core. Soft goals on the right."
+)
+
+local _, completeGoal = SoftGoals.mount(playerGui, "soft session", {
+	{ Id = "plantFirst", Label = "Plant one positive thought" },
+	{ Id = "clearThought", Label = "Clear one negative thought" },
+	{ Id = "surviveWave1", Label = "Survive wave 1" },
+	{ Id = "upgradeOnce", Label = "Deepen a thought (upgrade)" },
+	{ Id = "clearMind", Label = "Hold quiet through all waves" },
+})
+
+Remotes.GoalProgress.OnClientEvent:Connect(function(goalId: string)
+	if typeof(goalId) == "string" then
+		completeGoal(goalId)
+	end
+end)
 
 local selectedKind = "Affirmation"
 local buildMode = "plant"
@@ -401,18 +423,41 @@ Remotes.GameOver.OnClientEvent:Connect(function(won: boolean, message: string)
 	stopIntermissionCountdown()
 	flash(message, if won then "clear" else "wave")
 	startBtn.Visible = false
-	local banner = Instance.new("TextLabel")
-	banner.Size = UDim2.fromOffset(480, 72)
-	banner.Position = UDim2.new(0.5, -240, 0.4, 0)
+	local banner = Instance.new("Frame")
+	banner.Name = "GameOverBanner"
+	banner.Size = UDim2.fromOffset(480, 120)
+	banner.Position = UDim2.new(0.5, -240, 0.38, 0)
 	banner.BackgroundColor3 = if won then Color3.fromRGB(40, 90, 80) else Color3.fromRGB(90, 40, 55)
-	banner.TextColor3 = Color3.fromRGB(255, 255, 255)
-	banner.Font = Enum.Font.GothamBold
-	banner.TextSize = 22
-	banner.Text = if won then "Mindscape quiet" else "Overwhelmed"
 	banner.Parent = gui
 	local bc = Instance.new("UICorner")
 	bc.CornerRadius = UDim.new(0, 12)
 	bc.Parent = banner
+	local titleLabel = Instance.new("TextLabel")
+	titleLabel.Size = UDim2.new(1, -24, 0, 40)
+	titleLabel.Position = UDim2.fromOffset(12, 12)
+	titleLabel.BackgroundTransparency = 1
+	titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+	titleLabel.Font = Enum.Font.GothamBold
+	titleLabel.TextSize = 22
+	titleLabel.Text = if won then "Mindscape quiet" else "Overwhelmed"
+	titleLabel.Parent = banner
+	local restart = Instance.new("TextButton")
+	restart.Size = UDim2.fromOffset(160, 40)
+	restart.Position = UDim2.new(0.5, -80, 1, -52)
+	restart.BackgroundColor3 = Color3.fromRGB(230, 240, 255)
+	restart.TextColor3 = Color3.fromRGB(30, 40, 50)
+	restart.Font = Enum.Font.GothamBold
+	restart.TextSize = 16
+	restart.Text = "Try again"
+	restart.Parent = banner
+	local rc = Instance.new("UICorner")
+	rc.CornerRadius = UDim.new(0, 8)
+	rc.Parent = restart
+	restart.MouseButton1Click:Connect(function()
+		banner:Destroy()
+		Remotes.RestartRun:FireServer()
+		flash("Fresh mindscape — plant again, then Begin", "prep")
+	end)
 end)
 
 local function findPad(target: Instance?): BasePart?

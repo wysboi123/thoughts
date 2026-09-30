@@ -113,6 +113,16 @@ function EnemyService.countAlive(): number
 	return n
 end
 
+function EnemyService.clearAll()
+	for id, rec in active do
+		rec.alive = false
+		if rec.model.Parent then
+			rec.model:Destroy()
+		end
+		active[id] = nil
+	end
+end
+
 function EnemyService.spawn(kindName: string): EnemyRecord?
 	local kind = Config.EnemyKinds[kindName]
 	if not kind then

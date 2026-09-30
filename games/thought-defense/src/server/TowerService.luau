@@ -275,6 +275,18 @@ function TowerService.trySell(padId: number): (boolean, number?, string?)
 	return true, refund, nil
 end
 
+function TowerService.clearAll()
+	for padId, rec in byPadId do
+		if rec.model.Parent then
+			rec.model:Destroy()
+		end
+		rec.pad:SetAttribute("Occupied", false)
+		rec.pad.Color = Color3.fromRGB(180, 210, 190)
+	end
+	table.clear(byPadId)
+	table.clear(towers)
+end
+
 function TowerService.start()
 	RunService.Heartbeat:Connect(function()
 		local now = os.clock()

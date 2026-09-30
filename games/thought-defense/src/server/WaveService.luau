@@ -132,6 +132,7 @@ function WaveService.stop()
 	waveInProgress = false
 	waitingForStart = false
 	startRequested = true -- unblock waiters
+	currentWave = 0
 end
 
 return WaveService

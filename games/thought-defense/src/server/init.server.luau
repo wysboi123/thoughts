@@ -25,6 +25,9 @@ local state = {
 	buildMode = "plant", -- plant | sell
 }
 
+local goalsDone: { [string]: boolean } = {}
+local campaignWatch: thread? = nil
+
 local function broadcast()
 	Remotes.StateChanged:FireAllClients({
 		calm = state.calm,
@@ -42,6 +45,14 @@ local function broadcast()
 	})
 end
 
+local function markGoal(id: string)
+	if goalsDone[id] then
+		return
+	end
+	goalsDone[id] = true
+	Remotes.GoalProgress:FireAllClients(id)
+end
+
 local function fail()
 	if state.phase == "lost" or state.phase == "won" then
 		return
@@ -57,8 +68,52 @@ local function win()
 		return
 	end
 	state.phase = "won"
+	markGoal("clearMind")
 	Remotes.GameOver:FireAllClients(true, "Quiet held. You cleared the mindscape.")
 	broadcast()
+end
+
+local function startCampaignWatch()
+	if campaignWatch then
+		task.cancel(campaignWatch)
+		campaignWatch = nil
+	end
+	campaignWatch = task.spawn(function()
+		while state.phase ~= "won" and state.phase ~= "lost" do
+			if WaveService.isWaveInProgress() then
+				state.phase = "wave"
+				state.wave = WaveService.getWave()
+				if state.wave >= 1 then
+					markGoal("surviveWave1")
+				end
+			end
+			broadcast()
+			task.wait(0.75)
+		end
+	end)
+end
+
+local function resetRun()
+	WaveService.stop()
+	EnemyService.clearAll()
+	TowerService.clearAll()
+	table.clear(goalsDone)
+	state.calm = Config.StartingCalm
+	state.clarity = Config.StartingClarity
+	state.wave = 0
+	state.nextWave = 1
+	state.phase = "prep"
+	state.selectedKind = "Affirmation"
+	state.buildMode = "plant"
+	broadcast()
+	-- Brief pause so WaveService.stop unblocks, then new campaign
+	task.delay(0.35, function()
+		if state.phase ~= "prep" then
+			return
+		end
+		WaveService.startCampaign()
+		startCampaignWatch()
+	end)
 end
 
 EnemyService.setCallbacks(function(_rec)
@@ -73,10 +128,14 @@ end, function(rec)
 	local reward = if kind then kind.ClarityReward else 5
 	state.clarity += reward
 	Remotes.ThoughtCleared:FireAllClients(rec.kind, reward)
+	markGoal("clearThought")
 	broadcast()
 end)
 
 WaveService.setCallbacks(function()
+	if WaveService.getWave() >= 1 then
+		markGoal("surviveWave1")
+	end
 	broadcast()
 end, function()
 	if state.calm > 0 then
@@ -121,6 +180,14 @@ Remotes.StartWave.OnServerEvent:Connect(function(_player: Player)
 	WaveService.requestStart()
 end)
 
+Remotes.RestartRun.OnServerEvent:Connect(function(_player: Player)
+	if state.phase ~= "won" and state.phase ~= "lost" and state.phase ~= "prep" then
+		-- Allow restart mid-run only from prep, or always for playtest friendliness
+		-- Mid-wave restart is OK for solo TD
+	end
+	resetRun()
+end)
+
 Remotes.PlaceTower.OnServerEvent:Connect(function(_player: Player, padId: unknown)
 	if state.phase == "lost" or state.phase == "won" then
 		return
@@ -133,7 +200,7 @@ Remotes.PlaceTower.OnServerEvent:Connect(function(_player: Player, padId: unknow
 		return
 	end
 
-	-- Occupied pad: upgrade in plant mode
+	-- Occupied pad: upgrade in plant mode (button chrome still pending A/B/C vote)
 	if pad:GetAttribute("Occupied") == true then
 		local cost = nil
 		local rec = TowerService.getByPadId(padId)
@@ -146,6 +213,7 @@ Remotes.PlaceTower.OnServerEvent:Connect(function(_player: Player, padId: unknow
 		local ok, spent = TowerService.tryUpgrade(padId)
 		if ok and spent then
 			state.clarity -= spent
+			markGoal("upgradeOnce")
 			broadcast()
 		end
 		return
@@ -164,6 +232,7 @@ Remotes.PlaceTower.OnServerEvent:Connect(function(_player: Player, padId: unknow
 	local ok = TowerService.tryPlace(state.selectedKind, pad)
 	if ok then
 		state.clarity -= kind.Cost
+		markGoal("plantFirst")
 		broadcast()
 	end
 end)
@@ -186,6 +255,7 @@ Remotes.UpgradeTower.OnServerEvent:Connect(function(_player: Player, padId: unkn
 	local ok, spent = TowerService.tryUpgrade(padId)
 	if ok and spent then
 		state.clarity -= spent
+		markGoal("upgradeOnce")
 		broadcast()
 	end
 end)
@@ -221,16 +291,7 @@ task.spawn(function()
 	state.phase = "prep"
 	broadcast()
 	WaveService.startCampaign()
-	task.spawn(function()
-		while state.phase ~= "won" and state.phase ~= "lost" do
-			if WaveService.isWaveInProgress() then
-				state.phase = "wave"
-				state.wave = WaveService.getWave()
-			end
-			broadcast()
-			task.wait(0.75)
-		end
-	end)
+	startCampaignWatch()
 end)
 
 print("[ThoughtDefense]", Config.Version, "—", Config.Tagline)

@@ -7,8 +7,10 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 - [x] **Thought Defense v0.1** — scaffold (path, waves, 3 enemies, 3 towers, HUD)
 - [x] **Thought Defense v0.2** — prep Begin · upgrades L3 · sell · intermission
 - [x] **Thought Defense — Upgrade UI mockups** — 3 concepts + PNGs + gallery (vote open)
-- [ ] **Thought Defense — Upgrade UI Luau** — **blocked on Femmy Mockup vote A/B/C** (overnight stop 05:00 UTC — still no vote)
-- [ ] **Thought Defense v0.3** — apply Femmy design answers · polish / flavor
+- [x] **Thought Defense v0.2.1** — SoftWelcome · SoftGoals · Try again restart · research note (daytime)
+- [ ] **Thought Defense — Upgrade UI Luau** — **blocked on Femmy Mockup vote A/B/C** (research leans B)
+- [ ] **Thought Defense v0.3** — apply Femmy design answers · Upgrade chrome
+- [ ] **Q-005** — Perplexity TD upgrade UI (optional; agent note already in docs/research/)
 - [x] **Thought Defense — light polish while waiting** — enemy flavor billboards · path rails · Peace Core halo (02:15 UTC)
 - [x] **Thought Defense — wait polish** — wave toast clarity + soft pad hover cue (03:15 UTC)
 - [x] **Thought Defense — wait polish** — Calm leak cue · tower plant/upgrade pop · empty pad ring breath (04:15 UTC)
