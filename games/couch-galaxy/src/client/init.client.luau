@@ -125,11 +125,22 @@ local couchStyle = {
 	FrameColor = Color3.fromRGB(26, 20, 40),
 }
 
+local function paintStarCounter()
+	if inGalaxy then
+		counter.BackgroundColor3 = Color3.fromRGB(28, 30, 55)
+		counter.TextColor3 = Color3.fromRGB(255, 240, 190)
+	else
+		counter.BackgroundColor3 = Color3.fromRGB(24, 20, 40)
+		counter.TextColor3 = Color3.fromRGB(255, 230, 170)
+	end
+end
+
 Remotes.EnteredGalaxy.OnClientEvent:Connect(function()
 	inGalaxy = true
 	visitedGalaxy = true
 	applyGalaxyLighting()
 	refreshPlace(false)
+	paintStarCounter()
 	if not galaxyWelcomed then
 		galaxyWelcomed = true
 		SoftWelcome.show(playerGui, "galaxy loft", "second world · beacon home when ready", couchStyle)
@@ -143,6 +154,7 @@ Remotes.ReturnedHome.OnClientEvent:Connect(function()
 	end
 	applyHomeLighting()
 	refreshPlace(false)
+	paintStarCounter()
 	if visitedGalaxy and not homeWelcomed then
 		homeWelcomed = true
 		SoftWelcome.show(playerGui, "couch side", "two worlds · one couch · you made it home", couchStyle)
