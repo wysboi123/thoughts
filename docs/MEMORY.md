@@ -13,7 +13,7 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 
 ## State
 
-- Version: **mobile 1.2.4** (first-run tip chip; builds on 1.2.3 walkers)
+- Version: **mobile 1.2.5** (plant/upgrade toast feedback; builds on 1.2.4 tip chip)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4

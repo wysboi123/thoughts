@@ -2,6 +2,16 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-01 03:15 UTC — Mobile hourly (plant/upgrade toast)
+
+- Timer `thought-defense-mobile-hourly` fired ~03:15 UTC Oct 1.
+- **No Femmy replies** (`from:ngkdevid@gmail.com` empty) · DESIGN_CONSULT unchanged → Clarity Pass stays **$2.99/mo**; re-asked briefly (not A/B/C).
+- **Shipped v1.2.5 (beyond v1.2.4):** **plant/upgrade toast feedback** — SoftActionToast tinted chip (plant/upgrade/sell/warn/success) · pad disc pop · plant FX ripples · Clarity-remaining copy · soft haptics · Reduce Motion honored
+- Did **not** redo v1.2.4 tip chip / walkers / pause / a11y.
+- Ops: confirmed/re-armed `overnight-stop-5am-utc` (do not cancel) · `thought-defense-mobile-hourly` · ManagePullRequest missing — push only; preserve PR #4 title
+- Branch `cursor/mobile-thought-defense-5a0d` · tip `085c414` · PR https://github.com/wysboi123/thoughts/pull/4
+- Ask Femmy: Clarity Pass — keep **$2.99** · **$1.99** · **$3.99** · other?
+
 ## 2026-10-01 02:15 UTC — Mobile hourly (first-run tip chip)
 
 - Timer `thought-defense-mobile-hourly` fired ~02:15 UTC Oct 1.
