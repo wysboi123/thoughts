@@ -17,13 +17,13 @@ Femmy: reply in chat, email, or edit this file.
 3. **Clarity Pass price tier** — keep ~$2.99/mo · cosmetics ~$1.99 · boost ~$0.99, or shift Pass to $1.99 / $3.99 / other?
 4. Brand tweaks before store screenshots?
 
-### This batch ask (2026-10-01 01:15 hourly) — still open
+### This batch ask (2026-10-01 02:15 hourly) — still open
 
 **Clarity Pass pricing** (Draft C / A·B·C is locked — not asking that):
 Quick confirm: keep **$2.99/mo** · drop to **$1.99** · raise to **$3.99** · or name your own?
 Cosmetics $1.99 and boost $0.99 stay unless you say otherwise.
 
-*Hourly 01:15 UTC Oct 1: no Gmail (`from:ngkdevid@gmail.com`) / file reply — shipping with $2.99 default.*
+*Hourly 02:15 UTC Oct 1: no Gmail (`from:ngkdevid@gmail.com`) / file reply — shipping with $2.99 default.*
 
 ## Defaults
 

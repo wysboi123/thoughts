@@ -4,6 +4,7 @@ import { AppState, StyleSheet, Text, useWindowDimensions, View } from 'react-nat
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Atmosphere } from '../components/Atmosphere';
 import { DualModeTray } from '../components/DualModeTray';
+import { FirstRunTipChip } from '../components/FirstRunTipChip';
 import { GameBoard } from '../components/GameBoard';
 import { PauseOverlay } from '../components/PauseOverlay';
 import { SoftButton } from '../components/SoftButton';
@@ -115,6 +116,14 @@ export default function PlayScreen() {
         />
 
         {state.toast ? <Text style={styles.toast}>{state.toast}</Text> : <View style={{ height: 18 }} />}
+
+        <FirstRunTipChip
+          visible={
+            !paused &&
+            !showResult &&
+            (state.phase === 'prep' || state.phase === 'intermission')
+          }
+        />
 
         <View style={styles.boardWrap}>
           <GameBoard
