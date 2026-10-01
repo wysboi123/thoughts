@@ -9,7 +9,7 @@ Newest first. Overnight agents append after every push.
 - **Shipped v1.2.8 (beyond v1.2.7):** **soft-goals expand** — `plant_all_kinds` + `reach_wave_six` (5→7) · shared `SOFT_GOAL_ORDER`/`SOFT_GOAL_TOTAL` · engine wiring · journal + result modal + HUD counts · **pause Calm/Clarity snapshot**
 - Did **not** redo v1.2.7 IAP stub / SoftWelcomeSheet.
 - Ops: re-armed `overnight-stop-5am-utc` once (~05:00 UTC) · confirmed/re-armed `thought-defense-mobile-hourly` · **did not** cancel stop · ManagePullRequest **missing** — push only; preserve PR #4 title
-- Branch `cursor/mobile-thought-defense-5a0d` · tip (after push) · PR https://github.com/wysboi123/thoughts/pull/4
+- Branch `cursor/mobile-thought-defense-5a0d` · tip `0dd242e` · PR https://github.com/wysboi123/thoughts/pull/4
 - Ask Femmy: **RC vs RNIap** (fresher) · Clarity Pass price still open separately
 
 ## 2026-10-01 23:15 UTC — Night resume (mobile overnight)
