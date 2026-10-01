@@ -2,6 +2,16 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-01 00:15 UTC — Mobile hourly (pause overlay)
+
+- Timer `thought-defense-mobile-hourly` fired ~00:15 UTC Oct 1.
+- **No Femmy replies** (`from:ngkdevid@gmail.com` empty) · DESIGN_CONSULT unchanged → Clarity Pass stays **$2.99/mo**; re-asked briefly (not A/B/C).
+- **Shipped v1.2.2 (beyond v1.2.1):** soft **Pause** overlay (Resume / Soft goals / Leave) · freezes RAF tick while paused · **AppState** background auto-pause · Pause chip in mindscape chrome
+- Did **not** redo v1.2.1 a11y (44px / haptics / Reduce Motion / STORE_ASSETS).
+- Ops: confirmed/re-armed `overnight-stop-5am-utc` (do not cancel) · `thought-defense-mobile-hourly` · ManagePullRequest missing — push only; preserve PR #4 title
+- Branch `cursor/mobile-thought-defense-5a0d` · tip TBD after push · PR https://github.com/wysboi123/thoughts/pull/4
+- Ask Femmy: Clarity Pass — keep **$2.99** · **$1.99** · **$3.99** · other?
+
 ## 2026-09-30 23:15 UTC — Mobile hourly (distinct from night resume)
 
 - Timer `thought-defense-mobile-hourly` fired while **night shift already running** — this is the **hourly polish slice**, not a second night resume.

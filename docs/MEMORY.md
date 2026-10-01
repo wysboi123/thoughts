@@ -13,7 +13,7 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 
 ## State
 
-- Version: **mobile 1.2.1** (a11y tap targets · haptics stub · reduced-motion · store asset placeholders; builds on 1.2.0 waves/FX/shop)
+- Version: **mobile 1.2.2** (pause overlay · AppState auto-pause; builds on 1.2.1 a11y)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4

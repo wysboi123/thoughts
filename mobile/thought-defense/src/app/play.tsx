@@ -1,10 +1,11 @@
 import { router } from 'expo-router';
 import React, { useCallback, useEffect, useState } from 'react';
-import { StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import { AppState, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Atmosphere } from '../components/Atmosphere';
 import { DualModeTray } from '../components/DualModeTray';
 import { GameBoard } from '../components/GameBoard';
+import { PauseOverlay } from '../components/PauseOverlay';
 import { SoftButton } from '../components/SoftButton';
 import { WaveResultModal } from '../components/WaveResultModal';
 import { GAME } from '../game/config';
@@ -30,12 +31,16 @@ export default function PlayScreen() {
   const { width, height: winH } = useWindowDimensions();
   const { entitlements, consumePendingClarity } = useIap();
   const [state, setState] = useState<GameState>(() => createInitialState());
+  const [paused, setPaused] = useState(false);
 
   const boardW = Math.min(width - 28, 400);
   // Near-square plan view — reads as top-down map
   const boardH = Math.min(boardW * 1.05, winH * 0.48);
+  const showResult = state.phase === 'won' || state.phase === 'lost';
+  const canPause = !showResult;
 
   useEffect(() => {
+    if (paused || showResult) return;
     let frame = 0;
     let last = performance.now();
     const loop = (now: number) => {
@@ -46,7 +51,14 @@ export default function PlayScreen() {
     };
     frame = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(frame);
-  }, []);
+  }, [paused, showResult]);
+
+  useEffect(() => {
+    const sub = AppState.addEventListener('change', (next) => {
+      if (next !== 'active' && canPause) setPaused(true);
+    });
+    return () => sub.remove();
+  }, [canPause]);
 
   useEffect(() => {
     let alive = true;
@@ -65,7 +77,10 @@ export default function PlayScreen() {
     setState((s) => tapPad(s, i));
   }, []);
 
-  const showResult = state.phase === 'won' || state.phase === 'lost';
+  const waveLabel = `Wave ${Math.min(
+    state.waveIndex + (state.phase === 'won' ? 0 : 1),
+    GAME.waveCount,
+  )}/${GAME.waveCount} · Calm ${state.calm} · Clarity ${state.clarity}`;
 
   return (
     <Atmosphere>
@@ -74,10 +89,12 @@ export default function PlayScreen() {
           <SoftButton label="← Home" variant="ghost" onPress={() => router.back()} style={styles.homeBtn} />
           <Text style={styles.title}>Mindscape</Text>
           <SoftButton
-            label={`Goals ${softGoalsDone(state.softGoals)}/5`}
+            label={paused ? 'Paused' : 'Pause'}
             variant="ghost"
-            onPress={() => router.push('/goals')}
-            style={styles.goalsBtn}
+            disabled={!canPause}
+            onPress={() => setPaused(true)}
+            style={styles.pauseBtn}
+            accessibilityHint="Pauses the mindscape so the path holds still"
           />
         </View>
 
@@ -89,6 +106,13 @@ export default function PlayScreen() {
             {GAME.waveCount}
           </Text>
         </View>
+
+        <SoftButton
+          label={`Goals ${softGoalsDone(state.softGoals)}/5`}
+          variant="ghost"
+          onPress={() => router.push('/goals')}
+          style={styles.goalsChip}
+        />
 
         {state.toast ? <Text style={styles.toast}>{state.toast}</Text> : <View style={{ height: 18 }} />}
 
@@ -103,7 +127,7 @@ export default function PlayScreen() {
           />
         </View>
 
-        {(state.phase === 'prep' || state.phase === 'intermission') && (
+        {(state.phase === 'prep' || state.phase === 'intermission') && !paused && (
           <SoftButton
             label={state.phase === 'prep' ? 'Begin wave' : `Start next · ${Math.ceil(state.intermissionLeft)}s`}
             onPress={() => setState((s) => beginWave(s))}
@@ -124,10 +148,15 @@ export default function PlayScreen() {
         ) : null}
       </View>
 
+      <PauseOverlay visible={paused && canPause} waveLabel={waveLabel} onResume={() => setPaused(false)} />
+
       <WaveResultModal
         visible={showResult}
         state={state}
-        onRetry={() => setState(createInitialState())}
+        onRetry={() => {
+          setPaused(false);
+          setState(createInitialState());
+        }}
         onClose={() => {
           /* keep modal until retry/nav */
         }}
@@ -144,7 +173,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   homeBtn: { paddingVertical: 8, paddingHorizontal: 10 },
-  goalsBtn: { paddingVertical: 8, paddingHorizontal: 10 },
+  pauseBtn: { paddingVertical: 8, paddingHorizontal: 10 },
+  goalsChip: { alignSelf: 'center', marginTop: 6, paddingVertical: 6, paddingHorizontal: 12 },
   title: {
     fontFamily: fonts.display,
     fontSize: 20,
