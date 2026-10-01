@@ -19,6 +19,7 @@ Priority order. Agents pick the top unchecked item unless Femmy overrides.
 - [x] **v1.2.3 hourly polish** — Walker variety gaits · spawn speed jitter · flavor pool · Settings version
 - [x] **v1.2.4 hourly polish** — First-run tip chip (dismissible · AsyncStorage · prep/intermission)
 - [x] **v1.2.5 hourly polish** — SoftActionToast plant/upgrade/sell · pad pop · plant FX ripples
+- [x] **v1.2.6 hourly polish** — Win celebration (Soft win badge · mint halo · sparks · flavor line)
 - [ ] **Native IAP** — wire RevenueCat or react-native-iap; turn off stubMode for store builds
 - [ ] **EAS project** — Femmy: `eas init` + real `projectId` + credentials
 - [ ] **Store products** — create IAP ids in App Store Connect + Play Console
