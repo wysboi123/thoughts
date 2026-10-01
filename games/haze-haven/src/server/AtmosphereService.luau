@@ -27,25 +27,32 @@ function AtmosphereService.start()
 			Lighting.Brightness = 1.2 + pulse * 0.35
 
 			local world = workspace:FindFirstChild("HazeWorld")
+			local vibeSynced = workspace:GetAttribute("HazeVibeSynced") == true
+			local syncBoost = if vibeSynced then 0.45 else 0
 			if world then
 				for _, child in world:GetChildren() do
 					if child:IsA("BasePart") and string.find(child.Name, "LoftString", 1, true) then
 						local light = child:FindFirstChildOfClass("PointLight")
 						if light then
-							light.Brightness = 0.9 + pulse * 0.5 + math.sin(t + child.Position.X) * 0.15
+							light.Brightness = 0.9 + pulse * 0.5 + math.sin(t + child.Position.X) * 0.15 + syncBoost * 0.25
 						end
 						local warm = (math.sin(t + child.Position.X) + 1) / 2
 						child.Color = Color3.fromRGB(255, 210, 160):Lerp(Color3.fromRGB(255, 235, 200), warm * 0.55)
 					elseif child.Name == "LoungeCandle" and child:IsA("BasePart") then
 						local light = child:FindFirstChildOfClass("PointLight")
 						if light then
-							light.Brightness = 1.1 + math.sin(t * 2.4) * 0.35
+							light.Brightness = 1.1 + math.sin(t * 2.4) * 0.35 + syncBoost
 						end
 						child.Color = Color3.fromRGB(255, 200, 140):Lerp(Color3.fromRGB(255, 230, 180), (math.sin(t * 2.4) + 1) / 2 * 0.5)
 					elseif child:IsA("BasePart") and string.find(child.Name, "FloatPad", 1, true) then
 						local light = child:FindFirstChildOfClass("PointLight")
 						if light then
-							light.Brightness = 1.7 + pulse * 0.5 + math.sin(t + child.Position.X) * 0.2
+							light.Brightness = 1.7 + pulse * 0.5 + math.sin(t + child.Position.X) * 0.2 + syncBoost * 0.35
+							if vibeSynced then
+								light.Color = Color3.fromRGB(160, 220, 255)
+							else
+								light.Color = Color3.fromRGB(120, 210, 220)
+							end
 						end
 					elseif child:IsA("BasePart") and string.find(child.Name, "Mist", 1, true) then
 						local base = if child.Name == "LoftMist" then 0.65 else 0.55

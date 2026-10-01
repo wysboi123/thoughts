@@ -258,12 +258,14 @@ task.spawn(function()
 	end
 end)
 
--- Soft night rain (visual only — parts fall and despawn)
+-- Soft night rain (visual only — denser alone, softer when waiting together)
 if Config.Rain.Enabled then
 	task.spawn(function()
 		local Workspace = game:GetService("Workspace")
 		while true do
-			for _ = 1, 6 do
+			local drops = if nearbyCount >= 1 then 3 else 6
+			local waitBetween = if nearbyCount >= 1 then 0.2 else 0.12
+			for _ = 1, drops do
 				local drop = Instance.new("Part")
 				drop.Name = "RainDrop"
 				drop.Size = Vector3.new(0.12, 1.4, 0.12)
@@ -272,7 +274,7 @@ if Config.Rain.Enabled then
 				drop.CanCollide = false
 				drop.Material = Enum.Material.Neon
 				drop.Color = Color3.fromRGB(160, 180, 200)
-				drop.Transparency = 0.35
+				drop.Transparency = if nearbyCount >= 1 then 0.5 else 0.35
 				drop.Parent = Workspace
 				task.spawn(function()
 					for _ = 1, 18 do
@@ -285,7 +287,7 @@ if Config.Rain.Enabled then
 					drop:Destroy()
 				end)
 			end
-			task.wait(0.12)
+			task.wait(waitBetween)
 		end
 	end)
 end

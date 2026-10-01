@@ -107,6 +107,7 @@ SoftCompany.mount(playerGui, player, {
 			proximity.setBoost(1.35 + math.min(n - 1, 2) * 0.1)
 			VibeBoard.setSynced(true)
 			setHudSynced(true)
+			workspace:SetAttribute("HazeVibeSynced", true)
 			if orbCounter and orbCounter.Parent then
 				orbCounter.TextColor3 = syncedColor
 			end
@@ -118,6 +119,7 @@ SoftCompany.mount(playerGui, player, {
 			proximity.setBoost(1)
 			VibeBoard.setSynced(false)
 			setHudSynced(false)
+			workspace:SetAttribute("HazeVibeSynced", false)
 			if orbCounter and orbCounter.Parent then
 				orbCounter.TextColor3 = normalColor
 			end

@@ -272,6 +272,15 @@ local function refreshTimetable()
 			glow.Transparency = if n >= 1 then 0.32 else 0.48
 		end
 	end
+	local puddle = world:FindFirstChild("SidewalkPuddle")
+	if puddle and puddle:IsA("BasePart") then
+		puddle.Color = if n >= 1 then Color3.fromRGB(120, 150, 165) else Color3.fromRGB(100, 130, 150)
+		puddle.Transparency = if n >= 1 then 0.32 else 0.4
+	end
+	local news = world:FindFirstChild("NewsBox")
+	if news and news:IsA("BasePart") then
+		news.Color = if n >= 1 then Color3.fromRGB(60, 110, 85) else Color3.fromRGB(50, 90, 70)
+	end
 end
 
 task.spawn(function()

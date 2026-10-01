@@ -69,6 +69,8 @@ function Hud.mount(playerGui: PlayerGui): (TextLabel, (boolean) -> ())
 	pad.Parent = counter
 
 	local syncing = false
+	local aloneTag = Config.Tagline
+	local syncTag = "vibes sync when friends are near"
 
 	Remotes.OrbCollected.OnClientEvent:Connect(function(count: number)
 		counter.Text = ("Vibes  %d"):format(count)
@@ -84,6 +86,13 @@ function Hud.mount(playerGui: PlayerGui): (TextLabel, (boolean) -> ())
 		syncing = isSynced
 		if counter.Parent then
 			counter.BackgroundColor3 = if isSynced then Color3.fromRGB(42, 30, 58) else Color3.fromRGB(30, 24, 42)
+		end
+		if title.Parent then
+			title.TextColor3 = if isSynced then Color3.fromRGB(255, 230, 255) else Color3.fromRGB(235, 220, 255)
+		end
+		if tag.Parent then
+			tag.Text = if isSynced then syncTag else aloneTag
+			tag.TextColor3 = if isSynced then Color3.fromRGB(220, 200, 245) else Color3.fromRGB(190, 175, 210)
 		end
 	end
 end

@@ -1,6 +1,7 @@
 --!strict
 local Players = game:GetService("Players")
 local Lighting = game:GetService("Lighting")
+local Workspace = game:GetService("Workspace")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Shared = ReplicatedStorage:WaitForChild("Shared")
@@ -235,6 +236,23 @@ ChillProximity.start(player, {
 	Range = 11,
 })
 
+local function setLightBoost(partName: string, brightness: number, range: number?)
+	local world = Workspace:FindFirstChild("CouchGalaxyWorld")
+	if not world then
+		return
+	end
+	local part = world:FindFirstChild(partName, true)
+	if part and part:IsA("BasePart") then
+		local light = part:FindFirstChildOfClass("PointLight")
+		if light then
+			light.Brightness = brightness
+			if range then
+				light.Range = range
+			end
+		end
+	end
+end
+
 SoftCompany.mount(playerGui, player, {
 	Radius = Config.Proximity.Radius,
 	Color = Color3.fromRGB(190, 170, 220),
@@ -251,6 +269,26 @@ SoftCompany.mount(playerGui, player, {
 	end,
 	OnCountChanged = function(n)
 		refreshPlace(n >= 1)
+		local company = n >= 1
+		local world = Workspace:FindFirstChild("CouchGalaxyWorld")
+		if inGalaxy and world then
+			local hammock = world:FindFirstChild("GalaxyHammockCloth", true)
+			if hammock and hammock:IsA("BasePart") then
+				hammock.Color = if company then Color3.fromRGB(160, 140, 210) else Color3.fromRGB(120, 100, 180)
+			end
+			local beacon = world:FindFirstChild("ReturnBeacon", true)
+			if beacon and beacon:IsA("BasePart") then
+				beacon.Transparency = if company then 0 else 0.05
+				local light = beacon:FindFirstChildOfClass("PointLight")
+				if light then
+					light.Brightness = if company then 2.4 else 1.6
+				end
+			end
+		elseif not inGalaxy then
+			setLightBoost("TableLamp", if company then 1.8 else 1.2)
+			setLightBoost("FloorLampGlow", if company then 2.0 else 1.4)
+			setLightBoost("NightWindow", if company then 1.5 else 1.0, if company then 18 else 14)
+		end
 	end,
 })
 

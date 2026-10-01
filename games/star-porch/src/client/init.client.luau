@@ -212,6 +212,23 @@ SoftCompany.mount(playerGui, player, {
 		if jarLabel and jarLabel:IsA("TextLabel") then
 			jarLabel.TextColor3 = if n >= 1 then Color3.fromRGB(230, 255, 200) else Color3.fromRGB(210, 255, 180)
 		end
+		if world then
+			local fire = world:FindFirstChild("FirePitGlow")
+			if fire and fire:IsA("BasePart") then
+				local fireLight = fire:FindFirstChildOfClass("PointLight")
+				if fireLight then
+					fireLight.Brightness = if n >= 1 then 2.2 else 1.6
+					fireLight.Range = if n >= 1 then 22 else 18
+				end
+			end
+			local mug = world:FindFirstChild("WarmMug")
+			if mug and mug:IsA("BasePart") then
+				local mugLight = mug:FindFirstChildOfClass("PointLight")
+				if mugLight then
+					mugLight.Brightness = if n >= 1 then 1.0 else 0.6
+				end
+			end
+		end
 		if n >= 1 and not porchCompanyWelcomed then
 			porchCompanyWelcomed = true
 			SoftWelcome.show(playerGui, "porch company", "someone nearby — jar feels warmer", porchStyle)

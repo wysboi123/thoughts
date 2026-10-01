@@ -4,10 +4,10 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 
 ## Active (focus now)
 
-- [x] **Haze Haven v0–v2.5** — vibe sync HUD + orb tint
-- [x] **Couch Galaxy v0–v2.2** — portal labels + both-worlds goal
-- [x] **Bus Stop Forever v0–v2.4** — together notes + timetable company tint
-- [x] **Star Porch v0–v2.3** — jar company warm + firefly drift
+- [x] **Haze Haven v0–v2.6** — vibe sync HUD + orb tint
+- [x] **Couch Galaxy v0–v2.3** — portal labels + both-worlds goal
+- [x] **Bus Stop Forever v0–v2.5** — together notes + timetable company tint
+- [x] **Star Porch v0–v2.4** — jar company warm + firefly drift
 - [x] **Shared** — SoftWelcome/Sit/Goals/Company polish (fade + themes)
 - [x] **USP research + priority** — `docs/USPS.md` + research note
 - [x] **Night 6** — complete (active-four polish; parked trio kept)
@@ -15,7 +15,7 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 - [ ] **Wire audio** — waiting on Perplexity Q-004 (do not invent)
 - [ ] **First publish** — Femmy: `PUBLISH_CHECKLIST.md` First 10 minutes (Haze)
 - [ ] **Apply Q-001–003** when answers land
-- [ ] **Night 8** — wire audio if research lands; help publish Haze; parked later
+- [ ] **Night 8** — in progress (polish + Haze publish readiness; no invented audio)
 
 ## Parked for later (files kept — do not erase)
 
