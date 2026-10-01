@@ -141,6 +141,17 @@ local function tryTogetherGoal()
 	end
 end
 
+local Workspace = game:GetService("Workspace")
+local function tintTimetable(company: boolean)
+	local world = Workspace:FindFirstChild("BusStopWorld")
+	local board = world and world:FindFirstChild("Timetable")
+	local gui = board and board:FindFirstChildWhichIsA("SurfaceGui")
+	local body = gui and gui:FindFirstChild("TimetableBody")
+	if body and body:IsA("TextLabel") and company then
+		body.TextColor3 = Color3.fromRGB(230, 245, 200)
+	end
+end
+
 local companyWelcomed = false
 SoftCompany.mount(playerGui, player, {
 	Radius = Config.Proximity.Radius,
@@ -155,6 +166,7 @@ SoftCompany.mount(playerGui, player, {
 		if phase == "waiting" then
 			refreshStatus()
 		end
+		tintTimetable(n >= 1)
 		if n >= 1 and not companyWelcomed then
 			companyWelcomed = true
 			SoftWelcome.show(playerGui, "waiting together", "someone nearby — the timetable knows", busStyle)

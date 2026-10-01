@@ -6,7 +6,7 @@ local Remotes = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("R
 
 local Hud = {}
 
-function Hud.mount(playerGui: PlayerGui): TextLabel
+function Hud.mount(playerGui: PlayerGui): (TextLabel, (boolean) -> ())
 	local gui = Instance.new("ScreenGui")
 	gui.Name = "HazeHud"
 	gui.ResetOnSpawn = false
@@ -68,17 +68,24 @@ function Hud.mount(playerGui: PlayerGui): TextLabel
 	pad.PaddingLeft = UDim.new(0, 14)
 	pad.Parent = counter
 
+	local syncing = false
+
 	Remotes.OrbCollected.OnClientEvent:Connect(function(count: number)
 		counter.Text = ("Vibes  %d"):format(count)
 		counter.TextColor3 = Color3.fromRGB(255, 230, 250)
 		task.delay(0.35, function()
 			if counter.Parent then
-				counter.TextColor3 = Color3.fromRGB(240, 200, 230)
+				counter.TextColor3 = if syncing then Color3.fromRGB(255, 220, 255) else Color3.fromRGB(240, 200, 230)
 			end
 		end)
 	end)
 
-	return counter
+	return counter, function(isSynced: boolean)
+		syncing = isSynced
+		if counter.Parent then
+			counter.BackgroundColor3 = if isSynced then Color3.fromRGB(42, 30, 58) else Color3.fromRGB(30, 24, 42)
+		end
+	end
 end
 
 return Hud

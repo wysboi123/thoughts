@@ -15,7 +15,7 @@ local FloatFx = require(script:WaitForChild("FloatFx"))
 local AmbientAudio = require(script:WaitForChild("AmbientAudio"))
 local VibeBoard = require(script:WaitForChild("VibeBoard"))
 
-local orbCounter = Hud.mount(playerGui)
+local orbCounter, setHudSynced = Hud.mount(playerGui)
 EmoteWheel.mount(playerGui)
 local proximity = ProximityGlow.start(player)
 FloatFx.start(player)
@@ -106,6 +106,7 @@ SoftCompany.mount(playerGui, player, {
 			complete("sync")
 			proximity.setBoost(1.35)
 			VibeBoard.setSynced(true)
+			setHudSynced(true)
 			if orbCounter and orbCounter.Parent then
 				orbCounter.TextColor3 = syncedColor
 			end
@@ -116,6 +117,7 @@ SoftCompany.mount(playerGui, player, {
 		else
 			proximity.setBoost(1)
 			VibeBoard.setSynced(false)
+			setHudSynced(false)
 			if orbCounter and orbCounter.Parent then
 				orbCounter.TextColor3 = normalColor
 			end
