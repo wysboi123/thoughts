@@ -8,7 +8,7 @@ Ready-to-paste titles + descriptions for Studio publish. Keep ToS-safe (chill / 
 
 **Title:** Haze Haven  
 **Description:**
-A soft dusk lounge. Float pads, vibe orbs, loft hammock, and quiet emotes. Vibes sync when friends are near — board, orbs, and glow soften together. No combat. Stay awhile.
+A soft dusk lounge. Float pads, vibe orbs, loft hammock, and quiet emotes. Vibes sync when friends are near — welcome sign, board, orbs, and glow soften together. No combat. Stay awhile.
 
 ### Couch Galaxy
 

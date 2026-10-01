@@ -147,8 +147,14 @@ local function tintTimetable(company: boolean)
 	local board = world and world:FindFirstChild("Timetable")
 	local gui = board and board:FindFirstChildWhichIsA("SurfaceGui")
 	local body = gui and gui:FindFirstChild("TimetableBody")
-	if body and body:IsA("TextLabel") and company then
-		body.TextColor3 = Color3.fromRGB(230, 245, 200)
+	if body and body:IsA("TextLabel") then
+		body.TextColor3 = if company then Color3.fromRGB(230, 245, 200) else Color3.fromRGB(200, 220, 180)
+	end
+	local news = world and world:FindFirstChild("NewsBox")
+	local newsGui = news and news:FindFirstChildWhichIsA("SurfaceGui")
+	local newsLabel = newsGui and newsGui:FindFirstChildWhichIsA("TextLabel")
+	if newsLabel and newsLabel:IsA("TextLabel") then
+		newsLabel.Text = if company then "TODAY\n\nstill\ntogether" else "TODAY\n\nstill\nfree"
 	end
 end
 
