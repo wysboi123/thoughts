@@ -11,10 +11,11 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 - [x] **Shared** — SoftWelcome/Sit/Goals/Company polish (fade + themes)
 - [x] **USP research + priority** — `docs/USPS.md` + research note
 - [x] **Night 6** — complete (active-four polish; parked trio kept)
-- [ ] **Night 7** — in progress (USP deepen; no invented audio)
+- [x] **Night 7** — complete (USP deepen; Haze 2.5 · Couch 2.2 · Bus 2.4 · Porch 2.3)
 - [ ] **Wire audio** — waiting on Perplexity Q-004 (do not invent)
 - [ ] **First publish** — Femmy: `PUBLISH_CHECKLIST.md` First 10 minutes (Haze)
 - [ ] **Apply Q-001–003** when answers land
+- [ ] **Night 8** — wire audio if research lands; help publish Haze; parked later
 
 ## Parked for later (files kept — do not erase)
 
