@@ -7,6 +7,7 @@ import { DualModeTray } from '../components/DualModeTray';
 import { FirstRunTipChip } from '../components/FirstRunTipChip';
 import { GameBoard } from '../components/GameBoard';
 import { PauseOverlay } from '../components/PauseOverlay';
+import { SoftActionToast } from '../components/SoftActionToast';
 import { SoftButton } from '../components/SoftButton';
 import { WaveResultModal } from '../components/WaveResultModal';
 import { GAME } from '../game/config';
@@ -115,7 +116,7 @@ export default function PlayScreen() {
           style={styles.goalsChip}
         />
 
-        {state.toast ? <Text style={styles.toast}>{state.toast}</Text> : <View style={{ height: 18 }} />}
+        <SoftActionToast message={state.toast} kind={state.toastKind} />
 
         <FirstRunTipChip
           visible={
@@ -201,14 +202,6 @@ const styles = StyleSheet.create({
     fontFamily: fonts.bodyMedium,
     color: colors.ink,
     fontSize: 13,
-  },
-  toast: {
-    marginTop: 6,
-    textAlign: 'center',
-    fontFamily: fonts.body,
-    fontSize: 12,
-    color: colors.inkSoft,
-    minHeight: 16,
   },
   boardWrap: { alignItems: 'center', marginTop: 6, flexGrow: 1, justifyContent: 'center' },
   begin: { marginTop: 8 },

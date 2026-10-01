@@ -37,12 +37,15 @@ export type Tower = {
 
 export type SoftFx = {
   id: string;
-  kind: 'shot' | 'clear';
+  kind: 'shot' | 'clear' | 'plant';
   x: number;
   y: number;
   bornAt: number;
   color: string;
 };
+
+/** Soft HUD feedback tint — plant/upgrade get the strongest chip cue. */
+export type ToastKind = 'plant' | 'upgrade' | 'sell' | 'info' | 'warn' | 'success';
 
 export type GameState = {
   phase: Phase;
@@ -54,6 +57,9 @@ export type GameState = {
   selectedTower: TowerKind;
   selectedPad: number | null;
   toast: string | null;
+  toastKind: ToastKind | null;
+  /** Bumps when a pad plants or upgrades — drives disc pop */
+  padPulse: { padIndex: number; at: number } | null;
   elapsed: number;
   intermissionLeft: number;
   spawnQueue: { kind: EnemyKind; at: number }[];

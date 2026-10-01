@@ -1,6 +1,15 @@
 import { GAME, TOWER_FX_COLOR, pointOnPath, upgradeCost } from './config';
 import { emptySoftGoals } from './softGoals';
-import type { Enemy, EnemyKind, GameState, SoftFx, SoftGoals, Tower, TowerKind } from './types';
+import type {
+  Enemy,
+  EnemyKind,
+  GameState,
+  SoftFx,
+  SoftGoals,
+  ToastKind,
+  Tower,
+  TowerKind,
+} from './types';
 
 let idSeq = 0;
 let fxSeq = 0;
@@ -16,6 +25,26 @@ function withGoals(state: GameState, patch: Partial<SoftGoals>): GameState {
   return { ...state, softGoals: { ...state.softGoals, ...patch } };
 }
 
+function withToast(
+  state: GameState,
+  toast: string | null,
+  toastKind: ToastKind | null = toast ? 'info' : null,
+): GameState {
+  return { ...state, toast, toastKind };
+}
+
+function plantFx(state: GameState, padIndex: number, kind: TowerKind): SoftFx {
+  const pad = GAME.pads[padIndex];
+  return {
+    id: nextFxId(),
+    kind: 'plant',
+    x: pad.x,
+    y: pad.y,
+    bornAt: state.elapsed,
+    color: TOWER_FX_COLOR[kind],
+  };
+}
+
 export function createInitialState(): GameState {
   idSeq = 0;
   fxSeq = 0;
@@ -29,6 +58,8 @@ export function createInitialState(): GameState {
     selectedTower: 'Affirmation',
     selectedPad: null,
     toast: 'Plant kindness on the pads, then Begin.',
+    toastKind: 'info',
+    padPulse: null,
     elapsed: 0,
     intermissionLeft: 0,
     spawnQueue: [],
@@ -73,31 +104,31 @@ function towerStats(tower: Tower) {
 }
 
 export function selectTowerKind(state: GameState, kind: TowerKind): GameState {
-  return { ...state, selectedTower: kind, selectedPad: null, toast: null };
+  return withToast({ ...state, selectedTower: kind, selectedPad: null }, null, null);
 }
 
 export function clearSelection(state: GameState): GameState {
   if (state.selectedPad == null) return state;
-  return { ...state, selectedPad: null, toast: 'Back to planting.' };
+  return withToast({ ...state, selectedPad: null }, 'Back to planting.', 'info');
 }
 
 export function tapPad(state: GameState, padIndex: number): GameState {
   if (state.phase === 'won' || state.phase === 'lost') return state;
   const existing = state.towers.find((t) => t.padIndex === padIndex);
   if (existing) {
-    return {
-      ...state,
-      selectedPad: padIndex,
-      toast: `Selected · ${GAME.towers[existing.kind].displayName} L${existing.level}`,
-    };
+    return withToast(
+      { ...state, selectedPad: padIndex },
+      `Selected · ${GAME.towers[existing.kind].displayName} L${existing.level}`,
+      'info',
+    );
   }
   // Planting while in select mode still allowed only if no selection? Draft C dims plant — block plant when selected
   if (state.selectedPad != null) {
-    return { ...state, toast: 'Back to plant first — or tap Upgrade / Sell.' };
+    return withToast(state, 'Back to plant first — or tap Upgrade / Sell.', 'warn');
   }
   const cost = GAME.towers[state.selectedTower].cost;
   if (state.clarity < cost) {
-    return { ...state, toast: 'Need more Clarity to plant.' };
+    return withToast(state, `Need ${cost} Clarity to plant · have ${state.clarity}.`, 'warn');
   }
   const tower: Tower = {
     padIndex,
@@ -107,13 +138,19 @@ export function tapPad(state: GameState, padIndex: number): GameState {
     lastFiredAt: -99,
   };
   const towers = [...state.towers, tower];
-  let next: GameState = {
-    ...state,
-    clarity: state.clarity - cost,
-    towers,
-    selectedPad: null,
-    toast: `Planted ${GAME.towers[tower.kind].displayName}.`,
-  };
+  const left = state.clarity - cost;
+  let next: GameState = withToast(
+    {
+      ...state,
+      clarity: left,
+      towers,
+      selectedPad: null,
+      padPulse: { padIndex, at: state.elapsed },
+      fx: [...state.fx, plantFx(state, padIndex, tower.kind)],
+    },
+    `Planted ${GAME.towers[tower.kind].displayName} · ${left} Clarity left`,
+    'plant',
+  );
   if (towers.length >= 3) {
     next = withGoals(next, { plant_three: true });
   }
@@ -126,20 +163,27 @@ export function upgradeSelected(state: GameState): GameState {
   if (idx < 0) return state;
   const tower = state.towers[idx];
   if (tower.level >= GAME.maxTowerLevel) {
-    return { ...state, toast: 'Already at deepest kindness.' };
+    return withToast(state, 'Already at deepest kindness.', 'info');
   }
   const cost = upgradeCost(tower.kind, tower.level);
   if (state.clarity < cost) {
-    return { ...state, toast: `Upgrade needs ${cost} Clarity.` };
+    return withToast(state, `Upgrade needs ${cost} Clarity · have ${state.clarity}.`, 'warn');
   }
+  const nextLevel = tower.level + 1;
   const nextTowers = [...state.towers];
-  nextTowers[idx] = { ...tower, level: tower.level + 1 };
-  let next: GameState = {
-    ...state,
-    clarity: state.clarity - cost,
-    towers: nextTowers,
-    toast: `Deepened to L${tower.level + 1}.`,
-  };
+  nextTowers[idx] = { ...tower, level: nextLevel };
+  const left = state.clarity - cost;
+  let next: GameState = withToast(
+    {
+      ...state,
+      clarity: left,
+      towers: nextTowers,
+      padPulse: { padIndex: tower.padIndex, at: state.elapsed },
+      fx: [...state.fx, plantFx(state, tower.padIndex, tower.kind)],
+    },
+    `Deepened ${GAME.towers[tower.kind].displayName} → L${nextLevel} · ${left} Clarity`,
+    'upgrade',
+  );
   next = withGoals(next, { upgrade_once: true });
   return next;
 }
@@ -151,36 +195,45 @@ export function sellSelected(state: GameState): GameState {
   let spent = GAME.towers[tower.kind].cost;
   for (let l = 1; l < tower.level; l++) spent += upgradeCost(tower.kind, l);
   const refund = Math.floor(spent * GAME.sellRefundFactor);
-  return {
-    ...state,
-    clarity: state.clarity + refund,
-    towers: state.towers.filter((t) => t.padIndex !== state.selectedPad),
-    selectedPad: null,
-    toast: `Sold — +${refund} Clarity.`,
-  };
+  return withToast(
+    {
+      ...state,
+      clarity: state.clarity + refund,
+      towers: state.towers.filter((t) => t.padIndex !== state.selectedPad),
+      selectedPad: null,
+    },
+    `Sold ${GAME.towers[tower.kind].displayName} — +${refund} Clarity`,
+    'sell',
+  );
 }
 
 export function beginWave(state: GameState): GameState {
   if (state.phase !== 'prep' && state.phase !== 'intermission') return state;
   if (state.waveIndex >= GAME.waveCount) return state;
   const queue = buildSpawnQueue(state.waveIndex, state.elapsed);
-  return {
-    ...state,
-    phase: 'wave',
-    waveActive: true,
-    spawnQueue: queue,
-    intermissionLeft: 0,
-    selectedPad: null,
-    toast: `Wave ${state.waveIndex + 1} — clear the noise.`,
-  };
+  return withToast(
+    {
+      ...state,
+      phase: 'wave',
+      waveActive: true,
+      spawnQueue: queue,
+      intermissionLeft: 0,
+      selectedPad: null,
+    },
+    `Wave ${state.waveIndex + 1} — clear the noise.`,
+    'info',
+  );
 }
 
 export function applyClarityBoost(state: GameState, amount: number): GameState {
-  return {
-    ...state,
-    clarity: state.clarity + amount,
-    toast: `+${amount} Clarity — a soft lift, not a paywall.`,
-  };
+  return withToast(
+    {
+      ...state,
+      clarity: state.clarity + amount,
+    },
+    `+${amount} Clarity — a soft lift, not a paywall.`,
+    'success',
+  );
 }
 
 function finalizeRun(state: GameState): GameState {
@@ -246,9 +299,11 @@ export function tick(state: GameState, dt: number): GameState {
     if (enemy.pathT >= 1) {
       next.calm = Math.max(0, next.calm - GAME.leakPenalty);
       next.toast = 'A thought reached the Peace Core — Calm −1';
+      next.toastKind = 'warn';
       if (next.calm <= 0) {
         next.phase = 'lost';
         next.toast = 'The core needs rest. Try again gently.';
+        next.toastKind = 'warn';
         next.enemies = [];
         next.waveActive = false;
         return finalizeRun(next);
@@ -325,6 +380,7 @@ export function tick(state: GameState, dt: number): GameState {
       next.phase = 'won';
       next.waveActive = false;
       next.toast = 'Peace held. The noise grew quiet.';
+      next.toastKind = 'success';
       next.waveIndex = finished;
       return finalizeRun(next);
     }
@@ -333,6 +389,7 @@ export function tick(state: GameState, dt: number): GameState {
     next.waveActive = false;
     next.intermissionLeft = GAME.secondsBetweenWaves;
     next.toast = `Breath between waves — next in ${GAME.secondsBetweenWaves}s`;
+    next.toastKind = 'info';
   }
 
   return next;

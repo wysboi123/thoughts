@@ -171,6 +171,8 @@ export function GameBoard({
       {GAME.pads.map((pad, i) => {
         const tower = state.towers.find((t) => t.padIndex === i);
         const selected = state.selectedPad === i;
+        const pulseAt =
+          state.padPulse?.padIndex === i ? state.padPulse.at : null;
         return (
           <PadDisc
             key={`pad-${i}`}
@@ -180,6 +182,8 @@ export function GameBoard({
             filled={!!tower}
             selected={selected}
             fillColor={tower ? TOWER_COLOR[tower.kind] : 'rgba(255,255,255,0.72)'}
+            pulseAt={pulseAt}
+            now={state.elapsed}
             onPress={() => onPad(i)}
           />
         );

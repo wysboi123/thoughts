@@ -22,6 +22,9 @@ type Props = {
   filled: boolean;
   selected: boolean;
   fillColor: string;
+  /** Elapsed time of last plant/upgrade pulse for this pad (null = idle) */
+  pulseAt: number | null;
+  now: number;
   onPress: () => void;
 };
 
@@ -33,9 +36,12 @@ export function PadDisc({
   filled,
   selected,
   fillColor,
+  pulseAt,
+  now,
   onPress,
 }: Props) {
   const breath = useSharedValue(1);
+  const pop = useSharedValue(1);
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
@@ -54,8 +60,21 @@ export function PadDisc({
     return () => cancelAnimation(breath);
   }, [filled, breath, reduceMotion]);
 
+  useEffect(() => {
+    if (pulseAt == null || now - pulseAt > 0.55) return;
+    if (reduceMotion) {
+      pop.value = 1;
+      return;
+    }
+    pop.value = 1;
+    pop.value = withSequence(
+      withTiming(1.18, { duration: 140, easing: Easing.out(Easing.cubic) }),
+      withTiming(1, { duration: 280, easing: Easing.inOut(Easing.sin) }),
+    );
+  }, [pulseAt, now, pop, reduceMotion]);
+
   const style = useAnimatedStyle(() => ({
-    transform: [{ scale: selected ? 1.06 : breath.value }],
+    transform: [{ scale: (selected ? 1.06 : breath.value) * pop.value }],
   }));
 
   const a11yLabel = filled

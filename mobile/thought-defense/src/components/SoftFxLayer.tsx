@@ -28,36 +28,43 @@ function FxRipple({
   reduceMotion: boolean;
 }) {
   const progress = useSharedValue(0);
+  const isPlant = item.kind === 'plant';
 
   useEffect(() => {
     progress.value = 0;
     progress.value = withTiming(1, {
-      duration: reduceMotion ? 0 : 520,
+      duration: reduceMotion ? 0 : isPlant ? 640 : 520,
       easing: Easing.out(Easing.cubic),
     });
-  }, [item.id, progress, reduceMotion]);
+  }, [item.id, progress, reduceMotion, isPlant]);
 
-  const style = useAnimatedStyle(() => ({
-    position: 'absolute' as const,
-    left: item.x * width - 10 - progress.value * 18,
-    top: item.y * height - 10 - progress.value * 18,
-    width: 20 + progress.value * 36,
-    height: 20 + progress.value * 36,
-    borderRadius: 999,
-    borderWidth: 2,
-    borderColor: item.color ?? colors.affirmation,
-    opacity: 0.55 * (1 - progress.value),
-    backgroundColor: 'transparent',
-  }));
+  const style = useAnimatedStyle(() => {
+    const grow = isPlant ? 28 : 18;
+    const base = isPlant ? 14 : 10;
+    return {
+      position: 'absolute' as const,
+      left: item.x * width - base - progress.value * grow,
+      top: item.y * height - base - progress.value * grow,
+      width: base * 2 + progress.value * grow * 2,
+      height: base * 2 + progress.value * grow * 2,
+      borderRadius: 999,
+      borderWidth: isPlant ? 2.5 : 2,
+      borderColor: item.color ?? colors.affirmation,
+      opacity: (isPlant ? 0.65 : 0.55) * (1 - progress.value),
+      backgroundColor: isPlant
+        ? `${item.color ?? colors.affirmation}22`
+        : 'transparent',
+    };
+  });
 
   return <Animated.View pointerEvents="none" style={style} />;
 }
 
-/** Soft kindness ripples when towers fire / thoughts clear. */
+/** Soft kindness ripples when towers fire / thoughts clear / plant·upgrade. */
 export function SoftFxLayer({ fx, width, height, now }: Props) {
   const reduceMotion = useReducedMotion();
   if (reduceMotion) return null;
-  const live = fx.filter((f) => now - f.bornAt < 0.55);
+  const live = fx.filter((f) => now - f.bornAt < (f.kind === 'plant' ? 0.7 : 0.55));
   return (
     <>
       {live.map((item) => (
