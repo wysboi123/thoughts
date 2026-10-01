@@ -167,6 +167,9 @@ SoftCompany.mount(playerGui, player, {
 			refreshStatus()
 		end
 		tintTimetable(n >= 1)
+		if counter and counter.Parent then
+			counter.BackgroundColor3 = if n >= 1 then Color3.fromRGB(40, 48, 36) else Color3.fromRGB(30, 32, 28)
+		end
 		if n >= 1 and not companyWelcomed then
 			companyWelcomed = true
 			SoftWelcome.show(playerGui, "waiting together", "someone nearby — the timetable knows", busStyle)
