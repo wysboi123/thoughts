@@ -4,7 +4,7 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 
 ## Active (focus now)
 
-- [x] **Haze Haven v0–v2.4** — vibe sync HUD + orb tint
+- [x] **Haze Haven v0–v2.5** — vibe sync HUD + orb tint
 - [x] **Couch Galaxy v0–v2.2** — portal labels + both-worlds goal
 - [x] **Bus Stop Forever v0–v2.4** — together notes + timetable company tint
 - [x] **Star Porch v0–v2.3** — jar company warm + firefly drift

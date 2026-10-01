@@ -6,7 +6,7 @@ Femmy’s chill Roblox line. All Rojo filesystem-first. Play: `cd games/<slug> &
 
 | Slug | Version | Verb | USP |
 | --- | --- | --- | --- |
-| [`haze-haven`](../games/haze-haven) | 2.4 | float / sit | Vibe sync + crowd proximity |
+| [`haze-haven`](../games/haze-haven) | 2.5 | float / sit | Vibe sync boost scales with company |
 | [`couch-galaxy`](../games/couch-galaxy) | 2.2 | climb / float | World title tint + portal labels |
 | [`bus-stop-forever`](../games/bus-stop-forever) | 2.4 | wait / wave | Dwell linger scales with sitters |
 | [`star-porch`](../games/star-porch) | 2.3 | sit / glow | Lamp + strings track jar fill |

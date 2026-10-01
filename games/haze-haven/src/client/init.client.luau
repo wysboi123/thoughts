@@ -104,7 +104,7 @@ SoftCompany.mount(playerGui, player, {
 	OnCountChanged = function(n)
 		if n >= 1 then
 			complete("sync")
-			proximity.setBoost(1.35)
+			proximity.setBoost(1.35 + math.min(n - 1, 2) * 0.1)
 			VibeBoard.setSynced(true)
 			setHudSynced(true)
 			if orbCounter and orbCounter.Parent then
