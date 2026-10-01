@@ -53,7 +53,11 @@ function AtmosphereService.start()
 					elseif child.Name == "WelcomeSign" and child:IsA("BasePart") then
 						child.Color = Color3.fromRGB(48, 38, 62):Lerp(Color3.fromRGB(62, 48, 78), pulse)
 					elseif child.Name == "VibeBoard" and child:IsA("BasePart") then
-						child.Color = Color3.fromRGB(40, 32, 55):Lerp(Color3.fromRGB(55, 42, 72), pulse)
+						local syncLight = child:FindFirstChild("VibeBoardSyncLight")
+						local synced = syncLight and syncLight:IsA("PointLight") and syncLight.Brightness > 1.2
+						local baseA = if synced then Color3.fromRGB(55, 42, 78) else Color3.fromRGB(40, 32, 55)
+						local baseB = if synced then Color3.fromRGB(70, 52, 95) else Color3.fromRGB(55, 42, 72)
+						child.Color = baseA:Lerp(baseB, pulse)
 					elseif child.Name == "LoungeRug" and child:IsA("BasePart") then
 						child.Color = Color3.fromRGB(90, 60, 110):Lerp(Color3.fromRGB(110, 75, 130), pulse * 0.6)
 					elseif child.Name == "LoungeTable" and child:IsA("BasePart") then
