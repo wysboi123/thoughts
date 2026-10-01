@@ -4,14 +4,14 @@ Newest first. Overnight agents append after every push.
 
 ## 2026-10-01 03:00 UTC — Night 7 checkpoint 2 (quiet)
 
-- Active: **Haze 2.4** · **Couch 2.2** · **Bus 2.4** · **Porch 2.3**
+- Active: **Haze 2.5** · **Couch 2.2** · **Bus 2.4** · **Porch 2.3**
 - Since CP1: orb/board sync · together notepad · portal labels · both-worlds · jar string/lamp fill · dwell linger · crowd Proximity
-- 25+ commits since 2026-09-30 23:00 UTC; parked untouched
+- 27+ commits since 2026-09-30 23:00 UTC; parked untouched
 - Still blocked: Perplexity Q-001–004 · first Studio publish
 - Quiet mode; stop 05:00 · **one digest email at stop only**
 
 **Draft for 05:00 stop digest**
-- Night 7 versions: Haze **2.4** · Couch **2.2** · Bus **2.4** · Porch **2.3**
+- Night 7 versions: Haze **2.5** · Couch **2.2** · Bus **2.4** · Porch **2.3**
 - Shipped: USP deepen across SoftCompany line + per-game hooks
 - Blocked: Perplexity audio + Studio publish
 - Next night: wire audio if research lands; help publish Haze; parked later
