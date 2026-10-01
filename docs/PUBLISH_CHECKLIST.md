@@ -12,8 +12,8 @@ rojo serve
 
 1. Open `HazeHaven.rbxl` in Roblox Studio → Rojo plugin → **Connect**
 2. Press **Play** — sit a cushion, float pad, loft hammock, emote 1/2/3
-3. Confirm spawn **WelcomeSign** + SoftWelcome toast + SoftCompany line (Haze 2.0 USP beat) before Stop
-3b. Optional second player / alt: vibe sync toast when near (soft company)
+3. Confirm spawn **WelcomeSign** + SoftWelcome toast + SoftCompany line (Haze 2.4 USP beat) before Stop
+3b. Optional second player / alt: vibe sync toast + board/orb tint when near (soft company)
 4. Stop Play → **File → Publish to Roblox** (create new experience if prompted)
 5. Paste title + description from [`EXPERIENCE_COPY.md`](EXPERIENCE_COPY.md) → Haze Haven
 6. Genre: Hangout (or Adventure). Access: **Friends** for soft launch
