@@ -10,7 +10,7 @@ Thought Defense ships with Expo Application Services. Secrets are **not** in thi
 4. Confirm bundle / package ids (defaults: `com.femmy.thoughtdefense`)
 5. Apple: App Store Connect app + IAP products (see `src/iap/products.ts`)
 6. Google: Play Console app + same product ids (Android column)
-7. Optional: RevenueCat or `react-native-iap` — set `IapService.stubMode = false` after wiring
+7. Optional: RevenueCat **or** `react-native-iap` — Femmy pick still open (see DESIGN_CONSULT). After wiring, set `IapService.stubMode = false`. Stub mode now has purchase mutex, renew-from-expiry Pass, owned-pack guard, timestamped purchase log, and entitlement summarize for restore.
 
 ## Profiles (`eas.json`)
 

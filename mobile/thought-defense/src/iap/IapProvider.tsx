@@ -14,10 +14,12 @@ type IapContextValue = {
   stubMode: boolean;
   entitlements: Entitlements;
   products: StoreProduct[];
-  purchase: (productId: string) => Promise<{ ok: boolean; reason?: string }>;
-  restore: () => Promise<void>;
+  passDaysRemaining: number | null;
+  purchase: (productId: string) => Promise<{ ok: boolean; reason?: string; message?: string }>;
+  restore: () => Promise<{ summary: string }>;
   resetStub: () => Promise<void>;
   consumePendingClarity: () => Promise<number>;
+  describeEntitlements: () => string;
 };
 
 const IapContext = createContext<IapContextValue | null>(null);
@@ -26,6 +28,7 @@ const empty: Entitlements = {
   clarityPassActive: false,
   ownedCosmetics: [],
   stubPurchases: [],
+  stubPurchaseLog: [],
   passExpiresAt: null,
   pendingClarity: 0,
 };
@@ -33,45 +36,57 @@ const empty: Entitlements = {
 export function IapProvider({ children }: { children: React.ReactNode }) {
   const [ready, setReady] = useState(false);
   const [entitlements, setEntitlements] = useState<Entitlements>(empty);
+  const [passDays, setPassDays] = useState<number | null>(null);
+
+  const syncMeta = useCallback((e: Entitlements) => {
+    setEntitlements(e);
+    setPassDays(iapService.passDaysRemaining());
+  }, []);
 
   useEffect(() => {
     let alive = true;
     (async () => {
       const e = await iapService.init();
       if (alive) {
-        setEntitlements(e);
+        syncMeta(e);
         setReady(true);
       }
     })();
     return () => {
       alive = false;
     };
-  }, []);
+  }, [syncMeta]);
 
-  const purchase = useCallback(async (productId: string) => {
-    const result = await iapService.purchase(productId);
-    if (result.ok) {
-      setEntitlements(result.entitlements);
-      return { ok: true };
-    }
-    return { ok: false, reason: result.reason };
-  }, []);
+  const purchase = useCallback(
+    async (productId: string) => {
+      const result = await iapService.purchase(productId);
+      if (result.ok) {
+        syncMeta(result.entitlements);
+        return { ok: true, message: result.message };
+      }
+      return { ok: false, reason: result.reason };
+    },
+    [syncMeta],
+  );
 
   const restore = useCallback(async () => {
-    const e = await iapService.restore();
-    setEntitlements(e);
-  }, []);
+    const { entitlements: e, summary } = await iapService.restore();
+    syncMeta(e);
+    return { summary };
+  }, [syncMeta]);
 
   const resetStub = useCallback(async () => {
     const e = await iapService.resetStub();
-    setEntitlements(e);
-  }, []);
+    syncMeta(e);
+  }, [syncMeta]);
 
   const consumePendingClarity = useCallback(async () => {
     const amount = await iapService.consumePendingClarity();
-    setEntitlements(iapService.getEntitlements());
+    syncMeta(iapService.getEntitlements());
     return amount;
-  }, []);
+  }, [syncMeta]);
+
+  const describeEntitlements = useCallback(() => iapService.describeEntitlements(), []);
 
   const value = useMemo(
     () => ({
@@ -79,12 +94,23 @@ export function IapProvider({ children }: { children: React.ReactNode }) {
       stubMode: iapService.stubMode,
       entitlements,
       products: PRODUCTS,
+      passDaysRemaining: passDays,
       purchase,
       restore,
       resetStub,
       consumePendingClarity,
+      describeEntitlements,
     }),
-    [ready, entitlements, purchase, restore, resetStub, consumePendingClarity],
+    [
+      ready,
+      entitlements,
+      passDays,
+      purchase,
+      restore,
+      resetStub,
+      consumePendingClarity,
+      describeEntitlements,
+    ],
   );
 
   return <IapContext.Provider value={value}>{children}</IapContext.Provider>;

@@ -1,9 +1,11 @@
 import { router } from 'expo-router';
-import React, { useState } from 'react';
-import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Alert, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SoftActionToast } from '../components/SoftActionToast';
 import { Atmosphere } from '../components/Atmosphere';
 import { SoftButton } from '../components/SoftButton';
+import type { ToastKind } from '../game/types';
 import { useIap } from '../iap/IapProvider';
 import type { StoreProduct } from '../iap/products';
 import { colors } from '../theme/colors';
@@ -17,27 +19,47 @@ const SECTIONS: { title: string; kind: StoreProduct['kind'] }[] = [
 
 export default function ShopScreen() {
   const insets = useSafeAreaInsets();
-  const { products, entitlements, purchase, restore, stubMode } = useIap();
+  const {
+    products,
+    entitlements,
+    purchase,
+    restore,
+    stubMode,
+    passDaysRemaining,
+    describeEntitlements,
+  } = useIap();
   const [busy, setBusy] = useState<string | null>(null);
+  const [showIds, setShowIds] = useState(false);
+  const [toast, setToast] = useState<{ message: string; kind: ToastKind } | null>(null);
+
+  useEffect(() => {
+    if (!toast) return;
+    const id = setTimeout(() => setToast(null), 2600);
+    return () => clearTimeout(id);
+  }, [toast]);
 
   const owned = (id: string) =>
     entitlements.ownedCosmetics.includes(id) ||
     (id === 'clarity_pass_monthly' && entitlements.clarityPassActive);
+
+  const flash = (message: string, kind: ToastKind) => setToast({ message, kind });
 
   const onBuy = async (id: string) => {
     setBusy(id);
     const result = await purchase(id);
     setBusy(null);
     if (!result.ok) {
-      Alert.alert('Purchase', result.reason ?? 'Could not complete');
+      flash(result.reason ?? 'Could not complete', 'warn');
       return;
     }
-    Alert.alert(
-      'Thank you',
-      stubMode
-        ? 'Stub purchase saved on device. Wire StoreKit / Play Billing before store submit.'
-        : 'Purchase complete.',
-    );
+    flash(result.message ?? 'Thank you', 'success');
+  };
+
+  const onRestore = async () => {
+    setBusy('restore');
+    const { summary } = await restore();
+    setBusy(null);
+    flash(summary, 'info');
   };
 
   return (
@@ -55,36 +77,48 @@ export default function ShopScreen() {
           medical claims.
         </Text>
 
+        <SoftActionToast message={toast?.message ?? null} kind={toast?.kind ?? null} />
+
         {stubMode ? (
           <Text style={styles.stub}>
-            Stub IAP mode (Expo Go / missing credentials). Product IDs are ready for App Store & Play.
-            Prices: Pass $2.99/mo · cosmetics $1.99 · boost $0.99 (pending Femmy confirm).
+            Stub IAP mode (Expo Go / missing credentials). Purchases persist on-device with a soft
+            audit log. Wire RevenueCat or react-native-iap before store submit — ask Femmy which.
+            Prices: Pass $2.99/mo · cosmetics $1.99 · boost $0.99 (price confirm still open).
           </Text>
         ) : null}
 
-        {entitlements.pendingClarity > 0 ? (
-          <Text style={styles.pending}>
-            +{entitlements.pendingClarity} Clarity waiting — opens on next mindscape session.
-          </Text>
-        ) : null}
+        <View style={styles.statusCard}>
+          <Text style={styles.statusTitle}>Your comfort</Text>
+          <Text style={styles.statusBody}>{describeEntitlements()}</Text>
+          {entitlements.clarityPassActive && passDaysRemaining != null ? (
+            <Text style={styles.statusMeta}>
+              Pass renews / expires in ~{passDaysRemaining} day
+              {passDaysRemaining === 1 ? '' : 's'}
+              {entitlements.passExpiresAt
+                ? ` · ${new Date(entitlements.passExpiresAt).toLocaleDateString()}`
+                : ''}
+            </Text>
+          ) : null}
+          {entitlements.pendingClarity > 0 ? (
+            <Text style={styles.pending}>
+              +{entitlements.pendingClarity} Clarity waiting — opens on next mindscape session.
+            </Text>
+          ) : null}
+        </View>
 
         <SoftButton
-          label="Restore purchases"
+          label={busy === 'restore' ? 'Restoring…' : 'Restore purchases'}
           variant="soft"
-          onPress={async () => {
-            setBusy('restore');
-            await restore();
-            setBusy(null);
-            Alert.alert(
-              'Restored',
-              stubMode
-                ? 'Re-checked stub entitlements on this device.'
-                : 'Checked store purchases.',
-            );
-          }}
+          onPress={onRestore}
           disabled={busy != null}
           style={styles.restore}
         />
+
+        <Pressable onPress={() => setShowIds((v) => !v)} accessibilityRole="button">
+          <Text style={styles.idsToggle}>
+            {showIds ? 'Hide store product IDs' : 'Show store product IDs'}
+          </Text>
+        </Pressable>
 
         {SECTIONS.map((section) => {
           const items = products.filter((p) => p.kind === section.kind);
@@ -93,11 +127,16 @@ export default function ShopScreen() {
             <View key={section.kind} style={styles.section}>
               <Text style={styles.sectionTitle}>{section.title}</Text>
               {items.map((p) => (
-                <View key={p.id} style={[styles.card, owned(p.id) && p.kind !== 'consumable' && styles.cardOwned]}>
+                <View
+                  key={p.id}
+                  style={[styles.card, owned(p.id) && p.kind !== 'consumable' && styles.cardOwned]}
+                >
                   <View style={styles.cardTop}>
                     <Text style={styles.title}>{p.title}</Text>
                     {owned(p.id) && p.kind !== 'consumable' ? (
-                      <Text style={styles.badge}>Owned</Text>
+                      <Text style={styles.badge}>
+                        {p.kind === 'subscription' ? 'Active' : 'Owned'}
+                      </Text>
                     ) : null}
                   </View>
                   <Text style={styles.kind}>
@@ -110,25 +149,48 @@ export default function ShopScreen() {
                     {p.priceHint}
                   </Text>
                   <Text style={styles.blurb}>{p.blurb}</Text>
-                  <Text style={styles.ids}>
-                    iOS: {p.iosProductId}
-                    {'\n'}
-                    Android: {p.androidProductId}
-                  </Text>
+                  {showIds ? (
+                    <Text style={styles.ids}>
+                      iOS: {p.iosProductId}
+                      {'\n'}
+                      Android: {p.androidProductId}
+                    </Text>
+                  ) : null}
                   <SoftButton
                     label={
-                      owned(p.id) && p.kind !== 'consumable'
-                        ? 'Owned'
-                        : busy === p.id
+                      owned(p.id) && p.kind === 'subscription'
+                        ? busy === p.id
                           ? 'Working…'
-                          : p.kind === 'subscription'
-                            ? 'Start Clarity Pass'
-                            : p.kind === 'consumable'
-                              ? 'Get boost'
-                              : 'Get pack'
+                          : 'Extend stub Pass (+30d)'
+                        : owned(p.id) && p.kind !== 'consumable'
+                          ? 'Owned'
+                          : busy === p.id
+                            ? 'Working…'
+                            : p.kind === 'subscription'
+                              ? 'Start Clarity Pass'
+                              : p.kind === 'consumable'
+                                ? 'Get boost'
+                                : 'Get pack'
                     }
-                    disabled={busy != null || (owned(p.id) && p.kind !== 'consumable')}
-                    onPress={() => onBuy(p.id)}
+                    disabled={
+                      busy != null || (owned(p.id) && p.kind === 'nonconsumable')
+                    }
+                    onPress={() => {
+                      if (stubMode && !(owned(p.id) && p.kind === 'nonconsumable')) {
+                        Alert.alert(
+                          stubMode ? 'Stub purchase' : 'Purchase',
+                          stubMode
+                            ? `Simulate ${p.title} on this device? No real charge in stub mode.`
+                            : `Buy ${p.title}?`,
+                          [
+                            { text: 'Cancel', style: 'cancel' },
+                            { text: 'Continue', onPress: () => void onBuy(p.id) },
+                          ],
+                        );
+                        return;
+                      }
+                      void onBuy(p.id);
+                    }}
                   />
                 </View>
               ))}
@@ -150,7 +212,7 @@ const styles = StyleSheet.create({
   },
   lead: {
     marginTop: 8,
-    marginBottom: 12,
+    marginBottom: 8,
     fontFamily: fonts.body,
     fontSize: 14,
     lineHeight: 21,
@@ -163,18 +225,49 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surfaceStrong,
     fontFamily: fonts.bodyMedium,
     fontSize: 12,
+    lineHeight: 17,
     color: colors.brand,
   },
+  statusCard: {
+    marginBottom: 12,
+    padding: 14,
+    borderRadius: 16,
+    backgroundColor: 'rgba(106, 158, 174, 0.12)',
+    borderWidth: 1,
+    borderColor: colors.line,
+    gap: 4,
+  },
+  statusTitle: {
+    fontFamily: fonts.bodyBold,
+    fontSize: 14,
+    color: colors.brandDeep,
+  },
+  statusBody: {
+    fontFamily: fonts.body,
+    fontSize: 13,
+    lineHeight: 19,
+    color: colors.inkSoft,
+  },
+  statusMeta: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 12,
+    color: colors.calm,
+    marginTop: 2,
+  },
   pending: {
-    marginBottom: 10,
-    padding: 12,
-    borderRadius: 14,
-    backgroundColor: 'rgba(106, 158, 174, 0.18)',
+    marginTop: 6,
     fontFamily: fonts.bodyMedium,
     fontSize: 13,
     color: colors.clarity,
   },
-  restore: { marginBottom: 16 },
+  restore: { marginBottom: 8 },
+  idsToggle: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 12,
+    color: colors.inkSoft,
+    marginBottom: 14,
+    textDecorationLine: 'underline',
+  },
   section: { marginBottom: 8 },
   sectionTitle: {
     fontFamily: fonts.bodyBold,

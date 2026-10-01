@@ -2,6 +2,18 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-01 23:15 UTC — Night resume (mobile overnight)
+
+- Night envelope opened (~23:10 UTC Oct 1). **Draft C locked** — not re-asking A/B/C.
+- **No Femmy replies** (`from:ngkdevid@gmail.com` empty) · Clarity Pass price still open → keep **$2.99/mo**.
+- **Tonight’s different consult:** RevenueCat vs react-native-iap (price ask remains open separately).
+- **Shipped v1.2.7:** IAP stub hardening (purchase mutex · Pass renew-from-expiry · owned-pack guard · timestamped stub log · entitlement summarize · soft confirm + shop toast/status) · **SoftWelcomeSheet** first-launch onboarding (3 pages · Skip/Enter · AsyncStorage · Reduce Motion)
+- Did **not** redo v1.2.0–1.2.6 (waves/FX/pause/walkers/tip/toast/win).
+- Ops: re-armed `overnight-stop-5am-utc` once (~05:00 UTC) · confirm/re-arm `thought-defense-mobile-hourly` with daytime-idle · **did not** re-arm legacy Roblox hourly
+- Branch `cursor/mobile-thought-defense-5a0d` · PR https://github.com/wysboi123/thoughts/pull/4
+- ManagePullRequest status TBD · preserve PR #4 title
+- Open Femmy: **RC vs RNIap** · Clarity Pass price · bundle id · EAS · store products · legal URLs
+
 ## 2026-10-01 05:15 UTC — Overnight stop (past 05:00)
 
 - Timer `thought-defense-mobile-hourly` fired ~05:15 UTC Oct 1 — **past overnight stop (05:00)**. Stop-only; **no new feature polish**.

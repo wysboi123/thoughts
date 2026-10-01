@@ -5,6 +5,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useReducedMotion } from '../a11y/useReducedMotion';
 import { Atmosphere } from '../components/Atmosphere';
 import { SoftButton } from '../components/SoftButton';
+import { SoftWelcomeSheet } from '../components/SoftWelcomeSheet';
 import { GAME } from '../game/config';
 import { useIap } from '../iap/IapProvider';
 import { colors } from '../theme/colors';
@@ -12,7 +13,7 @@ import { fonts } from '../theme/typography';
 
 export default function HomeScreen() {
   const insets = useSafeAreaInsets();
-  const { entitlements } = useIap();
+  const { entitlements, passDaysRemaining } = useIap();
   const rise = useRef(new Animated.Value(0)).current;
   const reduceMotion = useReducedMotion();
 
@@ -30,6 +31,7 @@ export default function HomeScreen() {
 
   return (
     <Atmosphere>
+      <SoftWelcomeSheet />
       <View style={[styles.wrap, { paddingTop: insets.top + 24, paddingBottom: insets.bottom + 16 }]}>
         <Animated.View
           style={{
@@ -62,7 +64,10 @@ export default function HomeScreen() {
             onPress={() => router.push('/settings')}
           />
           {entitlements.clarityPassActive ? (
-            <Text style={styles.pass}>Clarity Pass active — thank you</Text>
+            <Text style={styles.pass}>
+              Clarity Pass active
+              {passDaysRemaining != null ? ` · ~${passDaysRemaining}d left` : ''} — thank you
+            </Text>
           ) : null}
         </View>
       </View>

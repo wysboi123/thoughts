@@ -11,7 +11,14 @@ import { fonts } from '../theme/typography';
 
 export default function SettingsScreen() {
   const insets = useSafeAreaInsets();
-  const { entitlements, restore, resetStub, stubMode } = useIap();
+  const {
+    entitlements,
+    restore,
+    resetStub,
+    stubMode,
+    passDaysRemaining,
+    describeEntitlements,
+  } = useIap();
 
   return (
     <Atmosphere>
@@ -32,8 +39,8 @@ export default function SettingsScreen() {
           <SoftButton
             label="Restore purchases"
             onPress={async () => {
-              await restore();
-              Alert.alert('Restored', 'Checked local entitlements (native restore when configured).');
+              const { summary } = await restore();
+              Alert.alert('Restored', summary);
             }}
           />
           {stubMode ? (
@@ -42,15 +49,28 @@ export default function SettingsScreen() {
               variant="ghost"
               onPress={async () => {
                 await resetStub();
-                Alert.alert('Cleared', 'Stub entitlements reset.');
+                Alert.alert('Cleared', 'Stub entitlements + purchase log reset.');
               }}
             />
           ) : null}
-          <Text style={styles.note}>
-            Pass: {entitlements.clarityPassActive ? 'active' : 'off'}
-            {' · '}
-            Cosmetics: {entitlements.ownedCosmetics.length}
-          </Text>
+          <Text style={styles.note}>{describeEntitlements()}</Text>
+          {entitlements.clarityPassActive && passDaysRemaining != null ? (
+            <Text style={styles.note}>
+              Pass ~{passDaysRemaining} day{passDaysRemaining === 1 ? '' : 's'} remaining
+              {entitlements.passExpiresAt
+                ? ` · ${new Date(entitlements.passExpiresAt).toLocaleDateString()}`
+                : ''}
+            </Text>
+          ) : null}
+          {stubMode && entitlements.stubPurchaseLog.length > 0 ? (
+            <Text style={styles.note}>
+              Last stub buy:{' '}
+              {entitlements.stubPurchaseLog[entitlements.stubPurchaseLog.length - 1]?.productId} ·{' '}
+              {new Date(
+                entitlements.stubPurchaseLog[entitlements.stubPurchaseLog.length - 1]?.at ?? '',
+              ).toLocaleString()}
+            </Text>
+          ) : null}
         </View>
 
         <View style={styles.block}>
