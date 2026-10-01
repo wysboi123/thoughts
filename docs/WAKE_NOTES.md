@@ -9,9 +9,9 @@ Newest first. Overnight agents append after every push.
 - **Tonight’s different consult:** RevenueCat vs react-native-iap (price ask remains open separately).
 - **Shipped v1.2.7:** IAP stub hardening (purchase mutex · Pass renew-from-expiry · owned-pack guard · timestamped stub log · entitlement summarize · soft confirm + shop toast/status) · **SoftWelcomeSheet** first-launch onboarding (3 pages · Skip/Enter · AsyncStorage · Reduce Motion)
 - Did **not** redo v1.2.0–1.2.6 (waves/FX/pause/walkers/tip/toast/win).
-- Ops: re-armed `overnight-stop-5am-utc` once (~05:00 UTC) · confirm/re-arm `thought-defense-mobile-hourly` with daytime-idle · **did not** re-arm legacy Roblox hourly
-- Branch `cursor/mobile-thought-defense-5a0d` · PR https://github.com/wysboi123/thoughts/pull/4
-- ManagePullRequest status TBD · preserve PR #4 title
+- Ops: re-armed `overnight-stop-5am-utc` once (~05:00 UTC, delaySeconds≈20850) · confirmed/re-armed `thought-defense-mobile-hourly` (`15 * * * *`, daytime-idle logic) · **did not** re-arm legacy Roblox hourly
+- Branch `cursor/mobile-thought-defense-5a0d` · tip `47cfd10` · PR https://github.com/wysboi123/thoughts/pull/4
+- ManagePullRequest **missing** — push only; preserve PR #4 title
 - Open Femmy: **RC vs RNIap** · Clarity Pass price · bundle id · EAS · store products · legal URLs
 
 ## 2026-10-01 05:15 UTC — Overnight stop (past 05:00)
