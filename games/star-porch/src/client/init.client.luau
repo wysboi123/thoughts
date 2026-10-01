@@ -220,12 +220,20 @@ SoftCompany.mount(playerGui, player, {
 					fireLight.Brightness = if n >= 1 then 2.2 else 1.6
 					fireLight.Range = if n >= 1 then 22 else 18
 				end
+				fire.Transparency = if n >= 1 then 0.15 else 0.25
 			end
 			local mug = world:FindFirstChild("WarmMug")
 			if mug and mug:IsA("BasePart") then
 				local mugLight = mug:FindFirstChildOfClass("PointLight")
 				if mugLight then
 					mugLight.Brightness = if n >= 1 then 1.0 else 0.6
+				end
+			end
+			local path = world:FindFirstChild("YardPathGlow")
+			if path and path:IsA("BasePart") then
+				local pathLight = path:FindFirstChildOfClass("PointLight")
+				if pathLight then
+					pathLight.Brightness = if n >= 1 then 1.3 else 0.85
 				end
 			end
 		end

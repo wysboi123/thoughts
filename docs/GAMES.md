@@ -7,9 +7,9 @@ Femmy’s chill Roblox line. All Rojo filesystem-first. Play: `cd games/<slug> &
 | Slug | Version | Verb | USP |
 | --- | --- | --- | --- |
 | [`haze-haven`](../games/haze-haven) | 2.7 | float / sit | Publish WelcomeSign + HUD sync |
-| [`couch-galaxy`](../games/couch-galaxy) | 2.3 | climb / float | Company lamp/hammock wash |
+| [`couch-galaxy`](../games/couch-galaxy) | 2.4 | climb / float | Company lamps + plaque warm |
 | [`bus-stop-forever`](../games/bus-stop-forever) | 2.6 | wait / wave | News box + rain when together |
-| [`star-porch`](../games/star-porch) | 2.4 | sit / glow | Fire pit + mug company warm |
+| [`star-porch`](../games/star-porch) | 2.5 | sit / glow | Fire pit + path company warm |
 
 ## Parked for later (files kept)
 

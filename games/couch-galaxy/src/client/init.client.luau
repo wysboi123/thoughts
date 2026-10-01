@@ -288,6 +288,13 @@ SoftCompany.mount(playerGui, player, {
 			setLightBoost("TableLamp", if company then 1.8 else 1.2)
 			setLightBoost("FloorLampGlow", if company then 2.0 else 1.4)
 			setLightBoost("NightWindow", if company then 1.5 else 1.0, if company then 18 else 14)
+			local worldHome = Workspace:FindFirstChild("CouchGalaxyWorld")
+			if worldHome then
+				local plaque = worldHome:FindFirstChild("TwoWorldsPlaque")
+				if plaque and plaque:IsA("BasePart") then
+					plaque.Color = if company then Color3.fromRGB(58, 45, 78) else Color3.fromRGB(42, 34, 58)
+				end
+			end
 		end
 	end,
 })
