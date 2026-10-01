@@ -2,7 +2,7 @@
 local Config = {
 	GameName = "Bus Stop Forever",
 	Tagline = "the bus will come. you don't have to. wait together.",
-	Version = "2.0",
+	Version = "2.1",
 
 	Spawn = Vector3.new(0, 5, 6),
 
@@ -32,6 +32,11 @@ local Config = {
 			"rain is free here",
 			"the schedule is a suggestion",
 			"waiting together still counts",
+		},
+		TogetherMessages = {
+			"waiting together still counts",
+			"two benches · one schedule joke",
+			"stay for the next whenever",
 		},
 		RotateSeconds = 12,
 	},

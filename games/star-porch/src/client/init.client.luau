@@ -201,6 +201,16 @@ SoftCompany.mount(playerGui, player, {
 				light.Range = math.max(light.Range, 14)
 			end
 		end
+		if jarMeter and jarMeter.Parent then
+			jarMeter.TextColor3 = if n >= 1 then Color3.fromRGB(200, 255, 170) else Color3.fromRGB(150, 180, 140)
+		end
+		local world = Workspace:FindFirstChild("StarPorchWorld")
+		local jar = world and world:FindFirstChild("FireflyJar")
+		local jarGui = jar and jar:FindFirstChild("JarFillGui")
+		local jarLabel = jarGui and jarGui:FindFirstChild("JarFillLabel")
+		if jarLabel and jarLabel:IsA("TextLabel") then
+			jarLabel.TextColor3 = if n >= 1 then Color3.fromRGB(230, 255, 200) else Color3.fromRGB(210, 255, 180)
+		end
 		if n >= 1 and not porchCompanyWelcomed then
 			porchCompanyWelcomed = true
 			SoftWelcome.show(playerGui, "porch company", "someone nearby — jar feels warmer", porchStyle)

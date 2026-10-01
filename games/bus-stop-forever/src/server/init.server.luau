@@ -370,10 +370,19 @@ noteBody.Parent = noteGui
 
 task.spawn(function()
 	local i = 1
+	local ti = 1
 	while notepad.Parent do
 		task.wait(Config.Notepad.RotateSeconds)
-		i = (i % #Config.Notepad.Messages) + 1
-		noteBody.Text = Config.Notepad.Messages[i]
+		if countWaiting() >= 1 then
+			local msgs = Config.Notepad.TogetherMessages
+			ti = (ti % #msgs) + 1
+			noteBody.Text = msgs[ti]
+			noteBody.TextColor3 = Color3.fromRGB(220, 230, 190)
+		else
+			i = (i % #Config.Notepad.Messages) + 1
+			noteBody.Text = Config.Notepad.Messages[i]
+			noteBody.TextColor3 = Color3.fromRGB(210, 200, 180)
+		end
 	end
 end)
 

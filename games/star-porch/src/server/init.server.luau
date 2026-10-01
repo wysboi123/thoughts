@@ -542,18 +542,24 @@ task.spawn(function()
 	local t = 0
 	while true do
 		t += task.wait(0.04)
+		local companyOnPorch = #Players:GetPlayers() >= 2
+		local jarPos = Vector3.new(10, 4.2, 11)
 		for i, fly in fireflies do
 			if fly:GetAttribute("Collected") then
 				continue
 			end
 			local home = fly:GetAttribute("HomePosition")
 			if typeof(home) == "Vector3" then
-				fly.Position = home
-					+ Vector3.new(
-						math.sin(t * 1.3 + i) * 1.4,
-						math.sin(t * 2.1 + i * 0.7) * 1.1,
-						math.cos(t * 1.1 + i) * 1.2
-					)
+				local drift = Vector3.new(
+					math.sin(t * 1.3 + i) * 1.4,
+					math.sin(t * 2.1 + i * 0.7) * 1.1,
+					math.cos(t * 1.1 + i) * 1.2
+				)
+				if companyOnPorch then
+					local toward = (jarPos - home) * 0.08
+					drift = drift + toward
+				end
+				fly.Position = home + drift
 			end
 		end
 		for _, child in world:GetChildren() do

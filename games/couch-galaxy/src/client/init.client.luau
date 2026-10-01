@@ -110,6 +110,9 @@ Remotes.StarCollected.OnClientEvent:Connect(function(count: number)
 end)
 
 local galaxyWelcomed = false
+local homeWelcomed = false
+local visitedGalaxy = false
+local visitedHomeAfterGalaxy = false
 local couchStyle = {
 	AccentColor = Color3.fromRGB(140, 120, 200),
 	FrameColor = Color3.fromRGB(26, 20, 40),
@@ -117,6 +120,7 @@ local couchStyle = {
 
 Remotes.EnteredGalaxy.OnClientEvent:Connect(function()
 	inGalaxy = true
+	visitedGalaxy = true
 	applyGalaxyLighting()
 	refreshPlace(false)
 	if not galaxyWelcomed then
@@ -127,8 +131,15 @@ end)
 
 Remotes.ReturnedHome.OnClientEvent:Connect(function()
 	inGalaxy = false
+	if visitedGalaxy then
+		visitedHomeAfterGalaxy = true
+	end
 	applyHomeLighting()
 	refreshPlace(false)
+	if visitedGalaxy and not homeWelcomed then
+		homeWelcomed = true
+		SoftWelcome.show(playerGui, "couch side", "two worlds · one couch · you made it home", couchStyle)
+	end
 end)
 
 local couchSit = SoftSit.mount(playerGui, {
@@ -151,10 +162,22 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	{ Id = "couch", Label = "sit on the couch" },
 	{ Id = "galaxy", Label = "visit the galaxy loft" },
 	{ Id = "stars", Label = "collect 3 stars" },
+	{ Id = "both", Label = "visit both worlds tonight" },
 })
+
+local function tryBothWorlds()
+	if visitedGalaxy and visitedHomeAfterGalaxy then
+		complete("both")
+	end
+end
 
 Remotes.EnteredGalaxy.OnClientEvent:Connect(function()
 	complete("galaxy")
+	tryBothWorlds()
+end)
+
+Remotes.ReturnedHome.OnClientEvent:Connect(function()
+	tryBothWorlds()
 end)
 
 Remotes.StarCollected.OnClientEvent:Connect(function(count: number)

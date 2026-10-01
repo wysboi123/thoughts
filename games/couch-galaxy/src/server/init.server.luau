@@ -381,6 +381,17 @@ local function buildApartment(world: Folder)
 	pl.Range = 18
 	pl.Color = Color3.fromRGB(160, 140, 255)
 	pl.Parent = portal
+	local portalGui = Instance.new("SurfaceGui")
+	portalGui.Face = Enum.NormalId.Top
+	portalGui.Parent = portal
+	local portalLabel = Instance.new("TextLabel")
+	portalLabel.Size = UDim2.fromScale(1, 1)
+	portalLabel.BackgroundTransparency = 1
+	portalLabel.Font = Enum.Font.GothamMedium
+	portalLabel.TextSize = 22
+	portalLabel.TextColor3 = Color3.fromRGB(230, 220, 255)
+	portalLabel.Text = "galaxy loft · step through"
+	portalLabel.Parent = portalGui
 
 	local spawn = Instance.new("SpawnLocation")
 	spawn.Name = "AptSpawn"
@@ -451,6 +462,17 @@ local function buildGalaxy(world: Folder)
 	})
 	returnBeacon:SetAttribute("IsPortal", true)
 	returnBeacon:SetAttribute("PortalTarget", "Home")
+	local beaconGui = Instance.new("SurfaceGui")
+	beaconGui.Face = Enum.NormalId.Top
+	beaconGui.Parent = returnBeacon
+	local beaconLabel = Instance.new("TextLabel")
+	beaconLabel.Size = UDim2.fromScale(1, 1)
+	beaconLabel.BackgroundTransparency = 1
+	beaconLabel.Font = Enum.Font.GothamMedium
+	beaconLabel.TextSize = 20
+	beaconLabel.TextColor3 = Color3.fromRGB(255, 220, 180)
+	beaconLabel.Text = "couch side · come home"
+	beaconLabel.Parent = beaconGui
 
 	local cloudPositions = {
 		Vector3.new(12, 0, -10),
