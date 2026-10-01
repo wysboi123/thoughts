@@ -1,6 +1,17 @@
 import { router } from 'expo-router';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import Animated, {
+  Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withDelay,
+  withRepeat,
+  withSequence,
+  withTiming,
+} from 'react-native-reanimated';
+import { softHaptic } from '../a11y/haptics';
+import { useReducedMotion } from '../a11y/useReducedMotion';
 import { GAME } from '../game/config';
 import { SOFT_GOAL_COPY, softGoalsDone } from '../game/softGoals';
 import type { GameState, SoftGoalId } from '../game/types';
@@ -23,44 +34,178 @@ const ORDER: SoftGoalId[] = [
   'keep_calm',
 ];
 
+/** Soft, ToS-safe win lines — metaphor only, no medical claims. */
+const WIN_LINES = [
+  'The path went quiet. Gentle work.',
+  'Kindness held the line. Soft win.',
+  'Noise settled. Peace stayed put.',
+  'You planted calmly. The core is still.',
+];
+
+const SPARKS = [
+  { leftPct: 12, topPct: 8, size: 10, delay: 0, color: colors.affirmation },
+  { leftPct: 78, topPct: 12, size: 8, delay: 120, color: colors.gratitude },
+  { leftPct: 22, topPct: 72, size: 7, delay: 240, color: colors.clarity },
+  { leftPct: 68, topPct: 68, size: 11, delay: 80, color: colors.humor },
+  { leftPct: 48, topPct: 4, size: 6, delay: 180, color: colors.calm },
+  { leftPct: 88, topPct: 42, size: 9, delay: 300, color: colors.affirmation },
+];
+
+function SoftSpark({
+  leftPct,
+  topPct,
+  size,
+  delay,
+  color,
+  reduceMotion,
+}: {
+  leftPct: number;
+  topPct: number;
+  size: number;
+  delay: number;
+  color: string;
+  reduceMotion: boolean;
+}) {
+  const pulse = useSharedValue(reduceMotion ? 0.55 : 0);
+
+  useEffect(() => {
+    if (reduceMotion) {
+      pulse.value = 0.55;
+      return;
+    }
+    pulse.value = withDelay(
+      delay,
+      withRepeat(
+        withSequence(
+          withTiming(1, { duration: 900, easing: Easing.inOut(Easing.quad) }),
+          withTiming(0.25, { duration: 900, easing: Easing.inOut(Easing.quad) }),
+        ),
+        -1,
+        false,
+      ),
+    );
+  }, [delay, pulse, reduceMotion]);
+
+  const style = useAnimatedStyle(() => ({
+    opacity: pulse.value * 0.75,
+    transform: [{ scale: 0.7 + pulse.value * 0.55 }],
+  }));
+
+  return (
+    <Animated.View
+      pointerEvents="none"
+      style={[
+        styles.spark,
+        {
+          left: `${leftPct}%`,
+          top: `${topPct}%`,
+          width: size,
+          height: size,
+          borderRadius: size,
+          backgroundColor: color,
+        },
+        style,
+      ]}
+    />
+  );
+}
+
 export function WaveResultModal({ visible, state, onRetry, onClose }: Props) {
   const won = state.phase === 'won';
   const done = softGoalsDone(state.softGoals);
+  const reduceMotion = useReducedMotion();
+  const enter = useSharedValue(0);
+  const halo = useSharedValue(0.35);
+  const winLine = WIN_LINES[state.thoughtsCleared % WIN_LINES.length] ?? WIN_LINES[0];
+
+  useEffect(() => {
+    if (!visible) {
+      enter.value = 0;
+      return;
+    }
+    if (won) softHaptic('clear');
+    if (reduceMotion) {
+      enter.value = 1;
+      halo.value = 0.55;
+      return;
+    }
+    enter.value = 0;
+    enter.value = withTiming(1, { duration: 520, easing: Easing.out(Easing.cubic) });
+    if (won) {
+      halo.value = withRepeat(
+        withSequence(
+          withTiming(0.85, { duration: 1400, easing: Easing.inOut(Easing.sin) }),
+          withTiming(0.4, { duration: 1400, easing: Easing.inOut(Easing.sin) }),
+        ),
+        -1,
+        false,
+      );
+    } else {
+      halo.value = 0.3;
+    }
+  }, [visible, won, reduceMotion, enter, halo]);
+
+  const cardStyle = useAnimatedStyle(() => ({
+    opacity: enter.value,
+    transform: [
+      { translateY: (1 - enter.value) * (reduceMotion ? 0 : 16) },
+      { scale: 0.96 + enter.value * 0.04 },
+    ],
+  }));
+
+  const haloStyle = useAnimatedStyle(() => ({
+    opacity: won ? halo.value * 0.55 : 0,
+    transform: [{ scale: 0.92 + halo.value * 0.12 }],
+  }));
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
       <Pressable style={styles.backdrop} onPress={onClose}>
-        <Pressable style={styles.card} onPress={(e) => e.stopPropagation()}>
-          <Text style={styles.title}>{won ? 'Peace held' : 'Soft pause'}</Text>
-          <Text style={styles.lead}>
-            {won
-              ? 'The noise grew quiet. Soft goals for this run:'
-              : 'The core needs rest. Soft goals still count:'}
-          </Text>
-          <Text style={styles.count}>
-            {done}/5 soft goals · {state.thoughtsCleared} thoughts cleared · peak wave{' '}
-            {state.peakWaveReached}/{GAME.waveCount}
-          </Text>
-          {ORDER.map((id) => (
-            <View key={id} style={styles.row}>
-              <Text style={styles.check}>{state.softGoals[id] ? '✓' : '○'}</Text>
-              <Text style={[styles.goal, !state.softGoals[id] && styles.goalOpen]}>
-                {SOFT_GOAL_COPY[id].title}
-              </Text>
+        <Animated.View style={[styles.halo, haloStyle]} pointerEvents="none" />
+        <Pressable onPress={(e) => e.stopPropagation()}>
+          <Animated.View style={[styles.card, won && styles.cardWon, cardStyle]}>
+            {won && !reduceMotion
+              ? SPARKS.map((s, i) => (
+                  <SoftSpark key={i} {...s} reduceMotion={reduceMotion} />
+                ))
+              : null}
+            {won ? (
+              <View style={styles.badge} accessibilityRole="text">
+                <Text style={styles.badgeText}>Soft win</Text>
+              </View>
+            ) : null}
+            <Text style={styles.title}>{won ? 'Peace held' : 'Soft pause'}</Text>
+            {won ? <Text style={styles.winLine}>{winLine}</Text> : null}
+            <Text style={styles.lead}>
+              {won
+                ? 'The noise grew quiet. Soft goals for this run:'
+                : 'The core needs rest. Soft goals still count:'}
+            </Text>
+            <Text style={styles.count}>
+              {done}/5 soft goals · {state.thoughtsCleared} thoughts cleared · peak wave{' '}
+              {state.peakWaveReached}/{GAME.waveCount}
+            </Text>
+            {ORDER.map((id) => (
+              <View key={id} style={styles.row}>
+                <Text style={styles.check}>{state.softGoals[id] ? '✓' : '○'}</Text>
+                <Text style={[styles.goal, !state.softGoals[id] && styles.goalOpen]}>
+                  {SOFT_GOAL_COPY[id].title}
+                </Text>
+              </View>
+            ))}
+            <View style={styles.actions}>
+              <SoftButton label="Try again" onPress={onRetry} />
+              <SoftButton
+                label="Soft goals journal"
+                variant="soft"
+                onPress={() => {
+                  onClose();
+                  router.push('/goals');
+                }}
+              />
+              <SoftButton label="Home" variant="ghost" onPress={() => router.replace('/')} />
             </View>
-          ))}
-          <View style={styles.actions}>
-            <SoftButton label="Try again" onPress={onRetry} />
-            <SoftButton
-              label="Soft goals journal"
-              variant="soft"
-              onPress={() => {
-                onClose();
-                router.push('/goals');
-              }}
-            />
-            <SoftButton label="Home" variant="ghost" onPress={() => router.replace('/')} />
-          </View>
+          </Animated.View>
         </Pressable>
       </Pressable>
     </Modal>
@@ -74,6 +219,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 24,
   },
+  halo: {
+    position: 'absolute',
+    alignSelf: 'center',
+    width: 280,
+    height: 280,
+    borderRadius: 140,
+    backgroundColor: colors.affirmation,
+  },
   card: {
     borderRadius: 24,
     padding: 22,
@@ -81,11 +234,39 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.line,
     gap: 8,
+    overflow: 'hidden',
+  },
+  cardWon: {
+    borderColor: 'rgba(107, 184, 154, 0.45)',
+    backgroundColor: '#EEF6F2',
+  },
+  spark: {
+    position: 'absolute',
+  },
+  badge: {
+    alignSelf: 'flex-start',
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 10,
+    backgroundColor: 'rgba(107, 184, 154, 0.22)',
+    marginBottom: 2,
+  },
+  badgeText: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 12,
+    color: colors.brand,
+    letterSpacing: 0.3,
   },
   title: {
     fontFamily: fonts.display,
     fontSize: 28,
     color: colors.brandDeep,
+  },
+  winLine: {
+    fontFamily: fonts.displaySoft,
+    fontSize: 16,
+    color: colors.calm,
+    marginBottom: 2,
   },
   lead: {
     fontFamily: fonts.body,
