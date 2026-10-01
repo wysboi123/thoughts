@@ -14,10 +14,10 @@ Research basis (2025–2026 hangout patterns): Roblox rewards **intentional co-p
 
 | Priority | Game | USP | Why it sells | Implementation | Status |
 | --- | --- | --- | --- | --- | --- |
-| **P0** | Haze Haven | **Vibe sync** | Board + orbs feel better when friends are near | Toast + orb tint + soft goal while company near | ✅ v2.0 |
-| **P0** | Bus Stop Forever | **Waiting together** | Timetable + HUD sit/company loop | Status machine + together goal + timetable | ✅ v1.9 |
-| **P0** | Star Porch | **Jar that fills** | Fireflies return; jar visibly fills | World jar + HUD meter + half/full toasts | ✅ v1.8 |
-| **P1** | Couch Galaxy | **Two worlds, one couch** | Clear home ↔ galaxy identity | Lighting flip + SoftCompany zone copy | ✅ v1.7 |
+| **P0** | Haze Haven | **Vibe sync** | Board + orbs feel better when friends are near | Toast + orb/board tint + soft goal + proximity boost | ✅ v2.2 |
+| **P0** | Bus Stop Forever | **Waiting together** | Timetable + HUD sit/company loop | Status machine + together notes + shelter warm | ✅ v2.1 |
+| **P0** | Star Porch | **Jar that fills** | Fireflies return; jar visibly fills | Jar HUD + company warm + drift toward jar | ✅ v2.0 |
+| **P1** | Couch Galaxy | **Two worlds, one couch** | Clear home ↔ galaxy identity | Lighting + portal labels + both-worlds goal | ✅ v2.0 |
 | **P2** | Haze Haven | Shared vibe board | Soft ranks without competition toxicity | Already: VibeBoard | ✅ |
 | **Later** | Parked trio | Resume USPs when Femmy unparks | Files kept | — | Parked |
 
