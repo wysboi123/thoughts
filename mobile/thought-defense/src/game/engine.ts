@@ -218,12 +218,14 @@ export function tick(state: GameState, dt: number): GameState {
   for (const job of next.spawnQueue) {
     if (job.at <= next.elapsed) {
       const cfg = GAME.enemies[job.kind];
+      // Soft per-spawn speed jitter so walkers of the same kind don't march in lockstep
+      const speedJitter = 0.92 + Math.random() * 0.16;
       const enemy: Enemy = {
         id: nextId(),
         kind: job.kind,
         health: cfg.health,
         maxHealth: cfg.health,
-        speed: cfg.speed,
+        speed: cfg.speed * speedJitter,
         pathT: 0,
         slowUntil: 0,
         flavor: pickFlavor(job.kind),

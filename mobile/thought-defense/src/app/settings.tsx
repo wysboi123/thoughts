@@ -61,6 +61,9 @@ export default function SettingsScreen() {
 
         <View style={styles.block}>
           <Text style={styles.h}>About</Text>
+          <Text style={styles.versionLine}>
+            Version {GAME.version.replace('-mobile', '')} · mobile build
+          </Text>
           <Text style={styles.about}>
             Thought Defense is a soft metaphor game. It is not therapy, diagnosis, or medical advice.
             If you are in distress, seek real-world support.
@@ -79,5 +82,11 @@ const styles = StyleSheet.create({
   block: { gap: 10, marginBottom: 18 },
   h: { fontFamily: fonts.bodyBold, fontSize: 16, color: colors.ink },
   note: { fontFamily: fonts.body, fontSize: 12, color: colors.inkSoft },
+  versionLine: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 13,
+    color: colors.brand,
+    marginBottom: 4,
+  },
   about: { fontFamily: fonts.body, fontSize: 14, lineHeight: 21, color: colors.inkSoft },
 });
