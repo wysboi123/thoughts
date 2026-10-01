@@ -9,7 +9,7 @@ Newest first. Overnight agents append after every push.
 - **Shipped v1.2.4 (beyond v1.2.3):** **first-run tip chip** — soft dismissible coaching under HUD during prep/intermission · 3 rotating tips · AsyncStorage persist · Reduce Motion / a11y taps honored
 - Did **not** redo v1.2.3 walker variety / Settings About, or earlier pause/a11y/waves.
 - Ops: confirmed/re-armed `overnight-stop-5am-utc` (do not cancel) · `thought-defense-mobile-hourly` · ManagePullRequest missing — push only; preserve PR #4 title
-- Branch `cursor/mobile-thought-defense-5a0d` · tip TBD after push · PR https://github.com/wysboi123/thoughts/pull/4
+- Branch `cursor/mobile-thought-defense-5a0d` · tip `6ac9cc9` · PR https://github.com/wysboi123/thoughts/pull/4
 - Ask Femmy: Clarity Pass — keep **$2.99** · **$1.99** · **$3.99** · other?
 
 ## 2026-10-01 01:15 UTC — Mobile hourly (walker variety)
