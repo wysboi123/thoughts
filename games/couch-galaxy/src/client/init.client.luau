@@ -107,6 +107,13 @@ end
 
 Remotes.StarCollected.OnClientEvent:Connect(function(count: number)
 	counter.Text = ("Stars  %d"):format(count)
+	if inGalaxy then
+		counter.BackgroundColor3 = Color3.fromRGB(28, 30, 55)
+		counter.TextColor3 = Color3.fromRGB(255, 240, 190)
+	else
+		counter.BackgroundColor3 = Color3.fromRGB(24, 20, 40)
+		counter.TextColor3 = Color3.fromRGB(255, 230, 170)
+	end
 end)
 
 local galaxyWelcomed = false

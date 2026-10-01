@@ -121,6 +121,7 @@ local porchStyle = {
 Remotes.JarFillChanged.OnClientEvent:Connect(function(session: number, cap: number)
 	jarMeter.Text = ("Jar · %d/%d"):format(session, cap)
 	local fill = if cap > 0 then session / cap else 0
+	counter.BackgroundColor3 = Color3.fromRGB(20, 28, 22):Lerp(Color3.fromRGB(40, 55, 35), math.clamp(fill, 0, 1) * 0.7)
 	if fill >= 0.5 and not halfToast then
 		halfToast = true
 		complete("jar")
