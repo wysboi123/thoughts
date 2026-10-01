@@ -17,7 +17,9 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
+- Tip: `68369ea`
 - Hourly timer: **`thought-defense-mobile-hourly`** (retire mistargeted `thought-defense-hourly` Roblox payload)
-- Stop timer: **`overnight-stop-5am-utc`** once → 05:00 UTC (confirm each hourly; do not cancel)
+- Night envelope: **STOPPED** after 05:00 UTC 2026-10-01 · resume **23:00 UTC** via `overnight-daily-resume`
+- Stop timer: **`overnight-stop-5am-utc`** — do not re-arm until next night resume
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**)
-- Next: native IAP · store screenshots capture · EAS preview
+- Next (23:00): native IAP · store screenshots capture · EAS preview · or Femmy Clarity Pass price reply

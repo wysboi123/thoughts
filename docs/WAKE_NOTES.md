@@ -2,6 +2,17 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-01 05:15 UTC — Overnight stop (past 05:00)
+
+- Timer `thought-defense-mobile-hourly` fired ~05:15 UTC Oct 1 — **past overnight stop (05:00)**. Stop-only; **no new feature polish**.
+- Night envelope (SCHEDULE): **23:00 → 05:00 UTC** confirmed. Next resume **23:00 UTC**.
+- Git: clean working tree on `cursor/mobile-thought-defense-5a0d` · tip `68369ea` (v1.2.6 win celebration) · no dirty docs to commit pre-note.
+- **Night ship summary (v1.2.0 → v1.2.6):** waves 6–8 / FX / shop (1.2.0) · a11y + store docs (1.2.1) · Pause overlay (1.2.2) · walker variety (1.2.3) · first-run tip (1.2.4) · SoftActionToast (1.2.5) · win celebration (1.2.6). Draft C locked.
+- Timers: `list_subscriptions` on this agent returned **empty** (crons likely on long-lived overnight agent). Per protocol: leave `overnight-daily-resume` (23:00) · do **not** cancel `thought-defense-mobile-hourly` (daytime hourly OK per SCHEDULE) · do **not** re-arm `overnight-stop-5am-utc` until next night resume.
+- ManagePullRequest **missing** — parent should refresh PR #4 body if needed; preserve title.
+- Ask Femmy still open: Clarity Pass — keep **$2.99** · **$1.99** · **$3.99** · other? (+ bundle id · IAP · EAS · legal)
+- No more coding until **23:00 UTC** (or Femmy reply).
+
 ## 2026-10-01 04:15 UTC — Mobile hourly (win celebration)
 
 - Timer `thought-defense-mobile-hourly` fired ~04:15 UTC Oct 1 (last hourly before overnight stop ~05:00).
