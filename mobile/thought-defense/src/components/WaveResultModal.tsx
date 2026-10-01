@@ -13,8 +13,8 @@ import Animated, {
 import { softHaptic } from '../a11y/haptics';
 import { useReducedMotion } from '../a11y/useReducedMotion';
 import { GAME } from '../game/config';
-import { SOFT_GOAL_COPY, softGoalsDone } from '../game/softGoals';
-import type { GameState, SoftGoalId } from '../game/types';
+import { SOFT_GOAL_COPY, SOFT_GOAL_ORDER, SOFT_GOAL_TOTAL, softGoalsDone } from '../game/softGoals';
+import type { GameState } from '../game/types';
 import { colors } from '../theme/colors';
 import { fonts } from '../theme/typography';
 import { SoftButton } from './SoftButton';
@@ -25,14 +25,6 @@ type Props = {
   onRetry: () => void;
   onClose: () => void;
 };
-
-const ORDER: SoftGoalId[] = [
-  'plant_three',
-  'clear_wave_one',
-  'upgrade_once',
-  'reach_wave_three',
-  'keep_calm',
-];
 
 /** Soft, ToS-safe win lines — metaphor only, no medical claims. */
 const WIN_LINES = [
@@ -182,10 +174,10 @@ export function WaveResultModal({ visible, state, onRetry, onClose }: Props) {
                 : 'The core needs rest. Soft goals still count:'}
             </Text>
             <Text style={styles.count}>
-              {done}/5 soft goals · {state.thoughtsCleared} thoughts cleared · peak wave{' '}
-              {state.peakWaveReached}/{GAME.waveCount}
+              {done}/{SOFT_GOAL_TOTAL} soft goals · {state.thoughtsCleared} thoughts cleared · peak
+              wave {state.peakWaveReached}/{GAME.waveCount}
             </Text>
-            {ORDER.map((id) => (
+            {SOFT_GOAL_ORDER.map((id) => (
               <View key={id} style={styles.row}>
                 <Text style={styles.check}>{state.softGoals[id] ? '✓' : '○'}</Text>
                 <Text style={[styles.goal, !state.softGoals[id] && styles.goalOpen]}>

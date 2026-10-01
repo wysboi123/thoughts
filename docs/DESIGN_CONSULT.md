@@ -13,19 +13,19 @@ Femmy: reply in chat, email, or edit this file.
 ## Open asks (mobile)
 
 1. Confirm bundle / package id `com.femmy.thoughtdefense`
-2. **RevenueCat vs react-native-iap** for store builds ← **tonight’s consult**
+2. **RevenueCat vs react-native-iap** for store builds ← **tonight’s consult** (still open)
 3. **Clarity Pass price tier** — keep ~$2.99/mo · cosmetics ~$1.99 · boost ~$0.99, or shift Pass to $1.99 / $3.99 / other? (still open; shipping with **$2.99** default)
 4. Brand tweaks before store screenshots?
 
-### This batch ask (2026-10-01 ~23:10 night resume) — different from price
+### This batch ask (2026-10-01 ~23:35 night hourly) — same open consult, not A/B/C
 
 **IAP stack for store builds** (Draft C locked — not asking A/B/C · price ask still open separately):
 
 Prefer **RevenueCat** (subscriptions + entitlements dashboard, cross-platform) or **react-native-iap** (lighter, direct StoreKit / Play Billing)?
 
-Stub IAP stays until you pick + we wire. Reply RC / RNIap / other.
+Stub IAP stays until you pick + we wire. Reply **RC** / **RNIap** / other.
 
-*Clarity Pass price still unanswered — keeping **$2.99/mo** default until you say otherwise.*
+*Clarity Pass price still unanswered — keeping **$2.99/mo** default until you say otherwise (not re-asking price this batch).*
 
 ## Defaults
 

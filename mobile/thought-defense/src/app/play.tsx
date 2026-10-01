@@ -22,7 +22,7 @@ import {
   tick,
   upgradeSelected,
 } from '../game/engine';
-import { softGoalsDone } from '../game/softGoals';
+import { softGoalsDone, SOFT_GOAL_TOTAL } from '../game/softGoals';
 import type { GameState } from '../game/types';
 import { useIap } from '../iap/IapProvider';
 import { colors } from '../theme/colors';
@@ -110,7 +110,7 @@ export default function PlayScreen() {
         </View>
 
         <SoftButton
-          label={`Goals ${softGoalsDone(state.softGoals)}/5`}
+          label={`Goals ${softGoalsDone(state.softGoals)}/${SOFT_GOAL_TOTAL}`}
           variant="ghost"
           onPress={() => router.push('/goals')}
           style={styles.goalsChip}
@@ -158,7 +158,13 @@ export default function PlayScreen() {
         ) : null}
       </View>
 
-      <PauseOverlay visible={paused && canPause} waveLabel={waveLabel} onResume={() => setPaused(false)} />
+      <PauseOverlay
+        visible={paused && canPause}
+        waveLabel={waveLabel}
+        calm={state.calm}
+        clarity={state.clarity}
+        onResume={() => setPaused(false)}
+      />
 
       <WaveResultModal
         visible={showResult}

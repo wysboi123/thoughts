@@ -9,11 +9,13 @@ import { SoftButton } from './SoftButton';
 type Props = {
   visible: boolean;
   waveLabel: string;
+  calm?: number;
+  clarity?: number;
   onResume: () => void;
 };
 
 /** Mid-run soft pause — freezes the mindscape without medical framing. */
-export function PauseOverlay({ visible, waveLabel, onResume }: Props) {
+export function PauseOverlay({ visible, waveLabel, calm, clarity, onResume }: Props) {
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onResume}>
       <Pressable
@@ -33,6 +35,11 @@ export function PauseOverlay({ visible, waveLabel, onResume }: Props) {
             them. Metaphor only — not therapy.
           </Text>
           <Text style={styles.meta}>{waveLabel}</Text>
+          {calm != null && clarity != null ? (
+            <Text style={styles.snapshot}>
+              Calm {calm} · Clarity {clarity}
+            </Text>
+          ) : null}
           <View style={styles.actions}>
             <SoftButton label="Resume" onPress={onResume} />
             <SoftButton
@@ -86,6 +93,12 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: colors.clarity,
     marginBottom: 4,
+  },
+  snapshot: {
+    fontFamily: fonts.body,
+    fontSize: 13,
+    color: colors.calm,
+    marginTop: -2,
   },
   actions: { gap: 8, marginTop: 12 },
 });

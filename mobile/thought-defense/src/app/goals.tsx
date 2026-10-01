@@ -5,21 +5,13 @@ import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Atmosphere } from '../components/Atmosphere';
 import { SoftButton } from '../components/SoftButton';
-import { SOFT_GOAL_COPY } from '../game/softGoals';
+import { SOFT_GOAL_COPY, SOFT_GOAL_ORDER, SOFT_GOAL_TOTAL } from '../game/softGoals';
 import type { SoftGoalId } from '../game/types';
 import { colors } from '../theme/colors';
 import { fonts } from '../theme/typography';
 
 const JOURNAL_KEY = 'td.journal.notes.v1';
 const MANUAL_KEY = 'td.journal.manualGoals.v1';
-
-const ORDER: SoftGoalId[] = [
-  'plant_three',
-  'clear_wave_one',
-  'upgrade_once',
-  'reach_wave_three',
-  'keep_calm',
-];
 
 /** Soft goals journal — interactive checklist + optional gentle note (not therapy). */
 export default function GoalsScreen() {
@@ -73,10 +65,11 @@ export default function GoalsScreen() {
           let Play clear them as you plant and wave.
         </Text>
         <Text style={styles.progress}>
-          {ORDER.filter((id) => !!manual[id]).length}/5 checked here · Play also tracks the same aims
+          {SOFT_GOAL_ORDER.filter((id) => !!manual[id]).length}/{SOFT_GOAL_TOTAL} checked here · Play
+          also tracks the same aims
         </Text>
 
-        {ORDER.map((id) => {
+        {SOFT_GOAL_ORDER.map((id) => {
           const checked = !!manual[id];
           return (
             <Pressable

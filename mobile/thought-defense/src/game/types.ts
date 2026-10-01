@@ -9,6 +9,8 @@ export type SoftGoalId =
   | 'clear_wave_one'
   | 'upgrade_once'
   | 'reach_wave_three'
+  | 'plant_all_kinds'
+  | 'reach_wave_six'
   | 'keep_calm';
 
 export type SoftGoals = Record<SoftGoalId, boolean>;

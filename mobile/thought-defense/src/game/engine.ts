@@ -154,6 +154,10 @@ export function tapPad(state: GameState, padIndex: number): GameState {
   if (towers.length >= 3) {
     next = withGoals(next, { plant_three: true });
   }
+  const kinds = new Set(towers.map((t) => t.kind));
+  if (kinds.has('Affirmation') && kinds.has('Gratitude') && kinds.has('Humor')) {
+    next = withGoals(next, { plant_all_kinds: true });
+  }
   return next;
 }
 
@@ -375,6 +379,7 @@ export function tick(state: GameState, dt: number): GameState {
     next.peakWaveReached = Math.max(next.peakWaveReached, finished);
     if (finished >= 1) next = withGoals(next, { clear_wave_one: true });
     if (finished >= 3) next = withGoals(next, { reach_wave_three: true });
+    if (finished >= 6) next = withGoals(next, { reach_wave_six: true });
 
     if (finished >= GAME.waveCount) {
       next.phase = 'won';
