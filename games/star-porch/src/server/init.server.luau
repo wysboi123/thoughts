@@ -364,6 +364,14 @@ local function refreshJarFill()
 		end
 		pathGlow.Transparency = 0.55 - fill * 0.2
 	end
+	for _, child in world:GetChildren() do
+		if string.find(child.Name, "StringLight", 1, true) and child:IsA("BasePart") then
+			local light = child:FindFirstChildOfClass("PointLight")
+			if light then
+				light:SetAttribute("JarFillBoost", fill)
+			end
+		end
+	end
 end
 
 -- Dual rocking chairs (Seats)
@@ -625,7 +633,10 @@ task.spawn(function()
 			elseif string.find(child.Name, "StringLight", 1, true) and child:IsA("BasePart") then
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then
-					light.Brightness = 0.95 + math.sin(t * 2.1 + child.Position.X) * 0.35
+					local fillBoost = light:GetAttribute("JarFillBoost")
+					local fillN = if typeof(fillBoost) == "number" then fillBoost else 0
+					light.Brightness = (0.95 + fillN * 0.85) + math.sin(t * 2.1 + child.Position.X) * (0.35 + fillN * 0.15)
+					light.Range = 12 + fillN * 6
 				end
 			elseif string.find(child.Name, "SkyStar", 1, true) and child:IsA("BasePart") then
 				child.Transparency = 0.15 + math.sin(t * 1.8 + child.Position.X) * 0.2

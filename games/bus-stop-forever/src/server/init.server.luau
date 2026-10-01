@@ -501,7 +501,16 @@ task.spawn(function()
 		arrive.Completed:Wait()
 		bus:SetAttribute("Present", true)
 		Remotes.BusArrived:FireAllClients()
-		task.wait(Config.Bus.DwellSeconds)
+		local waiting = countWaiting()
+		local dwell = Config.Bus.DwellSeconds + (if waiting >= 1 then 2 else 0)
+		local cabin = headlight:FindFirstChildOfClass("PointLight")
+		if cabin and waiting >= 1 then
+			cabin.Brightness = 3.6
+		end
+		task.wait(dwell)
+		if cabin then
+			cabin.Brightness = 3
+		end
 		bus:SetAttribute("Present", false)
 		Remotes.BusDeparted:FireAllClients()
 		local depart = TweenService:Create(
