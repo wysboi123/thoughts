@@ -9,7 +9,7 @@ Newest first. Overnight agents append after every push.
 - **Shipped v1.2.2 (beyond v1.2.1):** soft **Pause** overlay (Resume / Soft goals / Leave) · freezes RAF tick while paused · **AppState** background auto-pause · Pause chip in mindscape chrome
 - Did **not** redo v1.2.1 a11y (44px / haptics / Reduce Motion / STORE_ASSETS).
 - Ops: confirmed/re-armed `overnight-stop-5am-utc` (do not cancel) · `thought-defense-mobile-hourly` · ManagePullRequest missing — push only; preserve PR #4 title
-- Branch `cursor/mobile-thought-defense-5a0d` · tip TBD after push · PR https://github.com/wysboi123/thoughts/pull/4
+- Branch `cursor/mobile-thought-defense-5a0d` · tip `d5d7ca8` · PR https://github.com/wysboi123/thoughts/pull/4
 - Ask Femmy: Clarity Pass — keep **$2.99** · **$1.99** · **$3.99** · other?
 
 ## 2026-09-30 23:15 UTC — Mobile hourly (distinct from night resume)
