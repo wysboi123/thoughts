@@ -29,7 +29,7 @@ Priority order. Agents pick the top unchecked item unless Femmy overrides.
 - [ ] **Host Privacy/Terms** — public HTTPS URLs for listings
 - [ ] **Preview build** — `eas build --profile preview` for TestFlight / internal testing
 - [ ] **Production submit** — after sandbox IAP verify
-- [ ] **Game depth** — SoftGoals expand, richer audio (optional research)
+- [ ] **Game depth** — richer audio (optional research); SoftGoals expand done in v1.2.8
 
 ## Paused / legacy (do not pick)
 
