@@ -502,14 +502,35 @@ task.spawn(function()
 		bus:SetAttribute("Present", true)
 		Remotes.BusArrived:FireAllClients()
 		local waiting = countWaiting()
-		local dwell = Config.Bus.DwellSeconds + (if waiting >= 1 then 2 else 0)
+		local dwell = Config.Bus.DwellSeconds + (if waiting >= 1 then 2 else 0) + (if waiting >= 2 then 1 else 0)
 		local cabin = headlight:FindFirstChildOfClass("PointLight")
 		if cabin and waiting >= 1 then
-			cabin.Brightness = 3.6
+			cabin.Brightness = 3.6 + math.min(waiting, 3) * 0.15
+		end
+		-- Soft shelter pulse while bus dwells with company
+		if waiting >= 1 then
+			for _, glowName in { "ShelterGlow", "Shelter2Glow" } do
+				local glow = world:FindFirstChild(glowName)
+				if glow and glow:IsA("BasePart") then
+					local light = glow:FindFirstChildOfClass("PointLight")
+					if light then
+						light.Brightness = 1.8
+					end
+				end
+			end
 		end
 		task.wait(dwell)
 		if cabin then
 			cabin.Brightness = 3
+		end
+		for _, glowName in { "ShelterGlow", "Shelter2Glow" } do
+			local glow = world:FindFirstChild(glowName)
+			if glow and glow:IsA("BasePart") then
+				local light = glow:FindFirstChildOfClass("PointLight")
+				if light then
+					light.Brightness = if countWaiting() >= 1 then 1.55 else 1.05
+				end
+			end
 		end
 		bus:SetAttribute("Present", false)
 		Remotes.BusDeparted:FireAllClients()

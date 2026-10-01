@@ -628,7 +628,15 @@ task.spawn(function()
 			elseif child.Name == "PorchLamp" and child:IsA("BasePart") then
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then
-					light.Brightness = 1.8 + math.sin(t * 1.3) * 0.4
+					local fillBoost = 0
+					local jarGlow = world:FindFirstChild("JarGlow")
+					if jarGlow and jarGlow:IsA("BasePart") then
+						local base = jarGlow:GetAttribute("BaseSize")
+						local baseN = if typeof(base) == "number" then base else 0.7
+						fillBoost = math.clamp((jarGlow.Size.X - baseN) / 1.1, 0, 1)
+					end
+					light.Brightness = (1.8 + fillBoost * 0.6) + math.sin(t * 1.3) * 0.4
+					light.Range = 22 + fillBoost * 8
 				end
 			elseif string.find(child.Name, "StringLight", 1, true) and child:IsA("BasePart") then
 				local light = child:FindFirstChildOfClass("PointLight")

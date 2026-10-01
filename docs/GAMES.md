@@ -8,8 +8,8 @@ Femmy’s chill Roblox line. All Rojo filesystem-first. Play: `cd games/<slug> &
 | --- | --- | --- | --- |
 | [`haze-haven`](../games/haze-haven) | 2.4 | float / sit | Vibe sync + crowd proximity |
 | [`couch-galaxy`](../games/couch-galaxy) | 2.2 | climb / float | World title tint + portal labels |
-| [`bus-stop-forever`](../games/bus-stop-forever) | 2.3 | wait / wave | Longer dwell when waiting together |
-| [`star-porch`](../games/star-porch) | 2.2 | sit / glow | String lights track jar fill |
+| [`bus-stop-forever`](../games/bus-stop-forever) | 2.4 | wait / wave | Dwell linger scales with sitters |
+| [`star-porch`](../games/star-porch) | 2.3 | sit / glow | Lamp + strings track jar fill |
 
 ## Parked for later (files kept)
 
