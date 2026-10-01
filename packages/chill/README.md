@@ -16,7 +16,7 @@ Then: `local SoftGoals = require(ReplicatedStorage.Chill.SoftGoals)`
 | `PartFactory` | Anchored part builder + clear Baseplate |
 | `RemoteFolder` | Server-create / client-wait RemoteEvents |
 | `SoftGoals` | Low-pressure session checklist HUD |
-| `Proximity` | Soft PointLight glow for nearby players |
+| `Proximity` | Soft PointLight glow (scales with nearby count + `setBoost`) |
 | `SoftWelcome` | One-shot toast (replaces prior; optional accent colors) |
 | `SoftSit` | Bottom-center sit-status line (fade in/out) |
 | `SoftWireSeats` | Seat.Occupant → RemoteEvent for SoftSit |
