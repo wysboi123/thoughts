@@ -16,6 +16,7 @@ Priority order. Agents pick the top unchecked item unless Femmy overrides.
 - [x] **v1.2.0 night polish** — waves 6–8 · range ring · kindness FX ripples · Peace Core breath · pad pulse · shop restore/sections · screenshot guide
 - [x] **v1.2.1 hourly polish** — ≥44 tap targets · soft haptics stub · Reduce Motion · store asset placeholders
 - [x] **v1.2.2 hourly polish** — Pause overlay · freezes tick loop · AppState background auto-pause
+- [x] **v1.2.3 hourly polish** — Walker variety gaits · spawn speed jitter · flavor pool · Settings version
 - [ ] **Native IAP** — wire RevenueCat or react-native-iap; turn off stubMode for store builds
 - [ ] **EAS project** — Femmy: `eas init` + real `projectId` + credentials
 - [ ] **Store products** — create IAP ids in App Store Connect + Play Console

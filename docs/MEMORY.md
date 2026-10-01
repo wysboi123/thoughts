@@ -13,7 +13,7 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 
 ## State
 
-- Version: **mobile 1.2.2** (pause overlay · AppState auto-pause; builds on 1.2.1 a11y)
+- Version: **mobile 1.2.3** (walker variety gaits · flavor pool; builds on 1.2.2 pause)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4

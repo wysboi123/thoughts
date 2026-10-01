@@ -2,6 +2,16 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-01 01:15 UTC — Mobile hourly (walker variety)
+
+- Timer `thought-defense-mobile-hourly` fired ~01:15 UTC Oct 1.
+- **No Femmy replies** (`from:ngkdevid@gmail.com` empty) · DESIGN_CONSULT unchanged → Clarity Pass stays **$2.99/mo**; re-asked briefly (not A/B/C).
+- **Shipped v1.2.3 (beyond v1.2.2):** **walker variety** — per-kind gait (Doubt hesitant pause bob · Worry fast sway + speck · SelfCritic heavy square) · soft spawn speed jitter · expanded flavor pool · Settings About version line
+- Did **not** redo v1.2.2 pause overlay / AppState auto-pause.
+- Ops: confirmed/re-armed `overnight-stop-5am-utc` (do not cancel) · `thought-defense-mobile-hourly` · ManagePullRequest missing — push only; preserve PR #4 title
+- Branch `cursor/mobile-thought-defense-5a0d` · tip `4182fee` · PR https://github.com/wysboi123/thoughts/pull/4
+- Ask Femmy: Clarity Pass — keep **$2.99** · **$1.99** · **$3.99** · other?
+
 ## 2026-10-01 00:15 UTC — Mobile hourly (pause overlay)
 
 - Timer `thought-defense-mobile-hourly` fired ~00:15 UTC Oct 1.
