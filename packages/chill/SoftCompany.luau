@@ -105,7 +105,7 @@ function SoftCompany.mount(playerGui: PlayerGui, localPlayer: Player, config: So
 		else
 			local many = config.ManyText
 			label.Text = if many then many(n) else ("soft company · %d nearby"):format(n)
-			if prev <= 0 then
+			if prev <= 0 or n > prev then
 				pulseArrive()
 			end
 		end

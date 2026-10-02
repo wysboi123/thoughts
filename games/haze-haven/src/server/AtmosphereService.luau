@@ -99,6 +99,9 @@ function AtmosphereService.start()
 						if typeof(home) == "Vector3" then
 							child.Position = home + Vector3.new(0, math.sin(t * 0.8 + home.X) * 0.1, 0)
 						end
+						child.Color = if vibeSynced
+							then Color3.fromRGB(110, 160, 120)
+							else Color3.fromRGB(90, 140, 100)
 					elseif child.Name == "HammockSeat" and child:IsA("BasePart") then
 						local home = child:GetAttribute("HomePosition")
 						if typeof(home) == "Vector3" then

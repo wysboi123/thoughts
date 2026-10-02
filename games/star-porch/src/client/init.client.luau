@@ -210,6 +210,15 @@ SoftCompany.mount(playerGui, player, {
 		if jarMeter and jarMeter.Parent then
 			jarMeter.TextColor3 = if n >= 1 then Color3.fromRGB(200, 255, 170) else Color3.fromRGB(150, 180, 140)
 		end
+		if hint and hint.Parent and not fullToast then
+			if n >= 1 then
+				hint.Text = "company near · jar + lights feel warmer"
+				hint.TextColor3 = Color3.fromRGB(160, 190, 150)
+			elseif not halfToast then
+				hint.Text = "rockers + swing · jar fills as fireflies return"
+				hint.TextColor3 = Color3.fromRGB(130, 150, 120)
+			end
+		end
 		local world = Workspace:FindFirstChild("StarPorchWorld")
 		local jar = world and world:FindFirstChild("FireflyJar")
 		local jarGui = jar and jar:FindFirstChild("JarFillGui")
@@ -239,6 +248,15 @@ SoftCompany.mount(playerGui, player, {
 				local pathLight = path:FindFirstChildOfClass("PointLight")
 				if pathLight then
 					pathLight.Brightness = if n >= 1 then 1.3 else 0.85
+				end
+			end
+			for _, child in world:GetChildren() do
+				if child:IsA("BasePart") and string.find(child.Name, "StringLight", 1, true) then
+					local sLight = child:FindFirstChildOfClass("PointLight")
+					if sLight then
+						-- soft client nudge; server loop owns base pulse + company
+						sLight.Color = if n >= 1 then Color3.fromRGB(255, 235, 180) else Color3.fromRGB(255, 220, 150)
+					end
 				end
 			end
 		end

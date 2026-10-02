@@ -4,10 +4,10 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 
 ## Active (focus now)
 
-- [x] **Haze Haven v0–v2.9** — WelcomeSign + hammock vibe sync
-- [x] **Couch Galaxy v0–v2.6** — portal/plaque company copy
-- [x] **Bus Stop Forever v0–v2.8** — wave together + notepad warm
-- [x] **Star Porch v0–v2.7** — proximity company · string/lamp boost
+- [x] **Haze Haven v0–v3.0** — WelcomeSign + hammock vibe sync (publish-ready)
+- [x] **Couch Galaxy v0–v2.7** — portal/plaque + loft cloud company
+- [x] **Bus Stop Forever v0–v2.9** — wave together + sit copy
+- [x] **Star Porch v0–v2.8** — proximity company · hint/lights
 - [x] **Shared** — SoftWelcome/Sit/Goals/Company polish (fade + themes)
 - [x] **USP research + priority** — `docs/USPS.md` + Night 8 research note
 - [x] **Night 6** — complete (active-four polish; parked trio kept)

@@ -2,7 +2,7 @@
 local Config = {
 	GameName = "Star Porch",
 	Tagline = "fireflies drift back. the jar remembers.",
-	Version = "2.7",
+	Version = "2.8",
 
 	Spawn = Vector3.new(0, 4, 10),
 

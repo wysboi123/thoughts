@@ -2,6 +2,14 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-02 03:00 UTC — Night 8 checkpoint 2 (quiet)
+
+- Active: **Haze 3.0** · **Couch 2.7** · **Bus 2.9** · **Porch 2.8**
+- SoftCompany rising-count pulse · Haze loft plants · Couch loft clouds · Bus sit “together” · Porch hint/lights
+- 8+ commits since 2026-10-01 23:00 UTC; parked untouched; no invented audio
+- Still blocked: Perplexity Q-001–004 · first Studio publish (Haze ready)
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
 ## 2026-10-02 01:07 UTC — Night 8 USP deepen (post-CP1)
 
 - Research: `docs/research/hangout-usps-2026-10-02.md` (Creator Hub intentional co-play + bounce)

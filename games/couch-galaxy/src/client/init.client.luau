@@ -294,6 +294,16 @@ SoftCompany.mount(playerGui, player, {
 					beaconLabel.TextColor3 = if company then Color3.fromRGB(255, 235, 200) else Color3.fromRGB(255, 220, 180)
 				end
 			end
+			for _, child in world:GetDescendants() do
+				if child:IsA("BasePart") and string.find(child.Name, "CloudPad", 1, true) then
+					local light = child:FindFirstChildOfClass("PointLight")
+					if light then
+						light.Brightness = if company then 1.6 else 1.1
+						light.Range = if company then 14 else 10
+					end
+					child.Transparency = if company then 0.25 else 0.35
+				end
+			end
 		elseif not inGalaxy then
 			setLightBoost("TableLamp", if company then 1.8 else 1.2)
 			setLightBoost("FloorLampGlow", if company then 2.0 else 1.4)
