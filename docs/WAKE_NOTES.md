@@ -9,7 +9,7 @@ Newest first. Overnight agents append after every push.
 - **Shipped v1.3.2 (beyond v1.3.1):** **home polish** — `HomeMindscapePreview` path/pads/Peace Core vignette · Plant/Clear/Hold Peace chips · staggered CTA enter (Reduce Motion) · soft Clarity Pass badge · a11y hints
 - Did **not** redo v1.3.1 shop UX, v1.3.0 lose/retry, v1.2.9 wave balance, or earlier soft-goals / IAP / welcome.
 - Ops: re-armed `overnight-stop-5am-utc` once (~05:00 UTC) · confirmed/re-armed `thought-defense-mobile-hourly` · **did not** cancel stop · ManagePullRequest **missing** — push only; preserve PR #4 title
-- Branch `cursor/mobile-thought-defense-5a0d` · tip *(after push)* · PR https://github.com/wysboi123/thoughts/pull/4
+- Branch `cursor/mobile-thought-defense-5a0d` · tip `1df3b78` · PR https://github.com/wysboi123/thoughts/pull/4
 - Ask Femmy: **RC vs RNIap** (fresher) · Clarity Pass price still open separately
 
 ## 2026-10-02 02:15 UTC — Night hourly (shop UX polish)
