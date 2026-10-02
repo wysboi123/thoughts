@@ -23,7 +23,7 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: `20acd50` (pre-stop; overnight-stop wake note follows)
+- Tip: `25dd665` (overnight stop wake note)
 - Hourly timer: **`thought-defense-mobile-hourly`** (retire mistargeted `thought-defense-hourly` Roblox payload)
 - Night envelope: **STOPPED** after 05:00 UTC 2026-10-02 · resume **23:00 UTC** via `overnight-daily-resume`
 - Stop timer: **`overnight-stop-5am-utc`** — do not re-arm until next night resume

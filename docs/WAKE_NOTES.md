@@ -6,7 +6,7 @@ Newest first. Overnight agents append after every push.
 
 - Timer `overnight-stop-5am-utc` fired ~05:00 UTC Oct 2 — **HARD STOP**. **No new features.** Docs + digest only.
 - Night envelope (SCHEDULE): **23:00 → 05:00 UTC** closed. Next resume **23:00 UTC**.
-- Git: clean working tree on `cursor/mobile-thought-defense-5a0d` · tip `20acd50` (v1.3.3 settings/privacy + tip SHA note) before this stop note.
+- Git: was clean on `cursor/mobile-thought-defense-5a0d` · tip was `20acd50` (v1.3.3); this stop note → `25dd665`.
 - **Night ship summary (v1.2.7 → v1.3.3):** IAP stub + SoftWelcome (1.2.7) · soft-goals expand (1.2.8) · wave balance + preview (1.2.9) · lose/retry (1.3.0) · shop UX (1.3.1) · home polish (1.3.2) · settings/privacy (1.3.3). Draft C locked.
 - Timers: re-armed `thought-defense-mobile-hourly` (`15 * * * *`, daytime-idle outside night) · re-armed `overnight-daily-resume` (`0 23 * * *`) · **did not** re-arm `overnight-stop-5am-utc` until next night resume.
 - ManagePullRequest **missing** — parent should refresh PR #4 body if needed; preserve title.
