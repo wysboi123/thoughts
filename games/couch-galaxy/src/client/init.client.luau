@@ -190,6 +190,7 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	{ Id = "galaxy", Label = "visit the galaxy loft" },
 	{ Id = "stars", Label = "collect 3 stars" },
 	{ Id = "both", Label = "visit both worlds tonight" },
+	{ Id = "company", Label = "soft company nearby" },
 }, {
 	AccentColor = Color3.fromRGB(140, 120, 200),
 	FrameColor = Color3.fromRGB(26, 20, 40),
@@ -276,6 +277,9 @@ SoftCompany.mount(playerGui, player, {
 	OnCountChanged = function(n)
 		refreshPlace(n >= 1)
 		local company = n >= 1
+		if company then
+			complete("company")
+		end
 		if company and not couchCompanyWelcomed then
 			couchCompanyWelcomed = true
 			SoftWelcome.show(
@@ -372,4 +376,8 @@ SoftCompany.mount(playerGui, player, {
 	end,
 })
 
-SoftWelcome.show(playerGui, Config.GameName, "two worlds, one couch. roof first.", couchStyle)
+SoftWelcome.show(playerGui, Config.GameName, "two worlds, one couch. roof first.", {
+	AccentColor = couchStyle.AccentColor,
+	FrameColor = couchStyle.FrameColor,
+	HoldSeconds = 6.2,
+})

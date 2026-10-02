@@ -8,6 +8,7 @@ export type SoftWelcomeStyle = {
 	FrameColor: Color3?,
 	TitleColor: Color3?,
 	BodyColor: Color3?,
+	HoldSeconds: number?,
 }
 
 local SoftWelcome = {}
@@ -76,7 +77,8 @@ function SoftWelcome.show(playerGui: PlayerGui, titleText: string, bodyText: str
 	)
 	slideIn:Play()
 
-	task.delay(4.8, function()
+	local hold = (style and style.HoldSeconds) or 5.6
+	task.delay(hold, function()
 		if not frame.Parent then
 			return
 		end

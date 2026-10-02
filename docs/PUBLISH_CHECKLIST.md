@@ -12,16 +12,17 @@ rojo serve
 
 1. Open `HazeHaven.rbxl` in Roblox Studio → Rojo plugin → **Connect**
 2. Press **Play** — sit a cushion, float pad, loft hammock, emote 1/2/3
-3. **WelcomeSign verify (Haze 3.0 USP beat)** before Stop:
+3. **WelcomeSign verify (Haze 3.1 USP beat)** before Stop:
    - World part named `WelcomeSign` near spawn
    - SurfaceGui `WelcomeTitle` = **Haze Haven**
    - SurfaceGui `WelcomeBody` = tagline *float soft. vibes sync when friends are near.*
-   - SoftWelcome toast slides in + SoftCompany line at bottom-left
-4. Optional second player / alt: vibe sync toast + WelcomeBody flips · board/orb/HUD/hammock tint when near
+   - SoftWelcome toast holds ~6s + SoftCompany line at bottom-left
+   - SoftGoals top-right: vibes · sit · float · vibe sync
+4. Optional second player / alt: vibe sync toast + WelcomeBody flips · board/orb/HUD/hammock/nameplate tint when near
 5. Stop Play → **File → Publish to Roblox** (create new experience if prompted)
 6. Paste title + description from [`EXPERIENCE_COPY.md`](EXPERIENCE_COPY.md) → Haze Haven
 7. Genre: Hangout (or Adventure). Access: **Friends** for soft launch
-8. Capture one soft screenshot for thumbnail (no ToS-risk framing)
+8. Capture one soft screenshot for thumbnail (lounge + WelcomeSign, no ToS-risk framing)
 9. Paste place URL + place id into [`PUBLISH_STATUS.md`](PUBLISH_STATUS.md)
 
 That’s enough for first soft launch. Overnight agents track the live place after you paste URL + place id into `PUBLISH_STATUS.md`.

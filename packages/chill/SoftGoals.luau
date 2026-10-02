@@ -93,6 +93,12 @@ function SoftGoals.mount(
 			row.Text = "●  " .. (row.Text:gsub("^[○●]%s*", ""))
 			row.TextColor3 = Color3.fromRGB(200, 230, 180)
 		end
+		stroke.Transparency = 0.25
+		TweenService:Create(
+			stroke,
+			TweenInfo.new(0.45, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+			{ Transparency = 0.6 }
+		):Play()
 		local all = true
 		for _, g in goals do
 			if not done[g.Id] then

@@ -126,7 +126,13 @@ local busStyle = {
 	TitleColor = Color3.fromRGB(220, 235, 210),
 	BodyColor = Color3.fromRGB(170, 185, 160),
 }
-SoftWelcome.show(playerGui, Config.GameName, "the bus will come. you don't have to. wait together.", busStyle)
+SoftWelcome.show(playerGui, Config.GameName, "the bus will come. you don't have to. wait together.", {
+	AccentColor = busStyle.AccentColor,
+	FrameColor = busStyle.FrameColor,
+	TitleColor = busStyle.TitleColor,
+	BodyColor = busStyle.BodyColor,
+	HoldSeconds = 6.2,
+})
 
 local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	{ Id = "sit", Label = "sit on a bench" },

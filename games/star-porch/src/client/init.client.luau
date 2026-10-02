@@ -101,6 +101,7 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	{ Id = "swing", Label = "try the porch swing" },
 	{ Id = "flies", Label = "collect 4 fireflies" },
 	{ Id = "jar", Label = "watch the jar fill" },
+	{ Id = "company", Label = "share the porch" },
 }, {
 	AccentColor = Color3.fromRGB(140, 180, 120),
 	FrameColor = Color3.fromRGB(22, 28, 20),
@@ -175,7 +176,13 @@ ChillProximity.start(player, {
 	Range = 10,
 })
 
-SoftWelcome.show(playerGui, Config.GameName, "fireflies drift back. the jar remembers.", porchStyle)
+SoftWelcome.show(playerGui, Config.GameName, "fireflies drift back. the jar remembers.", {
+	AccentColor = porchStyle.AccentColor,
+	FrameColor = porchStyle.FrameColor,
+	TitleColor = porchStyle.TitleColor,
+	BodyColor = porchStyle.BodyColor,
+	HoldSeconds = 6.2,
+})
 
 local function findJarLight(): PointLight?
 	local world = Workspace:FindFirstChild("StarPorchWorld")
@@ -259,6 +266,9 @@ SoftCompany.mount(playerGui, player, {
 					end
 				end
 			end
+		end
+		if n >= 1 then
+			complete("company")
 		end
 		if n >= 1 and not porchCompanyWelcomed then
 			porchCompanyWelcomed = true

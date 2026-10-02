@@ -91,11 +91,32 @@ local hazeStyle = {
 	AccentColor = Color3.fromRGB(160, 120, 210),
 	FrameColor = Color3.fromRGB(28, 22, 42),
 }
-SoftWelcome.show(playerGui, Config.GameName, "float soft. vibes sync when friends are near.", hazeStyle)
+SoftWelcome.show(playerGui, Config.GameName, "float soft. vibes sync when friends are near.", {
+	AccentColor = hazeStyle.AccentColor,
+	FrameColor = hazeStyle.FrameColor,
+	HoldSeconds = 6.2,
+})
 
 local vibeSynced = false
 local syncedColor = Color3.fromRGB(255, 220, 255)
 local normalColor = Color3.fromRGB(240, 200, 230)
+
+local function tintLocalNameplate(synced: boolean)
+	local character = player.Character
+	local head = character and character:FindFirstChild("Head")
+	local plate = head and head:FindFirstChild("HazeNameplate")
+	if not (plate and plate:IsA("BillboardGui")) then
+		return
+	end
+	local nameLabel = plate:FindFirstChild("PlayerName")
+	local vibeLabel = plate:FindFirstChild("VibeLabel")
+	if nameLabel and nameLabel:IsA("TextLabel") then
+		nameLabel.TextColor3 = if synced then Color3.fromRGB(255, 235, 255) else Color3.fromRGB(235, 220, 255)
+	end
+	if vibeLabel and vibeLabel:IsA("TextLabel") then
+		vibeLabel.TextColor3 = if synced then Color3.fromRGB(240, 200, 255) else Color3.fromRGB(210, 170, 230)
+	end
+end
 
 SoftCompany.mount(playerGui, player, {
 	Radius = Config.Proximity.Radius,
@@ -111,7 +132,7 @@ SoftCompany.mount(playerGui, player, {
 			proximity.setBoost(1.35 + math.min(n - 1, 2) * 0.1)
 			VibeBoard.setSynced(true)
 			setHudSynced(true)
-			workspace:SetAttribute("HazeVibeSynced", true)
+			tintLocalNameplate(true)
 			if orbCounter and orbCounter.Parent then
 				orbCounter.TextColor3 = syncedColor
 			end
@@ -123,7 +144,7 @@ SoftCompany.mount(playerGui, player, {
 			proximity.setBoost(1)
 			VibeBoard.setSynced(false)
 			setHudSynced(false)
-			workspace:SetAttribute("HazeVibeSynced", false)
+			tintLocalNameplate(false)
 			if orbCounter and orbCounter.Parent then
 				orbCounter.TextColor3 = normalColor
 			end

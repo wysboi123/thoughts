@@ -1,10 +1,31 @@
 --!strict
 local Lighting = game:GetService("Lighting")
+local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Config"))
 
 local AtmosphereService = {}
+
+local function anyPlayersNear(): boolean
+	local roots: { BasePart } = {}
+	for _, player in Players:GetPlayers() do
+		local character = player.Character
+		local root = character and character:FindFirstChild("HumanoidRootPart")
+		if root and root:IsA("BasePart") then
+			table.insert(roots, root)
+		end
+	end
+	local radius = Config.Proximity.Radius
+	for i = 1, #roots do
+		for j = i + 1, #roots do
+			if (roots[i].Position - roots[j].Position).Magnitude <= radius then
+				return true
+			end
+		end
+	end
+	return false
+end
 
 function AtmosphereService.start()
 	task.spawn(function()
@@ -26,8 +47,11 @@ function AtmosphereService.start()
 			local pulse = (math.sin(t / Config.Atmosphere.AmbientPulseSeconds * math.pi * 2) + 1) / 2
 			Lighting.Brightness = 1.2 + pulse * 0.35
 
+			-- Server-authoritative vibe sync (client SetAttribute does not drive this)
+			local vibeSynced = anyPlayersNear()
+			workspace:SetAttribute("HazeVibeSynced", vibeSynced)
+
 			local world = workspace:FindFirstChild("HazeWorld")
-			local vibeSynced = workspace:GetAttribute("HazeVibeSynced") == true
 			local syncBoost = if vibeSynced then 0.45 else 0
 			if world then
 				for _, child in world:GetChildren() do

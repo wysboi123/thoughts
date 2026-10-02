@@ -4,11 +4,11 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 
 ## Active (focus now)
 
-- [x] **Haze Haven v0–v3.0** — WelcomeSign + hammock vibe sync (publish-ready)
-- [x] **Couch Galaxy v0–v2.7** — portal/plaque + loft cloud company
-- [x] **Bus Stop Forever v0–v2.9** — wave together + sit copy
-- [x] **Star Porch v0–v2.8** — proximity company · hint/lights
-- [x] **Shared** — SoftWelcome/Sit/Goals/Company polish (fade + themes)
+- [x] **Haze Haven v0–v3.1** — server vibe sync + publish checklist
+- [x] **Couch Galaxy v0–v2.8** — soft company goal + welcome hold
+- [x] **Bus Stop Forever v0–v3.0** — welcome hold + wait together
+- [x] **Star Porch v0–v2.9** — share-the-porch soft goal
+- [x] **Shared** — SoftWelcome HoldSeconds · SoftGoals stroke pulse
 - [x] **USP research + priority** — `docs/USPS.md` + Night 8 research note
 - [x] **Night 6** — complete (active-four polish; parked trio kept)
 - [x] **Night 7** — complete (USP deepen; Haze 2.5 · Couch 2.2 · Bus 2.4 · Porch 2.3)
@@ -17,7 +17,7 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 - [ ] **Apply Q-001–003** when answers land
 - [ ] **Soft invite prompt** — post-publish only (SocialService)
 - [x] **Night 8** — complete (USP research + deepen; Haze 3.0 · Couch 2.7 · Bus 2.9 · Porch 2.8)
-- [ ] **Night 9** — apply Q-answers if any; Haze publish support; no invented audio
+- [ ] **Night 9** — in progress (first-session stickiness + Haze publish support; no invented audio)
 
 ## Parked for later (files kept — do not erase)
 
