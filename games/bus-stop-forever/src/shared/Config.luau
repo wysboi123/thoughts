@@ -37,6 +37,8 @@ local Config = {
 			"waiting together still counts",
 			"two benches · one schedule joke",
 			"stay for the next whenever",
+			"soft company · no rush",
+			"wave when it feels right",
 		},
 		RotateSeconds = 12,
 	},
