@@ -88,7 +88,7 @@ export default function PlayScreen() {
   )}/${GAME.waveCount} · Calm ${state.calm} · Clarity ${state.clarity}`;
 
   return (
-    <Atmosphere>
+    <Atmosphere dawn={looks.dawn}>
       <View style={[styles.wrap, { paddingTop: insets.top + 6, paddingBottom: insets.bottom + 6 }]}>
         <View style={styles.topRow}>
           <SoftButton label="← Home" variant="ghost" onPress={() => router.back()} style={styles.homeBtn} />
@@ -174,6 +174,7 @@ export default function PlayScreen() {
           onUpgrade={() => setState((s) => upgradeSelected(s))}
           onSell={() => setState((s) => sellSelected(s))}
           onBack={() => setState((s) => clearSelection(s))}
+          themeLantern={looks.lantern}
         />
 
         {state.phase === 'wave' && !entitlements.clarityPassActive ? (

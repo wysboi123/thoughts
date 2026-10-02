@@ -12,6 +12,7 @@ import { MIN_TAP, TAP_SLOP } from '../a11y/tapTargets';
 import { useReducedMotion } from '../a11y/useReducedMotion';
 import { GAME, upgradeCost } from '../game/config';
 import type { GameState, TowerKind } from '../game/types';
+import { LANTERN_RIM } from '../iap/cosmetics';
 import { colors } from '../theme/colors';
 import { fonts } from '../theme/typography';
 import { SoftButton } from './SoftButton';
@@ -24,6 +25,8 @@ type Props = {
   onUpgrade: () => void;
   onSell: () => void;
   onBack: () => void;
+  /** Lantern Towers look — plant card swatches get soft lantern rims */
+  themeLantern?: boolean;
 };
 
 /**
@@ -38,6 +41,7 @@ export function DualModeTray({
   onUpgrade,
   onSell,
   onBack,
+  themeLantern,
 }: Props) {
   const selected = state.towers.find((t) => t.padIndex === state.selectedPad);
   const selectMode = selected != null;
@@ -85,7 +89,9 @@ export function DualModeTray({
       <Text style={styles.title}>
         {selectMode
           ? `Selected · ${GAME.towers[selected.kind].displayName} L${selected.level}`
-          : 'Plant kindness'}
+          : themeLantern
+            ? 'Plant kindness · lantern light'
+            : 'Plant kindness'}
       </Text>
 
       <Animated.View style={[styles.plantRow, plantRowStyle]}>
@@ -108,6 +114,7 @@ export function DualModeTray({
                 styles.plantCard,
                 active && styles.plantCardActive,
                 selectMode && styles.plantCardLocked,
+                themeLantern && !selectMode && { borderColor: LANTERN_RIM[k] },
               ]}
             >
               <View
@@ -121,6 +128,12 @@ export function DualModeTray({
                           ? colors.gratitude
                           : colors.humor,
                   },
+                  themeLantern
+                    ? {
+                        borderWidth: 2,
+                        borderColor: LANTERN_RIM[k],
+                      }
+                    : null,
                 ]}
               />
               <Text style={[styles.plantName, selectMode && styles.dimText]}>
