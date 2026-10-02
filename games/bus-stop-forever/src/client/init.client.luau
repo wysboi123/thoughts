@@ -33,7 +33,7 @@ tag.Font = Enum.Font.Gotham
 tag.TextSize = 14
 tag.TextXAlignment = Enum.TextXAlignment.Left
 tag.TextColor3 = Color3.fromRGB(170, 180, 160)
-tag.Text = Config.Tagline
+tag.Text = Config.Tagline .. "  ·  v" .. Config.Version
 tag.Parent = gui
 
 local busStatus = Instance.new("TextLabel")

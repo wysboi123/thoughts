@@ -35,7 +35,7 @@ tag.Font = Enum.Font.Gotham
 tag.TextSize = 14
 tag.TextXAlignment = Enum.TextXAlignment.Left
 tag.TextColor3 = Color3.fromRGB(170, 160, 200)
-tag.Text = Config.Tagline
+tag.Text = Config.Tagline .. "  ·  v" .. Config.Version
 tag.Parent = gui
 
 local place = Instance.new("TextLabel")
@@ -93,12 +93,13 @@ end
 applyHomeLighting()
 
 local function refreshPlace(companyNear: boolean)
+	local versionSuffix = "  ·  v" .. Config.Version
 	if inGalaxy then
 		place.Text = if companyNear
 			then "galaxy loft · soft company · two worlds"
 			else "galaxy loft · two worlds · beacon home when ready"
 		place.TextColor3 = Color3.fromRGB(200, 190, 255)
-		tag.Text = Config.Tagline
+		tag.Text = Config.Tagline .. versionSuffix
 		tag.TextColor3 = Color3.fromRGB(170, 175, 220)
 		title.TextColor3 = Color3.fromRGB(210, 215, 255)
 	else
@@ -106,7 +107,7 @@ local function refreshPlace(companyNear: boolean)
 			then "couch side · soft company · climb when ready"
 			else "two worlds · one couch · climb to the skylight"
 		place.TextColor3 = Color3.fromRGB(140, 130, 170)
-		tag.Text = Config.Tagline
+		tag.Text = Config.Tagline .. versionSuffix
 		tag.TextColor3 = Color3.fromRGB(170, 160, 200)
 		title.TextColor3 = Color3.fromRGB(230, 220, 255)
 	end
