@@ -16,7 +16,8 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 - [ ] **First publish** — Femmy: `PUBLISH_CHECKLIST.md` First 10 minutes (Haze)
 - [ ] **Apply Q-001–003** when answers land
 - [ ] **Soft invite prompt** — post-publish only (SocialService)
-- [ ] **Night 8** — in progress (USP deepen + polish; no invented audio)
+- [x] **Night 8** — complete (USP research + deepen; Haze 3.0 · Couch 2.7 · Bus 2.9 · Porch 2.8)
+- [ ] **Night 9** — apply Q-answers if any; Haze publish support; no invented audio
 
 ## Parked for later (files kept — do not erase)
 
