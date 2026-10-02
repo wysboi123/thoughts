@@ -1,0 +1,63 @@
+{
+  "name": "BusStopForever",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "Shared": {
+        "$path": "src/shared"
+      },
+      "Chill": {
+        "$path": "../../packages/chill"
+      }
+    },
+    "ServerScriptService": {
+      "Server": {
+        "$path": "src/server"
+      }
+    },
+    "StarterPlayer": {
+      "StarterPlayerScripts": {
+        "Client": {
+          "$path": "src/client"
+        }
+      }
+    },
+    "Workspace": {
+      "$properties": {
+        "Gravity": 196.2
+      }
+    },
+    "Lighting": {
+      "$properties": {
+        "Ambient": [0.3, 0.28, 0.35],
+        "Brightness": 1.1,
+        "ClockTime": 19.5,
+        "FogColor": [0.35, 0.32, 0.4],
+        "FogEnd": 220,
+        "FogStart": 40,
+        "OutdoorAmbient": [0.35, 0.32, 0.4],
+        "GlobalShadows": true
+      },
+      "BusAtmosphere": {
+        "$className": "Atmosphere",
+        "$properties": {
+          "Density": 0.4,
+          "Offset": 0.2,
+          "Color": [0.45, 0.4, 0.5],
+          "Decay": [0.25, 0.22, 0.3],
+          "Glare": 0.08,
+          "Haze": 1.6
+        }
+      },
+      "BusBloom": {
+        "$className": "BloomEffect",
+        "$properties": {
+          "Enabled": true,
+          "Intensity": 0.35,
+          "Size": 20,
+          "Threshold": 0.95
+        }
+      }
+    }
+  }
+}
