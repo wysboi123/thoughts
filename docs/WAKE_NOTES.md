@@ -9,7 +9,7 @@ Newest first. Overnight agents append after every push.
 - **Shipped v1.3.3 (beyond v1.3.2):** **settings + privacy polish** — on-device comfort strip · section accents · soft block enter (Reduce Motion) · restore/replay haptics · entitlement status card · privacy teaser · sectioned privacy copy (device / no-collect / purchases / not medical) · docs + terms date sync · version bump 1.3.3
 - Did **not** redo v1.3.2 home, v1.3.1 shop, v1.3.0 lose/retry, or earlier wave / soft-goals / IAP / welcome.
 - Ops: re-armed `overnight-stop-5am-utc` once (~05:00 UTC) · confirmed/re-armed `thought-defense-mobile-hourly` · **did not** cancel stop · ManagePullRequest **missing** — push only; preserve PR #4 title
-- Branch `cursor/mobile-thought-defense-5a0d` · tip TBD after push · PR https://github.com/wysboi123/thoughts/pull/4
+- Branch `cursor/mobile-thought-defense-5a0d` · tip `7379638` · PR https://github.com/wysboi123/thoughts/pull/4
 - Ask Femmy: **RC vs RNIap** (fresher) · Clarity Pass price still open separately
 
 ## 2026-10-02 03:15 UTC — Night hourly (home polish)
