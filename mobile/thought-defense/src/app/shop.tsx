@@ -1,21 +1,90 @@
 import { router } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { Alert, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import Animated, {
+  Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withDelay,
+  withTiming,
+} from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { softHaptic } from '../a11y/haptics';
+import { useReducedMotion } from '../a11y/useReducedMotion';
 import { SoftActionToast } from '../components/SoftActionToast';
 import { Atmosphere } from '../components/Atmosphere';
 import { SoftButton } from '../components/SoftButton';
 import type { ToastKind } from '../game/types';
 import { useIap } from '../iap/IapProvider';
-import type { StoreProduct } from '../iap/products';
+import type { ProductKind, StoreProduct } from '../iap/products';
 import { colors } from '../theme/colors';
 import { fonts } from '../theme/typography';
 
-const SECTIONS: { title: string; kind: StoreProduct['kind'] }[] = [
-  { title: 'Clarity Pass', kind: 'subscription' },
-  { title: 'Looks only', kind: 'nonconsumable' },
-  { title: 'Optional boost', kind: 'consumable' },
+const SECTIONS: { title: string; kind: ProductKind; hint: string }[] = [
+  { title: 'Clarity Pass', kind: 'subscription', hint: 'Comfort thank-you · never required' },
+  { title: 'Looks only', kind: 'nonconsumable', hint: 'Themes & glows · no power' },
+  { title: 'Optional boost', kind: 'consumable', hint: 'One soft head start' },
 ];
+
+const PASS_PERKS = [
+  'Quieter between-run notes',
+  'Dawn & Lantern themes included',
+  'Soft Pass badge on Home',
+];
+
+/** Soft preview swatches — looks only, not gameplay stats. */
+const LOOK_SWATCHES: Record<string, { label: string; tones: string[] }> = {
+  cosmetic_dawn: {
+    label: 'Sunrise path',
+    tones: ['#F2E6C8', '#E8C9A0', '#D9CDB8', '#FFE8A8'],
+  },
+  cosmetic_lantern: {
+    label: 'Lantern kindness',
+    tones: [colors.affirmation, colors.gratitude, colors.humor, colors.coreGlow],
+  },
+};
+
+const KIND_ACCENT: Record<ProductKind, string> = {
+  subscription: colors.calm,
+  nonconsumable: colors.gratitude,
+  consumable: colors.clarity,
+};
+
+function SoftCardEnter({
+  index,
+  reduceMotion,
+  children,
+}: {
+  index: number;
+  reduceMotion: boolean;
+  children: React.ReactNode;
+}) {
+  const opacity = useSharedValue(reduceMotion ? 1 : 0);
+  const translateY = useSharedValue(reduceMotion ? 0 : 10);
+
+  useEffect(() => {
+    if (reduceMotion) {
+      opacity.value = 1;
+      translateY.value = 0;
+      return;
+    }
+    opacity.value = withDelay(
+      40 + index * 55,
+      withTiming(1, { duration: 420, easing: Easing.out(Easing.cubic) }),
+    );
+    translateY.value = withDelay(
+      40 + index * 55,
+      withTiming(0, { duration: 420, easing: Easing.out(Easing.cubic) }),
+    );
+  }, [index, opacity, reduceMotion, translateY]);
+
+  const style = useAnimatedStyle(() => ({
+    opacity: opacity.value,
+    transform: [{ translateY: translateY.value }],
+  }));
+
+  return <Animated.View style={style}>{children}</Animated.View>;
+}
 
 export default function ShopScreen() {
   const insets = useSafeAreaInsets();
@@ -28,9 +97,11 @@ export default function ShopScreen() {
     passDaysRemaining,
     describeEntitlements,
   } = useIap();
+  const reduceMotion = useReducedMotion();
   const [busy, setBusy] = useState<string | null>(null);
   const [showIds, setShowIds] = useState(false);
   const [toast, setToast] = useState<{ message: string; kind: ToastKind } | null>(null);
+  let cardIndex = 0;
 
   useEffect(() => {
     if (!toast) return;
@@ -42,10 +113,14 @@ export default function ShopScreen() {
     entitlements.ownedCosmetics.includes(id) ||
     (id === 'clarity_pass_monthly' && entitlements.clarityPassActive);
 
-  const flash = (message: string, kind: ToastKind) => setToast({ message, kind });
+  const flash = (message: string, kind: ToastKind) => {
+    setToast({ message, kind });
+    softHaptic(kind === 'warn' ? 'warn' : kind === 'success' ? 'clear' : 'tap');
+  };
 
   const onBuy = async (id: string) => {
     setBusy(id);
+    softHaptic('tap');
     const result = await purchase(id);
     setBusy(null);
     if (!result.ok) {
@@ -57,6 +132,7 @@ export default function ShopScreen() {
 
   const onRestore = async () => {
     setBusy('restore');
+    softHaptic('tap');
     const { summary } = await restore();
     setBusy(null);
     flash(summary, 'info');
@@ -76,6 +152,14 @@ export default function ShopScreen() {
           Optional comfort only — plant, clear waves, and soft goals stay free. No fake urgency, no
           medical claims.
         </Text>
+
+        <View style={styles.freeStrip} accessibilityRole="text">
+          <Text style={styles.freeStripTitle}>Core loop stays free</Text>
+          <Text style={styles.freeStripBody}>
+            Every wave, plant, upgrade, and soft goal works without a purchase. Pass & packs are
+            thank-yous for looks and quiet comfort.
+          </Text>
+        </View>
 
         <SoftActionToast message={toast?.message ?? null} kind={toast?.kind ?? null} />
 
@@ -114,7 +198,14 @@ export default function ShopScreen() {
           style={styles.restore}
         />
 
-        <Pressable onPress={() => setShowIds((v) => !v)} accessibilityRole="button">
+        <Pressable
+          onPress={() => {
+            softHaptic('tap');
+            setShowIds((v) => !v);
+          }}
+          accessibilityRole="button"
+          accessibilityLabel={showIds ? 'Hide store product IDs' : 'Show store product IDs'}
+        >
           <Text style={styles.idsToggle}>
             {showIds ? 'Hide store product IDs' : 'Show store product IDs'}
           </Text>
@@ -123,83 +214,120 @@ export default function ShopScreen() {
         {SECTIONS.map((section) => {
           const items = products.filter((p) => p.kind === section.kind);
           if (items.length === 0) return null;
+          const accent = KIND_ACCENT[section.kind];
           return (
             <View key={section.kind} style={styles.section}>
-              <Text style={styles.sectionTitle}>{section.title}</Text>
-              {items.map((p) => (
-                <View
-                  key={p.id}
-                  style={[styles.card, owned(p.id) && p.kind !== 'consumable' && styles.cardOwned]}
-                >
-                  <View style={styles.cardTop}>
-                    <Text style={styles.title}>{p.title}</Text>
-                    {owned(p.id) && p.kind !== 'consumable' ? (
-                      <Text style={styles.badge}>
-                        {p.kind === 'subscription' ? 'Active' : 'Owned'}
-                      </Text>
-                    ) : null}
-                  </View>
-                  <Text style={styles.kind}>
-                    {p.kind === 'subscription'
-                      ? 'Subscription'
-                      : p.kind === 'consumable'
-                        ? 'One-time boost'
-                        : 'Cosmetic'}
-                    {' · '}
-                    {p.priceHint}
-                  </Text>
-                  <Text style={styles.blurb}>{p.blurb}</Text>
-                  {showIds ? (
-                    <Text style={styles.ids}>
-                      iOS: {p.iosProductId}
-                      {'\n'}
-                      Android: {p.androidProductId}
-                    </Text>
-                  ) : null}
-                  <SoftButton
-                    label={
-                      owned(p.id) && p.kind === 'subscription'
-                        ? busy === p.id
-                          ? 'Working…'
-                          : 'Extend stub Pass (+30d)'
-                        : owned(p.id) && p.kind !== 'consumable'
-                          ? 'Owned'
-                          : busy === p.id
-                            ? 'Working…'
-                            : p.kind === 'subscription'
-                              ? 'Start Clarity Pass'
-                              : p.kind === 'consumable'
-                                ? 'Get boost'
-                                : 'Get pack'
-                    }
-                    disabled={
-                      busy != null || (owned(p.id) && p.kind === 'nonconsumable')
-                    }
-                    onPress={() => {
-                      if (stubMode && !(owned(p.id) && p.kind === 'nonconsumable')) {
-                        Alert.alert(
-                          stubMode ? 'Stub purchase' : 'Purchase',
-                          stubMode
-                            ? `Simulate ${p.title} on this device? No real charge in stub mode.`
-                            : `Buy ${p.title}?`,
-                          [
-                            { text: 'Cancel', style: 'cancel' },
-                            { text: 'Continue', onPress: () => void onBuy(p.id) },
-                          ],
-                        );
-                        return;
-                      }
-                      void onBuy(p.id);
-                    }}
-                  />
+              <View style={styles.sectionHead}>
+                <View style={[styles.sectionAccent, { backgroundColor: accent }]} />
+                <View style={styles.sectionCopy}>
+                  <Text style={styles.sectionTitle}>{section.title}</Text>
+                  <Text style={styles.sectionHint}>{section.hint}</Text>
                 </View>
-              ))}
+              </View>
+              {items.map((p) => {
+                const idx = cardIndex++;
+                const isPass = p.kind === 'subscription';
+                const isOwned = owned(p.id) && p.kind !== 'consumable';
+                const swatch = LOOK_SWATCHES[p.id];
+                return (
+                  <SoftCardEnter key={p.id} index={idx} reduceMotion={reduceMotion}>
+                    <View
+                      style={[
+                        styles.card,
+                        isPass && styles.cardPass,
+                        isOwned && styles.cardOwned,
+                      ]}
+                    >
+                      {isPass ? (
+                        <Text style={styles.passEyebrow}>Monthly comfort · cancel anytime</Text>
+                      ) : null}
+                      <View style={styles.cardTop}>
+                        <Text style={[styles.title, isPass && styles.titlePass]}>{p.title}</Text>
+                        {isOwned ? (
+                          <Text style={styles.badge}>
+                            {p.kind === 'subscription' ? 'Active' : 'Owned'}
+                          </Text>
+                        ) : null}
+                      </View>
+                      <Text style={[styles.kind, { color: accent }]}>
+                        {p.kind === 'subscription'
+                          ? 'Subscription'
+                          : p.kind === 'consumable'
+                            ? 'One-time boost'
+                            : 'Cosmetic'}
+                        {' · '}
+                        {p.priceHint}
+                      </Text>
+                      <Text style={styles.blurb}>{p.blurb}</Text>
+                      {isPass ? (
+                        <View style={styles.perkList}>
+                          {PASS_PERKS.map((line) => (
+                            <Text key={line} style={styles.perkLine}>
+                              · {line}
+                            </Text>
+                          ))}
+                        </View>
+                      ) : null}
+                      {swatch ? (
+                        <View style={styles.swatchRow} accessibilityLabel={`${swatch.label} palette`}>
+                          <Text style={styles.swatchLabel}>{swatch.label}</Text>
+                          <View style={styles.swatches}>
+                            {swatch.tones.map((tone) => (
+                              <View
+                                key={tone}
+                                style={[styles.swatchDot, { backgroundColor: tone }]}
+                              />
+                            ))}
+                          </View>
+                        </View>
+                      ) : null}
+                      {isOwned && p.kind === 'nonconsumable' ? (
+                        <Text style={styles.ownedNote}>Looks apply in the mindscape — no power.</Text>
+                      ) : null}
+                      {showIds ? (
+                        <Text style={styles.ids}>
+                          iOS: {p.iosProductId}
+                          {'\n'}
+                          Android: {p.androidProductId}
+                        </Text>
+                      ) : null}
+                      <SoftButton
+                        label={buttonLabel(p, owned(p.id), busy)}
+                        disabled={busy != null || (owned(p.id) && p.kind === 'nonconsumable')}
+                        onPress={() => {
+                          if (stubMode && !(owned(p.id) && p.kind === 'nonconsumable')) {
+                            Alert.alert(
+                              'Stub purchase',
+                              `Simulate ${p.title} on this device? No real charge in stub mode.`,
+                              [
+                                { text: 'Cancel', style: 'cancel' },
+                                { text: 'Continue', onPress: () => void onBuy(p.id) },
+                              ],
+                            );
+                            return;
+                          }
+                          void onBuy(p.id);
+                        }}
+                      />
+                    </View>
+                  </SoftCardEnter>
+                );
+              })}
             </View>
           );
         })}
       </ScrollView>
     </Atmosphere>
   );
+}
+
+function buttonLabel(p: StoreProduct, isOwned: boolean, busy: string | null): string {
+  if (busy === p.id) return 'Working…';
+  if (isOwned && p.kind === 'subscription') return 'Extend stub Pass (+30d)';
+  if (isOwned && p.kind !== 'consumable') return 'Owned';
+  if (p.kind === 'subscription') return 'Start Clarity Pass';
+  if (p.kind === 'consumable') return 'Get boost';
+  return 'Get pack';
 }
 
 const styles = StyleSheet.create({
@@ -212,10 +340,31 @@ const styles = StyleSheet.create({
   },
   lead: {
     marginTop: 8,
-    marginBottom: 8,
+    marginBottom: 10,
     fontFamily: fonts.body,
     fontSize: 14,
     lineHeight: 21,
+    color: colors.inkSoft,
+  },
+  freeStrip: {
+    marginBottom: 12,
+    paddingVertical: 12,
+    paddingHorizontal: 14,
+    borderRadius: 16,
+    backgroundColor: 'rgba(91, 138, 122, 0.14)',
+    borderWidth: 1,
+    borderColor: 'rgba(91, 138, 122, 0.28)',
+    gap: 4,
+  },
+  freeStripTitle: {
+    fontFamily: fonts.bodyBold,
+    fontSize: 13,
+    color: colors.brandDeep,
+  },
+  freeStripBody: {
+    fontFamily: fonts.body,
+    fontSize: 12,
+    lineHeight: 18,
     color: colors.inkSoft,
   },
   stub: {
@@ -268,13 +417,31 @@ const styles = StyleSheet.create({
     marginBottom: 14,
     textDecorationLine: 'underline',
   },
-  section: { marginBottom: 8 },
+  section: { marginBottom: 10 },
+  sectionHead: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 10,
+    marginBottom: 10,
+    marginTop: 4,
+  },
+  sectionAccent: {
+    width: 4,
+    alignSelf: 'stretch',
+    minHeight: 28,
+    borderRadius: 2,
+    marginTop: 2,
+  },
+  sectionCopy: { flex: 1, gap: 2 },
   sectionTitle: {
     fontFamily: fonts.bodyBold,
     fontSize: 14,
     color: colors.brandDeep,
-    marginBottom: 8,
-    marginTop: 4,
+  },
+  sectionHint: {
+    fontFamily: fonts.body,
+    fontSize: 12,
+    color: colors.inkSoft,
   },
   card: {
     marginBottom: 14,
@@ -285,9 +452,20 @@ const styles = StyleSheet.create({
     borderColor: colors.line,
     gap: 8,
   },
+  cardPass: {
+    borderColor: 'rgba(91, 138, 122, 0.45)',
+    backgroundColor: 'rgba(91, 138, 122, 0.1)',
+    paddingTop: 14,
+  },
   cardOwned: {
     borderColor: colors.calm,
     backgroundColor: 'rgba(91, 138, 122, 0.12)',
+  },
+  passEyebrow: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 11,
+    color: colors.calm,
+    letterSpacing: 0.2,
   },
   cardTop: {
     flexDirection: 'row',
@@ -296,6 +474,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   title: { fontFamily: fonts.bodyBold, fontSize: 18, color: colors.ink, flex: 1 },
+  titlePass: { fontSize: 20, color: colors.brandDeep },
   badge: {
     fontFamily: fonts.bodyMedium,
     fontSize: 11,
@@ -306,8 +485,40 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.7)',
     overflow: 'hidden',
   },
-  kind: { fontFamily: fonts.bodyMedium, fontSize: 12, color: colors.calm },
+  kind: { fontFamily: fonts.bodyMedium, fontSize: 12 },
   blurb: { fontFamily: fonts.body, fontSize: 14, lineHeight: 20, color: colors.inkSoft },
+  perkList: { gap: 2, marginTop: 2 },
+  perkLine: {
+    fontFamily: fonts.body,
+    fontSize: 13,
+    lineHeight: 19,
+    color: colors.brandDeep,
+  },
+  swatchRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 10,
+    marginTop: 2,
+  },
+  swatchLabel: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 12,
+    color: colors.inkSoft,
+  },
+  swatches: { flexDirection: 'row', gap: 6 },
+  swatchDot: {
+    width: 18,
+    height: 18,
+    borderRadius: 9,
+    borderWidth: 1,
+    borderColor: 'rgba(36,51,58,0.12)',
+  },
+  ownedNote: {
+    fontFamily: fonts.body,
+    fontSize: 12,
+    color: colors.calm,
+  },
   ids: {
     fontFamily: fonts.body,
     fontSize: 11,
