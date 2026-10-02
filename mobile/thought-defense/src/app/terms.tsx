@@ -31,7 +31,7 @@ export default function TermsScreen() {
           Cosmetics and Clarity boosts are optional. The core calm loop remains playable without
           purchase. Contact: ngkdevid@gmail.com
         </Text>
-        <Text style={styles.p}>Last updated: 2026-09-30</Text>
+        <Text style={styles.p}>Last updated: 2026-10-02</Text>
       </ScrollView>
     </Atmosphere>
   );

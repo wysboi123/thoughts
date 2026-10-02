@@ -4,7 +4,7 @@ import type { EnemyKind, TowerKind, Vec2 } from './types';
 export const GAME = {
   name: 'Thought Defense',
   tagline: 'plant kindness. clear the noise.',
-  version: '1.3.2-mobile',
+  version: '1.3.3-mobile',
   startingCalm: 20,
   /** Slightly roomier start so wave-six soft goal stays reachable without rush. */
   startingClarity: 155,

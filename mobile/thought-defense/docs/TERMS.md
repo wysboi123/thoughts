@@ -1,6 +1,6 @@
 # Terms of use (stub)
 
-**Thought Defense** · Last updated: 2026-09-30
+**Thought Defense** · Last updated: 2026-10-02
 
 Placeholder terms for store review. Replace before production publish.
 

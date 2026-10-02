@@ -26,6 +26,7 @@ Priority order. Agents pick the top unchecked item unless Femmy overrides.
 - [x] **v1.3.0 hourly polish** — Lose/retry soft copy (Gentle rest badge · cool mist orbs · peak-aware lead · Try again gently · soft haptic)
 - [x] **v1.3.1 hourly polish** — Shop UX (free-forever strip · Pass perks · look swatches · section accents · soft card enter · buy/restore haptics)
 - [x] **v1.3.2 hourly polish** — Home polish (mindscape vignette · Plant/Clear/Hold Peace chips · staggered CTAs · Clarity Pass badge)
+- [x] **v1.3.3 hourly polish** — Settings + privacy (comfort strip · section accents · soft enter · restore haptics · sectioned privacy copy · terms date)
 - [ ] **Native IAP** — wire RevenueCat or react-native-iap; turn off stubMode for store builds
 - [ ] **EAS project** — Femmy: `eas init` + real `projectId` + credentials
 - [ ] **Store products** — create IAP ids in App Store Connect + Play Console
