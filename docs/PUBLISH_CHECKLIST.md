@@ -41,11 +41,18 @@ Full notes: `mobile/thought-defense/docs/EAS_BUILD.md`
 ## Before submit
 
 - [ ] Host Privacy + Terms HTTPS URLs
-- [ ] Screenshots (phone + optional tablet)
-- [ ] Native IAP (not stub-only)
+- [ ] Screenshots (phone + optional tablet) — see `mobile/thought-defense/docs/SCREENSHOTS.md`
+- [ ] Native IAP (not stub-only) — Femmy picks **RevenueCat** or **react-native-iap**
 - [ ] Restore purchases tested in sandbox
-- [ ] Age rating / content questionnaire
+- [ ] Clarity Pass price confirm (shipping default **$2.99/mo** until answered)
+- [ ] Age rating / content questionnaire — metaphor game; **not** medical/therapy
 - [ ] Paste store URLs into [`PUBLISH_STATUS.md`](PUBLISH_STATUS.md)
+
+### Soft publish notes (v1.2.9)
+
+- Core loop + soft goals stay free; Pass/cosmetics/boost are optional comfort only.
+- Capture frames: Home · mid-wave plan view · Clarity shop · Settings (incl. Replay welcome).
+- Do not use medical claims, diagnosis language, or Roblox assets in store listing.
 
 ## Don't commit
 

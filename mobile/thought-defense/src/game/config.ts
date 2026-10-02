@@ -4,10 +4,12 @@ import type { EnemyKind, TowerKind, Vec2 } from './types';
 export const GAME = {
   name: 'Thought Defense',
   tagline: 'plant kindness. clear the noise.',
-  version: '1.2.8-mobile',
+  version: '1.2.9-mobile',
   startingCalm: 20,
-  startingClarity: 140,
+  /** Slightly roomier start so wave-six soft goal stays reachable without rush. */
+  startingClarity: 155,
   waveCount: 8,
+  /** Base breath between waves; late waves add a soft extra beat (see intermissionSeconds). */
   secondsBetweenWaves: 8,
   leakPenalty: 1,
   maxTowerLevel: 3,
@@ -133,38 +135,72 @@ export const GAME = {
       splashRadius: number;
     }
   >,
+  /**
+   * Wave balance (v1.2.9): early teaching stays gentle; mid waves open space
+   * before Self-Critic; late waves trade raw density for clearer beats so
+   * plant/upgrade choices matter without a sudden pile-up.
+   */
   waves: [
-    [{ kind: 'Doubt' as EnemyKind, count: 4, spacing: 1.2 }],
+    [{ kind: 'Doubt' as EnemyKind, count: 4, spacing: 1.25 }],
     [
-      { kind: 'Doubt' as EnemyKind, count: 5, spacing: 1.0 },
-      { kind: 'Worry' as EnemyKind, count: 3, spacing: 0.9 },
+      { kind: 'Doubt' as EnemyKind, count: 4, spacing: 1.1 },
+      { kind: 'Worry' as EnemyKind, count: 3, spacing: 1.0 },
     ],
-    [{ kind: 'Worry' as EnemyKind, count: 7, spacing: 0.85 }],
+    [{ kind: 'Worry' as EnemyKind, count: 6, spacing: 0.95 }],
     [
-      { kind: 'Doubt' as EnemyKind, count: 5, spacing: 1.0 },
-      { kind: 'SelfCritic' as EnemyKind, count: 2, spacing: 1.6 },
+      { kind: 'Doubt' as EnemyKind, count: 5, spacing: 1.05 },
+      { kind: 'SelfCritic' as EnemyKind, count: 2, spacing: 1.7 },
     ],
     [
-      { kind: 'Worry' as EnemyKind, count: 6, spacing: 0.75 },
+      { kind: 'Worry' as EnemyKind, count: 5, spacing: 0.85 },
+      { kind: 'Doubt' as EnemyKind, count: 4, spacing: 1.0 },
+      { kind: 'SelfCritic' as EnemyKind, count: 2, spacing: 1.45 },
+    ],
+    [
+      { kind: 'Doubt' as EnemyKind, count: 5, spacing: 0.95 },
+      { kind: 'Worry' as EnemyKind, count: 5, spacing: 0.8 },
+      { kind: 'SelfCritic' as EnemyKind, count: 2, spacing: 1.5 },
+    ],
+    [
+      { kind: 'Worry' as EnemyKind, count: 7, spacing: 0.75 },
       { kind: 'SelfCritic' as EnemyKind, count: 3, spacing: 1.3 },
-      { kind: 'Doubt' as EnemyKind, count: 4, spacing: 0.9 },
+      { kind: 'Doubt' as EnemyKind, count: 3, spacing: 1.0 },
     ],
     [
-      { kind: 'Doubt' as EnemyKind, count: 6, spacing: 0.85 },
+      { kind: 'Doubt' as EnemyKind, count: 6, spacing: 0.9 },
       { kind: 'Worry' as EnemyKind, count: 6, spacing: 0.7 },
-      { kind: 'SelfCritic' as EnemyKind, count: 2, spacing: 1.4 },
-    ],
-    [
-      { kind: 'Worry' as EnemyKind, count: 8, spacing: 0.65 },
-      { kind: 'SelfCritic' as EnemyKind, count: 4, spacing: 1.15 },
-    ],
-    [
-      { kind: 'Doubt' as EnemyKind, count: 7, spacing: 0.8 },
-      { kind: 'Worry' as EnemyKind, count: 7, spacing: 0.6 },
-      { kind: 'SelfCritic' as EnemyKind, count: 5, spacing: 1.05 },
+      { kind: 'SelfCritic' as EnemyKind, count: 4, spacing: 1.2 },
     ],
   ],
 } as const;
+
+/** Aggregated counts for next-wave preview HUD (order: Doubt → Worry → SelfCritic). */
+export function describeWave(
+  waveIndex: number,
+): { kind: EnemyKind; count: number }[] {
+  const recipe = GAME.waves[waveIndex];
+  if (!recipe) return [];
+  const order: EnemyKind[] = ['Doubt', 'Worry', 'SelfCritic'];
+  const totals: Record<EnemyKind, number> = {
+    Doubt: 0,
+    Worry: 0,
+    SelfCritic: 0,
+  };
+  for (const group of recipe) {
+    totals[group.kind] += group.count;
+  }
+  return order
+    .filter((kind) => totals[kind] > 0)
+    .map((kind) => ({ kind, count: totals[kind] }));
+}
+
+/** Soft intermission length — a touch longer after wave 4. */
+export function intermissionSeconds(finishedWave: number): number {
+  const base = GAME.secondsBetweenWaves;
+  if (finishedWave >= 6) return base + 3;
+  if (finishedWave >= 4) return base + 2;
+  return base;
+}
 
 /** Soft FX color per tower kind (plan-view ripples). */
 export const TOWER_FX_COLOR: Record<TowerKind, string> = {

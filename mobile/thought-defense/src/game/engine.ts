@@ -1,4 +1,10 @@
-import { GAME, TOWER_FX_COLOR, pointOnPath, upgradeCost } from './config';
+import {
+  GAME,
+  TOWER_FX_COLOR,
+  intermissionSeconds,
+  pointOnPath,
+  upgradeCost,
+} from './config';
 import { emptySoftGoals } from './softGoals';
 import type {
   Enemy,
@@ -392,8 +398,9 @@ export function tick(state: GameState, dt: number): GameState {
     next.waveIndex = finished;
     next.phase = 'intermission';
     next.waveActive = false;
-    next.intermissionLeft = GAME.secondsBetweenWaves;
-    next.toast = `Breath between waves — next in ${GAME.secondsBetweenWaves}s`;
+    const breath = intermissionSeconds(finished);
+    next.intermissionLeft = breath;
+    next.toast = `Breath between waves — next in ${breath}s`;
     next.toastKind = 'info';
   }
 

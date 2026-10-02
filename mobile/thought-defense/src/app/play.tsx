@@ -9,6 +9,7 @@ import { GameBoard } from '../components/GameBoard';
 import { PauseOverlay } from '../components/PauseOverlay';
 import { SoftActionToast } from '../components/SoftActionToast';
 import { SoftButton } from '../components/SoftButton';
+import { WavePreviewChip } from '../components/WavePreviewChip';
 import { WaveResultModal } from '../components/WaveResultModal';
 import { GAME } from '../game/config';
 import {
@@ -136,6 +137,15 @@ export default function PlayScreen() {
             themeDawn={entitlements.ownedCosmetics.includes('cosmetic_dawn')}
           />
         </View>
+
+        <WavePreviewChip
+          waveIndex={state.waveIndex}
+          visible={
+            !paused &&
+            !showResult &&
+            (state.phase === 'prep' || state.phase === 'intermission')
+          }
+        />
 
         {(state.phase === 'prep' || state.phase === 'intermission') && !paused && (
           <SoftButton

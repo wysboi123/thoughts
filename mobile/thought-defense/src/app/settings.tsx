@@ -4,6 +4,7 @@ import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Atmosphere } from '../components/Atmosphere';
 import { SoftButton } from '../components/SoftButton';
+import { resetWelcomeDismissed } from '../components/SoftWelcomeSheet';
 import { GAME } from '../game/config';
 import { useIap } from '../iap/IapProvider';
 import { colors } from '../theme/colors';
@@ -71,6 +72,26 @@ export default function SettingsScreen() {
               ).toLocaleString()}
             </Text>
           ) : null}
+        </View>
+
+        <View style={styles.block}>
+          <Text style={styles.h}>Onboarding</Text>
+          <SoftButton
+            label="Replay welcome"
+            variant="soft"
+            onPress={async () => {
+              await resetWelcomeDismissed();
+              Alert.alert(
+                'Welcome ready',
+                'Head Home to see the soft welcome again. Skip anytime.',
+                [{ text: 'Go Home', onPress: () => router.replace('/') }, { text: 'OK' }],
+              );
+            }}
+          />
+          <Text style={styles.note}>
+            Replays the first-launch sheet (metaphor · plant loop · optional comfort). OS Reduce
+            Motion still softens the rise animation.
+          </Text>
         </View>
 
         <View style={styles.block}>

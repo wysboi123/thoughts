@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, { useEffect, useRef, useState } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Animated, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { softHaptic } from '../a11y/haptics';
 import { MIN_TAP, TAP_SLOP } from '../a11y/tapTargets';
@@ -7,7 +8,12 @@ import { useReducedMotion } from '../a11y/useReducedMotion';
 import { colors } from '../theme/colors';
 import { fonts } from '../theme/typography';
 
-const STORAGE_KEY = 'td.welcome.dismissed.v1';
+export const WELCOME_STORAGE_KEY = 'td.welcome.dismissed.v1';
+
+/** Clears dismiss flag so SoftWelcomeSheet shows again on next Home focus. */
+export async function resetWelcomeDismissed(): Promise<void> {
+  await AsyncStorage.removeItem(WELCOME_STORAGE_KEY);
+}
 
 const PAGES = [
   {
@@ -35,26 +41,28 @@ export function SoftWelcomeSheet() {
   const rise = useRef(new Animated.Value(0)).current;
   const reduceMotion = useReducedMotion();
 
-  useEffect(() => {
-    let alive = true;
-    (async () => {
-      try {
-        const raw = await AsyncStorage.getItem(STORAGE_KEY);
-        if (alive) {
-          setVisible(raw !== '1');
-          setReady(true);
-        }
-      } catch {
-        if (alive) {
-          setVisible(true);
-          setReady(true);
-        }
-      }
-    })();
-    return () => {
-      alive = false;
-    };
+  const readFlag = useCallback(async () => {
+    try {
+      const raw = await AsyncStorage.getItem(WELCOME_STORAGE_KEY);
+      setVisible(raw !== '1');
+      setReady(true);
+      if (raw !== '1') setPage(0);
+    } catch {
+      setVisible(true);
+      setReady(true);
+      setPage(0);
+    }
   }, []);
+
+  useEffect(() => {
+    void readFlag();
+  }, [readFlag]);
+
+  useFocusEffect(
+    useCallback(() => {
+      void readFlag();
+    }, [readFlag]),
+  );
 
   useEffect(() => {
     if (!ready || !visible) return;
@@ -74,7 +82,7 @@ export function SoftWelcomeSheet() {
     softHaptic('clear');
     setVisible(false);
     try {
-      await AsyncStorage.setItem(STORAGE_KEY, '1');
+      await AsyncStorage.setItem(WELCOME_STORAGE_KEY, '1');
     } catch {
       /* keep dismissed in-session */
     }
