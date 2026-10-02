@@ -1,6 +1,14 @@
 # Wake notes
 
-Newest first. Overnight agents append after every push.
+Newest first.
+
+## 2026-10-02 17:15 UTC — Daytime idle + merge main
+
+- Hourly daytime idle: no Femmy Gmail reply (Clarity Pass / RC vs RNIap)
+- Merged `origin/main` (4eb6957) into mobile branch; kept mobile ops docs on conflict
+- No feature ship
+
+ Overnight agents append after every push.
 
 ## 2026-10-02 05:00 UTC — OVERNIGHT STOP (mobile night wrap)
 
