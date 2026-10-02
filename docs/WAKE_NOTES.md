@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-02 23:15 UTC — Night hourly (v1.3.5 look atmosphere)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy reply
+- **Shipped v1.3.5 (beyond 1.3.4):** Dawn mist Atmosphere · Lantern plant-card rims in Draft C tray · Reduce Motion holds orbs
+- Did not redo board Dawn/Lantern discs · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-02 23:00 UTC — Night resume (cosmetic looks v1.3.4)
 
 - Timer `overnight-daily-resume` · no Femmy Gmail reply · Clarity Pass **$2.99** · RC vs RNIap still open
