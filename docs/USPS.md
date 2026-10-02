@@ -30,7 +30,7 @@ Research refresh 2026-10-02: Creator Hub ranks **intentional co-play days** as a
 
 **Night 7 deepen:** SoftCompany pulse/dynamic copy · SoftWelcome themes · SoftGoals/Sit fade · Haze board sync tint + proximity boost · Bus status machine + company toast · Porch jar HUD/SurfaceGui · Couch Lighting + plaque + loft toast  
 
-**Night 8 deepen:** Discovery-aligned polish — WelcomeSign/hammock sync · bus wave/ticket company · porch proximity-true company · couch portal/plaque copy · themed SoftGoals
+**Night 8 deepen:** Discovery-aligned polish — WelcomeSign/hammock sync · bus wave/ticket company · porch proximity-true company · couch portal/plaque copy · themed SoftGoals · SoftCompany rising-count pulse · Haze 3.0 publish-ready
 
 ## Copy hooks (thumbnails / description)
 
