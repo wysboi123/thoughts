@@ -9,7 +9,7 @@ Newest first. Overnight agents append after every push.
 - **Shipped v1.3.0 (beyond v1.2.9):** **lose/retry soft copy** — Gentle rest badge · cool mist orbs + clarity halo · LOSE_LINES flavor · peak-wave-aware lead · “Try again gently” CTA · soft tap haptic · lose-path toast sync
 - Did **not** redo v1.2.9 wave balance / WavePreviewChip / replay welcome, or earlier soft-goals / IAP / welcome.
 - Ops: re-armed `overnight-stop-5am-utc` once (~05:00 UTC) · confirmed/re-armed `thought-defense-mobile-hourly` · **did not** cancel stop · ManagePullRequest **missing** — push only; preserve PR #4 title
-- Branch `cursor/mobile-thought-defense-5a0d` · tip *(after push)* · PR https://github.com/wysboi123/thoughts/pull/4
+- Branch `cursor/mobile-thought-defense-5a0d` · tip `196d1b9` · PR https://github.com/wysboi123/thoughts/pull/4
 - Ask Femmy: **RC vs RNIap** (fresher) · Clarity Pass price still open separately
 
 ## 2026-10-02 00:30 UTC — Night hourly (wave balance + preview)
