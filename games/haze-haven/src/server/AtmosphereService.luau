@@ -63,22 +63,14 @@ function AtmosphereService.start()
 						local signB = if vibeSynced then Color3.fromRGB(78, 58, 98) else Color3.fromRGB(62, 48, 78)
 						child.Color = signA:Lerp(signB, pulse)
 						local welcomeGui = child:FindFirstChildWhichIsA("SurfaceGui")
-						if welcomeGui then
-							-- second TextLabel is tagline body (title is first)
-							local labels = {}
-							for _, guiChild in welcomeGui:GetChildren() do
-								if guiChild:IsA("TextLabel") then
-									table.insert(labels, guiChild)
-								end
-							end
-							if #labels >= 2 then
-								labels[2].Text = if vibeSynced
-									then "vibes sync when friends are near"
-									else Config.Tagline
-								labels[2].TextColor3 = if vibeSynced
-									then Color3.fromRGB(230, 200, 255)
-									else Color3.fromRGB(190, 170, 220)
-							end
+						local welcomeBody = welcomeGui and welcomeGui:FindFirstChild("WelcomeBody")
+						if welcomeBody and welcomeBody:IsA("TextLabel") then
+							welcomeBody.Text = if vibeSynced
+								then "vibes sync when friends are near"
+								else Config.Tagline
+							welcomeBody.TextColor3 = if vibeSynced
+								then Color3.fromRGB(230, 200, 255)
+								else Color3.fromRGB(190, 170, 220)
 						end
 					elseif child.Name == "HammockCloth" and child:IsA("BasePart") then
 						local home = child:GetAttribute("HomePosition")

@@ -389,6 +389,7 @@ function WorldBuilder.build(workspace: Workspace): Folder
 	welcomeGui.Face = Enum.NormalId.Front
 	welcomeGui.Parent = welcomeSign
 	local welcomeTitle = Instance.new("TextLabel")
+	welcomeTitle.Name = "WelcomeTitle"
 	welcomeTitle.Size = UDim2.new(1, 0, 0.45, 0)
 	welcomeTitle.BackgroundTransparency = 1
 	welcomeTitle.Font = Enum.Font.GothamMedium
@@ -397,6 +398,7 @@ function WorldBuilder.build(workspace: Workspace): Folder
 	welcomeTitle.Text = Config.GameName
 	welcomeTitle.Parent = welcomeGui
 	local welcomeBody = Instance.new("TextLabel")
+	welcomeBody.Name = "WelcomeBody"
 	welcomeBody.Position = UDim2.new(0, 0, 0.48, 0)
 	welcomeBody.Size = UDim2.new(1, -16, 0.5, 0)
 	welcomeBody.BackgroundTransparency = 1
