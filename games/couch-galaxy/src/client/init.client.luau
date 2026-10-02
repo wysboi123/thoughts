@@ -257,6 +257,7 @@ local function setLightBoost(partName: string, brightness: number, range: number
 	end
 end
 
+local couchCompanyWelcomed = false
 SoftCompany.mount(playerGui, player, {
 	Radius = Config.Proximity.Radius,
 	Color = Color3.fromRGB(190, 170, 220),
@@ -274,6 +275,15 @@ SoftCompany.mount(playerGui, player, {
 	OnCountChanged = function(n)
 		refreshPlace(n >= 1)
 		local company = n >= 1
+		if company and not couchCompanyWelcomed then
+			couchCompanyWelcomed = true
+			SoftWelcome.show(
+				playerGui,
+				"soft company",
+				if inGalaxy then "someone nearby — loft side feels softer" else "someone nearby — couch side feels softer",
+				couchStyle
+			)
+		end
 		local world = Workspace:FindFirstChild("CouchGalaxyWorld")
 		if inGalaxy and world then
 			local hammock = world:FindFirstChild("GalaxyHammockCloth", true)
