@@ -1,14 +1,20 @@
 # Wake notes
 
-Newest first.
+Newest first. Overnight agents append after every push.
+
+## 2026-10-02 23:00 UTC — Night resume (cosmetic looks v1.3.4)
+
+- Timer `overnight-daily-resume` · no Femmy Gmail reply · Clarity Pass **$2.99** · RC vs RNIap still open
+- **Shipped v1.3.4:** `activeLooksFromEntitlements` — Dawn path + Lantern tower rims in play; **Clarity Pass unlocks both themes** (matches shop blurb); look badge under board
+- Typecheck clean · Draft C locked · re-armed `overnight-stop-5am-utc` once → ~05:00
+- Branch `cursor/mobile-thought-defense-5a0d` · PR #4
+- Ask Femmy: **RC vs RNIap** (not A/B/C)
 
 ## 2026-10-02 17:15 UTC — Daytime idle + merge main
 
 - Hourly daytime idle: no Femmy Gmail reply (Clarity Pass / RC vs RNIap)
 - Merged `origin/main` (4eb6957) into mobile branch; kept mobile ops docs on conflict
 - No feature ship
-
- Overnight agents append after every push.
 
 ## 2026-10-02 05:00 UTC — OVERNIGHT STOP (mobile night wrap)
 

@@ -26,6 +26,7 @@ import {
 import { softGoalsDone, SOFT_GOAL_TOTAL } from '../game/softGoals';
 import type { GameState } from '../game/types';
 import { useIap } from '../iap/IapProvider';
+import { activeLooksFromEntitlements } from '../iap/cosmetics';
 import { colors } from '../theme/colors';
 import { fonts } from '../theme/typography';
 
@@ -33,6 +34,7 @@ export default function PlayScreen() {
   const insets = useSafeAreaInsets();
   const { width, height: winH } = useWindowDimensions();
   const { entitlements, consumePendingClarity } = useIap();
+  const looks = activeLooksFromEntitlements(entitlements);
   const [state, setState] = useState<GameState>(() => createInitialState());
   const [paused, setPaused] = useState(false);
 
@@ -134,9 +136,20 @@ export default function PlayScreen() {
             height={boardH}
             onPad={onPad}
             onBackground={() => setState((s) => clearSelection(s))}
-            themeDawn={entitlements.ownedCosmetics.includes('cosmetic_dawn')}
+            themeDawn={looks.dawn}
+            themeLantern={looks.lantern}
           />
         </View>
+
+        {(looks.dawn || looks.lantern) && !paused && !showResult ? (
+          <Text style={styles.lookBadge} accessibilityLabel="Active looks">
+            {looks.dawn && looks.lantern
+              ? 'Looks · Dawn + Lantern'
+              : looks.dawn
+                ? 'Looks · Dawn Path'
+                : 'Looks · Lantern Towers'}
+          </Text>
+        ) : null}
 
         <WavePreviewChip
           waveIndex={state.waveIndex}
@@ -220,6 +233,13 @@ const styles = StyleSheet.create({
     fontSize: 13,
   },
   boardWrap: { alignItems: 'center', marginTop: 6, flexGrow: 1, justifyContent: 'center' },
+  lookBadge: {
+    textAlign: 'center',
+    marginTop: 4,
+    fontFamily: fonts.bodyMedium,
+    fontSize: 11,
+    color: colors.brand,
+  },
   begin: { marginTop: 8 },
   softAd: {
     textAlign: 'center',

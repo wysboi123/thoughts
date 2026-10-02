@@ -16,16 +16,16 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-02 ~02:15:** Shop UX polish v1.3.1 — free-forever strip · Pass perks · look swatches · section accents · soft card enter · buy/restore haptics.
 - **2026-10-02 ~03:15:** Home polish v1.3.2 — mindscape vignette · loop chips · staggered CTAs · Pass badge.
 - **2026-10-02 ~04:15:** Settings + privacy polish v1.3.3 — comfort strip · section accents · privacy sections · haptics.
+- **2026-10-02 ~23:00 night resume:** Cosmetic looks in play v1.3.4 — Dawn path + Lantern rims; Pass unlocks both themes (product blurb).
 
 ## State
 
-- Version: **mobile 1.3.3** (settings + privacy polish; builds on 1.3.2 home)
+- Version: **mobile 1.3.4** (cosmetic looks apply in mindscape)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: `25dd665` (overnight stop wake note)
-- Hourly timer: **`thought-defense-mobile-hourly`** (retire mistargeted `thought-defense-hourly` Roblox payload)
-- Night envelope: **STOPPED** after 05:00 UTC 2026-10-02 · resume **23:00 UTC** via `overnight-daily-resume`
-- Stop timer: **`overnight-stop-5am-utc`** — do not re-arm until next night resume
+- Tip: _(updated this night resume)_
+- Hourly timer: **`thought-defense-mobile-hourly`**
+- Night envelope: **ACTIVE** 23:00→05:00 UTC · stop armed `overnight-stop-5am-utc`
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
-- Next (23:00): native IAP once Femmy picks stack · store screenshots · EAS preview · or Femmy RC/RNIap / Pass price reply
+- Next: native IAP once Femmy picks stack · store screenshots · EAS preview · or Femmy RC/RNIap / Pass price reply

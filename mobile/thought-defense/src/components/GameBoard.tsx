@@ -8,6 +8,7 @@ import { PadDisc } from './PadDisc';
 import { PeaceCore } from './PeaceCore';
 import { SoftFxLayer } from './SoftFxLayer';
 import { WalkingEnemy } from './WalkingEnemy';
+import { LANTERN_RIM } from '../iap/cosmetics';
 
 type Props = {
   state: GameState;
@@ -16,6 +17,8 @@ type Props = {
   onPad: (index: number) => void;
   onBackground?: () => void;
   themeDawn?: boolean;
+  /** Lantern Towers pack / Pass — tower discs get soft lantern rims */
+  themeLantern?: boolean;
 };
 
 const TOWER_COLOR: Record<TowerKind, string> = {
@@ -30,6 +33,12 @@ const TOWER_GLYPH: Record<TowerKind, string> = {
   Humor: 'H',
 };
 
+const LANTERN_FILL: Record<TowerKind, string> = {
+  Affirmation: '#7BC4A0',
+  Gratitude: '#D4B46A',
+  Humor: '#E89878',
+};
+
 /** True top-down / plan-view mindscape — pads & towers as discs, path as corridors. */
 export function GameBoard({
   state,
@@ -38,6 +47,7 @@ export function GameBoard({
   onPad,
   onBackground,
   themeDawn,
+  themeLantern,
 }: Props) {
   const pathColor = themeDawn ? '#E8C9A0' : colors.path;
   const pathEdge = themeDawn ? '#F0D4A8' : colors.pathEdge;
@@ -181,7 +191,15 @@ export function GameBoard({
             label={tower ? `${TOWER_GLYPH[tower.kind]}${tower.level}` : '+'}
             filled={!!tower}
             selected={selected}
-            fillColor={tower ? TOWER_COLOR[tower.kind] : 'rgba(255,255,255,0.72)'}
+            fillColor={
+              tower
+                ? themeLantern
+                  ? LANTERN_FILL[tower.kind]
+                  : TOWER_COLOR[tower.kind]
+                : 'rgba(255,255,255,0.72)'
+            }
+            lantern={!!tower && !!themeLantern}
+            lanternRim={tower && themeLantern ? LANTERN_RIM[tower.kind] : undefined}
             pulseAt={pulseAt}
             now={state.elapsed}
             onPress={() => onPad(i)}

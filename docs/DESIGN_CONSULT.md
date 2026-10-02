@@ -27,7 +27,7 @@ Stub IAP stays until you pick + we wire. Reply **RC** / **RNIap** / other.
 
 *Clarity Pass price still unanswered — keeping **$2.99/mo** default until you say otherwise (not re-asking price this batch).*
 
-Shipped this hour: **v1.3.3** settings + privacy polish (on-device comfort strip · section accents · sectioned privacy copy · restore haptics).
+Shipped this night resume: **v1.3.4** — Dawn + Lantern looks apply on the mindscape board (Pass unlocks both themes per listing).
 
 ## Defaults
 

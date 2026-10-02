@@ -22,6 +22,9 @@ type Props = {
   filled: boolean;
   selected: boolean;
   fillColor: string;
+  /** Lantern Towers pack / Pass — soft rim glow only */
+  lantern?: boolean;
+  lanternRim?: string;
   /** Elapsed time of last plant/upgrade pulse for this pad (null = idle) */
   pulseAt: number | null;
   now: number;
@@ -36,6 +39,8 @@ export function PadDisc({
   filled,
   selected,
   fillColor,
+  lantern,
+  lanternRim,
   pulseAt,
   now,
   onPress,
@@ -96,12 +101,24 @@ export function PadDisc({
         style={[
           styles.pad,
           {
-            borderColor: selected ? colors.brandDeep : filled ? 'rgba(255,255,255,0.7)' : colors.line,
+            borderColor: selected
+              ? colors.brandDeep
+              : lantern && filled && lanternRim
+                ? lanternRim
+                : filled
+                  ? 'rgba(255,255,255,0.7)'
+                  : colors.line,
             backgroundColor: filled ? fillColor : 'rgba(255,255,255,0.72)',
-            borderWidth: selected ? 3 : 2,
+            borderWidth: selected ? 3 : lantern && filled ? 2.5 : 2,
+            shadowColor: lantern && filled ? lanternRim ?? '#E8D48A' : 'transparent',
+            shadowOpacity: lantern && filled ? 0.55 : 0,
+            shadowRadius: lantern && filled ? 8 : 0,
+            shadowOffset: { width: 0, height: 0 },
+            elevation: lantern && filled ? 3 : 0,
           },
         ]}
       >
+        {lantern && filled ? <Text style={styles.lanternDot}>✦</Text> : null}
         <Text style={styles.padText}>{label}</Text>
       </Pressable>
     </Animated.View>
@@ -115,6 +132,13 @@ const styles = StyleSheet.create({
     borderRadius: (MIN_TAP + 4) / 2,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  lanternDot: {
+    position: 'absolute',
+    top: 2,
+    right: 4,
+    fontSize: 8,
+    color: 'rgba(255,248,220,0.95)',
   },
   padText: {
     fontFamily: fonts.bodyBold,
