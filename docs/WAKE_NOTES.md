@@ -2,6 +2,16 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-02 01:30 UTC — Night hourly (lose/retry soft copy)
+
+- Timer `thought-defense-mobile-hourly` fired ~01:26 UTC Oct 2 → **NIGHT polish** (UTC hour 1), not daytime idle.
+- **No Femmy replies** (`from:ngkdevid@gmail.com` empty) · DESIGN_CONSULT unchanged → Clarity Pass stays **$2.99/mo**; tonight’s consult remains **RevenueCat vs RNIap** (not re-asking price).
+- **Shipped v1.3.0 (beyond v1.2.9):** **lose/retry soft copy** — Gentle rest badge · cool mist orbs + clarity halo · LOSE_LINES flavor · peak-wave-aware lead · “Try again gently” CTA · soft tap haptic · lose-path toast sync
+- Did **not** redo v1.2.9 wave balance / WavePreviewChip / replay welcome, or earlier soft-goals / IAP / welcome.
+- Ops: re-armed `overnight-stop-5am-utc` once (~05:00 UTC) · confirmed/re-armed `thought-defense-mobile-hourly` · **did not** cancel stop · ManagePullRequest **missing** — push only; preserve PR #4 title
+- Branch `cursor/mobile-thought-defense-5a0d` · tip *(after push)* · PR https://github.com/wysboi123/thoughts/pull/4
+- Ask Femmy: **RC vs RNIap** (fresher) · Clarity Pass price still open separately
+
 ## 2026-10-02 00:30 UTC — Night hourly (wave balance + preview)
 
 - Timer `thought-defense-mobile-hourly` fired ~00:27 UTC Oct 2 → **NIGHT polish** (UTC hour 0), not daytime idle.

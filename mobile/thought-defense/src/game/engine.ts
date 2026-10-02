@@ -312,7 +312,7 @@ export function tick(state: GameState, dt: number): GameState {
       next.toastKind = 'warn';
       if (next.calm <= 0) {
         next.phase = 'lost';
-        next.toast = 'The core needs rest. Try again gently.';
+        next.toast = 'Soft pause — the core needs rest. Try again gently.';
         next.toastKind = 'warn';
         next.enemies = [];
         next.waveActive = false;

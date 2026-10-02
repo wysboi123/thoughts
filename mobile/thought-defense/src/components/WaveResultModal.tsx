@@ -34,6 +34,14 @@ const WIN_LINES = [
   'You planted calmly. The core is still.',
 ];
 
+/** Soft lose / rest lines — never punitive, no medical framing. */
+const LOSE_LINES = [
+  'The core asked for a pause. That is allowed.',
+  'Noise got loud — rest is part of the loop.',
+  'A soft stop, not a failure. Plant again when ready.',
+  'Calm dipped. The path will wait for you.',
+];
+
 const SPARKS = [
   { leftPct: 12, topPct: 8, size: 10, delay: 0, color: colors.affirmation },
   { leftPct: 78, topPct: 12, size: 8, delay: 120, color: colors.gratitude },
@@ -43,6 +51,15 @@ const SPARKS = [
   { leftPct: 88, topPct: 42, size: 9, delay: 300, color: colors.affirmation },
 ];
 
+/** Cooler, slower mist orbs for the gentle-rest card. */
+const MIST_ORBS = [
+  { leftPct: 10, topPct: 14, size: 14, delay: 0, color: colors.clarity },
+  { leftPct: 74, topPct: 10, size: 11, delay: 160, color: colors.calm },
+  { leftPct: 18, topPct: 70, size: 12, delay: 280, color: 'rgba(106, 158, 174, 0.55)' },
+  { leftPct: 70, topPct: 66, size: 10, delay: 90, color: colors.clarity },
+  { leftPct: 46, topPct: 6, size: 8, delay: 220, color: colors.calm },
+];
+
 function SoftSpark({
   leftPct,
   topPct,
@@ -50,6 +67,7 @@ function SoftSpark({
   delay,
   color,
   reduceMotion,
+  slow,
 }: {
   leftPct: number;
   topPct: number;
@@ -57,29 +75,32 @@ function SoftSpark({
   delay: number;
   color: string;
   reduceMotion: boolean;
+  slow?: boolean;
 }) {
-  const pulse = useSharedValue(reduceMotion ? 0.55 : 0);
+  const pulse = useSharedValue(reduceMotion ? 0.45 : 0);
+  const up = slow ? 1400 : 900;
+  const down = slow ? 1400 : 900;
 
   useEffect(() => {
     if (reduceMotion) {
-      pulse.value = 0.55;
+      pulse.value = 0.45;
       return;
     }
     pulse.value = withDelay(
       delay,
       withRepeat(
         withSequence(
-          withTiming(1, { duration: 900, easing: Easing.inOut(Easing.quad) }),
-          withTiming(0.25, { duration: 900, easing: Easing.inOut(Easing.quad) }),
+          withTiming(1, { duration: up, easing: Easing.inOut(Easing.quad) }),
+          withTiming(0.22, { duration: down, easing: Easing.inOut(Easing.quad) }),
         ),
         -1,
         false,
       ),
     );
-  }, [delay, pulse, reduceMotion]);
+  }, [delay, pulse, reduceMotion, up, down]);
 
   const style = useAnimatedStyle(() => ({
-    opacity: pulse.value * 0.75,
+    opacity: pulse.value * (slow ? 0.5 : 0.75),
     transform: [{ scale: 0.7 + pulse.value * 0.55 }],
   }));
 
@@ -102,13 +123,25 @@ function SoftSpark({
   );
 }
 
+function loseLead(peakWave: number): string {
+  if (peakWave >= 6) {
+    return 'You reached the late path — soft goals still count. Rest, then try again gently.';
+  }
+  if (peakWave >= 3) {
+    return 'Mid-path rest. Soft goals still count — plant again when you are ready.';
+  }
+  return 'An early pause is fine. Soft goals still count.';
+}
+
 export function WaveResultModal({ visible, state, onRetry, onClose }: Props) {
   const won = state.phase === 'won';
   const done = softGoalsDone(state.softGoals);
   const reduceMotion = useReducedMotion();
   const enter = useSharedValue(0);
   const halo = useSharedValue(0.35);
-  const winLine = WIN_LINES[state.thoughtsCleared % WIN_LINES.length] ?? WIN_LINES[0];
+  const lineIndex = state.thoughtsCleared + state.peakWaveReached;
+  const winLine = WIN_LINES[lineIndex % WIN_LINES.length] ?? WIN_LINES[0];
+  const loseLine = LOSE_LINES[lineIndex % LOSE_LINES.length] ?? LOSE_LINES[0];
 
   useEffect(() => {
     if (!visible) {
@@ -116,9 +149,10 @@ export function WaveResultModal({ visible, state, onRetry, onClose }: Props) {
       return;
     }
     if (won) softHaptic('clear');
+    else softHaptic('tap');
     if (reduceMotion) {
       enter.value = 1;
-      halo.value = 0.55;
+      halo.value = won ? 0.55 : 0.4;
       return;
     }
     enter.value = 0;
@@ -133,7 +167,15 @@ export function WaveResultModal({ visible, state, onRetry, onClose }: Props) {
         false,
       );
     } else {
-      halo.value = 0.3;
+      // Slower, cooler breath for gentle rest — not a “fail” flash.
+      halo.value = withRepeat(
+        withSequence(
+          withTiming(0.55, { duration: 1800, easing: Easing.inOut(Easing.sin) }),
+          withTiming(0.28, { duration: 1800, easing: Easing.inOut(Easing.sin) }),
+        ),
+        -1,
+        false,
+      );
     }
   }, [visible, won, reduceMotion, enter, halo]);
 
@@ -146,32 +188,48 @@ export function WaveResultModal({ visible, state, onRetry, onClose }: Props) {
   }));
 
   const haloStyle = useAnimatedStyle(() => ({
-    opacity: won ? halo.value * 0.55 : 0,
+    opacity: halo.value * (won ? 0.55 : 0.42),
     transform: [{ scale: 0.92 + halo.value * 0.12 }],
   }));
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
       <Pressable style={styles.backdrop} onPress={onClose}>
-        <Animated.View style={[styles.halo, haloStyle]} pointerEvents="none" />
+        <Animated.View
+          style={[styles.halo, won ? styles.haloWon : styles.haloLost, haloStyle]}
+          pointerEvents="none"
+        />
         <Pressable onPress={(e) => e.stopPropagation()}>
-          <Animated.View style={[styles.card, won && styles.cardWon, cardStyle]}>
+          <Animated.View
+            style={[styles.card, won ? styles.cardWon : styles.cardLost, cardStyle]}
+          >
             {won && !reduceMotion
               ? SPARKS.map((s, i) => (
-                  <SoftSpark key={i} {...s} reduceMotion={reduceMotion} />
+                  <SoftSpark key={`w-${i}`} {...s} reduceMotion={reduceMotion} />
+                ))
+              : null}
+            {!won && !reduceMotion
+              ? MIST_ORBS.map((s, i) => (
+                  <SoftSpark key={`l-${i}`} {...s} reduceMotion={reduceMotion} slow />
                 ))
               : null}
             {won ? (
               <View style={styles.badge} accessibilityRole="text">
                 <Text style={styles.badgeText}>Soft win</Text>
               </View>
-            ) : null}
+            ) : (
+              <View style={[styles.badge, styles.badgeLost]} accessibilityRole="text">
+                <Text style={[styles.badgeText, styles.badgeTextLost]}>Gentle rest</Text>
+              </View>
+            )}
             <Text style={styles.title}>{won ? 'Peace held' : 'Soft pause'}</Text>
-            {won ? <Text style={styles.winLine}>{winLine}</Text> : null}
+            <Text style={[styles.flavorLine, !won && styles.flavorLineLost]}>
+              {won ? winLine : loseLine}
+            </Text>
             <Text style={styles.lead}>
               {won
                 ? 'The noise grew quiet. Soft goals for this run:'
-                : 'The core needs rest. Soft goals still count:'}
+                : loseLead(state.peakWaveReached)}
             </Text>
             <Text style={styles.count}>
               {done}/{SOFT_GOAL_TOTAL} soft goals · {state.thoughtsCleared} thoughts cleared · peak
@@ -186,7 +244,15 @@ export function WaveResultModal({ visible, state, onRetry, onClose }: Props) {
               </View>
             ))}
             <View style={styles.actions}>
-              <SoftButton label="Try again" onPress={onRetry} />
+              <SoftButton
+                label={won ? 'Play again' : 'Try again gently'}
+                onPress={onRetry}
+                accessibilityHint={
+                  won
+                    ? 'Starts a fresh mindscape run'
+                    : 'Starts again with a soft reset — no penalty'
+                }
+              />
               <SoftButton
                 label="Soft goals journal"
                 variant="soft"
@@ -217,7 +283,12 @@ const styles = StyleSheet.create({
     width: 280,
     height: 280,
     borderRadius: 140,
+  },
+  haloWon: {
     backgroundColor: colors.affirmation,
+  },
+  haloLost: {
+    backgroundColor: colors.clarity,
   },
   card: {
     borderRadius: 24,
@@ -232,6 +303,10 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(107, 184, 154, 0.45)',
     backgroundColor: '#EEF6F2',
   },
+  cardLost: {
+    borderColor: 'rgba(106, 158, 174, 0.4)',
+    backgroundColor: '#EEF3F5',
+  },
   spark: {
     position: 'absolute',
   },
@@ -243,22 +318,31 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(107, 184, 154, 0.22)',
     marginBottom: 2,
   },
+  badgeLost: {
+    backgroundColor: 'rgba(106, 158, 174, 0.22)',
+  },
   badgeText: {
     fontFamily: fonts.bodyMedium,
     fontSize: 12,
     color: colors.brand,
     letterSpacing: 0.3,
   },
+  badgeTextLost: {
+    color: colors.clarity,
+  },
   title: {
     fontFamily: fonts.display,
     fontSize: 28,
     color: colors.brandDeep,
   },
-  winLine: {
+  flavorLine: {
     fontFamily: fonts.displaySoft,
     fontSize: 16,
     color: colors.calm,
     marginBottom: 2,
+  },
+  flavorLineLost: {
+    color: colors.clarity,
   },
   lead: {
     fontFamily: fonts.body,
