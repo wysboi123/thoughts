@@ -62,6 +62,32 @@ function AtmosphereService.start()
 						local signA = if vibeSynced then Color3.fromRGB(58, 45, 78) else Color3.fromRGB(48, 38, 62)
 						local signB = if vibeSynced then Color3.fromRGB(78, 58, 98) else Color3.fromRGB(62, 48, 78)
 						child.Color = signA:Lerp(signB, pulse)
+						local welcomeGui = child:FindFirstChildWhichIsA("SurfaceGui")
+						if welcomeGui then
+							-- second TextLabel is tagline body (title is first)
+							local labels = {}
+							for _, guiChild in welcomeGui:GetChildren() do
+								if guiChild:IsA("TextLabel") then
+									table.insert(labels, guiChild)
+								end
+							end
+							if #labels >= 2 then
+								labels[2].Text = if vibeSynced
+									then "vibes sync when friends are near"
+									else Config.Tagline
+								labels[2].TextColor3 = if vibeSynced
+									then Color3.fromRGB(230, 200, 255)
+									else Color3.fromRGB(190, 170, 220)
+							end
+						end
+					elseif child.Name == "HammockCloth" and child:IsA("BasePart") then
+						local home = child:GetAttribute("HomePosition")
+						if typeof(home) == "Vector3" then
+							child.Position = home + Vector3.new(0, math.sin(t * 0.95) * 0.12, 0)
+						end
+						child.Color = if vibeSynced
+							then Color3.fromRGB(180, 140, 210)
+							else Color3.fromRGB(160, 120, 180)
 					elseif child.Name == "VibeBoard" and child:IsA("BasePart") then
 						local syncLight = child:FindFirstChild("VibeBoardSyncLight")
 						local synced = syncLight and syncLight:IsA("PointLight") and syncLight.Brightness > 1.2
@@ -79,15 +105,15 @@ function AtmosphereService.start()
 						if typeof(home) == "Vector3" then
 							child.Position = home + Vector3.new(0, math.sin(t * 0.8 + home.X) * 0.1, 0)
 						end
-					elseif child.Name == "HammockCloth" and child:IsA("BasePart") then
-						local home = child:GetAttribute("HomePosition")
-						if typeof(home) == "Vector3" then
-							child.Position = home + Vector3.new(0, math.sin(t * 0.95) * 0.12, 0)
-						end
 					elseif child.Name == "HammockSeat" and child:IsA("BasePart") then
 						local home = child:GetAttribute("HomePosition")
 						if typeof(home) == "Vector3" then
 							child.Position = home + Vector3.new(0, math.sin(t * 0.95) * 0.12, 0)
+						end
+						if vibeSynced then
+							child.Color = Color3.fromRGB(200, 160, 220)
+						else
+							child.Color = Color3.fromRGB(180, 140, 200)
 						end
 					end
 				end

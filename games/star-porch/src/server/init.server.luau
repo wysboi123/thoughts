@@ -545,12 +545,32 @@ for i = 1, Config.Firefly.Count do
 	end)
 end
 
+local function companyNearOnPorch(): boolean
+	local roots: { BasePart } = {}
+	for _, p in Players:GetPlayers() do
+		local character = p.Character
+		local root = character and character:FindFirstChild("HumanoidRootPart")
+		if root and root:IsA("BasePart") then
+			table.insert(roots, root)
+		end
+	end
+	local radius = Config.Proximity.Radius
+	for i = 1, #roots do
+		for j = i + 1, #roots do
+			if (roots[i].Position - roots[j].Position).Magnitude <= radius then
+				return true
+			end
+		end
+	end
+	return false
+end
+
 -- Firefly drift + soft chime sway
 task.spawn(function()
 	local t = 0
 	while true do
 		t += task.wait(0.04)
-		local companyOnPorch = #Players:GetPlayers() >= 2
+		local companyOnPorch = companyNearOnPorch()
 		local jarPos = Vector3.new(10, 4.2, 11)
 		for i, fly in fireflies do
 			if fly:GetAttribute("Collected") then
@@ -636,16 +656,19 @@ task.spawn(function()
 						local baseN = if typeof(base) == "number" then base else 0.7
 						fillBoost = math.clamp((jarGlow.Size.X - baseN) / 1.1, 0, 1)
 					end
-					light.Brightness = (1.8 + fillBoost * 0.6) + math.sin(t * 1.3) * 0.4
-					light.Range = 22 + fillBoost * 8
+					local companyBoost = if companyOnPorch then 0.45 else 0
+					light.Brightness = (1.8 + fillBoost * 0.6 + companyBoost) + math.sin(t * 1.3) * 0.4
+					light.Range = 22 + fillBoost * 8 + (if companyOnPorch then 4 else 0)
 				end
 			elseif string.find(child.Name, "StringLight", 1, true) and child:IsA("BasePart") then
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then
 					local fillBoost = light:GetAttribute("JarFillBoost")
 					local fillN = if typeof(fillBoost) == "number" then fillBoost else 0
-					light.Brightness = (0.95 + fillN * 0.85) + math.sin(t * 2.1 + child.Position.X) * (0.35 + fillN * 0.15)
-					light.Range = 12 + fillN * 6
+					local companyBoost = if companyOnPorch then 0.35 else 0
+					light.Brightness = (0.95 + fillN * 0.85 + companyBoost)
+						+ math.sin(t * 2.1 + child.Position.X) * (0.35 + fillN * 0.15)
+					light.Range = 12 + fillN * 6 + (if companyOnPorch then 3 else 0)
 				end
 			elseif string.find(child.Name, "SkyStar", 1, true) and child:IsA("BasePart") then
 				child.Transparency = 0.15 + math.sin(t * 1.8 + child.Position.X) * 0.2
@@ -664,7 +687,8 @@ task.spawn(function()
 			elseif child:IsA("BasePart") and child:GetAttribute("IsSwing") then
 				local home = child:GetAttribute("HomePosition")
 				if typeof(home) == "Vector3" then
-					local sway = math.sin(t * 0.9) * 0.35
+					local amp = if companyOnPorch then 0.48 else 0.35
+					local sway = math.sin(t * 0.9) * amp
 					child.Position = home + Vector3.new(sway, 0, 0)
 				end
 			end

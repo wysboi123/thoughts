@@ -163,36 +163,6 @@ local function tintTimetable(company: boolean)
 	end
 end
 
-local companyWelcomed = false
-SoftCompany.mount(playerGui, player, {
-	Radius = Config.Proximity.Radius,
-	Color = Color3.fromRGB(190, 200, 170),
-	AloneText = "soft company · alone is fine",
-	OneText = "soft company · waiting together",
-	ManyText = function(n)
-		return ("soft company · %d nearby · wait together"):format(n)
-	end,
-	OnCountChanged = function(n)
-		nearbyCount = n
-		if phase == "waiting" then
-			refreshStatus()
-		end
-		tintTimetable(n >= 1)
-		if counter and counter.Parent then
-			counter.BackgroundColor3 = if n >= 1 then Color3.fromRGB(40, 48, 36) else Color3.fromRGB(30, 32, 28)
-		end
-		if n >= 1 and not companyWelcomed then
-			companyWelcomed = true
-			SoftWelcome.show(playerGui, "waiting together", "someone nearby — the timetable knows", busStyle)
-		end
-		tryTogetherGoal()
-	end,
-})
-
-Remotes.TicketCollected.OnClientEvent:Connect(function()
-	complete("ticket")
-end)
-
 local waveBtn = Instance.new("TextButton")
 waveBtn.Name = "WaveButton"
 waveBtn.AnchorPoint = Vector2.new(0.5, 1)
@@ -232,6 +202,46 @@ Remotes.WaveAtBus.OnClientEvent:Connect(function(name: string)
 			refreshStatus()
 		end
 	end)
+end)
+
+local companyWelcomed = false
+SoftCompany.mount(playerGui, player, {
+	Radius = Config.Proximity.Radius,
+	Color = Color3.fromRGB(190, 200, 170),
+	AloneText = "soft company · alone is fine",
+	OneText = "soft company · waiting together",
+	ManyText = function(n)
+		return ("soft company · %d nearby · wait together"):format(n)
+	end,
+	OnCountChanged = function(n)
+		nearbyCount = n
+		if phase == "waiting" then
+			refreshStatus()
+		end
+		tintTimetable(n >= 1)
+		if counter and counter.Parent then
+			counter.BackgroundColor3 = if n >= 1 then Color3.fromRGB(40, 48, 36) else Color3.fromRGB(30, 32, 28)
+			counter.TextColor3 = if n >= 1 then Color3.fromRGB(255, 230, 160) else Color3.fromRGB(240, 210, 140)
+		end
+		if waveBtn.Parent then
+			waveBtn.BackgroundColor3 = if n >= 1 then Color3.fromRGB(70, 95, 70) else Color3.fromRGB(50, 70, 55)
+			waveBtn.Text = if n >= 1 then "Wave together" else "Wave at bus"
+		end
+		local world = Workspace:FindFirstChild("BusStopWorld")
+		local notepad = world and world:FindFirstChild("NotepadBoard")
+		if notepad and notepad:IsA("BasePart") then
+			notepad.Color = if n >= 1 then Color3.fromRGB(52, 55, 42) else Color3.fromRGB(45, 42, 38)
+		end
+		if n >= 1 and not companyWelcomed then
+			companyWelcomed = true
+			SoftWelcome.show(playerGui, "waiting together", "someone nearby — the timetable knows", busStyle)
+		end
+		tryTogetherGoal()
+	end,
+})
+
+Remotes.TicketCollected.OnClientEvent:Connect(function()
+	complete("ticket")
 end)
 
 local SoftSit = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftSit"))
