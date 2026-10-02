@@ -6,10 +6,10 @@ Femmy’s chill Roblox line. All Rojo filesystem-first. Play: `cd games/<slug> &
 
 | Slug | Version | Verb | USP |
 | --- | --- | --- | --- |
-| [`haze-haven`](../games/haze-haven) | 2.7 | float / sit | Publish WelcomeSign + HUD sync |
-| [`couch-galaxy`](../games/couch-galaxy) | 2.4 | climb / float | Company lamps + plaque warm |
-| [`bus-stop-forever`](../games/bus-stop-forever) | 2.6 | wait / wave | News box + rain when together |
-| [`star-porch`](../games/star-porch) | 2.5 | sit / glow | Fire pit + path company warm |
+| [`haze-haven`](../games/haze-haven) | 2.8 | float / sit | WelcomeSign sync wash + themed goals |
+| [`couch-galaxy`](../games/couch-galaxy) | 2.5 | climb / float | Portal/screen company + themed goals |
+| [`bus-stop-forever`](../games/bus-stop-forever) | 2.7 | wait / wave | Lamps/tickets warm when waiting |
+| [`star-porch`](../games/star-porch) | 2.6 | sit / glow | Chime/rocker company sway |
 
 ## Parked for later (files kept)
 

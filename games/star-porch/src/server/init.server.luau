@@ -574,9 +574,10 @@ task.spawn(function()
 			if child:IsA("BasePart") and child:GetAttribute("IsChime") then
 				local home = child:GetAttribute("HomePosition")
 				if typeof(home) == "Vector3" then
-					local sway = math.sin(t * 1.4 + home.X) * 0.15
+					local amp = if companyOnPorch then 0.28 else 0.15
+					local sway = math.sin(t * 1.4 + home.X) * amp
 					child.CFrame = CFrame.new(home + Vector3.new(sway, 0, sway * 0.4))
-						* CFrame.Angles(0, 0, math.sin(t * 1.6 + home.X) * 0.08)
+						* CFrame.Angles(0, 0, math.sin(t * 1.6 + home.X) * (if companyOnPorch then 0.14 else 0.08))
 				end
 			elseif child.Name == "JarGlow" and child:IsA("BasePart") then
 				local light = child:FindFirstChildOfClass("PointLight")
@@ -656,7 +657,8 @@ task.spawn(function()
 			elseif child:IsA("BasePart") and child:GetAttribute("IsRocker") then
 				local home = child:GetAttribute("HomePosition")
 				if typeof(home) == "Vector3" then
-					local sway = math.sin(t * 0.7 + home.X) * 0.08
+					local amp = if companyOnPorch then 0.16 else 0.08
+					local sway = math.sin(t * 0.7 + home.X) * amp
 					child.Position = home + Vector3.new(0, 0, sway)
 				end
 			elseif child:IsA("BasePart") and child:GetAttribute("IsSwing") then

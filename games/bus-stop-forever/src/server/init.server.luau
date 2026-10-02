@@ -281,6 +281,21 @@ local function refreshTimetable()
 	if news and news:IsA("BasePart") then
 		news.Color = if n >= 1 then Color3.fromRGB(60, 110, 85) else Color3.fromRGB(50, 90, 70)
 	end
+	for _, child in world:GetChildren() do
+		if child:IsA("BasePart") and string.find(child.Name, "LampHead", 1, true) then
+			local light = child:FindFirstChildOfClass("PointLight")
+			if light then
+				light.Brightness = if n >= 1 then 2.2 else 1.8
+				light.Range = if n >= 1 then 32 else 28
+			end
+		elseif child:IsA("BasePart") and child:GetAttribute("IsTicket") and not child:GetAttribute("Collected") then
+			local light = child:FindFirstChildOfClass("PointLight")
+			if light then
+				light.Brightness = if n >= 1 then 2.1 else 1.5
+			end
+			child.Color = if n >= 1 then Color3.fromRGB(255, 220, 140) else Config.Ticket.Color
+		end
+	end
 end
 
 task.spawn(function()

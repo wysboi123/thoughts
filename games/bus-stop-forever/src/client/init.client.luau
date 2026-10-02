@@ -133,6 +133,11 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	{ Id = "ticket", Label = "pick up a ticket" },
 	{ Id = "wave", Label = "wave when the bus stops" },
 	{ Id = "together", Label = "wait together on a bench" },
+}, {
+	AccentColor = Color3.fromRGB(120, 160, 110),
+	FrameColor = Color3.fromRGB(24, 28, 22),
+	TitleColor = Color3.fromRGB(210, 230, 190),
+	RowColor = Color3.fromRGB(150, 165, 145),
 })
 
 local function tryTogetherGoal()

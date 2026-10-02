@@ -101,6 +101,11 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	{ Id = "swing", Label = "try the porch swing" },
 	{ Id = "flies", Label = "collect 4 fireflies" },
 	{ Id = "jar", Label = "watch the jar fill" },
+}, {
+	AccentColor = Color3.fromRGB(140, 180, 120),
+	FrameColor = Color3.fromRGB(22, 28, 20),
+	TitleColor = Color3.fromRGB(200, 230, 180),
+	RowColor = Color3.fromRGB(150, 170, 140),
 })
 
 Remotes.FireflyCollected.OnClientEvent:Connect(function(count: number)

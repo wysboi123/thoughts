@@ -56,9 +56,12 @@ function AtmosphereService.start()
 						end
 					elseif child:IsA("BasePart") and string.find(child.Name, "Mist", 1, true) then
 						local base = if child.Name == "LoftMist" then 0.65 else 0.55
-						child.Transparency = base + math.sin(t * 0.45 + child.Position.X * 0.05) * 0.08
+						local mistSoft = if vibeSynced then 0.06 else 0
+						child.Transparency = base + mistSoft + math.sin(t * 0.45 + child.Position.X * 0.05) * 0.08
 					elseif child.Name == "WelcomeSign" and child:IsA("BasePart") then
-						child.Color = Color3.fromRGB(48, 38, 62):Lerp(Color3.fromRGB(62, 48, 78), pulse)
+						local signA = if vibeSynced then Color3.fromRGB(58, 45, 78) else Color3.fromRGB(48, 38, 62)
+						local signB = if vibeSynced then Color3.fromRGB(78, 58, 98) else Color3.fromRGB(62, 48, 78)
+						child.Color = signA:Lerp(signB, pulse)
 					elseif child.Name == "VibeBoard" and child:IsA("BasePart") then
 						local syncLight = child:FindFirstChild("VibeBoardSyncLight")
 						local synced = syncLight and syncLight:IsA("PointLight") and syncLight.Brightness > 1.2
@@ -66,7 +69,9 @@ function AtmosphereService.start()
 						local baseB = if synced then Color3.fromRGB(70, 52, 95) else Color3.fromRGB(55, 42, 72)
 						child.Color = baseA:Lerp(baseB, pulse)
 					elseif child.Name == "LoungeRug" and child:IsA("BasePart") then
-						child.Color = Color3.fromRGB(90, 60, 110):Lerp(Color3.fromRGB(110, 75, 130), pulse * 0.6)
+						local rugA = if vibeSynced then Color3.fromRGB(110, 75, 135) else Color3.fromRGB(90, 60, 110)
+						local rugB = if vibeSynced then Color3.fromRGB(130, 90, 155) else Color3.fromRGB(110, 75, 130)
+						child.Color = rugA:Lerp(rugB, pulse * 0.6)
 					elseif child.Name == "LoungeTable" and child:IsA("BasePart") then
 						child.Color = Color3.fromRGB(70, 55, 85):Lerp(Color3.fromRGB(90, 70, 105), pulse * 0.55)
 					elseif child:IsA("BasePart") and string.find(child.Name, "LoftPlant", 1, true) then

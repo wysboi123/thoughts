@@ -2,6 +2,14 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-02 01:00 UTC — Night 8 checkpoint 1 (quiet)
+
+- Active: **Haze 2.7** · **Couch 2.4** · **Bus 2.6** · **Porch 2.5**
+- Shipped since resume: WelcomeSign publish verify · HUD/tag sync · candle/pad wash · company lamps · soft rain · fire pit/path warm
+- 4 commits since 2026-10-01 23:00 UTC; parked untouched
+- Still blocked: Perplexity Q-001–004 · first Studio publish
+- Quiet mode; next CP ~03:00 · stop 05:00 · **one digest email at stop only**
+
 ## 2026-10-01 23:00 UTC — Night 8 resume
 
 - Stop re-armed → 05:00 UTC (`overnight-stop-5am-utc`); quiet CP ~01:00 / ~03:00

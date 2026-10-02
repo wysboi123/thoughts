@@ -27,6 +27,10 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	{ Id = "sit", Label = "sit somewhere" },
 	{ Id = "float", Label = "take a float" },
 	{ Id = "sync", Label = "vibe sync near a friend" },
+}, {
+	AccentColor = Color3.fromRGB(160, 120, 210),
+	FrameColor = Color3.fromRGB(28, 22, 42),
+	TitleColor = Color3.fromRGB(220, 200, 255),
 })
 
 Remotes.OrbCollected.OnClientEvent:Connect(function(count: number)

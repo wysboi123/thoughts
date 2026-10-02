@@ -8,11 +8,27 @@ export type Goal = {
 	Label: string,
 }
 
+export type SoftGoalsStyle = {
+	AccentColor: Color3?,
+	FrameColor: Color3?,
+	TitleColor: Color3?,
+	RowColor: Color3?,
+}
+
 local SoftGoals = {}
 
-function SoftGoals.mount(playerGui: PlayerGui, titleText: string, goals: { Goal }): ({ [string]: boolean }, (string) -> ())
+function SoftGoals.mount(
+	playerGui: PlayerGui,
+	titleText: string,
+	goals: { Goal },
+	style: SoftGoalsStyle?
+): ({ [string]: boolean }, (string) -> ())
 	local done: { [string]: boolean } = {}
 	local labels: { [string]: TextLabel } = {}
+	local accent = (style and style.AccentColor) or Color3.fromRGB(100, 85, 140)
+	local frameColor = (style and style.FrameColor) or Color3.fromRGB(24, 20, 36)
+	local titleColor = (style and style.TitleColor) or Color3.fromRGB(210, 190, 240)
+	local rowColor = (style and style.RowColor) or Color3.fromRGB(160, 150, 180)
 
 	local gui = Instance.new("ScreenGui")
 	gui.Name = "SoftGoalsHud"
@@ -24,7 +40,7 @@ function SoftGoals.mount(playerGui: PlayerGui, titleText: string, goals: { Goal 
 	frame.AnchorPoint = Vector2.new(1, 0)
 	frame.Position = UDim2.new(1, -24, 0, 28)
 	frame.Size = UDim2.fromOffset(220, 28 + #goals * 22)
-	frame.BackgroundColor3 = Color3.fromRGB(24, 20, 36)
+	frame.BackgroundColor3 = frameColor
 	frame.BackgroundTransparency = 0.3
 	frame.Parent = gui
 
@@ -33,7 +49,7 @@ function SoftGoals.mount(playerGui: PlayerGui, titleText: string, goals: { Goal 
 	corner.Parent = frame
 
 	local stroke = Instance.new("UIStroke")
-	stroke.Color = Color3.fromRGB(100, 85, 140)
+	stroke.Color = accent
 	stroke.Thickness = 1
 	stroke.Transparency = 0.6
 	stroke.Parent = frame
@@ -45,7 +61,7 @@ function SoftGoals.mount(playerGui: PlayerGui, titleText: string, goals: { Goal 
 	title.Font = Enum.Font.GothamMedium
 	title.TextSize = 13
 	title.TextXAlignment = Enum.TextXAlignment.Left
-	title.TextColor3 = Color3.fromRGB(210, 190, 240)
+	title.TextColor3 = titleColor
 	title.Text = titleText
 	title.Parent = frame
 
@@ -59,7 +75,7 @@ function SoftGoals.mount(playerGui: PlayerGui, titleText: string, goals: { Goal 
 		row.Font = Enum.Font.Gotham
 		row.TextSize = 12
 		row.TextXAlignment = Enum.TextXAlignment.Left
-		row.TextColor3 = Color3.fromRGB(160, 150, 180)
+		row.TextColor3 = rowColor
 		row.Text = "○  " .. goal.Label
 		row.Parent = frame
 		labels[goal.Id] = row

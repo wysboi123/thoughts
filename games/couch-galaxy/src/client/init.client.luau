@@ -189,6 +189,10 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	{ Id = "galaxy", Label = "visit the galaxy loft" },
 	{ Id = "stars", Label = "collect 3 stars" },
 	{ Id = "both", Label = "visit both worlds tonight" },
+}, {
+	AccentColor = Color3.fromRGB(140, 120, 200),
+	FrameColor = Color3.fromRGB(26, 20, 40),
+	TitleColor = Color3.fromRGB(220, 205, 255),
 })
 
 local function tryBothWorlds()
@@ -288,6 +292,14 @@ SoftCompany.mount(playerGui, player, {
 			setLightBoost("TableLamp", if company then 1.8 else 1.2)
 			setLightBoost("FloorLampGlow", if company then 2.0 else 1.4)
 			setLightBoost("NightWindow", if company then 1.5 else 1.0, if company then 18 else 14)
+			setLightBoost("SoftScreen", if company then 1.5 else 1.0)
+			local portal = world and world:FindFirstChild("SkylightPortal")
+			if portal and portal:IsA("BasePart") then
+				local pl = portal:FindFirstChildOfClass("PointLight")
+				if pl then
+					pl.Brightness = if company then 3.6 else 3.0
+				end
+			end
 			local worldHome = Workspace:FindFirstChild("CouchGalaxyWorld")
 			if worldHome then
 				local plaque = worldHome:FindFirstChild("TwoWorldsPlaque")
