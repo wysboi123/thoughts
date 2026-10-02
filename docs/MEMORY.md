@@ -19,7 +19,7 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: *(update after push)*
+- Tip: `77e2c8f`
 - Hourly timer: **`thought-defense-mobile-hourly`** (retire mistargeted `thought-defense-hourly` Roblox payload)
 - Night envelope: **OPEN** 23:00→05:00 UTC 2026-10-01/02 · stop via `overnight-stop-5am-utc`
 - Stop timer: **`overnight-stop-5am-utc`** — keep armed (~05:00 UTC)
