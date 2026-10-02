@@ -14,14 +14,15 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-02 ~00:30:** Wave balance v1.2.9 — softer mid/late pacing + next-wave preview + Settings replay welcome.
 - **2026-10-02 ~01:30:** Lose/retry soft copy v1.3.0 — Gentle rest badge · cool mist orbs · peak-aware lead · Try again gently.
 - **2026-10-02 ~02:15:** Shop UX polish v1.3.1 — free-forever strip · Pass perks · look swatches · section accents · soft card enter · buy/restore haptics.
+- **2026-10-02 ~03:15:** Home polish v1.3.2 — mindscape vignette · loop chips · staggered CTAs · Pass badge.
 
 ## State
 
-- Version: **mobile 1.3.1** (shop UX polish; builds on 1.3.0 lose/retry)
+- Version: **mobile 1.3.2** (home polish; builds on 1.3.1 shop UX)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: `2a3b6ca`
+- Tip: *(set after push)*
 - Hourly timer: **`thought-defense-mobile-hourly`** (retire mistargeted `thought-defense-hourly` Roblox payload)
 - Night envelope: **OPEN** 23:00→05:00 UTC 2026-10-01/02 · stop via `overnight-stop-5am-utc`
 - Stop timer: **`overnight-stop-5am-utc`** — keep armed (~05:00 UTC)
