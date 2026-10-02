@@ -617,7 +617,8 @@ task.spawn(function()
 			elseif child.Name == "WarmMug" and child:IsA("BasePart") then
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then
-					light.Brightness = 0.4 + math.sin(t * 2.2) * 0.25
+					local companyBoost = if companyOnPorch then 0.35 else 0
+					light.Brightness = 0.4 + companyBoost + math.sin(t * 2.2) * 0.25
 				end
 			elseif child.Name == "SideTable" and child:IsA("BasePart") then
 				local warm = (math.sin(t * 0.9) + 1) / 2
@@ -634,16 +635,19 @@ task.spawn(function()
 			elseif child.Name == "FirePitGlow" and child:IsA("BasePart") then
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then
-					light.Brightness = 1.4 + math.sin(t * 2.8) * 0.45
+					local companyBoost = if companyOnPorch then 0.55 else 0
+					light.Brightness = 1.4 + companyBoost + math.sin(t * 2.8) * 0.45
+					light.Range = if companyOnPorch then 22 else 18
 				end
-				child.Transparency = 0.22 + math.sin(t * 3.1) * 0.06
+				child.Transparency = (if companyOnPorch then 0.15 else 0.22) + math.sin(t * 3.1) * 0.06
 			elseif child.Name == "FirePitRing" and child:IsA("BasePart") then
 				local warm = (math.sin(t * 2.8) + 1) / 2
 				child.Color = Color3.fromRGB(70, 65, 60):Lerp(Color3.fromRGB(95, 75, 55), warm * 0.5)
 			elseif child.Name == "YardPathGlow" and child:IsA("BasePart") then
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then
-					light.Brightness = 0.85 + math.sin(t * 1.25) * 0.3
+					local companyBoost = if companyOnPorch then 0.35 else 0
+					light.Brightness = 0.85 + companyBoost + math.sin(t * 1.25) * 0.3
 				end
 				child.Transparency = 0.5 + math.sin(t * 1.25) * 0.1
 			elseif child.Name == "PorchLamp" and child:IsA("BasePart") then

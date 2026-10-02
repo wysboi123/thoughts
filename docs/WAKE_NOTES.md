@@ -2,11 +2,19 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-02 01:07 UTC — Night 8 USP deepen (post-CP1)
+
+- Research: `docs/research/hangout-usps-2026-10-02.md` (Creator Hub intentional co-play + bounce)
+- USPs re-prioritized in `docs/USPS.md`; soft invite prompt queued post-publish
+- Shipped: Haze **2.9** WelcomeSign/hammock sync · Bus **2.8** wave/notepad · Porch **2.7** proximity company · Couch **2.6** portal/plaque
+- Parked untouched; no invented audio
+- Quiet mode; next CP ~03:00 · stop 05:00 · **one digest email at stop only**
+
 ## 2026-10-02 01:00 UTC — Night 8 checkpoint 1 (quiet)
 
-- Active: **Haze 2.7** · **Couch 2.4** · **Bus 2.6** · **Porch 2.5**
-- Shipped since resume: WelcomeSign publish verify · HUD/tag sync · candle/pad wash · company lamps · soft rain · fire pit/path warm
-- 4 commits since 2026-10-01 23:00 UTC; parked untouched
+- Active: **Haze 2.8** · **Couch 2.5** · **Bus 2.7** · **Porch 2.6** (post SoftGoals CP1)
+- Shipped since resume: WelcomeSign publish verify · HUD/tag sync · candle/pad wash · company lamps · soft rain · fire pit/path warm · themed SoftGoals
+- Parked untouched
 - Still blocked: Perplexity Q-001–004 · first Studio publish
 - Quiet mode; next CP ~03:00 · stop 05:00 · **one digest email at stop only**
 

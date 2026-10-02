@@ -337,6 +337,15 @@ SoftCompany.mount(playerGui, player, {
 				if rug and rug:IsA("BasePart") then
 					rug.Color = if company then Color3.fromRGB(90, 60, 120) else Color3.fromRGB(70, 45, 95)
 				end
+				for _, child in worldHome:GetChildren() do
+					if child:IsA("BasePart") and string.find(child.Name, "StringLight", 1, true) then
+						local light = child:FindFirstChildOfClass("PointLight")
+						if light then
+							light.Brightness = if company then 1.5 else 1.0
+							light.Range = if company then 14 else 10
+						end
+					end
+				end
 			end
 		end
 	end,

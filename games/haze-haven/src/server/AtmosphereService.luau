@@ -99,7 +99,9 @@ function AtmosphereService.start()
 						local rugB = if vibeSynced then Color3.fromRGB(130, 90, 155) else Color3.fromRGB(110, 75, 130)
 						child.Color = rugA:Lerp(rugB, pulse * 0.6)
 					elseif child.Name == "LoungeTable" and child:IsA("BasePart") then
-						child.Color = Color3.fromRGB(70, 55, 85):Lerp(Color3.fromRGB(90, 70, 105), pulse * 0.55)
+						local tableA = if vibeSynced then Color3.fromRGB(85, 65, 105) else Color3.fromRGB(70, 55, 85)
+						local tableB = if vibeSynced then Color3.fromRGB(105, 80, 125) else Color3.fromRGB(90, 70, 105)
+						child.Color = tableA:Lerp(tableB, pulse * 0.55)
 					elseif child:IsA("BasePart") and string.find(child.Name, "LoftPlant", 1, true) then
 						local home = child:GetAttribute("HomePosition")
 						if typeof(home) == "Vector3" then

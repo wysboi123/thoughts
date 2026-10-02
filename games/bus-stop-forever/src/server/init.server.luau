@@ -294,6 +294,10 @@ local function refreshTimetable()
 				light.Brightness = if n >= 1 then 2.1 else 1.5
 			end
 			child.Color = if n >= 1 then Color3.fromRGB(255, 220, 140) else Config.Ticket.Color
+		elseif child:IsA("BasePart") and string.find(child.Name, "PlanterGreen", 1, true) then
+			child.Color = if n >= 1 then Color3.fromRGB(90, 140, 95) else Color3.fromRGB(70, 120, 80)
+		elseif child.Name == "NotepadBoard" and child:IsA("BasePart") then
+			child.Color = if n >= 1 then Color3.fromRGB(52, 55, 42) else Color3.fromRGB(45, 42, 38)
 		end
 	end
 end
