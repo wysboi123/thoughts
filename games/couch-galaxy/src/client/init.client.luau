@@ -195,6 +195,13 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	AccentColor = Color3.fromRGB(140, 120, 200),
 	FrameColor = Color3.fromRGB(26, 20, 40),
 	TitleColor = Color3.fromRGB(220, 205, 255),
+	OnAllComplete = function()
+		SoftWelcome.show(playerGui, "soft complete", "two worlds · one couch · stay", {
+			AccentColor = Color3.fromRGB(140, 120, 200),
+			FrameColor = Color3.fromRGB(26, 20, 40),
+			HoldSeconds = 4.0,
+		})
+	end,
 })
 
 local function tryBothWorlds()

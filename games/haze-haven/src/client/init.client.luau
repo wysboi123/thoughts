@@ -22,6 +22,7 @@ FloatFx.start(player)
 AmbientAudio.start()
 VibeBoard.start()
 
+local SoftWelcome = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftWelcome"))
 local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	{ Id = "vibes", Label = "collect 3 vibes" },
 	{ Id = "sit", Label = "sit somewhere" },
@@ -31,6 +32,13 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	AccentColor = Color3.fromRGB(160, 120, 210),
 	FrameColor = Color3.fromRGB(28, 22, 42),
 	TitleColor = Color3.fromRGB(220, 200, 255),
+	OnAllComplete = function()
+		SoftWelcome.show(playerGui, "soft complete", "stay as long as you like", {
+			AccentColor = Color3.fromRGB(160, 120, 210),
+			FrameColor = Color3.fromRGB(28, 22, 42),
+			HoldSeconds = 4.0,
+		})
+	end,
 })
 
 Remotes.OrbCollected.OnClientEvent:Connect(function(count: number)
@@ -55,6 +63,7 @@ end)
 
 local SoftSit = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftSit"))
 local hazeSit = SoftSit.mount(playerGui, {
+	EmptyText = "",
 	OneText = function(name)
 		return name .. " is chilling"
 	end,
@@ -84,7 +93,6 @@ end)
 
 print("[HazeHaven] client ready")
 
-local SoftWelcome = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftWelcome"))
 local SoftCompany = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftCompany"))
 local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Config"))
 local hazeStyle = {

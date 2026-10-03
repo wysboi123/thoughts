@@ -13,6 +13,7 @@ export type SoftGoalsStyle = {
 	FrameColor: Color3?,
 	TitleColor: Color3?,
 	RowColor: Color3?,
+	OnAllComplete: (() -> ())?,
 }
 
 local SoftGoals = {}
@@ -115,6 +116,9 @@ function SoftGoals.mount(
 				TweenInfo.new(0.35, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
 				{ TextColor3 = Color3.fromRGB(210, 255, 220) }
 			):Play()
+			if style and style.OnAllComplete then
+				style.OnAllComplete()
+			end
 			task.delay(6, function()
 				if not frame.Parent then
 					return

@@ -144,6 +144,13 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	FrameColor = Color3.fromRGB(24, 28, 22),
 	TitleColor = Color3.fromRGB(210, 230, 190),
 	RowColor = Color3.fromRGB(150, 165, 145),
+	OnAllComplete = function()
+		SoftWelcome.show(playerGui, "soft complete", "the next bus can wait · stay", {
+			AccentColor = busStyle.AccentColor,
+			FrameColor = busStyle.FrameColor,
+			HoldSeconds = 4.0,
+		})
+	end,
 })
 
 local function tryTogetherGoal()
@@ -265,6 +272,7 @@ end)
 
 local SoftSit = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftSit"))
 local benchSit = SoftSit.mount(playerGui, {
+	EmptyText = "",
 	OneText = function(name)
 		return if nearbyCount >= 1 then (name .. " is waiting together") else (name .. " is waiting")
 	end,

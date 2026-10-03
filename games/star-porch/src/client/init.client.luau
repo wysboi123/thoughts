@@ -107,6 +107,13 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	FrameColor = Color3.fromRGB(22, 28, 20),
 	TitleColor = Color3.fromRGB(200, 230, 180),
 	RowColor = Color3.fromRGB(150, 170, 140),
+	OnAllComplete = function()
+		SoftWelcome.show(playerGui, "soft complete", "the jar remembers · stay", {
+			AccentColor = Color3.fromRGB(140, 180, 120),
+			FrameColor = Color3.fromRGB(22, 28, 20),
+			HoldSeconds = 4.0,
+		})
+	end,
 })
 
 Remotes.FireflyCollected.OnClientEvent:Connect(function(count: number)
