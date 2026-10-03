@@ -20,15 +20,16 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-03 ~01:15:** Home/settings look polish v1.3.6 — preview + Active looks mirror play entitlements.
 - **2026-10-03 ~02:15:** Soft goals journal polish v1.3.7 — progress · stagger · accents · Dawn · comfort strip.
 - **2026-10-03 ~03:15:** Pause overlay polish v1.3.8 — breath orb · snapshot pills · goals strip · Dawn · phase chip.
+- **2026-10-03 ~04:15:** Wave preview chip polish v1.3.9 — soft enter · totals · plant hints · Dawn · Reduce Motion.
 
 ## State
 
-- Version: **mobile 1.3.8** (pause overlay polish)
+- Version: **mobile 1.3.9** (wave preview chip polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: `fa88816` (v1.3.8)
+- Tip: _(update after push)_
 - Hourly timer: **`thought-defense-mobile-hourly`**
-- Night envelope: **ACTIVE** 23:00→05:00 UTC · stop armed `overnight-stop-5am-utc`
+- Night envelope: **ACTIVE** 23:00→05:00 UTC · stop armed `overnight-stop-5am-utc` (fires ~05:00)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
-- Next: native IAP once Femmy picks stack · store screenshots · EAS preview · or Femmy RC/RNIap / Pass price reply
+- Next: overnight stop wrap · then native IAP once Femmy picks stack · or Femmy RC/RNIap / Pass price reply

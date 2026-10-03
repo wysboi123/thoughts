@@ -158,6 +158,7 @@ export default function PlayScreen() {
             !showResult &&
             (state.phase === 'prep' || state.phase === 'intermission')
           }
+          dawn={looks.dawn}
         />
 
         {(state.phase === 'prep' || state.phase === 'intermission') && !paused && (

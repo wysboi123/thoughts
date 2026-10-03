@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-03 04:15 UTC — Night hourly (v1.3.9 wave preview)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · last slice before ~05:00 stop · no Femmy Gmail reply
+- **Shipped v1.3.9:** Wave preview chip — soft enter · thought totals · plant-kind hints · Dawn tint · accent by heaviest kind · Reduce Motion
+- Did not redo pause (1.3.8) or goals journal · Draft C locked · **stop timer left armed** (do not cancel)
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-03 03:15 UTC — Night hourly (v1.3.8 pause overlay)
 
 - Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
