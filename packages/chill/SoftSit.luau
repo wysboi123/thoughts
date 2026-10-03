@@ -7,6 +7,7 @@ local SoftSit = {}
 
 export type SoftSitHud = {
 	set: (seatName: string, displayName: string?) -> (),
+	refresh: () -> (),
 	gui: ScreenGui,
 }
 
@@ -79,6 +80,7 @@ function SoftSit.mount(
 
 	return {
 		gui = gui,
+		refresh = refresh,
 		set = function(seatName: string, displayName: string?)
 			if displayName then
 				occupants[seatName] = displayName

@@ -217,6 +217,32 @@ Remotes.WaveAtBus.OnClientEvent:Connect(function(name: string)
 	end)
 end)
 
+Remotes.TicketCollected.OnClientEvent:Connect(function()
+	complete("ticket")
+end)
+
+local SoftSit = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftSit"))
+local benchSit = SoftSit.mount(playerGui, {
+	EmptyText = "",
+	OneText = function(name)
+		return if nearbyCount >= 1 then (name .. " is waiting together") else (name .. " is waiting")
+	end,
+	ManyText = function(names)
+		return table.concat(names, " & ") .. " are waiting together"
+	end,
+	Color = Color3.fromRGB(190, 200, 170),
+})
+Remotes.BenchSitChanged.OnClientEvent:Connect(function(seatName: string, displayName: string?)
+	benchSit.set(seatName, displayName)
+	if displayName == player.DisplayName then
+		complete("sit")
+		seatedLocal = true
+		tryTogetherGoal()
+	elseif displayName == nil then
+		-- occupant left this seat; re-check local seat below
+	end
+end)
+
 local companyWelcomed = false
 SoftCompany.mount(playerGui, player, {
 	Radius = Config.Proximity.Radius,
@@ -252,6 +278,7 @@ SoftCompany.mount(playerGui, player, {
 				end
 			end
 		end
+		benchSit.refresh()
 		if n >= 1 and not companyWelcomed then
 			companyWelcomed = true
 			SoftWelcome.show(playerGui, "waiting together", "someone nearby — the timetable knows", {
@@ -265,32 +292,6 @@ SoftCompany.mount(playerGui, player, {
 		tryTogetherGoal()
 	end,
 })
-
-Remotes.TicketCollected.OnClientEvent:Connect(function()
-	complete("ticket")
-end)
-
-local SoftSit = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftSit"))
-local benchSit = SoftSit.mount(playerGui, {
-	EmptyText = "",
-	OneText = function(name)
-		return if nearbyCount >= 1 then (name .. " is waiting together") else (name .. " is waiting")
-	end,
-	ManyText = function(names)
-		return table.concat(names, " & ") .. " are waiting together"
-	end,
-	Color = Color3.fromRGB(190, 200, 170),
-})
-Remotes.BenchSitChanged.OnClientEvent:Connect(function(seatName: string, displayName: string?)
-	benchSit.set(seatName, displayName)
-	if displayName == player.DisplayName then
-		complete("sit")
-		seatedLocal = true
-		tryTogetherGoal()
-	elseif displayName == nil then
-		-- occupant left this seat; re-check local seat below
-	end
-end)
 
 task.spawn(function()
 	while true do

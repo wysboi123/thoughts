@@ -143,12 +143,27 @@ local function paintStarCounter()
 	end
 end
 
+local couchSit = SoftSit.mount(playerGui, {
+	OneText = function(name)
+		return if inGalaxy then (name .. " is in the hammock loft") else (name .. " is on the couch")
+	end,
+	ManyText = function(names)
+		local joined = table.concat(names, " & ")
+		return if inGalaxy then (joined .. " are in the hammock loft") else (joined .. " are on the couch")
+	end,
+	Color = Color3.fromRGB(190, 170, 220),
+})
+Remotes.CouchSitChanged.OnClientEvent:Connect(function(seatName: string, displayName: string?)
+	couchSit.set(seatName, displayName)
+end)
+
 Remotes.EnteredGalaxy.OnClientEvent:Connect(function()
 	inGalaxy = true
 	visitedGalaxy = true
 	applyGalaxyLighting()
 	refreshPlace(false)
 	paintStarCounter()
+	couchSit.refresh()
 	if not galaxyWelcomed then
 		galaxyWelcomed = true
 		SoftWelcome.show(playerGui, "galaxy loft", "second world · beacon home when ready", couchStyle)
@@ -163,24 +178,11 @@ Remotes.ReturnedHome.OnClientEvent:Connect(function()
 	applyHomeLighting()
 	refreshPlace(false)
 	paintStarCounter()
+	couchSit.refresh()
 	if visitedGalaxy and not homeWelcomed then
 		homeWelcomed = true
 		SoftWelcome.show(playerGui, "couch side", "two worlds · one couch · you made it home", couchStyle)
 	end
-end)
-
-local couchSit = SoftSit.mount(playerGui, {
-	OneText = function(name)
-		return if inGalaxy then (name .. " is in the hammock loft") else (name .. " is on the couch")
-	end,
-	ManyText = function(names)
-		local joined = table.concat(names, " & ")
-		return if inGalaxy then (joined .. " are in the hammock loft") else (joined .. " are on the couch")
-	end,
-	Color = Color3.fromRGB(190, 170, 220),
-})
-Remotes.CouchSitChanged.OnClientEvent:Connect(function(seatName: string, displayName: string?)
-	couchSit.set(seatName, displayName)
 end)
 
 print("[CouchGalaxy] client ready v" .. Config.Version)

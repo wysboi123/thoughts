@@ -23,6 +23,8 @@ rojo serve
 6. Paste title + description from [`EXPERIENCE_COPY.md`](EXPERIENCE_COPY.md) → Haze Haven
 7. Genre: Hangout (or Adventure). Access: **Friends** for soft launch
 8. Capture one soft screenshot for thumbnail (lounge + WelcomeSign, no ToS-risk framing)
+   - Prefer dusk lighting, WelcomeSign readable, SoftCompany line optional in frame
+   - Avoid cluttered UI overlays; sit a cushion for a calm pose
 9. Paste place URL + place id into [`PUBLISH_STATUS.md`](PUBLISH_STATUS.md)
 
 That’s enough for first soft launch. Overnight agents track the live place after you paste URL + place id into `PUBLISH_STATUS.md`.
