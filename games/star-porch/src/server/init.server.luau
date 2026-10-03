@@ -530,12 +530,27 @@ task.spawn(function()
 				if light then
 					light.Brightness = 0.4 + math.sin(t * 2.2) * 0.25
 				end
+			elseif child.Name == "SideTable" and child:IsA("BasePart") then
+				local warm = (math.sin(t * 0.9) + 1) / 2
+				child.Color = Color3.fromRGB(85, 65, 48):Lerp(Color3.fromRGB(110, 85, 60), warm * 0.45)
+			elseif child.Name == "Deck" and child:IsA("BasePart") then
+				local warm = (math.sin(t * 0.5) + 1) / 2
+				child.Color = Color3.fromRGB(90, 70, 50):Lerp(Color3.fromRGB(110, 85, 60), warm * 0.35)
+			elseif child.Name == "RoofOverhang" and child:IsA("BasePart") then
+				local cool = (math.sin(t * 0.4) + 1) / 2
+				child.Color = Color3.fromRGB(45, 40, 50):Lerp(Color3.fromRGB(60, 52, 68), cool * 0.4)
+			elseif child.Name == "HouseWall" and child:IsA("BasePart") then
+				local warm = (math.sin(t * 0.35) + 1) / 2
+				child.Color = Color3.fromRGB(70, 58, 48):Lerp(Color3.fromRGB(90, 72, 58), warm * 0.35)
 			elseif child.Name == "FirePitGlow" and child:IsA("BasePart") then
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then
 					light.Brightness = 1.4 + math.sin(t * 2.8) * 0.45
 				end
 				child.Transparency = 0.22 + math.sin(t * 3.1) * 0.06
+			elseif child.Name == "FirePitRing" and child:IsA("BasePart") then
+				local warm = (math.sin(t * 2.8) + 1) / 2
+				child.Color = Color3.fromRGB(70, 65, 60):Lerp(Color3.fromRGB(95, 75, 55), warm * 0.5)
 			elseif child.Name == "YardPathGlow" and child:IsA("BasePart") then
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then

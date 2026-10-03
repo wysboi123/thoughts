@@ -111,6 +111,10 @@ function OrbService.startHover(world: Folder)
 						child.Position = home + Vector3.new(0, offset, 0)
 						child.CFrame = child.CFrame * CFrame.Angles(0, 0.03, 0)
 					end
+					local light = child:FindFirstChildOfClass("PointLight")
+					if light then
+						light.Brightness = 2.5 + math.sin(t * 1.8 + child.Position.X) * 0.5
+					end
 				end
 			end
 		end

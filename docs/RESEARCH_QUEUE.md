@@ -88,6 +88,8 @@ Find currently usable Roblox audio asset IDs (2026) suitable for chill hangout g
 Prefer free Creator Store / Roblox-provided audio that is allowed for public experiences. List the rbxassetid numbers, titles, and license notes. Flag anything deprecated or removed.
 """
 
+---
+
 ### Q-005 — Roblox TD upgrade / selection UI patterns (2026)
 Status: Open  
 Needed for: Thought Defense Upgrade UI (mockups A/B/C)  

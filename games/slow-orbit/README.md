@@ -1,5 +1,7 @@
 # Slow Orbit
 
+> **Parked for later (2026-09-29).** Files kept — do not erase. Active overnight focus is Haze / Couch / Bus / Porch.
+
 Tiny planet + moonlet under a **purple dusk** sky. Walk the curve. Collect orbit beads.
 
 ## Play

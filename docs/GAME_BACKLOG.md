@@ -2,39 +2,26 @@
 
 Priority order. Overnight agents pick the top unchecked item unless Femmy overrides.
 
-## Active
+## Active (focus now)
 
-- [x] **Thought Defense v0.1** — scaffold (path, waves, 3 enemies, 3 towers, HUD)
-- [x] **Thought Defense v0.2** — prep Begin · upgrades L3 · sell · intermission
-- [x] **Thought Defense — Upgrade UI mockups** — 3 concepts + PNGs + gallery (vote open)
-- [x] **Thought Defense v0.2.1** — SoftWelcome · SoftGoals · Try again restart · research note (daytime)
-- [ ] **Thought Defense — Upgrade UI Luau** — **blocked on Femmy Mockup vote A/B/C** (research leans B)
-- [ ] **Thought Defense v0.3** — apply Femmy design answers · Upgrade chrome
-- [ ] **Q-005** — Perplexity TD upgrade UI (optional; agent note already in docs/research/)
-- [x] **Thought Defense — light polish while waiting** — enemy flavor billboards · path rails · Peace Core halo (02:15 UTC)
-- [x] **Thought Defense — wait polish** — wave toast clarity + soft pad hover cue (03:15 UTC)
-- [x] **Thought Defense — wait polish** — Calm leak cue · tower plant/upgrade pop · empty pad ring breath (04:15 UTC)
-- [x] **Overnight stop 05:00 UTC (2026-09-30)** — wrap only; Thought Defense remains **v0.2**, blocked on A/B/C
-- [ ] **Thought Defense** — primary focus. Consult `docs/DESIGN_CONSULT.md` (only open ask: mockup vote)
-- [x] **Haze Haven v0–v1.4** — hammock sway + rug + vibe board + pads
-- [x] **Slow Orbit v0–v1.2** — bead sparkle + planet/moonlet glow
-- [x] **Couch Galaxy v0–v1.1** — couch rug pulse + hammock + apt lights
-- [x] **Puddle Mirror v0–v1.1** — nook puddle pulse + dew + deep mirror
-- [x] **Bus Stop Forever v0–v1.2** — dual shelter glow + tickets + planters
-- [x] **Lantern Drift v0–v1.1** — rope coil bob + gangway + shore lights
+- [x] **Haze Haven v0–v1.8** — loft string warm + candle + table
+- [x] **Couch Galaxy v0–v1.5** — bookshelf warm + couch fabric
+- [x] **Bus Stop Forever v0–v1.7** — dual shelter roofs + benches
+- [x] **Star Porch v0–v1.6** — house wall + roof + deck + fire pit
 - [x] **Shared** — SoftWelcome + SoftSit + SoftWireSeats + Proximity
-- [x] **Star Porch v0–v1.1** — yard path glow + jar + rockers
-- [x] **Night 3** — complete
-- [x] **Night 4** — complete
-- [x] **Night 5** — complete (all 7 games at 1.0+)
-- [x] **Night 6 envelope** — stopped 05:00 UTC (TD primary after Night 6 start polish)
+- [x] **Night 6** — complete (active-four polish; parked trio kept)
 - [ ] **Wire audio** — waiting on Perplexity Q-004 (do not invent)
-- [ ] **First publish** — Femmy: `PUBLISH_CHECKLIST.md` First 10 minutes (Haze or Thought Defense)
+- [ ] **First publish** — Femmy: `PUBLISH_CHECKLIST.md` First 10 minutes (Haze)
 - [ ] **Apply Q-001–003** when answers land
-- [ ] **Hourly batches** — 30 min / hour on Thought Defense until Femmy says stop (timer re-armed at stop)
+- [ ] **Night 7** — wire audio if research lands; help publish Haze; parked later
+
+## Parked for later (files kept — do not erase)
+
+- [x] **Slow Orbit v0–v1.2** — parked 2026-09-29; resume later
+- [x] **Puddle Mirror v0–v1.2** — parked 2026-09-29; resume later
+- [x] **Lantern Drift v0–v1.1** — parked 2026-09-29; resume later
 
 ## Femmy overrides
 
-> Slow Orbit purple dusk — ✅ v0.3
-> Thought Defense primary (2026-09-29) — ✅ v0.1 scaffolded
-> Hourly 30-min batches + email updates + design consults — ✅ schedule updated
+> Focus now: Star Porch, Haze Haven, Couch Galaxy, Bus Stop Forever — ✅ 2026-09-29  
+> Parked (keep files): Slow Orbit, Puddle Mirror, Lantern Drift — work later — ✅ 2026-09-30

@@ -21,25 +21,6 @@ rojo serve
 
 That’s enough for first soft launch. Overnight agents track the live place after you paste URL + place id into `PUBLISH_STATUS.md`.
 
-## First 10 minutes — Thought Defense (tower defense)
-
-```bash
-cd games/thought-defense
-rojo build -o ThoughtDefense.rbxl
-rojo serve
-```
-
-1. Open `ThoughtDefense.rbxl` → Rojo **Connect** → **Play**
-2. SoftWelcome + soft goals appear — plant Affirmation/Gratitude/Humor on pads
-3. Press **Begin wave 1** · hover pads for upgrade cost · click planted pad to deepen
-4. Survive a wave or two · try **Restart** / **R** if you want a fresh run
-5. Stop → **File → Publish to Roblox**
-6. Paste title/description from [`EXPERIENCE_COPY.md`](EXPERIENCE_COPY.md) → Thought Defense
-7. Genre: Adventure (or Strategy). Access: **Friends** for soft launch
-8. Thumbnail: Peace Core + path (no ToS-risk framing) · paste URL into [`PUBLISH_STATUS.md`](PUBLISH_STATUS.md)
-
-Note: Upgrade **button chrome** (drafts A/B/C) still waiting on your pick before next UX ship.
-
 ## One-time setup
 
 1. Install [Rokit](https://github.com/rojo-rbx/rokit) + Rojo Studio plugin
@@ -65,16 +46,22 @@ rojo serve
 
 ## Game slugs
 
+### Active
+
 | Slug | Pitch |
 | --- | --- |
 | `haze-haven` | Chill loft lounge — **good first publish** |
-| `slow-orbit` | Purple-dusk planet + moonlet |
 | `couch-galaxy` | Apartment roof → night sky |
-| `puddle-mirror` | Puddles open secret nooks |
 | `bus-stop-forever` | Infinite calm bus stop |
-| `lantern-drift` | Fog lake raft + lanterns |
 | `star-porch` | Night porch + fireflies |
-| `thought-defense` | Negative thoughts vs positive towers |
+
+### Parked for later (files kept — do not erase)
+
+| Slug | Pitch |
+| --- | --- |
+| `slow-orbit` | Purple-dusk planet + moonlet |
+| `puddle-mirror` | Puddles open secret nooks |
+| `lantern-drift` | Fog lake raft + lanterns |
 
 ## Don't commit
 

@@ -49,6 +49,31 @@ Newest first. Overnight agents append after every push.
 
 05:15 hourly fired after 05:00 hard stop; no Femmy Upgrade UI vote in Gmail — waited. Re-armed `thought-defense-hourly` + `overnight-daily-resume`.
 
+## 2026-09-30 05:00 UTC — OVERNIGHT STOP (Night 6)
+
+Night 6 complete. No new features this wrap. One digest email sent.
+
+**Shipped Night 6**
+- Femmy focus: polish **Haze / Couch / Bus / Porch** only
+- Parked (files kept — do not erase): Slow Orbit · Puddle Mirror · Lantern Drift
+- Active versions: Haze **1.8** · Couch **1.5** · Bus **1.7** · Porch **1.6**
+- 10 commits since 2026-09-29 23:00 UTC
+- No invented audio ids; research still empty
+
+**Blocked**
+- Perplexity Q-001–004 still open — no invented audio ids
+- First Studio publish → `docs/PUBLISH_STATUS.md`
+
+**Ops**
+- PR: https://github.com/wysboi123/thoughts/pull/1
+- Daily resume `overnight-daily-resume` **active** (23:00 UTC)
+- Email: one digest at stop only (Femmy policy)
+
+**Night 7 (23:00 UTC)**
+1. Apply any Perplexity research / wire audio
+2. Help Femmy publish first place (Haze recommended)
+3. Continue active-four polish if research empty; parked games only when Femmy asks
+
 ## 2026-09-30 05:00 UTC — OVERNIGHT STOP (Thought Defense night)
 
 HARD STOP. No new features this wrap — docs + digest only. Working tree was clean at stop.
@@ -104,6 +129,19 @@ HARD STOP. No new features this wrap — docs + digest only. Working tree was cl
 - **PR #2:** ManagePullRequest tool **missing** again — cannot update title/body (do not use `gh` write)
 - Next batch: implement chosen Upgrade UI **only** after vote; otherwise keep waiting; retry ManagePullRequest
 
+## 2026-09-30 03:00 UTC — Night 6 checkpoint 2 (quiet)
+
+- Active: **Haze 1.8** loft strings · **Couch 1.5** bookshelf · **Bus 1.6** benches · **Porch 1.5** roof overhang
+- Parked trio untouched (files kept — do not erase)
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
+**Draft for 05:00 stop digest**
+- Night 6 active versions: Haze **1.8** · Couch **1.5** · Bus **1.7** · Porch **1.6**
+- Parked (files kept): Orbit **1.2** · Puddle **1.2** · Lantern **1.1**
+- Shipped: focus cut → restore parked → atmosphere polish on active four
+- Blocked: Perplexity audio + Studio publish
+- Next night: wire audio if research lands; help publish Haze; parked games later
+
 ## 2026-09-30 02:15 UTC — Hourly batch 5 (still waiting on vote)
 
 - **No Femmy vote** — Gmail `from:ngkdevid@gmail.com` empty; mockup threads are agent-sent only; DESIGN_CONSULT unchanged
@@ -124,6 +162,13 @@ HARD STOP. No new features this wrap — docs + digest only. Working tree was cl
 - Ops: re-armed `thought-defense-hourly` cron `15 * * * *` (list was empty); emailed A/B/C reminder to ngkdevid@gmail.com
 - **PR #2:** ManagePullRequest tool missing in this run (same gap as mockup batch) — intended title/body: “Thought Defense v0.2 + Upgrade UI mockups (vote A/B/C)” + v0.2 summary + mockup paths + vote ask
 - Next batch: implement chosen Upgrade UI **only** after vote; otherwise keep waiting; retry PR title/body update
+
+## 2026-09-30 01:00 UTC — Night 6 checkpoint 1 (quiet)
+
+- Active: **Haze 1.7** · **Couch 1.4** · **Bus 1.5** · **Porch 1.4** (table/couch/shelter/deck pulses)
+- Parked trio untouched (files kept — do not erase)
+- Still blocked: Perplexity Q-001–004 · first Studio publish
+- Next CP ~03:00 · stop 05:00 · one digest email at stop only
 
 ## 2026-09-30 00:25 UTC — Upgrade UI mockups (hourly batch 3)
 
@@ -146,6 +191,21 @@ HARD STOP. No new features this wrap — docs + digest only. Working tree was cl
 - Still open: title / tone / placement / endless / multiplayer (`docs/DESIGN_CONSULT.md`)
 - Next batch: apply answers if any · enemy flavor lines or path polish
 - Ops: PR #2 · timer `thought-defense-hourly` · email after this push
+
+## 2026-09-30 00:00 UTC — Parked games restored (do not erase)
+
+Femmy: work on dropped games later — **do not erase files**.
+
+- Restored `slow-orbit`, `puddle-mirror`, `lantern-drift` from git
+- Marked **Parked for later** in gallery/backlog/publish docs (not deleted)
+- Active focus still: Haze · Couch · Bus · Porch
+
+## 2026-09-29 23:57 UTC — Focus: 4 active games
+
+Femmy: focus overnight polish on **Haze Haven**, **Couch Galaxy**, **Bus Stop Forever**, **Star Porch**.
+
+- Post-focus polish: Haze **1.5** · Couch **1.2** · Bus **1.3** · Porch **1.2**
+- (Briefly deleted parked trio — restored 2026-09-30; keep files forever unless Femmy says otherwise)
 
 ## 2026-09-29 23:45 UTC — Thought Defense v0.1 (hourly batch 1)
 

@@ -534,6 +534,22 @@ task.spawn(function()
 				if light then
 					light.Brightness = 1.5 + math.sin(t * 1.4 + child.Position.X) * 0.35
 				end
+			elseif child.Name == "LampBulb" and child:IsA("BasePart") then
+				local light = child:FindFirstChildOfClass("PointLight")
+				if light then
+					light.Brightness = 1.8 + math.sin(t * 1.35) * 0.4
+				end
+			elseif child.Name == "ShelterBack" and child:IsA("BasePart") then
+				child.Transparency = 0.3 + math.sin(t * 0.7) * 0.08
+			elseif child.Name == "ShelterRoof" and child:IsA("BasePart") then
+				child.Color = Color3.fromRGB(55, 60, 70):Lerp(Color3.fromRGB(70, 75, 85), (math.sin(t * 0.65) + 1) / 2)
+			elseif child.Name == "Shelter2Roof" and child:IsA("BasePart") then
+				child.Color = Color3.fromRGB(50, 55, 65):Lerp(Color3.fromRGB(65, 70, 80), (math.sin(t * 0.65 + 1) + 1) / 2)
+			elseif child:IsA("BasePart")
+				and string.find(child.Name, "Bench", 1, true)
+				and not string.find(child.Name, "Seat", 1, true)
+			then
+				child.Color = Color3.fromRGB(100, 80, 60):Lerp(Color3.fromRGB(125, 100, 75), (math.sin(t * 0.75 + child.Position.X) + 1) / 2 * 0.45)
 			elseif child.Name == "Timetable" and child:IsA("BasePart") then
 				child.Color = Color3.fromRGB(35, 40, 50):Lerp(Color3.fromRGB(45, 55, 65), (math.sin(t * 0.8) + 1) / 2)
 			elseif child.Name == "NewsBox" and child:IsA("BasePart") then

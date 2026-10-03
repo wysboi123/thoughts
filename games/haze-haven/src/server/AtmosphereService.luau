@@ -34,11 +34,14 @@ function AtmosphereService.start()
 						if light then
 							light.Brightness = 0.9 + pulse * 0.5 + math.sin(t + child.Position.X) * 0.15
 						end
+						local warm = (math.sin(t + child.Position.X) + 1) / 2
+						child.Color = Color3.fromRGB(255, 210, 160):Lerp(Color3.fromRGB(255, 235, 200), warm * 0.55)
 					elseif child.Name == "LoungeCandle" and child:IsA("BasePart") then
 						local light = child:FindFirstChildOfClass("PointLight")
 						if light then
 							light.Brightness = 1.1 + math.sin(t * 2.4) * 0.35
 						end
+						child.Color = Color3.fromRGB(255, 200, 140):Lerp(Color3.fromRGB(255, 230, 180), (math.sin(t * 2.4) + 1) / 2 * 0.5)
 					elseif child:IsA("BasePart") and string.find(child.Name, "FloatPad", 1, true) then
 						local light = child:FindFirstChildOfClass("PointLight")
 						if light then
@@ -53,6 +56,8 @@ function AtmosphereService.start()
 						child.Color = Color3.fromRGB(40, 32, 55):Lerp(Color3.fromRGB(55, 42, 72), pulse)
 					elseif child.Name == "LoungeRug" and child:IsA("BasePart") then
 						child.Color = Color3.fromRGB(90, 60, 110):Lerp(Color3.fromRGB(110, 75, 130), pulse * 0.6)
+					elseif child.Name == "LoungeTable" and child:IsA("BasePart") then
+						child.Color = Color3.fromRGB(70, 55, 85):Lerp(Color3.fromRGB(90, 70, 105), pulse * 0.55)
 					elseif child:IsA("BasePart") and string.find(child.Name, "LoftPlant", 1, true) then
 						local home = child:GetAttribute("HomePosition")
 						if typeof(home) == "Vector3" then
