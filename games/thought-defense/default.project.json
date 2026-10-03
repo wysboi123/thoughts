@@ -1,0 +1,96 @@
+{
+  "name": "ThoughtDefense",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "Shared": {
+        "$path": "src/shared"
+      },
+      "Chill": {
+        "$path": "../../packages/chill"
+      }
+    },
+    "ServerScriptService": {
+      "Server": {
+        "$path": "src/server"
+      }
+    },
+    "StarterPlayer": {
+      "StarterPlayerScripts": {
+        "Client": {
+          "$path": "src/client"
+        }
+      }
+    },
+    "Workspace": {
+      "$properties": {
+        "Gravity": 196.2
+      },
+      "ThoughtWorld": {
+        "$className": "Folder",
+        "Path": {
+          "$className": "Folder"
+        },
+        "Pads": {
+          "$className": "Folder"
+        },
+        "Towers": {
+          "$className": "Folder"
+        },
+        "Enemies": {
+          "$className": "Folder"
+        },
+        "Decor": {
+          "$className": "Folder"
+        }
+      }
+    },
+    "Lighting": {
+      "$properties": {
+        "Ambient": [0.42, 0.4, 0.48],
+        "Brightness": 1.5,
+        "ClockTime": 16.5,
+        "FogColor": [0.7, 0.72, 0.82],
+        "FogEnd": 380,
+        "FogStart": 60,
+        "OutdoorAmbient": [0.45, 0.44, 0.52],
+        "GlobalShadows": true
+      },
+      "MindAtmosphere": {
+        "$className": "Atmosphere",
+        "$properties": {
+          "Density": 0.28,
+          "Offset": 0.15,
+          "Color": [0.75, 0.78, 0.9],
+          "Decay": [0.45, 0.5, 0.65],
+          "Glare": 0.12,
+          "Haze": 1.1
+        }
+      },
+      "MindBloom": {
+        "$className": "BloomEffect",
+        "$properties": {
+          "Enabled": true,
+          "Intensity": 0.4,
+          "Size": 22,
+          "Threshold": 0.9
+        }
+      },
+      "MindColor": {
+        "$className": "ColorCorrectionEffect",
+        "$properties": {
+          "Enabled": true,
+          "Brightness": 0.03,
+          "Contrast": 0.06,
+          "Saturation": 0.12,
+          "TintColor": [0.95, 0.96, 1]
+        }
+      }
+    },
+    "SoundService": {
+      "$properties": {
+        "AmbientReverb": "Auditorium"
+      }
+    }
+  }
+}
