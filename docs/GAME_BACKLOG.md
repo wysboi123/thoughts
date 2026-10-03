@@ -4,10 +4,10 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 
 ## Active (focus now)
 
-- [x] **Haze Haven v0–v3.1** — server vibe sync + publish checklist
-- [x] **Couch Galaxy v0–v2.8** — soft company goal + welcome hold
-- [x] **Bus Stop Forever v0–v3.0** — welcome hold + wait together
-- [x] **Star Porch v0–v2.9** — share-the-porch soft goal
+- [x] **Haze Haven v0–v3.2** — nameplate server sync + publish checklist
+- [x] **Couch Galaxy v0–v2.9** — soft company goal + short toast
+- [x] **Bus Stop Forever v0–v3.1** — bench warm when together
+- [x] **Star Porch v0–v3.0** — share-the-porch soft goal
 - [x] **Shared** — SoftWelcome HoldSeconds · SoftGoals stroke pulse
 - [x] **USP research + priority** — `docs/USPS.md` + Night 8 research note
 - [x] **Night 6** — complete (active-four polish; parked trio kept)

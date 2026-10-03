@@ -14,7 +14,7 @@ rojo serve
 2. Rojo plugin → **Connect**  
 3. Press **Play**
 
-## Loop (v3.1)
+## Loop (v3.2)
 
 - Spawn on the lounge pad → walk or float up the ramp to the **loft**
 - Soft session goals (top-right): 3 vibes · sit · float · vibe sync — optional, no fail

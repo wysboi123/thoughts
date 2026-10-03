@@ -272,7 +272,13 @@ SoftCompany.mount(playerGui, player, {
 		end
 		if n >= 1 and not porchCompanyWelcomed then
 			porchCompanyWelcomed = true
-			SoftWelcome.show(playerGui, "porch company", "someone nearby — jar feels warmer", porchStyle)
+			SoftWelcome.show(playerGui, "porch company", "someone nearby — jar feels warmer", {
+				AccentColor = porchStyle.AccentColor,
+				FrameColor = porchStyle.FrameColor,
+				TitleColor = porchStyle.TitleColor,
+				BodyColor = porchStyle.BodyColor,
+				HoldSeconds = 3.6,
+			})
 		end
 	end,
 })

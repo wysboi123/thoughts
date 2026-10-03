@@ -282,12 +282,13 @@ SoftCompany.mount(playerGui, player, {
 		end
 		if company and not couchCompanyWelcomed then
 			couchCompanyWelcomed = true
-			SoftWelcome.show(
-				playerGui,
-				"soft company",
-				if inGalaxy then "someone nearby — loft side feels softer" else "someone nearby — couch side feels softer",
-				couchStyle
-			)
+			SoftWelcome.show(playerGui, "soft company", if inGalaxy
+				then "someone nearby — loft side feels softer"
+				else "someone nearby — couch side feels softer", {
+				AccentColor = couchStyle.AccentColor,
+				FrameColor = couchStyle.FrameColor,
+				HoldSeconds = 3.6,
+			})
 		end
 		local world = Workspace:FindFirstChild("CouchGalaxyWorld")
 		if inGalaxy and world then

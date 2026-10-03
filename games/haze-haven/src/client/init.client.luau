@@ -138,7 +138,11 @@ SoftCompany.mount(playerGui, player, {
 			end
 			if not vibeSynced then
 				vibeSynced = true
-				SoftWelcome.show(playerGui, "vibe sync", "someone nearby — tonight's vibes feel softer", hazeStyle)
+				SoftWelcome.show(playerGui, "vibe sync", "someone nearby — tonight's vibes feel softer", {
+					AccentColor = hazeStyle.AccentColor,
+					FrameColor = hazeStyle.FrameColor,
+					HoldSeconds = 3.6,
+				})
 			end
 		else
 			proximity.setBoost(1)

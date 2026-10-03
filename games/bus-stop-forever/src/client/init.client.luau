@@ -238,9 +238,22 @@ SoftCompany.mount(playerGui, player, {
 		if notepad and notepad:IsA("BasePart") then
 			notepad.Color = if n >= 1 then Color3.fromRGB(52, 55, 42) else Color3.fromRGB(45, 42, 38)
 		end
+		if world then
+			for _, child in world:GetChildren() do
+				if child:IsA("Seat") and string.find(child.Name, "BenchSeat", 1, true) then
+					child.Color = if n >= 1 then Color3.fromRGB(130, 105, 75) else Color3.fromRGB(115, 90, 65)
+				end
+			end
+		end
 		if n >= 1 and not companyWelcomed then
 			companyWelcomed = true
-			SoftWelcome.show(playerGui, "waiting together", "someone nearby — the timetable knows", busStyle)
+			SoftWelcome.show(playerGui, "waiting together", "someone nearby — the timetable knows", {
+				AccentColor = busStyle.AccentColor,
+				FrameColor = busStyle.FrameColor,
+				TitleColor = busStyle.TitleColor,
+				BodyColor = busStyle.BodyColor,
+				HoldSeconds = 3.6,
+			})
 		end
 		tryTogetherGoal()
 	end,
