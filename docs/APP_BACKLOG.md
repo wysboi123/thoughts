@@ -33,6 +33,7 @@ Priority order. Agents pick the top unchecked item unless Femmy overrides.
 - [x] **v1.3.7 hourly polish** — Soft goals journal (progress bar · staggered enter · accent cards · Dawn · haptics · metaphor strip)
 - [x] **v1.3.8 hourly polish** — Pause overlay (breath orb · Calm/Clarity pills · soft-goals strip · Dawn tint · phase chip · haptics)
 - [x] **v1.3.9 hourly polish** — Wave preview chip (soft enter · totals · plant hints · Dawn tint · Reduce Motion)
+- [x] **v1.4.0 night resume** — SoftWelcomeSheet polish (page accents · step counter · Dawn tint · comfort strip · page fade)
 - [ ] **Native IAP** — wire RevenueCat or react-native-iap; turn off stubMode for store builds
 - [ ] **EAS project** — Femmy: `eas init` + real `projectId` + credentials
 - [ ] **Store products** — create IAP ids in App Store Connect + Play Console

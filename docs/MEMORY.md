@@ -21,15 +21,16 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-03 ~02:15:** Soft goals journal polish v1.3.7 — progress · stagger · accents · Dawn · comfort strip.
 - **2026-10-03 ~03:15:** Pause overlay polish v1.3.8 — breath orb · snapshot pills · goals strip · Dawn · phase chip.
 - **2026-10-03 ~04:15:** Wave preview chip polish v1.3.9 — soft enter · totals · plant hints · Dawn · Reduce Motion.
+- **2026-10-03 ~23:00 night resume:** SoftWelcomeSheet polish v1.4.0 — page accents · step · Dawn · comfort strip · page fade.
 
 ## State
 
-- Version: **mobile 1.3.9** (wave preview chip polish)
+- Version: **mobile 1.4.0** (SoftWelcomeSheet polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: `366301f` (overnight stop)
-- Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
-- Night envelope: **CLOSED** until 23:00 UTC · **do not** re-arm `overnight-stop-5am-utc` until night resume
+- Tip: _(update after push)_
+- Hourly timer: **`thought-defense-mobile-hourly`**
+- Night envelope: **ACTIVE** 23:00→05:00 UTC · stop re-armed `overnight-stop-5am-utc`
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
-- Next: wait for 23:00 resume · or Femmy RC/RNIap / Pass price reply during daytime idle
+- Next: hourly polish slices · native IAP once Femmy picks stack · or Femmy RC/RNIap / Pass price reply
