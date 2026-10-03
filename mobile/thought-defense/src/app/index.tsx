@@ -15,6 +15,7 @@ import { HomeMindscapePreview } from '../components/HomeMindscapePreview';
 import { SoftButton } from '../components/SoftButton';
 import { SoftWelcomeSheet } from '../components/SoftWelcomeSheet';
 import { GAME } from '../game/config';
+import { activeLooksFromEntitlements } from '../iap/cosmetics';
 import { useIap } from '../iap/IapProvider';
 import { colors } from '../theme/colors';
 import { fonts } from '../theme/typography';
@@ -64,6 +65,7 @@ function SoftCtaEnter({
 export default function HomeScreen() {
   const insets = useSafeAreaInsets();
   const { entitlements, passDaysRemaining } = useIap();
+  const looks = activeLooksFromEntitlements(entitlements);
   const rise = useRef(new Animated.Value(0)).current;
   const reduceMotion = useReducedMotion();
 
@@ -80,7 +82,7 @@ export default function HomeScreen() {
   }, [rise, reduceMotion]);
 
   return (
-    <Atmosphere>
+    <Atmosphere dawn={looks.dawn}>
       <SoftWelcomeSheet />
       <View style={[styles.wrap, { paddingTop: insets.top + 24, paddingBottom: insets.bottom + 16 }]}>
         <Animated.View
@@ -104,7 +106,7 @@ export default function HomeScreen() {
             A soft mindscape. Plant positive thoughts. Clear the noise. Metaphor only — not
             therapy or medical advice.
           </Text>
-          <HomeMindscapePreview />
+          <HomeMindscapePreview dawn={looks.dawn} lantern={looks.lantern} />
           <View style={styles.chips} accessibilityRole="summary">
             {LOOP_CHIPS.map((chip) => (
               <View key={chip.label} style={styles.chip}>

@@ -17,14 +17,15 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-02 ~03:15:** Home polish v1.3.2 — mindscape vignette · loop chips · staggered CTAs · Pass badge.
 - **2026-10-02 ~04:15:** Settings + privacy polish v1.3.3 — comfort strip · section accents · privacy sections · haptics.
 - **2026-10-02 ~23:00 night resume:** Cosmetic looks in play v1.3.4 — Dawn path + Lantern rims; Pass unlocks both themes (product blurb).
+- **2026-10-03 ~01:15:** Home/settings look polish v1.3.6 — preview + Active looks mirror play entitlements.
 
 ## State
 
-- Version: **mobile 1.3.5** (Dawn atmosphere + Lantern tray accents)
+- Version: **mobile 1.3.6** (home/settings Dawn + Lantern look polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: `1ab403e` (v1.3.5)
+- Tip: _(update after push)_
 - Hourly timer: **`thought-defense-mobile-hourly`**
 - Night envelope: **ACTIVE** 23:00→05:00 UTC · stop armed `overnight-stop-5am-utc`
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**

@@ -10,11 +10,17 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { useReducedMotion } from '../a11y/useReducedMotion';
+import { LANTERN_RIM } from '../iap/cosmetics';
 import { colors } from '../theme/colors';
 import { fonts } from '../theme/typography';
 
+type Props = {
+  dawn?: boolean;
+  lantern?: boolean;
+};
+
 /** Soft home vignette — path strip, plant discs, Peace Core breath. Visual only. */
-export function HomeMindscapePreview() {
+export function HomeMindscapePreview({ dawn, lantern }: Props) {
   const reduceMotion = useReducedMotion();
   const enter = useSharedValue(reduceMotion ? 1 : 0);
   const core = useSharedValue(1);
@@ -66,17 +72,55 @@ export function HomeMindscapePreview() {
       accessible
       accessibilityLabel="Soft mindscape preview: path, plant pads, and Peace Core"
     >
-      <View style={styles.path} />
-      <View style={styles.pathBend} />
+      <View
+        style={[
+          styles.path,
+          dawn ? { backgroundColor: '#E8C9A0' } : null,
+        ]}
+      />
+      <View
+        style={[
+          styles.pathBend,
+          dawn ? { backgroundColor: '#E8C9A0' } : null,
+        ]}
+      />
       <Animated.View style={[styles.pad, styles.padEmpty, emptyPadStyle]} />
-      <View style={[styles.pad, styles.padAffirm]} />
-      <View style={[styles.pad, styles.padGratitude]} />
-      <View style={[styles.pad, styles.padHumor]} />
-      <Animated.View style={[styles.coreHalo, coreStyle]} />
-      <View style={styles.core}>
+      <View
+        style={[
+          styles.pad,
+          styles.padAffirm,
+          lantern ? { borderColor: LANTERN_RIM.Affirmation } : null,
+        ]}
+      />
+      <View
+        style={[
+          styles.pad,
+          styles.padGratitude,
+          lantern ? { borderColor: LANTERN_RIM.Gratitude } : null,
+        ]}
+      />
+      <View
+        style={[
+          styles.pad,
+          styles.padHumor,
+          lantern ? { borderColor: LANTERN_RIM.Humor } : null,
+        ]}
+      />
+      <Animated.View
+        style={[
+          styles.coreHalo,
+          coreStyle,
+          dawn ? { backgroundColor: 'rgba(255, 220, 150, 0.55)' } : null,
+        ]}
+      />
+      <View style={[styles.core, dawn ? { backgroundColor: colors.coreGlow } : null]}>
         <Text style={styles.coreLabel}>Peace</Text>
       </View>
-      <Text style={styles.caption}>plan view · plant kindness · hold Peace</Text>
+      <Text style={styles.caption}>
+        {dawn || lantern
+          ? `plan view · ${dawn && lantern ? 'Dawn + Lantern' : dawn ? 'Dawn Path' : 'Lantern'} looks`
+          : 'plan view · plant kindness · hold Peace'}
+      </Text>
     </Animated.View>
   );
 }

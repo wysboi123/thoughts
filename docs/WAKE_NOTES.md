@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-03 01:15 UTC — Night hourly (v1.3.6 home/settings looks)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.3.6:** `HomeMindscapePreview` Dawn path + Lantern pad rims · home/settings `Atmosphere dawn` · Settings **Active looks** strip + shop CTA · SoftBlockEnter indices 1–5
+- Did not redo board play looks (1.3.4) or tray/atmosphere (1.3.5) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-02 23:15 UTC — Night hourly (v1.3.5 look atmosphere)
 
 - Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy reply

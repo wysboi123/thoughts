@@ -15,6 +15,7 @@ import { Atmosphere } from '../components/Atmosphere';
 import { SoftButton } from '../components/SoftButton';
 import { resetWelcomeDismissed } from '../components/SoftWelcomeSheet';
 import { GAME } from '../game/config';
+import { activeLooksFromEntitlements } from '../iap/cosmetics';
 import { useIap } from '../iap/IapProvider';
 import { colors } from '../theme/colors';
 import { fonts } from '../theme/typography';
@@ -75,9 +76,10 @@ export default function SettingsScreen() {
     passDaysRemaining,
     describeEntitlements,
   } = useIap();
+  const looks = activeLooksFromEntitlements(entitlements);
 
   return (
-    <Atmosphere>
+    <Atmosphere dawn={looks.dawn}>
       <ScrollView
         contentContainerStyle={[
           styles.wrap,
@@ -101,6 +103,37 @@ export default function SettingsScreen() {
         </SoftBlockEnter>
 
         <SoftBlockEnter index={1} reduceMotion={reduceMotion}>
+          <View style={styles.block}>
+            <SectionHead title="Active looks" accent={colors.gratitude} />
+            <View style={styles.statusCard} accessibilityRole="summary">
+              <Text style={styles.statusLabel}>Mindscape cosmetics</Text>
+              <Text style={styles.note}>
+                {looks.dawn || looks.lantern
+                  ? [
+                      looks.dawn ? 'Dawn Path' : null,
+                      looks.lantern ? 'Lantern Towers' : null,
+                    ]
+                      .filter(Boolean)
+                      .join(' · ')
+                  : 'Default mint mist — shop looks are optional'}
+              </Text>
+              <Text style={styles.note}>
+                Looks only — never change Calm, Clarity costs, or tower power. Clarity Pass unlocks
+                both themes while active.
+              </Text>
+              <SoftButton
+                label="Open Clarity shop"
+                variant="soft"
+                onPress={() => {
+                  softHaptic('tap');
+                  router.push('/shop');
+                }}
+              />
+            </View>
+          </View>
+        </SoftBlockEnter>
+
+        <SoftBlockEnter index={2} reduceMotion={reduceMotion}>
           <View style={styles.block}>
             <SectionHead title="Purchases" accent={colors.clarity} />
             <SoftButton
@@ -147,7 +180,7 @@ export default function SettingsScreen() {
           </View>
         </SoftBlockEnter>
 
-        <SoftBlockEnter index={2} reduceMotion={reduceMotion}>
+        <SoftBlockEnter index={3} reduceMotion={reduceMotion}>
           <View style={styles.block}>
             <SectionHead title="Onboarding" accent={colors.affirmation} />
             <SoftButton
@@ -170,7 +203,7 @@ export default function SettingsScreen() {
           </View>
         </SoftBlockEnter>
 
-        <SoftBlockEnter index={3} reduceMotion={reduceMotion}>
+        <SoftBlockEnter index={4} reduceMotion={reduceMotion}>
           <View style={styles.block}>
             <SectionHead title="Legal" accent={colors.calm} />
             <View style={styles.privacyTeaser}>
@@ -199,7 +232,7 @@ export default function SettingsScreen() {
           </View>
         </SoftBlockEnter>
 
-        <SoftBlockEnter index={4} reduceMotion={reduceMotion}>
+        <SoftBlockEnter index={5} reduceMotion={reduceMotion}>
           <View style={styles.block}>
             <SectionHead title="About" accent={colors.gratitude} />
             <Text style={styles.versionLine}>
