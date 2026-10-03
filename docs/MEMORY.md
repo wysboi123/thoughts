@@ -22,15 +22,16 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-03 ~03:15:** Pause overlay polish v1.3.8 — breath orb · snapshot pills · goals strip · Dawn · phase chip.
 - **2026-10-03 ~04:15:** Wave preview chip polish v1.3.9 — soft enter · totals · plant hints · Dawn · Reduce Motion.
 - **2026-10-03 ~23:00 night resume:** SoftWelcomeSheet polish v1.4.0 — page accents · step · Dawn · comfort strip · page fade.
+- **2026-10-03 ~23:30:** SoftPlayHud polish v1.4.1 — Calm/Clarity/Wave pills · soft enter · Dawn · low-Calm warn.
 
 ## State
 
-- Version: **mobile 1.4.0** (SoftWelcomeSheet polish)
+- Version: **mobile 1.4.1** (SoftPlayHud polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: `3ae23db` (v1.4.0)
+- Tip: _(update after push)_
 - Hourly timer: **`thought-defense-mobile-hourly`**
-- Night envelope: **ACTIVE** 23:00→05:00 UTC · stop re-armed `overnight-stop-5am-utc`
+- Night envelope: **ACTIVE** 23:00→05:00 UTC · stop armed `overnight-stop-5am-utc`
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
 - Next: hourly polish slices · native IAP once Femmy picks stack · or Femmy RC/RNIap / Pass price reply

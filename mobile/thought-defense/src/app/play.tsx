@@ -9,6 +9,7 @@ import { GameBoard } from '../components/GameBoard';
 import { PauseOverlay } from '../components/PauseOverlay';
 import { SoftActionToast } from '../components/SoftActionToast';
 import { SoftButton } from '../components/SoftButton';
+import { SoftPlayHud } from '../components/SoftPlayHud';
 import { WavePreviewChip } from '../components/WavePreviewChip';
 import { WaveResultModal } from '../components/WaveResultModal';
 import { GAME } from '../game/config';
@@ -103,14 +104,16 @@ export default function PlayScreen() {
           />
         </View>
 
-        <View style={styles.hud}>
-          <Text style={styles.stat}>Calm {state.calm}</Text>
-          <Text style={styles.stat}>Clarity {state.clarity}</Text>
-          <Text style={styles.stat}>
-            Wave {Math.min(state.waveIndex + (state.phase === 'won' ? 0 : 1), GAME.waveCount)}/
-            {GAME.waveCount}
-          </Text>
-        </View>
+        <SoftPlayHud
+          calm={state.calm}
+          clarity={state.clarity}
+          waveLabel={`${Math.min(
+            state.waveIndex + (state.phase === 'won' ? 0 : 1),
+            GAME.waveCount,
+          )}/${GAME.waveCount}`}
+          dawn={looks.dawn}
+          calmLow={state.calm <= 10}
+        />
 
         <SoftButton
           label={`Goals ${softGoalsDone(state.softGoals)}/${SOFT_GOAL_TOTAL}`}
@@ -227,25 +230,12 @@ const styles = StyleSheet.create({
   },
   homeBtn: { paddingVertical: 8, paddingHorizontal: 10 },
   pauseBtn: { paddingVertical: 8, paddingHorizontal: 10 },
-  goalsChip: { alignSelf: 'center', marginTop: 6, paddingVertical: 6, paddingHorizontal: 12 },
   title: {
     fontFamily: fonts.display,
     fontSize: 20,
     color: colors.brandDeep,
   },
-  hud: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginTop: 8,
-    paddingVertical: 8,
-    borderRadius: 16,
-    backgroundColor: colors.surface,
-  },
-  stat: {
-    fontFamily: fonts.bodyMedium,
-    color: colors.ink,
-    fontSize: 13,
-  },
+  goalsChip: { alignSelf: 'center', marginTop: 6, paddingVertical: 6, paddingHorizontal: 12 },
   boardWrap: { alignItems: 'center', marginTop: 6, flexGrow: 1, justifyContent: 'center' },
   lookBadge: {
     textAlign: 'center',
