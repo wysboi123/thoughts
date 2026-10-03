@@ -1,0 +1,63 @@
+import type { SoftGoalId, SoftGoals } from './types';
+
+export const SOFT_GOAL_ORDER: SoftGoalId[] = [
+  'plant_three',
+  'clear_wave_one',
+  'upgrade_once',
+  'reach_wave_three',
+  'plant_all_kinds',
+  'reach_wave_six',
+  'keep_calm',
+];
+
+export const SOFT_GOAL_TOTAL = SOFT_GOAL_ORDER.length;
+
+export const SOFT_GOAL_COPY: Record<
+  SoftGoalId,
+  { title: string; blurb: string }
+> = {
+  plant_three: {
+    title: 'Plant three kindnesses',
+    blurb: 'Place Affirmation, Gratitude, or Humor on three pads.',
+  },
+  clear_wave_one: {
+    title: 'Clear the first wave',
+    blurb: 'Let the first soft rush of noise settle.',
+  },
+  upgrade_once: {
+    title: 'Deepen one thought',
+    blurb: 'Upgrade a planted thought once (Tray C · Upgrade).',
+  },
+  reach_wave_three: {
+    title: 'Reach wave three',
+    blurb: 'Hold the Peace Core through early waves (run has 8 waves).',
+  },
+  plant_all_kinds: {
+    title: 'Try every kindness',
+    blurb: 'Plant Affirmation, Gratitude, and Humor at least once each.',
+  },
+  reach_wave_six: {
+    title: 'Reach wave six',
+    blurb: 'Stay with the path into the later mindscape waves.',
+  },
+  keep_calm: {
+    title: 'Keep Calm above 10',
+    blurb: 'Finish a run (win or gentle lose) with Calm still above 10.',
+  },
+};
+
+export function emptySoftGoals(): SoftGoals {
+  return {
+    plant_three: false,
+    clear_wave_one: false,
+    upgrade_once: false,
+    reach_wave_three: false,
+    plant_all_kinds: false,
+    reach_wave_six: false,
+    keep_calm: false,
+  };
+}
+
+export function softGoalsDone(goals: SoftGoals): number {
+  return Object.values(goals).filter(Boolean).length;
+}
