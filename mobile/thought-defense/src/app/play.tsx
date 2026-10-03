@@ -187,6 +187,18 @@ export default function PlayScreen() {
         waveLabel={waveLabel}
         calm={state.calm}
         clarity={state.clarity}
+        softGoalsDone={softGoalsDone(state.softGoals)}
+        softGoalsTotal={SOFT_GOAL_TOTAL}
+        phaseLabel={
+          state.phase === 'prep'
+            ? 'Prep · plant before the wave'
+            : state.phase === 'intermission'
+              ? 'Between waves · soft pause'
+              : state.phase === 'wave'
+                ? 'Wave in progress · path held'
+                : undefined
+        }
+        dawn={looks.dawn}
         onResume={() => setPaused(false)}
       />
 

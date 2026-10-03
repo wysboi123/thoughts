@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-03 03:15 UTC — Night hourly (v1.3.8 pause overlay)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.3.8:** Pause overlay — soft breath orb · Calm/Clarity pills · soft-goals progress strip · Dawn card tint · phase chip · resume/nav haptics · Reduce Motion aware
+- Did not redo goals journal (1.3.7) or home/settings looks · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-03 02:15 UTC — Night hourly (v1.3.7 soft goals journal)
 
 - Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
