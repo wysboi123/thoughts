@@ -2,6 +2,15 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-03 23:13 UTC — Night 10 resume
+
+- Stop re-armed → 05:00 UTC (`overnight-stop-5am-utc`); quiet CP ~01:00 / ~03:00
+- No Perplexity answers in `docs/research/` — audio still unwired (Q-001–004 open)
+- Night 10: SoftSit.refresh company/zone copy + Haze publish thumbnail tips; parked untouched
+- Start versions: Haze **3.3** · Couch **3.0** · Bus **3.2** · Porch **3.1**
+- PR: https://github.com/wysboi123/thoughts/pull/3
+- Quiet mode; **no mid-shift email**; one digest at 05:00 stop only
+
 ## 2026-10-03 05:00 UTC — OVERNIGHT STOP (Night 9)
 
 Night 9 complete. No new features this wrap. One digest email sent.
