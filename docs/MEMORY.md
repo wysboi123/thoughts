@@ -28,8 +28,8 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: `b2fd47f` (v1.3.9)
-- Hourly timer: **`thought-defense-mobile-hourly`**
-- Night envelope: **ACTIVE** 23:00→05:00 UTC · stop armed `overnight-stop-5am-utc` (fires ~05:00)
+- Tip: `5d19f30` (v1.3.9) · stop note pending
+- Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
+- Night envelope: **CLOSED** until 23:00 UTC · **do not** re-arm `overnight-stop-5am-utc` until night resume
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
-- Next: overnight stop wrap · then native IAP once Femmy picks stack · or Femmy RC/RNIap / Pass price reply
+- Next: wait for 23:00 resume · or Femmy RC/RNIap / Pass price reply during daytime idle
