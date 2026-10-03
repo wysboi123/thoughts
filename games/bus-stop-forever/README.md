@@ -10,11 +10,12 @@ rojo build -o BusStopForever.rbxl
 rojo serve
 ```
 
-## Loop (v0.1)
+## Loop (v3.0)
 
 - Hang under the main shelter or the second shelter down the walk
-- Sit on benches; collect ticket stubs
-- Watch the forever-bus loop (never forced aboard)
-- Read the rotating **notes from nowhere** board
-- Soft night rain FX (visual)
-- Proximity glow when friends stand near
+- Sit on benches — timetable shows **waiting together** count
+- Collect ticket stubs; **Wave together** when company is near
+- Soft company HUD + soft night rain (softer with friends)
+- Read the rotating **notes from nowhere** board (together lines when sitting)
+
+**USP:** Waiting together — the schedule is a joke you share.

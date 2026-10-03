@@ -1,6 +1,7 @@
 --!strict
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Workspace = game:GetService("Workspace")
 
 local Shared = ReplicatedStorage:WaitForChild("Shared")
 local Config = require(Shared:WaitForChild("Config"))
@@ -8,13 +9,15 @@ local Remotes = require(Shared:WaitForChild("Remotes"))
 local SoftGoals = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftGoals"))
 local ChillProximity = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("Proximity"))
 local SoftWelcome = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftWelcome"))
+local SoftCompany = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftCompany"))
 
 local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
 local gui = Instance.new("ScreenGui")
 gui.Name = "StarPorchHud"
 gui.ResetOnSpawn = false
 gui.IgnoreGuiInset = true
-gui.Parent = player:WaitForChild("PlayerGui")
+gui.Parent = playerGui
 
 local title = Instance.new("TextLabel")
 title.BackgroundTransparency = 1
@@ -46,14 +49,14 @@ hint.Font = Enum.Font.Gotham
 hint.TextSize = 12
 hint.TextXAlignment = Enum.TextXAlignment.Left
 hint.TextColor3 = Color3.fromRGB(130, 150, 120)
-hint.Text = "rockers + swing · side table · fireflies drift back"
+hint.Text = "rockers + swing · jar fills as fireflies return"
 hint.Parent = gui
 
 local counter = Instance.new("TextLabel")
 counter.BackgroundColor3 = Color3.fromRGB(20, 28, 22)
 counter.BackgroundTransparency = 0.25
 counter.Position = UDim2.new(0, 24, 1, -72)
-counter.Size = UDim2.new(0, 200, 0, 44)
+counter.Size = UDim2.new(0, 220, 0, 44)
 counter.Font = Enum.Font.GothamMedium
 counter.TextSize = 18
 counter.TextColor3 = Color3.fromRGB(200, 255, 170)
@@ -64,8 +67,19 @@ local corner = Instance.new("UICorner")
 corner.CornerRadius = UDim.new(0, 10)
 corner.Parent = counter
 
+local jarMeter = Instance.new("TextLabel")
+jarMeter.BackgroundTransparency = 1
+jarMeter.Position = UDim2.new(0, 24, 1, -100)
+jarMeter.Size = UDim2.new(0, 220, 0, 18)
+jarMeter.Font = Enum.Font.Gotham
+jarMeter.TextSize = 12
+jarMeter.TextXAlignment = Enum.TextXAlignment.Left
+jarMeter.TextColor3 = Color3.fromRGB(150, 180, 140)
+jarMeter.Text = "Jar · 0/" .. tostring(Config.JarFillCap)
+jarMeter.Parent = gui
+
 local SoftSit = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftSit"))
-local porchSit = SoftSit.mount(player:WaitForChild("PlayerGui"), {
+local porchSit = SoftSit.mount(playerGui, {
 	OneText = function(name)
 		return name .. " is on the porch"
 	end,
@@ -82,15 +96,52 @@ Remotes.FireflyCollected.OnClientEvent:Connect(function(count: number)
 	counter.Text = ("Fireflies  %d"):format(count)
 end)
 
-local _, complete = SoftGoals.mount(player:WaitForChild("PlayerGui"), "tonight's soft goals", {
+local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	{ Id = "sit", Label = "sit on the porch" },
 	{ Id = "swing", Label = "try the porch swing" },
 	{ Id = "flies", Label = "collect 4 fireflies" },
+	{ Id = "jar", Label = "watch the jar fill" },
+	{ Id = "company", Label = "share the porch" },
+}, {
+	AccentColor = Color3.fromRGB(140, 180, 120),
+	FrameColor = Color3.fromRGB(22, 28, 20),
+	TitleColor = Color3.fromRGB(200, 230, 180),
+	RowColor = Color3.fromRGB(150, 170, 140),
 })
 
 Remotes.FireflyCollected.OnClientEvent:Connect(function(count: number)
 	if count >= 4 then
 		complete("flies")
+	end
+end)
+
+local halfToast = false
+local fullToast = false
+local porchStyle = {
+	AccentColor = Color3.fromRGB(140, 180, 120),
+	FrameColor = Color3.fromRGB(22, 28, 20),
+	TitleColor = Color3.fromRGB(210, 235, 190),
+	BodyColor = Color3.fromRGB(160, 180, 150),
+}
+
+Remotes.JarFillChanged.OnClientEvent:Connect(function(session: number, cap: number)
+	jarMeter.Text = ("Jar · %d/%d"):format(session, cap)
+	local fill = if cap > 0 then session / cap else 0
+	counter.BackgroundColor3 = Color3.fromRGB(20, 28, 22):Lerp(Color3.fromRGB(40, 55, 35), math.clamp(fill, 0, 1) * 0.7)
+	if fill >= 0.5 and not halfToast then
+		halfToast = true
+		complete("jar")
+		SoftWelcome.show(playerGui, "jar glow", "half full — the jar remembers", porchStyle)
+		hint.Text = "jar half full · fireflies keep drifting back"
+	end
+	if fill >= 1 and not fullToast then
+		fullToast = true
+		complete("jar")
+		SoftWelcome.show(playerGui, "jar full", "soft glow · stay on the porch", porchStyle)
+		hint.Text = "jar full · the porch remembers tonight"
+	elseif fill > 0 and fill < 0.5 then
+		hint.Text = ("jar remembers · %d caught tonight"):format(session)
+		complete("jar")
 	end
 end)
 
@@ -125,6 +176,105 @@ ChillProximity.start(player, {
 	Range = 10,
 })
 
-SoftWelcome.show(player:WaitForChild("PlayerGui"), Config.GameName, "sit outside. the fireflies come back.")
+SoftWelcome.show(playerGui, Config.GameName, "fireflies drift back. the jar remembers.", {
+	AccentColor = porchStyle.AccentColor,
+	FrameColor = porchStyle.FrameColor,
+	TitleColor = porchStyle.TitleColor,
+	BodyColor = porchStyle.BodyColor,
+	HoldSeconds = 6.2,
+})
+
+local function findJarLight(): PointLight?
+	local world = Workspace:FindFirstChild("StarPorchWorld")
+	if not world then
+		return nil
+	end
+	local glow = world:FindFirstChild("JarGlow")
+	if glow and glow:IsA("BasePart") then
+		local light = glow:FindFirstChildOfClass("PointLight")
+		return light
+	end
+	return nil
+end
+
+local porchCompanyWelcomed = false
+SoftCompany.mount(playerGui, player, {
+	Radius = Config.Proximity.Radius,
+	Color = Color3.fromRGB(180, 200, 170),
+	AloneText = "soft company · jar waits",
+	OneText = "soft company · porch feels warmer",
+	ManyText = function(n)
+		return ("soft company · %d nearby · jar glow"):format(n)
+	end,
+	OnCountChanged = function(n)
+		local light = findJarLight()
+		if light then
+			if n >= 1 then
+				light.Brightness = math.max(light.Brightness, 2.2)
+				light.Range = math.max(light.Range, 14)
+			end
+		end
+		if jarMeter and jarMeter.Parent then
+			jarMeter.TextColor3 = if n >= 1 then Color3.fromRGB(200, 255, 170) else Color3.fromRGB(150, 180, 140)
+		end
+		if hint and hint.Parent and not fullToast then
+			if n >= 1 then
+				hint.Text = "company near · jar + lights feel warmer"
+				hint.TextColor3 = Color3.fromRGB(160, 190, 150)
+			elseif not halfToast then
+				hint.Text = "rockers + swing · jar fills as fireflies return"
+				hint.TextColor3 = Color3.fromRGB(130, 150, 120)
+			end
+		end
+		local world = Workspace:FindFirstChild("StarPorchWorld")
+		local jar = world and world:FindFirstChild("FireflyJar")
+		local jarGui = jar and jar:FindFirstChild("JarFillGui")
+		local jarLabel = jarGui and jarGui:FindFirstChild("JarFillLabel")
+		if jarLabel and jarLabel:IsA("TextLabel") then
+			jarLabel.TextColor3 = if n >= 1 then Color3.fromRGB(230, 255, 200) else Color3.fromRGB(210, 255, 180)
+		end
+		if world then
+			local fire = world:FindFirstChild("FirePitGlow")
+			if fire and fire:IsA("BasePart") then
+				local fireLight = fire:FindFirstChildOfClass("PointLight")
+				if fireLight then
+					fireLight.Brightness = if n >= 1 then 2.2 else 1.6
+					fireLight.Range = if n >= 1 then 22 else 18
+				end
+				fire.Transparency = if n >= 1 then 0.15 else 0.25
+			end
+			local mug = world:FindFirstChild("WarmMug")
+			if mug and mug:IsA("BasePart") then
+				local mugLight = mug:FindFirstChildOfClass("PointLight")
+				if mugLight then
+					mugLight.Brightness = if n >= 1 then 1.0 else 0.6
+				end
+			end
+			local path = world:FindFirstChild("YardPathGlow")
+			if path and path:IsA("BasePart") then
+				local pathLight = path:FindFirstChildOfClass("PointLight")
+				if pathLight then
+					pathLight.Brightness = if n >= 1 then 1.3 else 0.85
+				end
+			end
+			for _, child in world:GetChildren() do
+				if child:IsA("BasePart") and string.find(child.Name, "StringLight", 1, true) then
+					local sLight = child:FindFirstChildOfClass("PointLight")
+					if sLight then
+						-- soft client nudge; server loop owns base pulse + company
+						sLight.Color = if n >= 1 then Color3.fromRGB(255, 235, 180) else Color3.fromRGB(255, 220, 150)
+					end
+				end
+			end
+		end
+		if n >= 1 then
+			complete("company")
+		end
+		if n >= 1 and not porchCompanyWelcomed then
+			porchCompanyWelcomed = true
+			SoftWelcome.show(playerGui, "porch company", "someone nearby — jar feels warmer", porchStyle)
+		end
+	end,
+})
 
 print("[StarPorch] client ready v" .. Config.Version)

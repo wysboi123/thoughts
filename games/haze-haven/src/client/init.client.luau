@@ -15,9 +15,9 @@ local FloatFx = require(script:WaitForChild("FloatFx"))
 local AmbientAudio = require(script:WaitForChild("AmbientAudio"))
 local VibeBoard = require(script:WaitForChild("VibeBoard"))
 
-Hud.mount(playerGui)
+local orbCounter, setHudSynced = Hud.mount(playerGui)
 EmoteWheel.mount(playerGui)
-ProximityGlow.start(player)
+local proximity = ProximityGlow.start(player)
 FloatFx.start(player)
 AmbientAudio.start()
 VibeBoard.start()
@@ -26,6 +26,11 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	{ Id = "vibes", Label = "collect 3 vibes" },
 	{ Id = "sit", Label = "sit somewhere" },
 	{ Id = "float", Label = "take a float" },
+	{ Id = "sync", Label = "vibe sync near a friend" },
+}, {
+	AccentColor = Color3.fromRGB(160, 120, 210),
+	FrameColor = Color3.fromRGB(28, 22, 42),
+	TitleColor = Color3.fromRGB(220, 200, 255),
 })
 
 Remotes.OrbCollected.OnClientEvent:Connect(function(count: number)
@@ -80,5 +85,69 @@ end)
 print("[HazeHaven] client ready")
 
 local SoftWelcome = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftWelcome"))
+local SoftCompany = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftCompany"))
 local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Config"))
-SoftWelcome.show(playerGui, Config.GameName, "float soft. collect vibes. stay awhile.")
+local hazeStyle = {
+	AccentColor = Color3.fromRGB(160, 120, 210),
+	FrameColor = Color3.fromRGB(28, 22, 42),
+}
+SoftWelcome.show(playerGui, Config.GameName, "float soft. vibes sync when friends are near.", {
+	AccentColor = hazeStyle.AccentColor,
+	FrameColor = hazeStyle.FrameColor,
+	HoldSeconds = 6.2,
+})
+
+local vibeSynced = false
+local syncedColor = Color3.fromRGB(255, 220, 255)
+local normalColor = Color3.fromRGB(240, 200, 230)
+
+local function tintLocalNameplate(synced: boolean)
+	local character = player.Character
+	local head = character and character:FindFirstChild("Head")
+	local plate = head and head:FindFirstChild("HazeNameplate")
+	if not (plate and plate:IsA("BillboardGui")) then
+		return
+	end
+	local nameLabel = plate:FindFirstChild("PlayerName")
+	local vibeLabel = plate:FindFirstChild("VibeLabel")
+	if nameLabel and nameLabel:IsA("TextLabel") then
+		nameLabel.TextColor3 = if synced then Color3.fromRGB(255, 235, 255) else Color3.fromRGB(235, 220, 255)
+	end
+	if vibeLabel and vibeLabel:IsA("TextLabel") then
+		vibeLabel.TextColor3 = if synced then Color3.fromRGB(240, 200, 255) else Color3.fromRGB(210, 170, 230)
+	end
+end
+
+SoftCompany.mount(playerGui, player, {
+	Radius = Config.Proximity.Radius,
+	Color = Color3.fromRGB(200, 180, 230),
+	AloneText = "alone is fine · vibes still soft",
+	OneText = "soft company · vibes syncing",
+	ManyText = function(n)
+		return ("soft company · %d nearby · vibes sync"):format(n)
+	end,
+	OnCountChanged = function(n)
+		if n >= 1 then
+			complete("sync")
+			proximity.setBoost(1.35 + math.min(n - 1, 2) * 0.1)
+			VibeBoard.setSynced(true)
+			setHudSynced(true)
+			tintLocalNameplate(true)
+			if orbCounter and orbCounter.Parent then
+				orbCounter.TextColor3 = syncedColor
+			end
+			if not vibeSynced then
+				vibeSynced = true
+				SoftWelcome.show(playerGui, "vibe sync", "someone nearby — tonight's vibes feel softer", hazeStyle)
+			end
+		else
+			proximity.setBoost(1)
+			VibeBoard.setSynced(false)
+			setHudSynced(false)
+			tintLocalNameplate(false)
+			if orbCounter and orbCounter.Parent then
+				orbCounter.TextColor3 = normalColor
+			end
+		end
+	end,
+})

@@ -4,16 +4,20 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 
 ## Active (focus now)
 
-- [x] **Haze Haven v0–v1.8** — loft string warm + candle + table
-- [x] **Couch Galaxy v0–v1.5** — bookshelf warm + couch fabric
-- [x] **Bus Stop Forever v0–v1.7** — dual shelter roofs + benches
-- [x] **Star Porch v0–v1.6** — house wall + roof + deck + fire pit
-- [x] **Shared** — SoftWelcome + SoftSit + SoftWireSeats + Proximity
+- [x] **Haze Haven v0–v3.1** — server vibe sync + publish checklist
+- [x] **Couch Galaxy v0–v2.8** — soft company goal + welcome hold
+- [x] **Bus Stop Forever v0–v3.0** — welcome hold + wait together
+- [x] **Star Porch v0–v2.9** — share-the-porch soft goal
+- [x] **Shared** — SoftWelcome HoldSeconds · SoftGoals stroke pulse
+- [x] **USP research + priority** — `docs/USPS.md` + Night 8 research note
 - [x] **Night 6** — complete (active-four polish; parked trio kept)
+- [x] **Night 7** — complete (USP deepen; Haze 2.5 · Couch 2.2 · Bus 2.4 · Porch 2.3)
 - [ ] **Wire audio** — waiting on Perplexity Q-004 (do not invent)
 - [ ] **First publish** — Femmy: `PUBLISH_CHECKLIST.md` First 10 minutes (Haze)
 - [ ] **Apply Q-001–003** when answers land
-- [ ] **Night 7** — wire audio if research lands; help publish Haze; parked later
+- [ ] **Soft invite prompt** — post-publish only (SocialService)
+- [x] **Night 8** — complete (USP research + deepen; Haze 3.0 · Couch 2.7 · Bus 2.9 · Porch 2.8)
+- [ ] **Night 9** — in progress (first-session stickiness + Haze publish support; no invented audio)
 
 ## Parked for later (files kept — do not erase)
 

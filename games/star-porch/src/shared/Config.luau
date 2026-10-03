@@ -1,8 +1,8 @@
 --!strict
 local Config = {
 	GameName = "Star Porch",
-	Tagline = "sit outside. watch the quiet.",
-	Version = "1.6",
+	Tagline = "fireflies drift back. the jar remembers.",
+	Version = "2.9",
 
 	Spawn = Vector3.new(0, 4, 10),
 
@@ -11,6 +11,8 @@ local Config = {
 		Color = Color3.fromRGB(200, 255, 160),
 		RespawnSeconds = 11,
 	},
+
+	JarFillCap = 16,
 
 	Proximity = {
 		Radius = 12,
