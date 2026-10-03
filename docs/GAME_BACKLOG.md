@@ -17,7 +17,8 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 - [ ] **Apply Q-001–003** when answers land
 - [ ] **Soft invite prompt** — post-publish only (SocialService)
 - [x] **Night 8** — complete (USP research + deepen; Haze 3.0 · Couch 2.7 · Bus 2.9 · Porch 2.8)
-- [ ] **Night 9** — in progress (first-session stickiness + Haze publish support; no invented audio)
+- [x] **Night 9** — complete (stickiness + SoftGoals OnAllComplete; Haze 3.3 · Couch 3.0 · Bus 3.2 · Porch 3.1)
+- [ ] **Night 10** — apply Q-answers if any; Haze publish support; no invented audio
 
 ## Parked for later (files kept — do not erase)
 

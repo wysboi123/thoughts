@@ -2,6 +2,33 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-03 05:00 UTC — OVERNIGHT STOP (Night 9)
+
+Night 9 complete. No new features this wrap. One digest email sent.
+
+**Shipped Night 9**
+- First-session stickiness: SoftWelcome HoldSeconds · SoftGoals OnAllComplete stay toasts
+- Haze server-authoritative vibe sync + nameplate tint · Bus bench warm · short company toasts
+- Active versions: Haze **3.3** · Couch **3.0** · Bus **3.2** · Porch **3.1**
+- 7 commits since 2026-10-02 23:00 UTC
+- Parked trio untouched; no invented audio ids
+- Publish checklist updated for Haze 3.1+
+
+**Blocked**
+- Perplexity Q-001–004 still open — no invented audio ids
+- First Studio publish → `PUBLISH_CHECKLIST.md` (Haze ready)
+
+**Ops**
+- PR: https://github.com/wysboi123/thoughts/pull/3
+- Daily resume `overnight-daily-resume` **active** (23:00 UTC)
+- Email: one digest at stop only (Femmy policy)
+
+**Next night**
+- Apply Perplexity answers if any
+- Femmy: first Haze Studio publish
+- Soft invite prompt only after publish
+- Continue active-four polish; parked until asked
+
 ## 2026-10-03 03:00 UTC — Night 9 checkpoint 2 (quiet)
 
 - Active: **Haze 3.3** · **Couch 3.0** · **Bus 3.2** · **Porch 3.1**
