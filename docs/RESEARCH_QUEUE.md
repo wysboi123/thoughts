@@ -112,11 +112,6 @@ Cover mobile touch, clarity for first-time players, and ToS-safe chill/metaphori
 
 _(none yet)_
 
-## Done
-
-_(none yet)_
-
-
 ## Agent-sourced notes (not Perplexity)
 
 - `docs/research/TD-upgrade-ui-soft-goals-2026-09-30.md` — Context.dev search; recommends mockup **B** pending Femmy vote.
