@@ -36,7 +36,7 @@ Research refresh 2026-10-02: Creator Hub ranks **intentional co-play days** as a
 
 **Night 10 deepen:** SoftSit.refresh for company/zone-aware sit copy · Bus phase-aware SoftCompany · Porch/Haze SoftSit company · SoftCompany leave pulse · Haze publish thumbnail tips  
 
-**Night 11 deepen:** SoftGoals.Optional for company/sync/together — solo soft-complete + “company still open” title/toast when optionals remain · dimmer optional rows · research note `hangout-usps-2026-10-04.md`
+**Night 11 deepen:** SoftGoals.Optional for company/sync/together — solo soft-complete + “company still open” title/toast · dimmer optional rows · Couch SoftSit company · research note `hangout-usps-2026-10-04.md`
 
 ## Copy hooks (thumbnails / description)
 
