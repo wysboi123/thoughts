@@ -108,8 +108,11 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	FrameColor = Color3.fromRGB(22, 28, 20),
 	TitleColor = Color3.fromRGB(200, 230, 180),
 	RowColor = Color3.fromRGB(150, 170, 140),
-	OnAllComplete = function()
-		SoftWelcome.show(playerGui, "soft complete", "the jar remembers · stay", {
+	OnAllComplete = function(optionalLeft: number)
+		local body = if optionalLeft > 0
+			then "stay · share the porch still open"
+			else "the jar remembers · stay"
+		SoftWelcome.show(playerGui, "soft complete", body, {
 			AccentColor = Color3.fromRGB(140, 180, 120),
 			FrameColor = Color3.fromRGB(22, 28, 20),
 			HoldSeconds = 4.0,

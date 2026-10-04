@@ -32,8 +32,11 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	AccentColor = Color3.fromRGB(160, 120, 210),
 	FrameColor = Color3.fromRGB(28, 22, 42),
 	TitleColor = Color3.fromRGB(220, 200, 255),
-	OnAllComplete = function()
-		SoftWelcome.show(playerGui, "soft complete", "stay as long as you like", {
+	OnAllComplete = function(optionalLeft: number)
+		local body = if optionalLeft > 0
+			then "stay · vibe sync still open if friends join"
+			else "stay as long as you like"
+		SoftWelcome.show(playerGui, "soft complete", body, {
 			AccentColor = Color3.fromRGB(160, 120, 210),
 			FrameColor = Color3.fromRGB(28, 22, 42),
 			HoldSeconds = 4.0,

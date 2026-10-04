@@ -4,12 +4,12 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 
 ## Active (focus now)
 
-- [x] **Haze Haven v0–v3.7** — optional vibe-sync SoftGoal
-- [x] **Couch Galaxy v0–v3.4** — optional company SoftGoal
-- [x] **Bus Stop Forever v0–v3.6** — optional together SoftGoal
-- [x] **Star Porch v0–v3.5** — optional share-porch SoftGoal
-- [x] **Shared** — SoftGoals.Optional · SoftSit.refresh · SoftCompany pulse
-- [x] **USP research + priority** — `docs/USPS.md` + Night 8 research note
+- [x] **Haze Haven v0–v3.8** — soft-complete · company still open
+- [x] **Couch Galaxy v0–v3.5** — soft-complete · company still open
+- [x] **Bus Stop Forever v0–v3.7** — soft-complete · together still open
+- [x] **Star Porch v0–v3.6** — soft-complete · porch still open
+- [x] **Shared** — SoftGoals.Optional · company-still-open · SoftSit.refresh · SoftCompany pulse
+- [x] **USP research + priority** — `docs/USPS.md` + Night 8/11 research notes
 - [x] **Night 6** — complete (active-four polish; parked trio kept)
 - [x] **Night 7** — complete (USP deepen; Haze 2.5 · Couch 2.2 · Bus 2.4 · Porch 2.3)
 - [ ] **Wire audio** — waiting on Perplexity Q-004 (do not invent)
@@ -19,7 +19,7 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 - [x] **Night 8** — complete (USP research + deepen; Haze 3.0 · Couch 2.7 · Bus 2.9 · Porch 2.8)
 - [x] **Night 9** — complete (stickiness + SoftGoals OnAllComplete; Haze 3.3 · Couch 3.0 · Bus 3.2 · Porch 3.1)
 - [x] **Night 10** — complete (SoftSit.refresh + SoftCompany polish; Haze 3.6 · Couch 3.3 · Bus 3.5 · Porch 3.4)
-- [ ] **Night 11** — in progress (optional company SoftGoals; solo soft-complete; no invented audio)
+- [ ] **Night 11** — in progress (optional SoftGoals + company-still-open; no invented audio)
 
 ## Parked for later (files kept — do not erase)
 

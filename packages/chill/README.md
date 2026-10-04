@@ -21,6 +21,6 @@ Then: `local SoftGoals = require(ReplicatedStorage.Chill.SoftGoals)`
 | `SoftSit` | Bottom-center sit-status line (fade in/out) |
 | `SoftWireSeats` | Seat.Occupant → RemoteEvent for SoftSit |
 | `SoftCompany` | Nearby-player co-play HUD (arrive pulse + dynamic copy) |
-| `SoftGoals` | Soft checklist (optional accent theme; fades on complete) |
+| `SoftGoals` | Soft checklist · `Optional` goals · company-still-open on soft-complete |
 
 Do not invent Roblox audio asset ids here — wait for Perplexity Q-004 / Femmy paste.

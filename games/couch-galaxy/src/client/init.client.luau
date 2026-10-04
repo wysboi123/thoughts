@@ -197,8 +197,11 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	AccentColor = Color3.fromRGB(140, 120, 200),
 	FrameColor = Color3.fromRGB(26, 20, 40),
 	TitleColor = Color3.fromRGB(220, 205, 255),
-	OnAllComplete = function()
-		SoftWelcome.show(playerGui, "soft complete", "two worlds · one couch · stay", {
+	OnAllComplete = function(optionalLeft: number)
+		local body = if optionalLeft > 0
+			then "stay · soft company still open"
+			else "two worlds · one couch · stay"
+		SoftWelcome.show(playerGui, "soft complete", body, {
 			AccentColor = Color3.fromRGB(140, 120, 200),
 			FrameColor = Color3.fromRGB(26, 20, 40),
 			HoldSeconds = 4.0,

@@ -16,10 +16,10 @@ Research refresh 2026-10-02: Creator Hub ranks **intentional co-play days** as a
 
 | Priority | Game | USP | Why it sells | Implementation | Status |
 | --- | --- | --- | --- | --- | --- |
-| **P0** | Haze Haven | **Vibe sync** | Board + orbs feel better when friends are near | SoftSit sync · optional sync goal | ✅ v3.7 |
-| **P0** | Bus Stop Forever | **Waiting together** | Timetable + HUD sit/company loop | Phase SoftCompany · optional together | ✅ v3.6 |
-| **P0** | Star Porch | **Jar that fills** | Fireflies return; jar visibly fills | SoftSit company · optional share | ✅ v3.5 |
-| **P1** | Couch Galaxy | **Two worlds, one couch** | Clear home ↔ galaxy identity | SoftSit zone · optional company | ✅ v3.4 |
+| **P0** | Haze Haven | **Vibe sync** | Board + orbs feel better when friends are near | SoftSit sync · optional sync · company-still-open | ✅ v3.8 |
+| **P0** | Bus Stop Forever | **Waiting together** | Timetable + HUD sit/company loop | Phase SoftCompany · optional together · still-open | ✅ v3.7 |
+| **P0** | Star Porch | **Jar that fills** | Fireflies return; jar visibly fills | SoftSit company · optional share · still-open | ✅ v3.6 |
+| **P1** | Couch Galaxy | **Two worlds, one couch** | Clear home ↔ galaxy identity | SoftSit zone · optional company · still-open | ✅ v3.5 |
 | **P2** | Haze Haven | Shared vibe board | Soft ranks without competition toxicity | Already: VibeBoard | ✅ |
 | **P2** | Line (post-publish) | Soft invite prompt | Discovery co-play days | SocialService — after first Studio publish | ⏳ |
 | **Later** | Parked trio | Resume USPs when Femmy unparks | Files kept | — | Parked |
@@ -36,7 +36,7 @@ Research refresh 2026-10-02: Creator Hub ranks **intentional co-play days** as a
 
 **Night 10 deepen:** SoftSit.refresh for company/zone-aware sit copy · Bus phase-aware SoftCompany · Porch/Haze SoftSit company · SoftCompany leave pulse · Haze publish thumbnail tips  
 
-**Night 11 deepen:** SoftGoals.Optional for company/sync/together — solo players can soft-complete without friends
+**Night 11 deepen:** SoftGoals.Optional for company/sync/together — solo soft-complete + “company still open” title/toast when optionals remain · dimmer optional rows · research note `hangout-usps-2026-10-04.md`
 
 ## Copy hooks (thumbnails / description)
 

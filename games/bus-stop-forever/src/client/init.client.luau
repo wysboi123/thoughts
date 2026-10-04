@@ -144,8 +144,11 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	FrameColor = Color3.fromRGB(24, 28, 22),
 	TitleColor = Color3.fromRGB(210, 230, 190),
 	RowColor = Color3.fromRGB(150, 165, 145),
-	OnAllComplete = function()
-		SoftWelcome.show(playerGui, "soft complete", "the next bus can wait · stay", {
+	OnAllComplete = function(optionalLeft: number)
+		local body = if optionalLeft > 0
+			then "stay · waiting together still open"
+			else "the next bus can wait · stay"
+		SoftWelcome.show(playerGui, "soft complete", body, {
 			AccentColor = busStyle.AccentColor,
 			FrameColor = busStyle.FrameColor,
 			HoldSeconds = 4.0,
