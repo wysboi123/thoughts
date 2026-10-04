@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-04 02:15 UTC — Night hourly (v1.4.4 DualModeTray)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.4:** DualModeTray polish — Plant/Selected mode chip · Clarity cost labels · select banner · Dawn tint · soft unaffordable dim · **Draft C UX unchanged**
+- Did not redo toast (1.4.3) · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-04 01:30 UTC — Night hourly (v1.4.3 SoftActionToast)
 
 - Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply

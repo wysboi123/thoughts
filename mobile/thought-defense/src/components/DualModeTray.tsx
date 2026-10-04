@@ -19,6 +19,12 @@ import { SoftButton } from './SoftButton';
 
 const KINDS: TowerKind[] = ['Affirmation', 'Gratitude', 'Humor'];
 
+const KIND_ACCENT: Record<TowerKind, string> = {
+  Affirmation: colors.affirmation,
+  Gratitude: colors.gratitude,
+  Humor: colors.humor,
+};
+
 type Props = {
   state: GameState;
   onSelectKind: (kind: TowerKind) => void;
@@ -27,6 +33,7 @@ type Props = {
   onBack: () => void;
   /** Lantern Towers look — plant card swatches get soft lantern rims */
   themeLantern?: boolean;
+  themeDawn?: boolean;
 };
 
 /**
@@ -42,6 +49,7 @@ export function DualModeTray({
   onSell,
   onBack,
   themeLantern,
+  themeDawn,
 }: Props) {
   const selected = state.towers.find((t) => t.padIndex === state.selectedPad);
   const selectMode = selected != null;
@@ -69,7 +77,7 @@ export function DualModeTray({
 
   const actionStyle = useAnimatedStyle(() => ({
     opacity: interpolate(mode.value, [0, 0.35, 1], [0, 0.4, 1]),
-    maxHeight: interpolate(mode.value, [0, 1], [0, 96]),
+    maxHeight: interpolate(mode.value, [0, 1], [0, 112]),
     transform: [{ translateY: interpolate(mode.value, [0, 1], [8, 0]) }],
     overflow: 'hidden' as const,
   }));
@@ -80,28 +88,59 @@ export function DualModeTray({
     return `Upgrade · ${upgradeCost(selected.kind, selected.level)}`;
   })();
 
+  const selectAccent = selected ? KIND_ACCENT[selected.kind] : colors.brand;
   const selectStats = selected
     ? `${GAME.towers[selected.kind].blurb} · L${selected.level}/${GAME.maxTowerLevel}`
     : '';
 
   return (
-    <View style={styles.tray}>
-      <Text style={styles.title}>
-        {selectMode
-          ? `Selected · ${GAME.towers[selected.kind].displayName} L${selected.level}`
-          : themeLantern
-            ? 'Plant kindness · lantern light'
-            : 'Plant kindness'}
-      </Text>
+    <View
+      style={[
+        styles.tray,
+        themeDawn ? styles.trayDawn : null,
+        selectMode ? { borderColor: `${selectAccent}66` } : null,
+      ]}
+    >
+      <View style={styles.titleRow}>
+        <View
+          style={[
+            styles.modeChip,
+            {
+              backgroundColor: selectMode ? `${selectAccent}22` : 'rgba(63,111,98,0.12)',
+              borderColor: selectMode ? `${selectAccent}55` : 'rgba(63,111,98,0.22)',
+            },
+          ]}
+        >
+          <Text
+            style={[
+              styles.modeChipText,
+              { color: selectMode ? selectAccent : colors.brand },
+            ]}
+          >
+            {selectMode ? 'Selected' : 'Plant'}
+          </Text>
+        </View>
+        <Text style={styles.title} numberOfLines={1}>
+          {selectMode
+            ? `${GAME.towers[selected.kind].displayName} · L${selected.level}`
+            : themeLantern
+              ? 'Plant kindness · lantern light'
+              : 'Plant kindness'}
+        </Text>
+      </View>
 
       <Animated.View style={[styles.plantRow, plantRowStyle]}>
         {KINDS.map((k) => {
           const active = !selectMode && state.selectedTower === k;
+          const cost = GAME.towers[k].cost;
+          const canAfford = state.clarity >= cost;
           return (
             <Pressable
               key={k}
               accessibilityRole="button"
-              accessibilityLabel={`${GAME.towers[k].displayName}, ${GAME.towers[k].cost} Clarity`}
+              accessibilityLabel={`${GAME.towers[k].displayName}, ${cost} Clarity${
+                canAfford ? '' : ', need more Clarity'
+              }`}
               accessibilityState={{ selected: active, disabled: selectMode }}
               accessibilityHint="Select this kindness to plant on an empty pad"
               hitSlop={TAP_SLOP}
@@ -113,21 +152,16 @@ export function DualModeTray({
               style={[
                 styles.plantCard,
                 active && styles.plantCardActive,
+                active && { borderColor: KIND_ACCENT[k] },
                 selectMode && styles.plantCardLocked,
                 themeLantern && !selectMode && { borderColor: LANTERN_RIM[k] },
+                !selectMode && !canAfford && styles.plantCardSoft,
               ]}
             >
               <View
                 style={[
                   styles.swatch,
-                  {
-                    backgroundColor:
-                      k === 'Affirmation'
-                        ? colors.affirmation
-                        : k === 'Gratitude'
-                          ? colors.gratitude
-                          : colors.humor,
-                  },
+                  { backgroundColor: KIND_ACCENT[k] },
                   themeLantern
                     ? {
                         borderWidth: 2,
@@ -139,8 +173,14 @@ export function DualModeTray({
               <Text style={[styles.plantName, selectMode && styles.dimText]}>
                 {GAME.towers[k].displayName}
               </Text>
-              <Text style={[styles.plantCost, selectMode && styles.dimText]}>
-                {GAME.towers[k].cost}
+              <Text
+                style={[
+                  styles.plantCost,
+                  selectMode && styles.dimText,
+                  !canAfford && !selectMode && styles.plantCostLow,
+                ]}
+              >
+                {cost} Clarity
               </Text>
               {!selectMode && active ? (
                 <Text style={styles.plantBlurb} numberOfLines={2}>
@@ -153,7 +193,12 @@ export function DualModeTray({
       </Animated.View>
 
       <Animated.View style={actionStyle} pointerEvents={selectMode ? 'auto' : 'none'}>
-        {selectMode ? <Text style={styles.selectStats}>{selectStats}</Text> : null}
+        {selectMode ? (
+          <View style={[styles.selectBanner, { borderColor: `${selectAccent}55` }]}>
+            <View style={[styles.selectDot, { backgroundColor: selectAccent }]} />
+            <Text style={styles.selectStats}>{selectStats}</Text>
+          </View>
+        ) : null}
         <View style={styles.actionRow}>
           <SoftButton
             label={upgradeLabel}
@@ -183,11 +228,33 @@ const styles = StyleSheet.create({
     borderColor: colors.line,
     gap: 10,
   },
+  trayDawn: {
+    backgroundColor: 'rgba(255, 244, 220, 0.78)',
+    borderColor: 'rgba(201, 168, 90, 0.28)',
+  },
+  titleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+  },
+  modeChip: {
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 10,
+    borderWidth: 1,
+  },
+  modeChipText: {
+    fontFamily: fonts.bodyBold,
+    fontSize: 10,
+    letterSpacing: 0.3,
+    textTransform: 'uppercase',
+  },
   title: {
     fontFamily: fonts.bodyBold,
     fontSize: 13,
     color: colors.brandDeep,
-    textAlign: 'center',
+    flexShrink: 1,
   },
   plantRow: {
     flexDirection: 'row',
@@ -206,11 +273,13 @@ const styles = StyleSheet.create({
     borderColor: 'transparent',
   },
   plantCardActive: {
-    borderColor: colors.brand,
     backgroundColor: 'rgba(255,255,255,0.92)',
   },
   plantCardLocked: {
     borderColor: 'transparent',
+  },
+  plantCardSoft: {
+    opacity: 0.72,
   },
   swatch: {
     width: 18,
@@ -229,6 +298,9 @@ const styles = StyleSheet.create({
     color: colors.clarity,
     marginTop: 2,
   },
+  plantCostLow: {
+    color: colors.inkSoft,
+  },
   plantBlurb: {
     marginTop: 4,
     fontFamily: fonts.body,
@@ -240,12 +312,27 @@ const styles = StyleSheet.create({
   dimText: {
     color: colors.inkSoft,
   },
+  selectBanner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderRadius: 12,
+    borderWidth: 1,
+    backgroundColor: 'rgba(255,255,255,0.45)',
+    marginBottom: 6,
+  },
+  selectDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+  },
   selectStats: {
     fontFamily: fonts.body,
     fontSize: 11,
     color: colors.inkSoft,
-    textAlign: 'center',
-    marginBottom: 6,
+    flex: 1,
   },
   actionRow: {
     flexDirection: 'row',

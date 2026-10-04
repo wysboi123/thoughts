@@ -180,6 +180,7 @@ export default function PlayScreen() {
           onSell={() => setState((s) => sellSelected(s))}
           onBack={() => setState((s) => clearSelection(s))}
           themeLantern={looks.lantern}
+          themeDawn={looks.dawn}
         />
 
         {state.phase === 'wave' && !entitlements.clarityPassActive ? (
