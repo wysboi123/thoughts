@@ -101,12 +101,16 @@ function SoftCompany.mount(playerGui: PlayerGui, localPlayer: Player, config: So
 			label.Text = oneLine()
 			if prev <= 0 then
 				pulseArrive()
+			elseif prev > 1 then
+				pulseLeave()
 			end
 		else
 			local many = config.ManyText
 			label.Text = if many then many(n) else ("soft company · %d nearby"):format(n)
 			if prev <= 0 or n > prev then
 				pulseArrive()
+			elseif n < prev then
+				pulseLeave()
 			end
 		end
 		if config.OnCountChanged then

@@ -62,10 +62,11 @@ Remotes.EmotePlayed.OnClientEvent:Connect(function(userId: number, emoteId: stri
 end)
 
 local SoftSit = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftSit"))
+local hazeCompanyNear = false
 local hazeSit = SoftSit.mount(playerGui, {
 	EmptyText = "",
 	OneText = function(name)
-		return name .. " is chilling"
+		return if hazeCompanyNear then (name .. " is chilling · sync") else (name .. " is chilling")
 	end,
 	ManyText = function(names)
 		return table.concat(names, " & ") .. " are chilling"
@@ -135,6 +136,8 @@ SoftCompany.mount(playerGui, player, {
 		return ("soft company · %d nearby · vibes sync"):format(n)
 	end,
 	OnCountChanged = function(n)
+		hazeCompanyNear = n >= 1
+		hazeSit.refresh()
 		if n >= 1 then
 			complete("sync")
 			proximity.setBoost(1.35 + math.min(n - 1, 2) * 0.1)
