@@ -17,7 +17,7 @@ rojo serve
    - SurfaceGui `WelcomeTitle` = **Haze Haven**
    - SurfaceGui `WelcomeBody` = tagline *float soft. vibes sync when friends are near.*
    - SoftWelcome toast holds ~6s + SoftCompany line at bottom-left
-   - SoftGoals top-right: vibes · sit · float · vibe sync
+   - SoftGoals top-right: vibes · sit · float · vibe sync (◦ optional — solo soft-complete OK; “company still open”)
 4. Optional second player / alt: vibe sync toast + WelcomeBody flips · board/orb/HUD/hammock/nameplate tint when near
 5. Stop Play → **File → Publish to Roblox** (create new experience if prompted)
 6. Paste title + description from [`EXPERIENCE_COPY.md`](EXPERIENCE_COPY.md) → Haze Haven
