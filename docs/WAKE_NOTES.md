@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-04 03:30 UTC — Night hourly (v1.4.5 privacy)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.5:** Privacy screen — SoftBlockEnter stagger · per-section accents · Dawn Atmosphere · on-device comfort strip · version/date sync
+- Did not redo DualModeTray (1.4.4) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-04 02:15 UTC — Night hourly (v1.4.4 DualModeTray)
 
 - Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply

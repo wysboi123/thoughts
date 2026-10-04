@@ -38,6 +38,7 @@ Priority order. Agents pick the top unchecked item unless Femmy overrides.
 - [x] **v1.4.2 hourly polish** — FirstRunTipChip (tip fade · dots · Dawn · pause tip · accent border)
 - [x] **v1.4.3 hourly polish** — SoftActionToast (accent bar · badge pill · soft scale pop · soft settle · Dawn)
 - [x] **v1.4.4 hourly polish** — DualModeTray polish (mode chip · Clarity labels · select banner · Dawn · soft unaffordable) — Draft C UX locked
+- [x] **v1.4.5 hourly polish** — Privacy screen (SoftBlockEnter · section accents · Dawn · on-device comfort strip · date sync)
 - [ ] **Native IAP** — wire RevenueCat or react-native-iap; turn off stubMode for store builds
 - [ ] **EAS project** — Femmy: `eas init` + real `projectId` + credentials
 - [ ] **Store products** — create IAP ids in App Store Connect + Play Console
