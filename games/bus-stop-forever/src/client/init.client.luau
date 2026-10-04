@@ -138,7 +138,7 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	{ Id = "sit", Label = "sit on a bench" },
 	{ Id = "ticket", Label = "pick up a ticket" },
 	{ Id = "wave", Label = "wave when the bus stops" },
-	{ Id = "together", Label = "wait together on a bench" },
+	{ Id = "together", Label = "wait together on a bench", Optional = true },
 }, {
 	AccentColor = Color3.fromRGB(120, 160, 110),
 	FrameColor = Color3.fromRGB(24, 28, 22),

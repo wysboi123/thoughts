@@ -6,6 +6,8 @@ local TweenService = game:GetService("TweenService")
 export type Goal = {
 	Id: string,
 	Label: string,
+	-- Optional goals do not block OnAllComplete / soft-complete (solo-friendly)
+	Optional: boolean?,
 }
 
 export type SoftGoalsStyle = {
@@ -77,7 +79,8 @@ function SoftGoals.mount(
 		row.TextSize = 12
 		row.TextXAlignment = Enum.TextXAlignment.Left
 		row.TextColor3 = rowColor
-		row.Text = "○  " .. goal.Label
+		local prefix = if goal.Optional then "◦  " else "○  "
+		row.Text = prefix .. goal.Label
 		row.Parent = frame
 		labels[goal.Id] = row
 	end
@@ -91,7 +94,7 @@ function SoftGoals.mount(
 		done[id] = true
 		local row = labels[id]
 		if row then
-			row.Text = "●  " .. (row.Text:gsub("^[○●]%s*", ""))
+			row.Text = "●  " .. (row.Text:gsub("^[○●◦]%s*", ""))
 			row.TextColor3 = Color3.fromRGB(200, 230, 180)
 		end
 		stroke.Transparency = 0.25
@@ -102,7 +105,7 @@ function SoftGoals.mount(
 		):Play()
 		local all = true
 		for _, g in goals do
-			if not done[g.Id] then
+			if not done[g.Id] and not g.Optional then
 				all = false
 				break
 			end

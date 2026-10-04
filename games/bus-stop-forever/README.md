@@ -10,7 +10,7 @@ rojo build -o BusStopForever.rbxl
 rojo serve
 ```
 
-## Loop (v3.5)
+## Loop (v3.6)
 
 - Hang under the main shelter or the second shelter down the walk
 - Sit on benches — timetable shows **waiting together** count

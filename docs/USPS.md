@@ -16,10 +16,10 @@ Research refresh 2026-10-02: Creator Hub ranks **intentional co-play days** as a
 
 | Priority | Game | USP | Why it sells | Implementation | Status |
 | --- | --- | --- | --- | --- | --- |
-| **P0** | Haze Haven | **Vibe sync** | Board + orbs feel better when friends are near | SoftSit sync copy · nameplates · soft-complete | ✅ v3.6 |
-| **P0** | Bus Stop Forever | **Waiting together** | Timetable + HUD sit/company loop | Phase-aware SoftCompany · SoftSit refresh | ✅ v3.5 |
-| **P0** | Star Porch | **Jar that fills** | Fireflies return; jar visibly fills | SoftSit company refresh · jar | ✅ v3.4 |
-| **P1** | Couch Galaxy | **Two worlds, one couch** | Clear home ↔ galaxy identity | SoftSit zone refresh · soft-complete | ✅ v3.3 |
+| **P0** | Haze Haven | **Vibe sync** | Board + orbs feel better when friends are near | SoftSit sync · optional sync goal | ✅ v3.7 |
+| **P0** | Bus Stop Forever | **Waiting together** | Timetable + HUD sit/company loop | Phase SoftCompany · optional together | ✅ v3.6 |
+| **P0** | Star Porch | **Jar that fills** | Fireflies return; jar visibly fills | SoftSit company · optional share | ✅ v3.5 |
+| **P1** | Couch Galaxy | **Two worlds, one couch** | Clear home ↔ galaxy identity | SoftSit zone · optional company | ✅ v3.4 |
 | **P2** | Haze Haven | Shared vibe board | Soft ranks without competition toxicity | Already: VibeBoard | ✅ |
 | **P2** | Line (post-publish) | Soft invite prompt | Discovery co-play days | SocialService — after first Studio publish | ⏳ |
 | **Later** | Parked trio | Resume USPs when Femmy unparks | Files kept | — | Parked |

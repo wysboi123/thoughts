@@ -192,7 +192,7 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	{ Id = "galaxy", Label = "visit the galaxy loft" },
 	{ Id = "stars", Label = "collect 3 stars" },
 	{ Id = "both", Label = "visit both worlds tonight" },
-	{ Id = "company", Label = "soft company nearby" },
+	{ Id = "company", Label = "soft company nearby", Optional = true },
 }, {
 	AccentColor = Color3.fromRGB(140, 120, 200),
 	FrameColor = Color3.fromRGB(26, 20, 40),

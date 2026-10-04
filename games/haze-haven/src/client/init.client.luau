@@ -27,7 +27,7 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	{ Id = "vibes", Label = "collect 3 vibes" },
 	{ Id = "sit", Label = "sit somewhere" },
 	{ Id = "float", Label = "take a float" },
-	{ Id = "sync", Label = "vibe sync near a friend" },
+	{ Id = "sync", Label = "vibe sync near a friend", Optional = true },
 }, {
 	AccentColor = Color3.fromRGB(160, 120, 210),
 	FrameColor = Color3.fromRGB(28, 22, 42),
