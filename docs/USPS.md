@@ -34,7 +34,7 @@ Research refresh 2026-10-02: Creator Hub ranks **intentional co-play days** as a
 
 **Night 9 deepen:** First-session stickiness — SoftWelcome HoldSeconds · SoftGoals stroke pulse + OnAllComplete stay toast · Haze server vibe sync + nameplate tint · porch/couch company soft goals · short company toasts · Bus bench warm  
 
-**Night 10 deepen:** SoftSit.refresh for company/zone-aware sit copy · Bus phase-aware SoftCompany · Porch SoftSit company · Haze publish thumbnail tips
+**Night 10 deepen:** SoftSit.refresh for company/zone-aware sit copy · Bus phase-aware SoftCompany · Porch/Haze SoftSit company · SoftCompany leave pulse · Haze publish thumbnail tips
 
 ## Copy hooks (thumbnails / description)
 
