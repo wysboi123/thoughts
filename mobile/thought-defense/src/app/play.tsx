@@ -122,7 +122,7 @@ export default function PlayScreen() {
           style={styles.goalsChip}
         />
 
-        <SoftActionToast message={state.toast} kind={state.toastKind} />
+        <SoftActionToast message={state.toast} kind={state.toastKind} dawn={looks.dawn} />
 
         <FirstRunTipChip
           visible={
