@@ -27,15 +27,16 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-04 ~01:30:** SoftActionToast polish v1.4.3 — accent bar · badge pill · scale pop · soft settle · Dawn.
 - **2026-10-04 ~02:15:** DualModeTray polish v1.4.4 — mode chip · Clarity labels · select banner · Dawn · soft unaffordable (Draft C locked).
 - **2026-10-04 ~03:30:** Privacy screen polish v1.4.5 — SoftBlockEnter · accents · Dawn · comfort strip · date sync.
+- **2026-10-04 ~04:15:** Terms screen polish v1.4.6 — SoftBlockEnter · section cards · Dawn · free-core strip · date sync.
 
 ## State
 
-- Version: **mobile 1.4.5** (privacy screen polish)
+- Version: **mobile 1.4.6** (terms screen polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: `07a3a03` (v1.4.5)
+- Tip: _(update after push)_
 - Hourly timer: **`thought-defense-mobile-hourly`**
-- Night envelope: **ACTIVE** 23:00→05:00 UTC · stop armed `overnight-stop-5am-utc`
+- Night envelope: **ACTIVE** 23:00→05:00 UTC · stop armed `overnight-stop-5am-utc` (fires ~05:00)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
-- Next: hourly polish · overnight stop ~05:00 · native IAP once Femmy picks stack
+- Next: overnight stop wrap · then native IAP once Femmy picks stack · or Femmy RC/RNIap / Pass price reply
