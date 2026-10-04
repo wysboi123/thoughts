@@ -48,6 +48,10 @@ rojo serve
 3. **File → Publish to Roblox** (or Publish as → new place)
 4. Set experience name, description, genre (hangout / adventure)
 5. Thumbnail: sit/float screenshot, soft lighting — no ToS-risk imagery
+   - **Haze:** lounge + WelcomeSign at dusk
+   - **Couch:** apartment couch or skylight portal
+   - **Bus:** shelter + timetable under soft rain light
+   - **Porch:** jar + string lights + rocker
 6. Access: Public when ready; Friends for soft launch is fine
 7. Paste URL into [`PUBLISH_STATUS.md`](PUBLISH_STATUS.md)
 8. Use titles/descriptions from [`EXPERIENCE_COPY.md`](EXPERIENCE_COPY.md)

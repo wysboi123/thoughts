@@ -79,9 +79,10 @@ jarMeter.Text = "Jar · 0/" .. tostring(Config.JarFillCap)
 jarMeter.Parent = gui
 
 local SoftSit = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftSit"))
+local porchCompanyNear = false
 local porchSit = SoftSit.mount(playerGui, {
 	OneText = function(name)
-		return name .. " is on the porch"
+		return if porchCompanyNear then (name .. " is on the porch · company") else (name .. " is on the porch")
 	end,
 	ManyText = function(names)
 		return table.concat(names, " & ") .. " are on the porch"

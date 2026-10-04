@@ -247,9 +247,24 @@ local companyWelcomed = false
 SoftCompany.mount(playerGui, player, {
 	Radius = Config.Proximity.Radius,
 	Color = Color3.fromRGB(190, 200, 170),
-	AloneText = "soft company · alone is fine",
-	OneText = "soft company · waiting together",
+	AloneTextFn = function()
+		if phase == "arrived" then
+			return "soft company · bus is here · alone is fine"
+		elseif phase == "departed" then
+			return "soft company · another will come"
+		end
+		return "soft company · alone is fine"
+	end,
+	OneTextFn = function()
+		if phase == "arrived" then
+			return "soft company · bus is here · waiting together"
+		end
+		return "soft company · waiting together"
+	end,
 	ManyText = function(n)
+		if phase == "arrived" then
+			return ("soft company · %d nearby · bus is here"):format(n)
+		end
 		return ("soft company · %d nearby · wait together"):format(n)
 	end,
 	OnCountChanged = function(n)
