@@ -28,15 +28,16 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-04 ~02:15:** DualModeTray polish v1.4.4 — mode chip · Clarity labels · select banner · Dawn · soft unaffordable (Draft C locked).
 - **2026-10-04 ~03:30:** Privacy screen polish v1.4.5 — SoftBlockEnter · accents · Dawn · comfort strip · date sync.
 - **2026-10-04 ~04:15:** Terms screen polish v1.4.6 — SoftBlockEnter · section cards · Dawn · free-core strip · date sync.
+- **2026-10-04 ~23:00 night resume:** WalkingEnemy polish v1.4.7 — soft glow/shadow · HP track · low-HP warn · label chip · softened tag.
 
 ## State
 
-- Version: **mobile 1.4.6** (terms screen polish)
+- Version: **mobile 1.4.7** (WalkingEnemy polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: `72b2d1b` (overnight stop)
+- Tip: *(update after push)*
 - Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
-- Night envelope: **CLOSED** until 23:00 UTC · **do not** re-arm `overnight-stop-5am-utc` until night resume
+- Night envelope: **OPEN** 23:00→05:00 UTC · `overnight-stop-5am-utc` armed (`sub_35b53331…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
-- Next: wait for 23:00 resume · or Femmy RC/RNIap / Pass price reply during daytime idle
+- Next: night hourlies continue polish · or Femmy RC/RNIap / Pass price reply

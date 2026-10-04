@@ -2,6 +2,14 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-04 23:00 UTC — Night resume (WalkingEnemy v1.4.7)
+
+- Timer `overnight-daily-resume` · no Femmy Gmail reply · Clarity Pass **$2.99** · RC vs RNIap still open
+- **Shipped v1.4.7:** WalkingEnemy — soft glow/shadow pulse · HP track + low-HP border/fill warn · label chip · “softened” when slowed · Reduce Motion holds glow
+- Re-armed `overnight-stop-5am-utc` (`sub_35b53331…`, ~05:00 Oct 5)
+- Did not redo terms (1.4.6) · Draft C locked
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-04 05:00 UTC — OVERNIGHT STOP (mobile night wrap)
 
 - Timer `overnight-stop-5am-utc` fired ~05:00 UTC Oct 4 — **HARD STOP**. **No new features.** Docs + digest only.
