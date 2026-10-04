@@ -191,6 +191,8 @@ end)
 
 print("[CouchGalaxy] client ready v" .. Config.Version)
 
+local softCompleteDone = false
+local softCompleteOptionalOpen = false
 local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	{ Id = "couch", Label = "sit on the couch" },
 	{ Id = "galaxy", Label = "visit the galaxy loft" },
@@ -202,6 +204,8 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	FrameColor = Color3.fromRGB(26, 20, 40),
 	TitleColor = Color3.fromRGB(220, 205, 255),
 	OnAllComplete = function(optionalLeft: number)
+		softCompleteDone = true
+		softCompleteOptionalOpen = optionalLeft > 0
 		local body = if optionalLeft > 0
 			then "stay · soft company still open"
 			else "two worlds · one couch · stay"
@@ -280,6 +284,11 @@ SoftCompany.mount(playerGui, player, {
 	Radius = Config.Proximity.Radius,
 	Color = Color3.fromRGB(190, 170, 220),
 	AloneTextFn = function()
+		if softCompleteDone and softCompleteOptionalOpen then
+			return if inGalaxy then "soft-complete · loft company still open" else "soft-complete · couch company still open"
+		elseif softCompleteDone then
+			return if inGalaxy then "soft-complete · loft is enough" else "soft-complete · couch is enough"
+		end
 		return if inGalaxy then "soft company · loft is enough" else "soft company · couch is enough"
 	end,
 	OneTextFn = function()
@@ -297,6 +306,7 @@ SoftCompany.mount(playerGui, player, {
 		couchSit.refresh()
 		if company then
 			complete("company")
+			softCompleteOptionalOpen = false
 		end
 		if company and not couchCompanyWelcomed then
 			couchCompanyWelcomed = true

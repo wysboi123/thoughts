@@ -23,6 +23,8 @@ AmbientAudio.start()
 VibeBoard.start()
 
 local SoftWelcome = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftWelcome"))
+local softCompleteDone = false
+local softCompleteOptionalOpen = false
 local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	{ Id = "vibes", Label = "collect 3 vibes" },
 	{ Id = "sit", Label = "sit somewhere" },
@@ -33,6 +35,8 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	FrameColor = Color3.fromRGB(28, 22, 42),
 	TitleColor = Color3.fromRGB(220, 200, 255),
 	OnAllComplete = function(optionalLeft: number)
+		softCompleteDone = true
+		softCompleteOptionalOpen = optionalLeft > 0
 		local body = if optionalLeft > 0
 			then "stay · vibe sync still open if friends join"
 			else "stay as long as you like"
@@ -133,7 +137,14 @@ end
 SoftCompany.mount(playerGui, player, {
 	Radius = Config.Proximity.Radius,
 	Color = Color3.fromRGB(200, 180, 230),
-	AloneText = "alone is fine · vibes still soft",
+	AloneTextFn = function()
+		if softCompleteDone and softCompleteOptionalOpen then
+			return "soft-complete · vibe sync still open"
+		elseif softCompleteDone then
+			return "soft-complete · alone is fine"
+		end
+		return "alone is fine · vibes still soft"
+	end,
 	OneText = "soft company · vibes syncing",
 	ManyText = function(n)
 		return ("soft company · %d nearby · vibes sync"):format(n)
@@ -143,6 +154,7 @@ SoftCompany.mount(playerGui, player, {
 		hazeSit.refresh()
 		if n >= 1 then
 			complete("sync")
+			softCompleteOptionalOpen = false
 			proximity.setBoost(1.35 + math.min(n - 1, 2) * 0.1)
 			VibeBoard.setSynced(true)
 			setHudSynced(true)

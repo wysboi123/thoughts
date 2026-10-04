@@ -134,6 +134,8 @@ SoftWelcome.show(playerGui, Config.GameName, "the bus will come. you don't have 
 	HoldSeconds = 6.2,
 })
 
+local softCompleteDone = false
+local softCompleteOptionalOpen = false
 local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	{ Id = "sit", Label = "sit on a bench" },
 	{ Id = "ticket", Label = "pick up a ticket" },
@@ -145,6 +147,8 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	TitleColor = Color3.fromRGB(210, 230, 190),
 	RowColor = Color3.fromRGB(150, 165, 145),
 	OnAllComplete = function(optionalLeft: number)
+		softCompleteDone = true
+		softCompleteOptionalOpen = optionalLeft > 0
 		local body = if optionalLeft > 0
 			then "stay · waiting together still open"
 			else "the next bus can wait · stay"
@@ -159,6 +163,7 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 local function tryTogetherGoal()
 	if nearbyCount >= 1 and seatedLocal then
 		complete("together")
+		softCompleteOptionalOpen = false
 	end
 end
 
@@ -251,7 +256,11 @@ SoftCompany.mount(playerGui, player, {
 	Radius = Config.Proximity.Radius,
 	Color = Color3.fromRGB(190, 200, 170),
 	AloneTextFn = function()
-		if phase == "arrived" then
+		if softCompleteDone and softCompleteOptionalOpen then
+			return "soft-complete · waiting together still open"
+		elseif softCompleteDone then
+			return "soft-complete · alone is fine"
+		elseif phase == "arrived" then
 			return "soft company · bus is here · alone is fine"
 		elseif phase == "departed" then
 			return "soft company · another will come"

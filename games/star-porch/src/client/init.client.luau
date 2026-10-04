@@ -97,6 +97,8 @@ Remotes.FireflyCollected.OnClientEvent:Connect(function(count: number)
 	counter.Text = ("Fireflies  %d"):format(count)
 end)
 
+local softCompleteDone = false
+local softCompleteOptionalOpen = false
 local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	{ Id = "sit", Label = "sit on the porch" },
 	{ Id = "swing", Label = "try the porch swing" },
@@ -109,6 +111,8 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	TitleColor = Color3.fromRGB(200, 230, 180),
 	RowColor = Color3.fromRGB(150, 170, 140),
 	OnAllComplete = function(optionalLeft: number)
+		softCompleteDone = true
+		softCompleteOptionalOpen = optionalLeft > 0
 		local body = if optionalLeft > 0
 			then "stay · share the porch still open"
 			else "the jar remembers · stay"
@@ -212,7 +216,14 @@ local porchCompanyWelcomed = false
 SoftCompany.mount(playerGui, player, {
 	Radius = Config.Proximity.Radius,
 	Color = Color3.fromRGB(180, 200, 170),
-	AloneText = "soft company · jar waits",
+	AloneTextFn = function()
+		if softCompleteDone and softCompleteOptionalOpen then
+			return "soft-complete · share the porch still open"
+		elseif softCompleteDone then
+			return "soft-complete · jar waits"
+		end
+		return "soft company · jar waits"
+	end,
 	OneText = "soft company · porch feels warmer",
 	ManyText = function(n)
 		return ("soft company · %d nearby · jar glow"):format(n)
@@ -234,6 +245,9 @@ SoftCompany.mount(playerGui, player, {
 			if n >= 1 then
 				hint.Text = "company near · jar + lights feel warmer"
 				hint.TextColor3 = Color3.fromRGB(160, 190, 150)
+			elseif softCompleteDone and softCompleteOptionalOpen then
+				hint.Text = "soft-complete · share the porch still open"
+				hint.TextColor3 = Color3.fromRGB(140, 170, 135)
 			elseif not halfToast then
 				hint.Text = "rockers + swing · jar fills as fireflies return"
 				hint.TextColor3 = Color3.fromRGB(130, 150, 120)
@@ -282,6 +296,7 @@ SoftCompany.mount(playerGui, player, {
 		end
 		if n >= 1 then
 			complete("company")
+			softCompleteOptionalOpen = false
 		end
 		if n >= 1 and not porchCompanyWelcomed then
 			porchCompanyWelcomed = true
