@@ -5,7 +5,7 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 ## Active (focus now)
 
 - [x] **Haze Haven v0–v3.8** — soft-complete · company still open
-- [x] **Couch Galaxy v0–v3.5** — soft-complete · company still open
+- [x] **Couch Galaxy v0–v3.6** — soft-complete · company still open
 - [x] **Bus Stop Forever v0–v3.7** — soft-complete · together still open
 - [x] **Star Porch v0–v3.6** — soft-complete · porch still open
 - [x] **Shared** — SoftGoals.Optional · company-still-open · SoftSit.refresh · SoftCompany pulse

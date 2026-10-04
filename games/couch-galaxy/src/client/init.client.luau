@@ -143,9 +143,13 @@ local function paintStarCounter()
 	end
 end
 
+local couchCompanyNear = false
 local couchSit = SoftSit.mount(playerGui, {
 	OneText = function(name)
-		return if inGalaxy then (name .. " is in the hammock loft") else (name .. " is on the couch")
+		if inGalaxy then
+			return if couchCompanyNear then (name .. " is in the hammock loft · company") else (name .. " is in the hammock loft")
+		end
+		return if couchCompanyNear then (name .. " is on the couch · company") else (name .. " is on the couch")
 	end,
 	ManyText = function(names)
 		local joined = table.concat(names, " & ")
@@ -289,6 +293,8 @@ SoftCompany.mount(playerGui, player, {
 	OnCountChanged = function(n)
 		refreshPlace(n >= 1)
 		local company = n >= 1
+		couchCompanyNear = company
+		couchSit.refresh()
 		if company then
 			complete("company")
 		end
