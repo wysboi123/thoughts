@@ -153,19 +153,16 @@ function SoftGoals.mount(
 			if style and style.OnAllComplete then
 				style.OnAllComplete(optionalLeft)
 			end
-			-- Fade lightly when company goals remain; heavier when fully sealed
+			-- Fade lightly while company goals remain; heavier when fully sealed
 			local fadeDelay = if optionalLeft > 0 then 10 else 6
-			local frameFade = if optionalLeft > 0 then 0.55 else 0.75
-			local strokeFade = if optionalLeft > 0 then 0.7 else 0.85
 			task.delay(fadeDelay, function()
 				if not frame.Parent or faded then
 					return
 				end
-				-- Skip heavy fade if an optional just sealed the session
-				if countOptionalLeft() == 0 and optionalLeft > 0 then
-					return
-				end
 				faded = true
+				local stillOpen = countOptionalLeft() > 0
+				local frameFade = if stillOpen then 0.55 else 0.75
+				local strokeFade = if stillOpen then 0.7 else 0.85
 				TweenService:Create(
 					frame,
 					TweenInfo.new(0.8, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
