@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-04 23:30 UTC — Night hourly (v1.4.8 WaveResultModal)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.8:** WaveResultModal — Cleared/Peak/Goals pills · animated soft-goal progress · accent goal rows (stagger) · Dawn card tint · metaphor comfort strip · scroll for small screens
+- Did not redo WalkingEnemy (1.4.7) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-04 23:00 UTC — Night resume (WalkingEnemy v1.4.7)
 
 - Timer `overnight-daily-resume` · no Femmy Gmail reply · Clarity Pass **$2.99** · RC vs RNIap still open

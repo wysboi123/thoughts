@@ -211,6 +211,7 @@ export default function PlayScreen() {
       <WaveResultModal
         visible={showResult}
         state={state}
+        dawn={looks.dawn}
         onRetry={() => {
           setPaused(false);
           setState(createInitialState());

@@ -1,6 +1,6 @@
 import { router } from 'expo-router';
 import React, { useEffect } from 'react';
-import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Animated, {
   Easing,
   useAnimatedStyle,
@@ -14,7 +14,7 @@ import { softHaptic } from '../a11y/haptics';
 import { useReducedMotion } from '../a11y/useReducedMotion';
 import { GAME } from '../game/config';
 import { SOFT_GOAL_COPY, SOFT_GOAL_ORDER, SOFT_GOAL_TOTAL, softGoalsDone } from '../game/softGoals';
-import type { GameState } from '../game/types';
+import type { GameState, SoftGoalId } from '../game/types';
 import { colors } from '../theme/colors';
 import { fonts } from '../theme/typography';
 import { SoftButton } from './SoftButton';
@@ -24,6 +24,8 @@ type Props = {
   state: GameState;
   onRetry: () => void;
   onClose: () => void;
+  /** Dawn Atmosphere look — soft card tint only */
+  dawn?: boolean;
 };
 
 /** Soft, ToS-safe win lines — metaphor only, no medical claims. */
@@ -59,6 +61,16 @@ const MIST_ORBS = [
   { leftPct: 70, topPct: 66, size: 10, delay: 90, color: colors.clarity },
   { leftPct: 46, topPct: 6, size: 8, delay: 220, color: colors.calm },
 ];
+
+const GOAL_ACCENTS: Record<SoftGoalId, string> = {
+  plant_three: colors.affirmation,
+  clear_wave_one: colors.clarity,
+  upgrade_once: colors.gratitude,
+  reach_wave_three: colors.calm,
+  plant_all_kinds: colors.humor,
+  reach_wave_six: colors.brand,
+  keep_calm: colors.successSoft,
+};
 
 function SoftSpark({
   leftPct,
@@ -123,6 +135,117 @@ function SoftSpark({
   );
 }
 
+function SoftGoalRow({
+  id,
+  done,
+  index,
+  reduceMotion,
+  visible,
+}: {
+  id: SoftGoalId;
+  done: boolean;
+  index: number;
+  reduceMotion: boolean;
+  visible: boolean;
+}) {
+  const enter = useSharedValue(reduceMotion || !visible ? 1 : 0);
+  const accent = GOAL_ACCENTS[id];
+
+  useEffect(() => {
+    if (!visible) {
+      enter.value = 0;
+      return;
+    }
+    if (reduceMotion) {
+      enter.value = 1;
+      return;
+    }
+    enter.value = withDelay(
+      180 + index * 45,
+      withTiming(1, { duration: 320, easing: Easing.out(Easing.cubic) }),
+    );
+  }, [visible, enter, index, reduceMotion]);
+
+  const style = useAnimatedStyle(() => ({
+    opacity: enter.value,
+    transform: [{ translateX: (1 - enter.value) * (reduceMotion ? 0 : 8) }],
+  }));
+
+  return (
+    <Animated.View
+      style={[
+        styles.goalRow,
+        {
+          borderLeftColor: accent,
+          backgroundColor: done ? `${accent}18` : 'rgba(255,255,255,0.35)',
+        },
+        style,
+      ]}
+      accessibilityRole="text"
+      accessibilityLabel={`${SOFT_GOAL_COPY[id].title}${done ? ', done' : ', open'}`}
+    >
+      <View style={[styles.goalDot, { backgroundColor: accent }]} />
+      <Text style={[styles.check, done && { color: accent }]}>{done ? '✓' : '○'}</Text>
+      <Text style={[styles.goal, !done && styles.goalOpen]} numberOfLines={1}>
+        {SOFT_GOAL_COPY[id].title}
+      </Text>
+    </Animated.View>
+  );
+}
+
+function StatPill({
+  label,
+  value,
+  accent,
+  index,
+  reduceMotion,
+  visible,
+}: {
+  label: string;
+  value: string;
+  accent: string;
+  index: number;
+  reduceMotion: boolean;
+  visible: boolean;
+}) {
+  const enter = useSharedValue(reduceMotion || !visible ? 1 : 0);
+
+  useEffect(() => {
+    if (!visible) {
+      enter.value = 0;
+      return;
+    }
+    if (reduceMotion) {
+      enter.value = 1;
+      return;
+    }
+    enter.value = withDelay(
+      80 + index * 40,
+      withTiming(1, { duration: 300, easing: Easing.out(Easing.cubic) }),
+    );
+  }, [visible, enter, index, reduceMotion]);
+
+  const style = useAnimatedStyle(() => ({
+    opacity: enter.value,
+    transform: [{ translateY: (1 - enter.value) * 6 }],
+  }));
+
+  return (
+    <Animated.View
+      style={[
+        styles.statPill,
+        { borderColor: `${accent}55`, backgroundColor: `${accent}16` },
+        style,
+      ]}
+      accessibilityRole="text"
+      accessibilityLabel={`${label} ${value}`}
+    >
+      <Text style={[styles.statLabel, { color: accent }]}>{label}</Text>
+      <Text style={styles.statValue}>{value}</Text>
+    </Animated.View>
+  );
+}
+
 function loseLead(peakWave: number): string {
   if (peakWave >= 6) {
     return 'You reached the late path — soft goals still count. Rest, then try again gently.';
@@ -133,12 +256,14 @@ function loseLead(peakWave: number): string {
   return 'An early pause is fine. Soft goals still count.';
 }
 
-export function WaveResultModal({ visible, state, onRetry, onClose }: Props) {
+export function WaveResultModal({ visible, state, onRetry, onClose, dawn }: Props) {
   const won = state.phase === 'won';
   const done = softGoalsDone(state.softGoals);
+  const progressPct = Math.round((done / SOFT_GOAL_TOTAL) * 100);
   const reduceMotion = useReducedMotion();
   const enter = useSharedValue(0);
   const halo = useSharedValue(0.35);
+  const bar = useSharedValue(0);
   const lineIndex = state.thoughtsCleared + state.peakWaveReached;
   const winLine = WIN_LINES[lineIndex % WIN_LINES.length] ?? WIN_LINES[0];
   const loseLine = LOSE_LINES[lineIndex % LOSE_LINES.length] ?? LOSE_LINES[0];
@@ -146,17 +271,24 @@ export function WaveResultModal({ visible, state, onRetry, onClose }: Props) {
   useEffect(() => {
     if (!visible) {
       enter.value = 0;
+      bar.value = 0;
       return;
     }
     if (won) softHaptic('clear');
     else softHaptic('tap');
     if (reduceMotion) {
       enter.value = 1;
+      bar.value = progressPct / 100;
       halo.value = won ? 0.55 : 0.4;
       return;
     }
     enter.value = 0;
     enter.value = withTiming(1, { duration: 520, easing: Easing.out(Easing.cubic) });
+    bar.value = 0;
+    bar.value = withDelay(
+      220,
+      withTiming(progressPct / 100, { duration: 640, easing: Easing.out(Easing.cubic) }),
+    );
     if (won) {
       halo.value = withRepeat(
         withSequence(
@@ -177,7 +309,7 @@ export function WaveResultModal({ visible, state, onRetry, onClose }: Props) {
         false,
       );
     }
-  }, [visible, won, reduceMotion, enter, halo]);
+  }, [visible, won, reduceMotion, enter, halo, bar, progressPct]);
 
   const cardStyle = useAnimatedStyle(() => ({
     opacity: enter.value,
@@ -192,6 +324,10 @@ export function WaveResultModal({ visible, state, onRetry, onClose }: Props) {
     transform: [{ scale: 0.92 + halo.value * 0.12 }],
   }));
 
+  const barStyle = useAnimatedStyle(() => ({
+    width: `${Math.max(4, bar.value * 100)}%` as `${number}%`,
+  }));
+
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
       <Pressable style={styles.backdrop} onPress={onClose}>
@@ -201,7 +337,12 @@ export function WaveResultModal({ visible, state, onRetry, onClose }: Props) {
         />
         <Pressable onPress={(e) => e.stopPropagation()}>
           <Animated.View
-            style={[styles.card, won ? styles.cardWon : styles.cardLost, cardStyle]}
+            style={[
+              styles.card,
+              won ? styles.cardWon : styles.cardLost,
+              dawn ? styles.cardDawn : null,
+              cardStyle,
+            ]}
           >
             {won && !reduceMotion
               ? SPARKS.map((s, i) => (
@@ -213,56 +354,125 @@ export function WaveResultModal({ visible, state, onRetry, onClose }: Props) {
                   <SoftSpark key={`l-${i}`} {...s} reduceMotion={reduceMotion} slow />
                 ))
               : null}
-            {won ? (
-              <View style={styles.badge} accessibilityRole="text">
-                <Text style={styles.badgeText}>Soft win</Text>
+            <ScrollView
+              style={styles.scroll}
+              contentContainerStyle={styles.scrollContent}
+              showsVerticalScrollIndicator={false}
+              bounces={false}
+            >
+              {won ? (
+                <View style={[styles.badge, styles.badgeWonAccent]} accessibilityRole="text">
+                  <Text style={styles.badgeText}>Soft win</Text>
+                </View>
+              ) : (
+                <View
+                  style={[styles.badge, styles.badgeLost, styles.badgeLostAccent]}
+                  accessibilityRole="text"
+                >
+                  <Text style={[styles.badgeText, styles.badgeTextLost]}>Gentle rest</Text>
+                </View>
+              )}
+              <Text style={styles.title}>{won ? 'Peace held' : 'Soft pause'}</Text>
+              <Text style={[styles.flavorLine, !won && styles.flavorLineLost]}>
+                {won ? winLine : loseLine}
+              </Text>
+              <Text style={styles.lead}>
+                {won
+                  ? 'The noise grew quiet. Soft goals for this run:'
+                  : loseLead(state.peakWaveReached)}
+              </Text>
+
+              <View style={styles.statRow}>
+                <StatPill
+                  label="Cleared"
+                  value={String(state.thoughtsCleared)}
+                  accent={colors.affirmation}
+                  index={0}
+                  reduceMotion={reduceMotion}
+                  visible={visible}
+                />
+                <StatPill
+                  label="Peak"
+                  value={`${state.peakWaveReached}/${GAME.waveCount}`}
+                  accent={colors.brand}
+                  index={1}
+                  reduceMotion={reduceMotion}
+                  visible={visible}
+                />
+                <StatPill
+                  label="Goals"
+                  value={`${done}/${SOFT_GOAL_TOTAL}`}
+                  accent={won ? colors.gratitude : colors.clarity}
+                  index={2}
+                  reduceMotion={reduceMotion}
+                  visible={visible}
+                />
               </View>
-            ) : (
-              <View style={[styles.badge, styles.badgeLost]} accessibilityRole="text">
-                <Text style={[styles.badgeText, styles.badgeTextLost]}>Gentle rest</Text>
+
+              <View
+                style={styles.progressBlock}
+                accessibilityRole="summary"
+                accessibilityLabel={`${done} of ${SOFT_GOAL_TOTAL} soft goals, ${progressPct} percent`}
+              >
+                <View style={styles.progressRow}>
+                  <Text style={styles.progressLabel}>
+                    Soft goals · {done}/{SOFT_GOAL_TOTAL}
+                  </Text>
+                  <Text style={styles.progressPct}>{progressPct}%</Text>
+                </View>
+                <View style={styles.track} accessibilityElementsHidden>
+                  <Animated.View
+                    style={[
+                      styles.fill,
+                      {
+                        backgroundColor: won ? colors.affirmation : colors.clarity,
+                      },
+                      barStyle,
+                    ]}
+                  />
+                </View>
               </View>
-            )}
-            <Text style={styles.title}>{won ? 'Peace held' : 'Soft pause'}</Text>
-            <Text style={[styles.flavorLine, !won && styles.flavorLineLost]}>
-              {won ? winLine : loseLine}
-            </Text>
-            <Text style={styles.lead}>
-              {won
-                ? 'The noise grew quiet. Soft goals for this run:'
-                : loseLead(state.peakWaveReached)}
-            </Text>
-            <Text style={styles.count}>
-              {done}/{SOFT_GOAL_TOTAL} soft goals · {state.thoughtsCleared} thoughts cleared · peak
-              wave {state.peakWaveReached}/{GAME.waveCount}
-            </Text>
-            {SOFT_GOAL_ORDER.map((id) => (
-              <View key={id} style={styles.row}>
-                <Text style={styles.check}>{state.softGoals[id] ? '✓' : '○'}</Text>
-                <Text style={[styles.goal, !state.softGoals[id] && styles.goalOpen]}>
-                  {SOFT_GOAL_COPY[id].title}
+
+              {SOFT_GOAL_ORDER.map((id, i) => (
+                <SoftGoalRow
+                  key={id}
+                  id={id}
+                  done={!!state.softGoals[id]}
+                  index={i}
+                  reduceMotion={reduceMotion}
+                  visible={visible}
+                />
+              ))}
+
+              <View style={styles.comfortStrip} accessibilityRole="summary">
+                <Text style={styles.comfortTitle}>Metaphor only</Text>
+                <Text style={styles.comfortBody}>
+                  Soft goals and rest lines are gentle session aims — not therapy, diagnosis, or
+                  treatment.
                 </Text>
               </View>
-            ))}
-            <View style={styles.actions}>
-              <SoftButton
-                label={won ? 'Play again' : 'Try again gently'}
-                onPress={onRetry}
-                accessibilityHint={
-                  won
-                    ? 'Starts a fresh mindscape run'
-                    : 'Starts again with a soft reset — no penalty'
-                }
-              />
-              <SoftButton
-                label="Soft goals journal"
-                variant="soft"
-                onPress={() => {
-                  onClose();
-                  router.push('/goals');
-                }}
-              />
-              <SoftButton label="Home" variant="ghost" onPress={() => router.replace('/')} />
-            </View>
+
+              <View style={styles.actions}>
+                <SoftButton
+                  label={won ? 'Play again' : 'Try again gently'}
+                  onPress={onRetry}
+                  accessibilityHint={
+                    won
+                      ? 'Starts a fresh mindscape run'
+                      : 'Starts again with a soft reset — no penalty'
+                  }
+                />
+                <SoftButton
+                  label="Soft goals journal"
+                  variant="soft"
+                  onPress={() => {
+                    onClose();
+                    router.push('/goals');
+                  }}
+                />
+                <SoftButton label="Home" variant="ghost" onPress={() => router.replace('/')} />
+              </View>
+            </ScrollView>
           </Animated.View>
         </Pressable>
       </Pressable>
@@ -292,12 +502,19 @@ const styles = StyleSheet.create({
   },
   card: {
     borderRadius: 24,
-    padding: 22,
+    padding: 18,
     backgroundColor: colors.mistBottom,
     borderWidth: 1,
     borderColor: colors.line,
-    gap: 8,
     overflow: 'hidden',
+    maxHeight: '88%',
+  },
+  scroll: {
+    maxHeight: '100%',
+  },
+  scrollContent: {
+    gap: 8,
+    paddingBottom: 4,
   },
   cardWon: {
     borderColor: 'rgba(107, 184, 154, 0.45)',
@@ -306,6 +523,10 @@ const styles = StyleSheet.create({
   cardLost: {
     borderColor: 'rgba(106, 158, 174, 0.4)',
     backgroundColor: '#EEF3F5',
+  },
+  cardDawn: {
+    backgroundColor: 'rgba(255, 246, 230, 0.92)',
+    borderColor: 'rgba(232, 201, 160, 0.55)',
   },
   spark: {
     position: 'absolute',
@@ -317,9 +538,17 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: 'rgba(107, 184, 154, 0.22)',
     marginBottom: 2,
+    borderLeftWidth: 3,
+    borderLeftColor: colors.affirmation,
+  },
+  badgeWonAccent: {
+    borderLeftColor: colors.affirmation,
   },
   badgeLost: {
     backgroundColor: 'rgba(106, 158, 174, 0.22)',
+  },
+  badgeLostAccent: {
+    borderLeftColor: colors.clarity,
   },
   badgeText: {
     fontFamily: fonts.bodyMedium,
@@ -350,15 +579,95 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     color: colors.inkSoft,
   },
-  count: {
+  statRow: {
+    flexDirection: 'row',
+    gap: 6,
+    marginTop: 4,
+    marginBottom: 2,
+  },
+  statPill: {
+    flex: 1,
+    borderRadius: 12,
+    borderWidth: 1,
+    paddingHorizontal: 8,
+    paddingVertical: 6,
+    gap: 1,
+  },
+  statLabel: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 10,
+    letterSpacing: 0.2,
+  },
+  statValue: {
+    fontFamily: fonts.bodyBold,
+    fontSize: 14,
+    color: colors.ink,
+  },
+  progressBlock: {
+    gap: 6,
+    marginBottom: 2,
+  },
+  progressRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  progressLabel: {
     fontFamily: fonts.bodyMedium,
     fontSize: 13,
     color: colors.calm,
-    marginBottom: 4,
   },
-  row: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingVertical: 4 },
-  check: { fontFamily: fonts.bodyBold, fontSize: 16, color: colors.brand, width: 20 },
-  goal: { fontFamily: fonts.body, fontSize: 14, color: colors.ink, flex: 1 },
+  progressPct: {
+    fontFamily: fonts.bodyBold,
+    fontSize: 13,
+    color: colors.brandDeep,
+  },
+  track: {
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: 'rgba(36,51,58,0.1)',
+    overflow: 'hidden',
+  },
+  fill: {
+    height: '100%',
+    borderRadius: 3,
+  },
+  goalRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    paddingVertical: 6,
+    paddingHorizontal: 8,
+    borderRadius: 10,
+    borderLeftWidth: 3,
+  },
+  goalDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+  },
+  check: { fontFamily: fonts.bodyBold, fontSize: 15, color: colors.brand, width: 18 },
+  goal: { fontFamily: fonts.body, fontSize: 13, color: colors.ink, flex: 1 },
   goalOpen: { color: colors.inkSoft },
-  actions: { gap: 8, marginTop: 12 },
+  comfortStrip: {
+    marginTop: 4,
+    padding: 10,
+    borderRadius: 12,
+    backgroundColor: 'rgba(255,255,255,0.45)',
+    borderWidth: 1,
+    borderColor: colors.line,
+    gap: 2,
+  },
+  comfortTitle: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 12,
+    color: colors.brand,
+  },
+  comfortBody: {
+    fontFamily: fonts.body,
+    fontSize: 12,
+    lineHeight: 17,
+    color: colors.inkSoft,
+  },
+  actions: { gap: 8, marginTop: 8 },
 });
