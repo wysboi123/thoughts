@@ -4,10 +4,10 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 
 ## Active (focus now)
 
-- [x] **Haze Haven v0–v3.4** — publish thumbnail tips
-- [x] **Couch Galaxy v0–v3.1** — SoftSit zone refresh
-- [x] **Bus Stop Forever v0–v3.3** — SoftSit company refresh
-- [x] **Star Porch v0–v3.2** — soft-complete stay toast
+- [x] **Haze Haven v0–v3.5** — publish thumbnail tips
+- [x] **Couch Galaxy v0–v3.2** — SoftSit zone refresh
+- [x] **Bus Stop Forever v0–v3.4** — phase-aware SoftCompany
+- [x] **Star Porch v0–v3.3** — SoftSit company refresh
 - [x] **Shared** — SoftSit.refresh · SoftWelcome HoldSeconds · SoftGoals OnAllComplete
 - [x] **USP research + priority** — `docs/USPS.md` + Night 8 research note
 - [x] **Night 6** — complete (active-four polish; parked trio kept)

@@ -215,6 +215,8 @@ SoftCompany.mount(playerGui, player, {
 		return ("soft company · %d nearby · jar glow"):format(n)
 	end,
 	OnCountChanged = function(n)
+		porchCompanyNear = n >= 1
+		porchSit.refresh()
 		local light = findJarLight()
 		if light then
 			if n >= 1 then
