@@ -18,7 +18,8 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 - [ ] **Soft invite prompt** — post-publish only (SocialService)
 - [x] **Night 8** — complete (USP research + deepen; Haze 3.0 · Couch 2.7 · Bus 2.9 · Porch 2.8)
 - [x] **Night 9** — complete (stickiness + SoftGoals OnAllComplete; Haze 3.3 · Couch 3.0 · Bus 3.2 · Porch 3.1)
-- [ ] **Night 10** — in progress (SoftSit.refresh + publish tips; no invented audio)
+- [x] **Night 10** — complete (SoftSit.refresh + SoftCompany polish; Haze 3.6 · Couch 3.3 · Bus 3.5 · Porch 3.4)
+- [ ] **Night 11** — apply Q-answers if any; Haze publish support; no invented audio
 
 ## Parked for later (files kept — do not erase)
 
