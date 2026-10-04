@@ -10,25 +10,28 @@ import { fonts } from '../theme/typography';
 const STORAGE_KEY = 'td_first_run_tip_dismissed_v1';
 
 const TIPS = [
-  'Tip · Tap empty pads to plant kindness',
-  'Tip · Tap a planted thought to Upgrade or Sell',
-  'Tip · Soft goals count even if Calm dips',
+  { text: 'Tip · Tap empty pads to plant kindness', accent: colors.affirmation },
+  { text: 'Tip · Tap a planted thought to Upgrade or Sell', accent: colors.gratitude },
+  { text: 'Tip · Soft goals count even if Calm dips', accent: colors.calm },
+  { text: 'Tip · Pause anytime — the path holds still', accent: colors.clarity },
 ] as const;
 
 type Props = {
   /** Hide while paused / result modal / mid-wave clutter */
   visible: boolean;
+  dawn?: boolean;
 };
 
 /**
  * Soft first-run coaching chip — dismissible once, persists on device.
  * Complementary to engine toasts (not a redo of Pause / walkers / a11y).
  */
-export function FirstRunTipChip({ visible }: Props) {
+export function FirstRunTipChip({ visible, dawn }: Props) {
   const [ready, setReady] = useState(false);
   const [dismissed, setDismissed] = useState(true);
   const [tipIndex, setTipIndex] = useState(0);
   const opacity = useRef(new Animated.Value(0)).current;
+  const tipFade = useRef(new Animated.Value(1)).current;
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
@@ -73,10 +76,26 @@ export function FirstRunTipChip({ visible }: Props) {
   useEffect(() => {
     if (!show) return;
     const id = setInterval(() => {
-      setTipIndex((i) => (i + 1) % TIPS.length);
+      if (reduceMotion) {
+        setTipIndex((i) => (i + 1) % TIPS.length);
+        return;
+      }
+      Animated.timing(tipFade, {
+        toValue: 0,
+        duration: 140,
+        useNativeDriver: true,
+      }).start(({ finished }) => {
+        if (!finished) return;
+        setTipIndex((i) => (i + 1) % TIPS.length);
+        Animated.timing(tipFade, {
+          toValue: 1,
+          duration: 220,
+          useNativeDriver: true,
+        }).start();
+      });
     }, 5200);
     return () => clearInterval(id);
-  }, [show]);
+  }, [show, tipFade, reduceMotion]);
 
   const onDismiss = async () => {
     softHaptic('tap');
@@ -90,14 +109,36 @@ export function FirstRunTipChip({ visible }: Props) {
 
   if (!show) return null;
 
+  const current = TIPS[tipIndex];
+
   return (
     <Animated.View
       style={[styles.wrap, { opacity }]}
       accessibilityRole="summary"
-      accessibilityLabel={TIPS[tipIndex]}
+      accessibilityLabel={current.text}
     >
-      <View style={styles.chip}>
-        <Text style={styles.text}>{TIPS[tipIndex]}</Text>
+      <View
+        style={[
+          styles.chip,
+          dawn ? styles.chipDawn : null,
+          { borderLeftColor: current.accent },
+        ]}
+      >
+        <Animated.View style={[styles.textWrap, { opacity: tipFade }]}>
+          <Text style={styles.text}>{current.text}</Text>
+          <View style={styles.dots}>
+            {TIPS.map((t, i) => (
+              <View
+                key={t.text}
+                style={[
+                  styles.dot,
+                  i === tipIndex && styles.dotOn,
+                  i === tipIndex ? { backgroundColor: t.accent } : null,
+                ]}
+              />
+            ))}
+          </View>
+        </Animated.View>
         <Pressable
           accessibilityRole="button"
           accessibilityLabel="Dismiss tip"
@@ -124,19 +165,40 @@ const styles = StyleSheet.create({
     gap: 10,
     maxWidth: '100%',
     paddingVertical: 8,
-    paddingLeft: 14,
+    paddingLeft: 12,
     paddingRight: 8,
     borderRadius: 16,
     backgroundColor: 'rgba(63, 111, 98, 0.12)',
     borderWidth: 1,
     borderColor: 'rgba(63, 111, 98, 0.22)',
+    borderLeftWidth: 4,
+  },
+  chipDawn: {
+    backgroundColor: 'rgba(255, 244, 220, 0.75)',
+    borderColor: 'rgba(201, 168, 90, 0.3)',
+  },
+  textWrap: {
+    flexShrink: 1,
+    gap: 5,
   },
   text: {
-    flexShrink: 1,
     fontFamily: fonts.bodyMedium,
     fontSize: 12,
     lineHeight: 16,
     color: colors.brandDeep,
+  },
+  dots: {
+    flexDirection: 'row',
+    gap: 4,
+  },
+  dot: {
+    width: 5,
+    height: 5,
+    borderRadius: 3,
+    backgroundColor: colors.line,
+  },
+  dotOn: {
+    width: 12,
   },
   dismiss: {
     minHeight: MIN_TAP,

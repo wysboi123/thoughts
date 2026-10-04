@@ -130,6 +130,7 @@ export default function PlayScreen() {
             !showResult &&
             (state.phase === 'prep' || state.phase === 'intermission')
           }
+          dawn={looks.dawn}
         />
 
         <View style={styles.boardWrap}>
