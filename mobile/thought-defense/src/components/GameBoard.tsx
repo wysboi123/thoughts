@@ -200,6 +200,7 @@ export function GameBoard({
             }
             lantern={!!tower && !!themeLantern}
             lanternRim={tower && themeLantern ? LANTERN_RIM[tower.kind] : undefined}
+            dawn={themeDawn}
             pulseAt={pulseAt}
             now={state.elapsed}
             onPress={() => onPad(i)}

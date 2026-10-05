@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-05 02:30 UTC — Night hourly (v1.4.11 PadDisc)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.11:** PadDisc — empty-pad soft aura · select pulse ring · “plant” hint · filled inner sheen · Dawn empty tint · soft enter
+- Did not redo PeaceCore (1.4.10) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-05 01:30 UTC — Night hourly (v1.4.10 PeaceCore)
 
 - Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply

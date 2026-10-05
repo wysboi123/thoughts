@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Pressable, StyleSheet, Text } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, {
   Easing,
   cancelAnimation,
@@ -25,6 +25,8 @@ type Props = {
   /** Lantern Towers pack / Pass — soft rim glow only */
   lantern?: boolean;
   lanternRim?: string;
+  /** Dawn Path look — warmer empty-pad aura */
+  dawn?: boolean;
   /** Elapsed time of last plant/upgrade pulse for this pad (null = idle) */
   pulseAt: number | null;
   now: number;
@@ -41,17 +43,30 @@ export function PadDisc({
   fillColor,
   lantern,
   lanternRim,
+  dawn,
   pulseAt,
   now,
   onPress,
 }: Props) {
   const breath = useSharedValue(1);
+  const aura = useSharedValue(0.35);
   const pop = useSharedValue(1);
+  const enter = useSharedValue(0);
+  const selectPulse = useSharedValue(1);
   const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (reduceMotion) {
+      enter.value = 1;
+      return;
+    }
+    enter.value = withTiming(1, { duration: 360, easing: Easing.out(Easing.cubic) });
+  }, [enter, reduceMotion]);
 
   useEffect(() => {
     if (filled || reduceMotion) {
       breath.value = withTiming(1, { duration: reduceMotion ? 0 : 200 });
+      aura.value = withTiming(filled ? 0.2 : 0.4, { duration: reduceMotion ? 0 : 200 });
       return;
     }
     breath.value = withRepeat(
@@ -62,8 +77,35 @@ export function PadDisc({
       -1,
       false,
     );
-    return () => cancelAnimation(breath);
-  }, [filled, breath, reduceMotion]);
+    aura.value = withRepeat(
+      withSequence(
+        withTiming(0.65, { duration: 1400, easing: Easing.inOut(Easing.sin) }),
+        withTiming(0.28, { duration: 1400, easing: Easing.inOut(Easing.sin) }),
+      ),
+      -1,
+      false,
+    );
+    return () => {
+      cancelAnimation(breath);
+      cancelAnimation(aura);
+    };
+  }, [filled, breath, aura, reduceMotion]);
+
+  useEffect(() => {
+    if (!selected || reduceMotion) {
+      selectPulse.value = 1;
+      return;
+    }
+    selectPulse.value = withRepeat(
+      withSequence(
+        withTiming(1.05, { duration: 900, easing: Easing.inOut(Easing.sin) }),
+        withTiming(1, { duration: 900, easing: Easing.inOut(Easing.sin) }),
+      ),
+      -1,
+      false,
+    );
+    return () => cancelAnimation(selectPulse);
+  }, [selected, selectPulse, reduceMotion]);
 
   useEffect(() => {
     if (pulseAt == null || now - pulseAt > 0.55) return;
@@ -79,15 +121,49 @@ export function PadDisc({
   }, [pulseAt, now, pop, reduceMotion]);
 
   const style = useAnimatedStyle(() => ({
-    transform: [{ scale: (selected ? 1.06 : breath.value) * pop.value }],
+    opacity: enter.value,
+    transform: [
+      {
+        scale:
+          (selected ? selectPulse.value * 1.04 : breath.value) * pop.value * (0.94 + enter.value * 0.06),
+      },
+    ],
+  }));
+
+  const auraStyle = useAnimatedStyle(() => ({
+    opacity: filled ? 0 : aura.value * (dawn ? 0.55 : 0.45),
+    transform: [{ scale: 0.95 + aura.value * 0.2 }],
+  }));
+
+  const selectRingStyle = useAnimatedStyle(() => ({
+    opacity: selected ? 0.55 + (selectPulse.value - 1) * 4 : 0,
+    transform: [{ scale: selectPulse.value }],
   }));
 
   const a11yLabel = filled
     ? `Planted thought ${label}${selected ? ', selected' : ''}`
     : `Empty pad ${label}. Double tap to plant.`;
 
+  const auraColor = dawn ? 'rgba(232, 201, 160, 0.55)' : 'rgba(91, 138, 122, 0.4)';
+
   return (
     <Animated.View style={[{ position: 'absolute', left, top }, style]}>
+      {!filled ? (
+        <Animated.View
+          pointerEvents="none"
+          style={[
+            styles.aura,
+            { backgroundColor: auraColor },
+            auraStyle,
+          ]}
+        />
+      ) : null}
+      {selected ? (
+        <Animated.View
+          pointerEvents="none"
+          style={[styles.selectRing, selectRingStyle]}
+        />
+      ) : null}
       <Pressable
         accessibilityRole="button"
         accessibilityLabel={a11yLabel}
@@ -107,31 +183,66 @@ export function PadDisc({
                 ? lanternRim
                 : filled
                   ? 'rgba(255,255,255,0.7)'
-                  : colors.line,
-            backgroundColor: filled ? fillColor : 'rgba(255,255,255,0.72)',
+                  : dawn
+                    ? 'rgba(200, 170, 120, 0.55)'
+                    : colors.line,
+            backgroundColor: filled ? fillColor : dawn ? 'rgba(255,248,235,0.78)' : 'rgba(255,255,255,0.72)',
             borderWidth: selected ? 3 : lantern && filled ? 2.5 : 2,
-            shadowColor: lantern && filled ? lanternRim ?? '#E8D48A' : 'transparent',
-            shadowOpacity: lantern && filled ? 0.55 : 0,
-            shadowRadius: lantern && filled ? 8 : 0,
+            shadowColor: lantern && filled ? lanternRim ?? '#E8D48A' : selected ? colors.brand : 'transparent',
+            shadowOpacity: lantern && filled ? 0.55 : selected ? 0.25 : 0,
+            shadowRadius: lantern && filled ? 8 : selected ? 6 : 0,
             shadowOffset: { width: 0, height: 0 },
-            elevation: lantern && filled ? 3 : 0,
+            elevation: lantern && filled ? 3 : selected ? 2 : 0,
           },
         ]}
       >
+        {filled ? <View style={styles.innerSheen} pointerEvents="none" /> : null}
         {lantern && filled ? <Text style={styles.lanternDot}>✦</Text> : null}
-        <Text style={styles.padText}>{label}</Text>
+        <Text style={[styles.padText, !filled && styles.padTextEmpty]}>{label}</Text>
+        {!filled ? <Text style={styles.plantHint}>plant</Text> : null}
       </Pressable>
     </Animated.View>
   );
 }
 
+const PAD = MIN_TAP + 4;
+
 const styles = StyleSheet.create({
+  aura: {
+    position: 'absolute',
+    width: PAD + 14,
+    height: PAD + 14,
+    borderRadius: (PAD + 14) / 2,
+    left: -7,
+    top: -7,
+  },
+  selectRing: {
+    position: 'absolute',
+    width: PAD + 10,
+    height: PAD + 10,
+    borderRadius: (PAD + 10) / 2,
+    left: -5,
+    top: -5,
+    borderWidth: 2,
+    borderColor: colors.brand,
+    backgroundColor: 'transparent',
+  },
   pad: {
-    width: MIN_TAP + 4,
-    height: MIN_TAP + 4,
-    borderRadius: (MIN_TAP + 4) / 2,
+    width: PAD,
+    height: PAD,
+    borderRadius: PAD / 2,
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'hidden',
+  },
+  innerSheen: {
+    position: 'absolute',
+    top: 3,
+    left: 6,
+    width: PAD * 0.45,
+    height: PAD * 0.28,
+    borderRadius: 999,
+    backgroundColor: 'rgba(255,255,255,0.35)',
   },
   lanternDot: {
     position: 'absolute',
@@ -144,5 +255,18 @@ const styles = StyleSheet.create({
     fontFamily: fonts.bodyBold,
     color: colors.ink,
     fontSize: 13,
+  },
+  padTextEmpty: {
+    fontSize: 15,
+    color: colors.calm,
+    marginTop: -2,
+  },
+  plantHint: {
+    position: 'absolute',
+    bottom: 5,
+    fontFamily: fonts.body,
+    fontSize: 7,
+    color: colors.inkSoft,
+    letterSpacing: 0.3,
   },
 });
