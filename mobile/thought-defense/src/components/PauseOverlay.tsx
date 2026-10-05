@@ -5,6 +5,7 @@ import Animated, {
   Easing,
   useAnimatedStyle,
   useSharedValue,
+  withDelay,
   withRepeat,
   withSequence,
   withTiming,
@@ -42,18 +43,31 @@ export function PauseOverlay({
   const reduceMotion = useReducedMotion();
   const enter = useSharedValue(reduceMotion ? 1 : 0);
   const breath = useSharedValue(1);
+  const bar = useSharedValue(0);
+  const pillA = useSharedValue(reduceMotion ? 1 : 0);
+  const pillB = useSharedValue(reduceMotion ? 1 : 0);
+  const calmLow = calm != null && calm <= 10;
+
+  const progressPct =
+    softGoalsTotal > 0 ? Math.round((softGoalsDone / softGoalsTotal) * 100) : 0;
 
   useEffect(() => {
     if (!visible) {
       enter.value = reduceMotion ? 1 : 0;
+      bar.value = 0;
+      pillA.value = 0;
+      pillB.value = 0;
       return;
     }
     if (reduceMotion) {
       enter.value = 1;
       breath.value = 1;
+      bar.value = progressPct / 100;
+      pillA.value = 1;
+      pillB.value = 1;
       return;
     }
-    enter.value = withTiming(1, { duration: 320, easing: Easing.out(Easing.cubic) });
+    enter.value = withTiming(1, { duration: 360, easing: Easing.out(Easing.cubic) });
     breath.value = withRepeat(
       withSequence(
         withTiming(1.12, { duration: 1600, easing: Easing.inOut(Easing.quad) }),
@@ -62,7 +76,20 @@ export function PauseOverlay({
       -1,
       false,
     );
-  }, [visible, enter, breath, reduceMotion]);
+    bar.value = 0;
+    bar.value = withDelay(
+      200,
+      withTiming(progressPct / 100, { duration: 560, easing: Easing.out(Easing.cubic) }),
+    );
+    pillA.value = withDelay(
+      80,
+      withTiming(1, { duration: 300, easing: Easing.out(Easing.cubic) }),
+    );
+    pillB.value = withDelay(
+      140,
+      withTiming(1, { duration: 300, easing: Easing.out(Easing.cubic) }),
+    );
+  }, [visible, enter, breath, bar, pillA, pillB, reduceMotion, progressPct]);
 
   const cardStyle = useAnimatedStyle(() => ({
     opacity: enter.value,
@@ -74,8 +101,24 @@ export function PauseOverlay({
     opacity: 0.35 + (breath.value - 0.94) * 0.8,
   }));
 
-  const progressPct =
-    softGoalsTotal > 0 ? Math.round((softGoalsDone / softGoalsTotal) * 100) : 0;
+  const haloStyle = useAnimatedStyle(() => ({
+    opacity: enter.value * 0.5,
+    transform: [{ scale: 0.9 + enter.value * 0.12 }],
+  }));
+
+  const barStyle = useAnimatedStyle(() => ({
+    width: `${Math.max(4, bar.value * 100)}%` as `${number}%`,
+  }));
+
+  const pillAStyle = useAnimatedStyle(() => ({
+    opacity: pillA.value,
+    transform: [{ translateY: (1 - pillA.value) * 6 }],
+  }));
+
+  const pillBStyle = useAnimatedStyle(() => ({
+    opacity: pillB.value,
+    transform: [{ translateY: (1 - pillB.value) * 6 }],
+  }));
 
   const resume = () => {
     softHaptic('tap');
@@ -90,72 +133,120 @@ export function PauseOverlay({
         accessibilityLabel="Resume mindscape"
         onPress={resume}
       >
+        <Animated.View
+          pointerEvents="none"
+          style={[styles.halo, dawn ? styles.haloDawn : null, haloStyle]}
+        />
         <Pressable onPress={(e) => e.stopPropagation()}>
           <Animated.View style={[styles.card, dawn ? styles.cardDawn : null, cardStyle]}>
-          <Animated.View
-            pointerEvents="none"
-            style={[styles.breathOrb, dawn ? styles.breathOrbDawn : null, orbStyle]}
-          />
-          <Text style={styles.eyebrow}>Mindscape paused</Text>
-          <Text style={styles.title}>Take a breath</Text>
-          <Text style={styles.lead}>
-            The path holds still. Planting, upgrades, and soft goals wait exactly where you left
-            them. Metaphor only — not therapy.
-          </Text>
-
-          {phaseLabel ? (
-            <View style={styles.phaseChip} accessibilityRole="text">
-              <Text style={styles.phaseText}>{phaseLabel}</Text>
-            </View>
-          ) : null}
-
-          <Text style={styles.meta}>{waveLabel}</Text>
-          {calm != null && clarity != null ? (
-            <View style={styles.snapshotRow} accessibilityRole="summary">
-              <View style={styles.snapshotPill}>
-                <Text style={styles.snapshotLabel}>Calm</Text>
-                <Text style={styles.snapshotValue}>{calm}</Text>
+            <View style={[styles.accentBar, dawn ? styles.accentBarDawn : null]} />
+            <Animated.View
+              pointerEvents="none"
+              style={[styles.breathOrb, dawn ? styles.breathOrbDawn : null, orbStyle]}
+            />
+            <View style={styles.eyebrowRow}>
+              <View style={[styles.eyebrowBadge, dawn ? styles.eyebrowBadgeDawn : null]}>
+                <Text style={styles.eyebrow}>Mindscape paused</Text>
               </View>
-              <View style={[styles.snapshotPill, styles.snapshotClarity]}>
-                <Text style={styles.snapshotLabel}>Clarity</Text>
-                <Text style={styles.snapshotValue}>{clarity}</Text>
-              </View>
+              {calmLow ? (
+                <View style={styles.calmWarnChip} accessibilityRole="text">
+                  <Text style={styles.calmWarnText}>calm soft</Text>
+                </View>
+              ) : null}
             </View>
-          ) : null}
+            <Text style={styles.title}>Take a breath</Text>
+            <Text style={styles.lead}>
+              The path holds still. Planting, upgrades, and soft goals wait exactly where you left
+              them. Metaphor only — not therapy.
+            </Text>
 
-          {softGoalsTotal > 0 ? (
-            <View style={styles.goalsStrip} accessibilityRole="summary">
-              <View style={styles.goalsRow}>
-                <Text style={styles.goalsLabel}>
-                  Soft goals {softGoalsDone}/{softGoalsTotal}
+            {phaseLabel ? (
+              <View
+                style={[styles.phaseChip, dawn ? styles.phaseChipDawn : null]}
+                accessibilityRole="text"
+              >
+                <Text style={[styles.phaseText, dawn ? styles.phaseTextDawn : null]}>
+                  {phaseLabel}
                 </Text>
-                <Text style={styles.goalsPct}>{progressPct}%</Text>
               </View>
-              <View style={styles.track}>
-                <View style={[styles.fill, { width: `${progressPct}%` }]} />
-              </View>
-            </View>
-          ) : null}
+            ) : null}
 
-          <View style={styles.actions}>
-            <SoftButton label="Resume" onPress={resume} />
-            <SoftButton
-              label="Soft goals journal"
-              variant="soft"
-              onPress={() => {
-                softHaptic('tap');
-                router.push('/goals');
-              }}
-            />
-            <SoftButton
-              label="Leave mindscape"
-              variant="ghost"
-              onPress={() => {
-                softHaptic('tap');
-                router.replace('/');
-              }}
-            />
-          </View>
+            <Text style={styles.meta}>{waveLabel}</Text>
+            {calm != null && clarity != null ? (
+              <View style={styles.snapshotRow} accessibilityRole="summary">
+                <Animated.View
+                  style={[
+                    styles.snapshotPill,
+                    calmLow ? styles.snapshotCalmLow : null,
+                    pillAStyle,
+                  ]}
+                >
+                  <Text
+                    style={[styles.snapshotLabel, calmLow ? styles.snapshotLabelWarn : null]}
+                  >
+                    Calm
+                  </Text>
+                  <Text
+                    style={[styles.snapshotValue, calmLow ? styles.snapshotValueWarn : null]}
+                  >
+                    {calm}
+                  </Text>
+                </Animated.View>
+                <Animated.View
+                  style={[styles.snapshotPill, styles.snapshotClarity, pillBStyle]}
+                >
+                  <Text style={styles.snapshotLabel}>Clarity</Text>
+                  <Text style={styles.snapshotValue}>{clarity}</Text>
+                </Animated.View>
+              </View>
+            ) : null}
+
+            {softGoalsTotal > 0 ? (
+              <View style={styles.goalsStrip} accessibilityRole="summary">
+                <View style={styles.goalsRow}>
+                  <Text style={styles.goalsLabel}>
+                    Soft goals {softGoalsDone}/{softGoalsTotal}
+                  </Text>
+                  <Text style={styles.goalsPct}>{progressPct}%</Text>
+                </View>
+                <View style={styles.track}>
+                  <Animated.View
+                    style={[
+                      styles.fill,
+                      dawn ? styles.fillDawn : null,
+                      barStyle,
+                    ]}
+                  />
+                </View>
+              </View>
+            ) : null}
+
+            <View style={styles.comfortStrip} accessibilityRole="summary">
+              <Text style={styles.comfortTitle}>Pause is part of the loop</Text>
+              <Text style={styles.comfortBody}>
+                Soft rest mid-run — no penalty. Resume when the mindscape feels ready.
+              </Text>
+            </View>
+
+            <View style={styles.actions}>
+              <SoftButton label="Resume" onPress={resume} />
+              <SoftButton
+                label="Soft goals journal"
+                variant="soft"
+                onPress={() => {
+                  softHaptic('tap');
+                  router.push('/goals');
+                }}
+              />
+              <SoftButton
+                label="Leave mindscape"
+                variant="ghost"
+                onPress={() => {
+                  softHaptic('tap');
+                  router.replace('/');
+                }}
+              />
+            </View>
           </Animated.View>
         </Pressable>
       </Pressable>
@@ -170,9 +261,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 24,
   },
+  halo: {
+    position: 'absolute',
+    alignSelf: 'center',
+    width: 260,
+    height: 260,
+    borderRadius: 130,
+    backgroundColor: 'rgba(91, 138, 122, 0.28)',
+  },
+  haloDawn: {
+    backgroundColor: 'rgba(232, 201, 160, 0.35)',
+  },
   card: {
     borderRadius: 24,
     padding: 22,
+    paddingLeft: 26,
     backgroundColor: colors.mistBottom,
     borderWidth: 1,
     borderColor: colors.line,
@@ -182,6 +285,18 @@ const styles = StyleSheet.create({
   cardDawn: {
     backgroundColor: '#F3E8D6',
     borderColor: 'rgba(201, 168, 90, 0.35)',
+  },
+  accentBar: {
+    position: 'absolute',
+    left: 0,
+    top: 18,
+    bottom: 18,
+    width: 4,
+    borderRadius: 2,
+    backgroundColor: colors.brand,
+  },
+  accentBarDawn: {
+    backgroundColor: colors.gratitude,
   },
   breathOrb: {
     position: 'absolute',
@@ -195,12 +310,44 @@ const styles = StyleSheet.create({
   breathOrbDawn: {
     backgroundColor: 'rgba(255, 220, 150, 0.45)',
   },
+  eyebrowRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    flexWrap: 'wrap',
+  },
+  eyebrowBadge: {
+    alignSelf: 'flex-start',
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 10,
+    backgroundColor: 'rgba(91, 138, 122, 0.16)',
+    borderWidth: 1,
+    borderColor: 'rgba(91, 138, 122, 0.28)',
+  },
+  eyebrowBadgeDawn: {
+    backgroundColor: 'rgba(201, 168, 90, 0.18)',
+    borderColor: 'rgba(201, 168, 90, 0.35)',
+  },
   eyebrow: {
     fontFamily: fonts.bodyMedium,
     fontSize: 12,
     letterSpacing: 0.4,
     color: colors.calm,
     textTransform: 'uppercase',
+  },
+  calmWarnChip: {
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 8,
+    backgroundColor: 'rgba(196, 120, 120, 0.16)',
+    borderWidth: 1,
+    borderColor: 'rgba(196, 120, 120, 0.3)',
+  },
+  calmWarnText: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 10,
+    color: colors.dangerSoft,
   },
   title: {
     fontFamily: fonts.display,
@@ -222,10 +369,17 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(106, 158, 174, 0.28)',
   },
+  phaseChipDawn: {
+    backgroundColor: 'rgba(201, 168, 90, 0.16)',
+    borderColor: 'rgba(201, 168, 90, 0.32)',
+  },
   phaseText: {
     fontFamily: fonts.bodyMedium,
     fontSize: 11,
     color: colors.clarity,
+  },
+  phaseTextDawn: {
+    color: colors.gratitude,
   },
   meta: {
     fontFamily: fonts.bodyMedium,
@@ -247,6 +401,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(91, 138, 122, 0.22)',
   },
+  snapshotCalmLow: {
+    backgroundColor: 'rgba(196, 120, 120, 0.14)',
+    borderColor: 'rgba(196, 120, 120, 0.3)',
+  },
   snapshotClarity: {
     backgroundColor: 'rgba(106, 158, 174, 0.14)',
     borderColor: 'rgba(106, 158, 174, 0.22)',
@@ -256,11 +414,17 @@ const styles = StyleSheet.create({
     fontSize: 11,
     color: colors.inkSoft,
   },
+  snapshotLabelWarn: {
+    color: colors.dangerSoft,
+  },
   snapshotValue: {
     fontFamily: fonts.bodyBold,
     fontSize: 18,
     color: colors.brandDeep,
     marginTop: 2,
+  },
+  snapshotValueWarn: {
+    color: colors.dangerSoft,
   },
   goalsStrip: {
     marginTop: 4,
@@ -296,6 +460,29 @@ const styles = StyleSheet.create({
     height: '100%',
     borderRadius: 7,
     backgroundColor: colors.brand,
+  },
+  fillDawn: {
+    backgroundColor: colors.gratitude,
+  },
+  comfortStrip: {
+    marginTop: 2,
+    padding: 10,
+    borderRadius: 12,
+    backgroundColor: 'rgba(255,255,255,0.45)',
+    borderWidth: 1,
+    borderColor: colors.line,
+    gap: 2,
+  },
+  comfortTitle: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 12,
+    color: colors.brand,
+  },
+  comfortBody: {
+    fontFamily: fonts.body,
+    fontSize: 12,
+    lineHeight: 17,
+    color: colors.inkSoft,
   },
   actions: { gap: 8, marginTop: 12 },
 });
