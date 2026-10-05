@@ -67,6 +67,8 @@ local phase = "waiting" -- waiting | arrived | departed | waved
 local nearbyCount = 0
 local seatedLocal = false
 local lastWaveName: string? = nil
+local softCompleteDone = false
+local softCompleteOptionalOpen = false
 
 local function refreshStatus()
 	if phase == "arrived" then
@@ -81,6 +83,12 @@ local function refreshStatus()
 	elseif nearbyCount >= 1 then
 		busStatus.Text = ("waiting together · %d near · no rush"):format(nearbyCount)
 		busStatus.TextColor3 = Color3.fromRGB(180, 200, 160)
+	elseif softCompleteDone and softCompleteOptionalOpen then
+		busStatus.Text = "soft-complete · waiting together still open"
+		busStatus.TextColor3 = Color3.fromRGB(170, 190, 155)
+	elseif softCompleteDone then
+		busStatus.Text = "soft-complete · stay · no rush"
+		busStatus.TextColor3 = Color3.fromRGB(160, 175, 150)
 	else
 		busStatus.Text = "waiting · no rush"
 		busStatus.TextColor3 = Color3.fromRGB(150, 160, 140)
@@ -134,8 +142,6 @@ SoftWelcome.show(playerGui, Config.GameName, "the bus will come. you don't have 
 	HoldSeconds = 6.2,
 })
 
-local softCompleteDone = false
-local softCompleteOptionalOpen = false
 local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	{ Id = "sit", Label = "sit on a bench" },
 	{ Id = "ticket", Label = "pick up a ticket" },
@@ -157,6 +163,7 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 			FrameColor = busStyle.FrameColor,
 			HoldSeconds = 4.0,
 		})
+		refreshStatus()
 	end,
 	OnSessionSealed = function()
 		softCompleteOptionalOpen = false
@@ -165,6 +172,7 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 			FrameColor = busStyle.FrameColor,
 			HoldSeconds = 3.2,
 		})
+		refreshStatus()
 	end,
 })
 
@@ -172,6 +180,7 @@ local function tryTogetherGoal()
 	if nearbyCount >= 1 and seatedLocal then
 		complete("together")
 		softCompleteOptionalOpen = false
+		refreshStatus()
 	end
 end
 

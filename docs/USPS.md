@@ -17,7 +17,7 @@ Research refresh 2026-10-02: Creator Hub ranks **intentional co-play days** as a
 | Priority | Game | USP | Why it sells | Implementation | Status |
 | --- | --- | --- | --- | --- | --- |
 | **P0** | Haze Haven | **Vibe sync** | Board + orbs feel better when friends are near | SoftSit sync · optional sync · company-still-open | ✅ v3.10 |
-| **P0** | Bus Stop Forever | **Waiting together** | Timetable + HUD sit/company loop | Phase SoftCompany · optional together · still-open | ✅ v3.9 |
+| **P0** | Bus Stop Forever | **Waiting together** | Timetable + HUD sit/company loop | Phase SoftCompany · optional together · still-open | ✅ v3.10 |
 | **P0** | Star Porch | **Jar that fills** | Fireflies return; jar visibly fills | SoftSit company · optional share · still-open | ✅ v3.8 |
 | **P1** | Couch Galaxy | **Two worlds, one couch** | Clear home ↔ galaxy identity | SoftSit company · optional · still-open | ✅ v3.8 |
 | **P2** | Haze Haven | Shared vibe board | Soft ranks without competition toxicity | Already: VibeBoard | ✅ |

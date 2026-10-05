@@ -4,7 +4,7 @@ Newest first. Overnight agents append after every push.
 
 ## 2026-10-05 01:00 UTC — Night 11 checkpoint 1 (quiet)
 
-- Active: **Haze 3.10** · **Couch 3.8** · **Bus 3.9** · **Porch 3.8**
+- Active: **Haze 3.10** · **Couch 3.8** · **Bus 3.10** · **Porch 3.8**
 - SoftGoals.Optional · company-still-open · SoftCompany alone-copy after soft-complete
 - Couch SoftSit company · research `hangout-usps-2026-10-04.md`
 - Parked untouched; no invented audio
@@ -16,7 +16,7 @@ Newest first. Overnight agents append after every push.
 - SoftGoals: dimmer Optional rows · soft-complete title “company still open” · OnAllComplete(optionalLeft)
 - Active toasts keep co-play door open after solo soft-complete
 - Research: `docs/research/hangout-usps-2026-10-04.md`
-- Versions: Haze **3.10** · Couch **3.8** · Bus **3.9** · Porch **3.8**
+- Versions: Haze **3.10** · Couch **3.8** · Bus **3.10** · Porch **3.8**
 - No Perplexity · no invented audio · parked untouched
 - Quiet mode; stop 05:00 · **one digest email at stop only**
 

@@ -19,7 +19,7 @@ DevForum (Mar 2025 / Dec 2025 updates): intentional co-play = join/invite/privat
 
 Solo first sessions are the bounce risk. Company goals that **block** soft-complete punish solo players → higher bounce.
 
-**Rule:** Required goals = solo-achievable. Company/sync/together goals = `SoftGoals.Optional`. Soft-complete copy keeps the co-play door open: “company still open” until friends arrive.
+**Rule:** Required goals = solo-achievable. Company/sync/together goals = `SoftGoals.Optional`. Soft-complete copy keeps the co-play door open: “company still open” until friends arrive. Late company fires `OnSessionSealed`.
 
 | USP | Solo path | Co-play deepen |
 | --- | --- | --- |
