@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-05 00:30 UTC — Night hourly (v1.4.9 SoftFxLayer)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.9:** SoftFxLayer — dual outer/inner rings · plant/clear soft spark core · kind-tuned lifetimes · Reduce Motion keeps a brief soft flash (not blank)
+- Did not redo WaveResultModal (1.4.8) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-04 23:30 UTC — Night hourly (v1.4.8 WaveResultModal)
 
 - Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply

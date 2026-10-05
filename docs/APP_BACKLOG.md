@@ -42,6 +42,7 @@ Priority order. Agents pick the top unchecked item unless Femmy overrides.
 - [x] **v1.4.6 hourly polish** — Terms screen (SoftBlockEnter · section cards · Dawn · free-core strip · date sync)
 - [x] **v1.4.7 night resume** — WalkingEnemy polish (soft glow/shadow · HP track · low-HP warn · label chip · softened tag)
 - [x] **v1.4.8 hourly polish** — WaveResultModal (stat pills · progress bar · accent goal rows · Dawn tint · comfort strip · scroll)
+- [x] **v1.4.9 hourly polish** — SoftFxLayer (dual rings · plant/clear spark · longer life · Reduce Motion soft flash)
 - [ ] **Native IAP** — wire RevenueCat or react-native-iap; turn off stubMode for store builds
 - [ ] **EAS project** — Femmy: `eas init` + real `projectId` + credentials
 - [ ] **Store products** — create IAP ids in App Store Connect + Play Console
