@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-05 23:30 UTC — Night hourly (v1.4.15 WavePreviewChip)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.15:** WavePreviewChip — staggered kind pills · share mini-bars · total chip · accent tip chip · soft scale enter
+- Did not redo PauseOverlay (1.4.14) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-05 23:00 UTC — Night resume (PauseOverlay v1.4.14)
 
 - Timer `overnight-daily-resume` · no Femmy Gmail reply · Clarity Pass **$2.99** · RC vs RNIap still open

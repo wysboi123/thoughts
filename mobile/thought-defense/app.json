@@ -2,7 +2,7 @@
   "expo": {
     "name": "Thought Defense",
     "slug": "thought-defense",
-    "version": "1.4.14",
+    "version": "1.4.15",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "scheme": "thoughtdefense",
