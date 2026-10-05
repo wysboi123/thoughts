@@ -31,14 +31,15 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-04 ~23:00 night resume:** WalkingEnemy polish v1.4.7 — soft glow/shadow · HP track · low-HP warn · label chip · softened tag.
 - **2026-10-04 ~23:30:** WaveResultModal polish v1.4.8 — stat pills · progress bar · accent goal rows · Dawn tint · comfort strip · scroll.
 - **2026-10-05 ~00:30:** SoftFxLayer polish v1.4.9 — dual rings · plant/clear spark · longer life · Reduce Motion soft flash.
+- **2026-10-05 ~01:30:** PeaceCore polish v1.4.10 — outer halo · soft enter · still/soft-hold sub · calm-low chip · Dawn rim.
 
 ## State
 
-- Version: **mobile 1.4.9** (SoftFxLayer polish)
+- Version: **mobile 1.4.10** (PeaceCore polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: `54929e1` (v1.4.9 SoftFxLayer)
+- Tip: *(update after push)*
 - Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
 - Night envelope: **OPEN** 23:00→05:00 UTC · `overnight-stop-5am-utc` armed (`sub_35b53331…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
