@@ -56,6 +56,14 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 			HoldSeconds = 3.2,
 		})
 	end,
+	LingerSeconds = 48,
+	OnLinger = function()
+		SoftWelcome.show(playerGui, "still here", "vibes keep drifting · stay soft", {
+			AccentColor = Color3.fromRGB(160, 120, 210),
+			FrameColor = Color3.fromRGB(28, 22, 42),
+			HoldSeconds = 3.4,
+		})
+	end,
 })
 
 Remotes.OrbCollected.OnClientEvent:Connect(function(count: number)

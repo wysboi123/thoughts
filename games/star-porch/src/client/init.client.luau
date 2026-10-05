@@ -151,6 +151,14 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 			HoldSeconds = 3.2,
 		})
 	end,
+	LingerSeconds = 48,
+	OnLinger = function()
+		SoftWelcome.show(playerGui, "still on the porch", "jar glow · fireflies drift · stay", {
+			AccentColor = Color3.fromRGB(140, 180, 120),
+			FrameColor = Color3.fromRGB(22, 28, 20),
+			HoldSeconds = 3.4,
+		})
+	end,
 })
 
 Remotes.FireflyCollected.OnClientEvent:Connect(function(count: number)

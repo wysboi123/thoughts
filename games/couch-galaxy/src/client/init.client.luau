@@ -237,6 +237,16 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 			HoldSeconds = 3.2,
 		})
 	end,
+	LingerSeconds = 48,
+	OnLinger = function()
+		SoftWelcome.show(playerGui, "still here", if inGalaxy
+			then "loft side · two worlds · stay"
+			else "couch side · two worlds · stay", {
+			AccentColor = Color3.fromRGB(140, 120, 200),
+			FrameColor = Color3.fromRGB(26, 20, 40),
+			HoldSeconds = 3.4,
+		})
+	end,
 })
 
 local function tryBothWorlds()

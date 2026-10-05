@@ -174,6 +174,14 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 		})
 		refreshStatus()
 	end,
+	LingerSeconds = 48,
+	OnLinger = function()
+		SoftWelcome.show(playerGui, "still waiting", "another bus will come · stay", {
+			AccentColor = busStyle.AccentColor,
+			FrameColor = busStyle.FrameColor,
+			HoldSeconds = 3.4,
+		})
+	end,
 })
 
 local function tryTogetherGoal()
