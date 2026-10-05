@@ -15,7 +15,7 @@ local FloatFx = require(script:WaitForChild("FloatFx"))
 local AmbientAudio = require(script:WaitForChild("AmbientAudio"))
 local VibeBoard = require(script:WaitForChild("VibeBoard"))
 
-local orbCounter, setHudSynced = Hud.mount(playerGui)
+local orbCounter, setHudSynced, setHudSoftComplete = Hud.mount(playerGui)
 EmoteWheel.mount(playerGui)
 local proximity = ProximityGlow.start(player)
 FloatFx.start(player)
@@ -37,6 +37,7 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	OnAllComplete = function(optionalLeft: number)
 		softCompleteDone = true
 		softCompleteOptionalOpen = optionalLeft > 0
+		setHudSoftComplete(true, optionalLeft > 0)
 		local body = if optionalLeft > 0
 			then "stay · vibe sync still open if friends join"
 			else "stay as long as you like"
@@ -48,6 +49,7 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	end,
 	OnSessionSealed = function()
 		softCompleteOptionalOpen = false
+		setHudSoftComplete(true, false)
 		SoftWelcome.show(playerGui, "vibe sync sealed", "stay as long as you like", {
 			AccentColor = Color3.fromRGB(160, 120, 210),
 			FrameColor = Color3.fromRGB(28, 22, 42),
@@ -163,6 +165,9 @@ SoftCompany.mount(playerGui, player, {
 		if n >= 1 then
 			complete("sync")
 			softCompleteOptionalOpen = false
+			if softCompleteDone then
+				setHudSoftComplete(true, false)
+			end
 			proximity.setBoost(1.35 + math.min(n - 1, 2) * 0.1)
 			VibeBoard.setSynced(true)
 			setHudSynced(true)

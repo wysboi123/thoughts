@@ -6,7 +6,7 @@ local Remotes = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("R
 
 local Hud = {}
 
-function Hud.mount(playerGui: PlayerGui): (TextLabel, (boolean) -> ())
+function Hud.mount(playerGui: PlayerGui): (TextLabel, (boolean) -> (), (boolean, boolean) -> ())
 	local gui = Instance.new("ScreenGui")
 	gui.Name = "HazeHud"
 	gui.ResetOnSpawn = false
@@ -69,8 +69,29 @@ function Hud.mount(playerGui: PlayerGui): (TextLabel, (boolean) -> ())
 	pad.Parent = counter
 
 	local syncing = false
+	local softDone = false
+	local softOptionalOpen = false
 	local aloneTag = Config.Tagline
 	local syncTag = "vibes sync when friends are near"
+
+	local function refreshTag()
+		if not tag.Parent then
+			return
+		end
+		if syncing then
+			tag.Text = syncTag
+			tag.TextColor3 = Color3.fromRGB(220, 200, 245)
+		elseif softDone and softOptionalOpen then
+			tag.Text = "soft-complete · vibe sync still open"
+			tag.TextColor3 = Color3.fromRGB(200, 190, 220)
+		elseif softDone then
+			tag.Text = "soft-complete · stay as long as you like"
+			tag.TextColor3 = Color3.fromRGB(185, 200, 190)
+		else
+			tag.Text = aloneTag
+			tag.TextColor3 = Color3.fromRGB(190, 175, 210)
+		end
+	end
 
 	Remotes.OrbCollected.OnClientEvent:Connect(function(count: number)
 		counter.Text = ("Vibes  %d"):format(count)
@@ -90,10 +111,11 @@ function Hud.mount(playerGui: PlayerGui): (TextLabel, (boolean) -> ())
 		if title.Parent then
 			title.TextColor3 = if isSynced then Color3.fromRGB(255, 230, 255) else Color3.fromRGB(235, 220, 255)
 		end
-		if tag.Parent then
-			tag.Text = if isSynced then syncTag else aloneTag
-			tag.TextColor3 = if isSynced then Color3.fromRGB(220, 200, 245) else Color3.fromRGB(190, 175, 210)
-		end
+		refreshTag()
+	end, function(done: boolean, optionalOpen: boolean)
+		softDone = done
+		softOptionalOpen = optionalOpen
+		refreshTag()
 	end
 end
 

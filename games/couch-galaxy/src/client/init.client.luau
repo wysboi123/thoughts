@@ -65,6 +65,8 @@ corner.CornerRadius = UDim.new(0, 10)
 corner.Parent = counter
 
 local inGalaxy = false
+local softCompleteDone = false
+local softCompleteOptionalOpen = false
 
 local SoftCompany = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftCompany"))
 local SoftSit = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftSit"))
@@ -95,17 +97,29 @@ applyHomeLighting()
 local function refreshPlace(companyNear: boolean)
 	local versionSuffix = "  ·  v" .. Config.Version
 	if inGalaxy then
-		place.Text = if companyNear
-			then "galaxy loft · soft company · two worlds"
-			else "galaxy loft · two worlds · beacon home when ready"
+		if companyNear then
+			place.Text = "galaxy loft · soft company · two worlds"
+		elseif softCompleteDone and softCompleteOptionalOpen then
+			place.Text = "soft-complete · loft company still open"
+		elseif softCompleteDone then
+			place.Text = "soft-complete · loft · stay"
+		else
+			place.Text = "galaxy loft · two worlds · beacon home when ready"
+		end
 		place.TextColor3 = Color3.fromRGB(200, 190, 255)
 		tag.Text = Config.Tagline .. versionSuffix
 		tag.TextColor3 = Color3.fromRGB(170, 175, 220)
 		title.TextColor3 = Color3.fromRGB(210, 215, 255)
 	else
-		place.Text = if companyNear
-			then "couch side · soft company · climb when ready"
-			else "two worlds · one couch · climb to the skylight"
+		if companyNear then
+			place.Text = "couch side · soft company · climb when ready"
+		elseif softCompleteDone and softCompleteOptionalOpen then
+			place.Text = "soft-complete · couch company still open"
+		elseif softCompleteDone then
+			place.Text = "soft-complete · couch · stay"
+		else
+			place.Text = "two worlds · one couch · climb to the skylight"
+		end
 		place.TextColor3 = Color3.fromRGB(140, 130, 170)
 		tag.Text = Config.Tagline .. versionSuffix
 		tag.TextColor3 = Color3.fromRGB(170, 160, 200)
@@ -191,8 +205,6 @@ end)
 
 print("[CouchGalaxy] client ready v" .. Config.Version)
 
-local softCompleteDone = false
-local softCompleteOptionalOpen = false
 local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	{ Id = "couch", Label = "sit on the couch" },
 	{ Id = "galaxy", Label = "visit the galaxy loft" },
@@ -206,6 +218,7 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	OnAllComplete = function(optionalLeft: number)
 		softCompleteDone = true
 		softCompleteOptionalOpen = optionalLeft > 0
+		refreshPlace(couchCompanyNear)
 		local body = if optionalLeft > 0
 			then "stay · soft company still open"
 			else "two worlds · one couch · stay"
@@ -217,6 +230,7 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	end,
 	OnSessionSealed = function()
 		softCompleteOptionalOpen = false
+		refreshPlace(couchCompanyNear)
 		SoftWelcome.show(playerGui, "company sealed", "two worlds · one couch · stay", {
 			AccentColor = Color3.fromRGB(140, 120, 200),
 			FrameColor = Color3.fromRGB(26, 20, 40),
