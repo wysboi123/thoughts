@@ -8,7 +8,7 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 - [x] **Couch Galaxy v0–v3.9** — soft-complete · company still open
 - [x] **Bus Stop Forever v0–v3.10** — soft-complete · together still open
 - [x] **Star Porch v0–v3.8** — soft-complete · porch still open
-- [x] **Shared** — SoftGoals.Optional · company-still-open · SoftSit.refresh · SoftCompany pulse
+- [x] **Shared** — SoftGoals.Optional · company-still-open · OnSessionSealed · SoftSit.refresh · SoftCompany pulse
 - [x] **USP research + priority** — `docs/USPS.md` + Night 8/11 research notes
 - [x] **Night 6** — complete (active-four polish; parked trio kept)
 - [x] **Night 7** — complete (USP deepen; Haze 2.5 · Couch 2.2 · Bus 2.4 · Porch 2.3)
