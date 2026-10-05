@@ -46,6 +46,14 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 			HoldSeconds = 4.0,
 		})
 	end,
+	OnSessionSealed = function()
+		softCompleteOptionalOpen = false
+		SoftWelcome.show(playerGui, "vibe sync sealed", "stay as long as you like", {
+			AccentColor = Color3.fromRGB(160, 120, 210),
+			FrameColor = Color3.fromRGB(28, 22, 42),
+			HoldSeconds = 3.2,
+		})
+	end,
 })
 
 Remotes.OrbCollected.OnClientEvent:Connect(function(count: number)

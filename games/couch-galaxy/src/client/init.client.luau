@@ -215,6 +215,14 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 			HoldSeconds = 4.0,
 		})
 	end,
+	OnSessionSealed = function()
+		softCompleteOptionalOpen = false
+		SoftWelcome.show(playerGui, "company sealed", "two worlds · one couch · stay", {
+			AccentColor = Color3.fromRGB(140, 120, 200),
+			FrameColor = Color3.fromRGB(26, 20, 40),
+			HoldSeconds = 3.2,
+		})
+	end,
 })
 
 local function tryBothWorlds()

@@ -158,6 +158,14 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 			HoldSeconds = 4.0,
 		})
 	end,
+	OnSessionSealed = function()
+		softCompleteOptionalOpen = false
+		SoftWelcome.show(playerGui, "waiting together sealed", "the next bus can wait · stay", {
+			AccentColor = busStyle.AccentColor,
+			FrameColor = busStyle.FrameColor,
+			HoldSeconds = 3.2,
+		})
+	end,
 })
 
 local function tryTogetherGoal()

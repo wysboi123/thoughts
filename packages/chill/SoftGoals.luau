@@ -17,6 +17,8 @@ export type SoftGoalsStyle = {
 	RowColor: Color3?,
 	-- optionalLeft = incomplete Optional goals at soft-complete time
 	OnAllComplete: ((optionalLeft: number) -> ())?,
+	-- fires when a late Optional goal seals the session after soft-complete
+	OnSessionSealed: (() -> ())?,
 }
 
 local SoftGoals = {}
@@ -91,6 +93,7 @@ function SoftGoals.mount(
 
 	local softComplete = false
 	local faded = false
+	local sealed = false
 
 	local function countOptionalLeft(): number
 		local left = 0
@@ -111,6 +114,23 @@ function SoftGoals.mount(
 		return true
 	end
 
+	local function sealSession()
+		if sealed then
+			return
+		end
+		sealed = true
+		title.Text = "session soft-complete · stay"
+		title.TextColor3 = Color3.fromRGB(180, 230, 200)
+		TweenService:Create(
+			title,
+			TweenInfo.new(0.35, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+			{ TextColor3 = Color3.fromRGB(210, 255, 220) }
+		):Play()
+		if style and style.OnSessionSealed then
+			style.OnSessionSealed()
+		end
+	end
+
 	local function complete(id: string)
 		if done[id] then
 			return
@@ -118,6 +138,7 @@ function SoftGoals.mount(
 		done[id] = true
 		local row = labels[id]
 		local goal = goalById[id]
+		local wasOptional = goal ~= nil and goal.Optional == true
 		if row then
 			local labelText = if goal then goal.Label else (row.Text:gsub("^[○●◦]%s*", ""))
 			row.Text = "●  " .. labelText
@@ -131,9 +152,8 @@ function SoftGoals.mount(
 		):Play()
 
 		-- Late optional company after soft-complete → seal the session
-		if softComplete and countOptionalLeft() == 0 then
-			title.Text = "session soft-complete · stay"
-			title.TextColor3 = Color3.fromRGB(180, 230, 200)
+		if softComplete and wasOptional and countOptionalLeft() == 0 then
+			sealSession()
 		end
 
 		if requiredAllDone() and not softComplete then
@@ -143,6 +163,7 @@ function SoftGoals.mount(
 				title.Text = "soft-complete · company still open"
 			else
 				title.Text = "session soft-complete · stay"
+				sealed = true
 			end
 			title.TextColor3 = Color3.fromRGB(180, 230, 200)
 			TweenService:Create(

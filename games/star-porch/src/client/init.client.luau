@@ -122,6 +122,14 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 			HoldSeconds = 4.0,
 		})
 	end,
+	OnSessionSealed = function()
+		softCompleteOptionalOpen = false
+		SoftWelcome.show(playerGui, "porch shared", "the jar remembers · stay", {
+			AccentColor = Color3.fromRGB(140, 180, 120),
+			FrameColor = Color3.fromRGB(22, 28, 20),
+			HoldSeconds = 3.2,
+		})
+	end,
 })
 
 Remotes.FireflyCollected.OnClientEvent:Connect(function(count: number)
