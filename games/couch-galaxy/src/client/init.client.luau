@@ -238,10 +238,14 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 		})
 	end,
 	LingerSeconds = 48,
-	OnLinger = function()
-		SoftWelcome.show(playerGui, "still here", if inGalaxy
-			then "loft side · two worlds · stay"
-			else "couch side · two worlds · stay", {
+	OnLinger = function(optionalLeft: number)
+		local body: string
+		if optionalLeft > 0 then
+			body = if inGalaxy then "loft · soft company still open" else "couch · soft company still open"
+		else
+			body = if inGalaxy then "loft side · two worlds · stay" else "couch side · two worlds · stay"
+		end
+		SoftWelcome.show(playerGui, "still here", body, {
 			AccentColor = Color3.fromRGB(140, 120, 200),
 			FrameColor = Color3.fromRGB(26, 20, 40),
 			HoldSeconds = 3.4,

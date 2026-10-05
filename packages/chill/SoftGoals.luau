@@ -20,8 +20,9 @@ export type SoftGoalsStyle = {
 	-- fires when a late Optional goal seals the session after soft-complete
 	OnSessionSealed: (() -> ())?,
 	-- soft linger after soft-complete (playtime stay nudge); default 48s
+	-- OnLinger receives optionalLeft at fire time (company goals still open)
 	LingerSeconds: number?,
-	OnLinger: (() -> ())?,
+	OnLinger: ((optionalLeft: number) -> ())?,
 }
 
 local SoftGoals = {}
@@ -186,14 +187,15 @@ function SoftGoals.mount(
 						return
 					end
 					lingered = true
-					title.Text = "still here · soft"
+					local left = countOptionalLeft()
+					title.Text = if left > 0 then "still here · company open" else "still here · soft"
 					title.TextColor3 = Color3.fromRGB(190, 220, 200)
 					TweenService:Create(
 						title,
 						TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
 						{ TextColor3 = Color3.fromRGB(210, 240, 220) }
 					):Play()
-					style.OnLinger()
+					style.OnLinger(left)
 				end)
 			end
 			-- Fade lightly while company goals remain; heavier when fully sealed

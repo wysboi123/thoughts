@@ -175,8 +175,11 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 		refreshStatus()
 	end,
 	LingerSeconds = 48,
-	OnLinger = function()
-		SoftWelcome.show(playerGui, "still waiting", "another bus will come · stay", {
+	OnLinger = function(optionalLeft: number)
+		local body = if optionalLeft > 0
+			then "another bus will come · waiting together still open"
+			else "another bus will come · stay"
+		SoftWelcome.show(playerGui, "still waiting", body, {
 			AccentColor = busStyle.AccentColor,
 			FrameColor = busStyle.FrameColor,
 			HoldSeconds = 3.4,

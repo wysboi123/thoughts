@@ -57,8 +57,11 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 		})
 	end,
 	LingerSeconds = 48,
-	OnLinger = function()
-		SoftWelcome.show(playerGui, "still here", "vibes keep drifting · stay soft", {
+	OnLinger = function(optionalLeft: number)
+		local body = if optionalLeft > 0
+			then "vibes keep drifting · vibe sync still open"
+			else "vibes keep drifting · stay soft"
+		SoftWelcome.show(playerGui, "still here", body, {
 			AccentColor = Color3.fromRGB(160, 120, 210),
 			FrameColor = Color3.fromRGB(28, 22, 42),
 			HoldSeconds = 3.4,

@@ -152,8 +152,11 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 		})
 	end,
 	LingerSeconds = 48,
-	OnLinger = function()
-		SoftWelcome.show(playerGui, "still on the porch", "jar glow · fireflies drift · stay", {
+	OnLinger = function(optionalLeft: number)
+		local body = if optionalLeft > 0
+			then "jar glow · share the porch still open"
+			else "jar glow · fireflies drift · stay"
+		SoftWelcome.show(playerGui, "still on the porch", body, {
 			AccentColor = Color3.fromRGB(140, 180, 120),
 			FrameColor = Color3.fromRGB(22, 28, 20),
 			HoldSeconds = 3.4,

@@ -6,7 +6,7 @@ Newest first. Overnight agents append after every push.
 
 - SoftGoals OnLinger (~48s) · SoftInvite prep `docs/SOFT_INVITE.md`
 - Research: `docs/research/hangout-usps-2026-10-05.md`
-- Versions: Haze **3.12** · Couch **3.10** · Bus **3.11** · Porch **3.10**
+- Versions: Haze **3.13** · Couch **3.11** · Bus **3.12** · Porch **3.11**
 - No Perplexity · no invented audio · parked untouched
 - Quiet mode; stop 05:00 · **one digest email at stop only**
 

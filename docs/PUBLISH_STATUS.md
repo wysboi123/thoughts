@@ -6,7 +6,7 @@ Femmy: after you publish a place in Studio, paste the URL / place id here so ove
 
 | Slug | Place URL | Place ID | Notes |
 | --- | --- | --- | --- |
-| haze-haven | _pending_ | | Recommended first — v3.12 publish-ready |
+| haze-haven | _pending_ | | Recommended first — v3.13 publish-ready |
 | couch-galaxy | _pending_ | | |
 | bus-stop-forever | _pending_ | | |
 | star-porch | _pending_ | | |
