@@ -2,6 +2,14 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-05 ~23:05 UTC — Night 12 mid (quiet)
+
+- SoftGoals OnLinger (~48s) · SoftInvite prep `docs/SOFT_INVITE.md`
+- Research: `docs/research/hangout-usps-2026-10-05.md`
+- Versions: Haze **3.12** · Couch **3.10** · Bus **3.11** · Porch **3.10**
+- No Perplexity · no invented audio · parked untouched
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
 ## 2026-10-05 23:00 UTC — Night 12 resume
 
 - Stop re-armed → 05:00 UTC (`overnight-stop-5am-utc`); quiet CP ~01:00 / ~03:00
