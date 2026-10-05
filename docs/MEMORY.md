@@ -34,15 +34,16 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-05 ~01:30:** PeaceCore polish v1.4.10 — outer halo · soft enter · still/soft-hold sub · calm-low chip · Dawn rim.
 - **2026-10-05 ~02:30:** PadDisc polish v1.4.11 — empty aura · select ring · plant hint · inner sheen · Dawn empty tint · soft enter.
 - **2026-10-05 ~03:30:** SoftButton polish v1.4.12 — accent bar · top sheen · press wash · soft/ghost borders · primary shadow.
+- **2026-10-05 ~04:20:** HomeMindscapePreview polish v1.4.13 — mist · soft walker · ground · look chip · caption chip · Peace still (last slice before ~05:00 stop).
 
 ## State
 
-- Version: **mobile 1.4.12** (SoftButton polish)
+- Version: **mobile 1.4.13** (HomeMindscapePreview polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: `99d91ad` (v1.4.12 SoftButton)
+- Tip: *(update after push)*
 - Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
-- Night envelope: **OPEN** 23:00→05:00 UTC · `overnight-stop-5am-utc` armed (`sub_35b53331…`)
+- Night envelope: **OPEN** until ~05:00 · `overnight-stop-5am-utc` armed (`sub_35b53331…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
-- Next: night hourlies continue polish · or Femmy RC/RNIap / Pass price reply
+- Next: overnight stop ~05:00 · or Femmy RC/RNIap / Pass price reply

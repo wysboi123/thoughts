@@ -25,12 +25,16 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
   const enter = useSharedValue(reduceMotion ? 1 : 0);
   const core = useSharedValue(1);
   const padPulse = useSharedValue(0.55);
+  const walker = useSharedValue(0);
+  const mist = useSharedValue(0.4);
 
   useEffect(() => {
     if (reduceMotion) {
       enter.value = 1;
       core.value = 1;
       padPulse.value = 0.7;
+      walker.value = 0.45;
+      mist.value = 0.5;
       return;
     }
     enter.value = withTiming(1, { duration: 720, easing: Easing.out(Easing.cubic) });
@@ -53,7 +57,23 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
         false,
       ),
     );
-  }, [core, enter, padPulse, reduceMotion]);
+    walker.value = withDelay(
+      400,
+      withRepeat(
+        withTiming(1, { duration: 5200, easing: Easing.inOut(Easing.sin) }),
+        -1,
+        true,
+      ),
+    );
+    mist.value = withRepeat(
+      withSequence(
+        withTiming(0.65, { duration: 2400, easing: Easing.inOut(Easing.sin) }),
+        withTiming(0.3, { duration: 2400, easing: Easing.inOut(Easing.sin) }),
+      ),
+      -1,
+      false,
+    );
+  }, [core, enter, padPulse, walker, mist, reduceMotion]);
 
   const wrapStyle = useAnimatedStyle(() => ({
     opacity: enter.value,
@@ -64,14 +84,49 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
   }));
   const emptyPadStyle = useAnimatedStyle(() => ({
     opacity: 0.35 + padPulse.value * 0.45,
+    transform: [{ scale: 0.92 + padPulse.value * 0.12 }],
   }));
+  const mistStyle = useAnimatedStyle(() => ({
+    opacity: mist.value * (dawn ? 0.55 : 0.4),
+  }));
+  const walkerStyle = useAnimatedStyle(() => {
+    // Soft thought drifts along the L-path: down then right.
+    const t = walker.value;
+    const down = Math.min(1, t / 0.55);
+    const across = Math.max(0, (t - 0.55) / 0.45);
+    const x = 22 + across * 95;
+    const y = 32 + down * 58;
+    const mid = 1 - Math.abs(t - 0.5) * 2;
+    return {
+      left: x,
+      top: y,
+      opacity: 0.4 + mid * 0.45,
+      transform: [{ scale: 0.85 + mid * 0.2 }],
+    };
+  });
+
+  const lookLabel =
+    dawn && lantern ? 'Dawn + Lantern' : dawn ? 'Dawn Path' : lantern ? 'Lantern' : null;
 
   return (
     <Animated.View
-      style={[styles.wrap, wrapStyle]}
+      style={[
+        styles.wrap,
+        dawn ? styles.wrapDawn : null,
+        wrapStyle,
+      ]}
       accessible
       accessibilityLabel="Soft mindscape preview: path, plant pads, and Peace Core"
     >
+      <Animated.View
+        pointerEvents="none"
+        style={[
+          styles.mistWash,
+          mistStyle,
+          { backgroundColor: dawn ? 'rgba(232, 201, 160, 0.35)' : 'rgba(107, 184, 154, 0.28)' },
+        ]}
+      />
+      <View style={[styles.ground, dawn ? styles.groundDawn : null]} />
       <View
         style={[
           styles.path,
@@ -84,26 +139,48 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
           dawn ? { backgroundColor: '#E8C9A0' } : null,
         ]}
       />
-      <Animated.View style={[styles.pad, styles.padEmpty, emptyPadStyle]} />
+      {!reduceMotion ? (
+        <Animated.View
+          pointerEvents="none"
+          style={[styles.walker, walkerStyle]}
+        />
+      ) : null}
+      <Animated.View
+        style={[
+          styles.pad,
+          styles.padEmpty,
+          dawn ? styles.padEmptyDawn : null,
+          emptyPadStyle,
+        ]}
+      >
+        <Text style={styles.padPlus}>+</Text>
+      </Animated.View>
       <View
         style={[
           styles.pad,
           styles.padAffirm,
-          lantern ? { borderColor: LANTERN_RIM.Affirmation } : null,
+          lantern ? { borderColor: LANTERN_RIM.Affirmation, borderWidth: 2.5 } : null,
         ]}
       />
       <View
         style={[
           styles.pad,
           styles.padGratitude,
-          lantern ? { borderColor: LANTERN_RIM.Gratitude } : null,
+          lantern ? { borderColor: LANTERN_RIM.Gratitude, borderWidth: 2.5 } : null,
         ]}
       />
       <View
         style={[
           styles.pad,
           styles.padHumor,
-          lantern ? { borderColor: LANTERN_RIM.Humor } : null,
+          lantern ? { borderColor: LANTERN_RIM.Humor, borderWidth: 2.5 } : null,
+        ]}
+      />
+      <Animated.View
+        style={[
+          styles.coreOuter,
+          coreStyle,
+          dawn ? { backgroundColor: 'rgba(255, 220, 150, 0.35)' } : null,
         ]}
       />
       <Animated.View
@@ -115,12 +192,20 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
       />
       <View style={[styles.core, dawn ? { backgroundColor: colors.coreGlow } : null]}>
         <Text style={styles.coreLabel}>Peace</Text>
+        <Text style={styles.coreSub}>still</Text>
       </View>
-      <Text style={styles.caption}>
-        {dawn || lantern
-          ? `plan view · ${dawn && lantern ? 'Dawn + Lantern' : dawn ? 'Dawn Path' : 'Lantern'} looks`
-          : 'plan view · plant kindness · hold Peace'}
-      </Text>
+      {lookLabel ? (
+        <View style={[styles.lookChip, dawn ? styles.lookChipDawn : null]}>
+          <Text style={styles.lookChipText}>{lookLabel}</Text>
+        </View>
+      ) : null}
+      <View style={styles.captionChip}>
+        <Text style={styles.caption}>
+          {lookLabel
+            ? `plan view · ${lookLabel} looks`
+            : 'plan view · plant kindness · hold Peace'}
+        </Text>
+      </View>
     </Animated.View>
   );
 }
@@ -128,12 +213,36 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
 const styles = StyleSheet.create({
   wrap: {
     marginTop: 22,
-    height: 132,
+    height: 148,
     borderRadius: 22,
     overflow: 'hidden',
     backgroundColor: 'rgba(255,255,255,0.38)',
     borderWidth: 1,
     borderColor: colors.line,
+  },
+  wrapDawn: {
+    backgroundColor: 'rgba(255, 246, 230, 0.55)',
+    borderColor: 'rgba(232, 201, 160, 0.45)',
+  },
+  mistWash: {
+    position: 'absolute',
+    width: 160,
+    height: 160,
+    borderRadius: 80,
+    top: -30,
+    right: -20,
+  },
+  ground: {
+    position: 'absolute',
+    left: 10,
+    right: 10,
+    top: 18,
+    bottom: 36,
+    borderRadius: 16,
+    backgroundColor: 'rgba(91, 138, 122, 0.1)',
+  },
+  groundDawn: {
+    backgroundColor: 'rgba(232, 201, 160, 0.16)',
   },
   path: {
     position: 'absolute',
@@ -153,6 +262,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: colors.path,
   },
+  walker: {
+    position: 'absolute',
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: colors.worry,
+    borderWidth: 1.5,
+    borderColor: 'rgba(255,255,255,0.7)',
+  },
   pad: {
     position: 'absolute',
     width: 22,
@@ -160,12 +278,23 @@ const styles = StyleSheet.create({
     borderRadius: 11,
     borderWidth: 2,
     borderColor: 'rgba(255,255,255,0.7)',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   padEmpty: {
     left: 48,
     top: 36,
     backgroundColor: 'rgba(90, 126, 116, 0.18)',
     borderColor: colors.calm,
+  },
+  padEmptyDawn: {
+    backgroundColor: 'rgba(232, 201, 160, 0.28)',
+    borderColor: 'rgba(200, 170, 120, 0.7)',
+  },
+  padPlus: {
+    fontFamily: fonts.bodyBold,
+    fontSize: 11,
+    color: colors.calm,
   },
   padAffirm: {
     left: 48,
@@ -181,6 +310,15 @@ const styles = StyleSheet.create({
     left: 128,
     top: 78,
     backgroundColor: colors.humor,
+  },
+  coreOuter: {
+    position: 'absolute',
+    right: 20,
+    top: 20,
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    backgroundColor: 'rgba(107, 184, 154, 0.22)',
   },
   coreHalo: {
     position: 'absolute',
@@ -210,10 +348,43 @@ const styles = StyleSheet.create({
     color: colors.brandDeep,
     letterSpacing: 0.2,
   },
-  caption: {
+  coreSub: {
+    fontFamily: fonts.body,
+    fontSize: 7,
+    color: colors.inkSoft,
+    marginTop: -1,
+  },
+  lookChip: {
     position: 'absolute',
-    left: 16,
-    bottom: 10,
+    top: 10,
+    left: 12,
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 8,
+    backgroundColor: 'rgba(255,255,255,0.55)',
+    borderWidth: 1,
+    borderColor: colors.line,
+  },
+  lookChipDawn: {
+    backgroundColor: 'rgba(255, 246, 230, 0.85)',
+    borderColor: 'rgba(232, 201, 160, 0.5)',
+  },
+  lookChipText: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 9,
+    color: colors.brandDeep,
+  },
+  captionChip: {
+    position: 'absolute',
+    left: 12,
+    right: 12,
+    bottom: 8,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 10,
+    backgroundColor: 'rgba(255,255,255,0.5)',
+  },
+  caption: {
     fontFamily: fonts.body,
     fontSize: 11,
     color: colors.inkSoft,

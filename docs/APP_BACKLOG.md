@@ -46,6 +46,7 @@ Priority order. Agents pick the top unchecked item unless Femmy overrides.
 - [x] **v1.4.10 hourly polish** — PeaceCore (outer halo · soft enter · still/soft-hold sub · calm-low chip · Dawn rim)
 - [x] **v1.4.11 hourly polish** — PadDisc (empty aura · select ring · plant hint · inner sheen · Dawn empty tint · soft enter)
 - [x] **v1.4.12 hourly polish** — SoftButton (accent bar · top sheen · press wash · soft/ghost borders · primary shadow)
+- [x] **v1.4.13 hourly polish** — HomeMindscapePreview (mist · walker · ground · look chip · caption chip · Peace still · last before ~05:00)
 - [ ] **Native IAP** — wire RevenueCat or react-native-iap; turn off stubMode for store builds
 - [ ] **EAS project** — Femmy: `eas init` + real `projectId` + credentials
 - [ ] **Store products** — create IAP ids in App Store Connect + Play Console
