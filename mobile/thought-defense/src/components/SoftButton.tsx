@@ -4,6 +4,7 @@ import {
   Pressable,
   StyleSheet,
   Text,
+  View,
   type ViewStyle,
 } from 'react-native';
 import { softHaptic } from '../a11y/haptics';
@@ -19,6 +20,8 @@ type Props = {
   disabled?: boolean;
   style?: ViewStyle;
   accessibilityHint?: string;
+  /** Optional soft accent bar (default on for primary) */
+  accent?: boolean;
 };
 
 export function SoftButton({
@@ -28,18 +31,36 @@ export function SoftButton({
   disabled,
   style,
   accessibilityHint,
+  accent,
 }: Props) {
   const scale = useRef(new Animated.Value(1)).current;
+  const press = useRef(new Animated.Value(0)).current;
   const reduceMotion = useReducedMotion();
+  const showAccent = accent ?? variant === 'primary';
 
   const pressIn = () => {
     if (reduceMotion) return;
-    Animated.spring(scale, { toValue: 0.96, useNativeDriver: true, friction: 6 }).start();
+    Animated.parallel([
+      Animated.spring(scale, { toValue: 0.97, useNativeDriver: true, friction: 7 }),
+      Animated.timing(press, { toValue: 1, duration: 120, useNativeDriver: true }),
+    ]).start();
   };
   const pressOut = () => {
     if (reduceMotion) return;
-    Animated.spring(scale, { toValue: 1, useNativeDriver: true, friction: 6 }).start();
+    Animated.parallel([
+      Animated.spring(scale, { toValue: 1, useNativeDriver: true, friction: 7 }),
+      Animated.timing(press, { toValue: 0, duration: 180, useNativeDriver: true }),
+    ]).start();
   };
+
+  const sheenOpacity = press.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0.22, 0.08],
+  });
+  const pressWash = press.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, 0.12],
+  });
 
   return (
     <Animated.View style={[{ transform: [{ scale }] }, style]}>
@@ -51,7 +72,7 @@ export function SoftButton({
         hitSlop={TAP_SLOP}
         disabled={disabled}
         onPress={() => {
-          softHaptic('tap');
+          softHaptic(variant === 'primary' ? 'plant' : 'tap');
           onPress();
         }}
         onPressIn={pressIn}
@@ -64,6 +85,29 @@ export function SoftButton({
           disabled && styles.disabled,
         ]}
       >
+        {showAccent ? (
+          <View
+            pointerEvents="none"
+            style={[
+              styles.accentBar,
+              variant === 'primary' && styles.accentPrimary,
+              variant === 'soft' && styles.accentSoft,
+              variant === 'ghost' && styles.accentGhost,
+            ]}
+          />
+        ) : null}
+        {(variant === 'primary' || variant === 'soft') && !reduceMotion ? (
+          <Animated.View
+            pointerEvents="none"
+            style={[styles.sheen, { opacity: sheenOpacity }]}
+          />
+        ) : null}
+        {!reduceMotion ? (
+          <Animated.View
+            pointerEvents="none"
+            style={[styles.pressWash, { opacity: pressWash }]}
+          />
+        ) : null}
         <Text
           style={[
             styles.label,
@@ -86,24 +130,61 @@ const styles = StyleSheet.create({
     borderRadius: 18,
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'hidden',
   },
   primary: {
     backgroundColor: colors.brand,
+    shadowColor: colors.brandDeep,
+    shadowOpacity: 0.22,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 3 },
+    elevation: 2,
   },
   ghost: {
-    backgroundColor: 'transparent',
+    backgroundColor: 'rgba(255,255,255,0.28)',
     borderWidth: 1,
     borderColor: colors.line,
   },
   soft: {
     backgroundColor: colors.surfaceStrong,
+    borderWidth: 1,
+    borderColor: 'rgba(63, 111, 98, 0.18)',
   },
   disabled: { opacity: 0.45 },
+  accentBar: {
+    position: 'absolute',
+    left: 0,
+    top: 8,
+    bottom: 8,
+    width: 3,
+    borderRadius: 2,
+  },
+  accentPrimary: {
+    backgroundColor: 'rgba(247, 251, 249, 0.55)',
+  },
+  accentSoft: {
+    backgroundColor: colors.brand,
+  },
+  accentGhost: {
+    backgroundColor: colors.calm,
+  },
+  sheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '42%',
+    backgroundColor: 'rgba(255,255,255,0.35)',
+  },
+  pressWash: {
+    ...StyleSheet.absoluteFill,
+    backgroundColor: 'rgba(36, 51, 58, 0.2)',
+  },
   label: {
     fontFamily: fonts.bodyBold,
     color: '#F7FBF9',
     fontSize: 16,
-    letterSpacing: 0.2,
+    letterSpacing: 0.25,
   },
   labelGhost: { color: colors.ink, fontFamily: fonts.bodyMedium },
   labelSoft: { color: colors.brandDeep, fontFamily: fonts.bodyMedium },

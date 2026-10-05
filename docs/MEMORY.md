@@ -33,14 +33,15 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-05 ~00:30:** SoftFxLayer polish v1.4.9 — dual rings · plant/clear spark · longer life · Reduce Motion soft flash.
 - **2026-10-05 ~01:30:** PeaceCore polish v1.4.10 — outer halo · soft enter · still/soft-hold sub · calm-low chip · Dawn rim.
 - **2026-10-05 ~02:30:** PadDisc polish v1.4.11 — empty aura · select ring · plant hint · inner sheen · Dawn empty tint · soft enter.
+- **2026-10-05 ~03:30:** SoftButton polish v1.4.12 — accent bar · top sheen · press wash · soft/ghost borders · primary shadow.
 
 ## State
 
-- Version: **mobile 1.4.11** (PadDisc polish)
+- Version: **mobile 1.4.12** (SoftButton polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: `c7d876b` (v1.4.11 PadDisc)
+- Tip: *(update after push)*
 - Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
 - Night envelope: **OPEN** 23:00→05:00 UTC · `overnight-stop-5am-utc` armed (`sub_35b53331…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
