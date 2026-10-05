@@ -80,6 +80,8 @@ jarMeter.Parent = gui
 
 local SoftSit = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftSit"))
 local porchCompanyNear = false
+local halfToast = false
+local fullToast = false
 local porchSit = SoftSit.mount(playerGui, {
 	OneText = function(name)
 		return if porchCompanyNear then (name .. " is on the porch · company") else (name .. " is on the porch")
@@ -99,6 +101,23 @@ end)
 
 local softCompleteDone = false
 local softCompleteOptionalOpen = false
+
+local function refreshPorchSoftHint()
+	if not hint.Parent or fullToast then
+		return
+	end
+	if porchCompanyNear then
+		return
+	end
+	if softCompleteDone and softCompleteOptionalOpen then
+		hint.Text = "soft-complete · share the porch still open"
+		hint.TextColor3 = Color3.fromRGB(140, 170, 135)
+	elseif softCompleteDone and not halfToast then
+		hint.Text = "soft-complete · jar remembers · stay"
+		hint.TextColor3 = Color3.fromRGB(135, 160, 130)
+	end
+end
+
 local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	{ Id = "sit", Label = "sit on the porch" },
 	{ Id = "swing", Label = "try the porch swing" },
@@ -113,6 +132,7 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	OnAllComplete = function(optionalLeft: number)
 		softCompleteDone = true
 		softCompleteOptionalOpen = optionalLeft > 0
+		refreshPorchSoftHint()
 		local body = if optionalLeft > 0
 			then "stay · share the porch still open"
 			else "the jar remembers · stay"
@@ -124,6 +144,7 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	end,
 	OnSessionSealed = function()
 		softCompleteOptionalOpen = false
+		refreshPorchSoftHint()
 		SoftWelcome.show(playerGui, "porch shared", "the jar remembers · stay", {
 			AccentColor = Color3.fromRGB(140, 180, 120),
 			FrameColor = Color3.fromRGB(22, 28, 20),
