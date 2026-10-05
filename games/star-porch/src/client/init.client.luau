@@ -159,8 +159,6 @@ Remotes.FireflyCollected.OnClientEvent:Connect(function(count: number)
 	end
 end)
 
-local halfToast = false
-local fullToast = false
 local porchStyle = {
 	AccentColor = Color3.fromRGB(140, 180, 120),
 	FrameColor = Color3.fromRGB(22, 28, 20),
@@ -326,6 +324,7 @@ SoftCompany.mount(playerGui, player, {
 		if n >= 1 then
 			complete("company")
 			softCompleteOptionalOpen = false
+			refreshPorchSoftHint()
 		end
 		if n >= 1 and not porchCompanyWelcomed then
 			porchCompanyWelcomed = true
