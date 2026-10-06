@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thought Defense — Upgrade UI drafts (choose / tweak)</title>
+  <style>
+    :root {
+      --bg: #e6eef6;
+      --ink: #243044;
+      --muted: #5c6a7e;
+      --card: #f8fafc;
+      --mint: #6fb8a4;
+      --line: #d5dde8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Trebuchet MS", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 15% 0%, #f3e6da 0%, transparent 48%),
+        radial-gradient(ellipse at 85% 8%, #d9e7f6 0%, transparent 42%),
+        linear-gradient(180deg, #eef4fa, var(--bg));
+      min-height: 100vh;
+      padding: 2rem 1.25rem 3.5rem;
+    }
+    header, footer, .pick {
+      max-width: 1120px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    h1 { margin: 0 0 0.4rem; font-size: 1.8rem; letter-spacing: -0.02em; }
+    .lede { color: var(--muted); line-height: 1.45; max-width: 44rem; margin: 0; }
+    .pick {
+      margin: 1.25rem auto 1.75rem;
+      padding: 1rem 1.1rem;
+      background: var(--card);
+      border-radius: 12px;
+      border: 1px solid var(--line);
+    }
+    .pick strong { color: #1e4d42; }
+    .grid {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (min-width: 960px) {
+      .grid { grid-template-columns: 1fr 1fr 1fr; }
+    }
+    article {
+      background: var(--card);
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+    }
+    article img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+      background: #d5dde8;
+    }
+    .body { padding: 1rem 1.05rem 1.2rem; flex: 1; display: flex; flex-direction: column; gap: 0.55rem; }
+    .badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #1e4d42;
+      background: #c8e8dc;
+      padding: 0.2rem 0.5rem;
+      border-radius: 999px;
+    }
+    h2 { margin: 0; font-size: 1.15rem; }
+    p { margin: 0; color: var(--muted); font-size: 0.92rem; line-height: 1.4; }
+    ul { margin: 0; padding-left: 1.1rem; color: var(--muted); font-size: 0.88rem; line-height: 1.4; }
+    .tweak {
+      margin-top: auto;
+      padding-top: 0.75rem;
+      border-top: 1px dashed var(--line);
+      font-size: 0.85rem;
+      color: var(--ink);
+    }
+    .tweak label { display: block; margin: 0.35rem 0; }
+    footer { margin-top: 1.75rem; color: var(--muted); font-size: 0.85rem; }
+    code { font-size: 0.9em; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Upgrade UI drafts — choose / tweak</h1>
+    <p class="lede">
+      Three draft templates for Thought Defense’s explicit Upgrade button.
+      Soft pastel · pad-based TD · ToS-safe. Specs also in <code>../UI_MOCKUPS.md</code>.
+      Nothing ships in Luau until you pick (or hybrid + tweaks).
+    </p>
+  </header>
+
+  <div class="pick">
+    <strong>How to reply:</strong>
+    say <code>A</code>, <code>B</code>, or <code>C</code>, then any tweaks
+    (e.g. <em>“B, but Upgrade on the left; keep pad-click as shortcut”</em>).
+    Or edit <code>DESIGN_CONSULT.md</code> / email.
+  </div>
+
+  <div class="grid">
+    <article>
+      <img src="draft-a-selection-panel.jpg" alt="Draft A selection panel" width="1280" height="720" />
+      <div class="body">
+        <span class="badge">DRAFT A</span>
+        <h2>Selection panel</h2>
+        <p>Tap a planted thought → side/bottom panel with stats + Upgrade + Sell.</p>
+        <ul>
+          <li>Best for teaching what each thought does</li>
+          <li>Prevents accidental upgrades</li>
+          <li>Heavier chrome on small phones (use bottom sheet)</li>
+        </ul>
+        <div class="tweak">
+          <strong>Tweak ideas</strong>
+          <label>☐ Left panel vs right vs mobile bottom sheet</label>
+          <label>☐ Show range/damage numbers?</label>
+          <label>☐ Keep tray Sell, or only Sell in panel?</label>
+        </div>
+      </div>
+    </article>
+
+    <article>
+      <img src="draft-b-context-bar.jpg" alt="Draft B context bar" width="1280" height="720" />
+      <div class="body">
+        <span class="badge">DRAFT B</span>
+        <h2>Context bar</h2>
+        <p>Select tower → slim bar above the plant tray: name · level · Upgrade · Deselect.</p>
+        <ul>
+          <li>Smallest HUD change (agent research lean)</li>
+          <li>Plant cards stay visible mid-wave</li>
+          <li>Less room for flavor/stats</li>
+        </ul>
+        <div class="tweak">
+          <strong>Tweak ideas</strong>
+          <label>☐ Full-width on mobile?</label>
+          <label>☐ Include Sell on the bar?</label>
+          <label>☐ Also keep pad-click upgrade shortcut?</label>
+        </div>
+      </div>
+    </article>
+
+    <article>
+      <img src="draft-c-tray-dual-mode.jpg" alt="Draft C tray dual-mode" width="1280" height="720" />
+      <div class="body">
+        <span class="badge">DRAFT C</span>
+        <h2>Tray dual-mode</h2>
+        <p>On select, bottom tray swaps to Upgrade/Sell; plant cards dim until Back.</p>
+        <ul>
+          <li>Zero new floating panels — great for thumbs</li>
+          <li>One job at a time (plant vs upgrade)</li>
+          <li>Needs a very clear Back affordance</li>
+        </ul>
+        <div class="tweak">
+          <strong>Tweak ideas</strong>
+          <label>☐ Dim plant cards vs hide them?</label>
+          <label>☐ Back chip left or right?</label>
+          <label>☐ Auto-return to plant after upgrade?</label>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <footer>
+    Thought Defense · drafts for design choice only · open <code>index.html</code> locally for the gallery.
+  </footer>
+</body>
+</html>
