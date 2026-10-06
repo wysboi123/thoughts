@@ -2,6 +2,23 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-06 ~23:05 UTC — Night 13 mid (quiet)
+
+- SoftGoals optional-row linger pulse · soft alone proximity boost (~1.12) after linger
+- SoftSit.refresh on linger · research `hangout-usps-2026-10-06.md`
+- Versions: Haze **3.16** · Couch **3.14** · Bus **3.15** · Porch **3.14**
+- No Perplexity · no invented audio · parked untouched
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
+## 2026-10-06 23:00 UTC — Night 13 resume
+
+- Stop re-armed → 05:00 UTC (`overnight-stop-5am-utc`); quiet CP ~01:00 / ~03:00
+- No Perplexity answers — audio still unwired (Q-001–004 open); Q-005 is TD (not overnight chill focus)
+- Night 13: SoftGoals optional-row linger pulse · soft alone proximity after linger
+- Start versions: Haze **3.15** · Couch **3.13** · Bus **3.14** · Porch **3.13**
+- PR: https://github.com/wysboi123/thoughts/pull/3
+- Quiet mode; **no mid-shift email**; one digest at 05:00 stop only
+
 ## 2026-10-06 05:00 UTC — OVERNIGHT STOP (Night 12)
 
 Night 12 complete. No new features this wrap. One digest email sent.

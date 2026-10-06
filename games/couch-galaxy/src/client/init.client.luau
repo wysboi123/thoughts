@@ -68,6 +68,7 @@ local inGalaxy = false
 local softCompleteDone = false
 local softCompleteOptionalOpen = false
 local softLingered = false
+local proximityHandle: any = nil
 
 local SoftCompany = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftCompany"))
 local SoftSit = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftSit"))
@@ -251,6 +252,10 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 		softLingered = true
 		softCompleteOptionalOpen = optionalLeft > 0
 		refreshPlace(couchCompanyNear)
+		couchSit.refresh()
+		if proximityHandle and not couchCompanyNear then
+			proximityHandle.setBoost(1.12)
+		end
 		local body: string
 		if optionalLeft > 0 then
 			body = if inGalaxy then "loft · soft company still open" else "couch · soft company still open"
@@ -303,7 +308,7 @@ task.spawn(function()
 	end
 end)
 
-ChillProximity.start(player, {
+proximityHandle = ChillProximity.start(player, {
 	Radius = Config.Proximity.Radius,
 	GlowColor = Config.Proximity.GlowColor,
 	Brightness = 1.4,
@@ -356,6 +361,13 @@ SoftCompany.mount(playerGui, player, {
 		local company = n >= 1
 		couchCompanyNear = company
 		couchSit.refresh()
+		if proximityHandle then
+			if company then
+				proximityHandle.setBoost(1.25)
+			else
+				proximityHandle.setBoost(if softLingered then 1.12 else 1)
+			end
+		end
 		if company then
 			complete("company")
 			softCompleteOptionalOpen = false

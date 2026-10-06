@@ -62,6 +62,10 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 		softLingered = true
 		softCompleteOptionalOpen = optionalLeft > 0
 		setHudSoftComplete(true, optionalLeft > 0, true)
+		hazeSit.refresh()
+		if not hazeCompanyNear then
+			proximity.setBoost(1.12)
+		end
 		local body = if optionalLeft > 0
 			then "vibes keep drifting · vibe sync still open"
 			else "vibes keep drifting · stay soft"
@@ -203,7 +207,7 @@ SoftCompany.mount(playerGui, player, {
 				})
 			end
 		else
-			proximity.setBoost(1)
+			proximity.setBoost(if softLingered then 1.12 else 1)
 			VibeBoard.setSynced(false)
 			setHudSynced(false)
 			tintLocalNameplate(false)

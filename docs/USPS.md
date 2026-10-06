@@ -16,10 +16,10 @@ Research refresh 2026-10-02: Creator Hub ranks **intentional co-play days** as a
 
 | Priority | Game | USP | Why it sells | Implementation | Status |
 | --- | --- | --- | --- | --- | --- |
-| **P0** | Haze Haven | **Vibe sync** | Board + orbs feel better when friends are near | SoftSit sync · optional sync · company-still-open | ✅ v3.15 |
-| **P0** | Bus Stop Forever | **Waiting together** | Timetable + HUD sit/company loop | Phase SoftCompany · optional together · still-open | ✅ v3.14 |
-| **P0** | Star Porch | **Jar that fills** | Fireflies return; jar visibly fills | SoftSit company · optional share · still-open | ✅ v3.13 |
-| **P1** | Couch Galaxy | **Two worlds, one couch** | Clear home ↔ galaxy identity | SoftSit company · optional · still-open | ✅ v3.13 |
+| **P0** | Haze Haven | **Vibe sync** | Board + orbs feel better when friends are near | SoftSit sync · optional sync · company-still-open | ✅ v3.16 |
+| **P0** | Bus Stop Forever | **Waiting together** | Timetable + HUD sit/company loop | Phase SoftCompany · optional together · still-open | ✅ v3.15 |
+| **P0** | Star Porch | **Jar that fills** | Fireflies return; jar visibly fills | SoftSit company · optional share · still-open | ✅ v3.14 |
+| **P1** | Couch Galaxy | **Two worlds, one couch** | Clear home ↔ galaxy identity | SoftSit company · optional · still-open | ✅ v3.14 |
 | **P2** | Haze Haven | Shared vibe board | Soft ranks without competition toxicity | Already: VibeBoard | ✅ |
 | **P2** | Line (post-publish) | Soft invite prompt | Discovery co-play days | SocialService — after first Studio publish | ⏳ |
 | **Later** | Parked trio | Resume USPs when Femmy unparks | Files kept | — | Parked |
@@ -39,6 +39,8 @@ Research refresh 2026-10-02: Creator Hub ranks **intentional co-play days** as a
 **Night 11 deepen:** SoftGoals.Optional for company/sync/together — solo soft-complete + “company still open” title/toast · dimmer optional rows · Couch SoftSit company · SoftCompany alone-copy · OnSessionSealed · HUD/place soft-complete · research note `hangout-usps-2026-10-04.md`
 
 **Night 12 deepen:** SoftGoals OnLinger(optionalLeft) · SoftCompany/place still-here after linger · SoftInvite prep · research `hangout-usps-2026-10-05.md`
+
+**Night 13 deepen:** SoftGoals optional-row linger pulse · soft alone proximity boost after linger · SoftSit.refresh on linger · research `hangout-usps-2026-10-06.md`
 
 ## Copy hooks (thumbnails / description)
 

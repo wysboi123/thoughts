@@ -201,6 +201,20 @@ function SoftGoals.mount(
 						TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
 						{ Transparency = 0.65 }
 					):Play()
+					-- Soft pulse open Optional company rows (co-play door still ajar)
+					for _, g in goals do
+						if g.Optional and not done[g.Id] then
+							local optRow = labels[g.Id]
+							if optRow then
+								optRow.TextColor3 = Color3.fromRGB(210, 230, 200)
+								TweenService:Create(
+									optRow,
+									TweenInfo.new(0.7, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+									{ TextColor3 = optionalRowColor }
+								):Play()
+							end
+						end
+					end
 					style.OnLinger(left)
 				end)
 			end

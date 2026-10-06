@@ -123,7 +123,7 @@ Remotes.BusDeparted.OnClientEvent:Connect(function()
 end)
 
 local ChillProximity = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("Proximity"))
-ChillProximity.start(player, {
+local proximity = ChillProximity.start(player, {
 	Radius = Config.Proximity.Radius,
 	GlowColor = Config.Proximity.GlowColor,
 	Brightness = 1.4,
@@ -185,6 +185,10 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	OnLinger = function(optionalLeft: number)
 		softLingered = true
 		softCompleteOptionalOpen = optionalLeft > 0
+		benchSit.refresh()
+		if nearbyCount < 1 then
+			proximity.setBoost(1.12)
+		end
 		local body = if optionalLeft > 0
 			then "another bus will come · waiting together still open"
 			else "another bus will come · stay"
@@ -323,8 +327,13 @@ SoftCompany.mount(playerGui, player, {
 	end,
 	OnCountChanged = function(n)
 		nearbyCount = n
-		if phase == "waiting" then
+		if phase == "waiting" or softLingered or softCompleteDone then
 			refreshStatus()
+		end
+		if n >= 1 then
+			proximity.setBoost(1.25)
+		else
+			proximity.setBoost(if softLingered then 1.12 else 1)
 		end
 		tintTimetable(n >= 1)
 		if counter and counter.Parent then

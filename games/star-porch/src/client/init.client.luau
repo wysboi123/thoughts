@@ -102,6 +102,7 @@ end)
 local softCompleteDone = false
 local softCompleteOptionalOpen = false
 local softLingered = false
+local proximityHandle: any = nil
 
 local function refreshPorchSoftHint()
 	if not hint.Parent or fullToast then
@@ -163,6 +164,10 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 		softLingered = true
 		softCompleteOptionalOpen = optionalLeft > 0
 		refreshPorchSoftHint()
+		porchSit.refresh()
+		if proximityHandle and not porchCompanyNear then
+			proximityHandle.setBoost(1.12)
+		end
 		local body = if optionalLeft > 0
 			then "jar glow · share the porch still open"
 			else "jar glow · fireflies drift · stay"
@@ -232,7 +237,7 @@ task.spawn(function()
 	end
 end)
 
-ChillProximity.start(player, {
+proximityHandle = ChillProximity.start(player, {
 	Radius = Config.Proximity.Radius,
 	GlowColor = Config.Proximity.GlowColor,
 	Brightness = 1.3,
@@ -283,6 +288,13 @@ SoftCompany.mount(playerGui, player, {
 	OnCountChanged = function(n)
 		porchCompanyNear = n >= 1
 		porchSit.refresh()
+		if proximityHandle then
+			if n >= 1 then
+				proximityHandle.setBoost(1.25)
+			else
+				proximityHandle.setBoost(if softLingered then 1.12 else 1)
+			end
+		end
 		local light = findJarLight()
 		if light then
 			if n >= 1 then
@@ -297,12 +309,8 @@ SoftCompany.mount(playerGui, player, {
 			if n >= 1 then
 				hint.Text = "company near · jar + lights feel warmer"
 				hint.TextColor3 = Color3.fromRGB(160, 190, 150)
-			elseif softCompleteDone and softCompleteOptionalOpen then
-				hint.Text = "soft-complete · share the porch still open"
-				hint.TextColor3 = Color3.fromRGB(140, 170, 135)
-			elseif not halfToast then
-				hint.Text = "rockers + swing · jar fills as fireflies return"
-				hint.TextColor3 = Color3.fromRGB(130, 150, 120)
+			else
+				refreshPorchSoftHint()
 			end
 		end
 		local world = Workspace:FindFirstChild("StarPorchWorld")
