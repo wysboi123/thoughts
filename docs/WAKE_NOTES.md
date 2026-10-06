@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-06 02:30 UTC — Night hourly (v1.4.18 GameBoard)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.18:** GameBoard — soft path glow under corridors · animated select range ring · entrance breath · legend/compass chips · Dawn lawn/board tint
+- Did not redo Shop (1.4.17) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-06 01:30 UTC — Night hourly (v1.4.17 Shop)
 
 - Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply

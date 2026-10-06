@@ -1,14 +1,23 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import Animated, {
+  Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withRepeat,
+  withSequence,
+  withTiming,
+} from 'react-native-reanimated';
+import { useReducedMotion } from '../a11y/useReducedMotion';
 import { GAME, towerRange } from '../game/config';
 import type { GameState, TowerKind } from '../game/types';
+import { LANTERN_RIM } from '../iap/cosmetics';
 import { colors } from '../theme/colors';
 import { fonts } from '../theme/typography';
 import { PadDisc } from './PadDisc';
 import { PeaceCore } from './PeaceCore';
 import { SoftFxLayer } from './SoftFxLayer';
 import { WalkingEnemy } from './WalkingEnemy';
-import { LANTERN_RIM } from '../iap/cosmetics';
 
 type Props = {
   state: GameState;
@@ -39,6 +48,125 @@ const LANTERN_FILL: Record<TowerKind, string> = {
   Humor: '#E89878',
 };
 
+function SoftRangeRing({
+  left,
+  top,
+  size,
+  color,
+  firing,
+  reduceMotion,
+}: {
+  left: number;
+  top: number;
+  size: number;
+  color: string;
+  firing: boolean;
+  reduceMotion: boolean;
+}) {
+  const pulse = useSharedValue(1);
+  const glow = useSharedValue(0.3);
+
+  useEffect(() => {
+    if (reduceMotion) {
+      pulse.value = 1;
+      glow.value = firing ? 0.5 : 0.3;
+      return;
+    }
+    pulse.value = withRepeat(
+      withSequence(
+        withTiming(1.04, { duration: 900, easing: Easing.inOut(Easing.sin) }),
+        withTiming(1, { duration: 900, easing: Easing.inOut(Easing.sin) }),
+      ),
+      -1,
+      false,
+    );
+    glow.value = withRepeat(
+      withSequence(
+        withTiming(firing ? 0.62 : 0.42, {
+          duration: firing ? 320 : 1100,
+          easing: Easing.inOut(Easing.sin),
+        }),
+        withTiming(firing ? 0.38 : 0.22, {
+          duration: firing ? 320 : 1100,
+          easing: Easing.inOut(Easing.sin),
+        }),
+      ),
+      -1,
+      false,
+    );
+  }, [pulse, glow, firing, reduceMotion]);
+
+  const style = useAnimatedStyle(() => ({
+    opacity: glow.value,
+    transform: [{ scale: pulse.value }],
+  }));
+
+  return (
+    <Animated.View
+      pointerEvents="none"
+      style={[
+        styles.rangeRing,
+        {
+          left,
+          top,
+          width: size,
+          height: size,
+          borderColor: color,
+          backgroundColor: `${color}12`,
+        },
+        style,
+      ]}
+    />
+  );
+}
+
+function SoftEntrance({
+  left,
+  top,
+  dawn,
+  reduceMotion,
+}: {
+  left: number;
+  top: number;
+  dawn?: boolean;
+  reduceMotion: boolean;
+}) {
+  const breath = useSharedValue(1);
+
+  useEffect(() => {
+    if (reduceMotion) {
+      breath.value = 1;
+      return;
+    }
+    breath.value = withRepeat(
+      withSequence(
+        withTiming(1.08, { duration: 1400, easing: Easing.inOut(Easing.sin) }),
+        withTiming(1, { duration: 1400, easing: Easing.inOut(Easing.sin) }),
+      ),
+      -1,
+      false,
+    );
+  }, [breath, reduceMotion]);
+
+  const style = useAnimatedStyle(() => ({
+    transform: [{ scale: breath.value }],
+    opacity: 0.75 + (breath.value - 1) * 2,
+  }));
+
+  return (
+    <Animated.View
+      style={[
+        styles.entrance,
+        dawn ? styles.entranceDawn : null,
+        { left, top },
+        style,
+      ]}
+    >
+      <Text style={[styles.entranceText, dawn ? styles.entranceTextDawn : null]}>in</Text>
+    </Animated.View>
+  );
+}
+
 /** True top-down / plan-view mindscape — pads & towers as discs, path as corridors. */
 export function GameBoard({
   state,
@@ -49,11 +177,15 @@ export function GameBoard({
   themeDawn,
   themeLantern,
 }: Props) {
+  const reduceMotion = useReducedMotion();
   const pathColor = themeDawn ? '#E8C9A0' : colors.path;
   const pathEdge = themeDawn ? '#F0D4A8' : colors.pathEdge;
+  const pathGlow = themeDawn ? 'rgba(232, 201, 160, 0.35)' : 'rgba(91, 138, 122, 0.28)';
   const ground = themeDawn ? 'rgba(232, 201, 160, 0.18)' : 'rgba(91, 138, 122, 0.12)';
   const selectedTower = state.towers.find((t) => t.padIndex === state.selectedPad);
   const boardMin = Math.min(width, height);
+  const firing =
+    !!selectedTower && state.elapsed - selectedTower.lastFiredAt < 0.25;
 
   const segments = useMemo(() => {
     return GAME.path.slice(0, -1).map((a, i) => {
@@ -74,6 +206,12 @@ export function GameBoard({
             width: Math.abs(x2 - x1) + 28,
             height: 28,
           },
+          glow: {
+            left: left - 4,
+            top: top - 4,
+            width: Math.abs(x2 - x1) + 36,
+            height: 36,
+          },
         };
       }
       const left = x1 - 14;
@@ -86,6 +224,12 @@ export function GameBoard({
           width: 28,
           height: Math.abs(y2 - y1) + 28,
         },
+        glow: {
+          left: left - 4,
+          top: top - 4,
+          width: 36,
+          height: Math.abs(y2 - y1) + 36,
+        },
       };
     });
   }, [width, height]);
@@ -93,10 +237,18 @@ export function GameBoard({
   return (
     <Pressable
       onPress={onBackground}
-      style={[styles.board, { width, height, backgroundColor: ground }]}
+      style={[
+        styles.board,
+        themeDawn ? styles.boardDawn : null,
+        { width, height, backgroundColor: ground },
+      ]}
     >
-      <Text style={styles.compass}>plan view · N ↑</Text>
-      <Text style={styles.legend}>path → Peace · discs = thoughts you plant</Text>
+      <View style={[styles.chip, styles.legendChip, themeDawn ? styles.chipDawn : null]}>
+        <Text style={styles.legend}>path → Peace · discs = thoughts</Text>
+      </View>
+      <View style={[styles.chip, styles.compassChip, themeDawn ? styles.chipDawn : null]}>
+        <Text style={styles.compass}>plan · N ↑</Text>
+      </View>
 
       {/* Soft lawn tiles (top-down grid hint) */}
       {[0.2, 0.4, 0.6, 0.8].map((gx) =>
@@ -105,6 +257,7 @@ export function GameBoard({
             key={`g-${gx}-${gy}`}
             style={[
               styles.lawn,
+              themeDawn ? styles.lawnDawn : null,
               {
                 left: gx * width - 10,
                 top: gy * height - 10,
@@ -113,6 +266,14 @@ export function GameBoard({
           />
         )),
       )}
+
+      {/* Soft path glow under corridors */}
+      {segments.map((seg) => (
+        <View
+          key={`glow-${seg.key}`}
+          style={[styles.corridorGlow, seg.glow, { backgroundColor: pathGlow }]}
+        />
+      ))}
 
       {/* Path corridors — axis-aligned for clear top-down read */}
       {segments.map((seg) => (
@@ -130,23 +291,19 @@ export function GameBoard({
               left: p.x * width - 8,
               top: p.y * height - 8,
               backgroundColor: pathEdge,
+              borderColor: themeDawn ? 'rgba(255,236,200,0.9)' : 'rgba(255,255,255,0.65)',
             },
           ]}
         />
       ))}
 
       {/* Entrance marker */}
-      <View
-        style={[
-          styles.entrance,
-          {
-            left: GAME.path[0].x * width - 22,
-            top: GAME.path[0].y * height - 22,
-          },
-        ]}
-      >
-        <Text style={styles.entranceText}>in</Text>
-      </View>
+      <SoftEntrance
+        left={GAME.path[0].x * width - 22}
+        top={GAME.path[0].y * height - 22}
+        dawn={themeDawn}
+        reduceMotion={reduceMotion}
+      />
 
       <PeaceCore
         left={GAME.path[GAME.path.length - 1].x * width - 36}
@@ -157,23 +314,19 @@ export function GameBoard({
 
       {/* Selected tower range ring (Draft C select mode cue) */}
       {selectedTower ? (
-        <View
-          pointerEvents="none"
-          style={[
-            styles.rangeRing,
-            {
-              left:
-                GAME.pads[selectedTower.padIndex].x * width -
-                towerRange(selectedTower.kind, selectedTower.level) * boardMin,
-              top:
-                GAME.pads[selectedTower.padIndex].y * height -
-                towerRange(selectedTower.kind, selectedTower.level) * boardMin,
-              width: towerRange(selectedTower.kind, selectedTower.level) * boardMin * 2,
-              height: towerRange(selectedTower.kind, selectedTower.level) * boardMin * 2,
-              borderColor: TOWER_COLOR[selectedTower.kind],
-              opacity: state.elapsed - selectedTower.lastFiredAt < 0.25 ? 0.55 : 0.28,
-            },
-          ]}
+        <SoftRangeRing
+          left={
+            GAME.pads[selectedTower.padIndex].x * width -
+            towerRange(selectedTower.kind, selectedTower.level) * boardMin
+          }
+          top={
+            GAME.pads[selectedTower.padIndex].y * height -
+            towerRange(selectedTower.kind, selectedTower.level) * boardMin
+          }
+          size={towerRange(selectedTower.kind, selectedTower.level) * boardMin * 2}
+          color={TOWER_COLOR[selectedTower.kind]}
+          firing={firing}
+          reduceMotion={reduceMotion}
         />
       ) : null}
 
@@ -231,24 +384,41 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.line,
   },
-  compass: {
+  boardDawn: {
+    borderColor: 'rgba(201, 168, 90, 0.35)',
+  },
+  chip: {
     position: 'absolute',
+    zIndex: 2,
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 8,
+    backgroundColor: 'rgba(255,255,255,0.5)',
+    borderWidth: 1,
+    borderColor: colors.line,
+  },
+  chipDawn: {
+    backgroundColor: 'rgba(255, 246, 230, 0.72)',
+    borderColor: 'rgba(201, 168, 90, 0.35)',
+  },
+  legendChip: {
     top: 8,
-    right: 12,
+    left: 10,
+    maxWidth: '52%',
+  },
+  compassChip: {
+    top: 8,
+    right: 10,
+  },
+  compass: {
     fontFamily: fonts.body,
     fontSize: 10,
     color: colors.inkSoft,
-    zIndex: 2,
   },
   legend: {
-    position: 'absolute',
-    top: 8,
-    left: 12,
     fontFamily: fonts.body,
     fontSize: 9,
     color: colors.inkSoft,
-    zIndex: 2,
-    maxWidth: '48%',
   },
   lawn: {
     position: 'absolute',
@@ -256,6 +426,13 @@ const styles = StyleSheet.create({
     height: 20,
     borderRadius: 6,
     backgroundColor: 'rgba(255,255,255,0.12)',
+  },
+  lawnDawn: {
+    backgroundColor: 'rgba(255, 236, 210, 0.28)',
+  },
+  corridorGlow: {
+    position: 'absolute',
+    borderRadius: 18,
   },
   corridor: {
     position: 'absolute',
@@ -266,6 +443,7 @@ const styles = StyleSheet.create({
     width: 16,
     height: 16,
     borderRadius: 8,
+    borderWidth: 1.5,
   },
   entrance: {
     position: 'absolute',
@@ -279,15 +457,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'rgba(90, 122, 146, 0.15)',
   },
+  entranceDawn: {
+    borderColor: 'rgba(180, 140, 90, 0.75)',
+    backgroundColor: 'rgba(232, 201, 160, 0.22)',
+  },
   entranceText: {
     fontFamily: fonts.bodyMedium,
     fontSize: 11,
     color: colors.worry,
   },
+  entranceTextDawn: {
+    color: colors.gratitude,
+  },
   rangeRing: {
     position: 'absolute',
     borderRadius: 999,
     borderWidth: 1.5,
-    backgroundColor: 'rgba(255,255,255,0.06)',
   },
 });

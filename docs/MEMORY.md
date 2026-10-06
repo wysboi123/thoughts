@@ -39,14 +39,15 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-05 ~23:30:** WavePreviewChip polish v1.4.15 — stagger pills · share mini-bars · total chip · tip chip · soft scale enter.
 - **2026-10-06 ~00:30:** Atmosphere polish v1.4.16 — third orb · mid haze band · edge washes · soft content enter · Dawn tints.
 - **2026-10-06 ~01:30:** Shop polish v1.4.17 — Dawn Atmosphere · Pass live chip · Active looks · card accents · comfort strip · soft enter.
+- **2026-10-06 ~02:30:** GameBoard polish v1.4.18 — path glow · soft range ring · entrance breath · legend chips · Dawn lawn.
 
 ## State
 
-- Version: **mobile 1.4.17** (Shop polish)
+- Version: **mobile 1.4.18** (GameBoard polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: `ed07b2c` (v1.4.17 Shop)
+- Tip: *(update after push)*
 - Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
 - Night envelope: **OPEN** 23:00→05:00 UTC · `overnight-stop-5am-utc` armed (`sub_147d26c9…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
