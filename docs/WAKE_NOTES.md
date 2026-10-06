@@ -2,6 +2,14 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-06 23:00 UTC — Night resume (SoftWelcomeSheet v1.4.21)
+
+- Timer `overnight-daily-resume` · no Femmy Gmail reply · Clarity Pass **$2.99** · RC vs RNIap still open
+- **Shipped v1.4.21:** SoftWelcomeSheet — accent bar · soft card shadow · orb halo · page progress bar · step chip · soft scale enter · Next sheen · visited dots
+- Re-armed `overnight-stop-5am-utc` (`sub_42e7f312…`, ~05:00 Oct 7)
+- Did not redo SoftActionToast (1.4.20) · Draft C locked
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-06 05:00 UTC — OVERNIGHT STOP (mobile night wrap)
 
 - Timer `overnight-stop-5am-utc` fired ~05:00 UTC Oct 6 — **HARD STOP**. **No new features.** Docs + digest only.

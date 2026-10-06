@@ -43,15 +43,16 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-06 ~03:30:** Settings polish v1.4.19 — version chip · look chips · Pass live · Dawn cards · metaphor footer.
 - **2026-10-06 ~04:30:** SoftActionToast polish v1.4.20 — accent dot · soft shadow · countdown bar (last slice before ~05:00 stop).
 - **2026-10-06 ~05:00 OVERNIGHT STOP:** Hard stop after night ship v1.4.14→v1.4.20. Did **not** re-arm overnight-stop. Next resume 23:00 UTC.
+- **2026-10-06 ~23:00 night resume:** SoftWelcomeSheet polish v1.4.21 — accent bar · card shadow · orb halo · progress bar · step chip · scale enter · Next sheen.
 
 ## State
 
-- Version: **mobile 1.4.20** (SoftActionToast polish)
+- Version: **mobile 1.4.21** (SoftWelcomeSheet polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: `c00eb5e` (overnight stop after v1.4.20)
+- Tip: pending after push
 - Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
-- Night envelope: **CLOSED** · next resume **23:00 UTC** · overnight-stop **not** armed until resume
+- Night envelope: **OPEN** until ~05:00 · `overnight-stop-5am-utc` armed (`sub_42e7f312…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
-- Next: daytime idle · night resume 23:00 · or Femmy RC/RNIap / Pass price reply
+- Next: night hourlies · overnight stop ~05:00 · or Femmy RC/RNIap / Pass price reply

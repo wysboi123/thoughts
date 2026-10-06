@@ -48,6 +48,7 @@ export function SoftWelcomeSheet() {
   const [page, setPage] = useState(0);
   const rise = useRef(new Animated.Value(0)).current;
   const pageFade = useRef(new Animated.Value(1)).current;
+  const scale = useRef(new Animated.Value(0.97)).current;
   const reduceMotion = useReducedMotion();
   const { entitlements } = useIap();
   const looks = activeLooksFromEntitlements(entitlements);
@@ -79,15 +80,25 @@ export function SoftWelcomeSheet() {
     if (!ready || !visible) return;
     if (reduceMotion) {
       rise.setValue(1);
+      scale.setValue(1);
       return;
     }
     rise.setValue(0);
-    Animated.timing(rise, {
-      toValue: 1,
-      duration: 420,
-      useNativeDriver: true,
-    }).start();
-  }, [ready, visible, rise, reduceMotion]);
+    scale.setValue(0.97);
+    Animated.parallel([
+      Animated.timing(rise, {
+        toValue: 1,
+        duration: 440,
+        useNativeDriver: true,
+      }),
+      Animated.spring(scale, {
+        toValue: 1,
+        friction: 8,
+        tension: 68,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, [ready, visible, rise, scale, reduceMotion]);
 
   const animatePage = (next: number) => {
     if (reduceMotion) {
@@ -133,6 +144,7 @@ export function SoftWelcomeSheet() {
 
   const current = PAGES[page];
   const isLast = page >= PAGES.length - 1;
+  const progress = (page + 1) / PAGES.length;
 
   return (
     <Modal transparent animationType={reduceMotion ? 'none' : 'fade'} visible={visible}>
@@ -150,19 +162,46 @@ export function SoftWelcomeSheet() {
                     outputRange: [16, 0],
                   }),
                 },
+                { scale },
               ],
             },
           ]}
         >
           <View
             pointerEvents="none"
+            style={[styles.accentBar, { backgroundColor: current.accent }]}
+          />
+          <View
+            pointerEvents="none"
+            style={[styles.orbHalo, { backgroundColor: `${current.accent}22` }]}
+          />
+          <View
+            pointerEvents="none"
             style={[styles.orb, { backgroundColor: `${current.accent}44` }]}
           />
           <View style={styles.topRow}>
             <Text style={[styles.eyebrow, { color: current.accent }]}>Welcome</Text>
-            <Text style={styles.step}>
-              {page + 1} of {PAGES.length}
-            </Text>
+            <View style={[styles.stepChip, { borderColor: `${current.accent}44` }]}>
+              <Text style={[styles.step, { color: current.accent }]}>
+                {page + 1} of {PAGES.length}
+              </Text>
+            </View>
+          </View>
+
+          <View
+            style={styles.progressTrack}
+            accessibilityRole="progressbar"
+            accessibilityValue={{ min: 0, max: 100, now: Math.round(progress * 100) }}
+          >
+            <View
+              style={[
+                styles.progressFill,
+                {
+                  width: `${Math.round(progress * 100)}%`,
+                  backgroundColor: current.accent,
+                },
+              ]}
+            />
           </View>
 
           <Animated.View style={{ opacity: pageFade, gap: 10 }}>
@@ -182,6 +221,7 @@ export function SoftWelcomeSheet() {
                   styles.dot,
                   i === page && styles.dotOn,
                   i === page ? { backgroundColor: p.accent } : null,
+                  i < page ? { backgroundColor: `${p.accent}88` } : null,
                 ]}
               />
             ))}
@@ -214,6 +254,7 @@ export function SoftWelcomeSheet() {
               onPress={onNext}
               style={[styles.next, { backgroundColor: current.accent }]}
             >
+              <View pointerEvents="none" style={styles.nextSheen} />
               <Text style={styles.nextLabel}>{isLast ? 'Enter' : 'Next'}</Text>
             </Pressable>
           </View>
@@ -233,15 +274,37 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 24,
     padding: 22,
+    paddingTop: 26,
     backgroundColor: colors.surfaceStrong,
     borderWidth: 1,
     borderColor: colors.line,
     gap: 10,
     overflow: 'hidden',
+    shadowColor: '#243A34',
+    shadowOpacity: 0.14,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 10 },
+    elevation: 6,
   },
   cardDawn: {
     backgroundColor: '#F6EBDA',
     borderColor: 'rgba(201, 168, 90, 0.35)',
+  },
+  accentBar: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 3,
+    opacity: 0.85,
+  },
+  orbHalo: {
+    position: 'absolute',
+    top: -48,
+    right: -36,
+    width: 150,
+    height: 150,
+    borderRadius: 150,
   },
   orb: {
     position: 'absolute',
@@ -262,10 +325,27 @@ const styles = StyleSheet.create({
     letterSpacing: 0.4,
     textTransform: 'uppercase',
   },
+  stepChip: {
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 10,
+    borderWidth: 1,
+    backgroundColor: 'rgba(255,255,255,0.4)',
+  },
   step: {
     fontFamily: fonts.bodyMedium,
     fontSize: 12,
-    color: colors.inkSoft,
+  },
+  progressTrack: {
+    height: 4,
+    borderRadius: 4,
+    backgroundColor: 'rgba(36, 58, 52, 0.08)',
+    overflow: 'hidden',
+    marginBottom: 2,
+  },
+  progressFill: {
+    height: 4,
+    borderRadius: 4,
   },
   chip: {
     alignSelf: 'flex-start',
@@ -357,6 +437,17 @@ const styles = StyleSheet.create({
     backgroundColor: colors.brand,
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'hidden',
+    shadowColor: '#243A34',
+    shadowOpacity: 0.18,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 3,
+  },
+  nextSheen: {
+    ...StyleSheet.absoluteFill,
+    backgroundColor: 'rgba(255,255,255,0.16)',
+    height: '45%',
   },
   nextLabel: {
     fontFamily: fonts.bodyBold,
