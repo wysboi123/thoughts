@@ -14,14 +14,25 @@ type Props = {
 export function Atmosphere({ children, dawn }: Props) {
   const a = useRef(new Animated.Value(0)).current;
   const b = useRef(new Animated.Value(0)).current;
+  const c = useRef(new Animated.Value(0)).current;
+  const haze = useRef(new Animated.Value(0)).current;
+  const enter = useRef(new Animated.Value(0)).current;
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     if (reduceMotion) {
       a.setValue(0.5);
       b.setValue(0.5);
+      c.setValue(0.45);
+      haze.setValue(0.4);
+      enter.setValue(1);
       return;
     }
+    Animated.timing(enter, {
+      toValue: 1,
+      duration: 640,
+      useNativeDriver: true,
+    }).start();
     const loopA = Animated.loop(
       Animated.sequence([
         Animated.timing(a, { toValue: 1, duration: 9000, useNativeDriver: true }),
@@ -34,13 +45,29 @@ export function Atmosphere({ children, dawn }: Props) {
         Animated.timing(b, { toValue: 0, duration: 12000, useNativeDriver: true }),
       ]),
     );
+    const loopC = Animated.loop(
+      Animated.sequence([
+        Animated.timing(c, { toValue: 1, duration: 15000, useNativeDriver: true }),
+        Animated.timing(c, { toValue: 0, duration: 15000, useNativeDriver: true }),
+      ]),
+    );
+    const loopHaze = Animated.loop(
+      Animated.sequence([
+        Animated.timing(haze, { toValue: 1, duration: 7000, useNativeDriver: true }),
+        Animated.timing(haze, { toValue: 0, duration: 7000, useNativeDriver: true }),
+      ]),
+    );
     loopA.start();
     loopB.start();
+    loopC.start();
+    loopHaze.start();
     return () => {
       loopA.stop();
       loopB.stop();
+      loopC.stop();
+      loopHaze.stop();
     };
-  }, [a, b, reduceMotion]);
+  }, [a, b, c, haze, enter, reduceMotion]);
 
   const driftA = {
     transform: [
@@ -64,6 +91,27 @@ export function Atmosphere({ children, dawn }: Props) {
     ],
     opacity: b.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0.25, 0.45, 0.25] }),
   };
+  const driftC = {
+    transform: [
+      {
+        translateY: c.interpolate({ inputRange: [0, 1], outputRange: [0, 16] }),
+      },
+      {
+        translateX: c.interpolate({ inputRange: [0, 1], outputRange: [0, 14] }),
+      },
+      {
+        scale: c.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0.92, 1.06, 0.92] }),
+      },
+    ],
+    opacity: c.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0.18, 0.34, 0.18] }),
+  };
+  const hazeStyle = {
+    opacity: haze.interpolate({ inputRange: [0, 1], outputRange: [0.12, 0.28] }),
+  };
+  const contentStyle = {
+    opacity: enter,
+    flex: 1,
+  };
 
   const mist = dawn
     ? (['#E8D9C4', '#F0E4D2', '#E8F0EC'] as const)
@@ -72,6 +120,14 @@ export function Atmosphere({ children, dawn }: Props) {
   return (
     <View style={styles.root}>
       <LinearGradient colors={[...mist]} locations={[0, 0.45, 1]} style={StyleSheet.absoluteFill} />
+      <Animated.View
+        pointerEvents="none"
+        style={[
+          styles.hazeBand,
+          dawn ? styles.hazeBandDawn : null,
+          hazeStyle,
+        ]}
+      />
       <Animated.View
         style={[
           styles.orb,
@@ -88,13 +144,53 @@ export function Atmosphere({ children, dawn }: Props) {
           driftB,
         ]}
       />
-      {children}
+      <Animated.View
+        style={[
+          styles.orb,
+          styles.orbC,
+          dawn ? styles.orbCDawn : null,
+          driftC,
+        ]}
+      />
+      <View pointerEvents="none" style={styles.edgeTop}>
+        <LinearGradient
+          colors={
+            dawn
+              ? ['rgba(232, 201, 160, 0.28)', 'transparent']
+              : ['rgba(197, 221, 214, 0.35)', 'transparent']
+          }
+          style={StyleSheet.absoluteFill}
+        />
+      </View>
+      <View pointerEvents="none" style={styles.edgeBottom}>
+        <LinearGradient
+          colors={
+            dawn
+              ? ['transparent', 'rgba(232, 240, 236, 0.45)']
+              : ['transparent', 'rgba(232, 240, 236, 0.5)']
+          }
+          style={StyleSheet.absoluteFill}
+        />
+      </View>
+      <Animated.View style={contentStyle}>{children}</Animated.View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   root: { flex: 1 },
+  hazeBand: {
+    position: 'absolute',
+    left: -40,
+    right: -40,
+    top: '38%',
+    height: 120,
+    backgroundColor: 'rgba(255,255,255,0.35)',
+    borderRadius: 80,
+  },
+  hazeBandDawn: {
+    backgroundColor: 'rgba(255, 236, 210, 0.4)',
+  },
   orb: {
     position: 'absolute',
     borderRadius: 999,
@@ -118,5 +214,29 @@ const styles = StyleSheet.create({
   },
   orbBDawn: {
     backgroundColor: 'rgba(240, 180, 120, 0.28)',
+  },
+  orbC: {
+    width: 140,
+    height: 140,
+    backgroundColor: 'rgba(106, 158, 174, 0.22)',
+    top: '52%',
+    right: 24,
+  },
+  orbCDawn: {
+    backgroundColor: 'rgba(201, 168, 90, 0.26)',
+  },
+  edgeTop: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: 90,
+  },
+  edgeBottom: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: 110,
   },
 });

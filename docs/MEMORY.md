@@ -37,14 +37,15 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-05 ~04:20:** HomeMindscapePreview polish v1.4.13 — mist · soft walker · ground · look chip · caption chip · Peace still (last slice before ~05:00 stop).
 - **2026-10-05 ~23:00 night resume:** PauseOverlay polish v1.4.14 — outer halo · accent bar · animated goals bar · calm-soft chip · comfort strip · pill stagger.
 - **2026-10-05 ~23:30:** WavePreviewChip polish v1.4.15 — stagger pills · share mini-bars · total chip · tip chip · soft scale enter.
+- **2026-10-06 ~00:30:** Atmosphere polish v1.4.16 — third orb · mid haze band · edge washes · soft content enter · Dawn tints.
 
 ## State
 
-- Version: **mobile 1.4.15** (WavePreviewChip polish)
+- Version: **mobile 1.4.16** (Atmosphere polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: `65dc363` (v1.4.15 WavePreviewChip)
+- Tip: *(update after push)*
 - Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
 - Night envelope: **OPEN** 23:00→05:00 UTC · `overnight-stop-5am-utc` armed (`sub_147d26c9…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**

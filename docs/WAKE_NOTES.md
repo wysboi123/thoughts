@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-06 00:30 UTC — Night hourly (v1.4.16 Atmosphere)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.16:** Atmosphere — third soft orb · mid haze band · top/bottom edge washes · soft content enter · Dawn tints throughout
+- Did not redo WavePreviewChip (1.4.15) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-05 23:30 UTC — Night hourly (v1.4.15 WavePreviewChip)
 
 - Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
