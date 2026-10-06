@@ -87,13 +87,25 @@ export default function SettingsScreen() {
         ]}
       >
         <SoftButton label="← Home" variant="ghost" onPress={() => router.back()} style={styles.back} />
-        <Text style={styles.brand}>Settings</Text>
-        <Text style={styles.meta}>
-          {GAME.name} · {GAME.version}
-        </Text>
-
         <SoftBlockEnter index={0} reduceMotion={reduceMotion}>
-          <View style={styles.comfortStrip} accessibilityRole="summary">
+          <View style={styles.brandRow}>
+            <Text style={styles.brand}>Settings</Text>
+            <View style={[styles.versionChip, looks.dawn ? styles.versionChipDawn : null]}>
+              <Text style={styles.versionChipText}>
+                {GAME.version.replace('-mobile', '')}
+              </Text>
+            </View>
+          </View>
+          <Text style={styles.meta}>
+            {GAME.name} · soft mindscape comfort
+          </Text>
+        </SoftBlockEnter>
+
+        <SoftBlockEnter index={1} reduceMotion={reduceMotion}>
+          <View
+            style={[styles.comfortStrip, looks.dawn ? styles.comfortStripDawn : null]}
+            accessibilityRole="summary"
+          >
             <Text style={styles.comfortTitle}>On-device comfort</Text>
             <Text style={styles.comfortBody}>
               No account · no cloud save · purchases restore via your store. Stub buys stay on this
@@ -102,24 +114,40 @@ export default function SettingsScreen() {
           </View>
         </SoftBlockEnter>
 
-        <SoftBlockEnter index={1} reduceMotion={reduceMotion}>
+        <SoftBlockEnter index={2} reduceMotion={reduceMotion}>
           <View style={styles.block}>
             <SectionHead title="Active looks" accent={colors.gratitude} />
-            <View style={styles.statusCard} accessibilityRole="summary">
+            <View
+              style={[styles.statusCard, looks.dawn ? styles.statusCardDawn : null]}
+              accessibilityRole="summary"
+            >
               <Text style={styles.statusLabel}>Mindscape cosmetics</Text>
+              <View style={styles.lookRow}>
+                <View
+                  style={[
+                    styles.lookChip,
+                    looks.dawn ? styles.lookChipOn : styles.lookChipOff,
+                  ]}
+                >
+                  <Text style={looks.dawn ? styles.lookChipTextOn : styles.lookChipTextOff}>
+                    Dawn Path
+                  </Text>
+                </View>
+                <View
+                  style={[
+                    styles.lookChip,
+                    looks.lantern ? styles.lookChipOn : styles.lookChipOff,
+                  ]}
+                >
+                  <Text style={looks.lantern ? styles.lookChipTextOn : styles.lookChipTextOff}>
+                    Lantern Towers
+                  </Text>
+                </View>
+              </View>
               <Text style={styles.note}>
                 {looks.dawn || looks.lantern
-                  ? [
-                      looks.dawn ? 'Dawn Path' : null,
-                      looks.lantern ? 'Lantern Towers' : null,
-                    ]
-                      .filter(Boolean)
-                      .join(' · ')
-                  : 'Default mint mist — shop looks are optional'}
-              </Text>
-              <Text style={styles.note}>
-                Looks only — never change Calm, Clarity costs, or tower power. Clarity Pass unlocks
-                both themes while active.
+                  ? 'Looks only — never change Calm, Clarity costs, or tower power.'
+                  : 'Default mint mist — shop looks are optional. Clarity Pass unlocks both themes while active.'}
               </Text>
               <SoftButton
                 label="Open Clarity shop"
@@ -133,7 +161,7 @@ export default function SettingsScreen() {
           </View>
         </SoftBlockEnter>
 
-        <SoftBlockEnter index={2} reduceMotion={reduceMotion}>
+        <SoftBlockEnter index={3} reduceMotion={reduceMotion}>
           <View style={styles.block}>
             <SectionHead title="Purchases" accent={colors.clarity} />
             <SoftButton
@@ -156,8 +184,21 @@ export default function SettingsScreen() {
                 }}
               />
             ) : null}
-            <View style={styles.statusCard}>
-              <Text style={styles.statusLabel}>Entitlements</Text>
+            <View
+              style={[
+                styles.statusCard,
+                entitlements.clarityPassActive ? styles.statusCardPass : null,
+                looks.dawn ? styles.statusCardDawn : null,
+              ]}
+            >
+              <View style={styles.statusHead}>
+                <Text style={styles.statusLabel}>Entitlements</Text>
+                {entitlements.clarityPassActive ? (
+                  <View style={styles.passLiveChip}>
+                    <Text style={styles.passLiveText}>Pass live</Text>
+                  </View>
+                ) : null}
+              </View>
               <Text style={styles.note}>{describeEntitlements()}</Text>
               {entitlements.clarityPassActive && passDaysRemaining != null ? (
                 <Text style={styles.note}>
@@ -180,7 +221,7 @@ export default function SettingsScreen() {
           </View>
         </SoftBlockEnter>
 
-        <SoftBlockEnter index={3} reduceMotion={reduceMotion}>
+        <SoftBlockEnter index={4} reduceMotion={reduceMotion}>
           <View style={styles.block}>
             <SectionHead title="Onboarding" accent={colors.affirmation} />
             <SoftButton
@@ -203,10 +244,12 @@ export default function SettingsScreen() {
           </View>
         </SoftBlockEnter>
 
-        <SoftBlockEnter index={4} reduceMotion={reduceMotion}>
+        <SoftBlockEnter index={5} reduceMotion={reduceMotion}>
           <View style={styles.block}>
             <SectionHead title="Legal" accent={colors.calm} />
-            <View style={styles.privacyTeaser}>
+            <View
+              style={[styles.privacyTeaser, looks.dawn ? styles.privacyTeaserDawn : null]}
+            >
               <Text style={styles.privacyTeaserTitle}>Privacy at a glance</Text>
               <Text style={styles.note}>
                 Entertainment metaphor only · no therapy claims · device-local progress · store
@@ -232,7 +275,7 @@ export default function SettingsScreen() {
           </View>
         </SoftBlockEnter>
 
-        <SoftBlockEnter index={5} reduceMotion={reduceMotion}>
+        <SoftBlockEnter index={6} reduceMotion={reduceMotion}>
           <View style={styles.block}>
             <SectionHead title="About" accent={colors.gratitude} />
             <Text style={styles.versionLine}>
@@ -242,6 +285,12 @@ export default function SettingsScreen() {
               Thought Defense is a soft metaphor game. It is not therapy, diagnosis, or medical advice.
               If you are in distress, seek real-world support.
             </Text>
+            <View style={styles.footerStrip} accessibilityRole="summary">
+              <Text style={styles.footerTitle}>Metaphor only</Text>
+              <Text style={styles.footerBody}>
+                Soft goals and comfort purchases never change the free kindness loop.
+              </Text>
+            </View>
           </View>
         </SoftBlockEnter>
       </ScrollView>
@@ -252,7 +301,31 @@ export default function SettingsScreen() {
 const styles = StyleSheet.create({
   wrap: { paddingHorizontal: 22, gap: 8 },
   back: { alignSelf: 'flex-start' },
-  brand: { fontFamily: fonts.display, fontSize: 36, color: colors.brandDeep, marginTop: 8 },
+  brandRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 10,
+    marginTop: 8,
+  },
+  brand: { fontFamily: fonts.display, fontSize: 36, color: colors.brandDeep, flex: 1 },
+  versionChip: {
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 10,
+    backgroundColor: 'rgba(63, 111, 98, 0.14)',
+    borderWidth: 1,
+    borderColor: 'rgba(63, 111, 98, 0.25)',
+  },
+  versionChipDawn: {
+    backgroundColor: 'rgba(201, 168, 90, 0.18)',
+    borderColor: 'rgba(201, 168, 90, 0.35)',
+  },
+  versionChipText: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 12,
+    color: colors.brandDeep,
+  },
   meta: { fontFamily: fonts.body, color: colors.inkSoft, marginBottom: 12 },
   comfortStrip: {
     backgroundColor: colors.surfaceStrong,
@@ -263,6 +336,10 @@ const styles = StyleSheet.create({
     borderColor: colors.line,
     marginBottom: 10,
     gap: 4,
+  },
+  comfortStripDawn: {
+    backgroundColor: 'rgba(255, 246, 230, 0.72)',
+    borderColor: 'rgba(201, 168, 90, 0.32)',
   },
   comfortTitle: {
     fontFamily: fonts.bodyBold,
@@ -280,6 +357,31 @@ const styles = StyleSheet.create({
   accentBar: { width: 3, height: 16, borderRadius: 2 },
   h: { fontFamily: fonts.bodyBold, fontSize: 16, color: colors.ink },
   note: { fontFamily: fonts.body, fontSize: 12, color: colors.inkSoft, lineHeight: 18 },
+  lookRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginVertical: 4 },
+  lookChip: {
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 10,
+    borderWidth: 1,
+  },
+  lookChipOn: {
+    backgroundColor: 'rgba(91, 138, 122, 0.18)',
+    borderColor: 'rgba(91, 138, 122, 0.4)',
+  },
+  lookChipOff: {
+    backgroundColor: 'rgba(255,255,255,0.4)',
+    borderColor: colors.line,
+  },
+  lookChipTextOn: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 12,
+    color: colors.brandDeep,
+  },
+  lookChipTextOff: {
+    fontFamily: fonts.body,
+    fontSize: 12,
+    color: colors.inkSoft,
+  },
   statusCard: {
     backgroundColor: colors.surface,
     borderRadius: 12,
@@ -288,12 +390,39 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.line,
   },
+  statusCardDawn: {
+    backgroundColor: 'rgba(255, 248, 235, 0.7)',
+    borderColor: 'rgba(201, 168, 90, 0.28)',
+  },
+  statusCardPass: {
+    borderColor: 'rgba(91, 138, 122, 0.4)',
+    backgroundColor: 'rgba(91, 138, 122, 0.12)',
+  },
+  statusHead: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 8,
+  },
   statusLabel: {
     fontFamily: fonts.bodyMedium,
     fontSize: 11,
     color: colors.brand,
     letterSpacing: 0.3,
     textTransform: 'uppercase',
+  },
+  passLiveChip: {
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 8,
+    backgroundColor: 'rgba(91, 138, 122, 0.22)',
+    borderWidth: 1,
+    borderColor: 'rgba(91, 138, 122, 0.35)',
+  },
+  passLiveText: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 11,
+    color: colors.brand,
   },
   privacyTeaser: {
     backgroundColor: colors.surface,
@@ -302,6 +431,10 @@ const styles = StyleSheet.create({
     gap: 4,
     borderWidth: 1,
     borderColor: colors.line,
+  },
+  privacyTeaserDawn: {
+    backgroundColor: 'rgba(255, 248, 235, 0.7)',
+    borderColor: 'rgba(201, 168, 90, 0.28)',
   },
   privacyTeaserTitle: {
     fontFamily: fonts.bodyMedium,
@@ -315,4 +448,24 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   about: { fontFamily: fonts.body, fontSize: 14, lineHeight: 21, color: colors.inkSoft },
+  footerStrip: {
+    marginTop: 8,
+    padding: 12,
+    borderRadius: 12,
+    backgroundColor: 'rgba(255,255,255,0.45)',
+    borderWidth: 1,
+    borderColor: colors.line,
+    gap: 2,
+  },
+  footerTitle: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 12,
+    color: colors.brand,
+  },
+  footerBody: {
+    fontFamily: fonts.body,
+    fontSize: 12,
+    lineHeight: 17,
+    color: colors.inkSoft,
+  },
 });

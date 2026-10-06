@@ -52,6 +52,7 @@ Priority order. Agents pick the top unchecked item unless Femmy overrides.
 - [x] **v1.4.16 hourly polish** — Atmosphere (third orb · mid haze band · edge washes · soft content enter · Dawn tints)
 - [x] **v1.4.17 hourly polish** — Shop (Dawn Atmosphere · Pass live chip · Active looks · card accents · comfort strip · soft enter)
 - [x] **v1.4.18 hourly polish** — GameBoard (path glow · soft range ring · entrance breath · legend chips · Dawn lawn)
+- [x] **v1.4.19 hourly polish** — Settings (version chip · look chips · Pass live · Dawn cards · metaphor footer)
 - [ ] **Native IAP** — wire RevenueCat or react-native-iap; turn off stubMode for store builds
 - [ ] **EAS project** — Femmy: `eas init` + real `projectId` + credentials
 - [ ] **Store products** — create IAP ids in App Store Connect + Play Console
