@@ -29,6 +29,8 @@ Stub IAP stays until you pick + we wire. Reply **RC** / **RNIap** / other.
 
 Shipped this hourly: **v1.4.20** — SoftActionToast polish (accent dot · shadow · countdown bar). Last slice before ~05:00 overnight stop.
 
+**2026-10-06 ~05:00 overnight stop** — night wrap complete (v1.4.14→v1.4.20). No new features. Next resume **23:00 UTC**. Same open consult: **RC vs RNIap** · Pass **$2.99**.
+
 ## Defaults
 
 - Soft mint-mist brand · core loop free · Pass = comfort only
