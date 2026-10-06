@@ -6,10 +6,10 @@ Femmy’s chill Roblox line. All Rojo filesystem-first. Play: `cd games/<slug> &
 
 | Slug | Version | Verb | USP |
 | --- | --- | --- | --- |
-| [`haze-haven`](../games/haze-haven) | 3.14 | float / sit | Soft-complete · company still open |
-| [`couch-galaxy`](../games/couch-galaxy) | 3.12 | climb / float | Soft-complete · company still open |
-| [`bus-stop-forever`](../games/bus-stop-forever) | 3.13 | wait / wave | Soft-complete · together still open |
-| [`star-porch`](../games/star-porch) | 3.12 | sit / glow | Soft-complete · porch still open |
+| [`haze-haven`](../games/haze-haven) | 3.15 | float / sit | Soft-complete · company still open |
+| [`couch-galaxy`](../games/couch-galaxy) | 3.13 | climb / float | Soft-complete · company still open |
+| [`bus-stop-forever`](../games/bus-stop-forever) | 3.14 | wait / wave | Soft-complete · together still open |
+| [`star-porch`](../games/star-porch) | 3.13 | sit / glow | Soft-complete · porch still open |
 
 ## Parked for later (files kept)
 
@@ -21,7 +21,7 @@ Do not delete. Resume when Femmy asks.
 | [`puddle-mirror`](../games/puddle-mirror) | 1.2 | ripple | Plaza breathe + nook puddles + dew |
 | [`lantern-drift`](../games/lantern-drift) | 1.1 | drift | Rope coil bob + gangway + shore lights |
 
-Shared: [`packages/chill`](../packages/chill) · USPs: [`USPS.md`](USPS.md) · Publish: [`PUBLISH_CHECKLIST.md`](PUBLISH_CHECKLIST.md)
+Shared: [`packages/chill`](../packages/chill) · USPs: [`USPS.md`](USPS.md) · Publish: [`PUBLISH_CHECKLIST.md`](PUBLISH_CHECKLIST.md) · Soft invite (later): [`SOFT_INVITE.md`](SOFT_INVITE.md)
 
 ## Soft goals + welcome + company
 

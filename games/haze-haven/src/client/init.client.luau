@@ -61,6 +61,7 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	OnLinger = function(optionalLeft: number)
 		softLingered = true
 		softCompleteOptionalOpen = optionalLeft > 0
+		setHudSoftComplete(true, optionalLeft > 0, true)
 		local body = if optionalLeft > 0
 			then "vibes keep drifting · vibe sync still open"
 			else "vibes keep drifting · stay soft"

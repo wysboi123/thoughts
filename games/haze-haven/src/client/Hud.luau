@@ -71,6 +71,7 @@ function Hud.mount(playerGui: PlayerGui): (TextLabel, (boolean) -> (), (boolean,
 	local syncing = false
 	local softDone = false
 	local softOptionalOpen = false
+	local softLingered = false
 	local aloneTag = Config.Tagline
 	local syncTag = "vibes sync when friends are near"
 
@@ -81,6 +82,12 @@ function Hud.mount(playerGui: PlayerGui): (TextLabel, (boolean) -> (), (boolean,
 		if syncing then
 			tag.Text = syncTag
 			tag.TextColor3 = Color3.fromRGB(220, 200, 245)
+		elseif softLingered and softOptionalOpen then
+			tag.Text = "still here · vibe sync still open"
+			tag.TextColor3 = Color3.fromRGB(195, 205, 200)
+		elseif softLingered then
+			tag.Text = "still here · stay as long as you like"
+			tag.TextColor3 = Color3.fromRGB(185, 205, 195)
 		elseif softDone and softOptionalOpen then
 			tag.Text = "soft-complete · vibe sync still open"
 			tag.TextColor3 = Color3.fromRGB(200, 190, 220)
@@ -112,9 +119,12 @@ function Hud.mount(playerGui: PlayerGui): (TextLabel, (boolean) -> (), (boolean,
 			title.TextColor3 = if isSynced then Color3.fromRGB(255, 230, 255) else Color3.fromRGB(235, 220, 255)
 		end
 		refreshTag()
-	end, function(done: boolean, optionalOpen: boolean)
+	end, function(done: boolean, optionalOpen: boolean, lingered: boolean?)
 		softDone = done
 		softOptionalOpen = optionalOpen
+		if lingered == true then
+			softLingered = true
+		end
 		refreshTag()
 	end
 end

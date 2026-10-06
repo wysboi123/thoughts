@@ -190,10 +190,16 @@ function SoftGoals.mount(
 					local left = countOptionalLeft()
 					title.Text = if left > 0 then "still here · company open" else "still here · soft"
 					title.TextColor3 = Color3.fromRGB(190, 220, 200)
+					stroke.Transparency = 0.3
 					TweenService:Create(
 						title,
 						TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
 						{ TextColor3 = Color3.fromRGB(210, 240, 220) }
+					):Play()
+					TweenService:Create(
+						stroke,
+						TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+						{ Transparency = 0.65 }
 					):Play()
 					style.OnLinger(left)
 				end)
