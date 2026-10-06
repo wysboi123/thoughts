@@ -2,6 +2,14 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-06 01:00 UTC — Night 12 checkpoint 1 (quiet)
+
+- Active: **Haze 3.14** · **Couch 3.12** · **Bus 3.13** · **Porch 3.12**
+- SoftGoals OnLinger(optionalLeft) · SoftInvite prep · research `hangout-usps-2026-10-05.md`
+- Parked untouched; no invented audio
+- Still blocked: Perplexity Q-001–004 · first Studio publish
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
 ## 2026-10-05 ~23:05 UTC — Night 12 mid (quiet)
 
 - SoftGoals OnLinger (~48s) · SoftInvite prep `docs/SOFT_INVITE.md`

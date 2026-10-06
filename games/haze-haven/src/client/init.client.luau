@@ -25,6 +25,7 @@ VibeBoard.start()
 local SoftWelcome = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftWelcome"))
 local softCompleteDone = false
 local softCompleteOptionalOpen = false
+local softLingered = false
 local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	{ Id = "vibes", Label = "collect 3 vibes" },
 	{ Id = "sit", Label = "sit somewhere" },
@@ -58,6 +59,8 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	end,
 	LingerSeconds = 48,
 	OnLinger = function(optionalLeft: number)
+		softLingered = true
+		softCompleteOptionalOpen = optionalLeft > 0
 		local body = if optionalLeft > 0
 			then "vibes keep drifting · vibe sync still open"
 			else "vibes keep drifting · stay soft"
@@ -159,7 +162,11 @@ SoftCompany.mount(playerGui, player, {
 	Radius = Config.Proximity.Radius,
 	Color = Color3.fromRGB(200, 180, 230),
 	AloneTextFn = function()
-		if softCompleteDone and softCompleteOptionalOpen then
+		if softLingered and softCompleteOptionalOpen then
+			return "still here · vibe sync still open"
+		elseif softLingered then
+			return "still here · alone is fine"
+		elseif softCompleteDone and softCompleteOptionalOpen then
 			return "soft-complete · vibe sync still open"
 		elseif softCompleteDone then
 			return "soft-complete · alone is fine"

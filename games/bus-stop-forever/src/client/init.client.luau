@@ -69,6 +69,7 @@ local seatedLocal = false
 local lastWaveName: string? = nil
 local softCompleteDone = false
 local softCompleteOptionalOpen = false
+local softLingered = false
 
 local function refreshStatus()
 	if phase == "arrived" then
@@ -83,6 +84,12 @@ local function refreshStatus()
 	elseif nearbyCount >= 1 then
 		busStatus.Text = ("waiting together · %d near · no rush"):format(nearbyCount)
 		busStatus.TextColor3 = Color3.fromRGB(180, 200, 160)
+	elseif softLingered and softCompleteOptionalOpen then
+		busStatus.Text = "still waiting · together still open"
+		busStatus.TextColor3 = Color3.fromRGB(175, 195, 160)
+	elseif softLingered then
+		busStatus.Text = "still waiting · stay · no rush"
+		busStatus.TextColor3 = Color3.fromRGB(165, 180, 155)
 	elseif softCompleteDone and softCompleteOptionalOpen then
 		busStatus.Text = "soft-complete · waiting together still open"
 		busStatus.TextColor3 = Color3.fromRGB(170, 190, 155)
@@ -176,6 +183,8 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	end,
 	LingerSeconds = 48,
 	OnLinger = function(optionalLeft: number)
+		softLingered = true
+		softCompleteOptionalOpen = optionalLeft > 0
 		local body = if optionalLeft > 0
 			then "another bus will come · waiting together still open"
 			else "another bus will come · stay"
@@ -184,6 +193,7 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 			FrameColor = busStyle.FrameColor,
 			HoldSeconds = 3.4,
 		})
+		refreshStatus()
 	end,
 })
 
@@ -284,7 +294,11 @@ SoftCompany.mount(playerGui, player, {
 	Radius = Config.Proximity.Radius,
 	Color = Color3.fromRGB(190, 200, 170),
 	AloneTextFn = function()
-		if softCompleteDone and softCompleteOptionalOpen then
+		if softLingered and softCompleteOptionalOpen then
+			return "still here · waiting together still open"
+		elseif softLingered then
+			return "still here · alone is fine"
+		elseif softCompleteDone and softCompleteOptionalOpen then
 			return "soft-complete · waiting together still open"
 		elseif softCompleteDone then
 			return "soft-complete · alone is fine"

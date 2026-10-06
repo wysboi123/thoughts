@@ -67,6 +67,7 @@ corner.Parent = counter
 local inGalaxy = false
 local softCompleteDone = false
 local softCompleteOptionalOpen = false
+local softLingered = false
 
 local SoftCompany = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftCompany"))
 local SoftSit = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftSit"))
@@ -99,6 +100,10 @@ local function refreshPlace(companyNear: boolean)
 	if inGalaxy then
 		if companyNear then
 			place.Text = "galaxy loft · soft company · two worlds"
+		elseif softLingered and softCompleteOptionalOpen then
+			place.Text = "still here · loft company still open"
+		elseif softLingered then
+			place.Text = "still here · loft · stay"
 		elseif softCompleteDone and softCompleteOptionalOpen then
 			place.Text = "soft-complete · loft company still open"
 		elseif softCompleteDone then
@@ -113,6 +118,10 @@ local function refreshPlace(companyNear: boolean)
 	else
 		if companyNear then
 			place.Text = "couch side · soft company · climb when ready"
+		elseif softLingered and softCompleteOptionalOpen then
+			place.Text = "still here · couch company still open"
+		elseif softLingered then
+			place.Text = "still here · couch · stay"
 		elseif softCompleteDone and softCompleteOptionalOpen then
 			place.Text = "soft-complete · couch company still open"
 		elseif softCompleteDone then
@@ -239,6 +248,9 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	end,
 	LingerSeconds = 48,
 	OnLinger = function(optionalLeft: number)
+		softLingered = true
+		softCompleteOptionalOpen = optionalLeft > 0
+		refreshPlace(couchCompanyNear)
 		local body: string
 		if optionalLeft > 0 then
 			body = if inGalaxy then "loft · soft company still open" else "couch · soft company still open"
@@ -320,7 +332,11 @@ SoftCompany.mount(playerGui, player, {
 	Radius = Config.Proximity.Radius,
 	Color = Color3.fromRGB(190, 170, 220),
 	AloneTextFn = function()
-		if softCompleteDone and softCompleteOptionalOpen then
+		if softLingered and softCompleteOptionalOpen then
+			return if inGalaxy then "still here · loft company still open" else "still here · couch company still open"
+		elseif softLingered then
+			return if inGalaxy then "still here · loft is enough" else "still here · couch is enough"
+		elseif softCompleteDone and softCompleteOptionalOpen then
 			return if inGalaxy then "soft-complete · loft company still open" else "soft-complete · couch company still open"
 		elseif softCompleteDone then
 			return if inGalaxy then "soft-complete · loft is enough" else "soft-complete · couch is enough"

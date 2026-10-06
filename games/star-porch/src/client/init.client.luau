@@ -101,6 +101,7 @@ end)
 
 local softCompleteDone = false
 local softCompleteOptionalOpen = false
+local softLingered = false
 
 local function refreshPorchSoftHint()
 	if not hint.Parent or fullToast then
@@ -109,7 +110,13 @@ local function refreshPorchSoftHint()
 	if porchCompanyNear then
 		return
 	end
-	if softCompleteDone and softCompleteOptionalOpen then
+	if softLingered and softCompleteOptionalOpen then
+		hint.Text = "still here · share the porch still open"
+		hint.TextColor3 = Color3.fromRGB(145, 175, 140)
+	elseif softLingered and not halfToast then
+		hint.Text = "still here · jar remembers · stay"
+		hint.TextColor3 = Color3.fromRGB(140, 165, 135)
+	elseif softCompleteDone and softCompleteOptionalOpen then
 		hint.Text = "soft-complete · share the porch still open"
 		hint.TextColor3 = Color3.fromRGB(140, 170, 135)
 	elseif softCompleteDone and not halfToast then
@@ -153,6 +160,9 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	end,
 	LingerSeconds = 48,
 	OnLinger = function(optionalLeft: number)
+		softLingered = true
+		softCompleteOptionalOpen = optionalLeft > 0
+		refreshPorchSoftHint()
 		local body = if optionalLeft > 0
 			then "jar glow · share the porch still open"
 			else "jar glow · fireflies drift · stay"
@@ -255,7 +265,11 @@ SoftCompany.mount(playerGui, player, {
 	Radius = Config.Proximity.Radius,
 	Color = Color3.fromRGB(180, 200, 170),
 	AloneTextFn = function()
-		if softCompleteDone and softCompleteOptionalOpen then
+		if softLingered and softCompleteOptionalOpen then
+			return "still here · share the porch still open"
+		elseif softLingered then
+			return "still here · jar waits"
+		elseif softCompleteDone and softCompleteOptionalOpen then
 			return "soft-complete · share the porch still open"
 		elseif softCompleteDone then
 			return "soft-complete · jar waits"

@@ -10,7 +10,7 @@ rojo build -o StarPorch.rbxl
 rojo serve
 ```
 
-## Loop (v3.11)
+## Loop (v3.12)
 
 1. Spawn on the porch under string lights + moon
 2. Walk the yard path / step gap in the rail
