@@ -15,6 +15,7 @@ import { SoftActionToast } from '../components/SoftActionToast';
 import { Atmosphere } from '../components/Atmosphere';
 import { SoftButton } from '../components/SoftButton';
 import type { ToastKind } from '../game/types';
+import { activeLooksFromEntitlements } from '../iap/cosmetics';
 import { useIap } from '../iap/IapProvider';
 import type { ProductKind, StoreProduct } from '../iap/products';
 import { colors } from '../theme/colors';
@@ -97,11 +98,12 @@ export default function ShopScreen() {
     passDaysRemaining,
     describeEntitlements,
   } = useIap();
+  const looks = activeLooksFromEntitlements(entitlements);
   const reduceMotion = useReducedMotion();
   const [busy, setBusy] = useState<string | null>(null);
   const [showIds, setShowIds] = useState(false);
   const [toast, setToast] = useState<{ message: string; kind: ToastKind } | null>(null);
-  let cardIndex = 0;
+  let cardIndex = 4;
 
   useEffect(() => {
     if (!toast) return;
@@ -139,7 +141,7 @@ export default function ShopScreen() {
   };
 
   return (
-    <Atmosphere>
+    <Atmosphere dawn={looks.dawn}>
       <ScrollView
         contentContainerStyle={[
           styles.wrap,
@@ -147,48 +149,77 @@ export default function ShopScreen() {
         ]}
       >
         <SoftButton label="← Home" variant="ghost" onPress={() => router.back()} style={styles.back} />
-        <Text style={styles.brand}>Clarity shop</Text>
-        <Text style={styles.lead}>
-          Optional comfort only — plant, clear waves, and soft goals stay free. No fake urgency, no
-          medical claims.
-        </Text>
-
-        <View style={styles.freeStrip} accessibilityRole="text">
-          <Text style={styles.freeStripTitle}>Core loop stays free</Text>
-          <Text style={styles.freeStripBody}>
-            Every wave, plant, upgrade, and soft goal works without a purchase. Pass & packs are
-            thank-yous for looks and quiet comfort.
+        <SoftCardEnter index={0} reduceMotion={reduceMotion}>
+          <Text style={styles.brand}>Clarity shop</Text>
+          <Text style={styles.lead}>
+            Optional comfort only — plant, clear waves, and soft goals stay free. No fake urgency, no
+            medical claims.
           </Text>
-        </View>
+        </SoftCardEnter>
+
+        <SoftCardEnter index={1} reduceMotion={reduceMotion}>
+          <View
+            style={[styles.freeStrip, looks.dawn ? styles.freeStripDawn : null]}
+            accessibilityRole="text"
+          >
+            <Text style={styles.freeStripTitle}>Core loop stays free</Text>
+            <Text style={styles.freeStripBody}>
+              Every wave, plant, upgrade, and soft goal works without a purchase. Pass & packs are
+              thank-yous for looks and quiet comfort.
+            </Text>
+          </View>
+        </SoftCardEnter>
 
         <SoftActionToast message={toast?.message ?? null} kind={toast?.kind ?? null} />
 
         {stubMode ? (
-          <Text style={styles.stub}>
-            Stub IAP mode (Expo Go / missing credentials). Purchases persist on-device with a soft
-            audit log. Wire RevenueCat or react-native-iap before store submit — ask Femmy which.
-            Prices: Pass $2.99/mo · cosmetics $1.99 · boost $0.99 (price confirm still open).
-          </Text>
+          <SoftCardEnter index={2} reduceMotion={reduceMotion}>
+            <Text style={[styles.stub, looks.dawn ? styles.stubDawn : null]}>
+              Stub IAP mode (Expo Go / missing credentials). Purchases persist on-device with a soft
+              audit log. Wire RevenueCat or react-native-iap before store submit — ask Femmy which.
+              Prices: Pass $2.99/mo · cosmetics $1.99 · boost $0.99 (price confirm still open).
+            </Text>
+          </SoftCardEnter>
         ) : null}
 
-        <View style={styles.statusCard}>
-          <Text style={styles.statusTitle}>Your comfort</Text>
-          <Text style={styles.statusBody}>{describeEntitlements()}</Text>
-          {entitlements.clarityPassActive && passDaysRemaining != null ? (
-            <Text style={styles.statusMeta}>
-              Pass renews / expires in ~{passDaysRemaining} day
-              {passDaysRemaining === 1 ? '' : 's'}
-              {entitlements.passExpiresAt
-                ? ` · ${new Date(entitlements.passExpiresAt).toLocaleDateString()}`
-                : ''}
-            </Text>
-          ) : null}
-          {entitlements.pendingClarity > 0 ? (
-            <Text style={styles.pending}>
-              +{entitlements.pendingClarity} Clarity waiting — opens on next mindscape session.
-            </Text>
-          ) : null}
-        </View>
+        <SoftCardEnter index={3} reduceMotion={reduceMotion}>
+          <View
+            style={[
+              styles.statusCard,
+              entitlements.clarityPassActive ? styles.statusCardPass : null,
+              looks.dawn ? styles.statusCardDawn : null,
+            ]}
+          >
+            <View style={styles.statusHead}>
+              <Text style={styles.statusTitle}>Your comfort</Text>
+              {entitlements.clarityPassActive ? (
+                <View style={styles.passLiveChip}>
+                  <Text style={styles.passLiveText}>Pass live</Text>
+                </View>
+              ) : null}
+            </View>
+            <Text style={styles.statusBody}>{describeEntitlements()}</Text>
+            {entitlements.clarityPassActive && passDaysRemaining != null ? (
+              <Text style={styles.statusMeta}>
+                Pass renews / expires in ~{passDaysRemaining} day
+                {passDaysRemaining === 1 ? '' : 's'}
+                {entitlements.passExpiresAt
+                  ? ` · ${new Date(entitlements.passExpiresAt).toLocaleDateString()}`
+                  : ''}
+              </Text>
+            ) : null}
+            {entitlements.pendingClarity > 0 ? (
+              <Text style={styles.pending}>
+                +{entitlements.pendingClarity} Clarity waiting — opens on next mindscape session.
+              </Text>
+            ) : null}
+            {(looks.dawn || looks.lantern) ? (
+              <Text style={styles.activeLooks}>
+                Active looks · {[looks.dawn && 'Dawn', looks.lantern && 'Lantern'].filter(Boolean).join(' + ')}
+              </Text>
+            ) : null}
+          </View>
+        </SoftCardEnter>
 
         <SoftButton
           label={busy === 'restore' ? 'Restoring…' : 'Restore purchases'}
@@ -236,6 +267,8 @@ export default function ShopScreen() {
                         styles.card,
                         isPass && styles.cardPass,
                         isOwned && styles.cardOwned,
+                        looks.dawn && styles.cardDawn,
+                        { borderLeftColor: accent, borderLeftWidth: 3 },
                       ]}
                     >
                       {isPass ? (
@@ -316,6 +349,16 @@ export default function ShopScreen() {
             </View>
           );
         })}
+
+        <SoftCardEnter index={cardIndex + 1} reduceMotion={reduceMotion}>
+          <View style={styles.comfortStrip} accessibilityRole="summary">
+            <Text style={styles.comfortTitle}>Metaphor only</Text>
+            <Text style={styles.comfortBody}>
+              Purchases never change the core kindness loop. Soft looks and quiet comfort only —
+              not therapy, diagnosis, or treatment.
+            </Text>
+          </View>
+        </SoftCardEnter>
       </ScrollView>
     </Atmosphere>
   );
@@ -356,6 +399,10 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(91, 138, 122, 0.28)',
     gap: 4,
   },
+  freeStripDawn: {
+    backgroundColor: 'rgba(232, 201, 160, 0.22)',
+    borderColor: 'rgba(201, 168, 90, 0.35)',
+  },
   freeStripTitle: {
     fontFamily: fonts.bodyBold,
     fontSize: 13,
@@ -377,6 +424,9 @@ const styles = StyleSheet.create({
     lineHeight: 17,
     color: colors.brand,
   },
+  stubDawn: {
+    backgroundColor: 'rgba(255, 246, 230, 0.75)',
+  },
   statusCard: {
     marginBottom: 12,
     padding: 14,
@@ -386,10 +436,37 @@ const styles = StyleSheet.create({
     borderColor: colors.line,
     gap: 4,
   },
+  statusCardPass: {
+    borderColor: 'rgba(91, 138, 122, 0.4)',
+    backgroundColor: 'rgba(91, 138, 122, 0.14)',
+  },
+  statusCardDawn: {
+    backgroundColor: 'rgba(255, 244, 220, 0.55)',
+    borderColor: 'rgba(201, 168, 90, 0.32)',
+  },
+  statusHead: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 8,
+  },
   statusTitle: {
     fontFamily: fonts.bodyBold,
     fontSize: 14,
     color: colors.brandDeep,
+  },
+  passLiveChip: {
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 8,
+    backgroundColor: 'rgba(91, 138, 122, 0.22)',
+    borderWidth: 1,
+    borderColor: 'rgba(91, 138, 122, 0.35)',
+  },
+  passLiveText: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 11,
+    color: colors.brand,
   },
   statusBody: {
     fontFamily: fonts.body,
@@ -408,6 +485,12 @@ const styles = StyleSheet.create({
     fontFamily: fonts.bodyMedium,
     fontSize: 13,
     color: colors.clarity,
+  },
+  activeLooks: {
+    marginTop: 4,
+    fontFamily: fonts.bodyMedium,
+    fontSize: 12,
+    color: colors.gratitude,
   },
   restore: { marginBottom: 8 },
   idsToggle: {
@@ -451,6 +534,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.line,
     gap: 8,
+  },
+  cardDawn: {
+    backgroundColor: 'rgba(255, 248, 235, 0.7)',
   },
   cardPass: {
     borderColor: 'rgba(91, 138, 122, 0.45)',
@@ -524,5 +610,26 @@ const styles = StyleSheet.create({
     fontSize: 11,
     color: colors.inkSoft,
     opacity: 0.8,
+  },
+  comfortStrip: {
+    marginTop: 8,
+    marginBottom: 8,
+    padding: 12,
+    borderRadius: 14,
+    backgroundColor: 'rgba(255,255,255,0.45)',
+    borderWidth: 1,
+    borderColor: colors.line,
+    gap: 2,
+  },
+  comfortTitle: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 12,
+    color: colors.brand,
+  },
+  comfortBody: {
+    fontFamily: fonts.body,
+    fontSize: 12,
+    lineHeight: 17,
+    color: colors.inkSoft,
   },
 });
