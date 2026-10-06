@@ -79,11 +79,13 @@ export function SoftActionToast({ message, kind, dawn }: Props) {
   const opacity = useSharedValue(message ? 1 : 0);
   const translateY = useSharedValue(0);
   const scale = useSharedValue(1);
+  const bar = useSharedValue(0);
   const lastKey = useRef<string | null>(null);
 
   useEffect(() => {
     if (!message || !kind) {
       opacity.value = withTiming(0, { duration: reduceMotion ? 0 : 180 });
+      bar.value = 0;
       return;
     }
     const key = `${kind}:${message}`;
@@ -95,27 +97,34 @@ export function SoftActionToast({ message, kind, dawn }: Props) {
         opacity.value = 1;
         translateY.value = 0;
         scale.value = 1;
+        bar.value = 1;
         opacity.value = withDelay(2200, withTiming(0.55, { duration: 0 }));
       } else {
         opacity.value = 0;
         translateY.value = 8;
         scale.value = 0.94;
+        bar.value = 0;
         opacity.value = withSequence(
           withTiming(1, { duration: 220, easing: Easing.out(Easing.cubic) }),
           withDelay(1800, withTiming(0.72, { duration: 420, easing: Easing.inOut(Easing.quad) })),
         );
         translateY.value = withTiming(0, { duration: 260, easing: Easing.out(Easing.cubic) });
         scale.value = withSequence(
-          withTiming(1.03, { duration: 180, easing: Easing.out(Easing.cubic) }),
+          withTiming(1.04, { duration: 180, easing: Easing.out(Easing.cubic) }),
           withTiming(1, { duration: 160, easing: Easing.inOut(Easing.quad) }),
         );
+        bar.value = withTiming(1, { duration: 2200, easing: Easing.linear });
       }
     }
-  }, [message, kind, opacity, translateY, scale, reduceMotion]);
+  }, [message, kind, opacity, translateY, scale, bar, reduceMotion]);
 
   const style = useAnimatedStyle(() => ({
     opacity: opacity.value,
     transform: [{ translateY: translateY.value }, { scale: scale.value }],
+  }));
+
+  const barStyle = useAnimatedStyle(() => ({
+    width: `${Math.max(4, (1 - bar.value) * 100)}%` as `${number}%`,
   }));
 
   if (!message) {
@@ -132,18 +141,25 @@ export function SoftActionToast({ message, kind, dawn }: Props) {
         style={[
           styles.chip,
           {
-            backgroundColor: dawn ? 'rgba(255, 244, 220, 0.82)' : tint.bg,
+            backgroundColor: dawn ? 'rgba(255, 244, 220, 0.88)' : tint.bg,
             borderLeftColor: tint.accent,
+            shadowColor: tint.accent,
           },
           style,
         ]}
       >
+        <View style={[styles.accentDot, { backgroundColor: tint.accent }]} />
         <View style={[styles.badgePill, { backgroundColor: `${tint.accent}33` }]}>
           <Text style={[styles.badge, { color: tint.ink }]}>{tint.label}</Text>
         </View>
         <Text style={[styles.text, { color: tint.ink }]} numberOfLines={2}>
           {message}
         </Text>
+        <View style={styles.barTrack} accessibilityElementsHidden>
+          <Animated.View
+            style={[styles.barFill, { backgroundColor: tint.accent }, barStyle]}
+          />
+        </View>
       </Animated.View>
     </View>
   );
@@ -152,21 +168,32 @@ export function SoftActionToast({ message, kind, dawn }: Props) {
 const styles = StyleSheet.create({
   slot: {
     marginTop: 6,
-    minHeight: 40,
+    minHeight: 44,
     justifyContent: 'center',
     alignItems: 'center',
   },
   chip: {
     maxWidth: '96%',
     borderRadius: 14,
-    paddingVertical: 7,
+    paddingVertical: 8,
     paddingHorizontal: 10,
+    paddingBottom: 10,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
     borderWidth: 1,
     borderColor: colors.line,
     borderLeftWidth: 4,
+    overflow: 'hidden',
+    shadowOpacity: 0.18,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 2,
+  },
+  accentDot: {
+    width: 7,
+    height: 7,
+    borderRadius: 4,
   },
   badgePill: {
     paddingHorizontal: 8,
@@ -183,5 +210,18 @@ const styles = StyleSheet.create({
     fontFamily: fonts.body,
     fontSize: 12,
     flexShrink: 1,
+    flex: 1,
+  },
+  barTrack: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: 3,
+    backgroundColor: 'rgba(36,51,58,0.08)',
+  },
+  barFill: {
+    height: '100%',
+    borderBottomRightRadius: 2,
   },
 });
