@@ -318,6 +318,52 @@ Night 7 complete. No new features this wrap. One digest email sent.
 - Early Night 7: Chill package polish (SoftCompany pulse, SoftWelcome themes, SoftGoals fade, SoftSit fade) + per-game USP hooks → target Haze **2.0** · Couch **1.7** · Bus **1.9** · Porch **1.8**
 - PR: https://github.com/wysboi123/thoughts/pull/3 (USP branch)
 - Quiet mode; **no mid-shift email**; one digest at 05:00 stop only
+## 2026-09-30 21:20 UTC — Femmy asked for 3 UI drafts (choose / tweak)
+
+- Re-served Upgrade drafts **A / B / C** (gallery + JPGs + specs) for vote
+- Also wrapped hourly docs: Thought Defense publish checklist path · status row · experience copy
+- No Luau until pick (or hybrid + tweaks)
+- Night resume ~23:00 UTC · email with A/B/C ask
+
+## 2026-09-30 21:18 UTC — Hourly (docs; still no A/B/C)
+
+- No Femmy vote
+- Docs: Thought Defense publish path in checklist · status row · experience copy refresh
+- No Luau (Upgrade chrome still blocked)
+- Night resume ~23:00 UTC (~1.5h) · short email
+
+## 2026-09-30 20:29 UTC — Hourly (still no A/B/C)
+
+- No Femmy vote
+- **v0.2.4:** Restart chip + **R** keyboard shortcut
+- Upgrade chrome still blocked on draft pick A/B/C
+- ~2.5h to night resume (23:00); short email
+
+## 2026-09-30 19:24 UTC — Hourly (still no A/B/C)
+
+- No Femmy vote / Gmail reply on Upgrade drafts
+- **v0.2.3:** always-visible **Restart** chip (playtest) + clears GameOver banner
+- Upgrade chrome still blocked — question unchanged: A / B / C (+ tweaks)
+- Short email after push
+
+## 2026-09-30 18:18 UTC — Hourly (drafts out, still no A/B/C)
+
+- No Femmy vote yet on Upgrade drafts A/B/C
+- Synced consult links to new draft JPGs
+- **v0.2.2:** pad hover tip shows empty / upgrade cost / sell / maxed
+- Still waiting: reply A/B/C (+ tweaks) to ship Upgrade chrome
+- Email reminder after this push
+
+## 2026-09-30 17:55 UTC — Coding + research batch (daytime, Femmy-requested)
+
+- **Research:** `docs/research/TD-upgrade-ui-soft-goals-2026-09-30.md` + queued **Q-005** (TD upgrade UI) — lean mockup **B** pending vote
+- **Shipped v0.2.1:** SoftWelcome · SoftGoals (5 soft session goals) · RestartRun / Try again · GoalProgress remotes · Tower/Enemy clearAll for reset
+- Still **blocked:** Upgrade UI chrome A/B/C (pad-click upgrade remains playable)
+- Ask Femmy: confirm **A / B / C** (research suggests B)
+
+## 2026-09-30 05:15 UTC — Outside window (no vote)
+
+05:15 hourly fired after 05:00 hard stop; no Femmy Upgrade UI vote in Gmail — waited. Re-armed `thought-defense-hourly` + `overnight-daily-resume`.
 
 ## 2026-09-30 05:00 UTC — OVERNIGHT STOP (Night 6)
 
@@ -344,6 +390,61 @@ Night 6 complete. No new features this wrap. One digest email sent.
 2. Help Femmy publish first place (Haze recommended)
 3. Continue active-four polish if research empty; parked games only when Femmy asks
 
+## 2026-09-30 05:00 UTC — OVERNIGHT STOP (Thought Defense night)
+
+HARD STOP. No new features this wrap — docs + digest only. Working tree was clean at stop.
+
+**Night summary (Thought Defense)**
+- Landed **v0.1** scaffold → **v0.2** (prep Begin · pad upgrade L1–L3 · Sell · intermission)
+- Shipped **Upgrade UI mockups A/B/C** (specs + PNGs + gallery) — **Luau blocked** on Femmy vote
+- Wait polish only: flavor billboards · path rails · Peace Core halo · wave toast/hover · Calm leak cue · plant pop · pad ring breath
+- Still **v0.2** (no v0.3 without vote)
+- Versions: Thought Defense **0.2** · prior lineup untouched this TD-focused shift (Haze 1.4 / Orbit 1.2 / etc. from Night 6 start)
+
+**Commits since ~2026-09-29 23:00 UTC** (12, tip `bdefbb2` + this stop):
+- Night 6 start leftovers → Thought Defense v0.1 → v0.2 → mockups → wait/docs → 3 polish batches
+
+**Blocked / open design**
+- **Blocking:** Upgrade UI mockup vote **A / B / C** (or hybrid)
+- Earlier still open: title · tone · placement · session mode · multiplayer · difficulty (defaults in DESIGN_CONSULT)
+- Perplexity Q-001–004 / audio ids · first Studio publish
+
+**Ops**
+- Branch `cursor/roblox-hourly-batch-5a0d` pushed
+- PR: https://github.com/wysboi123/thoughts/pull/2 — ManagePullRequest **missing** this run (parent must update title/body)
+- Timers: re-arm `thought-defense-hourly` `15 * * * *` · ensure `overnight-daily-resume` `0 23 * * *`
+- Email: **one** overnight digest to ngkdevid@gmail.com
+
+**When Femmy replies**
+1. Implement chosen Upgrade UI Luau → v0.3
+2. Apply any other design answers
+3. Hourly batches continue if she wants daytime work
+
+## 2026-09-30 04:15 UTC — Hourly batch 7 (still waiting on vote)
+
+- **No Femmy vote** — Gmail `from:ngkdevid@gmail.com` empty; mockup threads agent-sent only; DESIGN_CONSULT unchanged
+- **No Upgrade UI Luau** — still blocked on Mockup vote A/B/C
+- Light slice (not prior billboards/rails/halo or toast/hover):
+  - **Calm leak cue** — toast + brief Peace Core blush when a thought reaches the core
+  - **Tower plant/upgrade pop** — soft scale bump on place & deepen
+  - **Empty pad ring breath** — idle neon pulse until occupied
+- Rojo build clean (`ThoughtDefense.rbxl`)
+- Ops: re-armed `thought-defense-hourly` cron `15 * * * *` (list was empty); emailed short progress + A/B/C ask
+- **PR #2:** ManagePullRequest tool **missing** again — cannot update title/body (do not use `gh` write)
+- Next batch: implement chosen Upgrade UI **only** after vote; otherwise keep waiting; retry ManagePullRequest
+
+## 2026-09-30 03:15 UTC — Hourly batch 6 (still waiting on vote)
+
+- **No Femmy vote** — Gmail `from:ngkdevid@gmail.com` empty; mockup threads agent-sent only; DESIGN_CONSULT unchanged
+- **No Upgrade UI Luau** — still blocked on Mockup vote A/B/C
+- Light slice (not last batch’s billboards/rails/halo):
+  - **Wave toast clarity** — tinted toasts; prep/wave show enemy composition; intermission countdown with next-wave preview
+  - **Soft pad hover cue** — client SelectionBox pulse (green plant / red sell)
+- Rojo build clean (`ThoughtDefense.rbxl`)
+- Ops: re-armed `thought-defense-hourly` cron `15 * * * *` (list was empty); emailed short progress + A/B/C ask
+- **PR #2:** ManagePullRequest tool **missing** again — cannot update title/body (do not use `gh` write)
+- Next batch: implement chosen Upgrade UI **only** after vote; otherwise keep waiting; retry ManagePullRequest
+
 ## 2026-09-30 03:00 UTC — Night 6 checkpoint 2 (quiet)
 
 - Active: **Haze 1.8** loft strings · **Couch 1.5** bookshelf · **Bus 1.6** benches · **Porch 1.5** roof overhang
@@ -357,12 +458,55 @@ Night 6 complete. No new features this wrap. One digest email sent.
 - Blocked: Perplexity audio + Studio publish
 - Next night: wire audio if research lands; help publish Haze; parked games later
 
+## 2026-09-30 02:15 UTC — Hourly batch 5 (still waiting on vote)
+
+- **No Femmy vote** — Gmail `from:ngkdevid@gmail.com` empty; mockup threads are agent-sent only; DESIGN_CONSULT unchanged
+- **No Upgrade UI Luau** — still blocked on Mockup vote A/B/C
+- Light slice (unrelated to forcing vote):
+  - Enemy billboard **flavor one-liners** (ToS-safe) per Doubt / Worry / Self-Critic
+  - Path **soft edge rails** + Peace Core **halo** pulse
+  - README Studio steps clarified
+- Ops: re-armed `thought-defense-hourly` cron `15 * * * *` (list was empty again); emailed short progress + A/B/C ask
+- **PR #2:** ManagePullRequest tool **still missing** from this run’s catalog — cannot update title/body (do not use `gh` write). Intended: “Thought Defense v0.2 + Upgrade UI mockups (vote A/B/C)” + mockup paths + vote ask
+- Next batch: implement chosen Upgrade UI **only** after vote; otherwise keep waiting; retry ManagePullRequest
+
+## 2026-09-30 01:15 UTC — Hourly batch 4 (waited on vote)
+
+- **No Femmy vote** — Gmail `from:ngkdevid@gmail.com` empty for Thought Defense / mockup / A·B·C; DESIGN_CONSULT unchanged
+- **No Luau** — Upgrade UI still blocked on Mockup vote A/B/C
+- Doc polish: gallery captions + root consult table clarifying the single open question
+- Ops: re-armed `thought-defense-hourly` cron `15 * * * *` (list was empty); emailed A/B/C reminder to ngkdevid@gmail.com
+- **PR #2:** ManagePullRequest tool missing in this run (same gap as mockup batch) — intended title/body: “Thought Defense v0.2 + Upgrade UI mockups (vote A/B/C)” + v0.2 summary + mockup paths + vote ask
+- Next batch: implement chosen Upgrade UI **only** after vote; otherwise keep waiting; retry PR title/body update
+
 ## 2026-09-30 01:00 UTC — Night 6 checkpoint 1 (quiet)
 
 - Active: **Haze 1.7** · **Couch 1.4** · **Bus 1.5** · **Porch 1.4** (table/couch/shelter/deck pulses)
 - Parked trio untouched (files kept — do not erase)
 - Still blocked: Perplexity Q-001–004 · first Studio publish
 - Next CP ~03:00 · stop 05:00 · one digest email at stop only
+
+## 2026-09-30 00:25 UTC — Upgrade UI mockups (hourly batch 3)
+
+- **No Luau** this batch — Femmy OK’d Upgrade **button**; waiting on mockup pick
+- Shipped 3 concepts in `games/thought-defense/docs/UI_MOCKUPS.md`:
+  - **A** Selection panel — tap tower → panel with Upgrade + Sell + stats
+  - **B** Context bar — floating Upgrade above tray (cost/level)
+  - **C** Tray dual-mode — tray swaps to Upgrade/Sell; Plant cards dim
+- Visuals: `docs/mockups/mockup-01-*.png` … `03` + `mockups/index.html` gallery
+- Design consult updated with **Mockup vote** (A/B/C)
+- Implementation blocked until Femmy replies A / B / C / hybrid
+- Next batch: implement chosen Upgrade UI only after vote · keep pad-click policy per pick
+- Ops: PR #2 · email options to ngkdevid@gmail.com
+
+## 2026-09-30 00:15 UTC — Thought Defense v0.2 (hourly batch 2)
+
+- **Shipped:** prep **Begin** button · pad **upgrade** L1–L3 · **Sell** (50% Clarity) · intermission Start/auto
+- Starting Clarity 140; no Femmy design answers yet (email unreplied)
+- Consult this batch: is click-to-upgrade clear enough, or want a confirm button?
+- Still open: title / tone / placement / endless / multiplayer (`docs/DESIGN_CONSULT.md`)
+- Next batch: apply answers if any · enemy flavor lines or path polish
+- Ops: PR #2 · timer `thought-defense-hourly` · email after this push
 
 ## 2026-09-30 00:00 UTC — Parked games restored (do not erase)
 
@@ -378,6 +522,19 @@ Femmy: focus overnight polish on **Haze Haven**, **Couch Galaxy**, **Bus Stop Fo
 
 - Post-focus polish: Haze **1.5** · Couch **1.2** · Bus **1.3** · Porch **1.2**
 - (Briefly deleted parked trio — restored 2026-09-30; keep files forever unless Femmy says otherwise)
+
+## 2026-09-29 23:45 UTC — Thought Defense v0.1 (hourly batch 1)
+
+- **New game:** `games/thought-defense` — tower defense metaphor
+  - Enemies: Doubt / Worry / Self-Critic
+  - Towers: Affirmation / Gratitude / Humor
+  - Resources: Calm (lives) + Clarity (currency)
+  - Studio Workspace folders: Path, Pads, Towers, Enemies, Decor + Peace Core
+- Rojo build clean (`ThoughtDefense.rbxl`)
+- Schedule flipped to **30 min / hour** + email updates + design consults
+- **Need Femmy:** answers in `docs/DESIGN_CONSULT.md` (title, tone, placement, waves, multiplayer)
+- Next batch: apply design answers · tower upgrades or HUD polish
+- Ops: branch `cursor/roblox-hourly-batch-5a0d`; hourly timer `thought-defense-hourly`
 
 ## 2026-09-29 23:23 UTC — Night 6 resume
 
