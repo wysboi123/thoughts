@@ -107,11 +107,6 @@ Remotes.FireflyCollected.OnClientEvent:Connect(function(count: number)
 	counter.Text = ("Fireflies  %d"):format(count)
 end)
 
-local softCompleteDone = false
-local softCompleteOptionalOpen = false
-local softLingered = false
-local proximityHandle: any = nil
-
 local function refreshPorchSoftHint()
 	if not hint.Parent or fullToast then
 		return
