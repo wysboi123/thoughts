@@ -54,7 +54,7 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: pending after push
+- Tip: `6e23918` (v1.4.24 DualModeTray)
 - Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
 - Night envelope: **OPEN** until ~05:00 · `overnight-stop-5am-utc` armed (`sub_42e7f312…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
