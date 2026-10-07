@@ -325,7 +325,13 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 			end
 		end
 		if jarMeter and jarMeter.Parent then
-			jarMeter.TextColor3 = if n >= 1 then Color3.fromRGB(200, 255, 170) else Color3.fromRGB(150, 180, 140)
+			if n >= 1 then
+				jarMeter.TextColor3 = Color3.fromRGB(200, 255, 170)
+			elseif softLingered then
+				jarMeter.TextColor3 = Color3.fromRGB(165, 200, 155)
+			else
+				jarMeter.TextColor3 = Color3.fromRGB(150, 180, 140)
+			end
 		end
 		if hint and hint.Parent and not fullToast then
 			if n >= 1 then
@@ -340,7 +346,13 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		local jarGui = jar and jar:FindFirstChild("JarFillGui")
 		local jarLabel = jarGui and jarGui:FindFirstChild("JarFillLabel")
 		if jarLabel and jarLabel:IsA("TextLabel") then
-			jarLabel.TextColor3 = if n >= 1 then Color3.fromRGB(230, 255, 200) else Color3.fromRGB(210, 255, 180)
+			if n >= 1 then
+				jarLabel.TextColor3 = Color3.fromRGB(230, 255, 200)
+			elseif softLingered then
+				jarLabel.TextColor3 = Color3.fromRGB(200, 230, 185)
+			else
+				jarLabel.TextColor3 = Color3.fromRGB(210, 255, 180)
+			end
 		end
 		if world then
 			local fire = world:FindFirstChild("FirePitGlow")
