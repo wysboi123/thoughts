@@ -20,7 +20,8 @@ Then: `local SoftGoals = require(ReplicatedStorage.Chill.SoftGoals)`
 | `SoftWelcome` | One-shot toast (replaces prior; optional accent colors) |
 | `SoftSit` | Bottom-center sit-status line (fade in/out) |
 | `SoftWireSeats` | Seat.Occupant → RemoteEvent for SoftSit |
-| `SoftCompany` | Nearby-player co-play HUD (arrive pulse + dynamic copy) |
+| `SoftCompany` | Nearby-player co-play HUD (arrive pulse · `refresh` linger pulse · dynamic copy) |
 | `SoftGoals` | Soft checklist · `Optional` · OnSessionSealed · OnLinger · optional-row linger pulse |
+| `SoftSit` | Sit-status line · `refresh` pulses on copy change (still-here) |
 
 Do not invent Roblox audio asset ids here — wait for Perplexity Q-004 / Femmy paste.

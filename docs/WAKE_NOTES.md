@@ -2,6 +2,15 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-07 ~03:15 UTC — Night 13 CP2+ (SoftCompany.refresh)
+
+- SoftCompany.refresh — immediate still-here copy + linger pulse on OnLinger
+- SoftSit.refresh pulses on copy change; Porch softLingered hoist
+- Research: `hangout-usps-2026-10-07.md` (Discovery bounce / playtime / co-play)
+- Versions: Haze **3.19** · Couch **3.17** · Bus **3.18** · Porch **3.17**
+- Parked untouched; no invented audio; SoftInvite still gated
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
 ## 2026-10-07 03:00 UTC — Night 13 checkpoint 2 (quiet)
 
 - Active: **Haze 3.18** · **Couch 3.16** · **Bus 3.17** · **Porch 3.16**

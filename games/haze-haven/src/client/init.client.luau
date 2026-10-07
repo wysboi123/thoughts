@@ -26,6 +26,7 @@ local SoftWelcome = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild
 local softCompleteDone = false
 local softCompleteOptionalOpen = false
 local softLingered = false
+local softCompanyHandle: any = nil
 local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	{ Id = "vibes", Label = "collect 3 vibes" },
 	{ Id = "sit", Label = "sit somewhere" },
@@ -63,6 +64,9 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 		softCompleteOptionalOpen = optionalLeft > 0
 		setHudSoftComplete(true, optionalLeft > 0, true)
 		hazeSit.refresh()
+		if softCompanyHandle then
+			softCompanyHandle.refresh()
+		end
 		if not hazeCompanyNear then
 			proximity.setBoost(1.12)
 		end
@@ -167,7 +171,7 @@ local function tintLocalNameplate(synced: boolean)
 	end
 end
 
-SoftCompany.mount(playerGui, player, {
+softCompanyHandle = SoftCompany.mount(playerGui, player, {
 	Radius = Config.Proximity.Radius,
 	Color = Color3.fromRGB(200, 180, 230),
 	AloneTextFn = function()

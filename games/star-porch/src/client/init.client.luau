@@ -86,6 +86,7 @@ local softCompleteDone = false
 local softCompleteOptionalOpen = false
 local softLingered = false
 local proximityHandle: any = nil
+local softCompanyHandle: any = nil
 local porchSit = SoftSit.mount(playerGui, {
 	OneText = function(name)
 		if porchCompanyNear then
@@ -168,6 +169,9 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 		softCompleteOptionalOpen = optionalLeft > 0
 		refreshPorchSoftHint()
 		porchSit.refresh()
+		if softCompanyHandle then
+			softCompanyHandle.refresh()
+		end
 		if proximityHandle and not porchCompanyNear then
 			proximityHandle.setBoost(1.12)
 		end
@@ -269,7 +273,7 @@ local function findJarLight(): PointLight?
 end
 
 local porchCompanyWelcomed = false
-SoftCompany.mount(playerGui, player, {
+softCompanyHandle = SoftCompany.mount(playerGui, player, {
 	Radius = Config.Proximity.Radius,
 	Color = Color3.fromRGB(180, 200, 170),
 	AloneTextFn = function()

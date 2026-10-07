@@ -16,9 +16,15 @@ export type SoftCompanyConfig = {
 	OnCountChanged: ((number) -> ())?,
 }
 
+export type SoftCompanyHud = {
+	gui: ScreenGui,
+	-- Immediate copy refresh (e.g. after OnLinger still-here flip); soft linger pulse
+	refresh: () -> (),
+}
+
 local SoftCompany = {}
 
-function SoftCompany.mount(playerGui: PlayerGui, localPlayer: Player, config: SoftCompanyConfig)
+function SoftCompany.mount(playerGui: PlayerGui, localPlayer: Player, config: SoftCompanyConfig): SoftCompanyHud
 	local gui = Instance.new("ScreenGui")
 	gui.Name = "SoftCompanyHud"
 	gui.ResetOnSpawn = false
@@ -50,6 +56,35 @@ function SoftCompany.mount(playerGui: PlayerGui, localPlayer: Player, config: So
 		return nil
 	end
 
+	local function aloneLine(): string
+		if config.AloneTextFn then
+			return config.AloneTextFn()
+		end
+		return config.AloneText or ""
+	end
+
+	local function oneLine(): string
+		if config.OneTextFn then
+			return config.OneTextFn()
+		end
+		return config.OneText or "soft company · 1 nearby"
+	end
+
+	local function manyLine(n: number): string
+		local many = config.ManyText
+		return if many then many(n) else ("soft company · %d nearby"):format(n)
+	end
+
+	local function applyCopy(n: number)
+		if n <= 0 then
+			label.Text = aloneLine()
+		elseif n == 1 then
+			label.Text = oneLine()
+		else
+			label.Text = manyLine(n)
+		end
+	end
+
 	local function pulseArrive()
 		label.TextTransparency = 0
 		label.TextColor3 = color:Lerp(Color3.new(1, 1, 1), 0.35)
@@ -68,24 +103,24 @@ function SoftCompany.mount(playerGui: PlayerGui, localPlayer: Player, config: So
 		):Play()
 	end
 
+	local function pulseLinger()
+		-- Soft stay signal when copy flips to still-here without count change
+		label.TextTransparency = 0.15
+		label.TextColor3 = color:Lerp(Color3.new(1, 1, 1), 0.22)
+		local targetTransparency = if lastCount <= 0 and label.Text == "" then 1 elseif lastCount <= 0 then 0.45 else 0
+		TweenService:Create(
+			label,
+			TweenInfo.new(0.65, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+			{ TextTransparency = targetTransparency, TextColor3 = color }
+		):Play()
+	end
+
 	local function setCount(n: number)
 		if n == lastCount then
 			return
 		end
 		local prev = lastCount
 		lastCount = n
-		local function aloneLine(): string
-			if config.AloneTextFn then
-				return config.AloneTextFn()
-			end
-			return config.AloneText or ""
-		end
-		local function oneLine(): string
-			if config.OneTextFn then
-				return config.OneTextFn()
-			end
-			return config.OneText or "soft company · 1 nearby"
-		end
 
 		if n <= 0 then
 			local alone = aloneLine()
@@ -105,8 +140,7 @@ function SoftCompany.mount(playerGui: PlayerGui, localPlayer: Player, config: So
 				pulseLeave()
 			end
 		else
-			local many = config.ManyText
-			label.Text = if many then many(n) else ("soft company · %d nearby"):format(n)
+			label.Text = manyLine(n)
 			if prev <= 0 or n > prev then
 				pulseArrive()
 			elseif n < prev then
@@ -115,6 +149,19 @@ function SoftCompany.mount(playerGui: PlayerGui, localPlayer: Player, config: So
 		end
 		if config.OnCountChanged then
 			config.OnCountChanged(n)
+		end
+	end
+
+	local function refresh()
+		if lastCount < 0 then
+			return
+		end
+		local prev = label.Text
+		applyCopy(lastCount)
+		if label.Text ~= prev then
+			pulseLinger()
+		elseif lastCount > 0 or label.Text ~= "" then
+			pulseLinger()
 		end
 	end
 
@@ -142,18 +189,14 @@ function SoftCompany.mount(playerGui: PlayerGui, localPlayer: Player, config: So
 		elseif refreshAccum >= 0.75 and (config.OneTextFn or config.AloneTextFn or config.ManyText) then
 			refreshAccum = 0
 			-- soft refresh label text without re-firing OnCountChanged
-			if count <= 0 then
-				label.Text = if config.AloneTextFn then config.AloneTextFn() else (config.AloneText or "")
-			elseif count == 1 then
-				label.Text = if config.OneTextFn then config.OneTextFn() else (config.OneText or "soft company · 1 nearby")
-			else
-				local many = config.ManyText
-				label.Text = if many then many(count) else ("soft company · %d nearby"):format(count)
-			end
+			applyCopy(count)
 		end
 	end)
 
-	return gui
+	return {
+		gui = gui,
+		refresh = refresh,
+	}
 end
 
 return SoftCompany

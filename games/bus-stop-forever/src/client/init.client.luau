@@ -70,6 +70,7 @@ local lastWaveName: string? = nil
 local softCompleteDone = false
 local softCompleteOptionalOpen = false
 local softLingered = false
+local softCompanyHandle: any = nil
 
 local function refreshStatus()
 	if phase == "arrived" then
@@ -186,6 +187,9 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 		softLingered = true
 		softCompleteOptionalOpen = optionalLeft > 0
 		benchSit.refresh()
+		if softCompanyHandle then
+			softCompanyHandle.refresh()
+		end
 		if nearbyCount < 1 then
 			proximity.setBoost(1.12)
 		end
@@ -298,7 +302,7 @@ Remotes.BenchSitChanged.OnClientEvent:Connect(function(seatName: string, display
 end)
 
 local companyWelcomed = false
-SoftCompany.mount(playerGui, player, {
+softCompanyHandle = SoftCompany.mount(playerGui, player, {
 	Radius = Config.Proximity.Radius,
 	Color = Color3.fromRGB(190, 200, 170),
 	AloneTextFn = function()

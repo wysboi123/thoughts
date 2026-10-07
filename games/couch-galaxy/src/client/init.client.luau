@@ -69,6 +69,7 @@ local softCompleteDone = false
 local softCompleteOptionalOpen = false
 local softLingered = false
 local proximityHandle: any = nil
+local softCompanyHandle: any = nil
 
 local SoftCompany = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftCompany"))
 local SoftSit = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftSit"))
@@ -262,6 +263,9 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 		softCompleteOptionalOpen = optionalLeft > 0
 		refreshPlace(couchCompanyNear)
 		couchSit.refresh()
+		if softCompanyHandle then
+			softCompanyHandle.refresh()
+		end
 		if proximityHandle and not couchCompanyNear then
 			proximityHandle.setBoost(1.12)
 		end
@@ -342,7 +346,7 @@ local function setLightBoost(partName: string, brightness: number, range: number
 end
 
 local couchCompanyWelcomed = false
-SoftCompany.mount(playerGui, player, {
+softCompanyHandle = SoftCompany.mount(playerGui, player, {
 	Radius = Config.Proximity.Radius,
 	Color = Color3.fromRGB(190, 170, 220),
 	AloneTextFn = function()

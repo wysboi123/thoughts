@@ -48,7 +48,8 @@ function SoftSit.mount(
 		for _, n in occupants do
 			table.insert(names, n)
 		end
-		local wasEmpty = label.Text == "" or label.Text == (options.EmptyText or "")
+		local prevText = label.Text
+		local wasEmpty = prevText == "" or prevText == (options.EmptyText or "")
 		if #names == 0 then
 			label.Text = options.EmptyText or ""
 			TweenService:Create(
@@ -59,7 +60,8 @@ function SoftSit.mount(
 		elseif #names == 1 then
 			local one = options.OneText
 			label.Text = if one then one(names[1]) else (names[1] .. " is sitting")
-			if wasEmpty then
+			-- Soft linger/copy pulse when sit line flips (e.g. still-here after OnLinger)
+			if wasEmpty or label.Text ~= prevText then
 				label.TextTransparency = 0.4
 			end
 			TweenService:Create(
@@ -70,6 +72,9 @@ function SoftSit.mount(
 		else
 			local many = options.ManyText
 			label.Text = if many then many(names) else (table.concat(names, " & ") .. " are sitting")
+			if label.Text ~= prevText then
+				label.TextTransparency = 0.3
+			end
 			TweenService:Create(
 				label,
 				TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
