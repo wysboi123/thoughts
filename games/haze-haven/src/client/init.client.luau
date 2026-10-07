@@ -67,6 +67,7 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 		if softCompanyHandle then
 			softCompanyHandle.refresh()
 		end
+		VibeBoard.setLingered(true)
 		if not hazeCompanyNear then
 			proximity.setBoost(1.12)
 		end
