@@ -194,6 +194,18 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 			proximity.setBoost(1.12)
 		end
 		tintTimetable(nearbyCount >= 1)
+		local world = Workspace:FindFirstChild("BusStopWorld")
+		local notepad = world and world:FindFirstChild("NotepadBoard")
+		if notepad and notepad:IsA("BasePart") and nearbyCount < 1 then
+			notepad.Color = Color3.fromRGB(48, 48, 40)
+		end
+		if world and nearbyCount < 1 then
+			for _, child in world:GetChildren() do
+				if child:IsA("Seat") and string.find(child.Name, "BenchSeat", 1, true) then
+					child.Color = Color3.fromRGB(120, 98, 72)
+				end
+			end
+		end
 		local body = if optionalLeft > 0
 			then "another bus will come · waiting together still open"
 			else "another bus will come · stay"
@@ -379,12 +391,24 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		local world = Workspace:FindFirstChild("BusStopWorld")
 		local notepad = world and world:FindFirstChild("NotepadBoard")
 		if notepad and notepad:IsA("BasePart") then
-			notepad.Color = if n >= 1 then Color3.fromRGB(52, 55, 42) else Color3.fromRGB(45, 42, 38)
+			if n >= 1 then
+				notepad.Color = Color3.fromRGB(52, 55, 42)
+			elseif softLingered then
+				notepad.Color = Color3.fromRGB(48, 48, 40)
+			else
+				notepad.Color = Color3.fromRGB(45, 42, 38)
+			end
 		end
 		if world then
 			for _, child in world:GetChildren() do
 				if child:IsA("Seat") and string.find(child.Name, "BenchSeat", 1, true) then
-					child.Color = if n >= 1 then Color3.fromRGB(130, 105, 75) else Color3.fromRGB(115, 90, 65)
+					if n >= 1 then
+						child.Color = Color3.fromRGB(130, 105, 75)
+					elseif softLingered then
+						child.Color = Color3.fromRGB(120, 98, 72)
+					else
+						child.Color = Color3.fromRGB(115, 90, 65)
+					end
 				end
 			end
 		end

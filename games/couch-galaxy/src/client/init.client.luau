@@ -273,6 +273,7 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 		if proximityHandle and not couchCompanyNear then
 			proximityHandle.setBoost(1.12)
 		end
+		applyCouchWorldPresence(couchCompanyNear)
 		local body: string
 		if optionalLeft > 0 then
 			body = if inGalaxy then "loft · soft company still open" else "couch · soft company still open"
@@ -349,6 +350,118 @@ local function setLightBoost(partName: string, brightness: number, range: number
 	end
 end
 
+local function applyCouchWorldPresence(company: boolean)
+	local world = Workspace:FindFirstChild("CouchGalaxyWorld")
+	if inGalaxy and world then
+		local hammock = world:FindFirstChild("GalaxyHammockCloth", true)
+		if hammock and hammock:IsA("BasePart") then
+			hammock.Color = if company then Color3.fromRGB(160, 140, 210) else Color3.fromRGB(120, 100, 180)
+		end
+		local beacon = world:FindFirstChild("ReturnBeacon", true)
+		if beacon and beacon:IsA("BasePart") then
+			beacon.Transparency = if company then 0 else 0.05
+			local light = beacon:FindFirstChildOfClass("PointLight")
+			if light then
+				light.Brightness = if company then 2.4 else 1.6
+			end
+			local beaconGui = beacon:FindFirstChildWhichIsA("SurfaceGui")
+			local beaconLabel = beaconGui and beaconGui:FindFirstChildWhichIsA("TextLabel")
+			if beaconLabel and beaconLabel:IsA("TextLabel") then
+				if company then
+					beaconLabel.Text = "couch side · soft company · come home"
+					beaconLabel.TextColor3 = Color3.fromRGB(255, 235, 200)
+				elseif softLingered then
+					beaconLabel.Text = "couch side · still here · come home"
+					beaconLabel.TextColor3 = Color3.fromRGB(230, 225, 200)
+				else
+					beaconLabel.Text = "couch side · come home"
+					beaconLabel.TextColor3 = Color3.fromRGB(255, 220, 180)
+				end
+			end
+		end
+		for _, child in world:GetDescendants() do
+			if child:IsA("BasePart") and string.find(child.Name, "CloudPad", 1, true) then
+				local light = child:FindFirstChildOfClass("PointLight")
+				if light then
+					light.Brightness = if company then 1.6 else 1.1
+					light.Range = if company then 14 else 10
+				end
+				child.Transparency = if company then 0.25 else 0.35
+			end
+		end
+	elseif not inGalaxy then
+		setLightBoost("TableLamp", if company then 1.8 else 1.2)
+		setLightBoost("FloorLampGlow", if company then 2.0 else 1.4)
+		setLightBoost("NightWindow", if company then 1.5 else 1.0, if company then 18 else 14)
+		setLightBoost("SoftScreen", if company then 1.5 else 1.0)
+		local portal = world and world:FindFirstChild("SkylightPortal")
+		if portal and portal:IsA("BasePart") then
+			local pl = portal:FindFirstChildOfClass("PointLight")
+			if pl then
+				pl.Brightness = if company then 3.6 else 3.0
+			end
+			local portalGui = portal:FindFirstChildWhichIsA("SurfaceGui")
+			local portalLabel = portalGui and portalGui:FindFirstChildWhichIsA("TextLabel")
+			if portalLabel and portalLabel:IsA("TextLabel") then
+				if company then
+					portalLabel.Text = "galaxy loft · soft company · step through"
+					portalLabel.TextColor3 = Color3.fromRGB(245, 230, 255)
+				elseif softLingered then
+					portalLabel.Text = "galaxy loft · still here · step through"
+					portalLabel.TextColor3 = Color3.fromRGB(215, 220, 235)
+				else
+					portalLabel.Text = "galaxy loft · step through"
+					portalLabel.TextColor3 = Color3.fromRGB(230, 220, 255)
+				end
+			end
+		end
+		local worldHome = Workspace:FindFirstChild("CouchGalaxyWorld")
+		if worldHome then
+			local plaque = worldHome:FindFirstChild("TwoWorldsPlaque")
+			if plaque and plaque:IsA("BasePart") then
+				plaque.Color = if company
+					then Color3.fromRGB(58, 45, 78)
+					elseif softLingered then Color3.fromRGB(45, 40, 58)
+					else Color3.fromRGB(42, 34, 58)
+				local plaqueGui = plaque:FindFirstChildWhichIsA("SurfaceGui")
+				if plaqueGui then
+					for _, label in plaqueGui:GetChildren() do
+						if label:IsA("TextLabel") and label.TextSize <= 18 then
+							if company then
+								label.Text = "one couch\nsoft company"
+								label.TextColor3 = Color3.fromRGB(200, 185, 230)
+							elseif softLingered then
+								label.Text = "one couch\nstill here"
+								label.TextColor3 = Color3.fromRGB(180, 175, 200)
+							else
+								label.Text = "one couch\nroof first"
+								label.TextColor3 = Color3.fromRGB(170, 155, 200)
+							end
+						end
+					end
+				end
+			end
+			local softScreen = worldHome:FindFirstChild("SoftScreen")
+			if softScreen and softScreen:IsA("BasePart") then
+				softScreen.Color = if company then Color3.fromRGB(90, 70, 140) else Color3.fromRGB(70, 55, 110)
+			end
+			local rug = worldHome:FindFirstChild("CouchRug")
+			if rug and rug:IsA("BasePart") then
+				rug.Color = if company then Color3.fromRGB(90, 60, 120) else Color3.fromRGB(70, 45, 95)
+			end
+			for _, child in worldHome:GetChildren() do
+				if child:IsA("BasePart") and string.find(child.Name, "StringLight", 1, true) then
+					local light = child:FindFirstChildOfClass("PointLight")
+					if light then
+						light.Brightness = if company then 1.5 else 1.0
+						light.Range = if company then 14 else 10
+					end
+				end
+			end
+		end
+	end
+end
+
 local couchCompanyWelcomed = false
 softCompanyHandle = SoftCompany.mount(playerGui, player, {
 	Radius = Config.Proximity.Radius,
@@ -407,90 +520,7 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 				HoldSeconds = 3.6,
 			})
 		end
-		local world = Workspace:FindFirstChild("CouchGalaxyWorld")
-		if inGalaxy and world then
-			local hammock = world:FindFirstChild("GalaxyHammockCloth", true)
-			if hammock and hammock:IsA("BasePart") then
-				hammock.Color = if company then Color3.fromRGB(160, 140, 210) else Color3.fromRGB(120, 100, 180)
-			end
-			local beacon = world:FindFirstChild("ReturnBeacon", true)
-			if beacon and beacon:IsA("BasePart") then
-				beacon.Transparency = if company then 0 else 0.05
-				local light = beacon:FindFirstChildOfClass("PointLight")
-				if light then
-					light.Brightness = if company then 2.4 else 1.6
-				end
-				local beaconGui = beacon:FindFirstChildWhichIsA("SurfaceGui")
-				local beaconLabel = beaconGui and beaconGui:FindFirstChildWhichIsA("TextLabel")
-				if beaconLabel and beaconLabel:IsA("TextLabel") then
-					beaconLabel.Text = if company then "couch side · soft company · come home" else "couch side · come home"
-					beaconLabel.TextColor3 = if company then Color3.fromRGB(255, 235, 200) else Color3.fromRGB(255, 220, 180)
-				end
-			end
-			for _, child in world:GetDescendants() do
-				if child:IsA("BasePart") and string.find(child.Name, "CloudPad", 1, true) then
-					local light = child:FindFirstChildOfClass("PointLight")
-					if light then
-						light.Brightness = if company then 1.6 else 1.1
-						light.Range = if company then 14 else 10
-					end
-					child.Transparency = if company then 0.25 else 0.35
-				end
-			end
-		elseif not inGalaxy then
-			setLightBoost("TableLamp", if company then 1.8 else 1.2)
-			setLightBoost("FloorLampGlow", if company then 2.0 else 1.4)
-			setLightBoost("NightWindow", if company then 1.5 else 1.0, if company then 18 else 14)
-			setLightBoost("SoftScreen", if company then 1.5 else 1.0)
-			local portal = world and world:FindFirstChild("SkylightPortal")
-			if portal and portal:IsA("BasePart") then
-				local pl = portal:FindFirstChildOfClass("PointLight")
-				if pl then
-					pl.Brightness = if company then 3.6 else 3.0
-				end
-				local portalGui = portal:FindFirstChildWhichIsA("SurfaceGui")
-				local portalLabel = portalGui and portalGui:FindFirstChildWhichIsA("TextLabel")
-				if portalLabel and portalLabel:IsA("TextLabel") then
-					portalLabel.Text = if company then "galaxy loft · soft company · step through" else "galaxy loft · step through"
-					portalLabel.TextColor3 = if company then Color3.fromRGB(245, 230, 255) else Color3.fromRGB(230, 220, 255)
-				end
-			end
-			local worldHome = Workspace:FindFirstChild("CouchGalaxyWorld")
-			if worldHome then
-				local plaque = worldHome:FindFirstChild("TwoWorldsPlaque")
-				if plaque and plaque:IsA("BasePart") then
-					plaque.Color = if company then Color3.fromRGB(58, 45, 78) else Color3.fromRGB(42, 34, 58)
-					local plaqueGui = plaque:FindFirstChildWhichIsA("SurfaceGui")
-					if plaqueGui then
-						for _, label in plaqueGui:GetChildren() do
-							if label:IsA("TextLabel") and label.TextSize <= 18 then
-								label.Text = if company then "one couch\nsoft company" else "one couch\nroof first"
-								label.TextColor3 = if company
-									then Color3.fromRGB(200, 185, 230)
-									else Color3.fromRGB(170, 155, 200)
-							end
-						end
-					end
-				end
-				local softScreen = worldHome:FindFirstChild("SoftScreen")
-				if softScreen and softScreen:IsA("BasePart") then
-					softScreen.Color = if company then Color3.fromRGB(90, 70, 140) else Color3.fromRGB(70, 55, 110)
-				end
-				local rug = worldHome:FindFirstChild("CouchRug")
-				if rug and rug:IsA("BasePart") then
-					rug.Color = if company then Color3.fromRGB(90, 60, 120) else Color3.fromRGB(70, 45, 95)
-				end
-				for _, child in worldHome:GetChildren() do
-					if child:IsA("BasePart") and string.find(child.Name, "StringLight", 1, true) then
-						local light = child:FindFirstChildOfClass("PointLight")
-						if light then
-							light.Brightness = if company then 1.5 else 1.0
-							light.Range = if company then 14 else 10
-						end
-					end
-				end
-			end
-		end
+		applyCouchWorldPresence(company)
 	end,
 })
 

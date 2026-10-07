@@ -2,6 +2,12 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-07 ~03:30 UTC — Night 13 mid (couch/bus world linger)
+
+- Couch portal/plaque/beacon still-here after OnLinger (`applyCouchWorldPresence`)
+- Bus notepad + bench linger warmth; Couch **3.19** · Bus **3.20**
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
 ## 2026-10-07 ~03:25 UTC — Night 13 mid (Haze vibe board linger)
 
 - VibeBoard.setLingered — “tonight's vibes · still here” when alone after OnLinger
