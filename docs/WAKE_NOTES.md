@@ -2,6 +2,15 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-07 ~03:20 UTC — Night 13 mid (bus/porch linger warmth)
+
+- SoftCompany.refresh linger pulse · SoftSit copy pulse
+- Bus timetable/news soft linger tint · Porch jar-meter linger color
+- EXPERIENCE_COPY soft-stay lines · research `hangout-usps-2026-10-07.md`
+- Versions: Haze **3.20** · Couch **3.18** · Bus **3.19** · Porch **3.18**
+- Parked untouched; no invented audio; SoftInvite still gated
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
 ## 2026-10-07 ~03:15 UTC — Night 13 CP2+ (SoftCompany.refresh)
 
 - SoftCompany.refresh — immediate still-here copy + linger pulse on OnLinger

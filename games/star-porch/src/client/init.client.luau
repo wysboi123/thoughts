@@ -175,6 +175,9 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 		if proximityHandle and not porchCompanyNear then
 			proximityHandle.setBoost(1.12)
 		end
+		if jarMeter and jarMeter.Parent and not porchCompanyNear then
+			jarMeter.TextColor3 = Color3.fromRGB(165, 200, 155)
+		end
 		local body = if optionalLeft > 0
 			then "jar glow · share the porch still open"
 			else "jar glow · fireflies drift · stay"

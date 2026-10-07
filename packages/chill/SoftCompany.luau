@@ -153,14 +153,12 @@ function SoftCompany.mount(playerGui: PlayerGui, localPlayer: Player, config: So
 	end
 
 	local function refresh()
-		if lastCount < 0 then
-			return
-		end
+		local n = if lastCount < 0 then 0 else lastCount
 		local prev = label.Text
-		applyCopy(lastCount)
+		applyCopy(n)
 		if label.Text ~= prev then
 			pulseLinger()
-		elseif lastCount > 0 or label.Text ~= "" then
+		elseif n > 0 or label.Text ~= "" then
 			pulseLinger()
 		end
 	end

@@ -193,6 +193,7 @@ local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
 		if nearbyCount < 1 then
 			proximity.setBoost(1.12)
 		end
+		tintTimetable(nearbyCount >= 1)
 		local body = if optionalLeft > 0
 			then "another bus will come · waiting together still open"
 			else "another bus will come · stay"
@@ -220,13 +221,26 @@ local function tintTimetable(company: boolean)
 	local gui = board and board:FindFirstChildWhichIsA("SurfaceGui")
 	local body = gui and gui:FindFirstChild("TimetableBody")
 	if body and body:IsA("TextLabel") then
-		body.TextColor3 = if company then Color3.fromRGB(230, 245, 200) else Color3.fromRGB(200, 220, 180)
+		if company then
+			body.TextColor3 = Color3.fromRGB(230, 245, 200)
+		elseif softLingered then
+			-- Soft stay warmth after OnLinger (playtime) even when alone
+			body.TextColor3 = Color3.fromRGB(210, 228, 185)
+		else
+			body.TextColor3 = Color3.fromRGB(200, 220, 180)
+		end
 	end
 	local news = world and world:FindFirstChild("NewsBox")
 	local newsGui = news and news:FindFirstChildWhichIsA("SurfaceGui")
 	local newsLabel = newsGui and newsGui:FindFirstChildWhichIsA("TextLabel")
 	if newsLabel and newsLabel:IsA("TextLabel") then
-		newsLabel.Text = if company then "TODAY\n\nstill\ntogether" else "TODAY\n\nstill\nfree"
+		if company then
+			newsLabel.Text = "TODAY\n\nstill\ntogether"
+		elseif softLingered then
+			newsLabel.Text = "TODAY\n\nstill\nhere"
+		else
+			newsLabel.Text = "TODAY\n\nstill\nfree"
+		end
 	end
 end
 

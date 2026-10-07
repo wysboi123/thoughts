@@ -20,6 +20,9 @@ Sources: Creator Hub Discovery (key signals), DevForum Recommended For You 28-da
 | SoftCompany still-here waited ≤0.75s Heartbeat | `SoftCompany.refresh()` — immediate copy + linger pulse |
 | SoftSit still-here text flip felt flat | SoftSit.refresh pulses on copy change |
 | Porch SoftSit closures | hoist `softLingered` before SoftSit.mount |
+| Bus waiting-together alone after linger | Timetable tint + news “still here” |
+| Porch jar USP after linger | Jar-meter soft linger color when alone |
+| Publish copy | EXPERIENCE_COPY soft-stay lines |
 
 ## Soft invite
 
