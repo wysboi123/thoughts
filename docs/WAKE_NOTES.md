@@ -2,6 +2,38 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-07 05:00 UTC — OVERNIGHT STOP (Night 13)
+
+Night 13 complete. No new features this wrap. One digest email sent.
+
+**Shipped Night 13**
+- SoftGoals optional-row linger pulse · alone proximity (~1.12) after OnLinger
+- SoftCompany / SoftSit still-here · **SoftCompany.refresh()** linger pulse
+- Bus timetable/news/notepad/bench linger warmth · Porch jar-meter linger
+- Couch portal/plaque/beacon still-here (`applyCouchWorldPresence`)
+- Haze VibeBoard.setLingered (“tonight's vibes · still here”; sync wins)
+- EXPERIENCE_COPY soft-stay · research `hangout-usps-2026-10-06.md` + `hangout-usps-2026-10-07.md`
+- Active versions: Haze **3.21** · Couch **3.19** · Bus **3.20** · Porch **3.18**
+- 12 commits since 2026-10-06 23:00 UTC
+- Parked trio untouched; no invented audio ids
+
+**Blocked**
+- Perplexity Q-001–004 still open — no invented audio ids
+- First Studio publish → `PUBLISH_CHECKLIST.md` (Haze ready)
+- SoftInvite gated until Place URL in `PUBLISH_STATUS.md`
+
+**Ops**
+- PR: https://github.com/wysboi123/thoughts/pull/3
+- Daily resume `overnight-daily-resume` **active** (23:00 UTC; expires **2026-10-10** — re-arm next night)
+- Email: one digest at stop only (Femmy policy)
+
+**Next night**
+- Apply Perplexity answers if any
+- Femmy: first Haze Studio publish
+- Soft invite prompt only after publish (`SOFT_INVITE.md`)
+- Re-arm daily resume before 2026-10-10 expiry
+- Continue active-four polish; parked until asked
+
 ## 2026-10-07 ~03:30 UTC — Night 13 mid (couch/bus world linger)
 
 - Couch portal/plaque/beacon still-here after OnLinger (`applyCouchWorldPresence`)
