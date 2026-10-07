@@ -25,6 +25,7 @@ export function PeaceCore({ left, top, themeDawn, stressed }: Props) {
   const pulse = useSharedValue(1);
   const glow = useSharedValue(0.55);
   const outer = useSharedValue(0.4);
+  const mid = useSharedValue(0.5);
   const enter = useSharedValue(0);
   const reduceMotion = useReducedMotion();
 
@@ -33,6 +34,7 @@ export function PeaceCore({ left, top, themeDawn, stressed }: Props) {
       pulse.value = 1;
       glow.value = stressed ? 0.7 : 0.65;
       outer.value = stressed ? 0.55 : 0.45;
+      mid.value = stressed ? 0.6 : 0.5;
       enter.value = 1;
       return;
     }
@@ -74,12 +76,27 @@ export function PeaceCore({ left, top, themeDawn, stressed }: Props) {
       -1,
       false,
     );
+    mid.value = withRepeat(
+      withSequence(
+        withTiming(stressed ? 0.75 : 0.62, {
+          duration: stressed ? 1000 : 2000,
+          easing: Easing.inOut(Easing.sin),
+        }),
+        withTiming(stressed ? 0.38 : 0.35, {
+          duration: stressed ? 1000 : 2000,
+          easing: Easing.inOut(Easing.sin),
+        }),
+      ),
+      -1,
+      false,
+    );
     return () => {
       cancelAnimation(pulse);
       cancelAnimation(glow);
       cancelAnimation(outer);
+      cancelAnimation(mid);
     };
-  }, [pulse, glow, outer, enter, stressed, reduceMotion]);
+  }, [pulse, glow, outer, mid, enter, stressed, reduceMotion]);
 
   const wrapStyle = useAnimatedStyle(() => ({
     opacity: enter.value,
@@ -96,6 +113,11 @@ export function PeaceCore({ left, top, themeDawn, stressed }: Props) {
     transform: [{ scale: 0.95 + outer.value * 0.12 }],
   }));
 
+  const midStyle = useAnimatedStyle(() => ({
+    opacity: mid.value * (stressed ? 0.5 : 0.38),
+    transform: [{ scale: 0.97 + mid.value * 0.08 }],
+  }));
+
   const haloColor = stressed
     ? 'rgba(196, 120, 120, 0.45)'
     : themeDawn
@@ -106,6 +128,11 @@ export function PeaceCore({ left, top, themeDawn, stressed }: Props) {
     : themeDawn
       ? 'rgba(255, 220, 150, 0.4)'
       : 'rgba(107, 184, 154, 0.35)';
+  const midColor = stressed
+    ? 'rgba(196, 120, 120, 0.22)'
+    : themeDawn
+      ? 'rgba(255, 230, 170, 0.32)'
+      : 'rgba(107, 184, 154, 0.28)';
 
   return (
     <Animated.View
@@ -121,6 +148,10 @@ export function PeaceCore({ left, top, themeDawn, stressed }: Props) {
         style={[styles.outerHalo, outerStyle, { backgroundColor: outerColor }]}
       />
       <Animated.View
+        pointerEvents="none"
+        style={[styles.midHalo, midStyle, { backgroundColor: midColor }]}
+      />
+      <Animated.View
         style={[styles.halo, ringStyle, { backgroundColor: haloColor }]}
       />
       <View
@@ -134,9 +165,11 @@ export function PeaceCore({ left, top, themeDawn, stressed }: Props) {
                 ? 'rgba(255, 236, 190, 0.95)'
                 : 'rgba(255,255,255,0.75)',
             borderWidth: stressed ? 2.5 : 2,
+            shadowColor: stressed ? colors.dangerSoft : themeDawn ? '#C9A85A' : colors.core,
           },
         ]}
       >
+        <View pointerEvents="none" style={styles.coreSheen} />
         <View
           style={[
             styles.coreInner,
@@ -144,6 +177,12 @@ export function PeaceCore({ left, top, themeDawn, stressed }: Props) {
             themeDawn && !stressed ? styles.coreInnerDawn : null,
           ]}
         >
+          <View
+            style={[
+              styles.statusDot,
+              { backgroundColor: stressed ? colors.dangerSoft : colors.calm },
+            ]}
+          />
           <Text style={[styles.coreLabel, stressed && styles.coreLabelStressed]}>Peace</Text>
           <Text style={[styles.coreSub, stressed && styles.coreSubStressed]}>
             {stressed ? 'soft hold' : 'still'}
@@ -152,9 +191,14 @@ export function PeaceCore({ left, top, themeDawn, stressed }: Props) {
       </View>
       {stressed ? (
         <View style={styles.warnChip} accessibilityElementsHidden>
-          <Text style={styles.warnText}>calm low</Text>
+          <View style={styles.warnDot} />
+          <Text style={styles.warnText}>calm soft</Text>
         </View>
-      ) : null}
+      ) : (
+        <View style={styles.holdChip} accessibilityElementsHidden>
+          <Text style={styles.holdText}>holding gently</Text>
+        </View>
+      )}
     </Animated.View>
   );
 }
@@ -169,9 +213,15 @@ const styles = StyleSheet.create({
   },
   outerHalo: {
     position: 'absolute',
-    width: 112,
-    height: 112,
-    borderRadius: 56,
+    width: 118,
+    height: 118,
+    borderRadius: 59,
+  },
+  midHalo: {
+    position: 'absolute',
+    width: 102,
+    height: 102,
+    borderRadius: 51,
   },
   halo: {
     position: 'absolute',
@@ -186,6 +236,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 2,
+    overflow: 'hidden',
+    shadowOpacity: 0.28,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 3 },
+    elevation: 3,
+  },
+  coreSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '42%',
+    backgroundColor: 'rgba(255,255,255,0.22)',
   },
   coreInner: {
     width: 48,
@@ -200,6 +263,12 @@ const styles = StyleSheet.create({
   },
   coreInnerStressed: {
     backgroundColor: 'rgba(255, 236, 232, 0.7)',
+  },
+  statusDot: {
+    width: 5,
+    height: 5,
+    borderRadius: 3,
+    marginBottom: 1,
   },
   coreLabel: {
     fontFamily: fonts.bodyMedium,
@@ -220,18 +289,43 @@ const styles = StyleSheet.create({
   },
   warnChip: {
     position: 'absolute',
-    bottom: -14,
-    paddingHorizontal: 6,
+    bottom: -16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    paddingHorizontal: 7,
     paddingVertical: 2,
     borderRadius: 8,
     backgroundColor: 'rgba(196, 120, 120, 0.18)',
     borderWidth: 1,
     borderColor: 'rgba(196, 120, 120, 0.35)',
   },
+  warnDot: {
+    width: 5,
+    height: 5,
+    borderRadius: 3,
+    backgroundColor: colors.dangerSoft,
+  },
   warnText: {
     fontFamily: fonts.bodyMedium,
     fontSize: 8,
     color: colors.dangerSoft,
+    letterSpacing: 0.2,
+  },
+  holdChip: {
+    position: 'absolute',
+    bottom: -16,
+    paddingHorizontal: 7,
+    paddingVertical: 2,
+    borderRadius: 8,
+    backgroundColor: 'rgba(107, 184, 154, 0.16)',
+    borderWidth: 1,
+    borderColor: 'rgba(107, 184, 154, 0.28)',
+  },
+  holdText: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 8,
+    color: colors.brand,
     letterSpacing: 0.2,
   },
 });

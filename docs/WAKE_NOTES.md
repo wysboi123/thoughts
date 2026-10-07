@@ -2,6 +2,14 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-07 23:15 UTC — Night hourly (v1.4.26 PeaceCore)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply · overnight-daily-resume had expired — **re-armed** resume + stop
+- **Shipped v1.4.26:** PeaceCore — mid halo breath · core sheen · status dot · soft shadow · “holding gently” chip · calm-soft warn chip
+- Re-armed `overnight-stop-5am-utc` (`sub_7fac0a8f…`, ~05:00 Oct 8) · `overnight-daily-resume` (`sub_d6468578…`)
+- Did not redo SoftFxLayer (1.4.25) · Draft C locked
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-07 05:00 UTC — OVERNIGHT STOP (mobile night wrap)
 
 - Timer `overnight-stop-5am-utc` fired ~05:00 UTC Oct 7 — **HARD STOP**. **No new features.** Docs + digest only.
