@@ -113,7 +113,9 @@ local function refreshPlace(companyNear: boolean)
 		else
 			place.Text = "galaxy loft · two worlds · beacon home when ready"
 		end
-		place.TextColor3 = Color3.fromRGB(200, 190, 255)
+		place.TextColor3 = if softLingered and not companyNear
+			then Color3.fromRGB(185, 180, 235)
+			else Color3.fromRGB(200, 190, 255)
 		tag.Text = Config.Tagline .. versionSuffix
 		tag.TextColor3 = Color3.fromRGB(170, 175, 220)
 		title.TextColor3 = Color3.fromRGB(210, 215, 255)
@@ -131,7 +133,9 @@ local function refreshPlace(companyNear: boolean)
 		else
 			place.Text = "two worlds · one couch · climb to the skylight"
 		end
-		place.TextColor3 = Color3.fromRGB(140, 130, 170)
+		place.TextColor3 = if softLingered and not companyNear
+			then Color3.fromRGB(155, 145, 185)
+			else Color3.fromRGB(140, 130, 170)
 		tag.Text = Config.Tagline .. versionSuffix
 		tag.TextColor3 = Color3.fromRGB(170, 160, 200)
 		title.TextColor3 = Color3.fromRGB(230, 220, 255)
