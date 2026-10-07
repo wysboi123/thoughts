@@ -54,6 +54,7 @@ export function DualModeTray({
   const selected = state.towers.find((t) => t.padIndex === state.selectedPad);
   const selectMode = selected != null;
   const mode = useSharedValue(selectMode ? 1 : 0);
+  const enter = useSharedValue(0);
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
@@ -62,6 +63,19 @@ export function DualModeTray({
       easing: Easing.out(Easing.cubic),
     });
   }, [selectMode, mode, reduceMotion]);
+
+  useEffect(() => {
+    if (reduceMotion) {
+      enter.value = 1;
+      return;
+    }
+    enter.value = withTiming(1, { duration: 360, easing: Easing.out(Easing.cubic) });
+  }, [enter, reduceMotion]);
+
+  const trayEnterStyle = useAnimatedStyle(() => ({
+    opacity: enter.value,
+    transform: [{ translateY: (1 - enter.value) * 8 }],
+  }));
 
   const plantRowStyle = useAnimatedStyle(() => ({
     opacity: interpolate(mode.value, [0, 1], [1, 0.38]),
@@ -77,7 +91,7 @@ export function DualModeTray({
 
   const actionStyle = useAnimatedStyle(() => ({
     opacity: interpolate(mode.value, [0, 0.35, 1], [0, 0.4, 1]),
-    maxHeight: interpolate(mode.value, [0, 1], [0, 112]),
+    maxHeight: interpolate(mode.value, [0, 1], [0, 132]),
     transform: [{ translateY: interpolate(mode.value, [0, 1], [8, 0]) }],
     overflow: 'hidden' as const,
   }));
@@ -94,13 +108,21 @@ export function DualModeTray({
     : '';
 
   return (
-    <View
+    <Animated.View
       style={[
         styles.tray,
         themeDawn ? styles.trayDawn : null,
         selectMode ? { borderColor: `${selectAccent}66` } : null,
+        trayEnterStyle,
       ]}
     >
+      <View
+        pointerEvents="none"
+        style={[
+          styles.accentBar,
+          { backgroundColor: selectMode ? selectAccent : colors.brand },
+        ]}
+      />
       <View style={styles.titleRow}>
         <View
           style={[
@@ -111,6 +133,12 @@ export function DualModeTray({
             },
           ]}
         >
+          <View
+            style={[
+              styles.modeDot,
+              { backgroundColor: selectMode ? selectAccent : colors.brand },
+            ]}
+          />
           <Text
             style={[
               styles.modeChipText,
@@ -158,6 +186,12 @@ export function DualModeTray({
                 !selectMode && !canAfford && styles.plantCardSoft,
               ]}
             >
+              {active ? (
+                <View
+                  pointerEvents="none"
+                  style={[styles.cardSheen, { backgroundColor: `${KIND_ACCENT[k]}18` }]}
+                />
+              ) : null}
               <View
                 style={[
                   styles.swatch,
@@ -214,7 +248,14 @@ export function DualModeTray({
       <Animated.View style={plantHintStyle} pointerEvents="none">
         <Text style={styles.hint}>Tap an empty pad to plant · tap a planted thought to upgrade</Text>
       </Animated.View>
-    </View>
+
+      <View style={styles.footer} accessibilityRole="text">
+        <Text style={styles.footerLabel}>Draft C tray</Text>
+        <Text style={styles.footerHint}>
+          {selectMode ? 'Upgrade · Sell · Back' : 'Plant · dim on select'}
+        </Text>
+      </View>
+    </Animated.View>
   );
 }
 
@@ -222,15 +263,30 @@ const styles = StyleSheet.create({
   tray: {
     marginTop: 8,
     padding: 12,
+    paddingTop: 14,
     borderRadius: 22,
     backgroundColor: colors.surfaceStrong,
     borderWidth: 1,
     borderColor: colors.line,
     gap: 10,
+    overflow: 'hidden',
+    shadowColor: '#243A34',
+    shadowOpacity: 0.1,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 5 },
+    elevation: 3,
   },
   trayDawn: {
     backgroundColor: 'rgba(255, 244, 220, 0.78)',
     borderColor: 'rgba(201, 168, 90, 0.28)',
+  },
+  accentBar: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 3,
+    opacity: 0.8,
   },
   titleRow: {
     flexDirection: 'row',
@@ -239,10 +295,18 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   modeChip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
     paddingHorizontal: 8,
     paddingVertical: 3,
     borderRadius: 10,
     borderWidth: 1,
+  },
+  modeDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
   },
   modeChipText: {
     fontFamily: fonts.bodyBold,
@@ -271,6 +335,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.65)',
     borderWidth: 1.5,
     borderColor: 'transparent',
+    overflow: 'hidden',
   },
   plantCardActive: {
     backgroundColor: 'rgba(255,255,255,0.92)',
@@ -280,6 +345,13 @@ const styles = StyleSheet.create({
   },
   plantCardSoft: {
     opacity: 0.72,
+  },
+  cardSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '40%',
   },
   swatch: {
     width: 18,
@@ -346,5 +418,24 @@ const styles = StyleSheet.create({
     fontSize: 11,
     color: colors.inkSoft,
     textAlign: 'center',
+  },
+  footer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 2,
+    paddingTop: 2,
+  },
+  footerLabel: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 10,
+    color: colors.inkSoft,
+    letterSpacing: 0.2,
+  },
+  footerHint: {
+    fontFamily: fonts.body,
+    fontSize: 10,
+    color: colors.inkSoft,
+    opacity: 0.9,
   },
 });
