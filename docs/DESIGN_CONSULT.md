@@ -29,6 +29,8 @@ Stub IAP stays until you pick + we wire. Reply **RC** / **RNIap** / other.
 
 Shipped this hourly: **v1.4.25** — SoftFxLayer polish (halo · motes · longer plant/clear). Last slice before ~05:00 overnight stop.
 
+**2026-10-07 ~05:00 overnight stop** — night wrap complete (v1.4.21→v1.4.25). No new features. Next resume **23:00 UTC**. Same open consult: **RC vs RNIap** · Pass **$2.99**.
+
 ## Defaults
 
 - Soft mint-mist brand · core loop free · Pass = comfort only
