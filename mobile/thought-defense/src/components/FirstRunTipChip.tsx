@@ -31,6 +31,7 @@ export function FirstRunTipChip({ visible, dawn }: Props) {
   const [dismissed, setDismissed] = useState(true);
   const [tipIndex, setTipIndex] = useState(0);
   const opacity = useRef(new Animated.Value(0)).current;
+  const scale = useRef(new Animated.Value(0.97)).current;
   const tipFade = useRef(new Animated.Value(1)).current;
   const reduceMotion = useReducedMotion();
 
@@ -60,18 +61,30 @@ export function FirstRunTipChip({ visible, dawn }: Props) {
   useEffect(() => {
     if (!show) {
       opacity.setValue(0);
+      scale.setValue(0.97);
       return;
     }
     if (reduceMotion) {
       opacity.setValue(1);
+      scale.setValue(1);
       return;
     }
-    Animated.timing(opacity, {
-      toValue: 1,
-      duration: 420,
-      useNativeDriver: true,
-    }).start();
-  }, [show, opacity, reduceMotion]);
+    opacity.setValue(0);
+    scale.setValue(0.97);
+    Animated.parallel([
+      Animated.timing(opacity, {
+        toValue: 1,
+        duration: 420,
+        useNativeDriver: true,
+      }),
+      Animated.spring(scale, {
+        toValue: 1,
+        friction: 8,
+        tension: 70,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, [show, opacity, scale, reduceMotion]);
 
   useEffect(() => {
     if (!show) return;
@@ -110,10 +123,11 @@ export function FirstRunTipChip({ visible, dawn }: Props) {
   if (!show) return null;
 
   const current = TIPS[tipIndex];
+  const progress = (tipIndex + 1) / TIPS.length;
 
   return (
     <Animated.View
-      style={[styles.wrap, { opacity }]}
+      style={[styles.wrap, { opacity, transform: [{ scale }] }]}
       accessibilityRole="summary"
       accessibilityLabel={current.text}
     >
@@ -124,8 +138,31 @@ export function FirstRunTipChip({ visible, dawn }: Props) {
           { borderLeftColor: current.accent },
         ]}
       >
+        <View
+          pointerEvents="none"
+          style={[styles.glow, { backgroundColor: `${current.accent}28` }]}
+        />
         <Animated.View style={[styles.textWrap, { opacity: tipFade }]}>
+          <View style={[styles.badge, { borderColor: `${current.accent}66` }]}>
+            <View style={[styles.badgeDot, { backgroundColor: current.accent }]} />
+            <Text style={[styles.badgeLabel, { color: current.accent }]}>Soft tip</Text>
+          </View>
           <Text style={styles.text}>{current.text}</Text>
+          <View
+            style={styles.progressTrack}
+            accessibilityRole="progressbar"
+            accessibilityValue={{ min: 0, max: 100, now: Math.round(progress * 100) }}
+          >
+            <View
+              style={[
+                styles.progressFill,
+                {
+                  width: `${Math.round(progress * 100)}%`,
+                  backgroundColor: current.accent,
+                },
+              ]}
+            />
+          </View>
           <View style={styles.dots}>
             {TIPS.map((t, i) => (
               <View
@@ -134,6 +171,7 @@ export function FirstRunTipChip({ visible, dawn }: Props) {
                   styles.dot,
                   i === tipIndex && styles.dotOn,
                   i === tipIndex ? { backgroundColor: t.accent } : null,
+                  i < tipIndex ? { backgroundColor: `${t.accent}88` } : null,
                 ]}
               />
             ))}
@@ -146,6 +184,7 @@ export function FirstRunTipChip({ visible, dawn }: Props) {
           onPress={onDismiss}
           style={styles.dismiss}
         >
+          <View pointerEvents="none" style={styles.dismissSheen} />
           <Text style={styles.dismissLabel}>Got it</Text>
         </Pressable>
       </View>
@@ -164,7 +203,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 10,
     maxWidth: '100%',
-    paddingVertical: 8,
+    paddingVertical: 10,
     paddingLeft: 12,
     paddingRight: 8,
     borderRadius: 16,
@@ -172,20 +211,66 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(63, 111, 98, 0.22)',
     borderLeftWidth: 4,
+    overflow: 'hidden',
+    shadowColor: '#243A34',
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 3 },
+    elevation: 2,
   },
   chipDawn: {
     backgroundColor: 'rgba(255, 244, 220, 0.75)',
     borderColor: 'rgba(201, 168, 90, 0.3)',
   },
+  glow: {
+    position: 'absolute',
+    top: -18,
+    right: 40,
+    width: 70,
+    height: 70,
+    borderRadius: 70,
+  },
   textWrap: {
     flexShrink: 1,
     gap: 5,
+  },
+  badge: {
+    alignSelf: 'flex-start',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+    borderRadius: 10,
+    borderWidth: 1,
+    backgroundColor: 'rgba(255,255,255,0.45)',
+  },
+  badgeDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+  },
+  badgeLabel: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 10,
+    letterSpacing: 0.2,
   },
   text: {
     fontFamily: fonts.bodyMedium,
     fontSize: 12,
     lineHeight: 16,
     color: colors.brandDeep,
+  },
+  progressTrack: {
+    height: 3,
+    borderRadius: 3,
+    backgroundColor: 'rgba(36, 58, 52, 0.08)',
+    overflow: 'hidden',
+    marginTop: 1,
+  },
+  progressFill: {
+    height: 3,
+    borderRadius: 3,
   },
   dots: {
     flexDirection: 'row',
@@ -208,6 +293,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 12,
     backgroundColor: colors.surfaceStrong,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: colors.line,
+  },
+  dismissSheen: {
+    ...StyleSheet.absoluteFill,
+    backgroundColor: 'rgba(255,255,255,0.35)',
+    height: '45%',
   },
   dismissLabel: {
     fontFamily: fonts.bodyMedium,

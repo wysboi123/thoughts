@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-06 23:15 UTC — Night hourly (v1.4.22 SoftPlayHud)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.22:** SoftPlayHud — accent bar · pill dots/sheen · soft scale enter · calm-soft pulse · mindscape footer · soft-chip when Calm low
+- Did not redo SoftWelcomeSheet (1.4.21) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-06 23:00 UTC — Night resume (SoftWelcomeSheet v1.4.21)
 
 - Timer `overnight-daily-resume` · no Femmy Gmail reply · Clarity Pass **$2.99** · RC vs RNIap still open

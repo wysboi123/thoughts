@@ -56,6 +56,7 @@ Priority order. Agents pick the top unchecked item unless Femmy overrides.
 - [x] **v1.4.20 hourly polish** — SoftActionToast (accent dot · soft shadow · countdown bar · last before ~05:00)
 - [x] **v1.4.21 night resume** — SoftWelcomeSheet (accent bar · card shadow · orb halo · progress bar · step chip · scale enter · Next sheen)
 - [x] **v1.4.22 hourly polish** — SoftPlayHud (accent bar · pill dots/sheen · scale enter · calm-soft pulse · mindscape footer · soft-chip)
+- [x] **v1.4.23 hourly polish** — FirstRunTipChip (Soft tip badge · glow · progress · scale enter · visited dots · Got it sheen)
 - [ ] **Native IAP** — wire RevenueCat or react-native-iap; turn off stubMode for store builds
 - [ ] **EAS project** — Femmy: `eas init` + real `projectId` + credentials
 - [ ] **Store products** — create IAP ids in App Store Connect + Play Console

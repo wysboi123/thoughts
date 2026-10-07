@@ -45,14 +45,15 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-06 ~05:00 OVERNIGHT STOP:** Hard stop after night ship v1.4.14→v1.4.20. Did **not** re-arm overnight-stop. Next resume 23:00 UTC.
 - **2026-10-06 ~23:00 night resume:** SoftWelcomeSheet polish v1.4.21 — accent bar · card shadow · orb halo · progress bar · step chip · scale enter · Next sheen.
 - **2026-10-06 ~23:15:** SoftPlayHud polish v1.4.22 — accent bar · pill dots/sheen · scale enter · calm-soft pulse · mindscape footer · soft-chip.
+- **2026-10-07 ~02:15:** FirstRunTipChip polish v1.4.23 — Soft tip badge · glow · progress · scale enter · visited dots · Got it sheen.
 
 ## State
 
-- Version: **mobile 1.4.22** (SoftPlayHud polish)
+- Version: **mobile 1.4.23** (FirstRunTipChip polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: `69dbbac` (v1.4.22 SoftPlayHud)
+- Tip: pending after push
 - Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
 - Night envelope: **OPEN** until ~05:00 · `overnight-stop-5am-utc` armed (`sub_42e7f312…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
