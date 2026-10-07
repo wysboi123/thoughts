@@ -2,6 +2,12 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-07 ~03:25 UTC — Night 13 mid (Haze vibe board linger)
+
+- VibeBoard.setLingered — “tonight's vibes · still here” when alone after OnLinger
+- Sync still wins over linger look; Haze **3.21**
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
 ## 2026-10-07 ~03:20 UTC — Night 13 mid (bus/porch linger warmth)
 
 - SoftCompany.refresh linger pulse · SoftSit copy pulse

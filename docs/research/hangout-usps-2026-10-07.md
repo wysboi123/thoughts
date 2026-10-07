@@ -22,6 +22,7 @@ Sources: Creator Hub Discovery (key signals), DevForum Recommended For You 28-da
 | Porch SoftSit closures | hoist `softLingered` before SoftSit.mount |
 | Bus waiting-together alone after linger | Timetable tint + news “still here” |
 | Porch jar USP after linger | Jar-meter soft linger color when alone |
+| Haze vibe sync after linger | VibeBoard.setLingered (“still here”; sync wins) |
 | Publish copy | EXPERIENCE_COPY soft-stay lines |
 
 ## Soft invite
