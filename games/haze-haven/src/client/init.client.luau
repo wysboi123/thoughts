@@ -187,6 +187,14 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		end
 		return "alone is fine · vibes still soft"
 	end,
+	DepartTextFn = function()
+		if softLingered then
+			return "still here · they drifted · vibes stay soft"
+		elseif softCompleteDone then
+			return "soft-complete · they drifted · stay"
+		end
+		return "they drifted · vibes still soft"
+	end,
 	OneTextFn = function()
 		return if softLingered then "still here · vibes syncing" else "soft company · vibes syncing"
 	end,

@@ -202,20 +202,39 @@ function SoftGoals.mount(
 						{ Transparency = 0.65 }
 					):Play()
 					-- Soft pulse open Optional company rows (co-play door still ajar)
-					for _, g in goals do
-						if g.Optional and not done[g.Id] then
-							local optRow = labels[g.Id]
-							if optRow then
-								optRow.TextColor3 = Color3.fromRGB(210, 230, 200)
-								TweenService:Create(
-									optRow,
-									TweenInfo.new(0.7, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-									{ TextColor3 = optionalRowColor }
-								):Play()
+					local function pulseOptionalRows()
+						for _, g in goals do
+							if g.Optional and not done[g.Id] then
+								local optRow = labels[g.Id]
+								if optRow then
+									optRow.TextColor3 = Color3.fromRGB(210, 230, 200)
+									TweenService:Create(
+										optRow,
+										TweenInfo.new(0.7, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+										{ TextColor3 = optionalRowColor }
+									):Play()
+								end
 							end
 						end
 					end
+					pulseOptionalRows()
 					style.OnLinger(left)
+					-- One soft re-nudge if company goals still open (~36s later)
+					if left > 0 then
+						task.delay(36, function()
+							if not frame.Parent or countOptionalLeft() == 0 then
+								return
+							end
+							title.Text = "still here · company open"
+							title.TextColor3 = Color3.fromRGB(195, 225, 205)
+							TweenService:Create(
+								title,
+								TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+								{ TextColor3 = Color3.fromRGB(210, 240, 220) }
+							):Play()
+							pulseOptionalRows()
+						end)
+					end
 				end)
 			end
 			-- Fade lightly while company goals remain; heavier when fully sealed

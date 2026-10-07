@@ -10,6 +10,8 @@ export type SoftCompanyConfig = {
 	Color: Color3?,
 	AloneText: string?,
 	AloneTextFn: (() -> string)?,
+	-- Brief copy when nearby count drops to 0 (co-play leave → soft stay)
+	DepartTextFn: (() -> string)?,
 	OneText: string?,
 	OneTextFn: (() -> string)?,
 	ManyText: ((number) -> string)?,
@@ -47,6 +49,7 @@ function SoftCompany.mount(playerGui: PlayerGui, localPlayer: Player, config: So
 	label.Parent = gui
 
 	local lastCount = -1
+	local departHoldUntil = 0.0
 
 	local function getRoot(character: Model): BasePart?
 		local root = character:FindFirstChild("HumanoidRootPart")
@@ -123,16 +126,39 @@ function SoftCompany.mount(playerGui: PlayerGui, localPlayer: Player, config: So
 		lastCount = n
 
 		if n <= 0 then
-			local alone = aloneLine()
-			label.Text = alone
-			if alone == "" then
-				label.TextTransparency = 1
-			elseif prev > 0 then
+			local depart = if prev > 0 and config.DepartTextFn then config.DepartTextFn() else nil
+			if depart and depart ~= "" then
+				label.Text = depart
 				pulseLeave()
+				departHoldUntil = os.clock() + 3.8
+				task.delay(3.8, function()
+					if lastCount > 0 or not label.Parent then
+						return
+					end
+					if os.clock() < departHoldUntil - 0.05 then
+						return
+					end
+					local alone = aloneLine()
+					label.Text = alone
+					if alone == "" then
+						label.TextTransparency = 1
+					else
+						label.TextTransparency = 0.45
+					end
+				end)
 			else
-				label.TextTransparency = 0.45
+				local alone = aloneLine()
+				label.Text = alone
+				if alone == "" then
+					label.TextTransparency = 1
+				elseif prev > 0 then
+					pulseLeave()
+				else
+					label.TextTransparency = 0.45
+				end
 			end
 		elseif n == 1 then
+			departHoldUntil = 0
 			label.Text = oneLine()
 			if prev <= 0 then
 				pulseArrive()
@@ -140,6 +166,7 @@ function SoftCompany.mount(playerGui: PlayerGui, localPlayer: Player, config: So
 				pulseLeave()
 			end
 		else
+			departHoldUntil = 0
 			label.Text = manyLine(n)
 			if prev <= 0 or n > prev then
 				pulseArrive()
@@ -153,6 +180,9 @@ function SoftCompany.mount(playerGui: PlayerGui, localPlayer: Player, config: So
 	end
 
 	local function refresh()
+		if os.clock() < departHoldUntil then
+			return
+		end
 		local n = if lastCount < 0 then 0 else lastCount
 		local prev = label.Text
 		applyCopy(n)
@@ -186,6 +216,9 @@ function SoftCompany.mount(playerGui: PlayerGui, localPlayer: Player, config: So
 			setCount(count)
 		elseif refreshAccum >= 0.75 and (config.OneTextFn or config.AloneTextFn or config.ManyText) then
 			refreshAccum = 0
+			if os.clock() < departHoldUntil then
+				return
+			end
 			-- soft refresh label text without re-firing OnCountChanged
 			applyCopy(count)
 		end

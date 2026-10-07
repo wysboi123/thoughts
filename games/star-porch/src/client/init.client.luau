@@ -291,6 +291,14 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		end
 		return "soft company · jar waits"
 	end,
+	DepartTextFn = function()
+		if softLingered then
+			return "still here · they drifted · jar waits"
+		elseif softCompleteDone then
+			return "soft-complete · they drifted · jar waits"
+		end
+		return "they drifted · jar waits"
+	end,
 	OneTextFn = function()
 		return if softLingered then "still here · porch feels warmer" else "soft company · porch feels warmer"
 	end,

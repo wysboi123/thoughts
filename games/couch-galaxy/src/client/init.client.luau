@@ -478,6 +478,18 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		end
 		return if inGalaxy then "soft company · loft is enough" else "soft company · couch is enough"
 	end,
+	DepartTextFn = function()
+		if softLingered then
+			return if inGalaxy
+				then "still here · they drifted · loft stays"
+				else "still here · they drifted · couch stays"
+		elseif softCompleteDone then
+			return if inGalaxy
+				then "soft-complete · they drifted · loft stays"
+				else "soft-complete · they drifted · couch stays"
+		end
+		return if inGalaxy then "they drifted · loft is enough" else "they drifted · couch is enough"
+	end,
 	OneTextFn = function()
 		if softLingered then
 			return if inGalaxy then "still here · loft side · two worlds" else "still here · couch side"

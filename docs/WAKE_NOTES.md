@@ -2,6 +2,16 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-07 23:00 UTC — Night 14 resume
+
+- Stop re-armed → 05:00 UTC (`overnight-stop-5am-utc`); quiet CP ~01:00 / ~03:00
+- Daily resume **re-armed** (was near 2026-10-10 expiry)
+- No Perplexity answers — audio still unwired (Q-001–004 open)
+- Night 14: SoftCompany DepartTextFn · SoftGoals optional re-pulse after linger
+- Start versions: Haze **3.21** · Couch **3.19** · Bus **3.20** · Porch **3.18**
+- PR: https://github.com/wysboi123/thoughts/pull/3
+- Quiet mode; **no mid-shift email**; one digest at 05:00 stop only
+
 ## 2026-10-07 05:00 UTC — OVERNIGHT STOP (Night 13)
 
 Night 13 complete. No new features this wrap. One digest email sent.
