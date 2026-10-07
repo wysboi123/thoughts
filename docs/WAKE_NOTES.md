@@ -2,6 +2,14 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-07 03:00 UTC — Night 13 checkpoint 2 (quiet)
+
+- Active: **Haze 3.18** · **Couch 3.16** · **Bus 3.17** · **Porch 3.16**
+- SoftGoals linger pulse · alone proximity · SoftCompany still-here post-linger
+- Parked untouched; no invented audio
+- Still blocked: Perplexity Q-001–004 · first Studio publish
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
 ## 2026-10-07 01:00 UTC — Night 13 checkpoint 1 (quiet)
 
 - Active: **Haze 3.17** · **Couch 3.15** · **Bus 3.16** · **Porch 3.15**

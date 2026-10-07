@@ -82,12 +82,20 @@ local SoftSit = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("So
 local porchCompanyNear = false
 local halfToast = false
 local fullToast = false
+local softCompleteDone = false
+local softCompleteOptionalOpen = false
+local softLingered = false
+local proximityHandle: any = nil
 local porchSit = SoftSit.mount(playerGui, {
 	OneText = function(name)
-		return if porchCompanyNear then (name .. " is on the porch · company") else (name .. " is on the porch")
+		if porchCompanyNear then
+			return if softLingered then (name .. " is on the porch · still here · company") else (name .. " is on the porch · company")
+		end
+		return if softLingered then (name .. " is on the porch · still here") else (name .. " is on the porch")
 	end,
 	ManyText = function(names)
-		return table.concat(names, " & ") .. " are on the porch"
+		local joined = table.concat(names, " & ")
+		return if softLingered then (joined .. " are on the porch · still here") else (joined .. " are on the porch")
 	end,
 	Color = Color3.fromRGB(180, 200, 170),
 })

@@ -102,10 +102,14 @@ local hazeCompanyNear = false
 local hazeSit = SoftSit.mount(playerGui, {
 	EmptyText = "",
 	OneText = function(name)
-		return if hazeCompanyNear then (name .. " is chilling · sync") else (name .. " is chilling")
+		if hazeCompanyNear then
+			return if softLingered then (name .. " is chilling · still here · sync") else (name .. " is chilling · sync")
+		end
+		return if softLingered then (name .. " is chilling · still here") else (name .. " is chilling")
 	end,
 	ManyText = function(names)
-		return table.concat(names, " & ") .. " are chilling"
+		local joined = table.concat(names, " & ")
+		return if softLingered then (joined .. " are chilling · still here") else (joined .. " are chilling")
 	end,
 	Color = Color3.fromRGB(200, 180, 230),
 })

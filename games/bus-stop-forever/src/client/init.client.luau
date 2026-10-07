@@ -275,10 +275,14 @@ local SoftSit = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("So
 local benchSit = SoftSit.mount(playerGui, {
 	EmptyText = "",
 	OneText = function(name)
-		return if nearbyCount >= 1 then (name .. " is waiting together") else (name .. " is waiting")
+		if nearbyCount >= 1 then
+			return if softLingered then (name .. " is waiting together · still here") else (name .. " is waiting together")
+		end
+		return if softLingered then (name .. " is waiting · still here") else (name .. " is waiting")
 	end,
 	ManyText = function(names)
-		return table.concat(names, " & ") .. " are waiting together"
+		local joined = table.concat(names, " & ")
+		return if softLingered then (joined .. " are waiting together · still here") else (joined .. " are waiting together")
 	end,
 	Color = Color3.fromRGB(190, 200, 170),
 })

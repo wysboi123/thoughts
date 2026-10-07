@@ -171,12 +171,21 @@ local couchCompanyNear = false
 local couchSit = SoftSit.mount(playerGui, {
 	OneText = function(name)
 		if inGalaxy then
-			return if couchCompanyNear then (name .. " is in the hammock loft · company") else (name .. " is in the hammock loft")
+			if couchCompanyNear then
+				return if softLingered then (name .. " is in the hammock loft · still here · company") else (name .. " is in the hammock loft · company")
+			end
+			return if softLingered then (name .. " is in the hammock loft · still here") else (name .. " is in the hammock loft")
 		end
-		return if couchCompanyNear then (name .. " is on the couch · company") else (name .. " is on the couch")
+		if couchCompanyNear then
+			return if softLingered then (name .. " is on the couch · still here · company") else (name .. " is on the couch · company")
+		end
+		return if softLingered then (name .. " is on the couch · still here") else (name .. " is on the couch")
 	end,
 	ManyText = function(names)
 		local joined = table.concat(names, " & ")
+		if softLingered then
+			return if inGalaxy then (joined .. " are in the hammock loft · still here") else (joined .. " are on the couch · still here")
+		end
 		return if inGalaxy then (joined .. " are in the hammock loft") else (joined .. " are on the couch")
 	end,
 	Color = Color3.fromRGB(190, 170, 220),
