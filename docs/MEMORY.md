@@ -47,15 +47,16 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-06 ~23:15:** SoftPlayHud polish v1.4.22 — accent bar · pill dots/sheen · scale enter · calm-soft pulse · mindscape footer · soft-chip.
 - **2026-10-07 ~02:15:** FirstRunTipChip polish v1.4.23 — Soft tip badge · glow · progress · scale enter · visited dots · Got it sheen.
 - **2026-10-07 ~03:15:** DualModeTray polish v1.4.24 — accent bar · shadow · mode-chip dot · soft enter · card sheen · Draft C footer.
+- **2026-10-07 ~04:15:** SoftFxLayer polish v1.4.25 — outer halo · soft motes · longer plant/clear life · richer spark (last slice before ~05:00 stop).
 
 ## State
 
-- Version: **mobile 1.4.24** (DualModeTray polish)
+- Version: **mobile 1.4.25** (SoftFxLayer polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: `6e23918` (v1.4.24 DualModeTray)
+- Tip: pending after push
 - Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
 - Night envelope: **OPEN** until ~05:00 · `overnight-stop-5am-utc` armed (`sub_42e7f312…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
-- Next: night hourlies · overnight stop ~05:00 · or Femmy RC/RNIap / Pass price reply
+- Next: overnight stop ~05:00 · or Femmy RC/RNIap / Pass price reply
