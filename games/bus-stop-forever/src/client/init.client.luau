@@ -314,13 +314,23 @@ SoftCompany.mount(playerGui, player, {
 		return "soft company · alone is fine"
 	end,
 	OneTextFn = function()
-		if phase == "arrived" then
+		if softLingered then
+			if phase == "arrived" then
+				return "still here · bus is here · waiting together"
+			end
+			return "still here · waiting together"
+		elseif phase == "arrived" then
 			return "soft company · bus is here · waiting together"
 		end
 		return "soft company · waiting together"
 	end,
 	ManyText = function(n)
-		if phase == "arrived" then
+		if softLingered then
+			if phase == "arrived" then
+				return ("still here · %d nearby · bus is here"):format(n)
+			end
+			return ("still here · %d nearby · wait together"):format(n)
+		elseif phase == "arrived" then
 			return ("soft company · %d nearby · bus is here"):format(n)
 		end
 		return ("soft company · %d nearby · wait together"):format(n)

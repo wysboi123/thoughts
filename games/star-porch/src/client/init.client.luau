@@ -281,9 +281,13 @@ SoftCompany.mount(playerGui, player, {
 		end
 		return "soft company · jar waits"
 	end,
-	OneText = "soft company · porch feels warmer",
+	OneTextFn = function()
+		return if softLingered then "still here · porch feels warmer" else "soft company · porch feels warmer"
+	end,
 	ManyText = function(n)
-		return ("soft company · %d nearby · jar glow"):format(n)
+		return if softLingered
+			then ("still here · %d nearby · jar glow"):format(n)
+			else ("soft company · %d nearby · jar glow"):format(n)
 	end,
 	OnCountChanged = function(n)
 		porchCompanyNear = n >= 1

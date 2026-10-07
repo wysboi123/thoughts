@@ -349,9 +349,17 @@ SoftCompany.mount(playerGui, player, {
 		return if inGalaxy then "soft company · loft is enough" else "soft company · couch is enough"
 	end,
 	OneTextFn = function()
+		if softLingered then
+			return if inGalaxy then "still here · loft side · two worlds" else "still here · couch side"
+		end
 		return if inGalaxy then "soft company · loft side · two worlds" else "soft company · couch side"
 	end,
 	ManyText = function(n)
+		if softLingered then
+			return if inGalaxy
+				then ("still here · %d nearby · loft side"):format(n)
+				else ("still here · %d nearby · couch side"):format(n)
+		end
 		return if inGalaxy
 			then ("soft company · %d nearby · loft side"):format(n)
 			else ("soft company · %d nearby · couch side"):format(n)

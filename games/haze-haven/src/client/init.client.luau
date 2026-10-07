@@ -178,9 +178,13 @@ SoftCompany.mount(playerGui, player, {
 		end
 		return "alone is fine · vibes still soft"
 	end,
-	OneText = "soft company · vibes syncing",
+	OneTextFn = function()
+		return if softLingered then "still here · vibes syncing" else "soft company · vibes syncing"
+	end,
 	ManyText = function(n)
-		return ("soft company · %d nearby · vibes sync"):format(n)
+		return if softLingered
+			then ("still here · %d nearby · vibes sync"):format(n)
+			else ("soft company · %d nearby · vibes sync"):format(n)
 	end,
 	OnCountChanged = function(n)
 		hazeCompanyNear = n >= 1

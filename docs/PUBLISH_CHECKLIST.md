@@ -19,6 +19,7 @@ rojo serve
    - SoftWelcome toast holds ~6s + SoftCompany line at bottom-left
    - SoftGoals top-right: vibes · sit · float · vibe sync (◦ optional — solo soft-complete OK; “company still open”)
    - After ~48s soft-complete: SoftGoals title “still here · soft” + linger toast (playtime stay)
+   - Linger alone: soft proximity glow (~1.12); SoftCompany copy flips to “still here · …”
 4. Optional second player / alt: vibe sync toast + WelcomeBody flips · board/orb/HUD/hammock/nameplate tint when near
 5. Stop Play → **File → Publish to Roblox** (create new experience if prompted)
 6. Paste title + description from [`EXPERIENCE_COPY.md`](EXPERIENCE_COPY.md) → Haze Haven
