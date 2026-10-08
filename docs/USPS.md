@@ -16,10 +16,10 @@ Research refresh 2026-10-02: Creator Hub ranks **intentional co-play days** as a
 
 | Priority | Game | USP | Why it sells | Implementation | Status |
 | --- | --- | --- | --- | --- | --- |
-| **P0** | Haze Haven | **Vibe sync** | Board + orbs feel better when friends are near | SoftSit sync · optional sync · board linger · DepartTextFn | ✅ v3.22 |
-| **P0** | Bus Stop Forever | **Waiting together** | Timetable + HUD sit/company loop | Phase SoftCompany · optional together · DepartTextFn | ✅ v3.21 |
-| **P0** | Star Porch | **Jar that fills** | Fireflies return; jar visibly fills | SoftSit company · optional share · DepartTextFn | ✅ v3.19 |
-| **P1** | Couch Galaxy | **Two worlds, one couch** | Clear home ↔ galaxy identity | SoftSit company · portal linger · DepartTextFn | ✅ v3.20 |
+| **P0** | Haze Haven | **Vibe sync** | Board + orbs feel better when friends are near | SoftSit sync · board linger · DepartTextFn · OnDeparted | ✅ v3.23 |
+| **P0** | Bus Stop Forever | **Waiting together** | Timetable + HUD sit/company loop | Phase SoftCompany · DepartTextFn · OnDeparted | ✅ v3.22 |
+| **P0** | Star Porch | **Jar that fills** | Fireflies return; jar visibly fills | SoftSit company · DepartTextFn · OnDeparted | ✅ v3.20 |
+| **P1** | Couch Galaxy | **Two worlds, one couch** | Clear home ↔ galaxy identity | SoftSit · portal linger · DepartTextFn · OnDeparted | ✅ v3.21 |
 | **P2** | Haze Haven | Shared vibe board | Soft ranks without competition toxicity | Already: VibeBoard | ✅ |
 | **P2** | Line (post-publish) | Soft invite prompt | Discovery co-play days | SocialService — after first Studio publish | ⏳ |
 | **Later** | Parked trio | Resume USPs when Femmy unparks | Files kept | — | Parked |
@@ -42,7 +42,7 @@ Research refresh 2026-10-02: Creator Hub ranks **intentional co-play days** as a
 
 **Night 13 deepen:** SoftGoals optional-row linger pulse · soft alone proximity · SoftCompany/SoftSit still-here post-linger · SoftSit.refresh · SoftCompany.refresh linger pulse · Bus timetable/news linger warmth · Porch jar-meter linger · EXPERIENCE_COPY soft-stay · research `hangout-usps-2026-10-06.md` + `hangout-usps-2026-10-07.md`
 
-**Night 14 deepen:** SoftCompany **DepartTextFn** (they drifted · stay) · SoftGoals optional re-pulse ~36s after linger · research `hangout-usps-2026-10-08.md`
+**Night 14 deepen:** SoftCompany **DepartTextFn** + **OnDeparted** SoftWelcome (once) · SoftGoals optional re-pulse ~36s · Bus wave still-waiting · research `hangout-usps-2026-10-08.md`
 
 ## Copy hooks (thumbnails / description)
 

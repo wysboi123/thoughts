@@ -463,6 +463,7 @@ local function applyCouchWorldPresence(company: boolean)
 end
 
 local couchCompanyWelcomed = false
+local couchDepartWelcomed = false
 softCompanyHandle = SoftCompany.mount(playerGui, player, {
 	Radius = Config.Proximity.Radius,
 	Color = Color3.fromRGB(190, 170, 220),
@@ -505,6 +506,19 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		return if inGalaxy
 			then ("soft company · %d nearby · loft side"):format(n)
 			else ("soft company · %d nearby · couch side"):format(n)
+	end,
+	OnDeparted = function()
+		if couchDepartWelcomed or not (softLingered or softCompleteDone) then
+			return
+		end
+		couchDepartWelcomed = true
+		SoftWelcome.show(playerGui, "they drifted", if inGalaxy
+			then "loft stays · two worlds · stay"
+			else "couch stays · two worlds · stay", {
+			AccentColor = couchStyle.AccentColor,
+			FrameColor = couchStyle.FrameColor,
+			HoldSeconds = 2.8,
+		})
 	end,
 	OnCountChanged = function(n)
 		refreshPlace(n >= 1)

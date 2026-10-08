@@ -2,6 +2,15 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-08 01:00 UTC — Night 14 checkpoint 1 (quiet)
+
+- Active: **Haze 3.23** · **Couch 3.21** · **Bus 3.22** · **Porch 3.20**
+- SoftCompany OnDeparted SoftWelcome (once) · Bus wave still-waiting
+- DepartTextFn + SoftGoals optional re-pulse already landed
+- Parked untouched; no invented audio
+- Still blocked: Perplexity Q-001–004 · first Studio publish
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
 ## 2026-10-07 23:00 UTC — Night 14 resume
 
 - Stop re-armed → 05:00 UTC (`overnight-stop-5am-utc`); quiet CP ~01:00 / ~03:00

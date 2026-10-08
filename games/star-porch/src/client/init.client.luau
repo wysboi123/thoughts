@@ -276,6 +276,7 @@ local function findJarLight(): PointLight?
 end
 
 local porchCompanyWelcomed = false
+local porchDepartWelcomed = false
 softCompanyHandle = SoftCompany.mount(playerGui, player, {
 	Radius = Config.Proximity.Radius,
 	Color = Color3.fromRGB(180, 200, 170),
@@ -306,6 +307,17 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		return if softLingered
 			then ("still here · %d nearby · jar glow"):format(n)
 			else ("soft company · %d nearby · jar glow"):format(n)
+	end,
+	OnDeparted = function()
+		if porchDepartWelcomed or not (softLingered or softCompleteDone) then
+			return
+		end
+		porchDepartWelcomed = true
+		SoftWelcome.show(playerGui, "they drifted", "jar remembers · stay", {
+			AccentColor = porchStyle.AccentColor,
+			FrameColor = porchStyle.FrameColor,
+			HoldSeconds = 2.8,
+		})
 	end,
 	OnCountChanged = function(n)
 		porchCompanyNear = n >= 1

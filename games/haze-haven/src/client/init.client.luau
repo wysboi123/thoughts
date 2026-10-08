@@ -172,6 +172,7 @@ local function tintLocalNameplate(synced: boolean)
 	end
 end
 
+local hazeDepartWelcomed = false
 softCompanyHandle = SoftCompany.mount(playerGui, player, {
 	Radius = Config.Proximity.Radius,
 	Color = Color3.fromRGB(200, 180, 230),
@@ -202,6 +203,17 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		return if softLingered
 			then ("still here · %d nearby · vibes sync"):format(n)
 			else ("soft company · %d nearby · vibes sync"):format(n)
+	end,
+	OnDeparted = function()
+		if hazeDepartWelcomed or not (softLingered or softCompleteDone) then
+			return
+		end
+		hazeDepartWelcomed = true
+		SoftWelcome.show(playerGui, "they drifted", "vibes stay soft · stay", {
+			AccentColor = hazeStyle.AccentColor,
+			FrameColor = hazeStyle.FrameColor,
+			HoldSeconds = 2.8,
+		})
 	end,
 	OnCountChanged = function(n)
 		hazeCompanyNear = n >= 1

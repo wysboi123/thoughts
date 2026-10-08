@@ -16,6 +16,8 @@ export type SoftCompanyConfig = {
 	OneTextFn: (() -> string)?,
 	ManyText: ((number) -> string)?,
 	OnCountChanged: ((number) -> ())?,
+	-- Fires when nearby count drops from >0 to 0 (after DepartTextFn applied)
+	OnDeparted: (() -> ())?,
 }
 
 export type SoftCompanyHud = {
@@ -126,7 +128,8 @@ function SoftCompany.mount(playerGui: PlayerGui, localPlayer: Player, config: So
 		lastCount = n
 
 		if n <= 0 then
-			local depart = if prev > 0 and config.DepartTextFn then config.DepartTextFn() else nil
+			local departed = prev > 0
+			local depart = if departed and config.DepartTextFn then config.DepartTextFn() else nil
 			if depart and depart ~= "" then
 				label.Text = depart
 				pulseLeave()
@@ -151,11 +154,14 @@ function SoftCompany.mount(playerGui: PlayerGui, localPlayer: Player, config: So
 				label.Text = alone
 				if alone == "" then
 					label.TextTransparency = 1
-				elseif prev > 0 then
+				elseif departed then
 					pulseLeave()
 				else
 					label.TextTransparency = 0.45
 				end
+			end
+			if departed and config.OnDeparted then
+				config.OnDeparted()
 			end
 		elseif n == 1 then
 			departHoldUntil = 0

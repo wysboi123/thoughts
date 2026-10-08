@@ -328,6 +328,7 @@ Remotes.BenchSitChanged.OnClientEvent:Connect(function(seatName: string, display
 end)
 
 local companyWelcomed = false
+local busDepartWelcomed = false
 softCompanyHandle = SoftCompany.mount(playerGui, player, {
 	Radius = Config.Proximity.Radius,
 	Color = Color3.fromRGB(190, 200, 170),
@@ -379,6 +380,17 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		end
 		return ("soft company · %d nearby · wait together"):format(n)
 	end,
+	OnDeparted = function()
+		if busDepartWelcomed or not (softLingered or softCompleteDone) then
+			return
+		end
+		busDepartWelcomed = true
+		SoftWelcome.show(playerGui, "they drifted", "wait continues · stay", {
+			AccentColor = busStyle.AccentColor,
+			FrameColor = busStyle.FrameColor,
+			HoldSeconds = 2.8,
+		})
+	end,
 	OnCountChanged = function(n)
 		nearbyCount = n
 		if phase == "waiting" or softLingered or softCompleteDone then
@@ -396,7 +408,13 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		end
 		if waveBtn.Parent then
 			waveBtn.BackgroundColor3 = if n >= 1 then Color3.fromRGB(70, 95, 70) else Color3.fromRGB(50, 70, 55)
-			waveBtn.Text = if n >= 1 then "Wave together" else "Wave at bus"
+			if n >= 1 then
+				waveBtn.Text = "Wave together"
+			elseif softLingered then
+				waveBtn.Text = "Wave · still waiting"
+			else
+				waveBtn.Text = "Wave at bus"
+			end
 		end
 		local world = Workspace:FindFirstChild("BusStopWorld")
 		local notepad = world and world:FindFirstChild("NotepadBoard")

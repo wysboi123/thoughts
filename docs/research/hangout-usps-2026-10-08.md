@@ -16,6 +16,10 @@ Sources: Creator Hub Discovery key signals (bounce / playtime / intentional co-p
 
 When company leaves: brief DepartTextFn (~3.8s), then settle to AloneTextFn. Linger/soft-complete copy preferred when those flags are set. Avoids empty hard-cut after a social beat (bounce risk).
 
+## CP1 deepen
+
+SoftCompany **OnDeparted** → once-per-session SoftWelcome (“they drifted · stay”) after soft-complete/linger — soft bounce cushion after co-play ends. Bus wave button: “Wave · still waiting” when lingered alone.
+
 ## Do not invent
 
 Audio blocked on Perplexity Q-004. SoftInvite post-publish only.
