@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-08 01:20 UTC — Night hourly (v1.4.28 SoftButton)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.28:** SoftButton — soft enter · primary lead dot · bottom glow · richer soft shadow · API unchanged
+- Did not redo PadDisc (1.4.27) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-08 00:15 UTC — Night hourly (v1.4.27 PadDisc)
 
 - Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply

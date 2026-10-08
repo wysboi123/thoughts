@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   Animated,
   Pressable,
@@ -35,8 +35,22 @@ export function SoftButton({
 }: Props) {
   const scale = useRef(new Animated.Value(1)).current;
   const press = useRef(new Animated.Value(0)).current;
+  const enter = useRef(new Animated.Value(0)).current;
   const reduceMotion = useReducedMotion();
   const showAccent = accent ?? variant === 'primary';
+
+  useEffect(() => {
+    if (reduceMotion) {
+      enter.setValue(1);
+      return;
+    }
+    enter.setValue(0);
+    Animated.timing(enter, {
+      toValue: 1,
+      duration: 320,
+      useNativeDriver: true,
+    }).start();
+  }, [enter, reduceMotion]);
 
   const pressIn = () => {
     if (reduceMotion) return;
@@ -61,9 +75,22 @@ export function SoftButton({
     inputRange: [0, 1],
     outputRange: [0, 0.12],
   });
+  const enterOpacity = enter;
+  const enterY = enter.interpolate({
+    inputRange: [0, 1],
+    outputRange: [6, 0],
+  });
 
   return (
-    <Animated.View style={[{ transform: [{ scale }] }, style]}>
+    <Animated.View
+      style={[
+        {
+          opacity: enterOpacity,
+          transform: [{ scale }, { translateY: enterY }],
+        },
+        style,
+      ]}
+    >
       <Pressable
         accessibilityRole="button"
         accessibilityLabel={label}
@@ -108,15 +135,21 @@ export function SoftButton({
             style={[styles.pressWash, { opacity: pressWash }]}
           />
         ) : null}
-        <Text
-          style={[
-            styles.label,
-            variant === 'ghost' && styles.labelGhost,
-            variant === 'soft' && styles.labelSoft,
-          ]}
-        >
-          {label}
-        </Text>
+        {variant === 'primary' ? (
+          <View pointerEvents="none" style={styles.bottomGlow} />
+        ) : null}
+        <View style={styles.row}>
+          {variant === 'primary' ? <View style={styles.leadDot} /> : null}
+          <Text
+            style={[
+              styles.label,
+              variant === 'ghost' && styles.labelGhost,
+              variant === 'soft' && styles.labelSoft,
+            ]}
+          >
+            {label}
+          </Text>
+        </View>
       </Pressable>
     </Animated.View>
   );
@@ -135,10 +168,10 @@ const styles = StyleSheet.create({
   primary: {
     backgroundColor: colors.brand,
     shadowColor: colors.brandDeep,
-    shadowOpacity: 0.22,
-    shadowRadius: 8,
-    shadowOffset: { width: 0, height: 3 },
-    elevation: 2,
+    shadowOpacity: 0.26,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 3,
   },
   ghost: {
     backgroundColor: 'rgba(255,255,255,0.28)',
@@ -149,6 +182,11 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surfaceStrong,
     borderWidth: 1,
     borderColor: 'rgba(63, 111, 98, 0.18)',
+    shadowColor: '#243A34',
+    shadowOpacity: 0.08,
+    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 1,
   },
   disabled: { opacity: 0.45 },
   accentBar: {
@@ -179,6 +217,26 @@ const styles = StyleSheet.create({
   pressWash: {
     ...StyleSheet.absoluteFill,
     backgroundColor: 'rgba(36, 51, 58, 0.2)',
+  },
+  bottomGlow: {
+    position: 'absolute',
+    left: 12,
+    right: 12,
+    bottom: 0,
+    height: 3,
+    borderRadius: 2,
+    backgroundColor: 'rgba(247, 251, 249, 0.28)',
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  leadDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: 'rgba(247, 251, 249, 0.85)',
   },
   label: {
     fontFamily: fonts.bodyBold,
