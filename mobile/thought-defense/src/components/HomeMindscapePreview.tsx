@@ -27,6 +27,7 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
   const padPulse = useSharedValue(0.55);
   const walker = useSharedValue(0);
   const mist = useSharedValue(0.4);
+  const pathGlow = useSharedValue(0.35);
 
   useEffect(() => {
     if (reduceMotion) {
@@ -35,6 +36,7 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
       padPulse.value = 0.7;
       walker.value = 0.45;
       mist.value = 0.5;
+      pathGlow.value = 0.45;
       return;
     }
     enter.value = withTiming(1, { duration: 720, easing: Easing.out(Easing.cubic) });
@@ -73,7 +75,15 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
       -1,
       false,
     );
-  }, [core, enter, padPulse, walker, mist, reduceMotion]);
+    pathGlow.value = withRepeat(
+      withSequence(
+        withTiming(0.55, { duration: 2000, easing: Easing.inOut(Easing.sin) }),
+        withTiming(0.28, { duration: 2000, easing: Easing.inOut(Easing.sin) }),
+      ),
+      -1,
+      false,
+    );
+  }, [core, enter, padPulse, walker, mist, pathGlow, reduceMotion]);
 
   const wrapStyle = useAnimatedStyle(() => ({
     opacity: enter.value,
@@ -88,6 +98,9 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
   }));
   const mistStyle = useAnimatedStyle(() => ({
     opacity: mist.value * (dawn ? 0.55 : 0.4),
+  }));
+  const pathGlowStyle = useAnimatedStyle(() => ({
+    opacity: pathGlow.value * (dawn ? 0.5 : 0.4),
   }));
   const walkerStyle = useAnimatedStyle(() => {
     // Soft thought drifts along the L-path: down then right.
@@ -104,20 +117,27 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
       transform: [{ scale: 0.85 + mid * 0.2 }],
     };
   });
+  const walkerTrailStyle = useAnimatedStyle(() => {
+    const t = Math.max(0, walker.value - 0.08);
+    const down = Math.min(1, t / 0.55);
+    const across = Math.max(0, (t - 0.55) / 0.45);
+    return {
+      left: 22 + across * 95,
+      top: 32 + down * 58,
+      opacity: 0.22,
+    };
+  });
 
   const lookLabel =
     dawn && lantern ? 'Dawn + Lantern' : dawn ? 'Dawn Path' : lantern ? 'Lantern' : null;
 
   return (
     <Animated.View
-      style={[
-        styles.wrap,
-        dawn ? styles.wrapDawn : null,
-        wrapStyle,
-      ]}
+      style={[styles.wrap, dawn ? styles.wrapDawn : null, wrapStyle]}
       accessible
       accessibilityLabel="Soft mindscape preview: path, plant pads, and Peace Core"
     >
+      <View pointerEvents="none" style={styles.accentBar} />
       <Animated.View
         pointerEvents="none"
         style={[
@@ -127,23 +147,21 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
         ]}
       />
       <View style={[styles.ground, dawn ? styles.groundDawn : null]} />
-      <View
+      <Animated.View
+        pointerEvents="none"
         style={[
-          styles.path,
-          dawn ? { backgroundColor: '#E8C9A0' } : null,
+          styles.pathGlow,
+          pathGlowStyle,
+          { backgroundColor: dawn ? 'rgba(232, 201, 160, 0.35)' : 'rgba(91, 138, 122, 0.28)' },
         ]}
       />
-      <View
-        style={[
-          styles.pathBend,
-          dawn ? { backgroundColor: '#E8C9A0' } : null,
-        ]}
-      />
+      <View style={[styles.path, dawn ? { backgroundColor: '#E8C9A0' } : null]} />
+      <View style={[styles.pathBend, dawn ? { backgroundColor: '#E8C9A0' } : null]} />
       {!reduceMotion ? (
-        <Animated.View
-          pointerEvents="none"
-          style={[styles.walker, walkerStyle]}
-        />
+        <>
+          <Animated.View pointerEvents="none" style={[styles.walkerTrail, walkerTrailStyle]} />
+          <Animated.View pointerEvents="none" style={[styles.walker, walkerStyle]} />
+        </>
       ) : null}
       <Animated.View
         style={[
@@ -191,11 +209,13 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
         ]}
       />
       <View style={[styles.core, dawn ? { backgroundColor: colors.coreGlow } : null]}>
+        <View style={styles.coreDot} />
         <Text style={styles.coreLabel}>Peace</Text>
         <Text style={styles.coreSub}>still</Text>
       </View>
       {lookLabel ? (
         <View style={[styles.lookChip, dawn ? styles.lookChipDawn : null]}>
+          <View style={[styles.lookDot, dawn ? styles.lookDotDawn : null]} />
           <Text style={styles.lookChipText}>{lookLabel}</Text>
         </View>
       ) : null}
@@ -205,6 +225,7 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
             ? `plan view · ${lookLabel} looks`
             : 'plan view · plant kindness · hold Peace'}
         </Text>
+        <Text style={styles.captionMeta}>metaphor only</Text>
       </View>
     </Animated.View>
   );
@@ -219,10 +240,24 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.38)',
     borderWidth: 1,
     borderColor: colors.line,
+    shadowColor: '#243A34',
+    shadowOpacity: 0.1,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 5 },
+    elevation: 2,
   },
   wrapDawn: {
     backgroundColor: 'rgba(255, 246, 230, 0.55)',
     borderColor: 'rgba(232, 201, 160, 0.45)',
+  },
+  accentBar: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 2,
+    backgroundColor: colors.brand,
+    opacity: 0.45,
   },
   mistWash: {
     position: 'absolute',
@@ -244,6 +279,14 @@ const styles = StyleSheet.create({
   groundDawn: {
     backgroundColor: 'rgba(232, 201, 160, 0.16)',
   },
+  pathGlow: {
+    position: 'absolute',
+    left: 12,
+    top: 22,
+    width: 30,
+    height: 92,
+    borderRadius: 14,
+  },
   path: {
     position: 'absolute',
     left: 18,
@@ -261,6 +304,13 @@ const styles = StyleSheet.create({
     height: 16,
     borderRadius: 10,
     backgroundColor: colors.path,
+  },
+  walkerTrail: {
+    position: 'absolute',
+    width: 14,
+    height: 14,
+    borderRadius: 7,
+    backgroundColor: 'rgba(176, 140, 110, 0.35)',
   },
   walker: {
     position: 'absolute',
@@ -342,6 +392,13 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
     borderColor: 'rgba(255,255,255,0.8)',
   },
+  coreDot: {
+    width: 4,
+    height: 4,
+    borderRadius: 2,
+    backgroundColor: colors.calm,
+    marginBottom: 1,
+  },
   coreLabel: {
     fontFamily: fonts.bodyMedium,
     fontSize: 9,
@@ -358,6 +415,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 10,
     left: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
     paddingHorizontal: 8,
     paddingVertical: 3,
     borderRadius: 8,
@@ -369,6 +429,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 246, 230, 0.85)',
     borderColor: 'rgba(232, 201, 160, 0.5)',
   },
+  lookDot: {
+    width: 5,
+    height: 5,
+    borderRadius: 3,
+    backgroundColor: colors.brand,
+  },
+  lookDotDawn: {
+    backgroundColor: '#C9A85A',
+  },
   lookChipText: {
     fontFamily: fonts.bodyMedium,
     fontSize: 9,
@@ -379,6 +448,10 @@ const styles = StyleSheet.create({
     left: 12,
     right: 12,
     bottom: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 8,
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderRadius: 10,
@@ -388,5 +461,11 @@ const styles = StyleSheet.create({
     fontFamily: fonts.body,
     fontSize: 11,
     color: colors.inkSoft,
+    flexShrink: 1,
+  },
+  captionMeta: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 9,
+    color: colors.clarity,
   },
 });

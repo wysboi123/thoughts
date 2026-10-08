@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-08 02:25 UTC — Night hourly (v1.4.29 HomeMindscapePreview)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.29:** HomeMindscapePreview — accent bar · soft shadow · path glow · walker trail · Peace status dot · look-chip dot · metaphor caption
+- Did not redo SoftButton (1.4.28) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-08 01:20 UTC — Night hourly (v1.4.28 SoftButton)
 
 - Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
