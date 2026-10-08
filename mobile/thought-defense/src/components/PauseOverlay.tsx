@@ -140,16 +140,22 @@ export function PauseOverlay({
         <Pressable onPress={(e) => e.stopPropagation()}>
           <Animated.View style={[styles.card, dawn ? styles.cardDawn : null, cardStyle]}>
             <View style={[styles.accentBar, dawn ? styles.accentBarDawn : null]} />
+            <View
+              pointerEvents="none"
+              style={[styles.topSheen, dawn ? styles.topSheenDawn : null]}
+            />
             <Animated.View
               pointerEvents="none"
               style={[styles.breathOrb, dawn ? styles.breathOrbDawn : null, orbStyle]}
             />
             <View style={styles.eyebrowRow}>
               <View style={[styles.eyebrowBadge, dawn ? styles.eyebrowBadgeDawn : null]}>
+                <View style={[styles.eyebrowDot, dawn ? styles.eyebrowDotDawn : null]} />
                 <Text style={styles.eyebrow}>Mindscape paused</Text>
               </View>
               {calmLow ? (
                 <View style={styles.calmWarnChip} accessibilityRole="text">
+                  <View style={styles.calmWarnDot} />
                   <Text style={styles.calmWarnText}>calm soft</Text>
                 </View>
               ) : null}
@@ -181,11 +187,19 @@ export function PauseOverlay({
                     pillAStyle,
                   ]}
                 >
-                  <Text
-                    style={[styles.snapshotLabel, calmLow ? styles.snapshotLabelWarn : null]}
-                  >
-                    Calm
-                  </Text>
+                  <View style={styles.snapshotTop}>
+                    <View
+                      style={[
+                        styles.snapshotDot,
+                        { backgroundColor: calmLow ? colors.dangerSoft : colors.calm },
+                      ]}
+                    />
+                    <Text
+                      style={[styles.snapshotLabel, calmLow ? styles.snapshotLabelWarn : null]}
+                    >
+                      Calm
+                    </Text>
+                  </View>
                   <Text
                     style={[styles.snapshotValue, calmLow ? styles.snapshotValueWarn : null]}
                   >
@@ -195,7 +209,10 @@ export function PauseOverlay({
                 <Animated.View
                   style={[styles.snapshotPill, styles.snapshotClarity, pillBStyle]}
                 >
-                  <Text style={styles.snapshotLabel}>Clarity</Text>
+                  <View style={styles.snapshotTop}>
+                    <View style={[styles.snapshotDot, { backgroundColor: colors.clarity }]} />
+                    <Text style={styles.snapshotLabel}>Clarity</Text>
+                  </View>
                   <Text style={styles.snapshotValue}>{clarity}</Text>
                 </Animated.View>
               </View>
@@ -281,6 +298,11 @@ const styles = StyleSheet.create({
     borderColor: colors.line,
     gap: 8,
     overflow: 'hidden',
+    shadowColor: '#243A34',
+    shadowOpacity: 0.16,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 10 },
+    elevation: 5,
   },
   cardDawn: {
     backgroundColor: '#F3E8D6',
@@ -297,6 +319,17 @@ const styles = StyleSheet.create({
   },
   accentBarDawn: {
     backgroundColor: colors.gratitude,
+  },
+  topSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '28%',
+    backgroundColor: 'rgba(255,255,255,0.28)',
+  },
+  topSheenDawn: {
+    backgroundColor: 'rgba(255, 248, 230, 0.35)',
   },
   breathOrb: {
     position: 'absolute',
@@ -318,6 +351,9 @@ const styles = StyleSheet.create({
   },
   eyebrowBadge: {
     alignSelf: 'flex-start',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
     paddingHorizontal: 10,
     paddingVertical: 4,
     borderRadius: 10,
@@ -329,6 +365,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(201, 168, 90, 0.18)',
     borderColor: 'rgba(201, 168, 90, 0.35)',
   },
+  eyebrowDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: colors.calm,
+  },
+  eyebrowDotDawn: {
+    backgroundColor: colors.gratitude,
+  },
   eyebrow: {
     fontFamily: fonts.bodyMedium,
     fontSize: 12,
@@ -337,12 +382,21 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   calmWarnChip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
     paddingHorizontal: 8,
     paddingVertical: 3,
     borderRadius: 8,
     backgroundColor: 'rgba(196, 120, 120, 0.16)',
     borderWidth: 1,
     borderColor: 'rgba(196, 120, 120, 0.3)',
+  },
+  calmWarnDot: {
+    width: 5,
+    height: 5,
+    borderRadius: 3,
+    backgroundColor: colors.dangerSoft,
   },
   calmWarnText: {
     fontFamily: fonts.bodyMedium,
@@ -408,6 +462,16 @@ const styles = StyleSheet.create({
   snapshotClarity: {
     backgroundColor: 'rgba(106, 158, 174, 0.14)',
     borderColor: 'rgba(106, 158, 174, 0.22)',
+  },
+  snapshotTop: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+  },
+  snapshotDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
   },
   snapshotLabel: {
     fontFamily: fonts.body,
