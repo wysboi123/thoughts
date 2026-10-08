@@ -20,6 +20,10 @@ When company leaves: brief DepartTextFn (~3.8s), then settle to AloneTextFn. Lin
 
 SoftCompany **OnDeparted** → once-per-session SoftWelcome (“they drifted · stay”) after soft-complete/linger — soft bounce cushion after co-play ends. Bus wave button: “Wave · still waiting” when lingered alone.
 
+## CP2 deepen
+
+SoftSit **EmptyTextFn** — brief “still here · seat/bench/rocker/couch open” when last sitter leaves after soft-complete/linger (~2.2s then fade). SoftInvite prep note: invite on first-arrive only, never OnDeparted.
+
 ## Do not invent
 
 Audio blocked on Perplexity Q-004. SoftInvite post-publish only.

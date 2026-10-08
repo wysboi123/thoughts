@@ -88,6 +88,14 @@ local softLingered = false
 local proximityHandle: any = nil
 local softCompanyHandle: any = nil
 local porchSit = SoftSit.mount(playerGui, {
+	EmptyTextFn = function()
+		if softLingered then
+			return "still here · rocker open"
+		elseif softCompleteDone then
+			return "soft-complete · rocker open"
+		end
+		return ""
+	end,
 	OneText = function(name)
 		if porchCompanyNear then
 			return if softLingered then (name .. " is on the porch · still here · company") else (name .. " is on the porch · company")

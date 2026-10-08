@@ -304,6 +304,14 @@ end)
 local SoftSit = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftSit"))
 local benchSit = SoftSit.mount(playerGui, {
 	EmptyText = "",
+	EmptyTextFn = function()
+		if softLingered then
+			return "still here · bench open"
+		elseif softCompleteDone then
+			return "soft-complete · bench open"
+		end
+		return ""
+	end,
 	OneText = function(name)
 		if nearbyCount >= 1 then
 			return if softLingered then (name .. " is waiting together · still here") else (name .. " is waiting together")

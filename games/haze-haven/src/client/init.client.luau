@@ -106,6 +106,14 @@ local SoftSit = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("So
 local hazeCompanyNear = false
 local hazeSit = SoftSit.mount(playerGui, {
 	EmptyText = "",
+	EmptyTextFn = function()
+		if softLingered then
+			return "still here · seat open"
+		elseif softCompleteDone then
+			return "soft-complete · seat open"
+		end
+		return ""
+	end,
 	OneText = function(name)
 		if hazeCompanyNear then
 			return if softLingered then (name .. " is chilling · still here · sync") else (name .. " is chilling · sync")

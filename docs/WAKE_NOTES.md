@@ -2,6 +2,15 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-08 03:00 UTC — Night 14 checkpoint 2 (quiet)
+
+- Active: **Haze 3.24** · **Couch 3.22** · **Bus 3.23** · **Porch 3.21**
+- SoftSit EmptyTextFn seat/bench/rocker/couch open after leave
+- SoftInvite prep: invite on first-arrive only (not OnDeparted)
+- Parked untouched; no invented audio
+- Still blocked: Perplexity Q-001–004 · first Studio publish
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
 ## 2026-10-08 01:00 UTC — Night 14 checkpoint 1 (quiet)
 
 - Active: **Haze 3.23** · **Couch 3.21** · **Bus 3.22** · **Porch 3.20**

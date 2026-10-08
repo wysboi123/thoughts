@@ -18,7 +18,7 @@ Then: `local SoftGoals = require(ReplicatedStorage.Chill.SoftGoals)`
 | `SoftGoals` | Soft checklist · `Optional` · OnSessionSealed · OnLinger · optional re-pulse |
 | `Proximity` | Soft PointLight glow (scales with nearby count + `setBoost`) |
 | `SoftWelcome` | One-shot toast (replaces prior; optional accent colors) |
-| `SoftSit` | Sit-status line · `refresh` pulses on copy change (still-here) |
+| `SoftSit` | Sit-status line · `EmptyTextFn` seat-open · `refresh` still-here pulse |
 | `SoftWireSeats` | Seat.Occupant → RemoteEvent for SoftSit |
 | `SoftCompany` | Nearby co-play HUD · `DepartTextFn` · `OnDeparted` · `refresh` linger |
 

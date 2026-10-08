@@ -16,10 +16,11 @@ Creator Hub ranks **intentional co-play days** as Important for Recommended for 
 
 Shared module sketch (future `packages/chill/SoftInvite.luau`):
 
-- Call only after soft-complete or SoftCompany first-arrive
+- Call only after soft-complete or SoftCompany **first-arrive** (not OnDeparted — leave is for stay toast)
 - Use `SocialService:CanSendGameInviteAsync` / `PromptGameInvite` patterns from Creator Hub
 - Soft copy only — never spam; once per session max
 - No hologram / hard CTA clutter in first viewport
+- Prefer after SoftCompany company-welcomed toast fades (~4s), not stacked with DepartTextFn
 
 ## Copy hooks (when enabled)
 

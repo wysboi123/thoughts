@@ -15,6 +15,8 @@ function SoftSit.mount(
 	playerGui: PlayerGui,
 	opts: {
 		EmptyText: string?,
+		-- Dynamic empty line (e.g. still-here · seat open after linger)
+		EmptyTextFn: (() -> string)?,
 		OneText: ((string) -> string)?,
 		ManyText: (({ string }) -> string)?,
 		Color: Color3?,
@@ -42,6 +44,22 @@ function SoftSit.mount(
 	label.Parent = gui
 
 	local occupants: { [string]: string } = {}
+	local emptyHoldToken = 0
+
+	local function emptyLine(): string
+		if options.EmptyTextFn then
+			return options.EmptyTextFn()
+		end
+		return options.EmptyText or ""
+	end
+
+	local function fadeEmpty()
+		TweenService:Create(
+			label,
+			TweenInfo.new(0.35, Enum.EasingStyle.Quad, Enum.EasingDirection.In),
+			{ TextTransparency = 1 }
+		):Play()
+	end
 
 	local function refresh()
 		local names = {}
@@ -49,15 +67,38 @@ function SoftSit.mount(
 			table.insert(names, n)
 		end
 		local prevText = label.Text
-		local wasEmpty = prevText == "" or prevText == (options.EmptyText or "")
+		local empty = emptyLine()
+		local wasEmpty = prevText == "" or prevText == empty or prevText == (options.EmptyText or "")
 		if #names == 0 then
-			label.Text = options.EmptyText or ""
-			TweenService:Create(
-				label,
-				TweenInfo.new(0.35, Enum.EasingStyle.Quad, Enum.EasingDirection.In),
-				{ TextTransparency = 1 }
-			):Play()
+			label.Text = empty
+			if empty ~= "" and not wasEmpty then
+				-- Soft leave of seat: brief still-here / seat-open, then fade
+				emptyHoldToken += 1
+				local token = emptyHoldToken
+				label.TextTransparency = 0.25
+				TweenService:Create(
+					label,
+					TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+					{ TextTransparency = 0.15 }
+				):Play()
+				task.delay(2.2, function()
+					if token ~= emptyHoldToken then
+						return
+					end
+					local stillEmpty = true
+					for _ in occupants do
+						stillEmpty = false
+						break
+					end
+					if stillEmpty and label.Parent then
+						fadeEmpty()
+					end
+				end)
+			else
+				fadeEmpty()
+			end
 		elseif #names == 1 then
+			emptyHoldToken += 1
 			local one = options.OneText
 			label.Text = if one then one(names[1]) else (names[1] .. " is sitting")
 			-- Soft linger/copy pulse when sit line flips (e.g. still-here after OnLinger)
@@ -70,6 +111,7 @@ function SoftSit.mount(
 				{ TextTransparency = 0 }
 			):Play()
 		else
+			emptyHoldToken += 1
 			local many = options.ManyText
 			label.Text = if many then many(names) else (table.concat(names, " & ") .. " are sitting")
 			if label.Text ~= prevText then

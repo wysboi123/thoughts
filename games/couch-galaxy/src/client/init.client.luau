@@ -174,6 +174,14 @@ end
 
 local couchCompanyNear = false
 local couchSit = SoftSit.mount(playerGui, {
+	EmptyTextFn = function()
+		if softLingered then
+			return if inGalaxy then "still here · hammock open" else "still here · couch open"
+		elseif softCompleteDone then
+			return if inGalaxy then "soft-complete · hammock open" else "soft-complete · couch open"
+		end
+		return ""
+	end,
 	OneText = function(name)
 		if inGalaxy then
 			if couchCompanyNear then
