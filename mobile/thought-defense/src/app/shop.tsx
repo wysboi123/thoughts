@@ -162,7 +162,10 @@ export default function ShopScreen() {
             style={[styles.freeStrip, looks.dawn ? styles.freeStripDawn : null]}
             accessibilityRole="text"
           >
-            <Text style={styles.freeStripTitle}>Core loop stays free</Text>
+            <View style={styles.freeStripHead}>
+              <View style={[styles.leadDot, looks.dawn ? styles.leadDotDawn : null]} />
+              <Text style={styles.freeStripTitle}>Core loop stays free</Text>
+            </View>
             <Text style={styles.freeStripBody}>
               Every wave, plant, upgrade, and soft goal works without a purchase. Pass & packs are
               thank-yous for looks and quiet comfort.
@@ -194,6 +197,7 @@ export default function ShopScreen() {
               <Text style={styles.statusTitle}>Your comfort</Text>
               {entitlements.clarityPassActive ? (
                 <View style={styles.passLiveChip}>
+                  <View style={styles.passLiveDot} />
                   <Text style={styles.passLiveText}>Pass live</Text>
                 </View>
               ) : null}
@@ -251,7 +255,19 @@ export default function ShopScreen() {
               <View style={styles.sectionHead}>
                 <View style={[styles.sectionAccent, { backgroundColor: accent }]} />
                 <View style={styles.sectionCopy}>
-                  <Text style={styles.sectionTitle}>{section.title}</Text>
+                  <View style={styles.sectionTitleRow}>
+                    <Text style={styles.sectionTitle}>{section.title}</Text>
+                    <View style={[styles.sectionChip, { backgroundColor: `${accent}22`, borderColor: `${accent}44` }]}>
+                      <View style={[styles.sectionChipDot, { backgroundColor: accent }]} />
+                      <Text style={[styles.sectionChipText, { color: accent }]}>
+                        {section.kind === 'subscription'
+                          ? 'Pass'
+                          : section.kind === 'consumable'
+                            ? 'Boost'
+                            : 'Looks'}
+                      </Text>
+                    </View>
+                  </View>
                   <Text style={styles.sectionHint}>{section.hint}</Text>
                 </View>
               </View>
@@ -271,26 +287,39 @@ export default function ShopScreen() {
                         { borderLeftColor: accent, borderLeftWidth: 3 },
                       ]}
                     >
+                      <View
+                        pointerEvents="none"
+                        style={[styles.cardTopAccent, { backgroundColor: accent }]}
+                      />
+                      {isPass ? (
+                        <View style={styles.passSheen} pointerEvents="none" />
+                      ) : null}
                       {isPass ? (
                         <Text style={styles.passEyebrow}>Monthly comfort · cancel anytime</Text>
                       ) : null}
                       <View style={styles.cardTop}>
                         <Text style={[styles.title, isPass && styles.titlePass]}>{p.title}</Text>
                         {isOwned ? (
-                          <Text style={styles.badge}>
-                            {p.kind === 'subscription' ? 'Active' : 'Owned'}
-                          </Text>
+                          <View style={styles.badge}>
+                            <View style={styles.badgeDot} />
+                            <Text style={styles.badgeText}>
+                              {p.kind === 'subscription' ? 'Active' : 'Owned'}
+                            </Text>
+                          </View>
                         ) : null}
                       </View>
-                      <Text style={[styles.kind, { color: accent }]}>
-                        {p.kind === 'subscription'
-                          ? 'Subscription'
-                          : p.kind === 'consumable'
-                            ? 'One-time boost'
-                            : 'Cosmetic'}
-                        {' · '}
-                        {p.priceHint}
-                      </Text>
+                      <View style={styles.kindRow}>
+                        <Text style={[styles.kind, { color: accent }]}>
+                          {p.kind === 'subscription'
+                            ? 'Subscription'
+                            : p.kind === 'consumable'
+                              ? 'One-time boost'
+                              : 'Cosmetic'}
+                        </Text>
+                        <View style={[styles.priceChip, { borderColor: `${accent}55`, backgroundColor: `${accent}14` }]}>
+                          <Text style={[styles.priceChipText, { color: accent }]}>{p.priceHint}</Text>
+                        </View>
+                      </View>
                       <Text style={styles.blurb}>{p.blurb}</Text>
                       {isPass ? (
                         <View style={styles.perkList}>
@@ -352,7 +381,10 @@ export default function ShopScreen() {
 
         <SoftCardEnter index={cardIndex + 1} reduceMotion={reduceMotion}>
           <View style={styles.comfortStrip} accessibilityRole="summary">
-            <Text style={styles.comfortTitle}>Metaphor only</Text>
+            <View style={styles.comfortHead}>
+              <View style={styles.comfortDot} />
+              <Text style={styles.comfortTitle}>Metaphor only</Text>
+            </View>
             <Text style={styles.comfortBody}>
               Purchases never change the core kindness loop. Soft looks and quiet comfort only —
               not therapy, diagnosis, or treatment.
@@ -402,6 +434,20 @@ const styles = StyleSheet.create({
   freeStripDawn: {
     backgroundColor: 'rgba(232, 201, 160, 0.22)',
     borderColor: 'rgba(201, 168, 90, 0.35)',
+  },
+  freeStripHead: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  leadDot: {
+    width: 7,
+    height: 7,
+    borderRadius: 4,
+    backgroundColor: colors.calm,
+  },
+  leadDotDawn: {
+    backgroundColor: '#C9A85A',
   },
   freeStripTitle: {
     fontFamily: fonts.bodyBold,
@@ -456,12 +502,21 @@ const styles = StyleSheet.create({
     color: colors.brandDeep,
   },
   passLiveChip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
     paddingHorizontal: 8,
     paddingVertical: 3,
     borderRadius: 8,
     backgroundColor: 'rgba(91, 138, 122, 0.22)',
     borderWidth: 1,
     borderColor: 'rgba(91, 138, 122, 0.35)',
+  },
+  passLiveDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: colors.calm,
   },
   passLiveText: {
     fontFamily: fonts.bodyMedium,
@@ -516,10 +571,35 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   sectionCopy: { flex: 1, gap: 2 },
+  sectionTitleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 8,
+  },
   sectionTitle: {
     fontFamily: fonts.bodyBold,
     fontSize: 14,
     color: colors.brandDeep,
+    flexShrink: 1,
+  },
+  sectionChip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 8,
+    borderWidth: 1,
+  },
+  sectionChipDot: {
+    width: 5,
+    height: 5,
+    borderRadius: 3,
+  },
+  sectionChipText: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 10,
   },
   sectionHint: {
     fontFamily: fonts.body,
@@ -529,11 +609,34 @@ const styles = StyleSheet.create({
   card: {
     marginBottom: 14,
     padding: 16,
+    paddingTop: 18,
     borderRadius: 20,
     backgroundColor: colors.surface,
     borderWidth: 1,
     borderColor: colors.line,
     gap: 8,
+    overflow: 'hidden',
+    shadowColor: '#243A34',
+    shadowOpacity: 0.08,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 2,
+  },
+  cardTopAccent: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 2,
+    opacity: 0.55,
+  },
+  passSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 36,
+    backgroundColor: 'rgba(255,255,255,0.22)',
   },
   cardDawn: {
     backgroundColor: 'rgba(255, 248, 235, 0.7)',
@@ -541,7 +644,7 @@ const styles = StyleSheet.create({
   cardPass: {
     borderColor: 'rgba(91, 138, 122, 0.45)',
     backgroundColor: 'rgba(91, 138, 122, 0.1)',
-    paddingTop: 14,
+    paddingTop: 16,
   },
   cardOwned: {
     borderColor: colors.calm,
@@ -562,16 +665,43 @@ const styles = StyleSheet.create({
   title: { fontFamily: fonts.bodyBold, fontSize: 18, color: colors.ink, flex: 1 },
   titlePass: { fontSize: 20, color: colors.brandDeep },
   badge: {
-    fontFamily: fonts.bodyMedium,
-    fontSize: 11,
-    color: colors.calm,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
     paddingHorizontal: 8,
     paddingVertical: 3,
     borderRadius: 8,
     backgroundColor: 'rgba(255,255,255,0.7)',
     overflow: 'hidden',
   },
-  kind: { fontFamily: fonts.bodyMedium, fontSize: 12 },
+  badgeDot: {
+    width: 5,
+    height: 5,
+    borderRadius: 3,
+    backgroundColor: colors.calm,
+  },
+  badgeText: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 11,
+    color: colors.calm,
+  },
+  kindRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 8,
+  },
+  kind: { fontFamily: fonts.bodyMedium, fontSize: 12, flexShrink: 1 },
+  priceChip: {
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 8,
+    borderWidth: 1,
+  },
+  priceChipText: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 11,
+  },
   blurb: { fontFamily: fonts.body, fontSize: 14, lineHeight: 20, color: colors.inkSoft },
   perkList: { gap: 2, marginTop: 2 },
   perkLine: {
@@ -620,6 +750,18 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.line,
     gap: 2,
+  },
+  comfortHead: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+  },
+  comfortDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: colors.brand,
+    opacity: 0.7,
   },
   comfortTitle: {
     fontFamily: fonts.bodyMedium,

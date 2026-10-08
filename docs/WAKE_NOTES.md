@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-08 23:30 UTC — Night hourly (v1.4.33 Shop)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.33:** Shop — card top accent · soft shadow · Pass sheen · price chips · section chips · free/comfort/status dots
+- Did not redo Atmosphere (1.4.32) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-08 23:20 UTC — Night resume (v1.4.32 Atmosphere)
 
 - Timer `overnight-daily-resume` · NIGHT resume · no Femmy Gmail reply
