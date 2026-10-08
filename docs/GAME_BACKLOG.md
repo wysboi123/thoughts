@@ -22,7 +22,7 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 - [x] **Night 11** — complete (SoftGoals.Optional · company-still-open · OnSessionSealed; Haze 3.11 · Couch 3.9 · Bus 3.10 · Porch 3.9)
 - [x] **Night 12** — complete (SoftGoals OnLinger · still-here SoftCompany/place · SoftInvite prep; Haze 3.15 · Couch 3.13 · Bus 3.14 · Porch 3.13)
 - [x] **Night 13** — complete (SoftCompany.refresh · linger warmth; Haze 3.21 · Couch 3.19 · Bus 3.20 · Porch 3.18)
-- [ ] **Night 14** — in progress (DepartTextFn · OnDeparted · SoftSit EmptyTextFn; Haze 3.24 · Couch 3.22 · Bus 3.23 · Porch 3.21)
+- [x] **Night 14** — complete (DepartTextFn · OnDeparted · SoftSit EmptyTextFn; Haze 3.24 · Couch 3.22 · Bus 3.23 · Porch 3.21)
 
 ## Parked for later (files kept — do not erase)
 

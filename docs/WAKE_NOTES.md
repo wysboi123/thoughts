@@ -2,6 +2,36 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-08 05:00 UTC — OVERNIGHT STOP (Night 14)
+
+Night 14 complete. No new features this wrap. One digest email sent.
+
+**Shipped Night 14**
+- SoftCompany **DepartTextFn** (“they drifted · stay”) + **OnDeparted** SoftWelcome (once)
+- SoftGoals optional-row **re-pulse** ~36s after OnLinger if company goals open
+- SoftSit **EmptyTextFn** — brief seat/bench/rocker/couch open after last sitter leaves
+- Bus wave “Wave · still waiting” · Porch jar linger-after-leave colors
+- SoftInvite prep: invite on first-arrive only · research `hangout-usps-2026-10-08.md`
+- Active versions: Haze **3.24** · Couch **3.22** · Bus **3.23** · Porch **3.21**
+- 4 commits since 2026-10-07 23:00 UTC (+ this stop wrap)
+- Parked trio untouched; no invented audio ids
+
+**Blocked**
+- Perplexity Q-001–004 still open — no invented audio ids
+- First Studio publish → `PUBLISH_CHECKLIST.md` (Haze ready)
+- SoftInvite gated until Place URL in `PUBLISH_STATUS.md`
+
+**Ops**
+- PR: https://github.com/wysboi123/thoughts/pull/3
+- Daily resume `overnight-daily-resume` **active** (23:00 UTC; expires **2026-10-14**)
+- Email: one digest at stop only (Femmy policy)
+
+**Next night**
+- Apply Perplexity answers if any
+- Femmy: first Haze Studio publish
+- Soft invite prompt only after publish (`SOFT_INVITE.md`)
+- Continue active-four polish; parked until asked
+
 ## 2026-10-08 03:00 UTC — Night 14 checkpoint 2 (quiet)
 
 - Active: **Haze 3.24** · **Couch 3.22** · **Bus 3.23** · **Porch 3.21**
