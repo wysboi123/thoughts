@@ -50,15 +50,16 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-07 ~04:15:** SoftFxLayer polish v1.4.25 — outer halo · soft motes · longer plant/clear life · richer spark (last slice before ~05:00 stop).
 - **2026-10-07 ~05:00 OVERNIGHT STOP:** Hard stop after night ship v1.4.21→v1.4.25. Did **not** re-arm overnight-stop. Next resume 23:00 UTC.
 - **2026-10-07 ~23:15 night:** PeaceCore polish v1.4.26 — mid halo · sheen · status dot · soft shadow · holding-gently chip. Re-armed stop + daily-resume (resume timer had expired).
+- **2026-10-08 ~00:15:** PadDisc polish v1.4.27 — dual empty aura · top accent · plant chip · filled sheen accent.
 
 ## State
 
-- Version: **mobile 1.4.26** (PeaceCore polish)
+- Version: **mobile 1.4.27** (PadDisc polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: `99682db` (v1.4.26 PeaceCore)
+- Tip: pending after push
 - Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
-- Night envelope: **OPEN** until ~05:00 · `overnight-stop-5am-utc` armed (`sub_7fac0a8f…`) · `overnight-daily-resume` re-armed (`sub_d6468578…`)
+- Night envelope: **OPEN** until ~05:00 · `overnight-stop-5am-utc` armed (`sub_7fac0a8f…`) · `overnight-daily-resume` armed (`sub_d6468578…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
 - Next: night hourlies · overnight stop ~05:00 · or Femmy RC/RNIap / Pass price reply

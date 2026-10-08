@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-08 00:15 UTC — Night hourly (v1.4.27 PadDisc)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.27:** PadDisc — dual empty aura · top accent strip · plant chip with dot · filled sheen accent · soft enter kept
+- Did not redo PeaceCore (1.4.26) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-07 23:15 UTC — Night hourly (v1.4.26 PeaceCore)
 
 - Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply · overnight-daily-resume had expired — **re-armed** resume + stop

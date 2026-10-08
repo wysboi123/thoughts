@@ -1,6 +1,6 @@
 {
   "name": "thought-defense",
-  "version": "1.4.26",
+  "version": "1.4.27",
   "main": "expo-router/entry",
   "scripts": {
     "start": "expo start",

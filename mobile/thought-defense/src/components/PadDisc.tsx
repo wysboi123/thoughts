@@ -50,6 +50,7 @@ export function PadDisc({
 }: Props) {
   const breath = useSharedValue(1);
   const aura = useSharedValue(0.35);
+  const outerAura = useSharedValue(0.22);
   const pop = useSharedValue(1);
   const enter = useSharedValue(0);
   const selectPulse = useSharedValue(1);
@@ -60,13 +61,14 @@ export function PadDisc({
       enter.value = 1;
       return;
     }
-    enter.value = withTiming(1, { duration: 360, easing: Easing.out(Easing.cubic) });
+    enter.value = withTiming(1, { duration: 380, easing: Easing.out(Easing.cubic) });
   }, [enter, reduceMotion]);
 
   useEffect(() => {
     if (filled || reduceMotion) {
       breath.value = withTiming(1, { duration: reduceMotion ? 0 : 200 });
       aura.value = withTiming(filled ? 0.2 : 0.4, { duration: reduceMotion ? 0 : 200 });
+      outerAura.value = withTiming(filled ? 0.1 : 0.25, { duration: reduceMotion ? 0 : 200 });
       return;
     }
     breath.value = withRepeat(
@@ -85,11 +87,20 @@ export function PadDisc({
       -1,
       false,
     );
+    outerAura.value = withRepeat(
+      withSequence(
+        withTiming(0.42, { duration: 1800, easing: Easing.inOut(Easing.sin) }),
+        withTiming(0.16, { duration: 1800, easing: Easing.inOut(Easing.sin) }),
+      ),
+      -1,
+      false,
+    );
     return () => {
       cancelAnimation(breath);
       cancelAnimation(aura);
+      cancelAnimation(outerAura);
     };
-  }, [filled, breath, aura, reduceMotion]);
+  }, [filled, breath, aura, outerAura, reduceMotion]);
 
   useEffect(() => {
     if (!selected || reduceMotion) {
@@ -135,6 +146,11 @@ export function PadDisc({
     transform: [{ scale: 0.95 + aura.value * 0.2 }],
   }));
 
+  const outerAuraStyle = useAnimatedStyle(() => ({
+    opacity: filled ? 0 : outerAura.value * (dawn ? 0.5 : 0.4),
+    transform: [{ scale: 0.92 + outerAura.value * 0.22 }],
+  }));
+
   const selectRingStyle = useAnimatedStyle(() => ({
     opacity: selected ? 0.55 + (selectPulse.value - 1) * 4 : 0,
     transform: [{ scale: selectPulse.value }],
@@ -145,24 +161,24 @@ export function PadDisc({
     : `Empty pad ${label}. Double tap to plant.`;
 
   const auraColor = dawn ? 'rgba(232, 201, 160, 0.55)' : 'rgba(91, 138, 122, 0.4)';
+  const outerAuraColor = dawn ? 'rgba(232, 201, 160, 0.28)' : 'rgba(91, 138, 122, 0.22)';
 
   return (
     <Animated.View style={[{ position: 'absolute', left, top }, style]}>
       {!filled ? (
-        <Animated.View
-          pointerEvents="none"
-          style={[
-            styles.aura,
-            { backgroundColor: auraColor },
-            auraStyle,
-          ]}
-        />
+        <>
+          <Animated.View
+            pointerEvents="none"
+            style={[styles.outerAura, { backgroundColor: outerAuraColor }, outerAuraStyle]}
+          />
+          <Animated.View
+            pointerEvents="none"
+            style={[styles.aura, { backgroundColor: auraColor }, auraStyle]}
+          />
+        </>
       ) : null}
       {selected ? (
-        <Animated.View
-          pointerEvents="none"
-          style={[styles.selectRing, selectRingStyle]}
-        />
+        <Animated.View pointerEvents="none" style={[styles.selectRing, selectRingStyle]} />
       ) : null}
       <Pressable
         accessibilityRole="button"
@@ -186,9 +202,18 @@ export function PadDisc({
                   : dawn
                     ? 'rgba(200, 170, 120, 0.55)'
                     : colors.line,
-            backgroundColor: filled ? fillColor : dawn ? 'rgba(255,248,235,0.78)' : 'rgba(255,255,255,0.72)',
+            backgroundColor: filled
+              ? fillColor
+              : dawn
+                ? 'rgba(255,248,235,0.78)'
+                : 'rgba(255,255,255,0.72)',
             borderWidth: selected ? 3 : lantern && filled ? 2.5 : 2,
-            shadowColor: lantern && filled ? lanternRim ?? '#E8D48A' : selected ? colors.brand : 'transparent',
+            shadowColor:
+              lantern && filled
+                ? lanternRim ?? '#E8D48A'
+                : selected
+                  ? colors.brand
+                  : 'transparent',
             shadowOpacity: lantern && filled ? 0.55 : selected ? 0.25 : 0,
             shadowRadius: lantern && filled ? 8 : selected ? 6 : 0,
             shadowOffset: { width: 0, height: 0 },
@@ -196,10 +221,34 @@ export function PadDisc({
           },
         ]}
       >
+        {filled ? (
+          <View
+            pointerEvents="none"
+            style={[styles.filledAccent, { backgroundColor: 'rgba(255,255,255,0.5)' }]}
+          />
+        ) : (
+          <View
+            pointerEvents="none"
+            style={[
+              styles.emptyAccent,
+              { backgroundColor: dawn ? 'rgba(200,170,120,0.55)' : colors.calm },
+            ]}
+          />
+        )}
         {filled ? <View style={styles.innerSheen} pointerEvents="none" /> : null}
         {lantern && filled ? <Text style={styles.lanternDot}>✦</Text> : null}
         <Text style={[styles.padText, !filled && styles.padTextEmpty]}>{label}</Text>
-        {!filled ? <Text style={styles.plantHint}>plant</Text> : null}
+        {!filled ? (
+          <View style={styles.plantChip}>
+            <View
+              style={[
+                styles.plantDot,
+                { backgroundColor: dawn ? 'rgba(200,170,120,0.9)' : colors.calm },
+              ]}
+            />
+            <Text style={styles.plantHint}>plant</Text>
+          </View>
+        ) : null}
       </Pressable>
     </Animated.View>
   );
@@ -208,6 +257,14 @@ export function PadDisc({
 const PAD = MIN_TAP + 4;
 
 const styles = StyleSheet.create({
+  outerAura: {
+    position: 'absolute',
+    width: PAD + 22,
+    height: PAD + 22,
+    borderRadius: (PAD + 22) / 2,
+    left: -11,
+    top: -11,
+  },
   aura: {
     position: 'absolute',
     width: PAD + 14,
@@ -235,6 +292,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     overflow: 'hidden',
   },
+  emptyAccent: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 2,
+    opacity: 0.55,
+  },
+  filledAccent: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 2,
+    opacity: 0.7,
+  },
   innerSheen: {
     position: 'absolute',
     top: 3,
@@ -261,9 +334,23 @@ const styles = StyleSheet.create({
     color: colors.calm,
     marginTop: -2,
   },
-  plantHint: {
+  plantChip: {
     position: 'absolute',
-    bottom: 5,
+    bottom: 4,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 3,
+    paddingHorizontal: 5,
+    paddingVertical: 1,
+    borderRadius: 6,
+    backgroundColor: 'rgba(255,255,255,0.55)',
+  },
+  plantDot: {
+    width: 4,
+    height: 4,
+    borderRadius: 2,
+  },
+  plantHint: {
     fontFamily: fonts.body,
     fontSize: 7,
     color: colors.inkSoft,
