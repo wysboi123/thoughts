@@ -2,6 +2,14 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-08 23:20 UTC — Night resume (v1.4.32 Atmosphere)
+
+- Timer `overnight-daily-resume` · NIGHT resume · no Femmy Gmail reply
+- **Shipped v1.4.32:** Atmosphere — orb halos · soft secondary haze band · left/right edge washes · center glow · soft scale/rise content enter
+- Re-armed `overnight-stop-5am-utc` (`sub_4db7d021…`, ~05:00 Oct 9) · daily-resume + hourly left armed
+- Did not redo WavePreviewChip (1.4.31) · Draft C locked
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-08 05:00 UTC — OVERNIGHT STOP (mobile night wrap)
 
 - Timer `overnight-stop-5am-utc` fired ~05:00 UTC Oct 8 — **HARD STOP**. **No new features.** Docs + digest only.

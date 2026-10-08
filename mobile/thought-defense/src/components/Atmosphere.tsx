@@ -30,7 +30,7 @@ export function Atmosphere({ children, dawn }: Props) {
     }
     Animated.timing(enter, {
       toValue: 1,
-      duration: 640,
+      duration: 720,
       useNativeDriver: true,
     }).start();
     const loopA = Animated.loop(
@@ -108,9 +108,20 @@ export function Atmosphere({ children, dawn }: Props) {
   const hazeStyle = {
     opacity: haze.interpolate({ inputRange: [0, 1], outputRange: [0.12, 0.28] }),
   };
+  const hazeSoftStyle = {
+    opacity: haze.interpolate({ inputRange: [0, 1], outputRange: [0.06, 0.16] }),
+  };
   const contentStyle = {
     opacity: enter,
     flex: 1,
+    transform: [
+      {
+        scale: enter.interpolate({ inputRange: [0, 1], outputRange: [0.985, 1] }),
+      },
+      {
+        translateY: enter.interpolate({ inputRange: [0, 1], outputRange: [8, 0] }),
+      },
+    ],
   };
 
   const mist = dawn
@@ -122,36 +133,27 @@ export function Atmosphere({ children, dawn }: Props) {
       <LinearGradient colors={[...mist]} locations={[0, 0.45, 1]} style={StyleSheet.absoluteFill} />
       <Animated.View
         pointerEvents="none"
-        style={[
-          styles.hazeBand,
-          dawn ? styles.hazeBandDawn : null,
-          hazeStyle,
-        ]}
+        style={[styles.hazeBand, dawn ? styles.hazeBandDawn : null, hazeStyle]}
       />
       <Animated.View
-        style={[
-          styles.orb,
-          styles.orbA,
-          dawn ? styles.orbADawn : null,
-          driftA,
-        ]}
+        pointerEvents="none"
+        style={[styles.hazeBandSoft, dawn ? styles.hazeBandSoftDawn : null, hazeSoftStyle]}
       />
       <Animated.View
-        style={[
-          styles.orb,
-          styles.orbB,
-          dawn ? styles.orbBDawn : null,
-          driftB,
-        ]}
-      />
+        style={[styles.orb, styles.orbA, dawn ? styles.orbADawn : null, driftA]}
+      >
+        <View style={[styles.orbHalo, dawn ? styles.orbHaloDawn : null]} />
+      </Animated.View>
       <Animated.View
-        style={[
-          styles.orb,
-          styles.orbC,
-          dawn ? styles.orbCDawn : null,
-          driftC,
-        ]}
-      />
+        style={[styles.orb, styles.orbB, dawn ? styles.orbBDawn : null, driftB]}
+      >
+        <View style={[styles.orbHalo, dawn ? styles.orbHaloDawn : null]} />
+      </Animated.View>
+      <Animated.View
+        style={[styles.orb, styles.orbC, dawn ? styles.orbCDawn : null, driftC]}
+      >
+        <View style={[styles.orbHalo, dawn ? styles.orbHaloDawn : null]} />
+      </Animated.View>
       <View pointerEvents="none" style={styles.edgeTop}>
         <LinearGradient
           colors={
@@ -172,6 +174,34 @@ export function Atmosphere({ children, dawn }: Props) {
           style={StyleSheet.absoluteFill}
         />
       </View>
+      <View pointerEvents="none" style={styles.edgeLeft}>
+        <LinearGradient
+          colors={
+            dawn
+              ? ['rgba(232, 201, 160, 0.14)', 'transparent']
+              : ['rgba(197, 221, 214, 0.18)', 'transparent']
+          }
+          start={{ x: 0, y: 0.5 }}
+          end={{ x: 1, y: 0.5 }}
+          style={StyleSheet.absoluteFill}
+        />
+      </View>
+      <View pointerEvents="none" style={styles.edgeRight}>
+        <LinearGradient
+          colors={
+            dawn
+              ? ['transparent', 'rgba(240, 180, 120, 0.12)']
+              : ['transparent', 'rgba(106, 158, 174, 0.14)']
+          }
+          start={{ x: 0, y: 0.5 }}
+          end={{ x: 1, y: 0.5 }}
+          style={StyleSheet.absoluteFill}
+        />
+      </View>
+      <View
+        pointerEvents="none"
+        style={[styles.centerGlow, dawn ? styles.centerGlowDawn : null]}
+      />
       <Animated.View style={contentStyle}>{children}</Animated.View>
     </View>
   );
@@ -191,9 +221,32 @@ const styles = StyleSheet.create({
   hazeBandDawn: {
     backgroundColor: 'rgba(255, 236, 210, 0.4)',
   },
+  hazeBandSoft: {
+    position: 'absolute',
+    left: -20,
+    right: -20,
+    top: '58%',
+    height: 56,
+    backgroundColor: 'rgba(255,255,255,0.22)',
+    borderRadius: 40,
+  },
+  hazeBandSoftDawn: {
+    backgroundColor: 'rgba(255, 244, 220, 0.28)',
+  },
   orb: {
     position: 'absolute',
     borderRadius: 999,
+    overflow: 'visible',
+  },
+  orbHalo: {
+    ...StyleSheet.absoluteFill,
+    borderRadius: 999,
+    borderWidth: 1.5,
+    borderColor: 'rgba(255,255,255,0.35)',
+    transform: [{ scale: 1.12 }],
+  },
+  orbHaloDawn: {
+    borderColor: 'rgba(255, 244, 220, 0.45)',
   },
   orbA: {
     width: 220,
@@ -238,5 +291,31 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     height: 110,
+  },
+  edgeLeft: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    bottom: 0,
+    width: 48,
+  },
+  edgeRight: {
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    bottom: 0,
+    width: 48,
+  },
+  centerGlow: {
+    position: 'absolute',
+    alignSelf: 'center',
+    top: '28%',
+    width: 220,
+    height: 220,
+    borderRadius: 110,
+    backgroundColor: 'rgba(255,255,255,0.08)',
+  },
+  centerGlowDawn: {
+    backgroundColor: 'rgba(255, 244, 220, 0.12)',
   },
 });
