@@ -20,6 +20,6 @@ Then: `local SoftGoals = require(ReplicatedStorage.Chill.SoftGoals)`
 | `SoftWelcome` | One-shot toast (replaces prior; optional accent colors) |
 | `SoftSit` | Sit-status line · `EmptyTextFn` seat-open · `refresh` still-here pulse |
 | `SoftWireSeats` | Seat.Occupant → RemoteEvent for SoftSit |
-| `SoftCompany` | Nearby co-play HUD · `DepartTextFn` · `OnDeparted` · `refresh` linger |
+| `SoftCompany` | Nearby co-play HUD · Depart/Return text · OnDeparted/OnReturned · `refresh` |
 
 Do not invent Roblox audio asset ids here — wait for Perplexity Q-004 / Femmy paste.

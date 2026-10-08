@@ -472,6 +472,7 @@ end
 
 local couchCompanyWelcomed = false
 local couchDepartWelcomed = false
+local couchReturnWelcomed = false
 softCompanyHandle = SoftCompany.mount(playerGui, player, {
 	Radius = Config.Proximity.Radius,
 	Color = Color3.fromRGB(190, 170, 220),
@@ -499,6 +500,18 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		end
 		return if inGalaxy then "they drifted · loft is enough" else "they drifted · couch is enough"
 	end,
+	ReturnTextFn = function()
+		if softLingered then
+			return if inGalaxy
+				then "still here · company again · loft side"
+				else "still here · company again · couch side"
+		elseif softCompleteDone then
+			return if inGalaxy
+				then "soft-complete · company again · loft"
+				else "soft-complete · company again · couch"
+		end
+		return if inGalaxy then "company again · loft side" else "company again · couch side"
+	end,
 	OneTextFn = function()
 		if softLingered then
 			return if inGalaxy then "still here · loft side · two worlds" else "still here · couch side"
@@ -523,6 +536,19 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		SoftWelcome.show(playerGui, "they drifted", if inGalaxy
 			then "loft stays · two worlds · stay"
 			else "couch stays · two worlds · stay", {
+			AccentColor = couchStyle.AccentColor,
+			FrameColor = couchStyle.FrameColor,
+			HoldSeconds = 2.8,
+		})
+	end,
+	OnReturned = function()
+		if couchReturnWelcomed or not (softLingered or softCompleteDone) then
+			return
+		end
+		couchReturnWelcomed = true
+		SoftWelcome.show(playerGui, "company again", if inGalaxy
+			then "loft side · two worlds · still here"
+			else "couch side · two worlds · still here", {
 			AccentColor = couchStyle.AccentColor,
 			FrameColor = couchStyle.FrameColor,
 			HoldSeconds = 2.8,

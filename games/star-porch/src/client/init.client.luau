@@ -285,6 +285,7 @@ end
 
 local porchCompanyWelcomed = false
 local porchDepartWelcomed = false
+local porchReturnWelcomed = false
 softCompanyHandle = SoftCompany.mount(playerGui, player, {
 	Radius = Config.Proximity.Radius,
 	Color = Color3.fromRGB(180, 200, 170),
@@ -308,6 +309,14 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		end
 		return "they drifted · jar waits"
 	end,
+	ReturnTextFn = function()
+		if softLingered then
+			return "still here · company again · jar glow"
+		elseif softCompleteDone then
+			return "soft-complete · company again"
+		end
+		return "company again · jar glow"
+	end,
 	OneTextFn = function()
 		return if softLingered then "still here · porch feels warmer" else "soft company · porch feels warmer"
 	end,
@@ -322,6 +331,17 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		end
 		porchDepartWelcomed = true
 		SoftWelcome.show(playerGui, "they drifted", "jar remembers · stay", {
+			AccentColor = porchStyle.AccentColor,
+			FrameColor = porchStyle.FrameColor,
+			HoldSeconds = 2.8,
+		})
+	end,
+	OnReturned = function()
+		if porchReturnWelcomed or not (softLingered or softCompleteDone) then
+			return
+		end
+		porchReturnWelcomed = true
+		SoftWelcome.show(playerGui, "company again", "jar remembers · still here", {
 			AccentColor = porchStyle.AccentColor,
 			FrameColor = porchStyle.FrameColor,
 			HoldSeconds = 2.8,

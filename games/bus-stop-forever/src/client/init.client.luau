@@ -337,6 +337,7 @@ end)
 
 local companyWelcomed = false
 local busDepartWelcomed = false
+local busReturnWelcomed = false
 softCompanyHandle = SoftCompany.mount(playerGui, player, {
 	Radius = Config.Proximity.Radius,
 	Color = Color3.fromRGB(190, 200, 170),
@@ -366,6 +367,16 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		end
 		return "they drifted · another bus will come"
 	end,
+	ReturnTextFn = function()
+		if softLingered then
+			return "still here · company again · wait together"
+		elseif softCompleteDone then
+			return "soft-complete · company again"
+		elseif phase == "arrived" then
+			return "company again · bus is here"
+		end
+		return "company again · wait together"
+	end,
 	OneTextFn = function()
 		if softLingered then
 			if phase == "arrived" then
@@ -394,6 +405,17 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		end
 		busDepartWelcomed = true
 		SoftWelcome.show(playerGui, "they drifted", "wait continues · stay", {
+			AccentColor = busStyle.AccentColor,
+			FrameColor = busStyle.FrameColor,
+			HoldSeconds = 2.8,
+		})
+	end,
+	OnReturned = function()
+		if busReturnWelcomed or not (softLingered or softCompleteDone) then
+			return
+		end
+		busReturnWelcomed = true
+		SoftWelcome.show(playerGui, "company again", "waiting together · still here", {
 			AccentColor = busStyle.AccentColor,
 			FrameColor = busStyle.FrameColor,
 			HoldSeconds = 2.8,

@@ -12,12 +12,16 @@ export type SoftCompanyConfig = {
 	AloneTextFn: (() -> string)?,
 	-- Brief copy when nearby count drops to 0 (co-play leave → soft stay)
 	DepartTextFn: (() -> string)?,
+	-- Brief copy when company returns after a depart this session
+	ReturnTextFn: (() -> string)?,
 	OneText: string?,
 	OneTextFn: (() -> string)?,
 	ManyText: ((number) -> string)?,
 	OnCountChanged: ((number) -> ())?,
 	-- Fires when nearby count drops from >0 to 0 (after DepartTextFn applied)
 	OnDeparted: (() -> ())?,
+	-- Fires when nearby count rises from 0 after a prior depart this session
+	OnReturned: (() -> ())?,
 }
 
 export type SoftCompanyHud = {
@@ -52,6 +56,8 @@ function SoftCompany.mount(playerGui: PlayerGui, localPlayer: Player, config: So
 
 	local lastCount = -1
 	local departHoldUntil = 0.0
+	local returnHoldUntil = 0.0
+	local everDeparted = false
 
 	local function getRoot(character: Model): BasePart?
 		local root = character:FindFirstChild("HumanoidRootPart")
@@ -129,6 +135,9 @@ function SoftCompany.mount(playerGui: PlayerGui, localPlayer: Player, config: So
 
 		if n <= 0 then
 			local departed = prev > 0
+			if departed then
+				everDeparted = true
+			end
 			local depart = if departed and config.DepartTextFn then config.DepartTextFn() else nil
 			if depart and depart ~= "" then
 				label.Text = depart
@@ -163,21 +172,43 @@ function SoftCompany.mount(playerGui: PlayerGui, localPlayer: Player, config: So
 			if departed and config.OnDeparted then
 				config.OnDeparted()
 			end
-		elseif n == 1 then
-			departHoldUntil = 0
-			label.Text = oneLine()
-			if prev <= 0 then
-				pulseArrive()
-			elseif prev > 1 then
-				pulseLeave()
-			end
 		else
 			departHoldUntil = 0
-			label.Text = manyLine(n)
-			if prev <= 0 or n > prev then
+			-- prev == -1 is first init (not a return); prev == 0 after depart is return
+			local returned = prev == 0 and everDeparted
+			local ret = if returned and config.ReturnTextFn then config.ReturnTextFn() else nil
+			if ret and ret ~= "" then
+				label.Text = ret
 				pulseArrive()
-			elseif n < prev then
-				pulseLeave()
+				returnHoldUntil = os.clock() + 3.2
+				task.delay(3.2, function()
+					if lastCount <= 0 or not label.Parent then
+						return
+					end
+					if os.clock() < returnHoldUntil - 0.05 then
+						return
+					end
+					applyCopy(lastCount)
+				end)
+			elseif n == 1 then
+				returnHoldUntil = 0
+				label.Text = oneLine()
+				if prev <= 0 then
+					pulseArrive()
+				elseif prev > 1 then
+					pulseLeave()
+				end
+			else
+				returnHoldUntil = 0
+				label.Text = manyLine(n)
+				if prev <= 0 or n > prev then
+					pulseArrive()
+				elseif n < prev then
+					pulseLeave()
+				end
+			end
+			if returned and config.OnReturned then
+				config.OnReturned()
 			end
 		end
 		if config.OnCountChanged then
@@ -186,7 +217,7 @@ function SoftCompany.mount(playerGui: PlayerGui, localPlayer: Player, config: So
 	end
 
 	local function refresh()
-		if os.clock() < departHoldUntil then
+		if os.clock() < departHoldUntil or os.clock() < returnHoldUntil then
 			return
 		end
 		local n = if lastCount < 0 then 0 else lastCount
@@ -222,7 +253,7 @@ function SoftCompany.mount(playerGui: PlayerGui, localPlayer: Player, config: So
 			setCount(count)
 		elseif refreshAccum >= 0.75 and (config.OneTextFn or config.AloneTextFn or config.ManyText) then
 			refreshAccum = 0
-			if os.clock() < departHoldUntil then
+			if os.clock() < departHoldUntil or os.clock() < returnHoldUntil then
 				return
 			end
 			-- soft refresh label text without re-firing OnCountChanged
