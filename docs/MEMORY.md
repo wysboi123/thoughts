@@ -54,15 +54,16 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-08 ~01:20:** SoftButton polish v1.4.28 — soft enter · primary lead dot · bottom glow · richer soft shadow.
 - **2026-10-08 ~02:25:** HomeMindscapePreview polish v1.4.29 — accent bar · path glow · walker trail · look-chip · metaphor caption.
 - **2026-10-08 ~03:20:** PauseOverlay polish v1.4.30 — card shadow · top sheen · status dots · calm-soft chip · snapshot dots.
+- **2026-10-08 ~04:25:** WavePreviewChip polish v1.4.31 — top accent · soft shadow · wave progress track · tip dot (last slice before ~05:00 stop).
 
 ## State
 
-- Version: **mobile 1.4.30** (PauseOverlay polish)
+- Version: **mobile 1.4.31** (WavePreviewChip polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: `a5df8ff` (v1.4.30 PauseOverlay)
+- Tip: *(set after push)*
 - Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
 - Night envelope: **OPEN** until ~05:00 · `overnight-stop-5am-utc` armed (`sub_7fac0a8f…`) · `overnight-daily-resume` armed (`sub_d6468578…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
-- Next: night hourlies · overnight stop ~05:00 · or Femmy RC/RNIap / Pass price reply
+- Next: overnight stop ~05:00 · or Femmy RC/RNIap / Pass price reply

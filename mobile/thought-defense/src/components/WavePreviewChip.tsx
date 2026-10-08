@@ -142,6 +142,7 @@ export function WavePreviewChip({ waveIndex, visible, dawn }: Props) {
         .map((g) => `${g.count} ${GAME.enemies[g.kind].displayName}`)
         .join(', ')}. ${total} thoughts total. Tip: ${tip}`}
     >
+      <View pointerEvents="none" style={[styles.topAccent, { backgroundColor: accent }]} />
       <View style={styles.headRow}>
         <View style={styles.headLeft}>
           <Text style={styles.label}>
@@ -152,6 +153,25 @@ export function WavePreviewChip({ waveIndex, visible, dawn }: Props) {
         <View style={[styles.totalChip, dawn ? styles.totalChipDawn : null]}>
           <Text style={styles.total}>{total} thoughts</Text>
         </View>
+      </View>
+      <View
+        style={styles.waveTrack}
+        accessibilityRole="progressbar"
+        accessibilityValue={{
+          min: 1,
+          max: GAME.waveCount,
+          now: waveIndex + 1,
+        }}
+      >
+        <View
+          style={[
+            styles.waveFill,
+            {
+              width: `${Math.round(((waveIndex + 1) / GAME.waveCount) * 100)}%`,
+              backgroundColor: accent,
+            },
+          ]}
+        />
       </View>
       <View style={styles.row}>
         {groups.map((g, i) => (
@@ -169,6 +189,7 @@ export function WavePreviewChip({ waveIndex, visible, dawn }: Props) {
       <View
         style={[styles.tipChip, { borderColor: `${accent}44`, backgroundColor: `${accent}12` }]}
       >
+        <View style={[styles.tipDot, { backgroundColor: accent }]} />
         <Text style={styles.hint}>Plant before they walk · {tip}</Text>
       </View>
     </Animated.View>
@@ -182,6 +203,7 @@ const styles = StyleSheet.create({
     marginBottom: 2,
     paddingHorizontal: 14,
     paddingVertical: 10,
+    paddingTop: 12,
     borderRadius: 16,
     backgroundColor: 'rgba(255,255,255,0.55)',
     borderWidth: 1,
@@ -189,10 +211,24 @@ const styles = StyleSheet.create({
     borderLeftWidth: 4,
     maxWidth: 360,
     gap: 7,
+    overflow: 'hidden',
+    shadowColor: '#243A34',
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 2,
   },
   wrapDawn: {
     backgroundColor: 'rgba(255, 244, 220, 0.72)',
     borderColor: 'rgba(201, 168, 90, 0.28)',
+  },
+  topAccent: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 2,
+    opacity: 0.55,
   },
   headRow: {
     flexDirection: 'row',
@@ -234,6 +270,16 @@ const styles = StyleSheet.create({
     fontSize: 11,
     color: colors.brandDeep,
   },
+  waveTrack: {
+    height: 3,
+    borderRadius: 3,
+    backgroundColor: 'rgba(36, 51, 58, 0.08)',
+    overflow: 'hidden',
+  },
+  waveFill: {
+    height: 3,
+    borderRadius: 3,
+  },
   row: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -274,15 +320,24 @@ const styles = StyleSheet.create({
     borderRadius: 2,
   },
   tipChip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
     paddingHorizontal: 8,
     paddingVertical: 5,
     borderRadius: 10,
     borderWidth: 1,
+  },
+  tipDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
   },
   hint: {
     fontFamily: fonts.body,
     fontSize: 11,
     lineHeight: 15,
     color: colors.inkSoft,
+    flexShrink: 1,
   },
 });
