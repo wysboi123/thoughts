@@ -2,6 +2,22 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-09 05:00 UTC — OVERNIGHT STOP (Night 15)
+
+Night 15 complete. No new features this wrap. One digest email sent.
+
+**Shipped Night 15**
+- SoftCompany **ReturnTextFn** + **OnReturned** SoftWelcome (“company again”)
+- SoftGoals **nudgeOptional** on return and depart (“company again” / “company still open”)
+- EXPERIENCE_COPY drift-back lines · publish checklist leave/return
+- Research: `docs/research/hangout-usps-2026-10-09.md`
+
+**Versions end:** Haze **3.27** · Couch **3.25** · Bus **3.26** · Porch **3.24**
+**Parked:** Slow Orbit · Puddle Mirror · Lantern Drift — untouched
+**Blocked:** Perplexity Q-001–004 · first Studio publish (SoftInvite gated)
+**PR:** https://github.com/wysboi123/thoughts/pull/3
+**Next (Night 16):** apply Perplexity if any · USP linger polish · no invented audio · SoftInvite still gated
+
 ## 2026-10-09 03:00 UTC — Night 15 checkpoint 2 (quiet)
 
 - Active: **Haze 3.27** · **Couch 3.25** · **Bus 3.26** · **Porch 3.24**

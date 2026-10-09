@@ -26,7 +26,7 @@ An infinite calm bus stop. The bus comes and goes; you don't have to. Soft goals
 
 **Title:** Star Porch  
 **Description:**
-A wooden night porch under soft stars. Rocking chairs, a porch swing, and fireflies that drift back. Soft goals work alone; the jar fills; string lights and the porch lamp warm when company is near. Soft complete — the jar remembers; stay.
+A wooden night porch under soft stars. Rocking chairs, a porch swing, and fireflies that drift back. Soft goals work alone; the jar fills; string lights and the porch lamp warm when company is near. Soft complete — the jar remembers; company can drift back; stay.
 
 ## Parked for later
 
