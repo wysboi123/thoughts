@@ -148,8 +148,25 @@ export function SoftActionToast({ message, kind, dawn }: Props) {
           style,
         ]}
       >
-        <View style={[styles.accentDot, { backgroundColor: tint.accent }]} />
-        <View style={[styles.badgePill, { backgroundColor: `${tint.accent}33` }]}>
+        <View
+          pointerEvents="none"
+          style={[styles.topAccent, { backgroundColor: tint.accent }]}
+        />
+        <View pointerEvents="none" style={styles.topSheen} />
+        <View style={styles.accentWrap}>
+          <View
+            pointerEvents="none"
+            style={[styles.accentHalo, { backgroundColor: `${tint.accent}33` }]}
+          />
+          <View style={[styles.accentDot, { backgroundColor: tint.accent }]} />
+        </View>
+        <View
+          style={[
+            styles.badgePill,
+            { backgroundColor: `${tint.accent}33`, borderColor: `${tint.accent}55` },
+          ]}
+        >
+          <View style={[styles.badgeDot, { backgroundColor: tint.accent }]} />
           <Text style={[styles.badge, { color: tint.ink }]}>{tint.label}</Text>
         </View>
         <Text style={[styles.text, { color: tint.ink }]} numberOfLines={2}>
@@ -175,9 +192,10 @@ const styles = StyleSheet.create({
   chip: {
     maxWidth: '96%',
     borderRadius: 14,
-    paddingVertical: 8,
+    paddingVertical: 10,
     paddingHorizontal: 10,
-    paddingBottom: 10,
+    paddingTop: 12,
+    paddingBottom: 12,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
@@ -185,10 +203,38 @@ const styles = StyleSheet.create({
     borderColor: colors.line,
     borderLeftWidth: 4,
     overflow: 'hidden',
-    shadowOpacity: 0.18,
-    shadowRadius: 8,
-    shadowOffset: { width: 0, height: 2 },
-    elevation: 2,
+    shadowOpacity: 0.22,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 3 },
+    elevation: 3,
+  },
+  topAccent: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 2,
+    opacity: 0.55,
+  },
+  topSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 22,
+    backgroundColor: 'rgba(255,255,255,0.18)',
+  },
+  accentWrap: {
+    width: 14,
+    height: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  accentHalo: {
+    position: 'absolute',
+    width: 14,
+    height: 14,
+    borderRadius: 7,
   },
   accentDot: {
     width: 7,
@@ -196,9 +242,18 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   badgePill: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
     paddingHorizontal: 8,
     paddingVertical: 3,
     borderRadius: 8,
+    borderWidth: 1,
+  },
+  badgeDot: {
+    width: 5,
+    height: 5,
+    borderRadius: 3,
   },
   badge: {
     fontFamily: fonts.bodyBold,
