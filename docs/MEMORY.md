@@ -65,14 +65,15 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-09 ~04:25:** SoftPlayHud polish v1.4.38 — top sheen · Dawn accent · pill glow · footer lead · soft-chip sheen (last slice before ~05:00 stop).
 - **2026-10-09 ~05:00 OVERNIGHT STOP:** Hard stop after night ship v1.4.32→v1.4.38. Did **not** re-arm overnight-stop. Next resume 23:00 UTC.
 - **2026-10-09 ~23:10 night resume:** FirstRunTipChip polish v1.4.39 — top accent/sheen · soft glow · badge sheen · richer shadow. Re-armed overnight-stop (`sub_2b44f700…`).
+- **2026-10-09 ~23:25:** DualModeTray polish v1.4.40 — top sheen · mode/card accents · swatch rings · select sheen · footer lead (Draft C locked).
 
 ## State
 
-- Version: **mobile 1.4.39** (FirstRunTipChip polish)
+- Version: **mobile 1.4.40** (DualModeTray polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: `3945641` (v1.4.39 FirstRunTipChip)
+- Tip: *(set after push)*
 - Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
 - Night envelope: **OPEN** until ~05:00 · `overnight-stop-5am-utc` armed (`sub_2b44f700…`) · `overnight-daily-resume` armed (`sub_d6468578…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**

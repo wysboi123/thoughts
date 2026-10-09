@@ -123,6 +123,7 @@ export function DualModeTray({
           { backgroundColor: selectMode ? selectAccent : colors.brand },
         ]}
       />
+      <View pointerEvents="none" style={styles.topSheen} />
       <View style={styles.titleRow}>
         <View
           style={[
@@ -133,6 +134,7 @@ export function DualModeTray({
             },
           ]}
         >
+          <View pointerEvents="none" style={styles.modeChipSheen} />
           <View
             style={[
               styles.modeDot,
@@ -192,6 +194,12 @@ export function DualModeTray({
                   style={[styles.cardSheen, { backgroundColor: `${KIND_ACCENT[k]}18` }]}
                 />
               ) : null}
+              {active ? (
+                <View
+                  pointerEvents="none"
+                  style={[styles.cardTopAccent, { backgroundColor: KIND_ACCENT[k] }]}
+                />
+              ) : null}
               <View
                 style={[
                   styles.swatch,
@@ -203,7 +211,12 @@ export function DualModeTray({
                       }
                     : null,
                 ]}
-              />
+              >
+                <View
+                  pointerEvents="none"
+                  style={[styles.swatchRing, { borderColor: `${KIND_ACCENT[k]}66` }]}
+                />
+              </View>
               <Text style={[styles.plantName, selectMode && styles.dimText]}>
                 {GAME.towers[k].displayName}
               </Text>
@@ -229,6 +242,10 @@ export function DualModeTray({
       <Animated.View style={actionStyle} pointerEvents={selectMode ? 'auto' : 'none'}>
         {selectMode ? (
           <View style={[styles.selectBanner, { borderColor: `${selectAccent}55` }]}>
+            <View
+              pointerEvents="none"
+              style={[styles.selectBannerSheen, { backgroundColor: `${selectAccent}14` }]}
+            />
             <View style={[styles.selectDot, { backgroundColor: selectAccent }]} />
             <Text style={styles.selectStats}>{selectStats}</Text>
           </View>
@@ -250,7 +267,15 @@ export function DualModeTray({
       </Animated.View>
 
       <View style={styles.footer} accessibilityRole="text">
-        <Text style={styles.footerLabel}>Draft C tray</Text>
+        <View style={styles.footerLead}>
+          <View
+            style={[
+              styles.footerDot,
+              { backgroundColor: selectMode ? selectAccent : colors.brand },
+            ]}
+          />
+          <Text style={styles.footerLabel}>Draft C tray</Text>
+        </View>
         <Text style={styles.footerHint}>
           {selectMode ? 'Upgrade · Sell · Back' : 'Plant · dim on select'}
         </Text>
@@ -288,6 +313,14 @@ const styles = StyleSheet.create({
     height: 3,
     opacity: 0.8,
   },
+  topSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 26,
+    backgroundColor: 'rgba(255,255,255,0.16)',
+  },
   titleRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -302,6 +335,15 @@ const styles = StyleSheet.create({
     paddingVertical: 3,
     borderRadius: 10,
     borderWidth: 1,
+    overflow: 'hidden',
+  },
+  modeChipSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '55%',
+    backgroundColor: 'rgba(255,255,255,0.28)',
   },
   modeDot: {
     width: 6,
@@ -336,6 +378,11 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
     borderColor: 'transparent',
     overflow: 'hidden',
+    shadowColor: '#243A34',
+    shadowOpacity: 0.05,
+    shadowRadius: 4,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 1,
   },
   plantCardActive: {
     backgroundColor: 'rgba(255,255,255,0.92)',
@@ -353,11 +400,29 @@ const styles = StyleSheet.create({
     right: 0,
     height: '40%',
   },
+  cardTopAccent: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 2,
+    opacity: 0.6,
+  },
   swatch: {
     width: 18,
     height: 18,
     borderRadius: 9,
     marginBottom: 4,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  swatchRing: {
+    position: 'absolute',
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    borderWidth: 1,
+    opacity: 0.7,
   },
   plantName: {
     fontFamily: fonts.bodyMedium,
@@ -394,6 +459,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: 'rgba(255,255,255,0.45)',
     marginBottom: 6,
+    overflow: 'hidden',
+  },
+  selectBannerSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '50%',
   },
   selectDot: {
     width: 8,
@@ -425,6 +498,17 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 2,
     paddingTop: 2,
+  },
+  footerLead: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+  },
+  footerDot: {
+    width: 5,
+    height: 5,
+    borderRadius: 3,
+    opacity: 0.7,
   },
   footerLabel: {
     fontFamily: fonts.bodyMedium,
