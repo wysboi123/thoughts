@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-09 00:35 UTC — Night hourly (v1.4.34 GameBoard)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.34:** GameBoard — board shadow/rim · legend/compass chips with dots · path node rings · entrance halo/dot · dual range ring
+- Did not redo Shop (1.4.33) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-08 23:30 UTC — Night hourly (v1.4.33 Shop)
 
 - Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply

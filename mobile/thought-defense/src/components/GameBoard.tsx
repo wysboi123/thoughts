@@ -116,7 +116,18 @@ function SoftRangeRing({
         },
         style,
       ]}
-    />
+    >
+      <View
+        pointerEvents="none"
+        style={[
+          styles.rangeRingOuter,
+          {
+            borderColor: `${color}55`,
+            backgroundColor: `${color}08`,
+          },
+        ]}
+      />
+    </Animated.View>
   );
 }
 
@@ -162,6 +173,11 @@ function SoftEntrance({
         style,
       ]}
     >
+      <View
+        pointerEvents="none"
+        style={[styles.entranceHalo, dawn ? styles.entranceHaloDawn : null]}
+      />
+      <View style={[styles.entranceDot, dawn ? styles.entranceDotDawn : null]} />
       <Text style={[styles.entranceText, dawn ? styles.entranceTextDawn : null]}>in</Text>
     </Animated.View>
   );
@@ -244,11 +260,14 @@ export function GameBoard({
       ]}
     >
       <View style={[styles.chip, styles.legendChip, themeDawn ? styles.chipDawn : null]}>
+        <View style={[styles.chipDot, themeDawn ? styles.chipDotDawn : null]} />
         <Text style={styles.legend}>path → Peace · discs = thoughts</Text>
       </View>
       <View style={[styles.chip, styles.compassChip, themeDawn ? styles.chipDawn : null]}>
+        <View style={[styles.chipDot, themeDawn ? styles.chipDotDawn : null]} />
         <Text style={styles.compass}>plan · N ↑</Text>
       </View>
+      <View pointerEvents="none" style={[styles.boardRim, themeDawn ? styles.boardRimDawn : null]} />
 
       {/* Soft lawn tiles (top-down grid hint) */}
       {[0.2, 0.4, 0.6, 0.8].map((gx) =>
@@ -294,7 +313,17 @@ export function GameBoard({
               borderColor: themeDawn ? 'rgba(255,236,200,0.9)' : 'rgba(255,255,255,0.65)',
             },
           ]}
-        />
+        >
+          <View
+            pointerEvents="none"
+            style={[
+              styles.nodeRing,
+              {
+                borderColor: themeDawn ? 'rgba(232, 201, 160, 0.45)' : 'rgba(91, 138, 122, 0.35)',
+              },
+            ]}
+          />
+        </View>
       ))}
 
       {/* Entrance marker */}
@@ -383,23 +412,55 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     borderWidth: 1,
     borderColor: colors.line,
+    shadowColor: '#243A34',
+    shadowOpacity: 0.12,
+    shadowRadius: 14,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 3,
   },
   boardDawn: {
     borderColor: 'rgba(201, 168, 90, 0.35)',
   },
+  boardRim: {
+    ...StyleSheet.absoluteFill,
+    borderRadius: 28,
+    borderWidth: 1.5,
+    borderColor: 'rgba(255,255,255,0.28)',
+    zIndex: 1,
+  },
+  boardRimDawn: {
+    borderColor: 'rgba(255, 244, 220, 0.4)',
+  },
   chip: {
     position: 'absolute',
     zIndex: 2,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
     paddingHorizontal: 8,
-    paddingVertical: 3,
+    paddingVertical: 4,
     borderRadius: 8,
-    backgroundColor: 'rgba(255,255,255,0.5)',
+    backgroundColor: 'rgba(255,255,255,0.55)',
     borderWidth: 1,
     borderColor: colors.line,
+    shadowColor: '#243A34',
+    shadowOpacity: 0.06,
+    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 1,
   },
   chipDawn: {
     backgroundColor: 'rgba(255, 246, 230, 0.72)',
     borderColor: 'rgba(201, 168, 90, 0.35)',
+  },
+  chipDot: {
+    width: 5,
+    height: 5,
+    borderRadius: 3,
+    backgroundColor: colors.calm,
+  },
+  chipDotDawn: {
+    backgroundColor: '#C9A85A',
   },
   legendChip: {
     top: 8,
@@ -419,6 +480,7 @@ const styles = StyleSheet.create({
     fontFamily: fonts.body,
     fontSize: 9,
     color: colors.inkSoft,
+    flexShrink: 1,
   },
   lawn: {
     position: 'absolute',
@@ -426,9 +488,12 @@ const styles = StyleSheet.create({
     height: 20,
     borderRadius: 6,
     backgroundColor: 'rgba(255,255,255,0.12)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.1)',
   },
   lawnDawn: {
     backgroundColor: 'rgba(255, 236, 210, 0.28)',
+    borderColor: 'rgba(232, 201, 160, 0.2)',
   },
   corridorGlow: {
     position: 'absolute',
@@ -444,6 +509,16 @@ const styles = StyleSheet.create({
     height: 16,
     borderRadius: 8,
     borderWidth: 1.5,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  nodeRing: {
+    position: 'absolute',
+    width: 22,
+    height: 22,
+    borderRadius: 11,
+    borderWidth: 1,
+    opacity: 0.7,
   },
   entrance: {
     position: 'absolute',
@@ -456,10 +531,34 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'rgba(90, 122, 146, 0.15)',
+    gap: 1,
   },
   entranceDawn: {
     borderColor: 'rgba(180, 140, 90, 0.75)',
     backgroundColor: 'rgba(232, 201, 160, 0.22)',
+  },
+  entranceHalo: {
+    position: 'absolute',
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    borderWidth: 1,
+    borderColor: 'rgba(90, 122, 146, 0.28)',
+    backgroundColor: 'rgba(90, 122, 146, 0.06)',
+  },
+  entranceHaloDawn: {
+    borderColor: 'rgba(201, 168, 90, 0.35)',
+    backgroundColor: 'rgba(232, 201, 160, 0.1)',
+  },
+  entranceDot: {
+    width: 5,
+    height: 5,
+    borderRadius: 3,
+    backgroundColor: colors.worry,
+    opacity: 0.7,
+  },
+  entranceDotDawn: {
+    backgroundColor: colors.gratitude,
   },
   entranceText: {
     fontFamily: fonts.bodyMedium,
@@ -473,5 +572,13 @@ const styles = StyleSheet.create({
     position: 'absolute',
     borderRadius: 999,
     borderWidth: 1.5,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  rangeRingOuter: {
+    ...StyleSheet.absoluteFill,
+    borderRadius: 999,
+    borderWidth: 1,
+    transform: [{ scale: 1.08 }],
   },
 });
