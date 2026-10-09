@@ -92,6 +92,10 @@ function HudPill({
       accessibilityLabel={`${label} ${value}${warn ? ', calm is soft — take a breath' : ''}`}
     >
       <View pointerEvents="none" style={[styles.pillSheen, { backgroundColor: `${accent}14` }]} />
+      <View
+        pointerEvents="none"
+        style={[styles.pillGlow, { backgroundColor: warn ? `${colors.dangerSoft}22` : `${accent}18` }]}
+      />
       <View style={styles.pillTop}>
         <Animated.View
           style={[
@@ -119,7 +123,11 @@ export function SoftPlayHud({ calm, clarity, waveLabel, dawn, calmLow }: Props) 
         calmLow ? ', calm is soft' : ''
       }`}
     >
-      <View pointerEvents="none" style={styles.accentBar} />
+      <View
+        pointerEvents="none"
+        style={[styles.accentBar, dawn ? styles.accentBarDawn : null]}
+      />
+      <View pointerEvents="none" style={styles.topSheen} />
       <View style={styles.row}>
         <HudPill
           label="Calm"
@@ -145,9 +153,13 @@ export function SoftPlayHud({ calm, clarity, waveLabel, dawn, calmLow }: Props) 
         />
       </View>
       <View style={styles.footer} accessibilityRole="text">
-        <Text style={styles.footerLabel}>Mindscape meters</Text>
+        <View style={styles.footerLead}>
+          <View style={[styles.footerDot, dawn ? styles.footerDotDawn : null]} />
+          <Text style={styles.footerLabel}>Mindscape meters</Text>
+        </View>
         {calmLow ? (
           <View style={styles.softChip}>
+            <View pointerEvents="none" style={styles.softChipSheen} />
             <View style={styles.softChipDot} />
             <Text style={styles.softChipLabel}>Calm soft — breathe</Text>
           </View>
@@ -163,7 +175,7 @@ const styles = StyleSheet.create({
   wrap: {
     marginTop: 8,
     padding: 8,
-    paddingTop: 10,
+    paddingTop: 12,
     borderRadius: 18,
     backgroundColor: colors.surface,
     borderWidth: 1,
@@ -171,8 +183,8 @@ const styles = StyleSheet.create({
     gap: 6,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.08,
-    shadowRadius: 10,
+    shadowOpacity: 0.1,
+    shadowRadius: 12,
     shadowOffset: { width: 0, height: 4 },
     elevation: 2,
   },
@@ -189,6 +201,18 @@ const styles = StyleSheet.create({
     backgroundColor: colors.brand,
     opacity: 0.45,
   },
+  accentBarDawn: {
+    backgroundColor: '#C9A85A',
+    opacity: 0.55,
+  },
+  topSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 22,
+    backgroundColor: 'rgba(255,255,255,0.16)',
+  },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -204,6 +228,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 2,
     overflow: 'hidden',
+    shadowColor: '#243A34',
+    shadowOpacity: 0.05,
+    shadowRadius: 4,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 1,
   },
   pillSheen: {
     position: 'absolute',
@@ -211,6 +240,15 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: '42%',
+  },
+  pillGlow: {
+    position: 'absolute',
+    left: 8,
+    right: 8,
+    bottom: 0,
+    height: 10,
+    borderRadius: 8,
+    opacity: 0.7,
   },
   pillTop: {
     flexDirection: 'row',
@@ -244,6 +282,22 @@ const styles = StyleSheet.create({
     paddingBottom: 2,
     gap: 8,
   },
+  footerLead: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+    flexShrink: 1,
+  },
+  footerDot: {
+    width: 5,
+    height: 5,
+    borderRadius: 3,
+    backgroundColor: colors.brand,
+    opacity: 0.65,
+  },
+  footerDotDawn: {
+    backgroundColor: '#C9A85A',
+  },
   footerLabel: {
     fontFamily: fonts.bodyMedium,
     fontSize: 10,
@@ -266,6 +320,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(196,120,120,0.14)',
     borderWidth: 1,
     borderColor: 'rgba(196,120,120,0.28)',
+    overflow: 'hidden',
+  },
+  softChipSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '50%',
+    backgroundColor: 'rgba(255,255,255,0.2)',
   },
   softChipDot: {
     width: 5,

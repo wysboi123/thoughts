@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-09 04:25 UTC — Night hourly (v1.4.38 SoftPlayHud)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.38:** SoftPlayHud — top sheen · Dawn accent bar · pill bottom glow · footer lead dot · soft-chip sheen (last slice before ~05:00)
+- Did not redo SoftWelcomeSheet (1.4.37) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-09 03:20 UTC — Night hourly (v1.4.37 SoftWelcomeSheet)
 
 - Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply

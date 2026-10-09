@@ -62,14 +62,15 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-09 ~01:25:** Settings polish v1.4.35 — version/look dots · card accents · Pass live · comfort/privacy/footer heads.
 - **2026-10-09 ~02:30:** SoftActionToast polish v1.4.36 — top accent/sheen · accent halo · badge dot · richer soft shadow.
 - **2026-10-09 ~03:20:** SoftWelcomeSheet polish v1.4.37 — top sheen · soft orb · eyebrow/step dots · comfort head.
+- **2026-10-09 ~04:25:** SoftPlayHud polish v1.4.38 — top sheen · Dawn accent · pill glow · footer lead · soft-chip sheen (last slice before ~05:00 stop).
 
 ## State
 
-- Version: **mobile 1.4.37** (SoftWelcomeSheet polish)
+- Version: **mobile 1.4.38** (SoftPlayHud polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: `63835c0` (v1.4.37 SoftWelcomeSheet)
+- Tip: *(set after push)*
 - Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
 - Night envelope: **OPEN** until ~05:00 · `overnight-stop-5am-utc` armed (`sub_4db7d021…`) · `overnight-daily-resume` armed (`sub_d6468578…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
