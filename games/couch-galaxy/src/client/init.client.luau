@@ -500,6 +500,18 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		end
 		return if inGalaxy then "they drifted · loft is enough" else "they drifted · couch is enough"
 	end,
+	AfterDepartTextFn = function()
+		if softLingered then
+			return if inGalaxy
+				then "still here · they were near · loft stays"
+				else "still here · they were near · couch stays"
+		elseif softCompleteDone then
+			return if inGalaxy
+				then "soft-complete · they were near · loft"
+				else "soft-complete · they were near · couch"
+		end
+		return if inGalaxy then "they were near · loft is enough" else "they were near · couch is enough"
+	end,
 	ReturnTextFn = function()
 		if softLingered then
 			return if inGalaxy
@@ -532,6 +544,7 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		if softLingered or softCompleteDone then
 			nudgeOptional("depart")
 		end
+		couchSit.refresh()
 		if couchDepartWelcomed or not (softLingered or softCompleteDone) then
 			return
 		end
@@ -543,7 +556,7 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 			FrameColor = couchStyle.FrameColor,
 			HoldSeconds = 2.8,
 		})
-	end,
+	end
 	OnReturned = function()
 		if couchReturnWelcomed or not (softLingered or softCompleteDone) then
 			return

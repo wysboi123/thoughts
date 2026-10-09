@@ -367,6 +367,16 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		end
 		return "they drifted · another bus will come"
 	end,
+	AfterDepartTextFn = function()
+		if softLingered then
+			return "still here · they were near · wait continues"
+		elseif softCompleteDone then
+			return "soft-complete · they were near · stay"
+		elseif phase == "arrived" then
+			return "they were near · bus is here · stay"
+		end
+		return "they were near · another bus will come"
+	end,
 	ReturnTextFn = function()
 		if softLingered then
 			return "still here · company again · wait together"
@@ -403,6 +413,7 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		if softLingered or softCompleteDone then
 			nudgeOptional("depart")
 		end
+		benchSit.refresh()
 		if busDepartWelcomed or not (softLingered or softCompleteDone) then
 			return
 		end

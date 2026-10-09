@@ -309,6 +309,14 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		end
 		return "they drifted · jar waits"
 	end,
+	AfterDepartTextFn = function()
+		if softLingered then
+			return "still here · they were near · jar remembers"
+		elseif softCompleteDone then
+			return "soft-complete · they were near · jar waits"
+		end
+		return "they were near · jar waits"
+	end,
 	ReturnTextFn = function()
 		if softLingered then
 			return "still here · company again · jar glow"
@@ -329,6 +337,7 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		if softLingered or softCompleteDone then
 			nudgeOptional("depart")
 		end
+		porchSit.refresh()
 		if porchDepartWelcomed or not (softLingered or softCompleteDone) then
 			return
 		end

@@ -152,16 +152,37 @@ function SoftGoals.mount(
 		end
 	end
 
-	-- Soft nudge when optional co-play goals remain open (return or depart)
+	-- Soft nudge on company return/depart after soft-complete (optional open or sealed stay)
 	local function nudgeOptional(kind: ("return" | "depart")?)
-		if not frame.Parent or not softComplete or sealed then
-			return
-		end
-		local left = countOptionalLeft()
-		if left == 0 then
+		if not frame.Parent or not softComplete then
 			return
 		end
 		local mode = kind or "return"
+		local left = countOptionalLeft()
+
+		-- After full seal: soft playtime acknowledgment (no optional rows left)
+		if sealed then
+			title.Text = if mode == "depart"
+				then (if lingered then "still here · stay soft" else "session soft-complete · stay soft")
+				else (if lingered then "still here · company again" else "session soft-complete · company again")
+			title.TextColor3 = Color3.fromRGB(195, 225, 205)
+			TweenService:Create(
+				title,
+				TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+				{ TextColor3 = Color3.fromRGB(210, 240, 220) }
+			):Play()
+			stroke.Transparency = 0.35
+			TweenService:Create(
+				stroke,
+				TweenInfo.new(0.45, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+				{ Transparency = 0.65 }
+			):Play()
+			return
+		end
+
+		if left == 0 then
+			return
+		end
 		title.Text = if mode == "depart"
 			then (if lingered then "still here · company still open" else "soft-complete · company still open")
 			else (if lingered then "still here · company again" else "soft-complete · company again")

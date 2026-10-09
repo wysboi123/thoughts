@@ -12,6 +12,8 @@ export type SoftCompanyConfig = {
 	AloneTextFn: (() -> string)?,
 	-- Brief copy when nearby count drops to 0 (co-play leave → soft stay)
 	DepartTextFn: (() -> string)?,
+	-- Soft bridge after DepartTextFn hold (playtime memory before AloneText)
+	AfterDepartTextFn: (() -> string)?,
 	-- Brief copy when company returns after a depart this session
 	ReturnTextFn: (() -> string)?,
 	OneText: string?,
@@ -150,12 +152,34 @@ function SoftCompany.mount(playerGui: PlayerGui, localPlayer: Player, config: So
 					if os.clock() < departHoldUntil - 0.05 then
 						return
 					end
-					local alone = aloneLine()
-					label.Text = alone
-					if alone == "" then
-						label.TextTransparency = 1
+					local after = if config.AfterDepartTextFn then config.AfterDepartTextFn() else nil
+					if after and after ~= "" then
+						label.Text = after
+						label.TextTransparency = 0.35
+						departHoldUntil = os.clock() + 3.5
+						task.delay(3.5, function()
+							if lastCount > 0 or not label.Parent then
+								return
+							end
+							if os.clock() < departHoldUntil - 0.05 then
+								return
+							end
+							local alone = aloneLine()
+							label.Text = alone
+							if alone == "" then
+								label.TextTransparency = 1
+							else
+								label.TextTransparency = 0.45
+							end
+						end)
 					else
-						label.TextTransparency = 0.45
+						local alone = aloneLine()
+						label.Text = alone
+						if alone == "" then
+							label.TextTransparency = 1
+						else
+							label.TextTransparency = 0.45
+						end
 					end
 				end)
 			else

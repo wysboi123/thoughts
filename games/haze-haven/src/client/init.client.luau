@@ -205,6 +205,14 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		end
 		return "they drifted · vibes still soft"
 	end,
+	AfterDepartTextFn = function()
+		if softLingered then
+			return "still here · they were near · vibes soft"
+		elseif softCompleteDone then
+			return "soft-complete · they were near · stay"
+		end
+		return "they were near · vibes still soft"
+	end,
 	ReturnTextFn = function()
 		if softLingered then
 			return "still here · company again · vibes sync"
@@ -225,6 +233,7 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		if softLingered or softCompleteDone then
 			nudgeOptional("depart")
 		end
+		hazeSit.refresh()
 		if hazeDepartWelcomed or not (softLingered or softCompleteDone) then
 			return
 		end
