@@ -61,6 +61,7 @@ function SectionHead({ title, accent }: { title: string; accent: string }) {
     <View style={styles.sectionHead}>
       <View style={[styles.accentBar, { backgroundColor: accent }]} />
       <Text style={styles.h}>{title}</Text>
+      <View style={[styles.sectionDot, { backgroundColor: accent }]} />
     </View>
   );
 }
@@ -91,6 +92,7 @@ export default function SettingsScreen() {
           <View style={styles.brandRow}>
             <Text style={styles.brand}>Settings</Text>
             <View style={[styles.versionChip, looks.dawn ? styles.versionChipDawn : null]}>
+              <View style={[styles.versionDot, looks.dawn ? styles.versionDotDawn : null]} />
               <Text style={styles.versionChipText}>
                 {GAME.version.replace('-mobile', '')}
               </Text>
@@ -106,7 +108,10 @@ export default function SettingsScreen() {
             style={[styles.comfortStrip, looks.dawn ? styles.comfortStripDawn : null]}
             accessibilityRole="summary"
           >
-            <Text style={styles.comfortTitle}>On-device comfort</Text>
+            <View style={styles.comfortHead}>
+              <View style={[styles.leadDot, looks.dawn ? styles.leadDotDawn : null]} />
+              <Text style={styles.comfortTitle}>On-device comfort</Text>
+            </View>
             <Text style={styles.comfortBody}>
               No account · no cloud save · purchases restore via your store. Stub buys stay on this
               device only.
@@ -121,6 +126,10 @@ export default function SettingsScreen() {
               style={[styles.statusCard, looks.dawn ? styles.statusCardDawn : null]}
               accessibilityRole="summary"
             >
+              <View
+                pointerEvents="none"
+                style={[styles.cardTopAccent, { backgroundColor: colors.gratitude }]}
+              />
               <Text style={styles.statusLabel}>Mindscape cosmetics</Text>
               <View style={styles.lookRow}>
                 <View
@@ -129,6 +138,12 @@ export default function SettingsScreen() {
                     looks.dawn ? styles.lookChipOn : styles.lookChipOff,
                   ]}
                 >
+                  <View
+                    style={[
+                      styles.lookDot,
+                      looks.dawn ? styles.lookDotOn : styles.lookDotOff,
+                    ]}
+                  />
                   <Text style={looks.dawn ? styles.lookChipTextOn : styles.lookChipTextOff}>
                     Dawn Path
                   </Text>
@@ -139,6 +154,12 @@ export default function SettingsScreen() {
                     looks.lantern ? styles.lookChipOn : styles.lookChipOff,
                   ]}
                 >
+                  <View
+                    style={[
+                      styles.lookDot,
+                      looks.lantern ? styles.lookDotOn : styles.lookDotOff,
+                    ]}
+                  />
                   <Text style={looks.lantern ? styles.lookChipTextOn : styles.lookChipTextOff}>
                     Lantern Towers
                   </Text>
@@ -191,10 +212,15 @@ export default function SettingsScreen() {
                 looks.dawn ? styles.statusCardDawn : null,
               ]}
             >
+              <View
+                pointerEvents="none"
+                style={[styles.cardTopAccent, { backgroundColor: colors.clarity }]}
+              />
               <View style={styles.statusHead}>
                 <Text style={styles.statusLabel}>Entitlements</Text>
                 {entitlements.clarityPassActive ? (
                   <View style={styles.passLiveChip}>
+                    <View style={styles.passLiveDot} />
                     <Text style={styles.passLiveText}>Pass live</Text>
                   </View>
                 ) : null}
@@ -250,7 +276,14 @@ export default function SettingsScreen() {
             <View
               style={[styles.privacyTeaser, looks.dawn ? styles.privacyTeaserDawn : null]}
             >
-              <Text style={styles.privacyTeaserTitle}>Privacy at a glance</Text>
+              <View
+                pointerEvents="none"
+                style={[styles.cardTopAccent, { backgroundColor: colors.calm }]}
+              />
+              <View style={styles.privacyTeaserHead}>
+                <View style={styles.privacyDot} />
+                <Text style={styles.privacyTeaserTitle}>Privacy at a glance</Text>
+              </View>
               <Text style={styles.note}>
                 Entertainment metaphor only · no therapy claims · device-local progress · store
                 handles paid items.
@@ -286,7 +319,10 @@ export default function SettingsScreen() {
               If you are in distress, seek real-world support.
             </Text>
             <View style={styles.footerStrip} accessibilityRole="summary">
-              <Text style={styles.footerTitle}>Metaphor only</Text>
+              <View style={styles.footerHead}>
+                <View style={styles.footerDot} />
+                <Text style={styles.footerTitle}>Metaphor only</Text>
+              </View>
               <Text style={styles.footerBody}>
                 Soft goals and comfort purchases never change the free kindness loop.
               </Text>
@@ -310,6 +346,9 @@ const styles = StyleSheet.create({
   },
   brand: { fontFamily: fonts.display, fontSize: 36, color: colors.brandDeep, flex: 1 },
   versionChip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
     paddingHorizontal: 10,
     paddingVertical: 4,
     borderRadius: 10,
@@ -320,6 +359,15 @@ const styles = StyleSheet.create({
   versionChipDawn: {
     backgroundColor: 'rgba(201, 168, 90, 0.18)',
     borderColor: 'rgba(201, 168, 90, 0.35)',
+  },
+  versionDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: colors.calm,
+  },
+  versionDotDawn: {
+    backgroundColor: '#C9A85A',
   },
   versionChipText: {
     fontFamily: fonts.bodyMedium,
@@ -336,10 +384,29 @@ const styles = StyleSheet.create({
     borderColor: colors.line,
     marginBottom: 10,
     gap: 4,
+    shadowColor: '#243A34',
+    shadowOpacity: 0.06,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 3 },
+    elevation: 1,
   },
   comfortStripDawn: {
     backgroundColor: 'rgba(255, 246, 230, 0.72)',
     borderColor: 'rgba(201, 168, 90, 0.32)',
+  },
+  comfortHead: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  leadDot: {
+    width: 7,
+    height: 7,
+    borderRadius: 4,
+    backgroundColor: colors.calm,
+  },
+  leadDotDawn: {
+    backgroundColor: '#C9A85A',
   },
   comfortTitle: {
     fontFamily: fonts.bodyBold,
@@ -355,10 +422,20 @@ const styles = StyleSheet.create({
   block: { gap: 10, marginBottom: 18 },
   sectionHead: { flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 2 },
   accentBar: { width: 3, height: 16, borderRadius: 2 },
+  sectionDot: {
+    width: 5,
+    height: 5,
+    borderRadius: 3,
+    opacity: 0.7,
+    marginLeft: 'auto',
+  },
   h: { fontFamily: fonts.bodyBold, fontSize: 16, color: colors.ink },
   note: { fontFamily: fonts.body, fontSize: 12, color: colors.inkSoft, lineHeight: 18 },
   lookRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginVertical: 4 },
   lookChip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
     paddingHorizontal: 10,
     paddingVertical: 5,
     borderRadius: 10,
@@ -371,6 +448,17 @@ const styles = StyleSheet.create({
   lookChipOff: {
     backgroundColor: 'rgba(255,255,255,0.4)',
     borderColor: colors.line,
+  },
+  lookDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+  },
+  lookDotOn: {
+    backgroundColor: colors.calm,
+  },
+  lookDotOff: {
+    backgroundColor: 'rgba(36, 51, 58, 0.2)',
   },
   lookChipTextOn: {
     fontFamily: fonts.bodyMedium,
@@ -386,9 +474,24 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surface,
     borderRadius: 12,
     padding: 12,
+    paddingTop: 14,
     gap: 4,
     borderWidth: 1,
     borderColor: colors.line,
+    overflow: 'hidden',
+    shadowColor: '#243A34',
+    shadowOpacity: 0.06,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 3 },
+    elevation: 1,
+  },
+  cardTopAccent: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 2,
+    opacity: 0.55,
   },
   statusCardDawn: {
     backgroundColor: 'rgba(255, 248, 235, 0.7)',
@@ -412,12 +515,21 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   passLiveChip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
     paddingHorizontal: 8,
     paddingVertical: 3,
     borderRadius: 8,
     backgroundColor: 'rgba(91, 138, 122, 0.22)',
     borderWidth: 1,
     borderColor: 'rgba(91, 138, 122, 0.35)',
+  },
+  passLiveDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: colors.calm,
   },
   passLiveText: {
     fontFamily: fonts.bodyMedium,
@@ -428,13 +540,26 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surface,
     borderRadius: 12,
     padding: 12,
+    paddingTop: 14,
     gap: 4,
     borderWidth: 1,
     borderColor: colors.line,
+    overflow: 'hidden',
   },
   privacyTeaserDawn: {
     backgroundColor: 'rgba(255, 248, 235, 0.7)',
     borderColor: 'rgba(201, 168, 90, 0.28)',
+  },
+  privacyTeaserHead: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+  },
+  privacyDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: colors.calm,
   },
   privacyTeaserTitle: {
     fontFamily: fonts.bodyMedium,
@@ -456,6 +581,18 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.line,
     gap: 2,
+  },
+  footerHead: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+  },
+  footerDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: colors.brand,
+    opacity: 0.7,
   },
   footerTitle: {
     fontFamily: fonts.bodyMedium,
