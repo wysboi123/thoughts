@@ -237,7 +237,7 @@ end)
 
 print("[CouchGalaxy] client ready v" .. Config.Version)
 
-local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
+local _, complete, nudgeOptional = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	{ Id = "couch", Label = "sit on the couch" },
 	{ Id = "galaxy", Label = "visit the galaxy loft" },
 	{ Id = "stars", Label = "collect 3 stars" },
@@ -546,6 +546,7 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 			return
 		end
 		couchReturnWelcomed = true
+		nudgeOptional()
 		SoftWelcome.show(playerGui, "company again", if inGalaxy
 			then "loft side · two worlds · still here"
 			else "couch side · two worlds · still here", {

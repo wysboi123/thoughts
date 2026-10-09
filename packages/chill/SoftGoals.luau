@@ -136,6 +136,47 @@ function SoftGoals.mount(
 		end
 	end
 
+	local function pulseOptionalRows()
+		for _, g in goals do
+			if g.Optional and not done[g.Id] then
+				local optRow = labels[g.Id]
+				if optRow then
+					optRow.TextColor3 = Color3.fromRGB(210, 230, 200)
+					TweenService:Create(
+						optRow,
+						TweenInfo.new(0.7, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+						{ TextColor3 = optionalRowColor }
+					):Play()
+				end
+			end
+		end
+	end
+
+	-- Soft nudge when company returns and optional co-play goals remain open
+	local function nudgeOptional()
+		if not frame.Parent or not softComplete or sealed then
+			return
+		end
+		local left = countOptionalLeft()
+		if left == 0 then
+			return
+		end
+		title.Text = if lingered then "still here · company again" else "soft-complete · company again"
+		title.TextColor3 = Color3.fromRGB(195, 225, 205)
+		TweenService:Create(
+			title,
+			TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+			{ TextColor3 = Color3.fromRGB(210, 240, 220) }
+		):Play()
+		stroke.Transparency = 0.35
+		TweenService:Create(
+			stroke,
+			TweenInfo.new(0.45, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+			{ Transparency = 0.65 }
+		):Play()
+		pulseOptionalRows()
+	end
+
 	local function complete(id: string)
 		if done[id] then
 			return
@@ -202,21 +243,6 @@ function SoftGoals.mount(
 						{ Transparency = 0.65 }
 					):Play()
 					-- Soft pulse open Optional company rows (co-play door still ajar)
-					local function pulseOptionalRows()
-						for _, g in goals do
-							if g.Optional and not done[g.Id] then
-								local optRow = labels[g.Id]
-								if optRow then
-									optRow.TextColor3 = Color3.fromRGB(210, 230, 200)
-									TweenService:Create(
-										optRow,
-										TweenInfo.new(0.7, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-										{ TextColor3 = optionalRowColor }
-									):Play()
-								end
-							end
-						end
-					end
 					pulseOptionalRows()
 					style.OnLinger(left)
 					-- One soft re-nudge if company goals still open (~36s later)
@@ -261,7 +287,7 @@ function SoftGoals.mount(
 		end
 	end
 
-	return done, complete
+	return done, complete, nudgeOptional
 end
 
 return SoftGoals

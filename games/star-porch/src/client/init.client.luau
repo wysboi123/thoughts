@@ -138,7 +138,7 @@ local function refreshPorchSoftHint()
 	end
 end
 
-local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
+local _, complete, nudgeOptional = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	{ Id = "sit", Label = "sit on the porch" },
 	{ Id = "swing", Label = "try the porch swing" },
 	{ Id = "flies", Label = "collect 4 fireflies" },
@@ -341,6 +341,7 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 			return
 		end
 		porchReturnWelcomed = true
+		nudgeOptional()
 		SoftWelcome.show(playerGui, "company again", "jar remembers · still here", {
 			AccentColor = porchStyle.AccentColor,
 			FrameColor = porchStyle.FrameColor,

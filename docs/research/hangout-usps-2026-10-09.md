@@ -16,6 +16,10 @@ Sources: Creator Hub Discovery (intentional co-play / playtime / bounce). No new
 
 After company has departed at least once this session, when count rises from 0: brief ReturnTextFn (~3.2s), then settle to One/Many. OnReturned fires for once-per-session SoftWelcome. Complements Night 14 DepartTextFn / OnDeparted.
 
+## CP1 deepen
+
+SoftGoals **nudgeOptional()** (third return from mount) — on OnReturned, title “still here · company again” + pulse open optional rows if co-play goals still ajar. Publish checklist updated with leave/return verify beats.
+
 ## Do not invent
 
 Audio blocked on Perplexity Q-004. SoftInvite post-publish only.

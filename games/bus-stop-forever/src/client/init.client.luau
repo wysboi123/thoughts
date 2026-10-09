@@ -150,7 +150,7 @@ SoftWelcome.show(playerGui, Config.GameName, "the bus will come. you don't have 
 	HoldSeconds = 6.2,
 })
 
-local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
+local _, complete, nudgeOptional = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	{ Id = "sit", Label = "sit on a bench" },
 	{ Id = "ticket", Label = "pick up a ticket" },
 	{ Id = "wave", Label = "wave when the bus stops" },
@@ -415,6 +415,7 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 			return
 		end
 		busReturnWelcomed = true
+		nudgeOptional()
 		SoftWelcome.show(playerGui, "company again", "waiting together · still here", {
 			AccentColor = busStyle.AccentColor,
 			FrameColor = busStyle.FrameColor,

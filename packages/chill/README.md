@@ -15,7 +15,7 @@ Then: `local SoftGoals = require(ReplicatedStorage.Chill.SoftGoals)`
 | --- | --- |
 | `PartFactory` | Anchored part builder + clear Baseplate |
 | `RemoteFolder` | Server-create / client-wait RemoteEvents |
-| `SoftGoals` | Soft checklist · `Optional` · OnSessionSealed · OnLinger · optional re-pulse |
+| `SoftGoals` | Soft checklist · OnLinger · optional re-pulse · `nudgeOptional` on company return |
 | `Proximity` | Soft PointLight glow (scales with nearby count + `setBoost`) |
 | `SoftWelcome` | One-shot toast (replaces prior; optional accent colors) |
 | `SoftSit` | Sit-status line · `EmptyTextFn` seat-open · `refresh` still-here pulse |

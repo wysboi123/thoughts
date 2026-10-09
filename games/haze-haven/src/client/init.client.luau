@@ -27,7 +27,7 @@ local softCompleteDone = false
 local softCompleteOptionalOpen = false
 local softLingered = false
 local softCompanyHandle: any = nil
-local _, complete = SoftGoals.mount(playerGui, "tonight's soft goals", {
+local _, complete, nudgeOptional = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	{ Id = "vibes", Label = "collect 3 vibes" },
 	{ Id = "sit", Label = "sit somewhere" },
 	{ Id = "float", Label = "take a float" },
@@ -237,6 +237,7 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 			return
 		end
 		hazeReturnWelcomed = true
+		nudgeOptional()
 		SoftWelcome.show(playerGui, "company again", "vibes sync · still here", {
 			AccentColor = hazeStyle.AccentColor,
 			FrameColor = hazeStyle.FrameColor,
