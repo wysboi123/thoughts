@@ -326,6 +326,9 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 			else ("soft company · %d nearby · jar glow"):format(n)
 	end,
 	OnDeparted = function()
+		if softLingered or softCompleteDone then
+			nudgeOptional("depart")
+		end
 		if porchDepartWelcomed or not (softLingered or softCompleteDone) then
 			return
 		end

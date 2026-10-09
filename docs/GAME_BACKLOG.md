@@ -4,10 +4,10 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 
 ## Active (focus now)
 
-- [x] **Haze Haven v0–v3.26** — soft-complete · company still open
-- [x] **Couch Galaxy v0–v3.24** — soft-complete · company still open
-- [x] **Bus Stop Forever v0–v3.25** — soft-complete · together still open
-- [x] **Star Porch v0–v3.23** — soft-complete · porch still open
+- [x] **Haze Haven v0–v3.27** — soft-complete · company still open
+- [x] **Couch Galaxy v0–v3.25** — soft-complete · company still open
+- [x] **Bus Stop Forever v0–v3.26** — soft-complete · together still open
+- [x] **Star Porch v0–v3.24** — soft-complete · porch still open
 - [x] **Shared** — SoftCompany Depart/Return · SoftGoals.nudgeOptional · SoftSit.EmptyTextFn
 - [x] **USP research + priority** — `docs/USPS.md` + Night 8/11 research notes
 - [x] **Night 6** — complete (active-four polish; parked trio kept)
@@ -23,7 +23,7 @@ Priority order. Overnight agents pick the top unchecked item unless Femmy overri
 - [x] **Night 12** — complete (SoftGoals OnLinger · still-here SoftCompany/place · SoftInvite prep; Haze 3.15 · Couch 3.13 · Bus 3.14 · Porch 3.13)
 - [x] **Night 13** — complete (SoftCompany.refresh · linger warmth; Haze 3.21 · Couch 3.19 · Bus 3.20 · Porch 3.18)
 - [x] **Night 14** — complete (DepartTextFn · OnDeparted · SoftSit EmptyTextFn; Haze 3.24 · Couch 3.22 · Bus 3.23 · Porch 3.21)
-- [ ] **Night 15** — in progress (ReturnTextFn · OnReturned · nudgeOptional; Haze 3.26 · Couch 3.24 · Bus 3.25 · Porch 3.23)
+- [ ] **Night 15** — in progress (Return/Depart nudgeOptional; Haze 3.27 · Couch 3.25 · Bus 3.26 · Porch 3.24)
 
 ## Parked for later (files kept — do not erase)
 

@@ -529,6 +529,9 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 			else ("soft company · %d nearby · couch side"):format(n)
 	end,
 	OnDeparted = function()
+		if softLingered or softCompleteDone then
+			nudgeOptional("depart")
+		end
 		if couchDepartWelcomed or not (softLingered or softCompleteDone) then
 			return
 		end

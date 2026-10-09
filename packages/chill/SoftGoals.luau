@@ -152,8 +152,8 @@ function SoftGoals.mount(
 		end
 	end
 
-	-- Soft nudge when company returns and optional co-play goals remain open
-	local function nudgeOptional()
+	-- Soft nudge when optional co-play goals remain open (return or depart)
+	local function nudgeOptional(kind: ("return" | "depart")?)
 		if not frame.Parent or not softComplete or sealed then
 			return
 		end
@@ -161,7 +161,10 @@ function SoftGoals.mount(
 		if left == 0 then
 			return
 		end
-		title.Text = if lingered then "still here · company again" else "soft-complete · company again"
+		local mode = kind or "return"
+		title.Text = if mode == "depart"
+			then (if lingered then "still here · company still open" else "soft-complete · company still open")
+			else (if lingered then "still here · company again" else "soft-complete · company again")
 		title.TextColor3 = Color3.fromRGB(195, 225, 205)
 		TweenService:Create(
 			title,

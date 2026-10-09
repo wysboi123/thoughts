@@ -20,6 +20,10 @@ After company has departed at least once this session, when count rises from 0: 
 
 SoftGoals **nudgeOptional()** (third return from mount) — on OnReturned, title “still here · company again” + pulse open optional rows if co-play goals still ajar. Publish checklist updated with leave/return verify beats.
 
+## CP2 deepen
+
+SoftGoals **nudgeOptional("depart")** on OnDeparted — “still here · company still open” when friends leave but optional co-play row remains. EXPERIENCE_COPY one-line leave/return soft co-play note.
+
 ## Do not invent
 
 Audio blocked on Perplexity Q-004. SoftInvite post-publish only.

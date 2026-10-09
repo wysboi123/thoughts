@@ -400,6 +400,9 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		return ("soft company · %d nearby · wait together"):format(n)
 	end,
 	OnDeparted = function()
+		if softLingered or softCompleteDone then
+			nudgeOptional("depart")
+		end
 		if busDepartWelcomed or not (softLingered or softCompleteDone) then
 			return
 		end

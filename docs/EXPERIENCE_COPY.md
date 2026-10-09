@@ -8,7 +8,7 @@ Ready-to-paste titles + descriptions for Studio publish. Keep ToS-safe (chill / 
 
 **Title:** Haze Haven  
 **Description:**
-A soft dusk lounge. Float pads, vibe orbs, loft hammock, and quiet emotes. Soft goals work alone; vibes sync when friends are near — welcome sign, hammock, board, orbs, and glow soften together. No combat. Soft complete, then stay — still here is enough.
+A soft dusk lounge. Float pads, vibe orbs, loft hammock, and quiet emotes. Soft goals work alone; vibes sync when friends are near — welcome sign, hammock, board, orbs, and glow soften together. No combat. Soft complete, then stay — friends can drift back; still here is enough.
 
 ### Couch Galaxy
 
@@ -20,7 +20,7 @@ Two worlds, one couch. Start in a cozy apartment, climb to the roof, step throug
 
 **Title:** Bus Stop Forever  
 **Description:**
-An infinite calm bus stop. The bus comes and goes; you don't have to. Soft goals work alone; wait together when friends arrive — the timetable and notepad know, and the bus lingers a little longer. Soft complete, then still waiting is fine. Tickets, waves, soft rain.
+An infinite calm bus stop. The bus comes and goes; you don't have to. Soft goals work alone; wait together when friends arrive — the timetable and notepad know, and the bus lingers a little longer. Soft complete, then still waiting is fine — company can drift back. Tickets, waves, soft rain.
 
 ### Star Porch
 

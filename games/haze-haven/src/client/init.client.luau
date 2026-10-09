@@ -222,6 +222,9 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 			else ("soft company · %d nearby · vibes sync"):format(n)
 	end,
 	OnDeparted = function()
+		if softLingered or softCompleteDone then
+			nudgeOptional("depart")
+		end
 		if hazeDepartWelcomed or not (softLingered or softCompleteDone) then
 			return
 		end
