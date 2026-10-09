@@ -14,7 +14,7 @@ A soft dusk lounge. Float pads, vibe orbs, loft hammock, and quiet emotes. Soft 
 
 **Title:** Couch Galaxy  
 **Description:**
-Two worlds, one couch. Start in a cozy apartment, climb to the roof, step through the skylight into a night-sky hangout. Soft goals work alone; soft company warms both sides — couches, constellations, cloud pads. Soft complete, then stay.
+Two worlds, one couch. Start in a cozy apartment, climb to the roof, step through the skylight into a night-sky hangout. Soft goals work alone; soft company warms both sides — couches, constellations, cloud pads. Soft complete, then stay — friends can drift back.
 
 ### Bus Stop Forever
 
