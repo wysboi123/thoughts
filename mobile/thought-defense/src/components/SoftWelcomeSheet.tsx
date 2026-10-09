@@ -171,6 +171,7 @@ export function SoftWelcomeSheet() {
             pointerEvents="none"
             style={[styles.accentBar, { backgroundColor: current.accent }]}
           />
+          <View pointerEvents="none" style={styles.topSheen} />
           <View
             pointerEvents="none"
             style={[styles.orbHalo, { backgroundColor: `${current.accent}22` }]}
@@ -179,9 +180,17 @@ export function SoftWelcomeSheet() {
             pointerEvents="none"
             style={[styles.orb, { backgroundColor: `${current.accent}44` }]}
           />
+          <View
+            pointerEvents="none"
+            style={[styles.orbSoft, { backgroundColor: `${current.accent}18` }]}
+          />
           <View style={styles.topRow}>
-            <Text style={[styles.eyebrow, { color: current.accent }]}>Welcome</Text>
+            <View style={styles.eyebrowRow}>
+              <View style={[styles.eyebrowDot, { backgroundColor: current.accent }]} />
+              <Text style={[styles.eyebrow, { color: current.accent }]}>Welcome</Text>
+            </View>
             <View style={[styles.stepChip, { borderColor: `${current.accent}44` }]}>
+              <View style={[styles.stepDot, { backgroundColor: current.accent }]} />
               <Text style={[styles.step, { color: current.accent }]}>
                 {page + 1} of {PAGES.length}
               </Text>
@@ -229,7 +238,10 @@ export function SoftWelcomeSheet() {
 
           {isLast ? (
             <View style={styles.comfortStrip} accessibilityRole="summary">
-              <Text style={styles.comfortTitle}>Metaphor only</Text>
+              <View style={styles.comfortHead}>
+                <View style={styles.comfortDot} />
+                <Text style={styles.comfortTitle}>Metaphor only</Text>
+              </View>
               <Text style={styles.comfortBody}>
                 Soft play aims — not therapy, diagnosis, or medical advice. Comfort purchases stay
                 optional.
@@ -298,6 +310,14 @@ const styles = StyleSheet.create({
     height: 3,
     opacity: 0.85,
   },
+  topSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 28,
+    backgroundColor: 'rgba(255,255,255,0.16)',
+  },
   orbHalo: {
     position: 'absolute',
     top: -48,
@@ -314,10 +334,28 @@ const styles = StyleSheet.create({
     height: 120,
     borderRadius: 120,
   },
+  orbSoft: {
+    position: 'absolute',
+    bottom: -40,
+    left: -28,
+    width: 110,
+    height: 110,
+    borderRadius: 110,
+  },
   topRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+  },
+  eyebrowRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+  },
+  eyebrowDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
   },
   eyebrow: {
     fontFamily: fonts.bodyMedium,
@@ -326,11 +364,19 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   stepChip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
     paddingHorizontal: 8,
     paddingVertical: 3,
     borderRadius: 10,
     borderWidth: 1,
     backgroundColor: 'rgba(255,255,255,0.4)',
+  },
+  stepDot: {
+    width: 5,
+    height: 5,
+    borderRadius: 3,
   },
   step: {
     fontFamily: fonts.bodyMedium,
@@ -401,6 +447,17 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(106, 158, 174, 0.22)',
     gap: 3,
+  },
+  comfortHead: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+  },
+  comfortDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: colors.clarity,
   },
   comfortTitle: {
     fontFamily: fonts.bodyBold,
