@@ -140,10 +140,20 @@ export function FirstRunTipChip({ visible, dawn }: Props) {
       >
         <View
           pointerEvents="none"
+          style={[styles.topAccent, { backgroundColor: current.accent }]}
+        />
+        <View pointerEvents="none" style={styles.topSheen} />
+        <View
+          pointerEvents="none"
           style={[styles.glow, { backgroundColor: `${current.accent}28` }]}
+        />
+        <View
+          pointerEvents="none"
+          style={[styles.glowSoft, { backgroundColor: `${current.accent}14` }]}
         />
         <Animated.View style={[styles.textWrap, { opacity: tipFade }]}>
           <View style={[styles.badge, { borderColor: `${current.accent}66` }]}>
+            <View pointerEvents="none" style={styles.badgeSheen} />
             <View style={[styles.badgeDot, { backgroundColor: current.accent }]} />
             <Text style={[styles.badgeLabel, { color: current.accent }]}>Soft tip</Text>
           </View>
@@ -203,7 +213,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 10,
     maxWidth: '100%',
-    paddingVertical: 10,
+    paddingVertical: 12,
+    paddingTop: 14,
     paddingLeft: 12,
     paddingRight: 8,
     borderRadius: 16,
@@ -213,14 +224,30 @@ const styles = StyleSheet.create({
     borderLeftWidth: 4,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    shadowOffset: { width: 0, height: 3 },
-    elevation: 2,
+    shadowOpacity: 0.12,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 3,
   },
   chipDawn: {
     backgroundColor: 'rgba(255, 244, 220, 0.75)',
     borderColor: 'rgba(201, 168, 90, 0.3)',
+  },
+  topAccent: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 2,
+    opacity: 0.55,
+  },
+  topSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 22,
+    backgroundColor: 'rgba(255,255,255,0.16)',
   },
   glow: {
     position: 'absolute',
@@ -229,6 +256,14 @@ const styles = StyleSheet.create({
     width: 70,
     height: 70,
     borderRadius: 70,
+  },
+  glowSoft: {
+    position: 'absolute',
+    bottom: -22,
+    left: 24,
+    width: 56,
+    height: 56,
+    borderRadius: 56,
   },
   textWrap: {
     flexShrink: 1,
@@ -244,6 +279,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     backgroundColor: 'rgba(255,255,255,0.45)',
+    overflow: 'hidden',
+  },
+  badgeSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '55%',
+    backgroundColor: 'rgba(255,255,255,0.35)',
   },
   badgeDot: {
     width: 6,
@@ -296,6 +340,11 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     borderWidth: 1,
     borderColor: colors.line,
+    shadowColor: '#243A34',
+    shadowOpacity: 0.06,
+    shadowRadius: 4,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 1,
   },
   dismissSheen: {
     ...StyleSheet.absoluteFill,
