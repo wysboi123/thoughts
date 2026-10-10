@@ -250,6 +250,7 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		sitDepartPulseUntil = os.clock() + 4
 		sitReturnPulseUntil = 0
 		hazeSit.refresh()
+		VibeBoard.pulseCompany("depart")
 		if hazeDepartWelcomed or not (softLingered or softCompleteDone) then
 			return
 		end
@@ -264,6 +265,7 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		sitReturnPulseUntil = os.clock() + 4
 		sitDepartPulseUntil = 0
 		hazeSit.refresh()
+		VibeBoard.pulseCompany("return")
 		if hazeReturnWelcomed or not (softLingered or softCompleteDone) then
 			return
 		end

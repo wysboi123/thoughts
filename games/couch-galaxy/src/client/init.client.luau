@@ -70,6 +70,8 @@ local softCompleteOptionalOpen = false
 local softLingered = false
 local proximityHandle: any = nil
 local softCompanyHandle: any = nil
+local placeWarmKind: string? = nil -- "depart" | "return"
+local placeWarmToken = 0
 
 local SoftCompany = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftCompany"))
 local SoftSit = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftSit"))
@@ -100,8 +102,12 @@ applyHomeLighting()
 local function refreshPlace(companyNear: boolean)
 	local versionSuffix = "  ·  v" .. Config.Version
 	if inGalaxy then
-		if companyNear then
-			place.Text = "galaxy loft · soft company · two worlds"
+		if companyNear and placeWarmKind ~= "depart" then
+			place.Text = if placeWarmKind == "return"
+				then "galaxy loft · company again · two worlds"
+				else "galaxy loft · soft company · two worlds"
+		elseif placeWarmKind == "depart" then
+			place.Text = "they drifted · loft stays · two worlds"
 		elseif softLingered and softCompleteOptionalOpen then
 			place.Text = "still here · loft company still open"
 		elseif softLingered then
@@ -120,8 +126,12 @@ local function refreshPlace(companyNear: boolean)
 		tag.TextColor3 = Color3.fromRGB(170, 175, 220)
 		title.TextColor3 = Color3.fromRGB(210, 215, 255)
 	else
-		if companyNear then
-			place.Text = "couch side · soft company · climb when ready"
+		if companyNear and placeWarmKind ~= "depart" then
+			place.Text = if placeWarmKind == "return"
+				then "couch side · company again · climb when ready"
+				else "couch side · soft company · climb when ready"
+		elseif placeWarmKind == "depart" then
+			place.Text = "they drifted · couch stays · two worlds"
 		elseif softLingered and softCompleteOptionalOpen then
 			place.Text = "still here · couch company still open"
 		elseif softLingered then
@@ -385,9 +395,14 @@ local function applyCouchWorldPresence(company: boolean)
 			local beaconGui = beacon:FindFirstChildWhichIsA("SurfaceGui")
 			local beaconLabel = beaconGui and beaconGui:FindFirstChildWhichIsA("TextLabel")
 			if beaconLabel and beaconLabel:IsA("TextLabel") then
-				if company then
-					beaconLabel.Text = "couch side · soft company · come home"
+				if company and placeWarmKind ~= "depart" then
+					beaconLabel.Text = if placeWarmKind == "return"
+						then "couch side · company again · come home"
+						else "couch side · soft company · come home"
 					beaconLabel.TextColor3 = Color3.fromRGB(255, 235, 200)
+				elseif placeWarmKind == "depart" then
+					beaconLabel.Text = "couch side · they drifted · come home"
+					beaconLabel.TextColor3 = Color3.fromRGB(225, 220, 195)
 				elseif softLingered then
 					beaconLabel.Text = "couch side · still here · come home"
 					beaconLabel.TextColor3 = Color3.fromRGB(230, 225, 200)
@@ -421,9 +436,14 @@ local function applyCouchWorldPresence(company: boolean)
 			local portalGui = portal:FindFirstChildWhichIsA("SurfaceGui")
 			local portalLabel = portalGui and portalGui:FindFirstChildWhichIsA("TextLabel")
 			if portalLabel and portalLabel:IsA("TextLabel") then
-				if company then
-					portalLabel.Text = "galaxy loft · soft company · step through"
+				if company and placeWarmKind ~= "depart" then
+					portalLabel.Text = if placeWarmKind == "return"
+						then "galaxy loft · company again · step through"
+						else "galaxy loft · soft company · step through"
 					portalLabel.TextColor3 = Color3.fromRGB(245, 230, 255)
+				elseif placeWarmKind == "depart" then
+					portalLabel.Text = "galaxy loft · they drifted · step through"
+					portalLabel.TextColor3 = Color3.fromRGB(210, 215, 230)
 				elseif softLingered then
 					portalLabel.Text = "galaxy loft · still here · step through"
 					portalLabel.TextColor3 = Color3.fromRGB(215, 220, 235)
@@ -445,9 +465,14 @@ local function applyCouchWorldPresence(company: boolean)
 				if plaqueGui then
 					for _, label in plaqueGui:GetChildren() do
 						if label:IsA("TextLabel") and label.TextSize <= 18 then
-							if company then
-								label.Text = "one couch\nsoft company"
+							if company and placeWarmKind ~= "depart" then
+								label.Text = if placeWarmKind == "return"
+									then "one couch\ncompany again"
+									else "one couch\nsoft company"
 								label.TextColor3 = Color3.fromRGB(200, 185, 230)
+							elseif placeWarmKind == "depart" then
+								label.Text = "one couch\nthey drifted"
+								label.TextColor3 = Color3.fromRGB(175, 170, 195)
 							elseif softLingered then
 								label.Text = "one couch\nstill here"
 								label.TextColor3 = Color3.fromRGB(180, 175, 200)
@@ -569,6 +594,19 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		sitDepartPulseUntil = os.clock() + 4
 		sitReturnPulseUntil = 0
 		couchSit.refresh()
+		placeWarmToken += 1
+		local token = placeWarmToken
+		placeWarmKind = "depart"
+		refreshPlace(false)
+		applyCouchWorldPresence(false)
+		task.delay(4.0, function()
+			if token ~= placeWarmToken then
+				return
+			end
+			placeWarmKind = nil
+			refreshPlace(couchCompanyNear)
+			applyCouchWorldPresence(couchCompanyNear)
+		end)
 		if couchDepartWelcomed or not (softLingered or softCompleteDone) then
 			return
 		end
@@ -585,6 +623,19 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		sitReturnPulseUntil = os.clock() + 4
 		sitDepartPulseUntil = 0
 		couchSit.refresh()
+		placeWarmToken += 1
+		local token = placeWarmToken
+		placeWarmKind = "return"
+		refreshPlace(true)
+		applyCouchWorldPresence(true)
+		task.delay(4.0, function()
+			if token ~= placeWarmToken then
+				return
+			end
+			placeWarmKind = nil
+			refreshPlace(couchCompanyNear)
+			applyCouchWorldPresence(couchCompanyNear)
+		end)
 		if couchReturnWelcomed or not (softLingered or softCompleteDone) then
 			return
 		end

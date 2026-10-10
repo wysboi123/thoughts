@@ -16,10 +16,10 @@ Research refresh 2026-10-02: Creator Hub ranks **intentional co-play days** as a
 
 | Priority | Game | USP | Why it sells | Implementation | Status |
 | --- | --- | --- | --- | --- | --- |
-| **P0** | Haze Haven | **Vibe sync** | Board + orbs feel better when friends are near | AfterDepart/AfterReturn · SoftSit pulse | ✅ v3.30 |
-| **P0** | Bus Stop Forever | **Waiting together** | Timetable + HUD sit/company loop | AfterDepart/AfterReturn · SoftSit pulse | ✅ v3.29 |
-| **P0** | Star Porch | **Jar that fills** | Fireflies return; jar visibly fills | AfterDepart/AfterReturn · SoftSit pulse | ✅ v3.27 |
-| **P1** | Couch Galaxy | **Two worlds, one couch** | Clear home ↔ galaxy identity | AfterDepart/AfterReturn · SoftSit pulse | ✅ v3.28 |
+| **P0** | Haze Haven | **Vibe sync** | Board + orbs feel better when friends are near | Place-warmth depart/return pulse | ✅ v3.31 |
+| **P0** | Bus Stop Forever | **Waiting together** | Timetable + HUD sit/company loop | Place-warmth depart/return pulse | ✅ v3.30 |
+| **P0** | Star Porch | **Jar that fills** | Fireflies return; jar visibly fills | Place-warmth depart/return pulse | ✅ v3.28 |
+| **P1** | Couch Galaxy | **Two worlds, one couch** | Clear home ↔ galaxy identity | Place-warmth depart/return pulse | ✅ v3.29 |
 | **P2** | Haze Haven | Shared vibe board | Soft ranks without competition toxicity | Already: VibeBoard | ✅ |
 | **P2** | Line (post-publish) | Soft invite prompt | Discovery co-play days | SocialService — after first Studio publish | ⏳ |
 | **Later** | Parked trio | Resume USPs when Femmy unparks | Files kept | — | Parked |
@@ -47,6 +47,8 @@ Research refresh 2026-10-02: Creator Hub ranks **intentional co-play days** as a
 **Night 15 deepen:** SoftCompany **ReturnTextFn** + **OnReturned** SoftWelcome · SoftGoals **nudgeOptional** depart/return · publish checklist + EXPERIENCE_COPY · research `hangout-usps-2026-10-09.md`
 
 **Night 16 deepen:** SoftCompany **AfterDepartTextFn** + **AfterReturnTextFn** · SoftGoals sealed **nudgeOptional** · SoftSit depart/return empty pulse · research `hangout-usps-2026-10-10.md`
+
+**Night 17 deepen:** Place-warmth on company depart/return — Haze VibeBoard · Bus news/timetable · Porch jar hint · Couch beacon/portal/plaque · research `hangout-usps-2026-10-11.md`
 
 ## Copy hooks (thumbnails / description)
 

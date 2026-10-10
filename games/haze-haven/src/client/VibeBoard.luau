@@ -34,15 +34,24 @@ end
 
 local boardSynced = false
 local boardLingered = false
+local pulseToken = 0
+local pulseKind: string? = nil -- "depart" | "return" | nil
 
 local function applyBoardLook()
 	local world, board, title, body = findBoard()
 	local synced = boardSynced
-	local lingered = boardLingered and not synced
+	local pulse = pulseKind
+	local lingered = boardLingered and not synced and pulse == nil
 	if title then
 		if synced then
 			title.TextColor3 = Color3.fromRGB(255, 230, 255)
 			title.Text = "tonight's vibes · syncing"
+		elseif pulse == "return" then
+			title.TextColor3 = Color3.fromRGB(230, 245, 230)
+			title.Text = "tonight's vibes · company again"
+		elseif pulse == "depart" then
+			title.TextColor3 = Color3.fromRGB(200, 210, 205)
+			title.Text = "tonight's vibes · they drifted"
 		elseif lingered then
 			title.TextColor3 = Color3.fromRGB(210, 220, 210)
 			title.Text = "tonight's vibes · still here"
@@ -54,7 +63,9 @@ local function applyBoardLook()
 	if body then
 		if synced then
 			body.TextColor3 = Color3.fromRGB(230, 210, 255)
-		elseif lingered then
+		elseif pulse == "return" then
+			body.TextColor3 = Color3.fromRGB(210, 230, 210)
+		elseif pulse == "depart" or lingered then
 			body.TextColor3 = Color3.fromRGB(190, 205, 195)
 		else
 			body.TextColor3 = Color3.fromRGB(200, 180, 230)
@@ -63,7 +74,9 @@ local function applyBoardLook()
 	if board then
 		if synced then
 			board.Color = Color3.fromRGB(55, 42, 78)
-		elseif lingered then
+		elseif pulse == "return" then
+			board.Color = Color3.fromRGB(42, 48, 50)
+		elseif pulse == "depart" or lingered then
 			board.Color = Color3.fromRGB(38, 40, 48)
 		else
 			board.Color = Color3.fromRGB(40, 32, 55)
@@ -79,7 +92,11 @@ local function applyBoardLook()
 			light.Brightness = 1.8
 			light.Range = 16
 			light.Color = Color3.fromRGB(200, 160, 255)
-		elseif lingered then
+		elseif pulse == "return" then
+			light.Brightness = 1.35
+			light.Range = 13
+			light.Color = Color3.fromRGB(180, 220, 195)
+		elseif pulse == "depart" or lingered then
 			light.Brightness = 1.0
 			light.Range = 11
 			light.Color = Color3.fromRGB(170, 200, 185)
@@ -92,15 +109,20 @@ local function applyBoardLook()
 	-- Soft-tint uncollected vibe orbs while company is near (local visual)
 	if world then
 		local syncColor = Color3.fromRGB(210, 160, 255)
+		local returnColor = Color3.fromRGB(190, 210, 180)
 		local lingerColor = Color3.fromRGB(200, 150, 210)
 		local baseColor = Color3.fromRGB(220, 120, 200)
 		for _, child in world:GetChildren() do
 			if child:IsA("BasePart") and child:GetAttribute("IsVibeOrb") and not child:GetAttribute("Collected") then
-				child.Color = if synced then syncColor elseif lingered then lingerColor else baseColor
+				child.Color = if synced
+					then syncColor
+					elseif pulse == "return" then returnColor
+					elseif pulse == "depart" or lingered then lingerColor
+					else baseColor
 				local orbLight = child:FindFirstChildOfClass("PointLight")
 				if orbLight then
 					orbLight.Color = child.Color
-					orbLight.Brightness = if synced then 2.4 elseif lingered then 2.0 else 1.8
+					orbLight.Brightness = if synced then 2.4 elseif pulse == "return" then 2.2 elseif pulse == "depart" or lingered then 2.0 else 1.8
 				end
 			end
 		end
@@ -109,6 +131,9 @@ end
 
 function VibeBoard.setSynced(synced: boolean)
 	boardSynced = synced
+	if synced then
+		pulseKind = nil
+	end
 	applyBoardLook()
 end
 
@@ -116,6 +141,24 @@ end
 function VibeBoard.setLingered(lingered: boolean)
 	boardLingered = lingered
 	applyBoardLook()
+end
+
+-- Brief place-warmth pulse when company leaves / returns (sync still wins)
+function VibeBoard.pulseCompany(kind: "depart" | "return")
+	if boardSynced then
+		return
+	end
+	pulseToken += 1
+	local token = pulseToken
+	pulseKind = kind
+	applyBoardLook()
+	task.delay(4.0, function()
+		if token ~= pulseToken then
+			return
+		end
+		pulseKind = nil
+		applyBoardLook()
+	end)
 end
 
 return VibeBoard

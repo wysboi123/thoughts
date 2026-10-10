@@ -89,6 +89,8 @@ local proximityHandle: any = nil
 local softCompanyHandle: any = nil
 local sitDepartPulseUntil = 0.0
 local sitReturnPulseUntil = 0.0
+local placeWarmKind: string? = nil -- "depart" | "return"
+local placeWarmToken = 0
 local porchSit = SoftSit.mount(playerGui, {
 	EmptyTextFn = function()
 		if os.clock() < sitReturnPulseUntil then
@@ -127,6 +129,15 @@ local function refreshPorchSoftHint()
 		return
 	end
 	if porchCompanyNear then
+		return
+	end
+	if placeWarmKind == "return" then
+		hint.Text = "company again · jar remembers · stay"
+		hint.TextColor3 = Color3.fromRGB(155, 190, 150)
+		return
+	elseif placeWarmKind == "depart" then
+		hint.Text = "they drifted · jar remembers · stay"
+		hint.TextColor3 = Color3.fromRGB(145, 170, 140)
 		return
 	end
 	if softLingered and softCompleteOptionalOpen then
@@ -354,6 +365,27 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		sitDepartPulseUntil = os.clock() + 4
 		sitReturnPulseUntil = 0
 		porchSit.refresh()
+		placeWarmToken += 1
+		local token = placeWarmToken
+		placeWarmKind = "depart"
+		refreshPorchSoftHint()
+		if jarMeter and jarMeter.Parent then
+			jarMeter.TextColor3 = Color3.fromRGB(160, 190, 150)
+		end
+		task.delay(4.0, function()
+			if token ~= placeWarmToken then
+				return
+			end
+			placeWarmKind = nil
+			if not porchCompanyNear then
+				refreshPorchSoftHint()
+				if jarMeter and jarMeter.Parent then
+					jarMeter.TextColor3 = if softLingered
+						then Color3.fromRGB(165, 200, 155)
+						else Color3.fromRGB(150, 180, 140)
+				end
+			end
+		end)
 		if porchDepartWelcomed or not (softLingered or softCompleteDone) then
 			return
 		end
@@ -368,6 +400,30 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		sitReturnPulseUntil = os.clock() + 4
 		sitDepartPulseUntil = 0
 		porchSit.refresh()
+		placeWarmToken += 1
+		local token = placeWarmToken
+		placeWarmKind = "return"
+		refreshPorchSoftHint()
+		if jarMeter and jarMeter.Parent then
+			jarMeter.TextColor3 = Color3.fromRGB(190, 240, 170)
+		end
+		task.delay(4.0, function()
+			if token ~= placeWarmToken then
+				return
+			end
+			placeWarmKind = nil
+			if porchCompanyNear then
+				if hint and hint.Parent and not fullToast then
+					hint.Text = "company near · jar + lights feel warmer"
+					hint.TextColor3 = Color3.fromRGB(160, 190, 150)
+				end
+				if jarMeter and jarMeter.Parent then
+					jarMeter.TextColor3 = Color3.fromRGB(200, 255, 170)
+				end
+			else
+				refreshPorchSoftHint()
+			end
+		end)
 		if porchReturnWelcomed or not (softLingered or softCompleteDone) then
 			return
 		end

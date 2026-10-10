@@ -227,6 +227,9 @@ local function tryTogetherGoal()
 end
 
 local Workspace = game:GetService("Workspace")
+local placeWarmKind: string? = nil -- "depart" | "return"
+local placeWarmToken = 0
+
 local function tintTimetable(company: boolean)
 	local world = Workspace:FindFirstChild("BusStopWorld")
 	local board = world and world:FindFirstChild("Timetable")
@@ -235,8 +238,10 @@ local function tintTimetable(company: boolean)
 	if body and body:IsA("TextLabel") then
 		if company then
 			body.TextColor3 = Color3.fromRGB(230, 245, 200)
-		elseif softLingered then
-			-- Soft stay warmth after OnLinger (playtime) even when alone
+		elseif placeWarmKind == "return" then
+			body.TextColor3 = Color3.fromRGB(220, 240, 195)
+		elseif placeWarmKind == "depart" or softLingered then
+			-- Soft stay warmth after OnLinger / depart pulse (playtime)
 			body.TextColor3 = Color3.fromRGB(210, 228, 185)
 		else
 			body.TextColor3 = Color3.fromRGB(200, 220, 180)
@@ -248,12 +253,42 @@ local function tintTimetable(company: boolean)
 	if newsLabel and newsLabel:IsA("TextLabel") then
 		if company then
 			newsLabel.Text = "TODAY\n\nstill\ntogether"
+		elseif placeWarmKind == "return" then
+			newsLabel.Text = "TODAY\n\ncompany\nagain"
+		elseif placeWarmKind == "depart" then
+			newsLabel.Text = "TODAY\n\nthey\ndrifted"
 		elseif softLingered then
 			newsLabel.Text = "TODAY\n\nstill\nhere"
 		else
 			newsLabel.Text = "TODAY\n\nstill\nfree"
 		end
 	end
+	local notepad = world and world:FindFirstChild("NotepadBoard")
+	if notepad and notepad:IsA("BasePart") then
+		if company then
+			notepad.Color = Color3.fromRGB(52, 55, 42)
+		elseif placeWarmKind == "return" then
+			notepad.Color = Color3.fromRGB(50, 54, 42)
+		elseif placeWarmKind == "depart" or softLingered then
+			notepad.Color = Color3.fromRGB(48, 48, 40)
+		else
+			notepad.Color = Color3.fromRGB(45, 42, 38)
+		end
+	end
+end
+
+local function pulseBusPlaceWarmth(kind: "depart" | "return")
+	placeWarmToken += 1
+	local token = placeWarmToken
+	placeWarmKind = kind
+	tintTimetable(kind == "return")
+	task.delay(4.0, function()
+		if token ~= placeWarmToken then
+			return
+		end
+		placeWarmKind = nil
+		tintTimetable(nearbyCount >= 1)
+	end)
 end
 
 local waveBtn = Instance.new("TextButton")
@@ -432,6 +467,7 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		sitDepartPulseUntil = os.clock() + 4
 		sitReturnPulseUntil = 0
 		benchSit.refresh()
+		pulseBusPlaceWarmth("depart")
 		if busDepartWelcomed or not (softLingered or softCompleteDone) then
 			return
 		end
@@ -446,6 +482,7 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		sitReturnPulseUntil = os.clock() + 4
 		sitDepartPulseUntil = 0
 		benchSit.refresh()
+		pulseBusPlaceWarmth("return")
 		if busReturnWelcomed or not (softLingered or softCompleteDone) then
 			return
 		end
@@ -483,22 +520,15 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 			end
 		end
 		local world = Workspace:FindFirstChild("BusStopWorld")
-		local notepad = world and world:FindFirstChild("NotepadBoard")
-		if notepad and notepad:IsA("BasePart") then
-			if n >= 1 then
-				notepad.Color = Color3.fromRGB(52, 55, 42)
-			elseif softLingered then
-				notepad.Color = Color3.fromRGB(48, 48, 40)
-			else
-				notepad.Color = Color3.fromRGB(45, 42, 38)
-			end
-		end
+		-- notepad color owned by tintTimetable (incl. place-warmth pulse)
 		if world then
 			for _, child in world:GetChildren() do
 				if child:IsA("Seat") and string.find(child.Name, "BenchSeat", 1, true) then
 					if n >= 1 then
 						child.Color = Color3.fromRGB(130, 105, 75)
-					elseif softLingered then
+					elseif placeWarmKind == "return" then
+						child.Color = Color3.fromRGB(125, 102, 74)
+					elseif softLingered or placeWarmKind == "depart" then
 						child.Color = Color3.fromRGB(120, 98, 72)
 					else
 						child.Color = Color3.fromRGB(115, 90, 65)
