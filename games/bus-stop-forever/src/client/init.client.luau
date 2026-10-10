@@ -302,10 +302,16 @@ Remotes.TicketCollected.OnClientEvent:Connect(function()
 end)
 
 local SoftSit = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftSit"))
+local sitDepartPulseUntil = 0.0
+local sitReturnPulseUntil = 0.0
 local benchSit = SoftSit.mount(playerGui, {
 	EmptyText = "",
 	EmptyTextFn = function()
-		if softLingered then
+		if os.clock() < sitReturnPulseUntil then
+			return if softLingered then "still here · bench open · company again" else "bench open · company again"
+		elseif os.clock() < sitDepartPulseUntil then
+			return if softLingered then "still here · bench open · they drifted" else "bench open · they drifted"
+		elseif softLingered then
 			return "still here · bench open"
 		elseif softCompleteDone then
 			return "soft-complete · bench open"
@@ -413,6 +419,8 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		if softLingered or softCompleteDone then
 			nudgeOptional("depart")
 		end
+		sitDepartPulseUntil = os.clock() + 4
+		sitReturnPulseUntil = 0
 		benchSit.refresh()
 		if busDepartWelcomed or not (softLingered or softCompleteDone) then
 			return
@@ -425,6 +433,9 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		})
 	end,
 	OnReturned = function()
+		sitReturnPulseUntil = os.clock() + 4
+		sitDepartPulseUntil = 0
+		benchSit.refresh()
 		if busReturnWelcomed or not (softLingered or softCompleteDone) then
 			return
 		end

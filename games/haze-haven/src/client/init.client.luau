@@ -104,10 +104,16 @@ end)
 
 local SoftSit = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftSit"))
 local hazeCompanyNear = false
+local sitDepartPulseUntil = 0.0
+local sitReturnPulseUntil = 0.0
 local hazeSit = SoftSit.mount(playerGui, {
 	EmptyText = "",
 	EmptyTextFn = function()
-		if softLingered then
+		if os.clock() < sitReturnPulseUntil then
+			return if softLingered then "still here · seat open · company again" else "seat open · company again"
+		elseif os.clock() < sitDepartPulseUntil then
+			return if softLingered then "still here · seat open · they drifted" else "seat open · they drifted"
+		elseif softLingered then
 			return "still here · seat open"
 		elseif softCompleteDone then
 			return "soft-complete · seat open"
@@ -233,6 +239,8 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		if softLingered or softCompleteDone then
 			nudgeOptional("depart")
 		end
+		sitDepartPulseUntil = os.clock() + 4
+		sitReturnPulseUntil = 0
 		hazeSit.refresh()
 		if hazeDepartWelcomed or not (softLingered or softCompleteDone) then
 			return
@@ -245,6 +253,9 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		})
 	end,
 	OnReturned = function()
+		sitReturnPulseUntil = os.clock() + 4
+		sitDepartPulseUntil = 0
+		hazeSit.refresh()
 		if hazeReturnWelcomed or not (softLingered or softCompleteDone) then
 			return
 		end

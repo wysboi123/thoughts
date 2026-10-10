@@ -70,9 +70,10 @@ function SoftSit.mount(
 		local empty = emptyLine()
 		local wasEmpty = prevText == "" or prevText == empty or prevText == (options.EmptyText or "")
 		if #names == 0 then
+			local textChanged = prevText ~= empty
 			label.Text = empty
-			if empty ~= "" and not wasEmpty then
-				-- Soft leave of seat: brief still-here / seat-open, then fade
+			-- Soft leave OR empty-copy flip (depart/return seat pulse)
+			if empty ~= "" and (not wasEmpty or textChanged) then
 				emptyHoldToken += 1
 				local token = emptyHoldToken
 				label.TextTransparency = 0.25
@@ -81,7 +82,7 @@ function SoftSit.mount(
 					TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
 					{ TextTransparency = 0.15 }
 				):Play()
-				task.delay(2.2, function()
+				task.delay(2.8, function()
 					if token ~= emptyHoldToken then
 						return
 					end

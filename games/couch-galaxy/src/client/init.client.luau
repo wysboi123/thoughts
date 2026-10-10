@@ -173,9 +173,19 @@ local function paintStarCounter()
 end
 
 local couchCompanyNear = false
+local sitDepartPulseUntil = 0.0
+local sitReturnPulseUntil = 0.0
 local couchSit = SoftSit.mount(playerGui, {
 	EmptyTextFn = function()
-		if softLingered then
+		if os.clock() < sitReturnPulseUntil then
+			return if softLingered
+				then (if inGalaxy then "still here · hammock open · company again" else "still here · couch open · company again")
+				else (if inGalaxy then "hammock open · company again" else "couch open · company again")
+		elseif os.clock() < sitDepartPulseUntil then
+			return if softLingered
+				then (if inGalaxy then "still here · hammock open · they drifted" else "still here · couch open · they drifted")
+				else (if inGalaxy then "hammock open · they drifted" else "couch open · they drifted")
+		elseif softLingered then
 			return if inGalaxy then "still here · hammock open" else "still here · couch open"
 		elseif softCompleteDone then
 			return if inGalaxy then "soft-complete · hammock open" else "soft-complete · couch open"
@@ -544,6 +554,8 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		if softLingered or softCompleteDone then
 			nudgeOptional("depart")
 		end
+		sitDepartPulseUntil = os.clock() + 4
+		sitReturnPulseUntil = 0
 		couchSit.refresh()
 		if couchDepartWelcomed or not (softLingered or softCompleteDone) then
 			return
@@ -556,8 +568,11 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 			FrameColor = couchStyle.FrameColor,
 			HoldSeconds = 2.8,
 		})
-	end
+	end,
 	OnReturned = function()
+		sitReturnPulseUntil = os.clock() + 4
+		sitDepartPulseUntil = 0
+		couchSit.refresh()
 		if couchReturnWelcomed or not (softLingered or softCompleteDone) then
 			return
 		end

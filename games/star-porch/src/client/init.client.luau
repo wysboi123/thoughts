@@ -87,9 +87,15 @@ local softCompleteOptionalOpen = false
 local softLingered = false
 local proximityHandle: any = nil
 local softCompanyHandle: any = nil
+local sitDepartPulseUntil = 0.0
+local sitReturnPulseUntil = 0.0
 local porchSit = SoftSit.mount(playerGui, {
 	EmptyTextFn = function()
-		if softLingered then
+		if os.clock() < sitReturnPulseUntil then
+			return if softLingered then "still here · rocker open · company again" else "rocker open · company again"
+		elseif os.clock() < sitDepartPulseUntil then
+			return if softLingered then "still here · rocker open · they drifted" else "rocker open · they drifted"
+		elseif softLingered then
 			return "still here · rocker open"
 		elseif softCompleteDone then
 			return "soft-complete · rocker open"
@@ -337,6 +343,8 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		if softLingered or softCompleteDone then
 			nudgeOptional("depart")
 		end
+		sitDepartPulseUntil = os.clock() + 4
+		sitReturnPulseUntil = 0
 		porchSit.refresh()
 		if porchDepartWelcomed or not (softLingered or softCompleteDone) then
 			return
@@ -349,6 +357,9 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		})
 	end,
 	OnReturned = function()
+		sitReturnPulseUntil = os.clock() + 4
+		sitDepartPulseUntil = 0
+		porchSit.refresh()
 		if porchReturnWelcomed or not (softLingered or softCompleteDone) then
 			return
 		end

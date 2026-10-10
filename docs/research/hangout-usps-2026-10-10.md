@@ -16,6 +16,10 @@ Sources: Creator Hub Discovery (intentional co-play / playtime / bounce). No new
 
 DepartTextFn (~3.8s) → AfterDepartTextFn (~3.5s) → AloneTextFn. Soft memory of company without VC pressure. Complements ReturnTextFn on re-arrive.
 
+## CP1 deepen
+
+SoftSit empty-copy pulse on company depart/return (~4s) — “seat/bench/rocker/couch open · they drifted / company again”. SoftSit.refresh pulses when empty text flips (hold 2.8s).
+
 ## SoftInvite / audio
 
 Still gated. SoftInvite post-publish only. Audio blocked on Q-004 — do not invent ids.
