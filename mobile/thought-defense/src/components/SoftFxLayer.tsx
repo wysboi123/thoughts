@@ -19,9 +19,9 @@ type Props = {
 };
 
 const LIFE = {
-  plant: 0.88,
-  shot: 0.52,
-  clear: 0.78,
+  plant: 0.96,
+  shot: 0.56,
+  clear: 0.86,
 } as const;
 
 function SoftMote({
@@ -58,7 +58,7 @@ function SoftMote({
   }, [item.id, t, delay, reduceMotion]);
 
   const style = useAnimatedStyle(() => {
-    const size = 4 + t.value * 3;
+    const size = 4 + t.value * 4;
     return {
       position: 'absolute' as const,
       left: item.x * width + dx * t.value - size / 2,
@@ -67,7 +67,9 @@ function SoftMote({
       height: size,
       borderRadius: 999,
       backgroundColor: accent,
-      opacity: 0.7 * (1 - t.value),
+      opacity: 0.72 * (1 - t.value),
+      borderWidth: 1,
+      borderColor: 'rgba(255,255,255,0.35)',
     };
   });
 
@@ -87,6 +89,7 @@ function FxRipple({
 }) {
   const progress = useSharedValue(0);
   const inner = useSharedValue(0);
+  const mid = useSharedValue(0);
   const halo = useSharedValue(0);
   const spark = useSharedValue(0);
   const isPlant = item.kind === 'plant';
@@ -96,6 +99,7 @@ function FxRipple({
   useEffect(() => {
     progress.value = 0;
     inner.value = 0;
+    mid.value = 0;
     halo.value = 0;
     spark.value = 0;
     if (reduceMotion) {
@@ -103,13 +107,20 @@ function FxRipple({
       spark.value = withTiming(1, { duration: 180, easing: Easing.out(Easing.quad) });
       return;
     }
-    const outerDur = isPlant ? 780 : isClear ? 720 : 500;
+    const outerDur = isPlant ? 840 : isClear ? 760 : 520;
     progress.value = withTiming(1, {
       duration: outerDur,
       easing: Easing.out(Easing.cubic),
     });
+    mid.value = withDelay(
+      isPlant ? 50 : 30,
+      withTiming(1, {
+        duration: outerDur * 0.9,
+        easing: Easing.out(Easing.cubic),
+      }),
+    );
     inner.value = withDelay(
-      isPlant ? 80 : 40,
+      isPlant ? 90 : 50,
       withTiming(1, {
         duration: outerDur * 0.85,
         easing: Easing.out(Easing.cubic),
@@ -119,16 +130,16 @@ function FxRipple({
       halo.value = withDelay(
         30,
         withTiming(1, {
-          duration: outerDur * 1.05,
+          duration: outerDur * 1.08,
           easing: Easing.out(Easing.cubic),
         }),
       );
       spark.value = withTiming(1, {
-        duration: 560,
+        duration: 600,
         easing: Easing.out(Easing.cubic),
       });
     }
-  }, [item.id, progress, inner, halo, spark, reduceMotion, isPlant, isClear]);
+  }, [item.id, progress, inner, mid, halo, spark, reduceMotion, isPlant, isClear]);
 
   const outerStyle = useAnimatedStyle(() => {
     const grow = isPlant ? 36 : isClear ? 28 : 16;
@@ -152,6 +163,24 @@ function FxRipple({
     };
   });
 
+  const midStyle = useAnimatedStyle(() => {
+    const grow = isPlant ? 26 : isClear ? 20 : 11;
+    const base = isPlant ? 9 : isClear ? 8 : 6;
+    const size = base * 2 + mid.value * grow * 2;
+    return {
+      position: 'absolute' as const,
+      left: item.x * width - size / 2,
+      top: item.y * height - size / 2,
+      width: size,
+      height: size,
+      borderRadius: 999,
+      borderWidth: 1.6,
+      borderColor: `${accent}99`,
+      opacity: (isPlant ? 0.48 : isClear ? 0.42 : 0.34) * (1 - mid.value),
+      backgroundColor: isPlant ? `${accent}12` : 'transparent',
+    };
+  });
+
   const innerStyle = useAnimatedStyle(() => {
     const grow = isPlant ? 18 : isClear ? 14 : 8;
     const base = isPlant ? 6 : isClear ? 5 : 4;
@@ -171,8 +200,8 @@ function FxRipple({
   });
 
   const haloStyle = useAnimatedStyle(() => {
-    const grow = isPlant ? 48 : 38;
-    const size = 20 + halo.value * grow * 2;
+    const grow = isPlant ? 52 : 42;
+    const size = 22 + halo.value * grow * 2;
     return {
       position: 'absolute' as const,
       left: item.x * width - size / 2,
@@ -181,14 +210,14 @@ function FxRipple({
       height: size,
       borderRadius: 999,
       borderWidth: 1,
-      borderColor: `${accent}66`,
-      opacity: 0.35 * (1 - halo.value),
-      backgroundColor: 'transparent',
+      borderColor: `${accent}55`,
+      opacity: 0.32 * (1 - halo.value),
+      backgroundColor: `${accent}08`,
     };
   });
 
   const sparkStyle = useAnimatedStyle(() => {
-    const size = (isPlant ? 11 : 8) * (0.55 + spark.value * 0.7);
+    const size = (isPlant ? 12 : 9) * (0.55 + spark.value * 0.7);
     return {
       position: 'absolute' as const,
       left: item.x * width - size / 2,
@@ -197,8 +226,26 @@ function FxRipple({
       height: size,
       borderRadius: 999,
       backgroundColor: accent,
-      opacity: 0.88 * (1 - spark.value * 0.85),
+      opacity: 0.9 * (1 - spark.value * 0.85),
       transform: [{ scale: 0.7 + spark.value * 0.55 }],
+      borderWidth: 1.5,
+      borderColor: 'rgba(255,255,255,0.45)',
+    };
+  });
+
+  const sparkHaloStyle = useAnimatedStyle(() => {
+    const size = (isPlant ? 20 : 15) * (0.5 + spark.value * 0.9);
+    return {
+      position: 'absolute' as const,
+      left: item.x * width - size / 2,
+      top: item.y * height - size / 2,
+      width: size,
+      height: size,
+      borderRadius: 999,
+      borderWidth: 1,
+      borderColor: `${accent}88`,
+      opacity: 0.4 * (1 - spark.value),
+      backgroundColor: 'transparent',
     };
   });
 
@@ -206,7 +253,9 @@ function FxRipple({
     <View pointerEvents="none" style={StyleSheet.absoluteFill} accessibilityElementsHidden>
       {!reduceMotion && (isPlant || isClear) ? <Animated.View style={haloStyle} /> : null}
       <Animated.View style={outerStyle} />
+      {!reduceMotion ? <Animated.View style={midStyle} /> : null}
       {!reduceMotion ? <Animated.View style={innerStyle} /> : null}
+      {isClear || isPlant ? <Animated.View style={sparkHaloStyle} /> : null}
       {isClear || isPlant ? <Animated.View style={sparkStyle} /> : null}
       {!reduceMotion && (isPlant || isClear) ? (
         <>
@@ -234,10 +283,30 @@ function FxRipple({
             item={item}
             width={width}
             height={height}
-            accent={`${accent}`}
+            accent={accent}
             dx={6}
             dy={12}
             delay={120}
+            reduceMotion={reduceMotion}
+          />
+          <SoftMote
+            item={item}
+            width={width}
+            height={height}
+            accent={accent}
+            dx={-8}
+            dy={14}
+            delay={150}
+            reduceMotion={reduceMotion}
+          />
+          <SoftMote
+            item={item}
+            width={width}
+            height={height}
+            accent={accent}
+            dx={16}
+            dy={6}
+            delay={180}
             reduceMotion={reduceMotion}
           />
         </>
