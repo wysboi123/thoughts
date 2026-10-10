@@ -71,6 +71,7 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-10 ~02:25:** PadDisc polish v1.4.43 — outer aura rim · select fill · empty sheen · filled glow · plant-chip sheen.
 - **2026-10-10 ~03:30:** SoftButton polish v1.4.44 — primary halo/rim · soft lead+glow · ghost sheen · richer shadows.
 - **2026-10-10 ~04:20:** HomeMindscapePreview polish v1.4.45 — top sheen · corner orb · ground rim · walker halo · pad/core accents · chip sheens (last before ~05:00).
+- **2026-10-10 ~05:00 OVERNIGHT STOP:** Hard stop after night ship v1.4.39→v1.4.45. Did **not** re-arm overnight-stop. Next resume 23:00 UTC.
 
 ## State
 
@@ -78,8 +79,8 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: `CODE_TIP` (v1.4.45 HomeMindscapePreview)
+- Tip: `e69c40a` (v1.4.45 HomeMindscapePreview)
 - Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
-- Night envelope: **OPEN** until ~05:00 · `overnight-stop-5am-utc` armed (`sub_2b44f700…`) · `overnight-daily-resume` armed (`sub_d6468578…`)
+- Night envelope: **CLOSED** · overnight-stop **not** re-armed · `overnight-daily-resume` armed (`sub_d6468578…`) · next resume **23:00 UTC**
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
-- Next: night hourlies · overnight stop ~05:00 · or Femmy RC/RNIap / Pass price reply
+- Next: daytime idle / apply Femmy answers · night resume 23:00 UTC

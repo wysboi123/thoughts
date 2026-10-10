@@ -27,7 +27,7 @@ Stub IAP stays until you pick + we wire. Reply **RC** / **RNIap** / other.
 
 *Clarity Pass price still unanswered — keeping **$2.99/mo** default until you say otherwise (not re-asking price this batch).*
 
-Shipped this hourly: **v1.4.45** — HomeMindscapePreview polish (top sheen · corner orb · ground rim · walker halo · pad/core accents · chip sheens · last before ~05:00). Overnight-stop left armed → ~05:00 Oct 10.
+Night closed ~05:00 Oct 10 after **v1.4.45** HomeMindscapePreview. Overnight-stop **not** re-armed. Next resume **23:00 UTC**. Open ask unchanged: **RC vs RNIap** · Pass **$2.99** default.
 
 ## Defaults
 
