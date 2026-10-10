@@ -393,6 +393,16 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		end
 		return "company again · wait together"
 	end,
+	AfterReturnTextFn = function()
+		if softLingered then
+			return "still here · wait together · stay soft"
+		elseif softCompleteDone then
+			return "soft-complete · wait together · stay"
+		elseif phase == "arrived" then
+			return "bus is here · wait together · stay"
+		end
+		return "wait together · stay soft"
+	end,
 	OneTextFn = function()
 		if softLingered then
 			if phase == "arrived" then

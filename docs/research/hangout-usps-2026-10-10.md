@@ -20,6 +20,10 @@ DepartTextFn (~3.8s) → AfterDepartTextFn (~3.5s) → AloneTextFn. Soft memory 
 
 SoftSit empty-copy pulse on company depart/return (~4s) — “seat/bench/rocker/couch open · they drifted / company again”. SoftSit.refresh pulses when empty text flips (hold 2.8s).
 
+## CP2 deepen
+
+SoftCompany **AfterReturnTextFn** — soft bridge after ReturnTextFn hold (“vibes sync · stay soft” / wait / jar / couch-side) before One/Many settle. Symmetric with AfterDepartTextFn.
+
 ## SoftInvite / audio
 
 Still gated. SoftInvite post-publish only. Audio blocked on Q-004 — do not invent ids.

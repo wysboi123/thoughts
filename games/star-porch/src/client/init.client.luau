@@ -331,6 +331,14 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		end
 		return "company again · jar glow"
 	end,
+	AfterReturnTextFn = function()
+		if softLingered then
+			return "still here · jar glow · stay soft"
+		elseif softCompleteDone then
+			return "soft-complete · jar glow · stay"
+		end
+		return "jar glow · stay soft"
+	end,
 	OneTextFn = function()
 		return if softLingered then "still here · porch feels warmer" else "soft company · porch feels warmer"
 	end,

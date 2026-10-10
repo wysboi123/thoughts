@@ -2,6 +2,14 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-10 03:00 UTC — Night 16 checkpoint 2 (quiet)
+
+- Active: **Haze 3.30** · **Couch 3.28** · **Bus 3.29** · **Porch 3.27**
+- SoftCompany AfterReturnTextFn · stay-soft bridge after company return
+- Parked untouched; no invented audio
+- Still blocked: Perplexity Q-001–004 · first Studio publish
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
 ## 2026-10-10 01:00 UTC — Night 16 checkpoint 1 (quiet)
 
 - Active: **Haze 3.29** · **Couch 3.27** · **Bus 3.28** · **Porch 3.26**

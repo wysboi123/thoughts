@@ -227,6 +227,14 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		end
 		return "company again · vibes sync"
 	end,
+	AfterReturnTextFn = function()
+		if softLingered then
+			return "still here · vibes sync · stay soft"
+		elseif softCompleteDone then
+			return "soft-complete · vibes sync · stay"
+		end
+		return "vibes sync · stay soft"
+	end,
 	OneTextFn = function()
 		return if softLingered then "still here · vibes syncing" else "soft company · vibes syncing"
 	end,

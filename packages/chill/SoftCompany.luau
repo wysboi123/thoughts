@@ -16,6 +16,8 @@ export type SoftCompanyConfig = {
 	AfterDepartTextFn: (() -> string)?,
 	-- Brief copy when company returns after a depart this session
 	ReturnTextFn: (() -> string)?,
+	-- Soft bridge after ReturnTextFn hold before One/Many settle
+	AfterReturnTextFn: (() -> string)?,
 	OneText: string?,
 	OneTextFn: (() -> string)?,
 	ManyText: ((number) -> string)?,
@@ -212,7 +214,23 @@ function SoftCompany.mount(playerGui: PlayerGui, localPlayer: Player, config: So
 					if os.clock() < returnHoldUntil - 0.05 then
 						return
 					end
-					applyCopy(lastCount)
+					local after = if config.AfterReturnTextFn then config.AfterReturnTextFn() else nil
+					if after and after ~= "" then
+						label.Text = after
+						label.TextTransparency = 0.1
+						returnHoldUntil = os.clock() + 2.8
+						task.delay(2.8, function()
+							if lastCount <= 0 or not label.Parent then
+								return
+							end
+							if os.clock() < returnHoldUntil - 0.05 then
+								return
+							end
+							applyCopy(lastCount)
+						end)
+					else
+						applyCopy(lastCount)
+					end
 				end)
 			elseif n == 1 then
 				returnHoldUntil = 0
