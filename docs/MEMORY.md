@@ -67,14 +67,15 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-09 ~23:10 night resume:** FirstRunTipChip polish v1.4.39 — top accent/sheen · soft glow · badge sheen · richer shadow. Re-armed overnight-stop (`sub_2b44f700…`).
 - **2026-10-09 ~23:25:** DualModeTray polish v1.4.40 — top sheen · mode/card accents · swatch rings · select sheen · footer lead (Draft C locked).
 - **2026-10-10 ~00:30:** SoftFxLayer polish v1.4.41 — mid ring · spark halo · extra motes · longer plant/clear life.
+- **2026-10-10 ~01:20:** PeaceCore polish v1.4.42 — outer rim · top accent · status halo · hold/warn chip sheen · richer shadow.
 
 ## State
 
-- Version: **mobile 1.4.41** (SoftFxLayer polish)
+- Version: **mobile 1.4.42** (PeaceCore polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: `db08ec8` (v1.4.41 SoftFxLayer)
+- Tip: *(set after push)*
 - Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
 - Night envelope: **OPEN** until ~05:00 · `overnight-stop-5am-utc` armed (`sub_2b44f700…`) · `overnight-daily-resume` armed (`sub_d6468578…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
