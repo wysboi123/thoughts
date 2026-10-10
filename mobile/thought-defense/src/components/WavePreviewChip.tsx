@@ -78,6 +78,7 @@ function KindPill({
         style,
       ]}
     >
+      <View pointerEvents="none" style={styles.chipSheen} />
       <View style={[styles.dot, { backgroundColor: tint }]} />
       <View style={styles.pillBody}>
         <Text style={styles.pillText}>
@@ -143,6 +144,11 @@ export function WavePreviewChip({ waveIndex, visible, dawn }: Props) {
         .join(', ')}. ${total} thoughts total. Tip: ${tip}`}
     >
       <View pointerEvents="none" style={[styles.topAccent, { backgroundColor: accent }]} />
+      <View pointerEvents="none" style={styles.topSheen} />
+      <View
+        pointerEvents="none"
+        style={[styles.cornerWash, { backgroundColor: `${accent}18` }]}
+      />
       <View style={styles.headRow}>
         <View style={styles.headLeft}>
           <Text style={styles.label}>
@@ -151,6 +157,8 @@ export function WavePreviewChip({ waveIndex, visible, dawn }: Props) {
           <View style={[styles.accentDot, { backgroundColor: accent }]} />
         </View>
         <View style={[styles.totalChip, dawn ? styles.totalChipDawn : null]}>
+          <View pointerEvents="none" style={styles.chipSheen} />
+          <View style={[styles.totalLead, { backgroundColor: accent }]} />
           <Text style={styles.total}>{total} thoughts</Text>
         </View>
       </View>
@@ -189,6 +197,7 @@ export function WavePreviewChip({ waveIndex, visible, dawn }: Props) {
       <View
         style={[styles.tipChip, { borderColor: `${accent}44`, backgroundColor: `${accent}12` }]}
       >
+        <View pointerEvents="none" style={styles.chipSheen} />
         <View style={[styles.tipDot, { backgroundColor: accent }]} />
         <Text style={styles.hint}>Plant before they walk · {tip}</Text>
       </View>
@@ -213,10 +222,10 @@ const styles = StyleSheet.create({
     gap: 7,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
-    shadowOffset: { width: 0, height: 4 },
-    elevation: 2,
+    shadowOpacity: 0.12,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 5 },
+    elevation: 3,
   },
   wrapDawn: {
     backgroundColor: 'rgba(255, 244, 220, 0.72)',
@@ -229,6 +238,31 @@ const styles = StyleSheet.create({
     right: 0,
     height: 2,
     opacity: 0.55,
+    zIndex: 2,
+  },
+  topSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '36%',
+    backgroundColor: 'rgba(255,255,255,0.28)',
+  },
+  cornerWash: {
+    position: 'absolute',
+    width: 72,
+    height: 72,
+    borderRadius: 36,
+    right: -16,
+    bottom: -12,
+  },
+  chipSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '55%',
+    backgroundColor: 'rgba(255,255,255,0.32)',
   },
   headRow: {
     flexDirection: 'row',
@@ -254,16 +288,25 @@ const styles = StyleSheet.create({
     borderRadius: 3,
   },
   totalChip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
     paddingHorizontal: 8,
     paddingVertical: 3,
     borderRadius: 8,
     backgroundColor: 'rgba(63, 111, 98, 0.12)',
     borderWidth: 1,
     borderColor: 'rgba(63, 111, 98, 0.2)',
+    overflow: 'hidden',
   },
   totalChipDawn: {
     backgroundColor: 'rgba(201, 168, 90, 0.16)',
     borderColor: 'rgba(201, 168, 90, 0.3)',
+  },
+  totalLead: {
+    width: 5,
+    height: 5,
+    borderRadius: 3,
   },
   total: {
     fontFamily: fonts.bodyBold,
@@ -294,6 +337,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     minWidth: 108,
+    overflow: 'hidden',
   },
   pillBody: {
     flex: 1,
@@ -327,6 +371,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     borderRadius: 10,
     borderWidth: 1,
+    overflow: 'hidden',
   },
   tipDot: {
     width: 6,
