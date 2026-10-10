@@ -80,6 +80,7 @@ Priority order. Agents pick the top unchecked item unless Femmy overrides.
 - [x] **v1.4.44 hourly polish** — SoftButton (primary halo/rim · soft lead+glow · ghost sheen · richer shadows)
 - [x] **v1.4.45 hourly polish** — HomeMindscapePreview (top sheen · corner orb · ground rim · walker halo · pad/core accents · chip sheens · last before ~05:00)
 - [x] **v1.4.46 night resume** — PauseOverlay (corner orb · chip sheens · snapshot glows · goals/comfort leads · richer shadow)
+- [x] **v1.4.47 hourly polish** — WavePreviewChip (top sheen · corner wash · total/pill/tip sheens · richer shadow)
 - [ ] **Native IAP** — wire RevenueCat or react-native-iap; turn off stubMode for store builds
 - [ ] **EAS project** — Femmy: `eas init` + real `projectId` + credentials
 - [ ] **Store products** — create IAP ids in App Store Connect + Play Console
