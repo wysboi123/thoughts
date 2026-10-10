@@ -144,17 +144,26 @@ export function PauseOverlay({
               pointerEvents="none"
               style={[styles.topSheen, dawn ? styles.topSheenDawn : null]}
             />
+            <View
+              pointerEvents="none"
+              style={[
+                styles.cornerOrb,
+                { backgroundColor: dawn ? 'rgba(232, 201, 160, 0.2)' : 'rgba(91, 138, 122, 0.16)' },
+              ]}
+            />
             <Animated.View
               pointerEvents="none"
               style={[styles.breathOrb, dawn ? styles.breathOrbDawn : null, orbStyle]}
             />
             <View style={styles.eyebrowRow}>
               <View style={[styles.eyebrowBadge, dawn ? styles.eyebrowBadgeDawn : null]}>
+                <View pointerEvents="none" style={styles.chipSheen} />
                 <View style={[styles.eyebrowDot, dawn ? styles.eyebrowDotDawn : null]} />
                 <Text style={styles.eyebrow}>Mindscape paused</Text>
               </View>
               {calmLow ? (
                 <View style={styles.calmWarnChip} accessibilityRole="text">
+                  <View pointerEvents="none" style={styles.chipSheen} />
                   <View style={styles.calmWarnDot} />
                   <Text style={styles.calmWarnText}>calm soft</Text>
                 </View>
@@ -171,13 +180,23 @@ export function PauseOverlay({
                 style={[styles.phaseChip, dawn ? styles.phaseChipDawn : null]}
                 accessibilityRole="text"
               >
+                <View pointerEvents="none" style={styles.chipSheen} />
+                <View
+                  style={[
+                    styles.phaseLead,
+                    { backgroundColor: dawn ? colors.gratitude : colors.clarity },
+                  ]}
+                />
                 <Text style={[styles.phaseText, dawn ? styles.phaseTextDawn : null]}>
                   {phaseLabel}
                 </Text>
               </View>
             ) : null}
 
-            <Text style={styles.meta}>{waveLabel}</Text>
+            <View style={styles.metaRow}>
+              <View style={[styles.metaLead, dawn ? styles.metaLeadDawn : null]} />
+              <Text style={styles.meta}>{waveLabel}</Text>
+            </View>
             {calm != null && clarity != null ? (
               <View style={styles.snapshotRow} accessibilityRole="summary">
                 <Animated.View
@@ -187,6 +206,7 @@ export function PauseOverlay({
                     pillAStyle,
                   ]}
                 >
+                  <View pointerEvents="none" style={styles.chipSheen} />
                   <View style={styles.snapshotTop}>
                     <View
                       style={[
@@ -205,25 +225,48 @@ export function PauseOverlay({
                   >
                     {calm}
                   </Text>
+                  <View
+                    pointerEvents="none"
+                    style={[
+                      styles.snapshotGlow,
+                      {
+                        backgroundColor: calmLow
+                          ? 'rgba(196, 120, 120, 0.35)'
+                          : 'rgba(91, 138, 122, 0.3)',
+                      },
+                    ]}
+                  />
                 </Animated.View>
                 <Animated.View
                   style={[styles.snapshotPill, styles.snapshotClarity, pillBStyle]}
                 >
+                  <View pointerEvents="none" style={styles.chipSheen} />
                   <View style={styles.snapshotTop}>
                     <View style={[styles.snapshotDot, { backgroundColor: colors.clarity }]} />
                     <Text style={styles.snapshotLabel}>Clarity</Text>
                   </View>
                   <Text style={styles.snapshotValue}>{clarity}</Text>
+                  <View
+                    pointerEvents="none"
+                    style={[
+                      styles.snapshotGlow,
+                      { backgroundColor: 'rgba(106, 158, 174, 0.3)' },
+                    ]}
+                  />
                 </Animated.View>
               </View>
             ) : null}
 
             {softGoalsTotal > 0 ? (
               <View style={styles.goalsStrip} accessibilityRole="summary">
+                <View pointerEvents="none" style={styles.chipSheen} />
                 <View style={styles.goalsRow}>
-                  <Text style={styles.goalsLabel}>
-                    Soft goals {softGoalsDone}/{softGoalsTotal}
-                  </Text>
+                  <View style={styles.goalsLabelRow}>
+                    <View style={[styles.goalsLead, dawn ? styles.goalsLeadDawn : null]} />
+                    <Text style={styles.goalsLabel}>
+                      Soft goals {softGoalsDone}/{softGoalsTotal}
+                    </Text>
+                  </View>
                   <Text style={styles.goalsPct}>{progressPct}%</Text>
                 </View>
                 <View style={styles.track}>
@@ -239,7 +282,11 @@ export function PauseOverlay({
             ) : null}
 
             <View style={styles.comfortStrip} accessibilityRole="summary">
-              <Text style={styles.comfortTitle}>Pause is part of the loop</Text>
+              <View pointerEvents="none" style={styles.chipSheen} />
+              <View style={styles.comfortHead}>
+                <View style={[styles.comfortLead, dawn ? styles.comfortLeadDawn : null]} />
+                <Text style={styles.comfortTitle}>Pause is part of the loop</Text>
+              </View>
               <Text style={styles.comfortBody}>
                 Soft rest mid-run — no penalty. Resume when the mindscape feels ready.
               </Text>
@@ -299,10 +346,10 @@ const styles = StyleSheet.create({
     gap: 8,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.16,
-    shadowRadius: 18,
-    shadowOffset: { width: 0, height: 10 },
-    elevation: 5,
+    shadowOpacity: 0.2,
+    shadowRadius: 20,
+    shadowOffset: { width: 0, height: 11 },
+    elevation: 6,
   },
   cardDawn: {
     backgroundColor: '#F3E8D6',
@@ -331,6 +378,14 @@ const styles = StyleSheet.create({
   topSheenDawn: {
     backgroundColor: 'rgba(255, 248, 230, 0.35)',
   },
+  cornerOrb: {
+    position: 'absolute',
+    width: 88,
+    height: 88,
+    borderRadius: 44,
+    left: -22,
+    bottom: 40,
+  },
   breathOrb: {
     position: 'absolute',
     top: -28,
@@ -342,6 +397,14 @@ const styles = StyleSheet.create({
   },
   breathOrbDawn: {
     backgroundColor: 'rgba(255, 220, 150, 0.45)',
+  },
+  chipSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '55%',
+    backgroundColor: 'rgba(255,255,255,0.32)',
   },
   eyebrowRow: {
     flexDirection: 'row',
@@ -360,6 +423,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(91, 138, 122, 0.16)',
     borderWidth: 1,
     borderColor: 'rgba(91, 138, 122, 0.28)',
+    overflow: 'hidden',
   },
   eyebrowBadgeDawn: {
     backgroundColor: 'rgba(201, 168, 90, 0.18)',
@@ -391,6 +455,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(196, 120, 120, 0.16)',
     borderWidth: 1,
     borderColor: 'rgba(196, 120, 120, 0.3)',
+    overflow: 'hidden',
   },
   calmWarnDot: {
     width: 5,
@@ -416,16 +481,25 @@ const styles = StyleSheet.create({
   },
   phaseChip: {
     alignSelf: 'flex-start',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
     paddingHorizontal: 10,
     paddingVertical: 4,
     borderRadius: 12,
     backgroundColor: 'rgba(106, 158, 174, 0.16)',
     borderWidth: 1,
     borderColor: 'rgba(106, 158, 174, 0.28)',
+    overflow: 'hidden',
   },
   phaseChipDawn: {
     backgroundColor: 'rgba(201, 168, 90, 0.16)',
     borderColor: 'rgba(201, 168, 90, 0.32)',
+  },
+  phaseLead: {
+    width: 5,
+    height: 5,
+    borderRadius: 3,
   },
   phaseText: {
     fontFamily: fonts.bodyMedium,
@@ -435,11 +509,26 @@ const styles = StyleSheet.create({
   phaseTextDawn: {
     color: colors.gratitude,
   },
+  metaRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    marginBottom: 2,
+  },
+  metaLead: {
+    width: 5,
+    height: 5,
+    borderRadius: 3,
+    backgroundColor: colors.clarity,
+    opacity: 0.8,
+  },
+  metaLeadDawn: {
+    backgroundColor: colors.gratitude,
+  },
   meta: {
     fontFamily: fonts.bodyMedium,
     fontSize: 13,
     color: colors.clarity,
-    marginBottom: 2,
   },
   snapshotRow: {
     flexDirection: 'row',
@@ -454,6 +543,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(91, 138, 122, 0.14)',
     borderWidth: 1,
     borderColor: 'rgba(91, 138, 122, 0.22)',
+    overflow: 'hidden',
   },
   snapshotCalmLow: {
     backgroundColor: 'rgba(196, 120, 120, 0.14)',
@@ -490,6 +580,15 @@ const styles = StyleSheet.create({
   snapshotValueWarn: {
     color: colors.dangerSoft,
   },
+  snapshotGlow: {
+    position: 'absolute',
+    left: 10,
+    right: 10,
+    bottom: 2,
+    height: 3,
+    borderRadius: 2,
+    opacity: 0.7,
+  },
   goalsStrip: {
     marginTop: 4,
     padding: 12,
@@ -498,11 +597,26 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.line,
     gap: 6,
+    overflow: 'hidden',
   },
   goalsRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  goalsLabelRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+  },
+  goalsLead: {
+    width: 5,
+    height: 5,
+    borderRadius: 3,
+    backgroundColor: colors.brand,
+  },
+  goalsLeadDawn: {
+    backgroundColor: colors.gratitude,
   },
   goalsLabel: {
     fontFamily: fonts.bodyMedium,
@@ -536,6 +650,21 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.line,
     gap: 2,
+    overflow: 'hidden',
+  },
+  comfortHead: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+  },
+  comfortLead: {
+    width: 5,
+    height: 5,
+    borderRadius: 3,
+    backgroundColor: colors.brand,
+  },
+  comfortLeadDawn: {
+    backgroundColor: colors.gratitude,
   },
   comfortTitle: {
     fontFamily: fonts.bodyMedium,
