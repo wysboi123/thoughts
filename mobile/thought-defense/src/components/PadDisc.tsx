@@ -173,12 +173,31 @@ export function PadDisc({
           />
           <Animated.View
             pointerEvents="none"
+            style={[
+              styles.outerAuraRim,
+              outerAuraStyle,
+              {
+                borderColor: dawn
+                  ? 'rgba(200, 170, 120, 0.35)'
+                  : 'rgba(91, 138, 122, 0.3)',
+              },
+            ]}
+          />
+          <Animated.View
+            pointerEvents="none"
             style={[styles.aura, { backgroundColor: auraColor }, auraStyle]}
           />
         </>
       ) : null}
       {selected ? (
-        <Animated.View pointerEvents="none" style={[styles.selectRing, selectRingStyle]} />
+        <Animated.View
+          pointerEvents="none"
+          style={[
+            styles.selectRing,
+            selectRingStyle,
+            { backgroundColor: `${colors.brand}12` },
+          ]}
+        />
       ) : null}
       <Pressable
         accessibilityRole="button"
@@ -235,11 +254,20 @@ export function PadDisc({
             ]}
           />
         )}
+        {!filled ? (
+          <View pointerEvents="none" style={styles.emptySheen} />
+        ) : (
+          <View
+            pointerEvents="none"
+            style={[styles.filledGlow, { backgroundColor: `${fillColor}55` }]}
+          />
+        )}
         {filled ? <View style={styles.innerSheen} pointerEvents="none" /> : null}
         {lantern && filled ? <Text style={styles.lanternDot}>✦</Text> : null}
         <Text style={[styles.padText, !filled && styles.padTextEmpty]}>{label}</Text>
         {!filled ? (
           <View style={styles.plantChip}>
+            <View pointerEvents="none" style={styles.plantChipSheen} />
             <View
               style={[
                 styles.plantDot,
@@ -265,6 +293,16 @@ const styles = StyleSheet.create({
     left: -11,
     top: -11,
   },
+  outerAuraRim: {
+    position: 'absolute',
+    width: PAD + 26,
+    height: PAD + 26,
+    borderRadius: (PAD + 26) / 2,
+    left: -13,
+    top: -13,
+    borderWidth: 1,
+    backgroundColor: 'transparent',
+  },
   aura: {
     position: 'absolute',
     width: PAD + 14,
@@ -282,7 +320,6 @@ const styles = StyleSheet.create({
     top: -5,
     borderWidth: 2,
     borderColor: colors.brand,
-    backgroundColor: 'transparent',
   },
   pad: {
     width: PAD,
@@ -307,6 +344,23 @@ const styles = StyleSheet.create({
     right: 0,
     height: 2,
     opacity: 0.7,
+  },
+  emptySheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '40%',
+    backgroundColor: 'rgba(255,255,255,0.28)',
+  },
+  filledGlow: {
+    position: 'absolute',
+    left: 8,
+    right: 8,
+    bottom: 2,
+    height: 10,
+    borderRadius: 8,
+    opacity: 0.55,
   },
   innerSheen: {
     position: 'absolute',
@@ -344,6 +398,17 @@ const styles = StyleSheet.create({
     paddingVertical: 1,
     borderRadius: 6,
     backgroundColor: 'rgba(255,255,255,0.55)',
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'rgba(36,51,58,0.08)',
+  },
+  plantChipSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '55%',
+    backgroundColor: 'rgba(255,255,255,0.35)',
   },
   plantDot: {
     width: 4,
