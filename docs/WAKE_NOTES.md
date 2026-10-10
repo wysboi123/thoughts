@@ -2,6 +2,14 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-10 23:05 UTC — Night resume (v1.4.46 PauseOverlay)
+
+- Timer `overnight-daily-resume` · NIGHT resume · no Femmy Gmail reply
+- **Shipped v1.4.46:** PauseOverlay — corner orb · chip sheens · snapshot glows · goals/comfort leads · richer shadow
+- Re-armed `overnight-stop-5am-utc` (`sub_678b3707…`, ~05:00 Oct 11) · daily-resume + hourly left armed
+- Did not redo HomeMindscapePreview (1.4.45) · Draft C locked
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-10 05:00 UTC — OVERNIGHT STOP (mobile night wrap)
 
 - Timer `overnight-stop-5am-utc` fired ~05:00 UTC Oct 10 — **HARD STOP**. **No new features.** Docs + digest only.

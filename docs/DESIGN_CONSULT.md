@@ -17,7 +17,7 @@ Femmy: reply in chat, email, or edit this file.
 3. **Clarity Pass price tier** — keep ~$2.99/mo · cosmetics ~$1.99 · boost ~$0.99, or shift Pass to $1.99 / $3.99 / other? (still open; shipping with **$2.99** default)
 4. Brand tweaks before store screenshots?
 
-### This batch ask (2026-10-10 ~04:20 night hourly) — same open consult, not A/B/C
+### This batch ask (2026-10-10 ~23:05 night resume) — same open consult, not A/B/C
 
 **IAP stack for store builds** (Draft C locked — not asking A/B/C · price ask still open separately):
 
@@ -27,7 +27,7 @@ Stub IAP stays until you pick + we wire. Reply **RC** / **RNIap** / other.
 
 *Clarity Pass price still unanswered — keeping **$2.99/mo** default until you say otherwise (not re-asking price this batch).*
 
-Night closed ~05:00 Oct 10 after **v1.4.45** HomeMindscapePreview. Overnight-stop **not** re-armed. Next resume **23:00 UTC**. Open ask unchanged: **RC vs RNIap** · Pass **$2.99** default.
+Shipped this resume: **v1.4.46** — PauseOverlay polish (corner orb · chip sheens · snapshot glows · goals/comfort leads). Overnight-stop re-armed → ~05:00 Oct 11.
 
 ## Defaults
 
