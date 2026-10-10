@@ -138,6 +138,14 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
       accessibilityLabel="Soft mindscape preview: path, plant pads, and Peace Core"
     >
       <View pointerEvents="none" style={styles.accentBar} />
+      <View pointerEvents="none" style={styles.topSheen} />
+      <View
+        pointerEvents="none"
+        style={[
+          styles.cornerOrb,
+          { backgroundColor: dawn ? 'rgba(232, 201, 160, 0.22)' : 'rgba(107, 184, 154, 0.18)' },
+        ]}
+      />
       <Animated.View
         pointerEvents="none"
         style={[
@@ -147,6 +155,7 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
         ]}
       />
       <View style={[styles.ground, dawn ? styles.groundDawn : null]} />
+      <View pointerEvents="none" style={[styles.groundRim, dawn ? styles.groundRimDawn : null]} />
       <Animated.View
         pointerEvents="none"
         style={[
@@ -160,6 +169,7 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
       {!reduceMotion ? (
         <>
           <Animated.View pointerEvents="none" style={[styles.walkerTrail, walkerTrailStyle]} />
+          <Animated.View pointerEvents="none" style={[styles.walkerHalo, walkerStyle]} />
           <Animated.View pointerEvents="none" style={[styles.walker, walkerStyle]} />
         </>
       ) : null}
@@ -171,6 +181,7 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
           emptyPadStyle,
         ]}
       >
+        <View pointerEvents="none" style={styles.padEmptySheen} />
         <Text style={styles.padPlus}>+</Text>
       </Animated.View>
       <View
@@ -179,21 +190,27 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
           styles.padAffirm,
           lantern ? { borderColor: LANTERN_RIM.Affirmation, borderWidth: 2.5 } : null,
         ]}
-      />
+      >
+        <View pointerEvents="none" style={styles.padFilledGlow} />
+      </View>
       <View
         style={[
           styles.pad,
           styles.padGratitude,
           lantern ? { borderColor: LANTERN_RIM.Gratitude, borderWidth: 2.5 } : null,
         ]}
-      />
+      >
+        <View pointerEvents="none" style={styles.padFilledGlow} />
+      </View>
       <View
         style={[
           styles.pad,
           styles.padHumor,
           lantern ? { borderColor: LANTERN_RIM.Humor, borderWidth: 2.5 } : null,
         ]}
-      />
+      >
+        <View pointerEvents="none" style={styles.padFilledGlow} />
+      </View>
       <Animated.View
         style={[
           styles.coreOuter,
@@ -209,17 +226,21 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
         ]}
       />
       <View style={[styles.core, dawn ? { backgroundColor: colors.coreGlow } : null]}>
+        <View pointerEvents="none" style={styles.coreTopAccent} />
         <View style={styles.coreDot} />
         <Text style={styles.coreLabel}>Peace</Text>
         <Text style={styles.coreSub}>still</Text>
       </View>
       {lookLabel ? (
         <View style={[styles.lookChip, dawn ? styles.lookChipDawn : null]}>
+          <View pointerEvents="none" style={styles.lookChipSheen} />
           <View style={[styles.lookDot, dawn ? styles.lookDotDawn : null]} />
           <Text style={styles.lookChipText}>{lookLabel}</Text>
         </View>
       ) : null}
       <View style={styles.captionChip}>
+        <View pointerEvents="none" style={styles.captionSheen} />
+        <View style={styles.captionLead} />
         <Text style={styles.caption}>
           {lookLabel
             ? `plan view · ${lookLabel} looks`
@@ -241,10 +262,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.line,
     shadowColor: '#243A34',
-    shadowOpacity: 0.1,
-    shadowRadius: 12,
+    shadowOpacity: 0.12,
+    shadowRadius: 14,
     shadowOffset: { width: 0, height: 5 },
-    elevation: 2,
+    elevation: 3,
   },
   wrapDawn: {
     backgroundColor: 'rgba(255, 246, 230, 0.55)',
@@ -258,6 +279,24 @@ const styles = StyleSheet.create({
     height: 2,
     backgroundColor: colors.brand,
     opacity: 0.45,
+    zIndex: 2,
+  },
+  topSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '28%',
+    backgroundColor: 'rgba(255,255,255,0.22)',
+    zIndex: 1,
+  },
+  cornerOrb: {
+    position: 'absolute',
+    width: 72,
+    height: 72,
+    borderRadius: 36,
+    left: -18,
+    bottom: 28,
   },
   mistWash: {
     position: 'absolute',
@@ -278,6 +317,19 @@ const styles = StyleSheet.create({
   },
   groundDawn: {
     backgroundColor: 'rgba(232, 201, 160, 0.16)',
+  },
+  groundRim: {
+    position: 'absolute',
+    left: 10,
+    right: 10,
+    top: 18,
+    bottom: 36,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: 'rgba(91, 138, 122, 0.12)',
+  },
+  groundRimDawn: {
+    borderColor: 'rgba(200, 170, 120, 0.22)',
   },
   pathGlow: {
     position: 'absolute',
@@ -312,6 +364,15 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     backgroundColor: 'rgba(176, 140, 110, 0.35)',
   },
+  walkerHalo: {
+    position: 'absolute',
+    width: 16,
+    height: 16,
+    borderRadius: 8,
+    marginLeft: -3,
+    marginTop: -3,
+    backgroundColor: 'rgba(176, 140, 110, 0.22)',
+  },
   walker: {
     position: 'absolute',
     width: 10,
@@ -330,6 +391,7 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255,255,255,0.7)',
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'hidden',
   },
   padEmpty: {
     left: 48,
@@ -340,6 +402,23 @@ const styles = StyleSheet.create({
   padEmptyDawn: {
     backgroundColor: 'rgba(232, 201, 160, 0.28)',
     borderColor: 'rgba(200, 170, 120, 0.7)',
+  },
+  padEmptySheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '45%',
+    backgroundColor: 'rgba(255,255,255,0.35)',
+  },
+  padFilledGlow: {
+    position: 'absolute',
+    left: 3,
+    right: 3,
+    bottom: 1,
+    height: 4,
+    borderRadius: 3,
+    backgroundColor: 'rgba(255,255,255,0.35)',
   },
   padPlus: {
     fontFamily: fonts.bodyBold,
@@ -391,6 +470,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderWidth: 1.5,
     borderColor: 'rgba(255,255,255,0.8)',
+    overflow: 'hidden',
+  },
+  coreTopAccent: {
+    position: 'absolute',
+    top: 0,
+    left: 4,
+    right: 4,
+    height: 3,
+    borderRadius: 2,
+    backgroundColor: 'rgba(255,255,255,0.45)',
   },
   coreDot: {
     width: 4,
@@ -424,10 +513,20 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.55)',
     borderWidth: 1,
     borderColor: colors.line,
+    overflow: 'hidden',
+    zIndex: 3,
   },
   lookChipDawn: {
     backgroundColor: 'rgba(255, 246, 230, 0.85)',
     borderColor: 'rgba(232, 201, 160, 0.5)',
+  },
+  lookChipSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '55%',
+    backgroundColor: 'rgba(255,255,255,0.35)',
   },
   lookDot: {
     width: 5,
@@ -456,12 +555,32 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     borderRadius: 10,
     backgroundColor: 'rgba(255,255,255,0.5)',
+    borderWidth: 1,
+    borderColor: 'rgba(36,51,58,0.06)',
+    overflow: 'hidden',
+    zIndex: 3,
+  },
+  captionSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '55%',
+    backgroundColor: 'rgba(255,255,255,0.28)',
+  },
+  captionLead: {
+    width: 5,
+    height: 5,
+    borderRadius: 3,
+    backgroundColor: colors.brand,
+    opacity: 0.75,
   },
   caption: {
     fontFamily: fonts.body,
     fontSize: 11,
     color: colors.inkSoft,
     flexShrink: 1,
+    flex: 1,
   },
   captionMeta: {
     fontFamily: fonts.bodyMedium,
