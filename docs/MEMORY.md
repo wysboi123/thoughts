@@ -70,14 +70,15 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-10 ~01:20:** PeaceCore polish v1.4.42 — outer rim · top accent · status halo · hold/warn chip sheen · richer shadow.
 - **2026-10-10 ~02:25:** PadDisc polish v1.4.43 — outer aura rim · select fill · empty sheen · filled glow · plant-chip sheen.
 - **2026-10-10 ~03:30:** SoftButton polish v1.4.44 — primary halo/rim · soft lead+glow · ghost sheen · richer shadows.
+- **2026-10-10 ~04:20:** HomeMindscapePreview polish v1.4.45 — top sheen · corner orb · ground rim · walker halo · pad/core accents · chip sheens (last before ~05:00).
 
 ## State
 
-- Version: **mobile 1.4.44** (SoftButton polish)
+- Version: **mobile 1.4.45** (HomeMindscapePreview polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: `05b5b41` (v1.4.44 SoftButton)
+- Tip: `CODE_TIP` (v1.4.45 HomeMindscapePreview)
 - Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
 - Night envelope: **OPEN** until ~05:00 · `overnight-stop-5am-utc` armed (`sub_2b44f700…`) · `overnight-daily-resume` armed (`sub_d6468578…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
