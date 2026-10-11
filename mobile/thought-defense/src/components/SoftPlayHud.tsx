@@ -96,6 +96,13 @@ function HudPill({
         pointerEvents="none"
         style={[styles.pillGlow, { backgroundColor: warn ? `${colors.dangerSoft}22` : `${accent}18` }]}
       />
+      <View
+        pointerEvents="none"
+        style={[
+          styles.pillRing,
+          { borderColor: warn ? `${colors.dangerSoft}33` : `${accent}28` },
+        ]}
+      />
       <View style={styles.pillTop}>
         <Animated.View
           style={[
@@ -128,6 +135,13 @@ export function SoftPlayHud({ calm, clarity, waveLabel, dawn, calmLow }: Props) 
         style={[styles.accentBar, dawn ? styles.accentBarDawn : null]}
       />
       <View pointerEvents="none" style={styles.topSheen} />
+      <View
+        pointerEvents="none"
+        style={[
+          styles.cornerOrb,
+          { backgroundColor: dawn ? 'rgba(201,168,90,0.12)' : `${colors.brand}12` },
+        ]}
+      />
       <View style={styles.row}>
         <HudPill
           label="Calm"
@@ -153,7 +167,15 @@ export function SoftPlayHud({ calm, clarity, waveLabel, dawn, calmLow }: Props) 
         />
       </View>
       <View style={styles.footer} accessibilityRole="text">
-        <View style={styles.footerLead}>
+        <View
+          style={[
+            styles.footerBadge,
+            dawn
+              ? { backgroundColor: 'rgba(201,168,90,0.14)', borderColor: 'rgba(201,168,90,0.32)' }
+              : { backgroundColor: `${colors.brand}14`, borderColor: `${colors.brand}33` },
+          ]}
+        >
+          <View pointerEvents="none" style={styles.chipSheen} />
           <View style={[styles.footerDot, dawn ? styles.footerDotDawn : null]} />
           <Text style={styles.footerLabel}>Mindscape meters</Text>
         </View>
@@ -164,7 +186,10 @@ export function SoftPlayHud({ calm, clarity, waveLabel, dawn, calmLow }: Props) 
             <Text style={styles.softChipLabel}>Calm soft — breathe</Text>
           </View>
         ) : (
-          <Text style={styles.footerHint}>Metaphor only · not medical</Text>
+          <View style={styles.hintChip}>
+            <View pointerEvents="none" style={styles.chipSheen} />
+            <Text style={styles.footerHint}>Metaphor only · not medical</Text>
+          </View>
         )}
       </View>
     </View>
@@ -183,10 +208,10 @@ const styles = StyleSheet.create({
     gap: 6,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.1,
-    shadowRadius: 12,
-    shadowOffset: { width: 0, height: 4 },
-    elevation: 2,
+    shadowOpacity: 0.14,
+    shadowRadius: 14,
+    shadowOffset: { width: 0, height: 5 },
+    elevation: 3,
   },
   wrapDawn: {
     backgroundColor: 'rgba(255, 244, 220, 0.7)',
@@ -200,6 +225,7 @@ const styles = StyleSheet.create({
     height: 2,
     backgroundColor: colors.brand,
     opacity: 0.45,
+    zIndex: 2,
   },
   accentBarDawn: {
     backgroundColor: '#C9A85A',
@@ -210,8 +236,24 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: 22,
-    backgroundColor: 'rgba(255,255,255,0.16)',
+    height: 24,
+    backgroundColor: 'rgba(255,255,255,0.2)',
+  },
+  cornerOrb: {
+    position: 'absolute',
+    width: 72,
+    height: 72,
+    borderRadius: 36,
+    right: -18,
+    top: 28,
+  },
+  chipSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '55%',
+    backgroundColor: 'rgba(255,255,255,0.32)',
   },
   row: {
     flexDirection: 'row',
@@ -229,10 +271,10 @@ const styles = StyleSheet.create({
     gap: 2,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
-    shadowOffset: { width: 0, height: 2 },
-    elevation: 1,
+    shadowOpacity: 0.08,
+    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 3 },
+    elevation: 2,
   },
   pillSheen: {
     position: 'absolute',
@@ -249,6 +291,16 @@ const styles = StyleSheet.create({
     height: 10,
     borderRadius: 8,
     opacity: 0.7,
+  },
+  pillRing: {
+    position: 'absolute',
+    top: 4,
+    left: 4,
+    right: 4,
+    bottom: 4,
+    borderRadius: 11,
+    borderWidth: 1,
+    opacity: 0.85,
   },
   pillTop: {
     flexDirection: 'row',
@@ -282,11 +334,16 @@ const styles = StyleSheet.create({
     paddingBottom: 2,
     gap: 8,
   },
-  footerLead: {
+  footerBadge: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 5,
     flexShrink: 1,
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 10,
+    borderWidth: 1,
+    overflow: 'hidden',
   },
   footerDot: {
     width: 5,
@@ -303,6 +360,17 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: colors.inkSoft,
     letterSpacing: 0.2,
+  },
+  hintChip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 10,
+    backgroundColor: 'rgba(255,255,255,0.45)',
+    borderWidth: 1,
+    borderColor: 'rgba(36,58,52,0.1)',
+    overflow: 'hidden',
   },
   footerHint: {
     fontFamily: fonts.body,
