@@ -2,12 +2,718 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-11 04:20 UTC — Night hourly (v1.4.52 SoftActionToast)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.52:** SoftActionToast — corner wash · accent ring · badge sheen · bottom glow · richer shadow (last slice before ~05:00)
+- Did not redo Settings (1.4.51) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-11 03:20 UTC — Night hourly (v1.4.51 Settings)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.51:** Settings — version/comfort/look/pass/privacy/footer sheens · richer card shadows
+- Did not redo GameBoard (1.4.50) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-11 02:20 UTC — Night hourly (v1.4.50 GameBoard)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.50:** GameBoard — top sheen · corner orb · chip/lawn/entrance sheens · node cores · range core
+- Did not redo Shop (1.4.49) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-11 01:20 UTC — Night hourly (v1.4.49 Shop)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.49:** Shop — free/status sheens · card/price/badge sheens · swatch rings · richer shadows
+- Did not redo Atmosphere (1.4.48) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-11 00:20 UTC — Night hourly (v1.4.48 Atmosphere)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.48:** Atmosphere — haze rim · orb inner sheen · center glow rim · soft motes · richer edges
+- Did not redo WavePreviewChip (1.4.47) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-10 23:25 UTC — Night hourly (v1.4.47 WavePreviewChip)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.47:** WavePreviewChip — top sheen · corner wash · total/pill/tip sheens · richer shadow
+- Did not redo PauseOverlay (1.4.46) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-10 23:05 UTC — Night resume (v1.4.46 PauseOverlay)
+
+- Timer `overnight-daily-resume` · NIGHT resume · no Femmy Gmail reply
+- **Shipped v1.4.46:** PauseOverlay — corner orb · chip sheens · snapshot glows · goals/comfort leads · richer shadow
+- Re-armed `overnight-stop-5am-utc` (`sub_678b3707…`, ~05:00 Oct 11) · daily-resume + hourly left armed
+- Did not redo HomeMindscapePreview (1.4.45) · Draft C locked
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-10 05:00 UTC — OVERNIGHT STOP (mobile night wrap)
+
+- Timer `overnight-stop-5am-utc` fired ~05:00 UTC Oct 10 — **HARD STOP**. **No new features.** Docs + digest only.
+- Night envelope (SCHEDULE): **23:00 → 05:00 UTC** closed. Next resume **23:00 UTC**.
+- Git: clean on `cursor/mobile-thought-defense-5a0d` · tip was `f572a10` / ship `e69c40a` (v1.4.45); this stop note → tip after push.
+- **Night ship summary (v1.4.39 → v1.4.45):** FirstRunTipChip (1.4.39) · DualModeTray (1.4.40) · SoftFxLayer (1.4.41) · PeaceCore (1.4.42) · PadDisc (1.4.43) · SoftButton (1.4.44) · HomeMindscapePreview (1.4.45).
+- Timers: leave `thought-defense-mobile-hourly` + `overnight-daily-resume` armed · **did not** re-arm `overnight-stop-5am-utc` until next night resume.
+- Ask Femmy still open: **RC vs RNIap** · Clarity Pass price (**$2.99** default) · bundle id · EAS · store products · legal URLs.
+- No more coding until **23:00 UTC** (or Femmy reply). Daytime hourlies = idle / apply answers only.
+
+## 2026-10-10 04:20 UTC — Night hourly (v1.4.45 HomeMindscapePreview)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.45:** HomeMindscapePreview — top sheen · corner orb · ground rim · walker halo · pad/core accents · chip sheens (last slice before ~05:00)
+- Did not redo SoftButton (1.4.44) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-10 03:30 UTC — Night hourly (v1.4.44 SoftButton)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.44:** SoftButton — primary halo/rim · soft lead+glow · ghost sheen · richer shadows
+- Did not redo PadDisc (1.4.43) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-10 02:25 UTC — Night hourly (v1.4.43 PadDisc)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.43:** PadDisc — outer aura rim · select fill · empty sheen · filled glow · plant-chip sheen
+- Did not redo PeaceCore (1.4.42) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-10 01:20 UTC — Night hourly (v1.4.42 PeaceCore)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.42:** PeaceCore — outer rim · core top accent · status halo · hold/warn chip sheen + lead dots · richer shadow
+- Did not redo SoftFxLayer (1.4.41) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-10 00:30 UTC — Night hourly (v1.4.41 SoftFxLayer)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.41:** SoftFxLayer — mid ring · spark halo · edged motes · +2 plant/clear motes · longer plant/clear life
+- Did not redo DualModeTray (1.4.40) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-09 23:25 UTC — Night hourly (v1.4.40 DualModeTray)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.40:** DualModeTray — top sheen · mode-chip sheen · active card top accent · swatch rings · select banner sheen · footer lead (Draft C UX locked)
+- Did not redo FirstRunTipChip (1.4.39) · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-09 23:10 UTC — Night resume (v1.4.39 FirstRunTipChip)
+
+- Timer `overnight-daily-resume` · NIGHT resume · no Femmy Gmail reply
+- **Shipped v1.4.39:** FirstRunTipChip — top accent/sheen · soft secondary glow · badge sheen · richer shadow · dismiss soft shadow
+- Re-armed `overnight-stop-5am-utc` (`sub_2b44f700…`, ~05:00 Oct 10) · daily-resume + hourly left armed
+- Did not redo SoftPlayHud (1.4.38) · Draft C locked
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-09 05:00 UTC — OVERNIGHT STOP (mobile night wrap)
+
+- Timer `overnight-stop-5am-utc` fired ~05:00 UTC Oct 9 — **HARD STOP**. **No new features.** Docs + digest only.
+- Night envelope (SCHEDULE): **23:00 → 05:00 UTC** closed. Next resume **23:00 UTC**.
+- Git: clean on `cursor/mobile-thought-defense-5a0d` · tip was `7ff4378` / ship `af05050` (v1.4.38); this stop note → tip after push.
+- **Night ship summary (v1.4.32 → v1.4.38):** Atmosphere (1.4.32) · Shop (1.4.33) · GameBoard (1.4.34) · Settings (1.4.35) · SoftActionToast (1.4.36) · SoftWelcomeSheet (1.4.37) · SoftPlayHud (1.4.38).
+- Timers: leave `thought-defense-mobile-hourly` + `overnight-daily-resume` armed · **did not** re-arm `overnight-stop-5am-utc` until next night resume.
+- Ask Femmy still open: **RC vs RNIap** · Clarity Pass price (**$2.99** default) · bundle id · EAS · store products · legal URLs.
+- No more coding until **23:00 UTC** (or Femmy reply). Daytime hourlies = idle / apply answers only.
+
+## 2026-10-09 04:25 UTC — Night hourly (v1.4.38 SoftPlayHud)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.38:** SoftPlayHud — top sheen · Dawn accent bar · pill bottom glow · footer lead dot · soft-chip sheen (last slice before ~05:00)
+- Did not redo SoftWelcomeSheet (1.4.37) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-09 03:20 UTC — Night hourly (v1.4.37 SoftWelcomeSheet)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.37:** SoftWelcomeSheet — top sheen · soft corner orb · eyebrow/step dots · comfort head with lead dot
+- Did not redo SoftActionToast (1.4.36) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-09 02:30 UTC — Night hourly (v1.4.36 SoftActionToast)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.36:** SoftActionToast — top accent/sheen · accent halo · badge dot · richer soft shadow
+- Did not redo Settings (1.4.35) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-09 01:25 UTC — Night hourly (v1.4.35 Settings)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.35:** Settings — version/look dots · card top accents · Pass live dot · comfort/privacy/footer heads · soft shadows
+- Did not redo GameBoard (1.4.34) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-09 00:35 UTC — Night hourly (v1.4.34 GameBoard)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.34:** GameBoard — board shadow/rim · legend/compass chips with dots · path node rings · entrance halo/dot · dual range ring
+- Did not redo Shop (1.4.33) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-08 23:30 UTC — Night hourly (v1.4.33 Shop)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.33:** Shop — card top accent · soft shadow · Pass sheen · price chips · section chips · free/comfort/status dots
+- Did not redo Atmosphere (1.4.32) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-08 23:20 UTC — Night resume (v1.4.32 Atmosphere)
+
+- Timer `overnight-daily-resume` · NIGHT resume · no Femmy Gmail reply
+- **Shipped v1.4.32:** Atmosphere — orb halos · soft secondary haze band · left/right edge washes · center glow · soft scale/rise content enter
+- Re-armed `overnight-stop-5am-utc` (`sub_4db7d021…`, ~05:00 Oct 9) · daily-resume + hourly left armed
+- Did not redo WavePreviewChip (1.4.31) · Draft C locked
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-08 05:00 UTC — OVERNIGHT STOP (mobile night wrap)
+
+- Timer `overnight-stop-5am-utc` fired ~05:00 UTC Oct 8 — **HARD STOP**. **No new features.** Docs + digest only.
+- Night envelope (SCHEDULE): **23:00 → 05:00 UTC** closed. Next resume **23:00 UTC**.
+- Git: clean on `cursor/mobile-thought-defense-5a0d` · tip was `cc2b41d` / ship `37e3663` (v1.4.31); this stop note → tip after push.
+- **Night ship summary (v1.4.26 → v1.4.31):** PeaceCore (1.4.26) · PadDisc (1.4.27) · SoftButton (1.4.28) · HomeMindscapePreview (1.4.29) · PauseOverlay (1.4.30) · WavePreviewChip (1.4.31).
+- Timers: leave `thought-defense-mobile-hourly` + `overnight-daily-resume` armed · **did not** re-arm `overnight-stop-5am-utc` until next night resume.
+- Ask Femmy still open: **RC vs RNIap** · Clarity Pass price (**$2.99** default) · bundle id · EAS · store products · legal URLs.
+- No more coding until **23:00 UTC** (or Femmy reply). Daytime hourlies = idle / apply answers only.
+
+## 2026-10-08 04:25 UTC — Night hourly (v1.4.31 WavePreviewChip)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.31:** WavePreviewChip — top accent strip · soft shadow · wave progress track · tip dot
+- Did not redo PauseOverlay (1.4.30) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-08 03:20 UTC — Night hourly (v1.4.30 PauseOverlay)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.30:** PauseOverlay — card shadow · top sheen · eyebrow/status dots · calm-soft chip · Calm/Clarity snapshot dots
+- Did not redo HomeMindscapePreview (1.4.29) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-08 02:25 UTC — Night hourly (v1.4.29 HomeMindscapePreview)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.29:** HomeMindscapePreview — accent bar · soft shadow · path glow · walker trail · Peace status dot · look-chip dot · metaphor caption
+- Did not redo SoftButton (1.4.28) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-08 01:20 UTC — Night hourly (v1.4.28 SoftButton)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.28:** SoftButton — soft enter · primary lead dot · bottom glow · richer soft shadow · API unchanged
+- Did not redo PadDisc (1.4.27) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-08 00:15 UTC — Night hourly (v1.4.27 PadDisc)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.27:** PadDisc — dual empty aura · top accent strip · plant chip with dot · filled sheen accent · soft enter kept
+- Did not redo PeaceCore (1.4.26) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-07 23:15 UTC — Night hourly (v1.4.26 PeaceCore)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply · overnight-daily-resume had expired — **re-armed** resume + stop
+- **Shipped v1.4.26:** PeaceCore — mid halo breath · core sheen · status dot · soft shadow · “holding gently” chip · calm-soft warn chip
+- Re-armed `overnight-stop-5am-utc` (`sub_7fac0a8f…`, ~05:00 Oct 8) · `overnight-daily-resume` (`sub_d6468578…`)
+- Did not redo SoftFxLayer (1.4.25) · Draft C locked
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-07 05:00 UTC — OVERNIGHT STOP (mobile night wrap)
+
+- Timer `overnight-stop-5am-utc` fired ~05:00 UTC Oct 7 — **HARD STOP**. **No new features.** Docs + digest only.
+- Night envelope (SCHEDULE): **23:00 → 05:00 UTC** closed. Next resume **23:00 UTC**.
+- Git: clean on `cursor/mobile-thought-defense-5a0d` · tip was `6e84be6` (v1.4.25); this stop note → tip after push.
+- **Night ship summary (v1.4.21 → v1.4.25):** SoftWelcomeSheet (1.4.21) · SoftPlayHud (1.4.22) · FirstRunTipChip (1.4.23) · DualModeTray (1.4.24) · SoftFxLayer (1.4.25).
+- Timers: leave `thought-defense-mobile-hourly` + `overnight-daily-resume` armed · **did not** re-arm `overnight-stop-5am-utc` until next night resume.
+- Ask Femmy still open: **RC vs RNIap** · Clarity Pass price (**$2.99** default) · bundle id · EAS · store products · legal URLs.
+- No more coding until **23:00 UTC** (or Femmy reply). Daytime hourlies = idle / apply answers only.
+
+## 2026-10-07 04:15 UTC — Night hourly (v1.4.25 SoftFxLayer)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · last slice before ~05:00 stop · no Femmy Gmail reply
+- **Shipped v1.4.25:** SoftFxLayer — outer halo ring · soft motes · longer plant/clear life · richer spark · Reduce Motion soft flash kept
+- Did not redo DualModeTray (1.4.24) · Draft C locked · **stop timer left armed** (do not cancel)
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-07 03:15 UTC — Night hourly (v1.4.24 DualModeTray)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.24:** DualModeTray — accent bar · soft shadow · mode-chip dot · soft enter · active card sheen · Draft C footer (Plant/Selected)
+- Did not redo FirstRunTipChip (1.4.23) · Draft C UX locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-07 02:15 UTC — Night hourly (v1.4.23 FirstRunTipChip)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.23:** FirstRunTipChip — Soft tip badge · soft glow · progress bar · scale enter · visited dots · Got it sheen · soft shadow
+- Did not redo SoftPlayHud (1.4.22) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-06 23:15 UTC — Night hourly (v1.4.22 SoftPlayHud)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.22:** SoftPlayHud — accent bar · pill dots/sheen · soft scale enter · calm-soft pulse · mindscape footer · soft-chip when Calm low
+- Did not redo SoftWelcomeSheet (1.4.21) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-06 23:00 UTC — Night resume (SoftWelcomeSheet v1.4.21)
+
+- Timer `overnight-daily-resume` · no Femmy Gmail reply · Clarity Pass **$2.99** · RC vs RNIap still open
+- **Shipped v1.4.21:** SoftWelcomeSheet — accent bar · soft card shadow · orb halo · page progress bar · step chip · soft scale enter · Next sheen · visited dots
+- Re-armed `overnight-stop-5am-utc` (`sub_42e7f312…`, ~05:00 Oct 7)
+- Did not redo SoftActionToast (1.4.20) · Draft C locked
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-06 05:00 UTC — OVERNIGHT STOP (mobile night wrap)
+
+- Timer `overnight-stop-5am-utc` fired ~05:00 UTC Oct 6 — **HARD STOP**. **No new features.** Docs + digest only.
+- Night envelope (SCHEDULE): **23:00 → 05:00 UTC** closed. Next resume **23:00 UTC**.
+- Git: clean on `cursor/mobile-thought-defense-5a0d` · tip was `ffc299b` (v1.4.20); this stop note → tip after push.
+- **Night ship summary (v1.4.14 → v1.4.20):** PauseOverlay (1.4.14) · WavePreviewChip (1.4.15) · Atmosphere (1.4.16) · Shop (1.4.17) · GameBoard (1.4.18) · Settings (1.4.19) · SoftActionToast (1.4.20).
+- Also (earlier today): resolved PR #3 simple `WAKE_NOTES` conflict vs overnight base; overnight×main **intent** conflicts still need Femmy (`docs/MERGE_CONFLICTS_WITH_MAIN.md` on overnight).
+- Timers: leave `thought-defense-mobile-hourly` + `overnight-daily-resume` armed · **did not** re-arm `overnight-stop-5am-utc` until next night resume.
+- Ask Femmy still open: **RC vs RNIap** · Clarity Pass price (**$2.99** default) · bundle id · EAS · store products · legal URLs.
+- No more coding until **23:00 UTC** (or Femmy reply). Daytime hourlies = idle / apply answers only.
+
+## 2026-10-06 04:30 UTC — Night hourly (v1.4.20 SoftActionToast)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · last slice before ~05:00 stop · no Femmy Gmail reply
+- **Shipped v1.4.20:** SoftActionToast — accent dot · soft shadow · countdown bar · richer enter pop
+- Did not redo Settings (1.4.19) · Draft C locked · **stop timer left armed** (do not cancel)
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-06 03:30 UTC — Night hourly (v1.4.19 Settings)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.19:** Settings — version chip · Dawn/Lantern look chips · Pass live chip · Dawn card tints · metaphor footer strip
+- Did not redo GameBoard (1.4.18) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-06 02:30 UTC — Night hourly (v1.4.18 GameBoard)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.18:** GameBoard — soft path glow under corridors · animated select range ring · entrance breath · legend/compass chips · Dawn lawn/board tint
+- Did not redo Shop (1.4.17) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-06 01:30 UTC — Night hourly (v1.4.17 Shop)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.17:** Shop — Dawn Atmosphere · Pass live chip · Active looks line · product card left accents · metaphor comfort strip · soft enter on header/status
+- Did not redo Atmosphere (1.4.16) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-06 00:30 UTC — Night hourly (v1.4.16 Atmosphere)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.16:** Atmosphere — third soft orb · mid haze band · top/bottom edge washes · soft content enter · Dawn tints throughout
+- Did not redo WavePreviewChip (1.4.15) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-05 23:30 UTC — Night hourly (v1.4.15 WavePreviewChip)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.15:** WavePreviewChip — staggered kind pills · share mini-bars · total chip · accent tip chip · soft scale enter
+- Did not redo PauseOverlay (1.4.14) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-05 23:00 UTC — Night resume (PauseOverlay v1.4.14)
+
+- Timer `overnight-daily-resume` · no Femmy Gmail reply · Clarity Pass **$2.99** · RC vs RNIap still open
+- **Shipped v1.4.14:** PauseOverlay — outer soft halo · accent bar · animated soft-goals progress · calm-soft chip (≤10) · comfort strip · staggered Calm/Clarity pills · Dawn accents
+- Re-armed `overnight-stop-5am-utc` (`sub_147d26c9…`, ~05:00 Oct 6)
+- Did not redo HomeMindscapePreview (1.4.13) · Draft C locked
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-05 05:00 UTC — OVERNIGHT STOP (mobile night wrap)
+
+- Timer `overnight-stop-5am-utc` fired ~05:00 UTC Oct 5 — **HARD STOP**. **No new features.** Docs + digest only.
+- Night envelope (SCHEDULE): **23:00 → 05:00 UTC** closed. Next resume **23:00 UTC**.
+- Git: clean on `cursor/mobile-thought-defense-5a0d` · tip was `d5659a6` (v1.4.13); this stop note → tip after push.
+- **Night ship summary (v1.4.7 → v1.4.13):** WalkingEnemy (1.4.7) · WaveResultModal (1.4.8) · SoftFxLayer (1.4.9) · PeaceCore (1.4.10) · PadDisc (1.4.11) · SoftButton (1.4.12) · HomeMindscapePreview (1.4.13).
+- Timers: leave `thought-defense-mobile-hourly` + `overnight-daily-resume` armed · **did not** re-arm `overnight-stop-5am-utc` until next night resume.
+- Ask Femmy still open: **RC vs RNIap** · Clarity Pass price (**$2.99** default) · bundle id · EAS · store products · legal URLs.
+- No more coding until **23:00 UTC** (or Femmy reply). Daytime hourlies = idle / apply answers only.
+
+## 2026-10-05 04:20 UTC — Night hourly (v1.4.13 HomeMindscapePreview)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · last slice before ~05:00 stop · no Femmy Gmail reply
+- **Shipped v1.4.13:** HomeMindscapePreview — soft mist wash · L-path walker · ground tint · look chip · caption chip · Peace “still” · empty + hint · Dawn wrap
+- Did not redo SoftButton (1.4.12) · Draft C locked · **stop timer left armed** (do not cancel)
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-05 03:30 UTC — Night hourly (v1.4.12 SoftButton)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.12:** SoftButton — soft accent bar · top sheen · press wash · soft/ghost borders · primary shadow · API unchanged (optional `accent`)
+- Did not redo PadDisc (1.4.11) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-05 02:30 UTC — Night hourly (v1.4.11 PadDisc)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.11:** PadDisc — empty-pad soft aura · select pulse ring · “plant” hint · filled inner sheen · Dawn empty tint · soft enter
+- Did not redo PeaceCore (1.4.10) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-05 01:30 UTC — Night hourly (v1.4.10 PeaceCore)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.10:** PeaceCore — outer breath halo · soft enter · “still” / “soft hold” sub-label · calm-low chip (metaphor warn) · Dawn rim · faster soft pulse when stressed
+- Did not redo SoftFxLayer (1.4.9) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-05 00:30 UTC — Night hourly (v1.4.9 SoftFxLayer)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.9:** SoftFxLayer — dual outer/inner rings · plant/clear soft spark core · kind-tuned lifetimes · Reduce Motion keeps a brief soft flash (not blank)
+- Did not redo WaveResultModal (1.4.8) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-04 23:30 UTC — Night hourly (v1.4.8 WaveResultModal)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.8:** WaveResultModal — Cleared/Peak/Goals pills · animated soft-goal progress · accent goal rows (stagger) · Dawn card tint · metaphor comfort strip · scroll for small screens
+- Did not redo WalkingEnemy (1.4.7) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-04 23:00 UTC — Night resume (WalkingEnemy v1.4.7)
+
+- Timer `overnight-daily-resume` · no Femmy Gmail reply · Clarity Pass **$2.99** · RC vs RNIap still open
+- **Shipped v1.4.7:** WalkingEnemy — soft glow/shadow pulse · HP track + low-HP border/fill warn · label chip · “softened” when slowed · Reduce Motion holds glow
+- Re-armed `overnight-stop-5am-utc` (`sub_35b53331…`, ~05:00 Oct 5)
+- Did not redo terms (1.4.6) · Draft C locked
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-04 05:00 UTC — OVERNIGHT STOP (mobile night wrap)
+
+- Timer `overnight-stop-5am-utc` fired ~05:00 UTC Oct 4 — **HARD STOP**. **No new features.** Docs + digest only.
+- Night envelope (SCHEDULE): **23:00 → 05:00 UTC** closed. Next resume **23:00 UTC**.
+- Git: clean on `cursor/mobile-thought-defense-5a0d` · tip was `33cfce7` (v1.4.6); this stop note → tip after push.
+- **Night ship summary (v1.4.0 → v1.4.6):** SoftWelcomeSheet (1.4.0) · SoftPlayHud (1.4.1) · FirstRunTipChip (1.4.2) · SoftActionToast (1.4.3) · DualModeTray polish (1.4.4, Draft C locked) · Privacy (1.4.5) · Terms (1.4.6).
+- Timers: leave `thought-defense-mobile-hourly` + `overnight-daily-resume` armed · **did not** re-arm `overnight-stop-5am-utc` until next night resume.
+- Ask Femmy still open: **RC vs RNIap** · Clarity Pass price (**$2.99** default) · bundle id · EAS · store products · legal URLs.
+- No more coding until **23:00 UTC** (or Femmy reply). Daytime hourlies = idle / apply answers only.
+
+## 2026-10-04 04:15 UTC — Night hourly (v1.4.6 terms)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · last slice before ~05:00 stop · no Femmy Gmail reply
+- **Shipped v1.4.6:** Terms screen — SoftBlockEnter · section cards · Dawn Atmosphere · free-core comfort strip · version/date sync
+- Did not redo privacy (1.4.5) · Draft C locked · **stop timer left armed** (do not cancel)
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-04 03:30 UTC — Night hourly (v1.4.5 privacy)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.5:** Privacy screen — SoftBlockEnter stagger · per-section accents · Dawn Atmosphere · on-device comfort strip · version/date sync
+- Did not redo DualModeTray (1.4.4) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-04 02:15 UTC — Night hourly (v1.4.4 DualModeTray)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.4:** DualModeTray polish — Plant/Selected mode chip · Clarity cost labels · select banner · Dawn tint · soft unaffordable dim · **Draft C UX unchanged**
+- Did not redo toast (1.4.3) · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-04 01:30 UTC — Night hourly (v1.4.3 SoftActionToast)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.3:** SoftActionToast — accent left bar · badge pill · soft scale pop · soft settle fade · Dawn tint
+- Did not redo tip chip (1.4.2) or HUD · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-04 00:30 UTC — Night hourly (v1.4.2 FirstRunTipChip)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.2:** FirstRunTipChip — soft tip fade · progress dots · Dawn tint · pause tip · accent left border
+- Did not redo SoftPlayHud (1.4.1) or welcome · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-03 23:30 UTC — Night hourly (v1.4.1 SoftPlayHud)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.1:** SoftPlayHud — Calm/Clarity/Wave accent pills · staggered soft enter · Dawn tint · low-Calm soft warn (≤10)
+- Did not redo welcome (1.4.0) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-03 23:00 UTC — Night resume (SoftWelcomeSheet v1.4.0)
+
+- Timer `overnight-daily-resume` · no Femmy Gmail reply · Clarity Pass **$2.99** · RC vs RNIap still open
+- **Shipped v1.4.0:** SoftWelcomeSheet — per-page accents · step counter · Dawn card tint · metaphor comfort strip on last page · soft page fade · accent Next button
+- Typecheck clean · Draft C locked · re-armed `overnight-stop-5am-utc` once → ~05:00
+- Branch `cursor/mobile-thought-defense-5a0d` · PR #4
+- Ask Femmy: **RC vs RNIap** (not A/B/C)
+
+## 2026-10-03 05:00 UTC — OVERNIGHT STOP (mobile night wrap)
+
+- Timer `overnight-stop-5am-utc` fired ~05:02 UTC Oct 3 — **HARD STOP**. **No new features.** Docs + digest only.
+- Night envelope (SCHEDULE): **23:00 → 05:00 UTC** closed. Next resume **23:00 UTC**.
+- Git: clean on `cursor/mobile-thought-defense-5a0d` · tip was `5d19f30` (v1.3.9 docs); this stop note → tip after push.
+- **Night ship summary (v1.3.4 → v1.3.9):** looks in play (1.3.4) · Dawn mist + Lantern tray (1.3.5) · home/settings looks (1.3.6) · soft goals journal (1.3.7) · pause overlay (1.3.8) · wave preview chip (1.3.9). Draft C locked.
+- Timers: leave `thought-defense-mobile-hourly` + `overnight-daily-resume` armed · **did not** re-arm `overnight-stop-5am-utc` until next night resume.
+- Ask Femmy still open: **RC vs RNIap** · Clarity Pass price (**$2.99** default) · bundle id · EAS · store products · legal URLs.
+- No more coding until **23:00 UTC** (or Femmy reply). Daytime hourlies = idle / apply answers only.
+
+## 2026-10-03 04:15 UTC — Night hourly (v1.3.9 wave preview)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · last slice before ~05:00 stop · no Femmy Gmail reply
+- **Shipped v1.3.9:** Wave preview chip — soft enter · thought totals · plant-kind hints · Dawn tint · accent by heaviest kind · Reduce Motion
+- Did not redo pause (1.3.8) or goals journal · Draft C locked · **stop timer left armed** (do not cancel)
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-03 03:15 UTC — Night hourly (v1.3.8 pause overlay)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.3.8:** Pause overlay — soft breath orb · Calm/Clarity pills · soft-goals progress strip · Dawn card tint · phase chip · resume/nav haptics · Reduce Motion aware
+- Did not redo goals journal (1.3.7) or home/settings looks · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-03 02:15 UTC — Night hourly (v1.3.7 soft goals journal)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.3.7:** Soft goals journal — progress bar · SoftBlockEnter stagger · accent cards · Dawn Atmosphere · toggle/save haptics · metaphor comfort strip
+- Did not redo home/settings looks (1.3.6) or play cosmetics · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-03 01:15 UTC — Night hourly (v1.3.6 home/settings looks)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.3.6:** `HomeMindscapePreview` Dawn path + Lantern pad rims · home/settings `Atmosphere dawn` · Settings **Active looks** strip + shop CTA · SoftBlockEnter indices 1–5
+- Did not redo board play looks (1.3.4) or tray/atmosphere (1.3.5) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-02 23:15 UTC — Night hourly (v1.3.5 look atmosphere)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy reply
+- **Shipped v1.3.5 (beyond 1.3.4):** Dawn mist Atmosphere · Lantern plant-card rims in Draft C tray · Reduce Motion holds orbs
+- Did not redo board Dawn/Lantern discs · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
+## 2026-10-02 23:00 UTC — Night resume (cosmetic looks v1.3.4)
+
+- Timer `overnight-daily-resume` · no Femmy Gmail reply · Clarity Pass **$2.99** · RC vs RNIap still open
+- **Shipped v1.3.4:** `activeLooksFromEntitlements` — Dawn path + Lantern tower rims in play; **Clarity Pass unlocks both themes** (matches shop blurb); look badge under board
+- Typecheck clean · Draft C locked · re-armed `overnight-stop-5am-utc` once → ~05:00
+- Branch `cursor/mobile-thought-defense-5a0d` · PR #4
+- Ask Femmy: **RC vs RNIap** (not A/B/C)
+
+## 2026-10-02 17:15 UTC — Daytime idle + merge main
+
+- Hourly daytime idle: no Femmy Gmail reply (Clarity Pass / RC vs RNIap)
+- Merged `origin/main` (4eb6957) into mobile branch; kept mobile ops docs on conflict
+- No feature ship
+
+## 2026-10-02 05:00 UTC — OVERNIGHT STOP (mobile night wrap)
+
+- Timer `overnight-stop-5am-utc` fired ~05:00 UTC Oct 2 — **HARD STOP**. **No new features.** Docs + digest only.
+- Night envelope (SCHEDULE): **23:00 → 05:00 UTC** closed. Next resume **23:00 UTC**.
+- Git: was clean on `cursor/mobile-thought-defense-5a0d` · tip was `20acd50` (v1.3.3); this stop note → `25dd665`.
+- **Night ship summary (v1.2.7 → v1.3.3):** IAP stub + SoftWelcome (1.2.7) · soft-goals expand (1.2.8) · wave balance + preview (1.2.9) · lose/retry (1.3.0) · shop UX (1.3.1) · home polish (1.3.2) · settings/privacy (1.3.3). Draft C locked.
+- Timers: re-armed `thought-defense-mobile-hourly` (`15 * * * *`, daytime-idle outside night) · re-armed `overnight-daily-resume` (`0 23 * * *`) · **did not** re-arm `overnight-stop-5am-utc` until next night resume.
+- ManagePullRequest **missing** — parent should refresh PR #4 body if needed; preserve title.
+- Ask Femmy still open: **RC vs RNIap** · Clarity Pass price (**$2.99** default) · bundle id · EAS · store products · legal URLs.
+- No more coding until **23:00 UTC** (or Femmy reply).
+
+## 2026-10-02 04:15 UTC — Night hourly (settings + privacy polish)
+
+- Timer `thought-defense-mobile-hourly` fired ~04:15 UTC Oct 2 → **NIGHT polish** (UTC hour 4), last slice before overnight stop ~05:00.
+- **No Femmy replies** (`from:ngkdevid@gmail.com` empty) · DESIGN_CONSULT unchanged → Clarity Pass stays **$2.99/mo**; tonight’s consult remains **RevenueCat vs RNIap** (not re-asking price).
+- **Shipped v1.3.3 (beyond v1.3.2):** **settings + privacy polish** — on-device comfort strip · section accents · soft block enter (Reduce Motion) · restore/replay haptics · entitlement status card · privacy teaser · sectioned privacy copy (device / no-collect / purchases / not medical) · docs + terms date sync · version bump 1.3.3
+- Did **not** redo v1.3.2 home, v1.3.1 shop, v1.3.0 lose/retry, or earlier wave / soft-goals / IAP / welcome.
+- Ops: re-armed `overnight-stop-5am-utc` once (~05:00 UTC) · confirmed/re-armed `thought-defense-mobile-hourly` · **did not** cancel stop · ManagePullRequest **missing** — push only; preserve PR #4 title
+- Branch `cursor/mobile-thought-defense-5a0d` · tip `7379638` · PR https://github.com/wysboi123/thoughts/pull/4
+- Ask Femmy: **RC vs RNIap** (fresher) · Clarity Pass price still open separately
+
+## 2026-10-02 03:15 UTC — Night hourly (home polish)
+
+- Timer `thought-defense-mobile-hourly` fired ~03:15 UTC Oct 2 → **NIGHT polish** (UTC hour 3), not daytime idle.
+- **No Femmy replies** (`from:ngkdevid@gmail.com` empty) · DESIGN_CONSULT unchanged → Clarity Pass stays **$2.99/mo**; tonight’s consult remains **RevenueCat vs RNIap** (not re-asking price).
+- **Shipped v1.3.2 (beyond v1.3.1):** **home polish** — `HomeMindscapePreview` path/pads/Peace Core vignette · Plant/Clear/Hold Peace chips · staggered CTA enter (Reduce Motion) · soft Clarity Pass badge · a11y hints
+- Did **not** redo v1.3.1 shop UX, v1.3.0 lose/retry, v1.2.9 wave balance, or earlier soft-goals / IAP / welcome.
+- Ops: re-armed `overnight-stop-5am-utc` once (~05:00 UTC) · confirmed/re-armed `thought-defense-mobile-hourly` · **did not** cancel stop · ManagePullRequest **missing** — push only; preserve PR #4 title
+- Branch `cursor/mobile-thought-defense-5a0d` · tip `1df3b78` · PR https://github.com/wysboi123/thoughts/pull/4
+- Ask Femmy: **RC vs RNIap** (fresher) · Clarity Pass price still open separately
+
+## 2026-10-02 02:15 UTC — Night hourly (shop UX polish)
+
+- Timer `thought-defense-mobile-hourly` fired ~02:15 UTC Oct 2 → **NIGHT polish** (UTC hour 2), not daytime idle.
+- **No Femmy replies** (`from:ngkdevid@gmail.com` empty) · DESIGN_CONSULT unchanged → Clarity Pass stays **$2.99/mo**; tonight’s consult remains **RevenueCat vs RNIap** (not re-asking price).
+- **Shipped v1.3.1 (beyond v1.3.0):** **shop UX** — free-forever reassurance strip · Pass perk bullets + featured card · Dawn/Lantern look swatches · section accent bars · soft card enter (Reduce Motion) · buy/restore/toggle haptics · owned cosmetic note
+- Did **not** redo v1.3.0 lose/retry, v1.2.9 wave balance, or earlier soft-goals / IAP / welcome.
+- Ops: re-armed `overnight-stop-5am-utc` once (~05:00 UTC) · confirmed/re-armed `thought-defense-mobile-hourly` · **did not** cancel stop · ManagePullRequest **missing** — push only; preserve PR #4 title
+- Branch `cursor/mobile-thought-defense-5a0d` · tip `2a3b6ca` · PR https://github.com/wysboi123/thoughts/pull/4
+- Ask Femmy: **RC vs RNIap** (fresher) · Clarity Pass price still open separately
+
+## 2026-10-02 01:30 UTC — Night hourly (lose/retry soft copy)
+
+- Timer `thought-defense-mobile-hourly` fired ~01:26 UTC Oct 2 → **NIGHT polish** (UTC hour 1), not daytime idle.
+- **No Femmy replies** (`from:ngkdevid@gmail.com` empty) · DESIGN_CONSULT unchanged → Clarity Pass stays **$2.99/mo**; tonight’s consult remains **RevenueCat vs RNIap** (not re-asking price).
+- **Shipped v1.3.0 (beyond v1.2.9):** **lose/retry soft copy** — Gentle rest badge · cool mist orbs + clarity halo · LOSE_LINES flavor · peak-wave-aware lead · “Try again gently” CTA · soft tap haptic · lose-path toast sync
+- Did **not** redo v1.2.9 wave balance / WavePreviewChip / replay welcome, or earlier soft-goals / IAP / welcome.
+- Ops: re-armed `overnight-stop-5am-utc` once (~05:00 UTC) · confirmed/re-armed `thought-defense-mobile-hourly` · **did not** cancel stop · ManagePullRequest **missing** — push only; preserve PR #4 title
+- Branch `cursor/mobile-thought-defense-5a0d` · tip `196d1b9` · PR https://github.com/wysboi123/thoughts/pull/4
+- Ask Femmy: **RC vs RNIap** (fresher) · Clarity Pass price still open separately
+
+## 2026-10-02 00:30 UTC — Night hourly (wave balance + preview)
+
+- Timer `thought-defense-mobile-hourly` fired ~00:27 UTC Oct 2 → **NIGHT polish** (UTC hour 0), not daytime idle.
+- **No Femmy replies** (`from:ngkdevid@gmail.com` empty) · DESIGN_CONSULT unchanged → Clarity Pass stays **$2.99/mo**; tonight’s consult remains **RevenueCat vs RNIap** (not re-asking price).
+- **Shipped v1.2.9 (beyond v1.2.8):** **wave balance** — softer mid/late counts/spacing · scaled intermission (+2s after w4, +3s after w6) · start Clarity 140→155 · **WavePreviewChip** (prep/intermission composition) · **Settings Replay welcome** · publish checklist soft notes
+- Did **not** redo v1.2.8 soft-goals expand / pause snapshot or v1.2.7 IAP/welcome.
+- Ops: re-armed `overnight-stop-5am-utc` once (~05:00 UTC) · confirmed/re-armed `thought-defense-mobile-hourly` · **did not** cancel stop · ManagePullRequest **missing** — push only; preserve PR #4 title
+- Branch `cursor/mobile-thought-defense-5a0d` · tip `77e2c8f` · PR https://github.com/wysboi123/thoughts/pull/4
+- Ask Femmy: **RC vs RNIap** (fresher) · Clarity Pass price still open separately
+
+## 2026-10-01 23:35 UTC — Night hourly (soft-goals expand)
+
+- Timer `thought-defense-mobile-hourly` fired ~23:28 UTC Oct 1 → **NIGHT polish** (UTC hour 23), not daytime idle.
+- **No Femmy replies** (`from:ngkdevid@gmail.com` empty) · DESIGN_CONSULT unchanged → Clarity Pass stays **$2.99/mo**; tonight’s consult remains **RevenueCat vs RNIap** (not re-asking price).
+- **Shipped v1.2.8 (beyond v1.2.7):** **soft-goals expand** — `plant_all_kinds` + `reach_wave_six` (5→7) · shared `SOFT_GOAL_ORDER`/`SOFT_GOAL_TOTAL` · engine wiring · journal + result modal + HUD counts · **pause Calm/Clarity snapshot**
+- Did **not** redo v1.2.7 IAP stub / SoftWelcomeSheet.
+- Ops: re-armed `overnight-stop-5am-utc` once (~05:00 UTC) · confirmed/re-armed `thought-defense-mobile-hourly` · **did not** cancel stop · ManagePullRequest **missing** — push only; preserve PR #4 title
+- Branch `cursor/mobile-thought-defense-5a0d` · tip `0dd242e` · PR https://github.com/wysboi123/thoughts/pull/4
+- Ask Femmy: **RC vs RNIap** (fresher) · Clarity Pass price still open separately
+
+## 2026-10-01 23:15 UTC — Night resume (mobile overnight)
+
+- Night envelope opened (~23:10 UTC Oct 1). **Draft C locked** — not re-asking A/B/C.
+- **No Femmy replies** (`from:ngkdevid@gmail.com` empty) · Clarity Pass price still open → keep **$2.99/mo**.
+- **Tonight’s different consult:** RevenueCat vs react-native-iap (price ask remains open separately).
+- **Shipped v1.2.7:** IAP stub hardening (purchase mutex · Pass renew-from-expiry · owned-pack guard · timestamped stub log · entitlement summarize · soft confirm + shop toast/status) · **SoftWelcomeSheet** first-launch onboarding (3 pages · Skip/Enter · AsyncStorage · Reduce Motion)
+- Did **not** redo v1.2.0–1.2.6 (waves/FX/pause/walkers/tip/toast/win).
+- Ops: re-armed `overnight-stop-5am-utc` once (~05:00 UTC, delaySeconds≈20850) · confirmed/re-armed `thought-defense-mobile-hourly` (`15 * * * *`, daytime-idle logic) · **did not** re-arm legacy Roblox hourly
+- Branch `cursor/mobile-thought-defense-5a0d` · tip `47cfd10` · PR https://github.com/wysboi123/thoughts/pull/4
+- ManagePullRequest **missing** — push only; preserve PR #4 title
+- Open Femmy: **RC vs RNIap** · Clarity Pass price · bundle id · EAS · store products · legal URLs
+
+## 2026-10-01 05:15 UTC — Overnight stop (past 05:00)
+
+- Timer `thought-defense-mobile-hourly` fired ~05:15 UTC Oct 1 — **past overnight stop (05:00)**. Stop-only; **no new feature polish**.
+- Night envelope (SCHEDULE): **23:00 → 05:00 UTC** confirmed. Next resume **23:00 UTC**.
+- Git: clean working tree on `cursor/mobile-thought-defense-5a0d` · tip `68369ea` (v1.2.6 win celebration) · no dirty docs to commit pre-note.
+- **Night ship summary (v1.2.0 → v1.2.6):** waves 6–8 / FX / shop (1.2.0) · a11y + store docs (1.2.1) · Pause overlay (1.2.2) · walker variety (1.2.3) · first-run tip (1.2.4) · SoftActionToast (1.2.5) · win celebration (1.2.6). Draft C locked.
+- Timers: `list_subscriptions` on this agent returned **empty** (crons likely on long-lived overnight agent). Per protocol: leave `overnight-daily-resume` (23:00) · do **not** cancel `thought-defense-mobile-hourly` (daytime hourly OK per SCHEDULE) · do **not** re-arm `overnight-stop-5am-utc` until next night resume.
+- ManagePullRequest **missing** — parent should refresh PR #4 body if needed; preserve title.
+- Ask Femmy still open: Clarity Pass — keep **$2.99** · **$1.99** · **$3.99** · other? (+ bundle id · IAP · EAS · legal)
+- No more coding until **23:00 UTC** (or Femmy reply).
+
+## 2026-10-01 04:15 UTC — Mobile hourly (win celebration)
+
+- Timer `thought-defense-mobile-hourly` fired ~04:15 UTC Oct 1 (last hourly before overnight stop ~05:00).
+- **No Femmy replies** (`from:ngkdevid@gmail.com` empty) · DESIGN_CONSULT unchanged → Clarity Pass stays **$2.99/mo**; re-asked briefly (not A/B/C).
+- **Shipped v1.2.6 (beyond v1.2.5):** **win celebration** — Soft win badge · mint halo breathe · soft spark orbs · card rise · win flavor line · soft haptic · Reduce Motion honored
+- Did **not** redo v1.2.5 SoftActionToast / tip chip / walkers / pause / a11y.
+- Ops: confirmed/re-armed `overnight-stop-5am-utc` (do not cancel; ~05:00) · `thought-defense-mobile-hourly` · ManagePullRequest missing — push only; preserve PR #4 title
+- Branch `cursor/mobile-thought-defense-5a0d` · tip `5ff5936` · PR https://github.com/wysboi123/thoughts/pull/4
+- Ask Femmy: Clarity Pass — keep **$2.99** · **$1.99** · **$3.99** · other?
+
+## 2026-10-01 03:15 UTC — Mobile hourly (plant/upgrade toast)
+
+- Timer `thought-defense-mobile-hourly` fired ~03:15 UTC Oct 1.
+- **No Femmy replies** (`from:ngkdevid@gmail.com` empty) · DESIGN_CONSULT unchanged → Clarity Pass stays **$2.99/mo**; re-asked briefly (not A/B/C).
+- **Shipped v1.2.5 (beyond v1.2.4):** **plant/upgrade toast feedback** — SoftActionToast tinted chip (plant/upgrade/sell/warn/success) · pad disc pop · plant FX ripples · Clarity-remaining copy · soft haptics · Reduce Motion honored
+- Did **not** redo v1.2.4 tip chip / walkers / pause / a11y.
+- Ops: confirmed/re-armed `overnight-stop-5am-utc` (do not cancel) · `thought-defense-mobile-hourly` · ManagePullRequest missing — push only; preserve PR #4 title
+- Branch `cursor/mobile-thought-defense-5a0d` · tip `085c414` · PR https://github.com/wysboi123/thoughts/pull/4
+- Ask Femmy: Clarity Pass — keep **$2.99** · **$1.99** · **$3.99** · other?
+
+## 2026-10-01 02:15 UTC — Mobile hourly (first-run tip chip)
+
+- Timer `thought-defense-mobile-hourly` fired ~02:15 UTC Oct 1.
+- **No Femmy replies** (`from:ngkdevid@gmail.com` empty) · DESIGN_CONSULT unchanged → Clarity Pass stays **$2.99/mo**; re-asked briefly (not A/B/C).
+- **Shipped v1.2.4 (beyond v1.2.3):** **first-run tip chip** — soft dismissible coaching under HUD during prep/intermission · 3 rotating tips · AsyncStorage persist · Reduce Motion / a11y taps honored
+- Did **not** redo v1.2.3 walker variety / Settings About, or earlier pause/a11y/waves.
+- Ops: confirmed/re-armed `overnight-stop-5am-utc` (do not cancel) · `thought-defense-mobile-hourly` · ManagePullRequest missing — push only; preserve PR #4 title
+- Branch `cursor/mobile-thought-defense-5a0d` · tip `6ac9cc9` · PR https://github.com/wysboi123/thoughts/pull/4
+- Ask Femmy: Clarity Pass — keep **$2.99** · **$1.99** · **$3.99** · other?
+
+## 2026-10-01 01:15 UTC — Mobile hourly (walker variety)
+
+- Timer `thought-defense-mobile-hourly` fired ~01:15 UTC Oct 1.
+- **No Femmy replies** (`from:ngkdevid@gmail.com` empty) · DESIGN_CONSULT unchanged → Clarity Pass stays **$2.99/mo**; re-asked briefly (not A/B/C).
+- **Shipped v1.2.3 (beyond v1.2.2):** **walker variety** — per-kind gait (Doubt hesitant pause bob · Worry fast sway + speck · SelfCritic heavy square) · soft spawn speed jitter · expanded flavor pool · Settings About version line
+- Did **not** redo v1.2.2 pause overlay / AppState auto-pause.
+- Ops: confirmed/re-armed `overnight-stop-5am-utc` (do not cancel) · `thought-defense-mobile-hourly` · ManagePullRequest missing — push only; preserve PR #4 title
+- Branch `cursor/mobile-thought-defense-5a0d` · tip `4182fee` · PR https://github.com/wysboi123/thoughts/pull/4
+- Ask Femmy: Clarity Pass — keep **$2.99** · **$1.99** · **$3.99** · other?
+
+## 2026-10-01 00:15 UTC — Mobile hourly (pause overlay)
+
+- Timer `thought-defense-mobile-hourly` fired ~00:15 UTC Oct 1.
+- **No Femmy replies** (`from:ngkdevid@gmail.com` empty) · DESIGN_CONSULT unchanged → Clarity Pass stays **$2.99/mo**; re-asked briefly (not A/B/C).
+- **Shipped v1.2.2 (beyond v1.2.1):** soft **Pause** overlay (Resume / Soft goals / Leave) · freezes RAF tick while paused · **AppState** background auto-pause · Pause chip in mindscape chrome
+- Did **not** redo v1.2.1 a11y (44px / haptics / Reduce Motion / STORE_ASSETS).
+- Ops: confirmed/re-armed `overnight-stop-5am-utc` (do not cancel) · `thought-defense-mobile-hourly` · ManagePullRequest missing — push only; preserve PR #4 title
+- Branch `cursor/mobile-thought-defense-5a0d` · tip `d5d7ca8` · PR https://github.com/wysboi123/thoughts/pull/4
+- Ask Femmy: Clarity Pass — keep **$2.99** · **$1.99** · **$3.99** · other?
+
+## 2026-09-30 23:15 UTC — Mobile hourly (distinct from night resume)
+
+- Timer `thought-defense-mobile-hourly` fired while **night shift already running** — this is the **hourly polish slice**, not a second night resume.
+- **No Femmy replies** (`from:ngkdevid@gmail.com` empty) · DESIGN_CONSULT unchanged → Clarity Pass stays **$2.99/mo**; re-asked briefly.
+- **Shipped v1.2.1 (beyond v1.2.0):** accessibility tap targets (≥44) · soft haptics stub (`Vibration`, swap-ready for expo-haptics) · Reduce Motion honors (bob / breath / tray / ripples / home rise) · `docs/STORE_ASSETS.md` + screenshot folder placeholders
+- Did **not** redo night resume v1.2.0 work (waves 6–8 / plan FX / shop / SCREENSHOTS).
+- Ops: confirmed/re-armed `overnight-stop-5am-utc` (do not cancel) · `thought-defense-mobile-hourly` · ManagePullRequest missing — push only
+- Branch `cursor/mobile-thought-defense-5a0d` · tip `7432734` (slice `f5ce407`) · PR https://github.com/wysboi123/thoughts/pull/4
+- Ask Femmy: Clarity Pass — keep **$2.99** · **$1.99** · **$3.99** · other?
+
+## 2026-09-30 23:11 UTC — Night resume (mobile overnight)
+
+- Night envelope opened (~23:11 UTC). **Draft C locked** — not re-asking A/B/C.
+- **No Femmy replies** in Gmail (`from:ngkdevid@gmail.com` empty) · DESIGN_CONSULT unchanged → Clarity Pass stays **$2.99/mo** default; ask still open.
+- **Shipped v1.2.0:** waves **6–8** · selected range ring · kindness FX ripples · Peace Core breath · empty-pad pulse · walker slow tint · Draft C tray select stats / plant blurbs · Clarity shop sections + restore + pending Clarity · `docs/SCREENSHOTS.md`
+- Ops: re-armed `overnight-stop-5am-utc` once (~05:00 UTC, delaySeconds≈20903) · confirmed/re-armed `thought-defense-mobile-hourly` (`15 * * * *`) · **did not** re-arm legacy Roblox hourly
+- Branch `cursor/mobile-thought-defense-5a0d` · commit `0e29fe5` · PR https://github.com/wysboi123/thoughts/pull/4
+- ManagePullRequest **missing** this run — push only; parent should refresh PR body if needed
+- Open Femmy asks: Clarity Pass price · bundle id · RevenueCat vs RNIap · brand screenshots · EAS projectId · store products · legal URLs
+
+## 2026-09-30 22:25 UTC — Mobile hourly (mistargeted timer retarget)
+
+- Timer `thought-defense-hourly` fired with **Roblox** payload — **ignored**; continued mobile pivot
+- **Shipped v1.1.1 polish:** Draft C tray plant↔select Reanimated fade/slide · walk-on enemy bob · plan-view legend · soft-goals checked UX · Clarity shop copy
+- **Timer retarget:** unsubscribe/ignore Roblox `thought-defense-hourly`; arm `thought-defense-mobile-hourly` → `mobile/thought-defense` · PR **#4** · Draft C locked
+- Docs: SCHEDULE + MEMORY clarify mobile/PR #4; DESIGN_CONSULT asks Clarity Pass price tier (not A/B/C)
+- Branch `cursor/mobile-thought-defense-5a0d` · PR https://github.com/wysboi123/thoughts/pull/4
+- ManagePullRequest **missing** this run — push only; parent should refresh PR body if needed
+- Ask Femmy: Clarity Pass **keep $2.99** / **$1.99** / **$3.99** / other?
+
+## 2026-09-30 22:00 UTC — Draft C locked + top-down walkers
+
+- **UX vote = C (Tray dual-mode)** — plant cards dim when a thought is selected; Upgrade / Sell / Back
+- Play redesigned as **top-down plan view** (axis-aligned path corridors, disc pads/towers)
+- Enemies **walk on** with Reanimated position tweens + soft labels (Doubt / Worry / Self-Critic)
+- New **Soft goals** journal screen + wave result modal with goal checklist
+- Docs: DESIGN_CONSULT, UI_MOCKUPS, MEMORY — no longer waiting on A/B/C
+- Branch `cursor/mobile-thought-defense-5a0d`
+
+## 2026-09-30 21:45 UTC — PIVOT: mobile Thought Defense
+
+- Femmy asked to pivot entire workflow → **mobile app** (iOS+Android) with sensible microtransactions + basic subscription
+- **New app:** `mobile/thought-defense` (Expo SDK 57, Expo Router, TypeScript)
+- Playable soft TD **vertical slice** (5 waves, Affirmation/Gratitude/Humor, upgrades/sell)
+- **IAP:** Clarity Pass monthly + Dawn/Lantern cosmetics + Clarity boost — stub client + product IDs
+- **Publish:** app.json bundle/package placeholders, eas.json, store listing, privacy/terms stubs, EAS docs
+- **Ops rewrite:** SCHEDULE, MEMORY, APP_BACKLOG, PUBLISH_*, GAMES, DESIGN_CONSULT, AGENTS, README
+- **Legacy:** Roblox TD + chill games paused (`docs/LEGACY_ROBLOX.md`); Upgrade A/B/C vote superseded
+- Branch: `cursor/mobile-thought-defense-5a0d`
+- Needs Femmy: Apple/Google accounts, confirm bundle ids, create store IAP products, EAS projectId, legal URLs
+- Timer rename: use `thought-defense-mobile-hourly` (retire Roblox `thought-defense-hourly`)
+
 ## 2026-09-30 21:20 UTC — Femmy asked for 3 UI drafts (choose / tweak)
 
 - Re-served Upgrade drafts **A / B / C** (gallery + JPGs + specs) for vote
 - Also wrapped hourly docs: Thought Defense publish checklist path · status row · experience copy
 - No Luau until pick (or hybrid + tweaks)
 - Night resume ~23:00 UTC · email with A/B/C ask
+- **Superseded later same day by mobile pivot**
 
 ## 2026-09-30 21:18 UTC — Hourly (docs; still no A/B/C)
 
