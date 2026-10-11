@@ -127,6 +127,10 @@ function SoftRangeRing({
           },
         ]}
       />
+      <View
+        pointerEvents="none"
+        style={[styles.rangeRingCore, { backgroundColor: `${color}18` }]}
+      />
     </Animated.View>
   );
 }
@@ -177,6 +181,7 @@ function SoftEntrance({
         pointerEvents="none"
         style={[styles.entranceHalo, dawn ? styles.entranceHaloDawn : null]}
       />
+      <View pointerEvents="none" style={styles.entranceSheen} />
       <View style={[styles.entranceDot, dawn ? styles.entranceDotDawn : null]} />
       <Text style={[styles.entranceText, dawn ? styles.entranceTextDawn : null]}>in</Text>
     </Animated.View>
@@ -259,11 +264,25 @@ export function GameBoard({
         { width, height, backgroundColor: ground },
       ]}
     >
+      <View pointerEvents="none" style={styles.boardTopSheen} />
+      <View
+        pointerEvents="none"
+        style={[
+          styles.boardCornerOrb,
+          {
+            backgroundColor: themeDawn
+              ? 'rgba(232, 201, 160, 0.18)'
+              : 'rgba(91, 138, 122, 0.14)',
+          },
+        ]}
+      />
       <View style={[styles.chip, styles.legendChip, themeDawn ? styles.chipDawn : null]}>
+        <View pointerEvents="none" style={styles.chipSheen} />
         <View style={[styles.chipDot, themeDawn ? styles.chipDotDawn : null]} />
         <Text style={styles.legend}>path → Peace · discs = thoughts</Text>
       </View>
       <View style={[styles.chip, styles.compassChip, themeDawn ? styles.chipDawn : null]}>
+        <View pointerEvents="none" style={styles.chipSheen} />
         <View style={[styles.chipDot, themeDawn ? styles.chipDotDawn : null]} />
         <Text style={styles.compass}>plan · N ↑</Text>
       </View>
@@ -282,7 +301,9 @@ export function GameBoard({
                 top: gy * height - 10,
               },
             ]}
-          />
+          >
+            <View pointerEvents="none" style={styles.lawnSheen} />
+          </View>
         )),
       )}
 
@@ -320,6 +341,17 @@ export function GameBoard({
               styles.nodeRing,
               {
                 borderColor: themeDawn ? 'rgba(232, 201, 160, 0.45)' : 'rgba(91, 138, 122, 0.35)',
+              },
+            ]}
+          />
+          <View
+            pointerEvents="none"
+            style={[
+              styles.nodeCore,
+              {
+                backgroundColor: themeDawn
+                  ? 'rgba(255, 244, 220, 0.55)'
+                  : 'rgba(255,255,255,0.45)',
               },
             ]}
           />
@@ -413,13 +445,31 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.line,
     shadowColor: '#243A34',
-    shadowOpacity: 0.12,
-    shadowRadius: 14,
-    shadowOffset: { width: 0, height: 6 },
-    elevation: 3,
+    shadowOpacity: 0.14,
+    shadowRadius: 16,
+    shadowOffset: { width: 0, height: 7 },
+    elevation: 4,
   },
   boardDawn: {
     borderColor: 'rgba(201, 168, 90, 0.35)',
+  },
+  boardTopSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '18%',
+    backgroundColor: 'rgba(255,255,255,0.16)',
+    zIndex: 1,
+  },
+  boardCornerOrb: {
+    position: 'absolute',
+    width: 96,
+    height: 96,
+    borderRadius: 48,
+    left: -28,
+    bottom: -20,
+    zIndex: 0,
   },
   boardRim: {
     ...StyleSheet.absoluteFill,
@@ -444,14 +494,23 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.line,
     shadowColor: '#243A34',
-    shadowOpacity: 0.06,
-    shadowRadius: 6,
+    shadowOpacity: 0.08,
+    shadowRadius: 7,
     shadowOffset: { width: 0, height: 2 },
     elevation: 1,
+    overflow: 'hidden',
   },
   chipDawn: {
     backgroundColor: 'rgba(255, 246, 230, 0.72)',
     borderColor: 'rgba(201, 168, 90, 0.35)',
+  },
+  chipSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '55%',
+    backgroundColor: 'rgba(255,255,255,0.32)',
   },
   chipDot: {
     width: 5,
@@ -490,10 +549,19 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.12)',
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.1)',
+    overflow: 'hidden',
   },
   lawnDawn: {
     backgroundColor: 'rgba(255, 236, 210, 0.28)',
     borderColor: 'rgba(232, 201, 160, 0.2)',
+  },
+  lawnSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '45%',
+    backgroundColor: 'rgba(255,255,255,0.28)',
   },
   corridorGlow: {
     position: 'absolute',
@@ -520,6 +588,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     opacity: 0.7,
   },
+  nodeCore: {
+    width: 5,
+    height: 5,
+    borderRadius: 3,
+  },
   entrance: {
     position: 'absolute',
     width: 44,
@@ -532,6 +605,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'rgba(90, 122, 146, 0.15)',
     gap: 1,
+    overflow: 'hidden',
   },
   entranceDawn: {
     borderColor: 'rgba(180, 140, 90, 0.75)',
@@ -549,6 +623,14 @@ const styles = StyleSheet.create({
   entranceHaloDawn: {
     borderColor: 'rgba(201, 168, 90, 0.35)',
     backgroundColor: 'rgba(232, 201, 160, 0.1)',
+  },
+  entranceSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '42%',
+    backgroundColor: 'rgba(255,255,255,0.28)',
   },
   entranceDot: {
     width: 5,
@@ -580,5 +662,11 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     borderWidth: 1,
     transform: [{ scale: 1.08 }],
+  },
+  rangeRingCore: {
+    width: '28%',
+    height: '28%',
+    borderRadius: 999,
+    opacity: 0.7,
   },
 });
