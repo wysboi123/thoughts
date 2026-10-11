@@ -92,6 +92,7 @@ export default function SettingsScreen() {
           <View style={styles.brandRow}>
             <Text style={styles.brand}>Settings</Text>
             <View style={[styles.versionChip, looks.dawn ? styles.versionChipDawn : null]}>
+              <View pointerEvents="none" style={styles.chipSheen} />
               <View style={[styles.versionDot, looks.dawn ? styles.versionDotDawn : null]} />
               <Text style={styles.versionChipText}>
                 {GAME.version.replace('-mobile', '')}
@@ -108,6 +109,7 @@ export default function SettingsScreen() {
             style={[styles.comfortStrip, looks.dawn ? styles.comfortStripDawn : null]}
             accessibilityRole="summary"
           >
+            <View pointerEvents="none" style={styles.chipSheen} />
             <View style={styles.comfortHead}>
               <View style={[styles.leadDot, looks.dawn ? styles.leadDotDawn : null]} />
               <Text style={styles.comfortTitle}>On-device comfort</Text>
@@ -130,6 +132,7 @@ export default function SettingsScreen() {
                 pointerEvents="none"
                 style={[styles.cardTopAccent, { backgroundColor: colors.gratitude }]}
               />
+              <View pointerEvents="none" style={styles.chipSheen} />
               <Text style={styles.statusLabel}>Mindscape cosmetics</Text>
               <View style={styles.lookRow}>
                 <View
@@ -138,6 +141,7 @@ export default function SettingsScreen() {
                     looks.dawn ? styles.lookChipOn : styles.lookChipOff,
                   ]}
                 >
+                  <View pointerEvents="none" style={styles.chipSheen} />
                   <View
                     style={[
                       styles.lookDot,
@@ -154,6 +158,7 @@ export default function SettingsScreen() {
                     looks.lantern ? styles.lookChipOn : styles.lookChipOff,
                   ]}
                 >
+                  <View pointerEvents="none" style={styles.chipSheen} />
                   <View
                     style={[
                       styles.lookDot,
@@ -216,10 +221,12 @@ export default function SettingsScreen() {
                 pointerEvents="none"
                 style={[styles.cardTopAccent, { backgroundColor: colors.clarity }]}
               />
+              <View pointerEvents="none" style={styles.chipSheen} />
               <View style={styles.statusHead}>
                 <Text style={styles.statusLabel}>Entitlements</Text>
                 {entitlements.clarityPassActive ? (
                   <View style={styles.passLiveChip}>
+                    <View pointerEvents="none" style={styles.chipSheen} />
                     <View style={styles.passLiveDot} />
                     <Text style={styles.passLiveText}>Pass live</Text>
                   </View>
@@ -280,6 +287,7 @@ export default function SettingsScreen() {
                 pointerEvents="none"
                 style={[styles.cardTopAccent, { backgroundColor: colors.calm }]}
               />
+              <View pointerEvents="none" style={styles.chipSheen} />
               <View style={styles.privacyTeaserHead}>
                 <View style={styles.privacyDot} />
                 <Text style={styles.privacyTeaserTitle}>Privacy at a glance</Text>
@@ -319,6 +327,7 @@ export default function SettingsScreen() {
               If you are in distress, seek real-world support.
             </Text>
             <View style={styles.footerStrip} accessibilityRole="summary">
+              <View pointerEvents="none" style={styles.chipSheen} />
               <View style={styles.footerHead}>
                 <View style={styles.footerDot} />
                 <Text style={styles.footerTitle}>Metaphor only</Text>
@@ -345,6 +354,14 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   brand: { fontFamily: fonts.display, fontSize: 36, color: colors.brandDeep, flex: 1 },
+  chipSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '55%',
+    backgroundColor: 'rgba(255,255,255,0.28)',
+  },
   versionChip: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -355,6 +372,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(63, 111, 98, 0.14)',
     borderWidth: 1,
     borderColor: 'rgba(63, 111, 98, 0.25)',
+    overflow: 'hidden',
   },
   versionChipDawn: {
     backgroundColor: 'rgba(201, 168, 90, 0.18)',
@@ -384,11 +402,12 @@ const styles = StyleSheet.create({
     borderColor: colors.line,
     marginBottom: 10,
     gap: 4,
+    overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.06,
-    shadowRadius: 8,
+    shadowOpacity: 0.08,
+    shadowRadius: 10,
     shadowOffset: { width: 0, height: 3 },
-    elevation: 1,
+    elevation: 2,
   },
   comfortStripDawn: {
     backgroundColor: 'rgba(255, 246, 230, 0.72)',
@@ -440,6 +459,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     borderRadius: 10,
     borderWidth: 1,
+    overflow: 'hidden',
   },
   lookChipOn: {
     backgroundColor: 'rgba(91, 138, 122, 0.18)',
@@ -480,10 +500,10 @@ const styles = StyleSheet.create({
     borderColor: colors.line,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.06,
-    shadowRadius: 8,
-    shadowOffset: { width: 0, height: 3 },
-    elevation: 1,
+    shadowOpacity: 0.09,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 2,
   },
   cardTopAccent: {
     position: 'absolute',
@@ -492,6 +512,7 @@ const styles = StyleSheet.create({
     right: 0,
     height: 2,
     opacity: 0.55,
+    zIndex: 2,
   },
   statusCardDawn: {
     backgroundColor: 'rgba(255, 248, 235, 0.7)',
@@ -524,6 +545,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(91, 138, 122, 0.22)',
     borderWidth: 1,
     borderColor: 'rgba(91, 138, 122, 0.35)',
+    overflow: 'hidden',
   },
   passLiveDot: {
     width: 6,
@@ -581,6 +603,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.line,
     gap: 2,
+    overflow: 'hidden',
   },
   footerHead: {
     flexDirection: 'row',
