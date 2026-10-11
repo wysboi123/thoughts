@@ -74,10 +74,11 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-10 ~05:00 OVERNIGHT STOP:** Hard stop after night ship v1.4.39→v1.4.45. Did **not** re-arm overnight-stop. Next resume 23:00 UTC.
 - **2026-10-10 ~23:05 night resume:** PauseOverlay polish v1.4.46 — corner orb · chip sheens · snapshot glows · goals/comfort leads · richer shadow. Re-armed overnight-stop (`sub_678b3707…`).
 - **2026-10-10 ~23:25:** WavePreviewChip polish v1.4.47 — top sheen · corner wash · total/pill/tip sheens · richer shadow.
+- **2026-10-11 ~00:20:** Atmosphere polish v1.4.48 — haze rim · orb inner sheen · center glow rim · soft motes · richer edges.
 
 ## State
 
-- Version: **mobile 1.4.47** (WavePreviewChip polish)
+- Version: **mobile 1.4.48** (Atmosphere polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
