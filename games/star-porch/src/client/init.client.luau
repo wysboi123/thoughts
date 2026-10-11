@@ -194,6 +194,7 @@ local _, complete, nudgeOptional = SoftGoals.mount(playerGui, "tonight's soft go
 		softCompleteOptionalOpen = optionalLeft > 0
 		refreshPorchSoftHint()
 		porchSit.refresh()
+		porchSit.softStay()
 		if softCompanyHandle then
 			softCompanyHandle.refresh()
 		end

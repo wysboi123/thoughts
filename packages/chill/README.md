@@ -15,10 +15,10 @@ Then: `local SoftGoals = require(ReplicatedStorage.Chill.SoftGoals)`
 | --- | --- |
 | `PartFactory` | Anchored part builder + clear Baseplate |
 | `RemoteFolder` | Server-create / client-wait RemoteEvents |
-| `SoftGoals` | Soft checklist · OnLinger · optional re-pulse · `nudgeOptional` return/depart (open or sealed) |
+| `SoftGoals` | Soft checklist · OnLinger · optional re-pulse · soft-stay “enough” · `nudgeOptional` |
 | `Proximity` | Soft PointLight glow (scales with nearby count + `setBoost`) |
 | `SoftWelcome` | One-shot toast (replaces prior; optional accent colors) |
-| `SoftSit` | Sit-status line · `EmptyTextFn` · empty-copy flip pulse · `refresh` |
+| `SoftSit` | Sit-status line · `EmptyTextFn` · empty-copy flip · `softStay` re-show · `refresh` |
 | `SoftWireSeats` | Seat.Occupant → RemoteEvent for SoftSit |
 | `SoftCompany` | Nearby co-play HUD · Depart/AfterDepart/Return/AfterReturn · OnDeparted/OnReturned · `refresh` |
 

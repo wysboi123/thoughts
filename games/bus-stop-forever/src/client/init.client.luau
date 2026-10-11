@@ -187,6 +187,7 @@ local _, complete, nudgeOptional = SoftGoals.mount(playerGui, "tonight's soft go
 		softLingered = true
 		softCompleteOptionalOpen = optionalLeft > 0
 		benchSit.refresh()
+		benchSit.softStay()
 		if softCompanyHandle then
 			softCompanyHandle.refresh()
 		end

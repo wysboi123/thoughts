@@ -64,6 +64,7 @@ local _, complete, nudgeOptional = SoftGoals.mount(playerGui, "tonight's soft go
 		softCompleteOptionalOpen = optionalLeft > 0
 		setHudSoftComplete(true, optionalLeft > 0, true)
 		hazeSit.refresh()
+		hazeSit.softStay()
 		if softCompanyHandle then
 			softCompanyHandle.refresh()
 		end

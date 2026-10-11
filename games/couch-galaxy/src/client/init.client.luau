@@ -295,6 +295,7 @@ local _, complete, nudgeOptional = SoftGoals.mount(playerGui, "tonight's soft go
 		softCompleteOptionalOpen = optionalLeft > 0
 		refreshPlace(couchCompanyNear)
 		couchSit.refresh()
+		couchSit.softStay()
 		if softCompanyHandle then
 			softCompanyHandle.refresh()
 		end

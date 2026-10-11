@@ -8,6 +8,8 @@ local SoftSit = {}
 export type SoftSitHud = {
 	set: (seatName: string, displayName: string?) -> (),
 	refresh: () -> (),
+	-- One soft re-show of empty still-here line after linger (~42s)
+	softStay: () -> (),
 	gui: ScreenGui,
 }
 
@@ -45,6 +47,7 @@ function SoftSit.mount(
 
 	local occupants: { [string]: string } = {}
 	local emptyHoldToken = 0
+	local softStayArmed = false
 
 	local function emptyLine(): string
 		if options.EmptyTextFn then
@@ -53,12 +56,39 @@ function SoftSit.mount(
 		return options.EmptyText or ""
 	end
 
+	local function isEmpty(): boolean
+		for _ in occupants do
+			return false
+		end
+		return true
+	end
+
 	local function fadeEmpty()
 		TweenService:Create(
 			label,
 			TweenInfo.new(0.35, Enum.EasingStyle.Quad, Enum.EasingDirection.In),
 			{ TextTransparency = 1 }
 		):Play()
+	end
+
+	local function showEmptyHold(empty: string)
+		emptyHoldToken += 1
+		local token = emptyHoldToken
+		label.Text = empty
+		label.TextTransparency = 0.25
+		TweenService:Create(
+			label,
+			TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+			{ TextTransparency = 0.15 }
+		):Play()
+		task.delay(2.8, function()
+			if token ~= emptyHoldToken then
+				return
+			end
+			if isEmpty() and label.Parent then
+				fadeEmpty()
+			end
+		end)
 	end
 
 	local function refresh()
@@ -74,27 +104,7 @@ function SoftSit.mount(
 			label.Text = empty
 			-- Soft leave OR empty-copy flip (depart/return seat pulse)
 			if empty ~= "" and (not wasEmpty or textChanged) then
-				emptyHoldToken += 1
-				local token = emptyHoldToken
-				label.TextTransparency = 0.25
-				TweenService:Create(
-					label,
-					TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-					{ TextTransparency = 0.15 }
-				):Play()
-				task.delay(2.8, function()
-					if token ~= emptyHoldToken then
-						return
-					end
-					local stillEmpty = true
-					for _ in occupants do
-						stillEmpty = false
-						break
-					end
-					if stillEmpty and label.Parent then
-						fadeEmpty()
-					end
-				end)
+				showEmptyHold(empty)
 			else
 				fadeEmpty()
 			end
@@ -126,9 +136,27 @@ function SoftSit.mount(
 		end
 	end
 
+	local function softStay()
+		if softStayArmed then
+			return
+		end
+		softStayArmed = true
+		task.delay(42, function()
+			if not label.Parent or not isEmpty() then
+				return
+			end
+			local empty = emptyLine()
+			if empty == "" then
+				return
+			end
+			showEmptyHold(empty)
+		end)
+	end
+
 	return {
 		gui = gui,
 		refresh = refresh,
+		softStay = softStay,
 		set = function(seatName: string, displayName: string?)
 			if displayName then
 				occupants[seatName] = displayName

@@ -269,7 +269,7 @@ function SoftGoals.mount(
 					-- Soft pulse open Optional company rows (co-play door still ajar)
 					pulseOptionalRows()
 					style.OnLinger(left)
-					-- One soft re-nudge if company goals still open (~36s later)
+					-- Soft re-nudge: company goals still open (~36s), or soft-stay when sealed (~54s)
 					if left > 0 then
 						task.delay(36, function()
 							if not frame.Parent or countOptionalLeft() == 0 then
@@ -283,6 +283,26 @@ function SoftGoals.mount(
 								{ TextColor3 = Color3.fromRGB(210, 240, 220) }
 							):Play()
 							pulseOptionalRows()
+						end)
+					else
+						-- Soft-stay playtime pulse after linger when session is sealed
+						task.delay(54, function()
+							if not frame.Parent then
+								return
+							end
+							title.Text = "still here · enough"
+							title.TextColor3 = Color3.fromRGB(190, 220, 200)
+							stroke.Transparency = 0.4
+							TweenService:Create(
+								title,
+								TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+								{ TextColor3 = Color3.fromRGB(210, 240, 220) }
+							):Play()
+							TweenService:Create(
+								stroke,
+								TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+								{ Transparency = 0.75 }
+							):Play()
 						end)
 					end
 				end)
