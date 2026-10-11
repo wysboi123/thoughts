@@ -75,14 +75,15 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-10 ~23:05 night resume:** PauseOverlay polish v1.4.46 — corner orb · chip sheens · snapshot glows · goals/comfort leads · richer shadow. Re-armed overnight-stop (`sub_678b3707…`).
 - **2026-10-10 ~23:25:** WavePreviewChip polish v1.4.47 — top sheen · corner wash · total/pill/tip sheens · richer shadow.
 - **2026-10-11 ~00:20:** Atmosphere polish v1.4.48 — haze rim · orb inner sheen · center glow rim · soft motes · richer edges.
+- **2026-10-11 ~01:20:** Shop polish v1.4.49 — free/status sheens · card/price/badge sheens · swatch rings · richer shadows.
 
 ## State
 
-- Version: **mobile 1.4.48** (Atmosphere polish)
+- Version: **mobile 1.4.49** (Shop polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: `8aea394` (v1.4.48 Atmosphere)
+- Tip: `PLACEHOLDER` (v1.4.49 Shop)
 - Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
 - Night envelope: **OPEN** until ~05:00 · `overnight-stop-5am-utc` armed (`sub_678b3707…`) · `overnight-daily-resume` armed (`sub_d6468578…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
