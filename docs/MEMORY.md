@@ -79,6 +79,7 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-11 ~02:20:** GameBoard polish v1.4.50 — top sheen · corner orb · chip/lawn/entrance sheens · node cores · range core.
 - **2026-10-11 ~03:20:** Settings polish v1.4.51 — version/comfort/look/pass/privacy/footer sheens · richer card shadows.
 - **2026-10-11 ~04:20:** SoftActionToast polish v1.4.52 — corner wash · accent ring · badge sheen · bottom glow · richer shadow (last before ~05:00).
+- **2026-10-11 ~05:00 OVERNIGHT STOP:** Hard stop after night ship v1.4.46→v1.4.52. Did **not** re-arm overnight-stop. Next resume 23:00 UTC.
 
 ## State
 
@@ -88,6 +89,6 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - PR: https://github.com/wysboi123/thoughts/pull/4
 - Tip: `77d64e3` (v1.4.52 SoftActionToast)
 - Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
-- Night envelope: **OPEN** until ~05:00 · `overnight-stop-5am-utc` armed (`sub_678b3707…`) · `overnight-daily-resume` armed (`sub_d6468578…`)
+- Night envelope: **CLOSED** · overnight-stop **not** re-armed · `overnight-daily-resume` armed (`sub_d6468578…`) · next resume **23:00 UTC**
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
-- Next: night hourlies · overnight stop ~05:00 · or Femmy RC/RNIap / Pass price reply
+- Next: daytime idle / apply Femmy answers · night resume 23:00 UTC
