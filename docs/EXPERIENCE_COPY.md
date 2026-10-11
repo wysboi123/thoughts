@@ -8,25 +8,25 @@ Ready-to-paste titles + descriptions for Studio publish. Keep ToS-safe (chill / 
 
 **Title:** Haze Haven  
 **Description:**
-A soft dusk lounge. Float pads, vibe orbs, loft hammock, and quiet emotes. Sit with friends, glow when you're near, no combat — just stay awhile.
+A soft dusk lounge. Float pads, vibe orbs, loft hammock, and quiet emotes. Soft goals work alone; vibes sync when friends are near — welcome sign, hammock, board, orbs, and glow soften together. Soft complete, then stay — the lounge remembers when friends drift back.
 
 ### Couch Galaxy
 
 **Title:** Couch Galaxy  
 **Description:**
-Start in a cozy apartment, climb to the roof, and step through the skylight into a night-sky hangout. Couches, constellations, cloud pads.
+Two worlds, one couch. Start in a cozy apartment, climb to the roof, step through the skylight into a night-sky hangout. Soft goals work alone; soft company warms both sides — couches, plaque, beacon, and cloud pads. Soft complete, then stay — both worlds remember when friends drift back.
 
 ### Bus Stop Forever
 
 **Title:** Bus Stop Forever  
 **Description:**
-An infinite calm bus stop. The bus comes and goes; you don't have to. Sit, collect ticket stubs, wave when it stops, watch the rain.
+An infinite calm bus stop. The bus comes and goes; you don't have to. Soft goals work alone; wait together when friends arrive — the timetable, newsbox, and notepad know. Soft complete, then still waiting is fine — the stop remembers when company drifts back. Tickets, waves, soft rain.
 
 ### Star Porch
 
 **Title:** Star Porch  
 **Description:**
-A wooden night porch under soft stars. Rocking chairs, a porch swing, string lights, and fireflies that drift back. Sit outside. Watch the quiet.
+A wooden night porch under soft stars. Rocking chairs, a porch swing, and fireflies that drift back. Soft goals work alone; the jar fills; string lights and the porch lamp warm when company is near — and soften when they drift. Soft complete — the jar remembers; stay.
 
 ## Parked for later
 

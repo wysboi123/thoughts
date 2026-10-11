@@ -2,6 +2,615 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-11 03:00 UTC — Night 17 checkpoint 2 (quiet)
+
+- Active: **Haze 3.33** · **Couch 3.31** · **Bus 3.32** · **Porch 3.30**
+- Couch rug/screen/lights placeWarm · Haze LoungeRug · EXPERIENCE_COPY remembers
+- Parked untouched; no invented audio
+- Still blocked: Perplexity Q-001–004 · first Studio publish
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
+## 2026-10-11 01:00 UTC — Night 17 checkpoint 1 (quiet)
+
+- Active: **Haze 3.32** · **Couch 3.30** · **Bus 3.31** · **Porch 3.29**
+- Place-warmth deepen: WelcomeSign/hammock · Bus wave · Porch string lights · checklist beat
+- Parked untouched; no invented audio
+- Still blocked: Perplexity Q-001–004 · first Studio publish
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
+## 2026-10-10 23:00 UTC — Night 17 resume
+
+- Stop re-armed → 05:00 UTC (`overnight-stop-5am-utc`); quiet CP ~01:00 / ~03:00
+- Daily resume active (expires 2026-10-14)
+- No Perplexity answers — audio still unwired (Q-001–004 open)
+- Night 17: place-warmth pulse on company depart/return (board · news · jar · plaque)
+- Start versions: Haze **3.30** · Couch **3.28** · Bus **3.29** · Porch **3.27**
+- PR: https://github.com/wysboi123/thoughts/pull/3
+- Quiet mode; **no mid-shift email**; one digest at 05:00 stop only
+
+## 2026-10-10 05:00 UTC — OVERNIGHT STOP (Night 16)
+
+Night 16 complete. No new features this wrap. One digest email sent.
+
+**Shipped Night 16**
+- SoftCompany **AfterDepartTextFn** (“they were near”) + **AfterReturnTextFn** (“stay soft”)
+- SoftGoals sealed **nudgeOptional** (“stay soft” / “company again”)
+- SoftSit empty-copy pulse on company depart/return
+- Research: `docs/research/hangout-usps-2026-10-10.md`
+
+**Versions end:** Haze **3.30** · Couch **3.28** · Bus **3.29** · Porch **3.27**
+**Parked:** Slow Orbit · Puddle Mirror · Lantern Drift — untouched
+**Blocked:** Perplexity Q-001–004 · first Studio publish (SoftInvite gated)
+**PR:** https://github.com/wysboi123/thoughts/pull/3
+**Next (Night 17):** apply Perplexity if any · USP place-warmth polish · no invented audio · SoftInvite still gated
+
+## 2026-10-10 03:00 UTC — Night 16 checkpoint 2 (quiet)
+
+- Active: **Haze 3.30** · **Couch 3.28** · **Bus 3.29** · **Porch 3.27**
+- SoftCompany AfterReturnTextFn · stay-soft bridge after company return
+- Parked untouched; no invented audio
+- Still blocked: Perplexity Q-001–004 · first Studio publish
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
+## 2026-10-10 01:00 UTC — Night 16 checkpoint 1 (quiet)
+
+- Active: **Haze 3.29** · **Couch 3.27** · **Bus 3.28** · **Porch 3.26**
+- SoftSit empty pulse on company depart/return · SoftSit empty-copy flip hold
+- AfterDepart + sealed nudge already landed
+- Parked untouched; no invented audio
+- Still blocked: Perplexity Q-001–004 · first Studio publish
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
+## 2026-10-09 23:00 UTC — Night 16 resume
+
+- Stop re-armed → 05:00 UTC (`overnight-stop-5am-utc`); quiet CP ~01:00 / ~03:00
+- Daily resume active (expires 2026-10-14)
+- No Perplexity answers — audio still unwired (Q-001–004 open)
+- Night 16: SoftCompany AfterDepartTextFn · SoftGoals sealed nudgeOptional · SoftSit.refresh on depart
+- Start versions: Haze **3.27** · Couch **3.25** · Bus **3.26** · Porch **3.24**
+- PR: https://github.com/wysboi123/thoughts/pull/3
+- Quiet mode; **no mid-shift email**; one digest at 05:00 stop only
+
+## 2026-10-09 05:00 UTC — OVERNIGHT STOP (Night 15)
+
+Night 15 complete. No new features this wrap. One digest email sent.
+
+**Shipped Night 15**
+- SoftCompany **ReturnTextFn** + **OnReturned** SoftWelcome (“company again”)
+- SoftGoals **nudgeOptional** on return and depart (“company again” / “company still open”)
+- EXPERIENCE_COPY drift-back lines · publish checklist leave/return
+- Research: `docs/research/hangout-usps-2026-10-09.md`
+
+**Versions end:** Haze **3.27** · Couch **3.25** · Bus **3.26** · Porch **3.24**
+**Parked:** Slow Orbit · Puddle Mirror · Lantern Drift — untouched
+**Blocked:** Perplexity Q-001–004 · first Studio publish (SoftInvite gated)
+**PR:** https://github.com/wysboi123/thoughts/pull/3
+**Next (Night 16):** apply Perplexity if any · USP linger polish · no invented audio · SoftInvite still gated
+
+## 2026-10-09 03:00 UTC — Night 15 checkpoint 2 (quiet)
+
+- Active: **Haze 3.27** · **Couch 3.25** · **Bus 3.26** · **Porch 3.24**
+- SoftGoals nudgeOptional("depart") on company leave · EXPERIENCE_COPY drift-back line
+- Parked untouched; no invented audio
+- Still blocked: Perplexity Q-001–004 · first Studio publish
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
+## 2026-10-09 01:00 UTC — Night 15 checkpoint 1 (quiet)
+
+- Active: **Haze 3.26** · **Couch 3.24** · **Bus 3.25** · **Porch 3.23**
+- SoftGoals nudgeOptional on OnReturned · publish checklist leave/return beats
+- ReturnTextFn / OnReturned already landed
+- Parked untouched; no invented audio
+- Still blocked: Perplexity Q-001–004 · first Studio publish
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
+## 2026-10-08 23:00 UTC — Night 15 resume
+
+- Stop re-armed → 05:00 UTC (`overnight-stop-5am-utc`); quiet CP ~01:00 / ~03:00
+- Daily resume active (expires 2026-10-14)
+- No Perplexity answers — audio still unwired (Q-001–004 open)
+- Night 15: SoftCompany ReturnTextFn + OnReturned (company again)
+- Start versions: Haze **3.24** · Couch **3.22** · Bus **3.23** · Porch **3.21**
+- PR: https://github.com/wysboi123/thoughts/pull/3
+- Quiet mode; **no mid-shift email**; one digest at 05:00 stop only
+
+## 2026-10-08 05:00 UTC — OVERNIGHT STOP (Night 14)
+
+Night 14 complete. No new features this wrap. One digest email sent.
+
+**Shipped Night 14**
+- SoftCompany **DepartTextFn** (“they drifted · stay”) + **OnDeparted** SoftWelcome (once)
+- SoftGoals optional-row **re-pulse** ~36s after OnLinger if company goals open
+- SoftSit **EmptyTextFn** — brief seat/bench/rocker/couch open after last sitter leaves
+- Bus wave “Wave · still waiting” · Porch jar linger-after-leave colors
+- SoftInvite prep: invite on first-arrive only · research `hangout-usps-2026-10-08.md`
+- Active versions: Haze **3.24** · Couch **3.22** · Bus **3.23** · Porch **3.21**
+- 4 commits since 2026-10-07 23:00 UTC (+ this stop wrap)
+- Parked trio untouched; no invented audio ids
+
+**Blocked**
+- Perplexity Q-001–004 still open — no invented audio ids
+- First Studio publish → `PUBLISH_CHECKLIST.md` (Haze ready)
+- SoftInvite gated until Place URL in `PUBLISH_STATUS.md`
+
+**Ops**
+- PR: https://github.com/wysboi123/thoughts/pull/3
+- Daily resume `overnight-daily-resume` **active** (23:00 UTC; expires **2026-10-14**)
+- Email: one digest at stop only (Femmy policy)
+
+**Next night**
+- Apply Perplexity answers if any
+- Femmy: first Haze Studio publish
+- Soft invite prompt only after publish (`SOFT_INVITE.md`)
+- Continue active-four polish; parked until asked
+
+## 2026-10-08 03:00 UTC — Night 14 checkpoint 2 (quiet)
+
+- Active: **Haze 3.24** · **Couch 3.22** · **Bus 3.23** · **Porch 3.21**
+- SoftSit EmptyTextFn seat/bench/rocker/couch open after leave
+- SoftInvite prep: invite on first-arrive only (not OnDeparted)
+- Parked untouched; no invented audio
+- Still blocked: Perplexity Q-001–004 · first Studio publish
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
+## 2026-10-08 01:00 UTC — Night 14 checkpoint 1 (quiet)
+
+- Active: **Haze 3.23** · **Couch 3.21** · **Bus 3.22** · **Porch 3.20**
+- SoftCompany OnDeparted SoftWelcome (once) · Bus wave still-waiting
+- DepartTextFn + SoftGoals optional re-pulse already landed
+- Parked untouched; no invented audio
+- Still blocked: Perplexity Q-001–004 · first Studio publish
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
+## 2026-10-07 23:00 UTC — Night 14 resume
+
+- Stop re-armed → 05:00 UTC (`overnight-stop-5am-utc`); quiet CP ~01:00 / ~03:00
+- Daily resume **re-armed** (was near 2026-10-10 expiry)
+- No Perplexity answers — audio still unwired (Q-001–004 open)
+- Night 14: SoftCompany DepartTextFn · SoftGoals optional re-pulse after linger
+- Start versions: Haze **3.21** · Couch **3.19** · Bus **3.20** · Porch **3.18**
+- PR: https://github.com/wysboi123/thoughts/pull/3
+- Quiet mode; **no mid-shift email**; one digest at 05:00 stop only
+
+## 2026-10-07 05:00 UTC — OVERNIGHT STOP (Night 13)
+
+Night 13 complete. No new features this wrap. One digest email sent.
+
+**Shipped Night 13**
+- SoftGoals optional-row linger pulse · alone proximity (~1.12) after OnLinger
+- SoftCompany / SoftSit still-here · **SoftCompany.refresh()** linger pulse
+- Bus timetable/news/notepad/bench linger warmth · Porch jar-meter linger
+- Couch portal/plaque/beacon still-here (`applyCouchWorldPresence`)
+- Haze VibeBoard.setLingered (“tonight's vibes · still here”; sync wins)
+- EXPERIENCE_COPY soft-stay · research `hangout-usps-2026-10-06.md` + `hangout-usps-2026-10-07.md`
+- Active versions: Haze **3.21** · Couch **3.19** · Bus **3.20** · Porch **3.18**
+- 12 commits since 2026-10-06 23:00 UTC
+- Parked trio untouched; no invented audio ids
+
+**Blocked**
+- Perplexity Q-001–004 still open — no invented audio ids
+- First Studio publish → `PUBLISH_CHECKLIST.md` (Haze ready)
+- SoftInvite gated until Place URL in `PUBLISH_STATUS.md`
+
+**Ops**
+- PR: https://github.com/wysboi123/thoughts/pull/3
+- Daily resume `overnight-daily-resume` **active** (23:00 UTC; expires **2026-10-10** — re-arm next night)
+- Email: one digest at stop only (Femmy policy)
+
+**Next night**
+- Apply Perplexity answers if any
+- Femmy: first Haze Studio publish
+- Soft invite prompt only after publish (`SOFT_INVITE.md`)
+- Re-arm daily resume before 2026-10-10 expiry
+- Continue active-four polish; parked until asked
+
+## 2026-10-07 ~03:30 UTC — Night 13 mid (couch/bus world linger)
+
+- Couch portal/plaque/beacon still-here after OnLinger (`applyCouchWorldPresence`)
+- Bus notepad + bench linger warmth; Couch **3.19** · Bus **3.20**
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
+## 2026-10-07 ~03:25 UTC — Night 13 mid (Haze vibe board linger)
+
+- VibeBoard.setLingered — “tonight's vibes · still here” when alone after OnLinger
+- Sync still wins over linger look; Haze **3.21**
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
+## 2026-10-07 ~03:20 UTC — Night 13 mid (bus/porch linger warmth)
+
+- SoftCompany.refresh linger pulse · SoftSit copy pulse
+- Bus timetable/news soft linger tint · Porch jar-meter linger color
+- EXPERIENCE_COPY soft-stay lines · research `hangout-usps-2026-10-07.md`
+- Versions: Haze **3.20** · Couch **3.18** · Bus **3.19** · Porch **3.18**
+- Parked untouched; no invented audio; SoftInvite still gated
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
+## 2026-10-07 ~03:15 UTC — Night 13 CP2+ (SoftCompany.refresh)
+
+- SoftCompany.refresh — immediate still-here copy + linger pulse on OnLinger
+- SoftSit.refresh pulses on copy change; Porch softLingered hoist
+- Research: `hangout-usps-2026-10-07.md` (Discovery bounce / playtime / co-play)
+- Versions: Haze **3.19** · Couch **3.17** · Bus **3.18** · Porch **3.17**
+- Parked untouched; no invented audio; SoftInvite still gated
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
+## 2026-10-07 03:00 UTC — Night 13 checkpoint 2 (quiet)
+
+- Active: **Haze 3.18** · **Couch 3.16** · **Bus 3.17** · **Porch 3.16**
+- SoftGoals linger pulse · alone proximity · SoftCompany still-here post-linger
+- Parked untouched; no invented audio
+- Still blocked: Perplexity Q-001–004 · first Studio publish
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
+## 2026-10-07 01:00 UTC — Night 13 checkpoint 1 (quiet)
+
+- Active: **Haze 3.17** · **Couch 3.15** · **Bus 3.16** · **Porch 3.15**
+- SoftGoals optional-row linger pulse · soft alone proximity after linger
+- Parked untouched; no invented audio
+- Still blocked: Perplexity Q-001–004 · first Studio publish
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
+## 2026-10-06 ~23:05 UTC — Night 13 mid (quiet)
+
+- SoftGoals optional-row linger pulse · soft alone proximity boost (~1.12) after linger
+- SoftSit.refresh on linger · research `hangout-usps-2026-10-06.md`
+- Versions: Haze **3.16** · Couch **3.14** · Bus **3.15** · Porch **3.14**
+- No Perplexity · no invented audio · parked untouched
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
+## 2026-10-06 23:00 UTC — Night 13 resume
+
+- Stop re-armed → 05:00 UTC (`overnight-stop-5am-utc`); quiet CP ~01:00 / ~03:00
+- No Perplexity answers — audio still unwired (Q-001–004 open); Q-005 is TD (not overnight chill focus)
+- Night 13: SoftGoals optional-row linger pulse · soft alone proximity after linger
+- Start versions: Haze **3.15** · Couch **3.13** · Bus **3.14** · Porch **3.13**
+- PR: https://github.com/wysboi123/thoughts/pull/3
+- Quiet mode; **no mid-shift email**; one digest at 05:00 stop only
+
+## 2026-10-06 05:00 UTC — OVERNIGHT STOP (Night 12)
+
+Night 12 complete. No new features this wrap. One digest email sent.
+
+**Shipped Night 12**
+- SoftGoals OnLinger (~48s playtime stay) · optionalLeft company-open copy · linger stroke
+- SoftCompany/place/status/HUD “still here” after linger
+- SoftInvite prep doc (`docs/SOFT_INVITE.md`) — gated until publish
+- USP research `hangout-usps-2026-10-05.md`
+- Active versions: Haze **3.15** · Couch **3.13** · Bus **3.14** · Porch **3.13**
+- 5 commits since 2026-10-05 23:00 UTC
+- Parked trio untouched; no invented audio ids
+
+**Blocked**
+- Perplexity Q-001–004 still open — no invented audio ids
+- First Studio publish → `PUBLISH_CHECKLIST.md` (Haze ready)
+
+**Ops**
+- PR: https://github.com/wysboi123/thoughts/pull/3
+- Daily resume `overnight-daily-resume` **active** (23:00 UTC; expires 2026-10-10)
+- Email: one digest at stop only (Femmy policy)
+
+**Next night**
+- Apply Perplexity answers if any
+- Femmy: first Haze Studio publish
+- Soft invite prompt only after publish (`SOFT_INVITE.md`)
+- Continue active-four polish; parked until asked
+
+## 2026-10-06 03:00 UTC — Night 12 checkpoint 2 (quiet)
+
+- Active: **Haze 3.15** · **Couch 3.13** · **Bus 3.14** · **Porch 3.13**
+- SoftGoals OnLinger · SoftCompany/place still-here · SoftInvite prep
+- Parked untouched; no invented audio
+- Still blocked: Perplexity Q-001–004 · first Studio publish
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
+## 2026-10-06 01:00 UTC — Night 12 checkpoint 1 (quiet)
+
+- Active: **Haze 3.14** · **Couch 3.12** · **Bus 3.13** · **Porch 3.12**
+- SoftGoals OnLinger(optionalLeft) · SoftInvite prep · research `hangout-usps-2026-10-05.md`
+- Parked untouched; no invented audio
+- Still blocked: Perplexity Q-001–004 · first Studio publish
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
+## 2026-10-05 ~23:05 UTC — Night 12 mid (quiet)
+
+- SoftGoals OnLinger (~48s) · SoftInvite prep `docs/SOFT_INVITE.md`
+- Research: `docs/research/hangout-usps-2026-10-05.md`
+- Versions: Haze **3.13** · Couch **3.11** · Bus **3.12** · Porch **3.11**
+- No Perplexity · no invented audio · parked untouched
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
+## 2026-10-05 23:00 UTC — Night 12 resume
+
+- Stop re-armed → 05:00 UTC (`overnight-stop-5am-utc`); quiet CP ~01:00 / ~03:00
+- No Perplexity answers in `docs/research/` — audio still unwired (Q-001–004 open)
+- Night 12: SoftGoals OnLinger (playtime stay) · SoftInvite prep doc (post-publish gate)
+- Start versions: Haze **3.11** · Couch **3.9** · Bus **3.10** · Porch **3.9**
+- PR: https://github.com/wysboi123/thoughts/pull/3
+- Quiet mode; **no mid-shift email**; one digest at 05:00 stop only
+
+## 2026-10-05 05:00 UTC — OVERNIGHT STOP (Night 11)
+
+Night 11 complete. No new features this wrap. One digest email sent.
+
+**Shipped Night 11**
+- SoftGoals.Optional company/sync/together · solo soft-complete
+- Soft-complete “company still open” · OnSessionSealed · SoftCompany alone-copy
+- Soft-complete place/status copy (Haze HUD · Bus status · Couch place · Porch hint)
+- Couch SoftSit company · USP research `hangout-usps-2026-10-04.md`
+- Active versions: Haze **3.11** · Couch **3.9** · Bus **3.10** · Porch **3.9**
+- 15 commits since 2026-10-04 23:00 UTC
+- Parked trio untouched; no invented audio ids
+
+**Blocked**
+- Perplexity Q-001–004 still open — no invented audio ids
+- First Studio publish → `PUBLISH_CHECKLIST.md` (Haze ready)
+
+**Ops**
+- PR: https://github.com/wysboi123/thoughts/pull/3
+- Daily resume `overnight-daily-resume` **active** (23:00 UTC)
+- Email: one digest at stop only (Femmy policy)
+
+**Next night**
+- Apply Perplexity answers if any
+- Femmy: first Haze Studio publish
+- Soft invite prompt only after publish
+- Continue active-four polish; parked until asked
+
+## 2026-10-05 03:00 UTC — Night 11 checkpoint 2 (quiet)
+
+- Active: **Haze 3.11** · **Couch 3.9** · **Bus 3.10** · **Porch 3.9**
+- SoftGoals OnSessionSealed · Bus soft-complete status · SoftCompany alone-copy
+- Parked untouched; no invented audio
+- Still blocked: Perplexity Q-001–004 · first Studio publish
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
+## 2026-10-05 01:00 UTC — Night 11 checkpoint 1 (quiet)
+
+- Active: **Haze 3.10** · **Couch 3.8** · **Bus 3.10** · **Porch 3.8**
+- SoftGoals.Optional · company-still-open · SoftCompany alone-copy after soft-complete
+- Couch SoftSit company · research `hangout-usps-2026-10-04.md`
+- Parked untouched; no invented audio
+- Still blocked: Perplexity Q-001–004 · first Studio publish
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
+## 2026-10-04 ~23:20 UTC — Night 11 mid (quiet)
+
+- SoftGoals: dimmer Optional rows · soft-complete title “company still open” · OnAllComplete(optionalLeft)
+- Active toasts keep co-play door open after solo soft-complete
+- Research: `docs/research/hangout-usps-2026-10-04.md`
+- Versions: Haze **3.10** · Couch **3.8** · Bus **3.10** · Porch **3.8**
+- No Perplexity · no invented audio · parked untouched
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
+## 2026-10-04 23:00 UTC — Night 11 resume
+
+- Stop re-armed → 05:00 UTC (`overnight-stop-5am-utc`); quiet CP ~01:00 / ~03:00
+- No Perplexity answers in `docs/research/` — audio still unwired (Q-001–004 open)
+- Night 11: SoftGoals Optional company goals (solo soft-complete); parked untouched
+- Start versions: Haze **3.6** · Couch **3.3** · Bus **3.5** · Porch **3.4**
+- PR: https://github.com/wysboi123/thoughts/pull/3
+- Quiet mode; **no mid-shift email**; one digest at 05:00 stop only
+
+## 2026-10-04 05:00 UTC — OVERNIGHT STOP (Night 10)
+
+Night 10 complete. No new features this wrap. One digest email sent.
+
+**Shipped Night 10**
+- SoftSit.refresh API · company/zone-aware sit copy (Bus/Porch/Haze/Couch)
+- Bus phase-aware SoftCompany · SoftCompany leave pulse
+- Haze publish thumbnail tips in `PUBLISH_CHECKLIST.md`
+- Active versions: Haze **3.6** · Couch **3.3** · Bus **3.5** · Porch **3.4**
+- 7 commits since 2026-10-03 23:00 UTC
+- Parked trio untouched; no invented audio ids
+- Daily resume re-armed (was near expiry)
+
+**Blocked**
+- Perplexity Q-001–004 still open — no invented audio ids
+- First Studio publish → `PUBLISH_CHECKLIST.md` (Haze ready)
+
+**Ops**
+- PR: https://github.com/wysboi123/thoughts/pull/3
+- Daily resume `overnight-daily-resume` **active** (23:00 UTC)
+- Email: one digest at stop only (Femmy policy)
+
+**Next night**
+- Apply Perplexity answers if any
+- Femmy: first Haze Studio publish
+- Soft invite prompt only after publish
+- Continue active-four polish; parked until asked
+
+## 2026-10-04 03:00 UTC — Night 10 checkpoint 2 (quiet)
+
+- Active: **Haze 3.6** · **Couch 3.3** · **Bus 3.5** · **Porch 3.4**
+- SoftCompany leave pulse · Haze SoftSit sync copy
+- Parked untouched; no invented audio
+- Still blocked: Perplexity Q-001–004 · first Studio publish
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
+## 2026-10-04 01:00 UTC — Night 10 checkpoint 1 (quiet)
+
+- Active: **Haze 3.5** · **Couch 3.2** · **Bus 3.4** · **Porch 3.3**
+- Bus SoftCompany phase-aware copy · Porch SoftSit company refresh · publish thumbnail tips
+- Parked untouched; no invented audio
+- Still blocked: Perplexity Q-001–004 · first Studio publish
+- Quiet mode; next CP ~03:00 · stop 05:00 · **one digest email at stop only**
+
+## 2026-10-03 23:13 UTC — Night 10 resume
+
+- Stop re-armed → 05:00 UTC (`overnight-stop-5am-utc`); quiet CP ~01:00 / ~03:00
+- No Perplexity answers in `docs/research/` — audio still unwired (Q-001–004 open)
+- Night 10: SoftSit.refresh company/zone copy + Haze publish thumbnail tips; parked untouched
+- Start versions: Haze **3.3** · Couch **3.0** · Bus **3.2** · Porch **3.1**
+- PR: https://github.com/wysboi123/thoughts/pull/3
+- Quiet mode; **no mid-shift email**; one digest at 05:00 stop only
+
+## 2026-10-03 05:00 UTC — OVERNIGHT STOP (Night 9)
+
+Night 9 complete. No new features this wrap. One digest email sent.
+
+**Shipped Night 9**
+- First-session stickiness: SoftWelcome HoldSeconds · SoftGoals OnAllComplete stay toasts
+- Haze server-authoritative vibe sync + nameplate tint · Bus bench warm · short company toasts
+- Active versions: Haze **3.3** · Couch **3.0** · Bus **3.2** · Porch **3.1**
+- 7 commits since 2026-10-02 23:00 UTC
+- Parked trio untouched; no invented audio ids
+- Publish checklist updated for Haze 3.1+
+
+**Blocked**
+- Perplexity Q-001–004 still open — no invented audio ids
+- First Studio publish → `PUBLISH_CHECKLIST.md` (Haze ready)
+
+**Ops**
+- PR: https://github.com/wysboi123/thoughts/pull/3
+- Daily resume `overnight-daily-resume` **active** (23:00 UTC)
+- Email: one digest at stop only (Femmy policy)
+
+**Next night**
+- Apply Perplexity answers if any
+- Femmy: first Haze Studio publish
+- Soft invite prompt only after publish
+- Continue active-four polish; parked until asked
+
+## 2026-10-03 03:00 UTC — Night 9 checkpoint 2 (quiet)
+
+- Active: **Haze 3.3** · **Couch 3.0** · **Bus 3.2** · **Porch 3.1**
+- SoftGoals OnAllComplete toast · all four soft-complete stays
+- Parked untouched; no invented audio
+- Still blocked: Perplexity Q-001–004 · first Studio publish
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
+## 2026-10-03 01:00 UTC — Night 9 checkpoint 1 (quiet)
+
+- Active: **Haze 3.2** · **Couch 2.9** · **Bus 3.1** · **Porch 3.0**
+- Company toasts HoldSeconds 3.6 · Haze nameplate server sync · Bus bench warm
+- 3+ commits since resume; parked untouched; no invented audio
+- Still blocked: Perplexity Q-001–004 · first Studio publish
+- Quiet mode; next CP ~03:00 · stop 05:00 · **one digest email at stop only**
+
+## 2026-10-02 23:15 UTC — Night 9 resume
+
+- Stop re-armed → 05:00 UTC (`overnight-stop-5am-utc`); quiet CP ~01:00 / ~03:00
+- No Perplexity answers in `docs/research/` — audio still unwired (Q-001–004 open)
+- Night 9: first-session stickiness + Haze publish support; parked untouched
+- Start versions: Haze **3.0** · Couch **2.7** · Bus **2.9** · Porch **2.8**
+- PR: https://github.com/wysboi123/thoughts/pull/3
+- Quiet mode; **no mid-shift email**; one digest at 05:00 stop only
+
+## 2026-10-02 05:00 UTC — OVERNIGHT STOP (Night 8)
+
+Night 8 complete. No new features this wrap. One digest email sent.
+
+**Shipped Night 8**
+- USP research refresh (`hangout-usps-2026-10-02.md`) + priority in `USPS.md`
+- SoftCompany rising-count pulse · themed SoftGoals · company atmosphere deepen
+- Active versions: Haze **3.0** · Couch **2.7** · Bus **2.9** · Porch **2.8**
+- 14 commits since 2026-10-01 23:00 UTC
+- Parked trio untouched; no invented audio ids
+
+**Blocked**
+- Perplexity Q-001–004 still open — no invented audio ids
+- First Studio publish → `PUBLISH_CHECKLIST.md` (Haze 3.0 ready)
+
+**Ops**
+- PR: https://github.com/wysboi123/thoughts/pull/3
+- Daily resume `overnight-daily-resume` **active** (23:00 UTC)
+- Email: one digest at stop only (Femmy policy)
+
+**Next night**
+- Apply Perplexity answers if any
+- Femmy: first Haze Studio publish
+- Soft invite prompt only after publish
+- Continue active-four polish; parked until asked
+
+## 2026-10-02 03:00 UTC — Night 8 checkpoint 2 (quiet)
+
+- Active: **Haze 3.0** · **Couch 2.7** · **Bus 2.9** · **Porch 2.8**
+- SoftCompany rising-count pulse · Haze loft plants · Couch loft clouds · Bus sit “together” · Porch hint/lights
+- 8+ commits since 2026-10-01 23:00 UTC; parked untouched; no invented audio
+- Still blocked: Perplexity Q-001–004 · first Studio publish (Haze ready)
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
+## 2026-10-02 01:07 UTC — Night 8 USP deepen (post-CP1)
+
+- Research: `docs/research/hangout-usps-2026-10-02.md` (Creator Hub intentional co-play + bounce)
+- USPs re-prioritized in `docs/USPS.md`; soft invite prompt queued post-publish
+- Shipped: Haze **2.9** WelcomeSign/hammock sync · Bus **2.8** wave/notepad · Porch **2.7** proximity company · Couch **2.6** portal/plaque
+- Parked untouched; no invented audio
+- Quiet mode; next CP ~03:00 · stop 05:00 · **one digest email at stop only**
+
+## 2026-10-02 01:00 UTC — Night 8 checkpoint 1 (quiet)
+
+- Active: **Haze 2.8** · **Couch 2.5** · **Bus 2.7** · **Porch 2.6** (post SoftGoals CP1)
+- Shipped since resume: WelcomeSign publish verify · HUD/tag sync · candle/pad wash · company lamps · soft rain · fire pit/path warm · themed SoftGoals
+- Parked untouched
+- Still blocked: Perplexity Q-001–004 · first Studio publish
+- Quiet mode; next CP ~03:00 · stop 05:00 · **one digest email at stop only**
+
+## 2026-10-01 23:00 UTC — Night 8 resume
+
+- Stop re-armed → 05:00 UTC (`overnight-stop-5am-utc`); quiet CP ~01:00 / ~03:00
+- No Perplexity answers in `docs/research/` — audio still unwired (Q-001–004 open)
+- Night 8: active-four polish + Haze publish readiness; parked untouched
+- Start versions: Haze **2.5** · Couch **2.2** · Bus **2.4** · Porch **2.3**
+- PR: https://github.com/wysboi123/thoughts/pull/3
+- Quiet mode; **no mid-shift email**; one digest at 05:00 stop only
+
+## 2026-10-01 05:00 UTC — OVERNIGHT STOP (Night 7)
+
+Night 7 complete. No new features this wrap. One digest email sent.
+
+**Shipped Night 7**
+- USP deepen on **Haze / Couch / Bus / Porch** (parked trio untouched)
+- Shared Chill: SoftCompany pulse/dynamic copy · SoftWelcome themes · SoftGoals/Sit fade · Proximity crowd scale
+- Active versions: Haze **2.5** · Couch **2.2** · Bus **2.4** · Porch **2.3**
+- 28 commits since 2026-09-30 23:00 UTC
+- No invented audio ids; research still empty (agent USPs from Context note only)
+
+**Blocked**
+- Perplexity Q-001–004 still open — no invented audio ids
+- First Studio publish → `docs/PUBLISH_STATUS.md`
+
+**Ops**
+- PR: https://github.com/wysboi123/thoughts/pull/3
+- Daily resume `overnight-daily-resume` **active** (23:00 UTC)
+- Email: one digest at stop only (Femmy policy)
+
+**Night 8 (23:00 UTC)**
+1. Apply any Perplexity research / wire audio
+2. Help Femmy publish first place (Haze recommended)
+3. Continue active-four polish if research empty; parked games only when Femmy asks
+
+## 2026-10-01 03:00 UTC — Night 7 checkpoint 2 (quiet)
+
+- Active: **Haze 2.5** · **Couch 2.2** · **Bus 2.4** · **Porch 2.3**
+- Since CP1: orb/board sync · together notepad · portal labels · both-worlds · jar string/lamp fill · dwell linger · crowd Proximity
+- 27+ commits since 2026-09-30 23:00 UTC; parked untouched
+- Still blocked: Perplexity Q-001–004 · first Studio publish
+- Quiet mode; stop 05:00 · **one digest email at stop only**
+
+**Draft for 05:00 stop digest**
+- Night 7 versions: Haze **2.5** · Couch **2.2** · Bus **2.4** · Porch **2.3**
+- Shipped: USP deepen across SoftCompany line + per-game hooks
+- Blocked: Perplexity audio + Studio publish
+- Next night: wire audio if research lands; help publish Haze; parked later
+- PR: https://github.com/wysboi123/thoughts/pull/3
+
+## 2026-10-01 01:00 UTC — Night 7 checkpoint 1 (quiet)
+
+- Active: **Haze 2.1** · **Couch 1.9** · **Bus 2.0** · **Porch 1.9**
+- Shipped since resume: Chill SoftCompany/Welcome/Goals/Sit polish; vibe board sync tint; waiting status machine; jar HUD + path warm; two-world Lighting + plaque; constellation pulse
+- 13 commits since 2026-09-30 23:00 UTC; parked untouched
+- Still blocked: Perplexity Q-001–004 · first Studio publish
+- Quiet mode; next CP ~03:00 · stop 05:00 · **one digest email at stop only**
+
+## 2026-09-30 23:00 UTC — Night 7 resume
+
+- Stop re-armed → 05:00 UTC (`overnight-stop-5am-utc`); quiet CP ~01:00 / ~03:00
+- No Perplexity answers in `docs/research/` — audio still unwired (Q-001–004 open)
+- Continuing USP deepen on active four (Haze / Couch / Bus / Porch); parked untouched
+- Early Night 7: Chill package polish (SoftCompany pulse, SoftWelcome themes, SoftGoals fade, SoftSit fade) + per-game USP hooks → target Haze **2.0** · Couch **1.7** · Bus **1.9** · Porch **1.8**
+- PR: https://github.com/wysboi123/thoughts/pull/3 (USP branch)
+- Quiet mode; **no mid-shift email**; one digest at 05:00 stop only
 ## 2026-09-30 21:20 UTC — Femmy asked for 3 UI drafts (choose / tweak)
 
 - Re-served Upgrade drafts **A / B / C** (gallery + JPGs + specs) for vote

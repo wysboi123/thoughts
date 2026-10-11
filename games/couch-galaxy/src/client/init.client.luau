@@ -1,5 +1,7 @@
 --!strict
 local Players = game:GetService("Players")
+local Lighting = game:GetService("Lighting")
+local Workspace = game:GetService("Workspace")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Shared = ReplicatedStorage:WaitForChild("Shared")
@@ -7,11 +9,12 @@ local Config = require(Shared:WaitForChild("Config"))
 local Remotes = require(Shared:WaitForChild("Remotes"))
 
 local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
 local gui = Instance.new("ScreenGui")
 gui.Name = "GalaxyHud"
 gui.ResetOnSpawn = false
 gui.IgnoreGuiInset = true
-gui.Parent = player:WaitForChild("PlayerGui")
+gui.Parent = playerGui
 
 local title = Instance.new("TextLabel")
 title.BackgroundTransparency = 1
@@ -32,18 +35,18 @@ tag.Font = Enum.Font.Gotham
 tag.TextSize = 14
 tag.TextXAlignment = Enum.TextXAlignment.Left
 tag.TextColor3 = Color3.fromRGB(170, 160, 200)
-tag.Text = Config.Tagline
+tag.Text = Config.Tagline .. "  ·  v" .. Config.Version
 tag.Parent = gui
 
 local place = Instance.new("TextLabel")
 place.BackgroundTransparency = 1
 place.Position = UDim2.new(0, 24, 0, 86)
-place.Size = UDim2.new(0, 280, 0, 18)
+place.Size = UDim2.new(0, 320, 0, 18)
 place.Font = Enum.Font.Gotham
 place.TextSize = 13
 place.TextXAlignment = Enum.TextXAlignment.Left
 place.TextColor3 = Color3.fromRGB(140, 130, 170)
-place.Text = "you are home · climb to the skylight"
+place.Text = "two worlds · one couch · climb to the skylight"
 place.Parent = gui
 
 local counter = Instance.new("TextLabel")
@@ -61,27 +64,162 @@ local corner = Instance.new("UICorner")
 corner.CornerRadius = UDim.new(0, 10)
 corner.Parent = counter
 
+local inGalaxy = false
+local softCompleteDone = false
+local softCompleteOptionalOpen = false
+local softLingered = false
+local proximityHandle: any = nil
+local softCompanyHandle: any = nil
+local placeWarmKind: string? = nil -- "depart" | "return"
+local placeWarmToken = 0
+
+local SoftCompany = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftCompany"))
+local SoftSit = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftSit"))
+local SoftGoals = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftGoals"))
+local SoftWelcome = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftWelcome"))
+local ChillProximity = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("Proximity"))
+
+local function applyHomeLighting()
+	Lighting.ClockTime = 20.5
+	Lighting.Brightness = 1.4
+	Lighting.Ambient = Color3.fromRGB(70, 55, 90)
+	Lighting.OutdoorAmbient = Color3.fromRGB(50, 40, 70)
+	Lighting.FogColor = Color3.fromRGB(40, 30, 55)
+	Lighting.FogEnd = 220
+end
+
+local function applyGalaxyLighting()
+	Lighting.ClockTime = 0.5
+	Lighting.Brightness = 0.6
+	Lighting.Ambient = Color3.fromRGB(30, 35, 70)
+	Lighting.OutdoorAmbient = Color3.fromRGB(20, 25, 55)
+	Lighting.FogColor = Color3.fromRGB(10, 15, 40)
+	Lighting.FogEnd = 400
+end
+
+applyHomeLighting()
+
+local function refreshPlace(companyNear: boolean)
+	local versionSuffix = "  ·  v" .. Config.Version
+	if inGalaxy then
+		if companyNear and placeWarmKind ~= "depart" then
+			place.Text = if placeWarmKind == "return"
+				then "galaxy loft · company again · two worlds"
+				else "galaxy loft · soft company · two worlds"
+		elseif placeWarmKind == "depart" then
+			place.Text = "they drifted · loft stays · two worlds"
+		elseif softLingered and softCompleteOptionalOpen then
+			place.Text = "still here · loft company still open"
+		elseif softLingered then
+			place.Text = "still here · loft · stay"
+		elseif softCompleteDone and softCompleteOptionalOpen then
+			place.Text = "soft-complete · loft company still open"
+		elseif softCompleteDone then
+			place.Text = "soft-complete · loft · stay"
+		else
+			place.Text = "galaxy loft · two worlds · beacon home when ready"
+		end
+		place.TextColor3 = if softLingered and not companyNear
+			then Color3.fromRGB(185, 180, 235)
+			else Color3.fromRGB(200, 190, 255)
+		tag.Text = Config.Tagline .. versionSuffix
+		tag.TextColor3 = Color3.fromRGB(170, 175, 220)
+		title.TextColor3 = Color3.fromRGB(210, 215, 255)
+	else
+		if companyNear and placeWarmKind ~= "depart" then
+			place.Text = if placeWarmKind == "return"
+				then "couch side · company again · climb when ready"
+				else "couch side · soft company · climb when ready"
+		elseif placeWarmKind == "depart" then
+			place.Text = "they drifted · couch stays · two worlds"
+		elseif softLingered and softCompleteOptionalOpen then
+			place.Text = "still here · couch company still open"
+		elseif softLingered then
+			place.Text = "still here · couch · stay"
+		elseif softCompleteDone and softCompleteOptionalOpen then
+			place.Text = "soft-complete · couch company still open"
+		elseif softCompleteDone then
+			place.Text = "soft-complete · couch · stay"
+		else
+			place.Text = "two worlds · one couch · climb to the skylight"
+		end
+		place.TextColor3 = if softLingered and not companyNear
+			then Color3.fromRGB(155, 145, 185)
+			else Color3.fromRGB(140, 130, 170)
+		tag.Text = Config.Tagline .. versionSuffix
+		tag.TextColor3 = Color3.fromRGB(170, 160, 200)
+		title.TextColor3 = Color3.fromRGB(230, 220, 255)
+	end
+end
+
 Remotes.StarCollected.OnClientEvent:Connect(function(count: number)
 	counter.Text = ("Stars  %d"):format(count)
+	if inGalaxy then
+		counter.BackgroundColor3 = Color3.fromRGB(28, 30, 55)
+		counter.TextColor3 = Color3.fromRGB(255, 240, 190)
+	else
+		counter.BackgroundColor3 = Color3.fromRGB(24, 20, 40)
+		counter.TextColor3 = Color3.fromRGB(255, 230, 170)
+	end
 end)
 
-Remotes.EnteredGalaxy.OnClientEvent:Connect(function()
-	place.Text = "galaxy loft · touch the warm beacon to return"
-	place.TextColor3 = Color3.fromRGB(200, 190, 255)
-end)
+local galaxyWelcomed = false
+local homeWelcomed = false
+local visitedGalaxy = false
+local visitedHomeAfterGalaxy = false
+local couchStyle = {
+	AccentColor = Color3.fromRGB(140, 120, 200),
+	FrameColor = Color3.fromRGB(26, 20, 40),
+}
 
-Remotes.ReturnedHome.OnClientEvent:Connect(function()
-	place.Text = "you are home · climb to the skylight"
-	place.TextColor3 = Color3.fromRGB(140, 130, 170)
-end)
+local function paintStarCounter()
+	if inGalaxy then
+		counter.BackgroundColor3 = Color3.fromRGB(28, 30, 55)
+		counter.TextColor3 = Color3.fromRGB(255, 240, 190)
+	else
+		counter.BackgroundColor3 = Color3.fromRGB(24, 20, 40)
+		counter.TextColor3 = Color3.fromRGB(255, 230, 170)
+	end
+end
 
-local SoftSit = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftSit"))
-local couchSit = SoftSit.mount(player:WaitForChild("PlayerGui"), {
+local couchCompanyNear = false
+local sitDepartPulseUntil = 0.0
+local sitReturnPulseUntil = 0.0
+local couchSit = SoftSit.mount(playerGui, {
+	EmptyTextFn = function()
+		if os.clock() < sitReturnPulseUntil then
+			return if softLingered
+				then (if inGalaxy then "still here · hammock open · company again" else "still here · couch open · company again")
+				else (if inGalaxy then "hammock open · company again" else "couch open · company again")
+		elseif os.clock() < sitDepartPulseUntil then
+			return if softLingered
+				then (if inGalaxy then "still here · hammock open · they drifted" else "still here · couch open · they drifted")
+				else (if inGalaxy then "hammock open · they drifted" else "couch open · they drifted")
+		elseif softLingered then
+			return if inGalaxy then "still here · hammock open" else "still here · couch open"
+		elseif softCompleteDone then
+			return if inGalaxy then "soft-complete · hammock open" else "soft-complete · couch open"
+		end
+		return ""
+	end,
 	OneText = function(name)
-		return name .. " is on the couch"
+		if inGalaxy then
+			if couchCompanyNear then
+				return if softLingered then (name .. " is in the hammock loft · still here · company") else (name .. " is in the hammock loft · company")
+			end
+			return if softLingered then (name .. " is in the hammock loft · still here") else (name .. " is in the hammock loft")
+		end
+		if couchCompanyNear then
+			return if softLingered then (name .. " is on the couch · still here · company") else (name .. " is on the couch · company")
+		end
+		return if softLingered then (name .. " is on the couch · still here") else (name .. " is on the couch")
 	end,
 	ManyText = function(names)
-		return table.concat(names, " & ") .. " are on the couch"
+		local joined = table.concat(names, " & ")
+		if softLingered then
+			return if inGalaxy then (joined .. " are in the hammock loft · still here") else (joined .. " are on the couch · still here")
+		end
+		return if inGalaxy then (joined .. " are in the hammock loft") else (joined .. " are on the couch")
 	end,
 	Color = Color3.fromRGB(190, 170, 220),
 })
@@ -89,17 +227,108 @@ Remotes.CouchSitChanged.OnClientEvent:Connect(function(seatName: string, display
 	couchSit.set(seatName, displayName)
 end)
 
+Remotes.EnteredGalaxy.OnClientEvent:Connect(function()
+	inGalaxy = true
+	visitedGalaxy = true
+	applyGalaxyLighting()
+	refreshPlace(false)
+	paintStarCounter()
+	couchSit.refresh()
+	if not galaxyWelcomed then
+		galaxyWelcomed = true
+		SoftWelcome.show(playerGui, "galaxy loft", "second world · beacon home when ready", couchStyle)
+	end
+end)
+
+Remotes.ReturnedHome.OnClientEvent:Connect(function()
+	inGalaxy = false
+	if visitedGalaxy then
+		visitedHomeAfterGalaxy = true
+	end
+	applyHomeLighting()
+	refreshPlace(false)
+	paintStarCounter()
+	couchSit.refresh()
+	if visitedGalaxy and not homeWelcomed then
+		homeWelcomed = true
+		SoftWelcome.show(playerGui, "couch side", "two worlds · one couch · you made it home", couchStyle)
+	end
+end)
+
 print("[CouchGalaxy] client ready v" .. Config.Version)
 
-local SoftGoals = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftGoals"))
-local _, complete = SoftGoals.mount(player:WaitForChild("PlayerGui"), "tonight's soft goals", {
+local _, complete, nudgeOptional = SoftGoals.mount(playerGui, "tonight's soft goals", {
 	{ Id = "couch", Label = "sit on the couch" },
 	{ Id = "galaxy", Label = "visit the galaxy loft" },
 	{ Id = "stars", Label = "collect 3 stars" },
+	{ Id = "both", Label = "visit both worlds tonight" },
+	{ Id = "company", Label = "soft company nearby", Optional = true },
+}, {
+	AccentColor = Color3.fromRGB(140, 120, 200),
+	FrameColor = Color3.fromRGB(26, 20, 40),
+	TitleColor = Color3.fromRGB(220, 205, 255),
+	OnAllComplete = function(optionalLeft: number)
+		softCompleteDone = true
+		softCompleteOptionalOpen = optionalLeft > 0
+		refreshPlace(couchCompanyNear)
+		local body = if optionalLeft > 0
+			then "stay · soft company still open"
+			else "two worlds · one couch · stay"
+		SoftWelcome.show(playerGui, "soft complete", body, {
+			AccentColor = Color3.fromRGB(140, 120, 200),
+			FrameColor = Color3.fromRGB(26, 20, 40),
+			HoldSeconds = 4.0,
+		})
+	end,
+	OnSessionSealed = function()
+		softCompleteOptionalOpen = false
+		refreshPlace(couchCompanyNear)
+		SoftWelcome.show(playerGui, "company sealed", "two worlds · one couch · stay", {
+			AccentColor = Color3.fromRGB(140, 120, 200),
+			FrameColor = Color3.fromRGB(26, 20, 40),
+			HoldSeconds = 3.2,
+		})
+	end,
+	LingerSeconds = 48,
+	OnLinger = function(optionalLeft: number)
+		softLingered = true
+		softCompleteOptionalOpen = optionalLeft > 0
+		refreshPlace(couchCompanyNear)
+		couchSit.refresh()
+		if softCompanyHandle then
+			softCompanyHandle.refresh()
+		end
+		if proximityHandle and not couchCompanyNear then
+			proximityHandle.setBoost(1.12)
+		end
+		applyCouchWorldPresence(couchCompanyNear)
+		local body: string
+		if optionalLeft > 0 then
+			body = if inGalaxy then "loft · soft company still open" else "couch · soft company still open"
+		else
+			body = if inGalaxy then "loft side · two worlds · stay" else "couch side · two worlds · stay"
+		end
+		SoftWelcome.show(playerGui, "still here", body, {
+			AccentColor = Color3.fromRGB(140, 120, 200),
+			FrameColor = Color3.fromRGB(26, 20, 40),
+			HoldSeconds = 3.4,
+		})
+	end,
 })
+
+local function tryBothWorlds()
+	if visitedGalaxy and visitedHomeAfterGalaxy then
+		complete("both")
+	end
+end
 
 Remotes.EnteredGalaxy.OnClientEvent:Connect(function()
 	complete("galaxy")
+	tryBothWorlds()
+end)
+
+Remotes.ReturnedHome.OnClientEvent:Connect(function()
+	tryBothWorlds()
 end)
 
 Remotes.StarCollected.OnClientEvent:Connect(function(count: number)
@@ -125,13 +354,352 @@ task.spawn(function()
 	end
 end)
 
-local ChillProximity = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("Proximity"))
-ChillProximity.start(player, {
+proximityHandle = ChillProximity.start(player, {
 	Radius = Config.Proximity.Radius,
 	GlowColor = Config.Proximity.GlowColor,
 	Brightness = 1.4,
 	Range = 11,
 })
 
-local SoftWelcome = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("SoftWelcome"))
-SoftWelcome.show(player:WaitForChild("PlayerGui"), Config.GameName, "couch first. skylight when you're ready.")
+local function setLightBoost(partName: string, brightness: number, range: number?)
+	local world = Workspace:FindFirstChild("CouchGalaxyWorld")
+	if not world then
+		return
+	end
+	local part = world:FindFirstChild(partName, true)
+	if part and part:IsA("BasePart") then
+		local light = part:FindFirstChildOfClass("PointLight")
+		if light then
+			light.Brightness = brightness
+			if range then
+				light.Range = range
+			end
+		end
+	end
+end
+
+local function applyCouchWorldPresence(company: boolean)
+	local world = Workspace:FindFirstChild("CouchGalaxyWorld")
+	if inGalaxy and world then
+		local hammock = world:FindFirstChild("GalaxyHammockCloth", true)
+		if hammock and hammock:IsA("BasePart") then
+			hammock.Color = if company then Color3.fromRGB(160, 140, 210) else Color3.fromRGB(120, 100, 180)
+		end
+		local beacon = world:FindFirstChild("ReturnBeacon", true)
+		if beacon and beacon:IsA("BasePart") then
+			beacon.Transparency = if company then 0 else 0.05
+			local light = beacon:FindFirstChildOfClass("PointLight")
+			if light then
+				light.Brightness = if company then 2.4 else 1.6
+			end
+			local beaconGui = beacon:FindFirstChildWhichIsA("SurfaceGui")
+			local beaconLabel = beaconGui and beaconGui:FindFirstChildWhichIsA("TextLabel")
+			if beaconLabel and beaconLabel:IsA("TextLabel") then
+				if company and placeWarmKind ~= "depart" then
+					beaconLabel.Text = if placeWarmKind == "return"
+						then "couch side · company again · come home"
+						else "couch side · soft company · come home"
+					beaconLabel.TextColor3 = Color3.fromRGB(255, 235, 200)
+				elseif placeWarmKind == "depart" then
+					beaconLabel.Text = "couch side · they drifted · come home"
+					beaconLabel.TextColor3 = Color3.fromRGB(225, 220, 195)
+				elseif softLingered then
+					beaconLabel.Text = "couch side · still here · come home"
+					beaconLabel.TextColor3 = Color3.fromRGB(230, 225, 200)
+				else
+					beaconLabel.Text = "couch side · come home"
+					beaconLabel.TextColor3 = Color3.fromRGB(255, 220, 180)
+				end
+			end
+		end
+		for _, child in world:GetDescendants() do
+			if child:IsA("BasePart") and string.find(child.Name, "CloudPad", 1, true) then
+				local light = child:FindFirstChildOfClass("PointLight")
+				if light then
+					light.Brightness = if company then 1.6 else 1.1
+					light.Range = if company then 14 else 10
+				end
+				child.Transparency = if company then 0.25 else 0.35
+			end
+		end
+	elseif not inGalaxy then
+		setLightBoost("TableLamp", if company then 1.8 else 1.2)
+		setLightBoost("FloorLampGlow", if company then 2.0 else 1.4)
+		setLightBoost("NightWindow", if company then 1.5 else 1.0, if company then 18 else 14)
+		setLightBoost("SoftScreen", if company then 1.5 else 1.0)
+		local portal = world and world:FindFirstChild("SkylightPortal")
+		if portal and portal:IsA("BasePart") then
+			local pl = portal:FindFirstChildOfClass("PointLight")
+			if pl then
+				pl.Brightness = if company then 3.6 else 3.0
+			end
+			local portalGui = portal:FindFirstChildWhichIsA("SurfaceGui")
+			local portalLabel = portalGui and portalGui:FindFirstChildWhichIsA("TextLabel")
+			if portalLabel and portalLabel:IsA("TextLabel") then
+				if company and placeWarmKind ~= "depart" then
+					portalLabel.Text = if placeWarmKind == "return"
+						then "galaxy loft · company again · step through"
+						else "galaxy loft · soft company · step through"
+					portalLabel.TextColor3 = Color3.fromRGB(245, 230, 255)
+				elseif placeWarmKind == "depart" then
+					portalLabel.Text = "galaxy loft · they drifted · step through"
+					portalLabel.TextColor3 = Color3.fromRGB(210, 215, 230)
+				elseif softLingered then
+					portalLabel.Text = "galaxy loft · still here · step through"
+					portalLabel.TextColor3 = Color3.fromRGB(215, 220, 235)
+				else
+					portalLabel.Text = "galaxy loft · step through"
+					portalLabel.TextColor3 = Color3.fromRGB(230, 220, 255)
+				end
+			end
+		end
+		local worldHome = Workspace:FindFirstChild("CouchGalaxyWorld")
+		if worldHome then
+			local plaque = worldHome:FindFirstChild("TwoWorldsPlaque")
+			if plaque and plaque:IsA("BasePart") then
+				plaque.Color = if company
+					then Color3.fromRGB(58, 45, 78)
+					elseif softLingered then Color3.fromRGB(45, 40, 58)
+					else Color3.fromRGB(42, 34, 58)
+				local plaqueGui = plaque:FindFirstChildWhichIsA("SurfaceGui")
+				if plaqueGui then
+					for _, label in plaqueGui:GetChildren() do
+						if label:IsA("TextLabel") and label.TextSize <= 18 then
+							if company and placeWarmKind ~= "depart" then
+								label.Text = if placeWarmKind == "return"
+									then "one couch\ncompany again"
+									else "one couch\nsoft company"
+								label.TextColor3 = Color3.fromRGB(200, 185, 230)
+							elseif placeWarmKind == "depart" then
+								label.Text = "one couch\nthey drifted"
+								label.TextColor3 = Color3.fromRGB(175, 170, 195)
+							elseif softLingered then
+								label.Text = "one couch\nstill here"
+								label.TextColor3 = Color3.fromRGB(180, 175, 200)
+							else
+								label.Text = "one couch\nroof first"
+								label.TextColor3 = Color3.fromRGB(170, 155, 200)
+							end
+						end
+					end
+				end
+			end
+			local softScreen = worldHome:FindFirstChild("SoftScreen")
+			if softScreen and softScreen:IsA("BasePart") then
+				softScreen.Color = if company and placeWarmKind ~= "depart"
+					then Color3.fromRGB(90, 70, 140)
+					elseif placeWarmKind == "depart" then Color3.fromRGB(78, 60, 118)
+					elseif placeWarmKind == "return" then Color3.fromRGB(85, 68, 132)
+					else Color3.fromRGB(70, 55, 110)
+			end
+			local rug = worldHome:FindFirstChild("CouchRug")
+			if rug and rug:IsA("BasePart") then
+				rug.Color = if company and placeWarmKind ~= "depart"
+					then Color3.fromRGB(90, 60, 120)
+					elseif placeWarmKind == "depart" then Color3.fromRGB(78, 52, 105)
+					elseif placeWarmKind == "return" then Color3.fromRGB(88, 58, 118)
+					else Color3.fromRGB(70, 45, 95)
+			end
+			for _, child in worldHome:GetChildren() do
+				if child:IsA("BasePart") and string.find(child.Name, "StringLight", 1, true) then
+					local light = child:FindFirstChildOfClass("PointLight")
+					if light then
+						if company and placeWarmKind ~= "depart" then
+							light.Brightness = 1.5
+							light.Range = 14
+						elseif placeWarmKind == "return" then
+							light.Brightness = 1.35
+							light.Range = 12
+						elseif placeWarmKind == "depart" then
+							light.Brightness = 1.15
+							light.Range = 11
+						else
+							light.Brightness = 1.0
+							light.Range = 10
+						end
+					end
+				end
+			end
+		end
+	end
+end
+
+local couchCompanyWelcomed = false
+local couchDepartWelcomed = false
+local couchReturnWelcomed = false
+softCompanyHandle = SoftCompany.mount(playerGui, player, {
+	Radius = Config.Proximity.Radius,
+	Color = Color3.fromRGB(190, 170, 220),
+	AloneTextFn = function()
+		if softLingered and softCompleteOptionalOpen then
+			return if inGalaxy then "still here · loft company still open" else "still here · couch company still open"
+		elseif softLingered then
+			return if inGalaxy then "still here · loft is enough" else "still here · couch is enough"
+		elseif softCompleteDone and softCompleteOptionalOpen then
+			return if inGalaxy then "soft-complete · loft company still open" else "soft-complete · couch company still open"
+		elseif softCompleteDone then
+			return if inGalaxy then "soft-complete · loft is enough" else "soft-complete · couch is enough"
+		end
+		return if inGalaxy then "soft company · loft is enough" else "soft company · couch is enough"
+	end,
+	DepartTextFn = function()
+		if softLingered then
+			return if inGalaxy
+				then "still here · they drifted · loft stays"
+				else "still here · they drifted · couch stays"
+		elseif softCompleteDone then
+			return if inGalaxy
+				then "soft-complete · they drifted · loft stays"
+				else "soft-complete · they drifted · couch stays"
+		end
+		return if inGalaxy then "they drifted · loft is enough" else "they drifted · couch is enough"
+	end,
+	AfterDepartTextFn = function()
+		if softLingered then
+			return if inGalaxy
+				then "still here · they were near · loft stays"
+				else "still here · they were near · couch stays"
+		elseif softCompleteDone then
+			return if inGalaxy
+				then "soft-complete · they were near · loft"
+				else "soft-complete · they were near · couch"
+		end
+		return if inGalaxy then "they were near · loft is enough" else "they were near · couch is enough"
+	end,
+	ReturnTextFn = function()
+		if softLingered then
+			return if inGalaxy
+				then "still here · company again · loft side"
+				else "still here · company again · couch side"
+		elseif softCompleteDone then
+			return if inGalaxy
+				then "soft-complete · company again · loft"
+				else "soft-complete · company again · couch"
+		end
+		return if inGalaxy then "company again · loft side" else "company again · couch side"
+	end,
+	AfterReturnTextFn = function()
+		if softLingered then
+			return if inGalaxy
+				then "still here · loft side · stay soft"
+				else "still here · couch side · stay soft"
+		elseif softCompleteDone then
+			return if inGalaxy
+				then "soft-complete · loft · stay"
+				else "soft-complete · couch · stay"
+		end
+		return if inGalaxy then "loft side · stay soft" else "couch side · stay soft"
+	end,
+	OneTextFn = function()
+		if softLingered then
+			return if inGalaxy then "still here · loft side · two worlds" else "still here · couch side"
+		end
+		return if inGalaxy then "soft company · loft side · two worlds" else "soft company · couch side"
+	end,
+	ManyText = function(n)
+		if softLingered then
+			return if inGalaxy
+				then ("still here · %d nearby · loft side"):format(n)
+				else ("still here · %d nearby · couch side"):format(n)
+		end
+		return if inGalaxy
+			then ("soft company · %d nearby · loft side"):format(n)
+			else ("soft company · %d nearby · couch side"):format(n)
+	end,
+	OnDeparted = function()
+		if softLingered or softCompleteDone then
+			nudgeOptional("depart")
+		end
+		sitDepartPulseUntil = os.clock() + 4
+		sitReturnPulseUntil = 0
+		couchSit.refresh()
+		placeWarmToken += 1
+		local token = placeWarmToken
+		placeWarmKind = "depart"
+		refreshPlace(false)
+		applyCouchWorldPresence(false)
+		task.delay(4.0, function()
+			if token ~= placeWarmToken then
+				return
+			end
+			placeWarmKind = nil
+			refreshPlace(couchCompanyNear)
+			applyCouchWorldPresence(couchCompanyNear)
+		end)
+		if couchDepartWelcomed or not (softLingered or softCompleteDone) then
+			return
+		end
+		couchDepartWelcomed = true
+		SoftWelcome.show(playerGui, "they drifted", if inGalaxy
+			then "loft stays · two worlds · stay"
+			else "couch stays · two worlds · stay", {
+			AccentColor = couchStyle.AccentColor,
+			FrameColor = couchStyle.FrameColor,
+			HoldSeconds = 2.8,
+		})
+	end,
+	OnReturned = function()
+		sitReturnPulseUntil = os.clock() + 4
+		sitDepartPulseUntil = 0
+		couchSit.refresh()
+		placeWarmToken += 1
+		local token = placeWarmToken
+		placeWarmKind = "return"
+		refreshPlace(true)
+		applyCouchWorldPresence(true)
+		task.delay(4.0, function()
+			if token ~= placeWarmToken then
+				return
+			end
+			placeWarmKind = nil
+			refreshPlace(couchCompanyNear)
+			applyCouchWorldPresence(couchCompanyNear)
+		end)
+		if couchReturnWelcomed or not (softLingered or softCompleteDone) then
+			return
+		end
+		couchReturnWelcomed = true
+		nudgeOptional()
+		SoftWelcome.show(playerGui, "company again", if inGalaxy
+			then "loft side · two worlds · still here"
+			else "couch side · two worlds · still here", {
+			AccentColor = couchStyle.AccentColor,
+			FrameColor = couchStyle.FrameColor,
+			HoldSeconds = 2.8,
+		})
+	end,
+	OnCountChanged = function(n)
+		refreshPlace(n >= 1)
+		local company = n >= 1
+		couchCompanyNear = company
+		couchSit.refresh()
+		if proximityHandle then
+			if company then
+				proximityHandle.setBoost(1.25)
+			else
+				proximityHandle.setBoost(if softLingered then 1.12 else 1)
+			end
+		end
+		if company then
+			complete("company")
+			softCompleteOptionalOpen = false
+		end
+		if company and not couchCompanyWelcomed then
+			couchCompanyWelcomed = true
+			SoftWelcome.show(playerGui, "soft company", if inGalaxy
+				then "someone nearby — loft side feels softer"
+				else "someone nearby — couch side feels softer", {
+				AccentColor = couchStyle.AccentColor,
+				FrameColor = couchStyle.FrameColor,
+				HoldSeconds = 3.6,
+			})
+		end
+		applyCouchWorldPresence(company)
+	end,
+})
+
+SoftWelcome.show(playerGui, Config.GameName, "two worlds, one couch. roof first.", {
+	AccentColor = couchStyle.AccentColor,
+	FrameColor = couchStyle.FrameColor,
+	HoldSeconds = 6.2,
+})

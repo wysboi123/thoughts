@@ -237,13 +237,77 @@ local gui = Instance.new("SurfaceGui")
 gui.Face = Enum.NormalId.Front
 gui.Parent = board
 local label = Instance.new("TextLabel")
+label.Name = "TimetableBody"
 label.Size = UDim2.fromScale(1, 1)
 label.BackgroundTransparency = 1
 label.Font = Enum.Font.GothamMedium
-label.TextSize = 28
+label.TextSize = 26
+label.TextWrapped = true
 label.TextColor3 = Color3.fromRGB(200, 220, 180)
-label.Text = "NEXT BUS\nwhenever\n\nyou're already\non time"
+label.Text = "NEXT BUS\nwhenever\n\nwaiting: 0\nyou're already on time"
 label.Parent = gui
+
+local function countWaiting(): number
+	local n = 0
+	for _, child in world:GetDescendants() do
+		if child:IsA("Seat") and child.Occupant then
+			n += 1
+		end
+	end
+	return n
+end
+
+local function refreshTimetable()
+	local n = countWaiting()
+	local waitLine = if n <= 0 then "waiting: alone is fine" elseif n == 1 then "waiting: 1 together" else ("waiting: %d together"):format(n)
+	label.Text = "NEXT BUS\nwhenever\n\n" .. waitLine .. "\nyou're already on time"
+	label.TextColor3 = if n >= 1 then Color3.fromRGB(220, 240, 190) else Color3.fromRGB(200, 220, 180)
+	for _, glowName in { "ShelterGlow", "Shelter2Glow" } do
+		local glow = world:FindFirstChild(glowName)
+		if glow and glow:IsA("BasePart") then
+			local light = glow:FindFirstChildOfClass("PointLight")
+			if light then
+				light.Brightness = if n >= 1 then 1.55 else 1.05
+			end
+			glow.Transparency = if n >= 1 then 0.32 else 0.48
+		end
+	end
+	local puddle = world:FindFirstChild("SidewalkPuddle")
+	if puddle and puddle:IsA("BasePart") then
+		puddle.Color = if n >= 1 then Color3.fromRGB(120, 150, 165) else Color3.fromRGB(100, 130, 150)
+		puddle.Transparency = if n >= 1 then 0.32 else 0.4
+	end
+	local news = world:FindFirstChild("NewsBox")
+	if news and news:IsA("BasePart") then
+		news.Color = if n >= 1 then Color3.fromRGB(60, 110, 85) else Color3.fromRGB(50, 90, 70)
+	end
+	for _, child in world:GetChildren() do
+		if child:IsA("BasePart") and string.find(child.Name, "LampHead", 1, true) then
+			local light = child:FindFirstChildOfClass("PointLight")
+			if light then
+				light.Brightness = if n >= 1 then 2.2 else 1.8
+				light.Range = if n >= 1 then 32 else 28
+			end
+		elseif child:IsA("BasePart") and child:GetAttribute("IsTicket") and not child:GetAttribute("Collected") then
+			local light = child:FindFirstChildOfClass("PointLight")
+			if light then
+				light.Brightness = if n >= 1 then 2.1 else 1.5
+			end
+			child.Color = if n >= 1 then Color3.fromRGB(255, 220, 140) else Config.Ticket.Color
+		elseif child:IsA("BasePart") and string.find(child.Name, "PlanterGreen", 1, true) then
+			child.Color = if n >= 1 then Color3.fromRGB(90, 140, 95) else Color3.fromRGB(70, 120, 80)
+		elseif child.Name == "NotepadBoard" and child:IsA("BasePart") then
+			child.Color = if n >= 1 then Color3.fromRGB(52, 55, 42) else Color3.fromRGB(45, 42, 38)
+		end
+	end
+end
+
+task.spawn(function()
+	while board.Parent do
+		refreshTimetable()
+		task.wait(0.75)
+	end
+end)
 
 -- Second shelter further down the sidewalk
 part({
@@ -334,10 +398,19 @@ noteBody.Parent = noteGui
 
 task.spawn(function()
 	local i = 1
+	local ti = 1
 	while notepad.Parent do
 		task.wait(Config.Notepad.RotateSeconds)
-		i = (i % #Config.Notepad.Messages) + 1
-		noteBody.Text = Config.Notepad.Messages[i]
+		if countWaiting() >= 1 then
+			local msgs = Config.Notepad.TogetherMessages
+			ti = (ti % #msgs) + 1
+			noteBody.Text = msgs[ti]
+			noteBody.TextColor3 = Color3.fromRGB(220, 230, 190)
+		else
+			i = (i % #Config.Notepad.Messages) + 1
+			noteBody.Text = Config.Notepad.Messages[i]
+			noteBody.TextColor3 = Color3.fromRGB(210, 200, 180)
+		end
 	end
 end)
 
@@ -456,7 +529,37 @@ task.spawn(function()
 		arrive.Completed:Wait()
 		bus:SetAttribute("Present", true)
 		Remotes.BusArrived:FireAllClients()
-		task.wait(Config.Bus.DwellSeconds)
+		local waiting = countWaiting()
+		local dwell = Config.Bus.DwellSeconds + (if waiting >= 1 then 2 else 0) + (if waiting >= 2 then 1 else 0)
+		local cabin = headlight:FindFirstChildOfClass("PointLight")
+		if cabin and waiting >= 1 then
+			cabin.Brightness = 3.6 + math.min(waiting, 3) * 0.15
+		end
+		-- Soft shelter pulse while bus dwells with company
+		if waiting >= 1 then
+			for _, glowName in { "ShelterGlow", "Shelter2Glow" } do
+				local glow = world:FindFirstChild(glowName)
+				if glow and glow:IsA("BasePart") then
+					local light = glow:FindFirstChildOfClass("PointLight")
+					if light then
+						light.Brightness = 1.8
+					end
+				end
+			end
+		end
+		task.wait(dwell)
+		if cabin then
+			cabin.Brightness = 3
+		end
+		for _, glowName in { "ShelterGlow", "Shelter2Glow" } do
+			local glow = world:FindFirstChild(glowName)
+			if glow and glow:IsA("BasePart") then
+				local light = glow:FindFirstChildOfClass("PointLight")
+				if light then
+					light.Brightness = if countWaiting() >= 1 then 1.55 else 1.05
+				end
+			end
+		end
 		bus:SetAttribute("Present", false)
 		Remotes.BusDeparted:FireAllClients()
 		local depart = TweenService:Create(
