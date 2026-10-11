@@ -153,10 +153,18 @@ export function SoftActionToast({ message, kind, dawn }: Props) {
           style={[styles.topAccent, { backgroundColor: tint.accent }]}
         />
         <View pointerEvents="none" style={styles.topSheen} />
+        <View
+          pointerEvents="none"
+          style={[styles.cornerWash, { backgroundColor: `${tint.accent}18` }]}
+        />
         <View style={styles.accentWrap}>
           <View
             pointerEvents="none"
             style={[styles.accentHalo, { backgroundColor: `${tint.accent}33` }]}
+          />
+          <View
+            pointerEvents="none"
+            style={[styles.accentRing, { borderColor: `${tint.accent}66` }]}
           />
           <View style={[styles.accentDot, { backgroundColor: tint.accent }]} />
         </View>
@@ -166,12 +174,17 @@ export function SoftActionToast({ message, kind, dawn }: Props) {
             { backgroundColor: `${tint.accent}33`, borderColor: `${tint.accent}55` },
           ]}
         >
+          <View pointerEvents="none" style={styles.badgeSheen} />
           <View style={[styles.badgeDot, { backgroundColor: tint.accent }]} />
           <Text style={[styles.badge, { color: tint.ink }]}>{tint.label}</Text>
         </View>
         <Text style={[styles.text, { color: tint.ink }]} numberOfLines={2}>
           {message}
         </Text>
+        <View
+          pointerEvents="none"
+          style={[styles.bottomGlow, { backgroundColor: `${tint.accent}28` }]}
+        />
         <View style={styles.barTrack} accessibilityElementsHidden>
           <Animated.View
             style={[styles.barFill, { backgroundColor: tint.accent }, barStyle]}
@@ -203,10 +216,10 @@ const styles = StyleSheet.create({
     borderColor: colors.line,
     borderLeftWidth: 4,
     overflow: 'hidden',
-    shadowOpacity: 0.22,
-    shadowRadius: 10,
-    shadowOffset: { width: 0, height: 3 },
-    elevation: 3,
+    shadowOpacity: 0.26,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 4,
   },
   topAccent: {
     position: 'absolute',
@@ -215,6 +228,7 @@ const styles = StyleSheet.create({
     right: 0,
     height: 2,
     opacity: 0.55,
+    zIndex: 2,
   },
   topSheen: {
     position: 'absolute',
@@ -222,19 +236,35 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: 22,
-    backgroundColor: 'rgba(255,255,255,0.18)',
+    backgroundColor: 'rgba(255,255,255,0.22)',
+  },
+  cornerWash: {
+    position: 'absolute',
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    right: -12,
+    bottom: -10,
   },
   accentWrap: {
-    width: 14,
-    height: 14,
+    width: 16,
+    height: 16,
     alignItems: 'center',
     justifyContent: 'center',
   },
   accentHalo: {
     position: 'absolute',
-    width: 14,
-    height: 14,
-    borderRadius: 7,
+    width: 16,
+    height: 16,
+    borderRadius: 8,
+  },
+  accentRing: {
+    position: 'absolute',
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    borderWidth: 1,
+    backgroundColor: 'transparent',
   },
   accentDot: {
     width: 7,
@@ -249,6 +279,15 @@ const styles = StyleSheet.create({
     paddingVertical: 3,
     borderRadius: 8,
     borderWidth: 1,
+    overflow: 'hidden',
+  },
+  badgeSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '55%',
+    backgroundColor: 'rgba(255,255,255,0.32)',
   },
   badgeDot: {
     width: 5,
@@ -266,6 +305,15 @@ const styles = StyleSheet.create({
     fontSize: 12,
     flexShrink: 1,
     flex: 1,
+  },
+  bottomGlow: {
+    position: 'absolute',
+    left: 12,
+    right: 12,
+    bottom: 3,
+    height: 4,
+    borderRadius: 3,
+    opacity: 0.55,
   },
   barTrack: {
     position: 'absolute',
