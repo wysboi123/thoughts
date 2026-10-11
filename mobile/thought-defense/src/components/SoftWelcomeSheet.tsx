@@ -174,6 +174,10 @@ export function SoftWelcomeSheet() {
           <View pointerEvents="none" style={styles.topSheen} />
           <View
             pointerEvents="none"
+            style={[styles.cornerOrb, { backgroundColor: `${current.accent}14` }]}
+          />
+          <View
+            pointerEvents="none"
             style={[styles.orbHalo, { backgroundColor: `${current.accent}22` }]}
           />
           <View
@@ -185,11 +189,18 @@ export function SoftWelcomeSheet() {
             style={[styles.orbSoft, { backgroundColor: `${current.accent}18` }]}
           />
           <View style={styles.topRow}>
-            <View style={styles.eyebrowRow}>
+            <View
+              style={[
+                styles.eyebrowBadge,
+                { backgroundColor: `${current.accent}18`, borderColor: `${current.accent}33` },
+              ]}
+            >
+              <View pointerEvents="none" style={styles.chipSheen} />
               <View style={[styles.eyebrowDot, { backgroundColor: current.accent }]} />
               <Text style={[styles.eyebrow, { color: current.accent }]}>Welcome</Text>
             </View>
             <View style={[styles.stepChip, { borderColor: `${current.accent}44` }]}>
+              <View pointerEvents="none" style={styles.chipSheen} />
               <View style={[styles.stepDot, { backgroundColor: current.accent }]} />
               <Text style={[styles.step, { color: current.accent }]}>
                 {page + 1} of {PAGES.length}
@@ -215,6 +226,7 @@ export function SoftWelcomeSheet() {
 
           <Animated.View style={{ opacity: pageFade, gap: 10 }}>
             <View style={[styles.chip, { borderColor: `${current.accent}66` }]}>
+              <View pointerEvents="none" style={styles.chipSheen} />
               <View style={[styles.chipDot, { backgroundColor: current.accent }]} />
               <Text style={[styles.chipLabel, { color: current.accent }]}>{current.chip}</Text>
             </View>
@@ -238,6 +250,7 @@ export function SoftWelcomeSheet() {
 
           {isLast ? (
             <View style={styles.comfortStrip} accessibilityRole="summary">
+              <View pointerEvents="none" style={styles.chipSheen} />
               <View style={styles.comfortHead}>
                 <View style={styles.comfortDot} />
                 <Text style={styles.comfortTitle}>Metaphor only</Text>
@@ -293,10 +306,10 @@ const styles = StyleSheet.create({
     gap: 10,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.14,
-    shadowRadius: 18,
-    shadowOffset: { width: 0, height: 10 },
-    elevation: 6,
+    shadowOpacity: 0.18,
+    shadowRadius: 20,
+    shadowOffset: { width: 0, height: 11 },
+    elevation: 7,
   },
   cardDawn: {
     backgroundColor: '#F6EBDA',
@@ -309,6 +322,7 @@ const styles = StyleSheet.create({
     right: 0,
     height: 3,
     opacity: 0.85,
+    zIndex: 2,
   },
   topSheen: {
     position: 'absolute',
@@ -316,7 +330,23 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: 28,
-    backgroundColor: 'rgba(255,255,255,0.16)',
+    backgroundColor: 'rgba(255,255,255,0.2)',
+  },
+  chipSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '55%',
+    backgroundColor: 'rgba(255,255,255,0.32)',
+  },
+  cornerOrb: {
+    position: 'absolute',
+    width: 88,
+    height: 88,
+    borderRadius: 44,
+    left: -22,
+    top: 56,
   },
   orbHalo: {
     position: 'absolute',
@@ -347,10 +377,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  eyebrowRow: {
+  eyebrowBadge: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 10,
+    borderWidth: 1,
+    overflow: 'hidden',
   },
   eyebrowDot: {
     width: 6,
@@ -372,6 +407,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     backgroundColor: 'rgba(255,255,255,0.4)',
+    overflow: 'hidden',
   },
   stepDot: {
     width: 5,
@@ -403,6 +439,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 1,
     backgroundColor: 'rgba(255,255,255,0.45)',
+    overflow: 'hidden',
   },
   chipDot: {
     width: 7,
@@ -447,6 +484,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(106, 158, 174, 0.22)',
     gap: 3,
+    overflow: 'hidden',
   },
   comfortHead: {
     flexDirection: 'row',
@@ -496,10 +534,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.18,
-    shadowRadius: 8,
-    shadowOffset: { width: 0, height: 4 },
-    elevation: 3,
+    shadowOpacity: 0.22,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 5 },
+    elevation: 4,
   },
   nextSheen: {
     ...StyleSheet.absoluteFill,

@@ -80,15 +80,16 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-11 ~03:20:** Settings polish v1.4.51 — version/comfort/look/pass/privacy/footer sheens · richer card shadows.
 - **2026-10-11 ~04:20:** SoftActionToast polish v1.4.52 — corner wash · accent ring · badge sheen · bottom glow · richer shadow (last before ~05:00).
 - **2026-10-11 ~05:00 OVERNIGHT STOP:** Hard stop after night ship v1.4.46→v1.4.52. Did **not** re-arm overnight-stop. Next resume 23:00 UTC.
+- **2026-10-11 ~23:05 night resume:** SoftWelcomeSheet polish v1.4.53 — corner orb · eyebrow badge · chip sheens · richer card/next shadows. Re-armed overnight-stop (`sub_93be1d91…`).
 
 ## State
 
-- Version: **mobile 1.4.52** (SoftActionToast polish)
+- Version: **mobile 1.4.53** (SoftWelcomeSheet polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: `c0302c3` (overnight STOP docs · ship `77d64e3` v1.4.52)
+- Tip: (after push) v1.4.53 SoftWelcomeSheet · prior tip `54c3db5` / stop `c0302c3`
 - Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
-- Night envelope: **CLOSED** · overnight-stop **not** re-armed · `overnight-daily-resume` armed (`sub_d6468578…`) · next resume **23:00 UTC**
+- Night envelope: **OPEN** · overnight-stop armed (`sub_93be1d91…`, ~05:00 Oct 12) · `overnight-daily-resume` armed (`sub_d6468578…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
-- Next: daytime idle / apply Femmy answers · night resume 23:00 UTC
+- Next: night hourlies until ~05:00 · SoftPlayHud next polish candidate
