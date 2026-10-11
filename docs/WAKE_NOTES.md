@@ -2,6 +2,21 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-11 05:00 UTC — OVERNIGHT STOP (Night 17)
+
+Night 17 complete. No new features this wrap. One digest email sent.
+
+**Shipped Night 17**
+- Place-warmth ~4s on company depart/return: Haze VibeBoard/WelcomeSign/hammock/rug · Bus news/timetable/notepad/wave · Porch jar hint/string lights · Couch place/beacon/portal/plaque/rug/screen
+- EXPERIENCE_COPY “place remembers” · publish checklist place-warmth beat
+- Research: `docs/research/hangout-usps-2026-10-11.md`
+
+**Versions end:** Haze **3.33** · Couch **3.31** · Bus **3.32** · Porch **3.30**
+**Parked:** Slow Orbit · Puddle Mirror · Lantern Drift — untouched
+**Blocked:** Perplexity Q-001–004 · first Studio publish (SoftInvite gated)
+**PR:** https://github.com/wysboi123/thoughts/pull/3
+**Next (Night 18):** apply Perplexity if any · USP soft-stay polish · no invented audio · SoftInvite still gated
+
 ## 2026-10-11 03:00 UTC — Night 17 checkpoint 2 (quiet)
 
 - Active: **Haze 3.33** · **Couch 3.31** · **Bus 3.32** · **Porch 3.30**
