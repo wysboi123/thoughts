@@ -143,6 +143,54 @@ function VibeBoard.setLingered(lingered: boolean)
 	applyBoardLook()
 end
 
+local function pulseWelcomeAndHammock(kind: "depart" | "return", token: number)
+	local world = Workspace:FindFirstChild("HazeWorld")
+	if not world then
+		return
+	end
+	local sign = world:FindFirstChild("WelcomeSign")
+	local welcomeGui = sign and sign:FindFirstChildWhichIsA("SurfaceGui")
+	local welcomeBody = welcomeGui and welcomeGui:FindFirstChild("WelcomeBody")
+	local prevSignText: string? = nil
+	local prevSignColor: Color3? = nil
+	if welcomeBody and welcomeBody:IsA("TextLabel") then
+		prevSignText = welcomeBody.Text
+		prevSignColor = welcomeBody.TextColor3
+		welcomeBody.Text = if kind == "return"
+			then "company again · vibes stay soft"
+			else "they drifted · vibes stay soft"
+		welcomeBody.TextColor3 = if kind == "return"
+			then Color3.fromRGB(210, 230, 210)
+			else Color3.fromRGB(190, 200, 195)
+	end
+	local hammock = world:FindFirstChild("HammockCloth")
+	local prevHammock: Color3? = nil
+	if hammock and hammock:IsA("BasePart") then
+		prevHammock = hammock.Color
+		hammock.Color = if kind == "return"
+			then Color3.fromRGB(170, 150, 190)
+			else Color3.fromRGB(150, 130, 170)
+	end
+	task.delay(4.0, function()
+		if token ~= pulseToken then
+			return
+		end
+		-- Server AtmosphereService resumes vibeSynced colors; only restore if still alone
+		if boardSynced then
+			return
+		end
+		if welcomeBody and welcomeBody:IsA("TextLabel") and prevSignText then
+			welcomeBody.Text = prevSignText
+			if prevSignColor then
+				welcomeBody.TextColor3 = prevSignColor
+			end
+		end
+		if hammock and hammock:IsA("BasePart") and prevHammock then
+			hammock.Color = prevHammock
+		end
+	end)
+end
+
 -- Brief place-warmth pulse when company leaves / returns (sync still wins)
 function VibeBoard.pulseCompany(kind: "depart" | "return")
 	if boardSynced then
@@ -152,6 +200,7 @@ function VibeBoard.pulseCompany(kind: "depart" | "return")
 	local token = pulseToken
 	pulseKind = kind
 	applyBoardLook()
+	pulseWelcomeAndHammock(kind, token)
 	task.delay(4.0, function()
 		if token ~= pulseToken then
 			return

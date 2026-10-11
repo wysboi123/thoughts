@@ -22,6 +22,7 @@ rojo serve
    - Linger alone: soft proximity glow (~1.12); SoftCompany copy flips to “still here · …”
    - Company leaves: SoftCompany “they drifted · stay” + once SoftWelcome; seat SoftSit “seat open” briefly
    - Company returns after leave: SoftCompany “company again” + SoftGoals “still here · company again” if sync still open
+   - Place-warmth (~4s): WelcomeSign / VibeBoard “they drifted” or “company again”; Bus newsbox; Porch jar hint; Couch plaque/beacon
 4. Optional second player / alt: vibe sync toast + WelcomeBody flips · board/orb/HUD/hammock/nameplate tint when near
 5. Stop Play → **File → Publish to Roblox** (create new experience if prompted)
 6. Paste title + description from [`EXPERIENCE_COPY.md`](EXPERIENCE_COPY.md) → Haze Haven

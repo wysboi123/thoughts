@@ -372,6 +372,19 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		if jarMeter and jarMeter.Parent then
 			jarMeter.TextColor3 = Color3.fromRGB(160, 190, 150)
 		end
+		do
+			local world = Workspace:FindFirstChild("StarPorchWorld")
+			if world then
+				for _, child in world:GetChildren() do
+					if child:IsA("BasePart") and string.find(child.Name, "StringLight", 1, true) then
+						local sLight = child:FindFirstChildOfClass("PointLight")
+						if sLight then
+							sLight.Color = Color3.fromRGB(230, 215, 160)
+						end
+					end
+				end
+			end
+		end
 		task.delay(4.0, function()
 			if token ~= placeWarmToken then
 				return
@@ -383,6 +396,17 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 					jarMeter.TextColor3 = if softLingered
 						then Color3.fromRGB(165, 200, 155)
 						else Color3.fromRGB(150, 180, 140)
+				end
+				local world = Workspace:FindFirstChild("StarPorchWorld")
+				if world then
+					for _, child in world:GetChildren() do
+						if child:IsA("BasePart") and string.find(child.Name, "StringLight", 1, true) then
+							local sLight = child:FindFirstChildOfClass("PointLight")
+							if sLight then
+								sLight.Color = Color3.fromRGB(255, 220, 150)
+							end
+						end
+					end
 				end
 			end
 		end)
@@ -407,6 +431,19 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		if jarMeter and jarMeter.Parent then
 			jarMeter.TextColor3 = Color3.fromRGB(190, 240, 170)
 		end
+		do
+			local world = Workspace:FindFirstChild("StarPorchWorld")
+			if world then
+				for _, child in world:GetChildren() do
+					if child:IsA("BasePart") and string.find(child.Name, "StringLight", 1, true) then
+						local sLight = child:FindFirstChildOfClass("PointLight")
+						if sLight then
+							sLight.Color = Color3.fromRGB(255, 245, 200)
+						end
+					end
+				end
+			end
+		end
 		task.delay(4.0, function()
 			if token ~= placeWarmToken then
 				return
@@ -419,6 +456,17 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 				end
 				if jarMeter and jarMeter.Parent then
 					jarMeter.TextColor3 = Color3.fromRGB(200, 255, 170)
+				end
+				local world = Workspace:FindFirstChild("StarPorchWorld")
+				if world then
+					for _, child in world:GetChildren() do
+						if child:IsA("BasePart") and string.find(child.Name, "StringLight", 1, true) then
+							local sLight = child:FindFirstChildOfClass("PointLight")
+							if sLight then
+								sLight.Color = Color3.fromRGB(255, 235, 180)
+							end
+						end
+					end
 				end
 			else
 				refreshPorchSoftHint()

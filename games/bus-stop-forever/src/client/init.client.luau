@@ -277,20 +277,6 @@ local function tintTimetable(company: boolean)
 	end
 end
 
-local function pulseBusPlaceWarmth(kind: "depart" | "return")
-	placeWarmToken += 1
-	local token = placeWarmToken
-	placeWarmKind = kind
-	tintTimetable(kind == "return")
-	task.delay(4.0, function()
-		if token ~= placeWarmToken then
-			return
-		end
-		placeWarmKind = nil
-		tintTimetable(nearbyCount >= 1)
-	end)
-end
-
 local waveBtn = Instance.new("TextButton")
 waveBtn.Name = "WaveButton"
 waveBtn.AnchorPoint = Vector2.new(0.5, 1)
@@ -306,6 +292,41 @@ waveBtn.Parent = gui
 local waveCorner = Instance.new("UICorner")
 waveCorner.CornerRadius = UDim.new(0, 10)
 waveCorner.Parent = waveBtn
+
+local function pulseBusPlaceWarmth(kind: "depart" | "return")
+	placeWarmToken += 1
+	local token = placeWarmToken
+	placeWarmKind = kind
+	tintTimetable(kind == "return")
+	if waveBtn.Parent then
+		if kind == "return" then
+			waveBtn.Text = "Wave · company again"
+			waveBtn.BackgroundColor3 = Color3.fromRGB(70, 95, 70)
+		else
+			waveBtn.Text = "Wave · they drifted"
+			waveBtn.BackgroundColor3 = Color3.fromRGB(55, 72, 58)
+		end
+	end
+	task.delay(4.0, function()
+		if token ~= placeWarmToken then
+			return
+		end
+		placeWarmKind = nil
+		tintTimetable(nearbyCount >= 1)
+		if waveBtn.Parent then
+			if nearbyCount >= 1 then
+				waveBtn.Text = "Wave together"
+				waveBtn.BackgroundColor3 = Color3.fromRGB(70, 95, 70)
+			elseif softLingered then
+				waveBtn.Text = "Wave · still waiting"
+				waveBtn.BackgroundColor3 = Color3.fromRGB(50, 70, 55)
+			else
+				waveBtn.Text = "Wave at bus"
+				waveBtn.BackgroundColor3 = Color3.fromRGB(50, 70, 55)
+			end
+		end
+	end)
+end
 
 waveBtn.MouseButton1Click:Connect(function()
 	Remotes.WaveAtBus:FireServer()
@@ -512,7 +533,9 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 		if waveBtn.Parent then
 			waveBtn.BackgroundColor3 = if n >= 1 then Color3.fromRGB(70, 95, 70) else Color3.fromRGB(50, 70, 55)
 			if n >= 1 then
-				waveBtn.Text = "Wave together"
+				waveBtn.Text = if placeWarmKind == "return" then "Wave · company again" else "Wave together"
+			elseif placeWarmKind == "depart" then
+				waveBtn.Text = "Wave · they drifted"
 			elseif softLingered then
 				waveBtn.Text = "Wave · still waiting"
 			else
