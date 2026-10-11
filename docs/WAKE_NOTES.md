@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-11 03:20 UTC — Night hourly (v1.4.51 Settings)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.51:** Settings — version/comfort/look/pass/privacy/footer sheens · richer card shadows
+- Did not redo GameBoard (1.4.50) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-11 02:20 UTC — Night hourly (v1.4.50 GameBoard)
 
 - Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
