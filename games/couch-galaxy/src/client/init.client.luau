@@ -486,18 +486,37 @@ local function applyCouchWorldPresence(company: boolean)
 			end
 			local softScreen = worldHome:FindFirstChild("SoftScreen")
 			if softScreen and softScreen:IsA("BasePart") then
-				softScreen.Color = if company then Color3.fromRGB(90, 70, 140) else Color3.fromRGB(70, 55, 110)
+				softScreen.Color = if company and placeWarmKind ~= "depart"
+					then Color3.fromRGB(90, 70, 140)
+					elseif placeWarmKind == "depart" then Color3.fromRGB(78, 60, 118)
+					elseif placeWarmKind == "return" then Color3.fromRGB(85, 68, 132)
+					else Color3.fromRGB(70, 55, 110)
 			end
 			local rug = worldHome:FindFirstChild("CouchRug")
 			if rug and rug:IsA("BasePart") then
-				rug.Color = if company then Color3.fromRGB(90, 60, 120) else Color3.fromRGB(70, 45, 95)
+				rug.Color = if company and placeWarmKind ~= "depart"
+					then Color3.fromRGB(90, 60, 120)
+					elseif placeWarmKind == "depart" then Color3.fromRGB(78, 52, 105)
+					elseif placeWarmKind == "return" then Color3.fromRGB(88, 58, 118)
+					else Color3.fromRGB(70, 45, 95)
 			end
 			for _, child in worldHome:GetChildren() do
 				if child:IsA("BasePart") and string.find(child.Name, "StringLight", 1, true) then
 					local light = child:FindFirstChildOfClass("PointLight")
 					if light then
-						light.Brightness = if company then 1.5 else 1.0
-						light.Range = if company then 14 else 10
+						if company and placeWarmKind ~= "depart" then
+							light.Brightness = 1.5
+							light.Range = 14
+						elseif placeWarmKind == "return" then
+							light.Brightness = 1.35
+							light.Range = 12
+						elseif placeWarmKind == "depart" then
+							light.Brightness = 1.15
+							light.Range = 11
+						else
+							light.Brightness = 1.0
+							light.Range = 10
+						end
 					end
 				end
 			end

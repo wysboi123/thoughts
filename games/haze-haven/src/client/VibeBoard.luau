@@ -171,6 +171,14 @@ local function pulseWelcomeAndHammock(kind: "depart" | "return", token: number)
 			then Color3.fromRGB(170, 150, 190)
 			else Color3.fromRGB(150, 130, 170)
 	end
+	local rug = world:FindFirstChild("LoungeRug")
+	local prevRug: Color3? = nil
+	if rug and rug:IsA("BasePart") then
+		prevRug = rug.Color
+		rug.Color = if kind == "return"
+			then Color3.fromRGB(100, 70, 120)
+			else Color3.fromRGB(85, 58, 105)
+	end
 	task.delay(4.0, function()
 		if token ~= pulseToken then
 			return
@@ -187,6 +195,9 @@ local function pulseWelcomeAndHammock(kind: "depart" | "return", token: number)
 		end
 		if hammock and hammock:IsA("BasePart") and prevHammock then
 			hammock.Color = prevHammock
+		end
+		if rug and rug:IsA("BasePart") and prevRug then
+			rug.Color = prevRug
 		end
 	end)
 end

@@ -16,10 +16,10 @@ Research refresh 2026-10-02: Creator Hub ranks **intentional co-play days** as a
 
 | Priority | Game | USP | Why it sells | Implementation | Status |
 | --- | --- | --- | --- | --- | --- |
-| **P0** | Haze Haven | **Vibe sync** | Board + orbs feel better when friends are near | Place-warmth + WelcomeSign/hammock | ✅ v3.32 |
-| **P0** | Bus Stop Forever | **Waiting together** | Timetable + HUD sit/company loop | Place-warmth + wave button pulse | ✅ v3.31 |
-| **P0** | Star Porch | **Jar that fills** | Fireflies return; jar visibly fills | Place-warmth + string lights | ✅ v3.29 |
-| **P1** | Couch Galaxy | **Two worlds, one couch** | Clear home ↔ galaxy identity | Place-warmth beacon/portal/plaque | ✅ v3.30 |
+| **P0** | Haze Haven | **Vibe sync** | Board + orbs feel better when friends are near | Place-warmth + rug/sign/hammock | ✅ v3.33 |
+| **P0** | Bus Stop Forever | **Waiting together** | Timetable + HUD sit/company loop | Place-warmth + wave/news | ✅ v3.32 |
+| **P0** | Star Porch | **Jar that fills** | Fireflies return; jar visibly fills | Place-warmth + string lights | ✅ v3.30 |
+| **P1** | Couch Galaxy | **Two worlds, one couch** | Clear home ↔ galaxy identity | Place-warmth rug/screen/plaque | ✅ v3.31 |
 | **P2** | Haze Haven | Shared vibe board | Soft ranks without competition toxicity | Already: VibeBoard | ✅ |
 | **P2** | Line (post-publish) | Soft invite prompt | Discovery co-play days | SocialService — after first Studio publish | ⏳ |
 | **Later** | Parked trio | Resume USPs when Femmy unparks | Files kept | — | Parked |

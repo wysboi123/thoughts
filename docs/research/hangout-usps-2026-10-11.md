@@ -19,6 +19,10 @@ World reacts when company leaves / returns (not only HUD):
 
 Haze WelcomeSign + HammockCloth pulse with VibeBoard · Bus wave button “Wave · they drifted / company again” · Porch string-light color pulse · publish checklist place-warmth verify beat.
 
+## CP2 deepen
+
+Couch SoftScreen / CouchRug / string lights follow placeWarmKind · Haze LoungeRug pulse · EXPERIENCE_COPY “place remembers” lines for all four.
+
 ## SoftInvite / audio
 
 Still gated. SoftInvite post-publish only. Audio blocked on Q-004 — do not invent ids.
