@@ -162,6 +162,7 @@ export default function ShopScreen() {
             style={[styles.freeStrip, looks.dawn ? styles.freeStripDawn : null]}
             accessibilityRole="text"
           >
+            <View pointerEvents="none" style={styles.chipSheen} />
             <View style={styles.freeStripHead}>
               <View style={[styles.leadDot, looks.dawn ? styles.leadDotDawn : null]} />
               <Text style={styles.freeStripTitle}>Core loop stays free</Text>
@@ -193,10 +194,25 @@ export default function ShopScreen() {
               looks.dawn ? styles.statusCardDawn : null,
             ]}
           >
+            <View
+              pointerEvents="none"
+              style={[
+                styles.statusTopAccent,
+                {
+                  backgroundColor: entitlements.clarityPassActive
+                    ? colors.calm
+                    : looks.dawn
+                      ? colors.gratitude
+                      : colors.clarity,
+                },
+              ]}
+            />
+            <View pointerEvents="none" style={styles.chipSheen} />
             <View style={styles.statusHead}>
               <Text style={styles.statusTitle}>Your comfort</Text>
               {entitlements.clarityPassActive ? (
                 <View style={styles.passLiveChip}>
+                  <View pointerEvents="none" style={styles.chipSheen} />
                   <View style={styles.passLiveDot} />
                   <Text style={styles.passLiveText}>Pass live</Text>
                 </View>
@@ -258,6 +274,7 @@ export default function ShopScreen() {
                   <View style={styles.sectionTitleRow}>
                     <Text style={styles.sectionTitle}>{section.title}</Text>
                     <View style={[styles.sectionChip, { backgroundColor: `${accent}22`, borderColor: `${accent}44` }]}>
+                      <View pointerEvents="none" style={styles.chipSheen} />
                       <View style={[styles.sectionChipDot, { backgroundColor: accent }]} />
                       <Text style={[styles.sectionChipText, { color: accent }]}>
                         {section.kind === 'subscription'
@@ -293,7 +310,9 @@ export default function ShopScreen() {
                       />
                       {isPass ? (
                         <View style={styles.passSheen} pointerEvents="none" />
-                      ) : null}
+                      ) : (
+                        <View style={styles.cardSheen} pointerEvents="none" />
+                      )}
                       {isPass ? (
                         <Text style={styles.passEyebrow}>Monthly comfort · cancel anytime</Text>
                       ) : null}
@@ -301,6 +320,7 @@ export default function ShopScreen() {
                         <Text style={[styles.title, isPass && styles.titlePass]}>{p.title}</Text>
                         {isOwned ? (
                           <View style={styles.badge}>
+                            <View pointerEvents="none" style={styles.chipSheen} />
                             <View style={styles.badgeDot} />
                             <Text style={styles.badgeText}>
                               {p.kind === 'subscription' ? 'Active' : 'Owned'}
@@ -317,6 +337,7 @@ export default function ShopScreen() {
                               : 'Cosmetic'}
                         </Text>
                         <View style={[styles.priceChip, { borderColor: `${accent}55`, backgroundColor: `${accent}14` }]}>
+                          <View pointerEvents="none" style={styles.chipSheen} />
                           <Text style={[styles.priceChipText, { color: accent }]}>{p.priceHint}</Text>
                         </View>
                       </View>
@@ -337,7 +358,10 @@ export default function ShopScreen() {
                             {swatch.tones.map((tone) => (
                               <View
                                 key={tone}
-                                style={[styles.swatchDot, { backgroundColor: tone }]}
+                                style={[
+                                  styles.swatchDot,
+                                  { backgroundColor: tone, borderColor: `${tone}99` },
+                                ]}
                               />
                             ))}
                           </View>
@@ -381,6 +405,7 @@ export default function ShopScreen() {
 
         <SoftCardEnter index={cardIndex + 1} reduceMotion={reduceMotion}>
           <View style={styles.comfortStrip} accessibilityRole="summary">
+            <View pointerEvents="none" style={styles.chipSheen} />
             <View style={styles.comfortHead}>
               <View style={styles.comfortDot} />
               <Text style={styles.comfortTitle}>Metaphor only</Text>
@@ -421,6 +446,14 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     color: colors.inkSoft,
   },
+  chipSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '55%',
+    backgroundColor: 'rgba(255,255,255,0.28)',
+  },
   freeStrip: {
     marginBottom: 12,
     paddingVertical: 12,
@@ -430,6 +463,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(91, 138, 122, 0.28)',
     gap: 4,
+    overflow: 'hidden',
   },
   freeStripDawn: {
     backgroundColor: 'rgba(232, 201, 160, 0.22)',
@@ -476,11 +510,21 @@ const styles = StyleSheet.create({
   statusCard: {
     marginBottom: 12,
     padding: 14,
+    paddingTop: 16,
     borderRadius: 16,
     backgroundColor: 'rgba(106, 158, 174, 0.12)',
     borderWidth: 1,
     borderColor: colors.line,
     gap: 4,
+    overflow: 'hidden',
+  },
+  statusTopAccent: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 2,
+    opacity: 0.55,
   },
   statusCardPass: {
     borderColor: 'rgba(91, 138, 122, 0.4)',
@@ -511,6 +555,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(91, 138, 122, 0.22)',
     borderWidth: 1,
     borderColor: 'rgba(91, 138, 122, 0.35)',
+    overflow: 'hidden',
   },
   passLiveDot: {
     width: 6,
@@ -591,6 +636,7 @@ const styles = StyleSheet.create({
     paddingVertical: 3,
     borderRadius: 8,
     borderWidth: 1,
+    overflow: 'hidden',
   },
   sectionChipDot: {
     width: 5,
@@ -617,10 +663,10 @@ const styles = StyleSheet.create({
     gap: 8,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.08,
-    shadowRadius: 10,
-    shadowOffset: { width: 0, height: 4 },
-    elevation: 2,
+    shadowOpacity: 0.11,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 5 },
+    elevation: 3,
   },
   cardTopAccent: {
     position: 'absolute',
@@ -629,6 +675,7 @@ const styles = StyleSheet.create({
     right: 0,
     height: 2,
     opacity: 0.55,
+    zIndex: 2,
   },
   passSheen: {
     position: 'absolute',
@@ -637,6 +684,14 @@ const styles = StyleSheet.create({
     right: 0,
     height: 36,
     backgroundColor: 'rgba(255,255,255,0.22)',
+  },
+  cardSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '30%',
+    backgroundColor: 'rgba(255,255,255,0.2)',
   },
   cardDawn: {
     backgroundColor: 'rgba(255, 248, 235, 0.7)',
@@ -697,6 +752,7 @@ const styles = StyleSheet.create({
     paddingVertical: 3,
     borderRadius: 8,
     borderWidth: 1,
+    overflow: 'hidden',
   },
   priceChipText: {
     fontFamily: fonts.bodyMedium,
@@ -727,7 +783,7 @@ const styles = StyleSheet.create({
     width: 18,
     height: 18,
     borderRadius: 9,
-    borderWidth: 1,
+    borderWidth: 1.5,
     borderColor: 'rgba(36,51,58,0.12)',
   },
   ownedNote: {
@@ -750,6 +806,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.line,
     gap: 2,
+    overflow: 'hidden',
   },
   comfortHead: {
     flexDirection: 'row',
