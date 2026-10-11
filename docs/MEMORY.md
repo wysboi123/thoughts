@@ -78,14 +78,15 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-11 ~01:20:** Shop polish v1.4.49 — free/status sheens · card/price/badge sheens · swatch rings · richer shadows.
 - **2026-10-11 ~02:20:** GameBoard polish v1.4.50 — top sheen · corner orb · chip/lawn/entrance sheens · node cores · range core.
 - **2026-10-11 ~03:20:** Settings polish v1.4.51 — version/comfort/look/pass/privacy/footer sheens · richer card shadows.
+- **2026-10-11 ~04:20:** SoftActionToast polish v1.4.52 — corner wash · accent ring · badge sheen · bottom glow · richer shadow (last before ~05:00).
 
 ## State
 
-- Version: **mobile 1.4.51** (Settings polish)
+- Version: **mobile 1.4.52** (SoftActionToast polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: `bab2d0a` (v1.4.51 Settings)
+- Tip: `77d64e3` (v1.4.52 SoftActionToast)
 - Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
 - Night envelope: **OPEN** until ~05:00 · `overnight-stop-5am-utc` armed (`sub_678b3707…`) · `overnight-daily-resume` armed (`sub_d6468578…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**

@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-11 04:20 UTC — Night hourly (v1.4.52 SoftActionToast)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.52:** SoftActionToast — corner wash · accent ring · badge sheen · bottom glow · richer shadow (last slice before ~05:00)
+- Did not redo Settings (1.4.51) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-11 03:20 UTC — Night hourly (v1.4.51 Settings)
 
 - Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
