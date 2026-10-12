@@ -146,6 +146,13 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
           { backgroundColor: dawn ? 'rgba(232, 201, 160, 0.22)' : 'rgba(107, 184, 154, 0.18)' },
         ]}
       />
+      <View
+        pointerEvents="none"
+        style={[
+          styles.cornerOrbSoft,
+          { backgroundColor: dawn ? 'rgba(232, 201, 160, 0.14)' : 'rgba(91, 138, 122, 0.12)' },
+        ]}
+      />
       <Animated.View
         pointerEvents="none"
         style={[
@@ -156,6 +163,7 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
       />
       <View style={[styles.ground, dawn ? styles.groundDawn : null]} />
       <View pointerEvents="none" style={[styles.groundRim, dawn ? styles.groundRimDawn : null]} />
+      <View pointerEvents="none" style={[styles.groundSheen, dawn ? styles.groundSheenDawn : null]} />
       <Animated.View
         pointerEvents="none"
         style={[
@@ -166,11 +174,17 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
       />
       <View style={[styles.path, dawn ? { backgroundColor: '#E8C9A0' } : null]} />
       <View style={[styles.pathBend, dawn ? { backgroundColor: '#E8C9A0' } : null]} />
+      <View
+        pointerEvents="none"
+        style={[styles.pathSheen, dawn ? styles.pathSheenDawn : null]}
+      />
       {!reduceMotion ? (
         <>
           <Animated.View pointerEvents="none" style={[styles.walkerTrail, walkerTrailStyle]} />
           <Animated.View pointerEvents="none" style={[styles.walkerHalo, walkerStyle]} />
-          <Animated.View pointerEvents="none" style={[styles.walker, walkerStyle]} />
+          <Animated.View pointerEvents="none" style={[styles.walker, walkerStyle]}>
+            <View pointerEvents="none" style={styles.walkerCore} />
+          </Animated.View>
         </>
       ) : null}
       <Animated.View
@@ -182,6 +196,13 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
         ]}
       >
         <View pointerEvents="none" style={styles.padEmptySheen} />
+        <View
+          pointerEvents="none"
+          style={[
+            styles.padEmptyRing,
+            { borderColor: dawn ? 'rgba(200,170,120,0.35)' : 'rgba(91,138,122,0.28)' },
+          ]}
+        />
         <Text style={styles.padPlus}>+</Text>
       </Animated.View>
       <View
@@ -192,6 +213,7 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
         ]}
       >
         <View pointerEvents="none" style={styles.padFilledGlow} />
+        <View pointerEvents="none" style={styles.padFilledSheen} />
       </View>
       <View
         style={[
@@ -201,6 +223,7 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
         ]}
       >
         <View pointerEvents="none" style={styles.padFilledGlow} />
+        <View pointerEvents="none" style={styles.padFilledSheen} />
       </View>
       <View
         style={[
@@ -210,6 +233,7 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
         ]}
       >
         <View pointerEvents="none" style={styles.padFilledGlow} />
+        <View pointerEvents="none" style={styles.padFilledSheen} />
       </View>
       <Animated.View
         style={[
@@ -227,7 +251,11 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
       />
       <View style={[styles.core, dawn ? { backgroundColor: colors.coreGlow } : null]}>
         <View pointerEvents="none" style={styles.coreTopAccent} />
-        <View style={styles.coreDot} />
+        <View pointerEvents="none" style={styles.coreSheen} />
+        <View style={styles.coreDotWrap}>
+          <View pointerEvents="none" style={styles.coreDotHalo} />
+          <View style={styles.coreDot} />
+        </View>
         <Text style={styles.coreLabel}>Peace</Text>
         <Text style={styles.coreSub}>still</Text>
       </View>
@@ -246,7 +274,10 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
             ? `plan view · ${lookLabel} looks`
             : 'plan view · plant kindness · hold Peace'}
         </Text>
-        <Text style={styles.captionMeta}>metaphor only</Text>
+        <View style={styles.captionMetaChip}>
+          <View pointerEvents="none" style={styles.captionMetaSheen} />
+          <Text style={styles.captionMeta}>metaphor only</Text>
+        </View>
       </View>
     </Animated.View>
   );
@@ -262,10 +293,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.line,
     shadowColor: '#243A34',
-    shadowOpacity: 0.12,
-    shadowRadius: 14,
-    shadowOffset: { width: 0, height: 5 },
-    elevation: 3,
+    shadowOpacity: 0.16,
+    shadowRadius: 16,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 4,
   },
   wrapDawn: {
     backgroundColor: 'rgba(255, 246, 230, 0.55)',
@@ -286,8 +317,8 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: '28%',
-    backgroundColor: 'rgba(255,255,255,0.22)',
+    height: '30%',
+    backgroundColor: 'rgba(255,255,255,0.26)',
     zIndex: 1,
   },
   cornerOrb: {
@@ -297,6 +328,14 @@ const styles = StyleSheet.create({
     borderRadius: 36,
     left: -18,
     bottom: 28,
+  },
+  cornerOrbSoft: {
+    position: 'absolute',
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    right: 48,
+    top: -12,
   },
   mistWash: {
     position: 'absolute',
@@ -331,6 +370,18 @@ const styles = StyleSheet.create({
   groundRimDawn: {
     borderColor: 'rgba(200, 170, 120, 0.22)',
   },
+  groundSheen: {
+    position: 'absolute',
+    left: 14,
+    right: 14,
+    top: 20,
+    height: 18,
+    borderRadius: 12,
+    backgroundColor: 'rgba(255,255,255,0.16)',
+  },
+  groundSheenDawn: {
+    backgroundColor: 'rgba(255,255,255,0.2)',
+  },
   pathGlow: {
     position: 'absolute',
     left: 12,
@@ -357,6 +408,18 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: colors.path,
   },
+  pathSheen: {
+    position: 'absolute',
+    left: 20,
+    top: 30,
+    width: 14,
+    height: 40,
+    borderRadius: 8,
+    backgroundColor: 'rgba(255,255,255,0.22)',
+  },
+  pathSheenDawn: {
+    backgroundColor: 'rgba(255,255,255,0.28)',
+  },
   walkerTrail: {
     position: 'absolute',
     width: 14,
@@ -381,6 +444,15 @@ const styles = StyleSheet.create({
     backgroundColor: colors.worry,
     borderWidth: 1.5,
     borderColor: 'rgba(255,255,255,0.7)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+  },
+  walkerCore: {
+    width: 3,
+    height: 3,
+    borderRadius: 2,
+    backgroundColor: 'rgba(255,255,255,0.7)',
   },
   pad: {
     position: 'absolute',
@@ -411,6 +483,16 @@ const styles = StyleSheet.create({
     height: '45%',
     backgroundColor: 'rgba(255,255,255,0.35)',
   },
+  padEmptyRing: {
+    position: 'absolute',
+    top: 2,
+    left: 2,
+    right: 2,
+    bottom: 2,
+    borderRadius: 9,
+    borderWidth: 1,
+    opacity: 0.85,
+  },
   padFilledGlow: {
     position: 'absolute',
     left: 3,
@@ -419,6 +501,14 @@ const styles = StyleSheet.create({
     height: 4,
     borderRadius: 3,
     backgroundColor: 'rgba(255,255,255,0.35)',
+  },
+  padFilledSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '40%',
+    backgroundColor: 'rgba(255,255,255,0.28)',
   },
   padPlus: {
     fontFamily: fonts.bodyBold,
@@ -471,6 +561,11 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
     borderColor: 'rgba(255,255,255,0.8)',
     overflow: 'hidden',
+    shadowColor: '#243A34',
+    shadowOpacity: 0.12,
+    shadowRadius: 4,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 2,
   },
   coreTopAccent: {
     position: 'absolute',
@@ -480,13 +575,35 @@ const styles = StyleSheet.create({
     height: 3,
     borderRadius: 2,
     backgroundColor: 'rgba(255,255,255,0.45)',
+    zIndex: 2,
+  },
+  coreSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '48%',
+    backgroundColor: 'rgba(255,255,255,0.28)',
+  },
+  coreDotWrap: {
+    width: 10,
+    height: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 1,
+  },
+  coreDotHalo: {
+    position: 'absolute',
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: 'rgba(91, 138, 122, 0.28)',
   },
   coreDot: {
     width: 4,
     height: 4,
     borderRadius: 2,
     backgroundColor: colors.calm,
-    marginBottom: 1,
   },
   coreLabel: {
     fontFamily: fonts.bodyMedium,
@@ -581,6 +698,23 @@ const styles = StyleSheet.create({
     color: colors.inkSoft,
     flexShrink: 1,
     flex: 1,
+  },
+  captionMetaChip: {
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 7,
+    backgroundColor: 'rgba(106,158,174,0.14)',
+    borderWidth: 1,
+    borderColor: 'rgba(106,158,174,0.22)',
+    overflow: 'hidden',
+  },
+  captionMetaSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '55%',
+    backgroundColor: 'rgba(255,255,255,0.3)',
   },
   captionMeta: {
     fontFamily: fonts.bodyMedium,
