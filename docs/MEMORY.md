@@ -95,7 +95,7 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - Version: **mobile 1.4.60** (SoftButton polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
-- PR: https://github.com/wysboi123/thoughts/pull/6
+- PR: https://github.com/wysboi123/thoughts/pull/7
 - Tip: `6e6d6fe` (v1.4.60 SoftButton · prior tip `1654905` / stop `79253df`)
 - Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
 - Night envelope: **OPEN** · overnight-stop armed (`sub_4019050a…`, ~05:00 Oct 13) · `overnight-daily-resume` armed (`sub_d6468578…`)
