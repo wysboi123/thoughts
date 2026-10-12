@@ -145,6 +145,10 @@ export function FirstRunTipChip({ visible, dawn }: Props) {
         <View pointerEvents="none" style={styles.topSheen} />
         <View
           pointerEvents="none"
+          style={[styles.cornerOrb, { backgroundColor: `${current.accent}14` }]}
+        />
+        <View
+          pointerEvents="none"
           style={[styles.glow, { backgroundColor: `${current.accent}28` }]}
         />
         <View
@@ -163,6 +167,7 @@ export function FirstRunTipChip({ visible, dawn }: Props) {
             accessibilityRole="progressbar"
             accessibilityValue={{ min: 0, max: 100, now: Math.round(progress * 100) }}
           >
+            <View pointerEvents="none" style={styles.progressSheen} />
             <View
               style={[
                 styles.progressFill,
@@ -195,6 +200,10 @@ export function FirstRunTipChip({ visible, dawn }: Props) {
           style={styles.dismiss}
         >
           <View pointerEvents="none" style={styles.dismissSheen} />
+          <View
+            pointerEvents="none"
+            style={[styles.dismissRing, { borderColor: `${current.accent}33` }]}
+          />
           <Text style={styles.dismissLabel}>Got it</Text>
         </Pressable>
       </View>
@@ -224,10 +233,10 @@ const styles = StyleSheet.create({
     borderLeftWidth: 4,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.12,
-    shadowRadius: 10,
-    shadowOffset: { width: 0, height: 4 },
-    elevation: 3,
+    shadowOpacity: 0.16,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 5 },
+    elevation: 4,
   },
   chipDawn: {
     backgroundColor: 'rgba(255, 244, 220, 0.75)',
@@ -240,14 +249,23 @@ const styles = StyleSheet.create({
     right: 0,
     height: 2,
     opacity: 0.55,
+    zIndex: 2,
   },
   topSheen: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
-    height: 22,
-    backgroundColor: 'rgba(255,255,255,0.16)',
+    height: 24,
+    backgroundColor: 'rgba(255,255,255,0.2)',
+  },
+  cornerOrb: {
+    position: 'absolute',
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    left: -16,
+    bottom: -18,
   },
   glow: {
     position: 'absolute',
@@ -312,6 +330,14 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     marginTop: 1,
   },
+  progressSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '55%',
+    backgroundColor: 'rgba(255,255,255,0.35)',
+  },
   progressFill: {
     height: 3,
     borderRadius: 3,
@@ -341,15 +367,25 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.line,
     shadowColor: '#243A34',
-    shadowOpacity: 0.06,
-    shadowRadius: 4,
-    shadowOffset: { width: 0, height: 2 },
-    elevation: 1,
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 3 },
+    elevation: 2,
   },
   dismissSheen: {
     ...StyleSheet.absoluteFill,
     backgroundColor: 'rgba(255,255,255,0.35)',
     height: '45%',
+  },
+  dismissRing: {
+    position: 'absolute',
+    top: 3,
+    left: 3,
+    right: 3,
+    bottom: 3,
+    borderRadius: 9,
+    borderWidth: 1,
+    opacity: 0.85,
   },
   dismissLabel: {
     fontFamily: fonts.bodyMedium,
