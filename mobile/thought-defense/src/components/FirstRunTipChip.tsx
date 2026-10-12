@@ -155,12 +155,17 @@ export function FirstRunTipChip({ visible, dawn }: Props) {
           pointerEvents="none"
           style={[styles.glowSoft, { backgroundColor: `${current.accent}14` }]}
         />
+        <View
+          pointerEvents="none"
+          style={[styles.sideWash, { backgroundColor: `${current.accent}12` }]}
+        />
         <Animated.View style={[styles.textWrap, { opacity: tipFade }]}>
           <View style={[styles.badge, { borderColor: `${current.accent}66` }]}>
             <View pointerEvents="none" style={styles.badgeSheen} />
             <View style={[styles.badgeDot, { backgroundColor: current.accent }]} />
             <Text style={[styles.badgeLabel, { color: current.accent }]}>Soft tip</Text>
           </View>
+          <Text style={[styles.softHint, { color: current.accent }]}>Gentle coach · skip anytime</Text>
           <Text style={styles.text}>{current.text}</Text>
           <View
             style={styles.progressTrack}
@@ -187,25 +192,39 @@ export function FirstRunTipChip({ visible, dawn }: Props) {
                   i === tipIndex && styles.dotOn,
                   i === tipIndex ? { backgroundColor: t.accent } : null,
                   i < tipIndex ? { backgroundColor: `${t.accent}88` } : null,
+                  i === tipIndex
+                    ? {
+                        shadowColor: t.accent,
+                        shadowOpacity: 0.4,
+                        shadowRadius: 4,
+                        shadowOffset: { width: 0, height: 0 },
+                      }
+                    : null,
                 ]}
               />
             ))}
           </View>
         </Animated.View>
-        <Pressable
-          accessibilityRole="button"
-          accessibilityLabel="Dismiss tip"
-          hitSlop={TAP_SLOP}
-          onPress={onDismiss}
-          style={styles.dismiss}
-        >
-          <View pointerEvents="none" style={styles.dismissSheen} />
+        <View style={styles.dismissWrap}>
           <View
             pointerEvents="none"
-            style={[styles.dismissRing, { borderColor: `${current.accent}33` }]}
+            style={[styles.dismissHalo, { backgroundColor: `${current.accent}22` }]}
           />
-          <Text style={styles.dismissLabel}>Got it</Text>
-        </Pressable>
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel="Dismiss tip"
+            hitSlop={TAP_SLOP}
+            onPress={onDismiss}
+            style={styles.dismiss}
+          >
+            <View pointerEvents="none" style={styles.dismissSheen} />
+            <View
+              pointerEvents="none"
+              style={[styles.dismissRing, { borderColor: `${current.accent}33` }]}
+            />
+            <Text style={styles.dismissLabel}>Got it</Text>
+          </Pressable>
+        </View>
       </View>
     </Animated.View>
   );
@@ -283,6 +302,15 @@ const styles = StyleSheet.create({
     height: 56,
     borderRadius: 56,
   },
+  sideWash: {
+    position: 'absolute',
+    right: 0,
+    top: 10,
+    bottom: 10,
+    width: 36,
+    borderTopLeftRadius: 18,
+    borderBottomLeftRadius: 18,
+  },
   textWrap: {
     flexShrink: 1,
     gap: 5,
@@ -317,6 +345,11 @@ const styles = StyleSheet.create({
     fontSize: 10,
     letterSpacing: 0.2,
   },
+  softHint: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 10,
+    letterSpacing: 0.2,
+  },
   text: {
     fontFamily: fonts.bodyMedium,
     fontSize: 12,
@@ -324,8 +357,8 @@ const styles = StyleSheet.create({
     color: colors.brandDeep,
   },
   progressTrack: {
-    height: 3,
-    borderRadius: 3,
+    height: 4,
+    borderRadius: 4,
     backgroundColor: 'rgba(36, 58, 52, 0.08)',
     overflow: 'hidden',
     marginTop: 1,
@@ -339,8 +372,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.35)',
   },
   progressFill: {
-    height: 3,
-    borderRadius: 3,
+    height: 4,
+    borderRadius: 4,
   },
   dots: {
     flexDirection: 'row',
@@ -355,6 +388,17 @@ const styles = StyleSheet.create({
   dotOn: {
     width: 12,
   },
+  dismissWrap: {
+    position: 'relative',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  dismissHalo: {
+    position: 'absolute',
+    width: '120%',
+    height: '120%',
+    borderRadius: 14,
+  },
   dismiss: {
     minHeight: MIN_TAP,
     minWidth: MIN_TAP,
@@ -367,10 +411,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.line,
     shadowColor: '#243A34',
-    shadowOpacity: 0.1,
-    shadowRadius: 6,
+    shadowOpacity: 0.14,
+    shadowRadius: 8,
     shadowOffset: { width: 0, height: 3 },
-    elevation: 2,
+    elevation: 3,
   },
   dismissSheen: {
     ...StyleSheet.absoluteFill,

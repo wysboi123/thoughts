@@ -9,7 +9,8 @@ Newest first. Overnight agents append after every push.
 - Daily resume fired · merged `origin/main` into `cursor/chill-usps-soft-company-debf`
 - Conflicts: docs inventory + WAKE_NOTES fixed earlier; README + SCHEDULE resolved **mobile-primary** with **one digest email at 05:00 only** (Femmy 2026-09-27)
 - Roblox chill overnight **paused** (`LEGACY_ROBLOX` / GAME_BACKLOG Night 19+)
-- **Shipped v1.4.60:** SoftWelcomeSheet — bottom wash · progress sheen/glow · soft-start hint · active-dot glow · Next halo
+- **Shipped v1.4.60–1.4.62:** SoftWelcomeSheet · SoftPlayHud · FirstRunTipChip polish
+- New PR: https://github.com/wysboi123/thoughts/pull/8 (PR #3 already merged)
 - Timers: re-armed `overnight-stop-5am-utc` · quiet CP ~01:00 / ~03:00 · daily resume still armed
 - Still blocked: Native IAP · EAS projectId · store products · legal URLs · Perplexity Q-006
 - Quiet mode; **one digest email at stop only**
