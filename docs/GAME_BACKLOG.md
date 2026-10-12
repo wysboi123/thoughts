@@ -1,13 +1,41 @@
-# Game backlog (legacy pointer)
+# Game backlog
 
-**Moved:** active work lives in [`APP_BACKLOG.md`](APP_BACKLOG.md).
+Priority order. Overnight agents pick the top unchecked item unless Femmy overrides.
 
-Roblox items below are **paused** after the 2026-09-30 mobile pivot. Kept for history only.
+## Active (focus now)
 
-## Paused Roblox
+- [x] **Haze Haven v0–v3.36** — soft-complete · company still open
+- [x] **Couch Galaxy v0–v3.34** — soft-complete · company still open
+- [x] **Bus Stop Forever v0–v3.35** — soft-complete · together still open
+- [x] **Star Porch v0–v3.33** — soft-complete · porch still open
+- [x] **Shared** — SoftCompany/SoftGoals/SoftSit softStay · StayTextFn
+- [x] **USP research + priority** — `docs/USPS.md` + Night 8/11 research notes
+- [x] **Night 6** — complete (active-four polish; parked trio kept)
+- [x] **Night 7** — complete (USP deepen; Haze 2.5 · Couch 2.2 · Bus 2.4 · Porch 2.3)
+- [ ] **Wire audio** — waiting on Perplexity Q-004 (do not invent)
+- [ ] **First publish** — Femmy: `PUBLISH_CHECKLIST.md` First 10 minutes (Haze)
+- [ ] **Apply Q-001–003** when answers land
+- [ ] **Soft invite prompt** — post-publish only (SocialService) · prep: `SOFT_INVITE.md`
+- [x] **Night 8** — complete (USP research + deepen; Haze 3.0 · Couch 2.7 · Bus 2.9 · Porch 2.8)
+- [x] **Night 9** — complete (stickiness + SoftGoals OnAllComplete; Haze 3.3 · Couch 3.0 · Bus 3.2 · Porch 3.1)
+- [x] **Night 10** — complete (SoftSit.refresh + SoftCompany polish; Haze 3.6 · Couch 3.3 · Bus 3.5 · Porch 3.4)
+- [x] **Night 11** — complete (SoftGoals.Optional · company-still-open · OnSessionSealed; Haze 3.11 · Couch 3.9 · Bus 3.10 · Porch 3.9)
+- [x] **Night 12** — complete (SoftGoals OnLinger · still-here SoftCompany/place · SoftInvite prep; Haze 3.15 · Couch 3.13 · Bus 3.14 · Porch 3.13)
+- [x] **Night 13** — complete (SoftCompany.refresh · linger warmth; Haze 3.21 · Couch 3.19 · Bus 3.20 · Porch 3.18)
+- [x] **Night 14** — complete (DepartTextFn · OnDeparted · SoftSit EmptyTextFn; Haze 3.24 · Couch 3.22 · Bus 3.23 · Porch 3.21)
+- [x] **Night 15** — complete (Return/Depart nudgeOptional; Haze 3.27 · Couch 3.25 · Bus 3.26 · Porch 3.24)
+- [x] **Night 16** — complete (AfterDepart/AfterReturn · SoftSit pulse; Haze 3.30 · Couch 3.28 · Bus 3.29 · Porch 3.27)
+- [x] **Night 17** — complete (place-warmth + copy; Haze 3.33 · Couch 3.31 · Bus 3.32 · Porch 3.30)
+- [x] **Night 18** — complete (soft-stay trio + enough toast; Haze 3.36 · Couch 3.34 · Bus 3.35 · Porch 3.33)
+- [ ] **Night 19** — next (USP discovery polish · apply Perplexity if any · SoftInvite gated)
 
-- [x] Thought Defense Roblox v0.1–v0.2.4 (last Roblox ship)
-- [ ] ~~Upgrade UI Luau A/B/C~~ — superseded by mobile
-- [ ] ~~First Roblox Studio publish~~ — paused
+## Parked for later (files kept — do not erase)
 
-See [`LEGACY_ROBLOX.md`](LEGACY_ROBLOX.md).
+- [x] **Slow Orbit v0–v1.2** — parked 2026-09-29; resume later
+- [x] **Puddle Mirror v0–v1.2** — parked 2026-09-29; resume later
+- [x] **Lantern Drift v0–v1.1** — parked 2026-09-29; resume later
+
+## Femmy overrides
+
+> Focus now: Star Porch, Haze Haven, Couch Galaxy, Bus Stop Forever — ✅ 2026-09-29  
+> Parked (keep files): Slow Orbit, Puddle Mirror, Lantern Drift — work later — ✅ 2026-09-30
