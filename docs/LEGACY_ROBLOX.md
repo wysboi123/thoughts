@@ -4,10 +4,11 @@
 
 ## Status
 
-- All `games/*` Roblox experiences are **paused / legacy**.
+- Existing `games/*` Roblox experiences (chill hangouts + Thought Defense) are **paused / legacy**.
 - Do **not** implement Roblox Thought Defense Upgrade UI A/B/C.
-- Do **not** re-arm Roblox-only hourly timers.
+- Do **not** re-arm Roblox-only hourly timers for legacy titles.
 - Code remains in-repo for reference / possible future un-pause.
+- **2026-10-12 Femmy override:** planning/scaffolding **new** experiences (`glowgrove`, `critter-claim`) is allowed via `docs/research/ROBLOX_TWO_GAME_ROLLOUT_2026-10-12.md` + `docs/CLAUDE_CODE_ROBLOX_PROMPT.md`. That override does **not** resume TD Upgrade UI or chill-hangout hourlies.
 
 ## What moved
 
