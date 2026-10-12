@@ -2,6 +2,17 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-12 07:41 UTC — Femmy override: Roblox two-game plan
+
+- Femmy asked for **2 Roblox game concepts** + monetisation + Claude Code prompt (research-backed, immediate rollout).
+- **Did not** resume TD Upgrade UI A/B/C or chill-hangout hourlies. Mobile TD remains overnight primary.
+- Shipped docs:
+  - `docs/research/ROBLOX_TWO_GAME_ROLLOUT_2026-10-12.md` — market snapshot, **Glowgrove** (idle-grow), **Critter Claim** (steal-defend), monetisation, MVP caps, rollout
+  - `docs/CLAUDE_CODE_ROBLOX_PROMPT.md` — paste-ready implementer prompt
+  - Touched `docs/GAMES.md`, `docs/LEGACY_ROBLOX.md`, `docs/research/README.md`
+- Branch: `cursor/roblox-two-game-plan-ab8a`
+- Next: Femmy pastes Claude Code prompt on Studio+Rojo machine; create PlaceIds + GamePass IDs
+
 ## 2026-10-12 05:00 UTC — OVERNIGHT STOP (mobile night wrap)
 
 - Timer `overnight-stop-5am-utc` fired ~05:00 UTC Oct 12 — **HARD STOP**. **No new features.** Docs + digest only.
