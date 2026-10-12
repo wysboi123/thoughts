@@ -1,86 +1,59 @@
-# Studio publish checklist (Femmy)
+# Publish checklist — Thought Defense mobile (Femmy)
 
-Use this when you're ready to put experiences live on Roblox.
+Replace the old Roblox Studio checklist. Goal: App Store + Google Play.
 
-## First 10 minutes — Haze Haven (recommended)
+## First 30 minutes — accounts
 
-```bash
-cd games/haze-haven
-rojo build -o HazeHaven.rbxl
-rojo serve
-```
+1. Apple Developer Program enrollment (paid)
+2. Google Play Console enrollment (paid one-time)
+3. Expo account + `eas login`
+4. Confirm bundle / package: `com.femmy.thoughtdefense` (or your choice — tell agents)
 
-1. Open `HazeHaven.rbxl` in Roblox Studio → Rojo plugin → **Connect**
-2. Press **Play** — sit a cushion, float pad, loft hammock, emote 1/2/3
-3. Confirm spawn **WelcomeSign** + SoftWelcome toast (Haze 1.0+ publish beat) before Stop
-4. Stop Play → **File → Publish to Roblox** (create new experience if prompted)
-5. Paste title + description from [`EXPERIENCE_COPY.md`](EXPERIENCE_COPY.md) → Haze Haven
-6. Genre: Hangout (or Adventure). Access: **Friends** for soft launch
-7. Capture one soft screenshot for thumbnail (no ToS-risk framing)
-8. Paste place URL + place id into [`PUBLISH_STATUS.md`](PUBLISH_STATUS.md)
+## Create store apps
 
-That’s enough for first soft launch. Overnight agents track the live place after you paste URL + place id into `PUBLISH_STATUS.md`.
+1. App Store Connect → new app → name **Thought Defense**
+2. Play Console → create app → same name
+3. Paste listing copy from [`EXPERIENCE_COPY.md`](EXPERIENCE_COPY.md) + `mobile/thought-defense/docs/STORE_LISTING.md`
 
-## First 10 minutes — Thought Defense (tower defense)
+## IAP products (exact ids)
 
-```bash
-cd games/thought-defense
-rojo build -o ThoughtDefense.rbxl
-rojo serve
-```
+| Logical | iOS product id | Android product id | Type |
+| --- | --- | --- | --- |
+| Clarity Pass | `com.femmy.thoughtdefense.clarity_pass.monthly` | `clarity_pass_monthly` | Auto-renewable sub |
+| Dawn Path | `com.femmy.thoughtdefense.cosmetic.dawn` | `cosmetic_dawn` | Non-consumable |
+| Lantern Towers | `com.femmy.thoughtdefense.cosmetic.lantern` | `cosmetic_lantern` | Non-consumable |
+| Clarity boost | `com.femmy.thoughtdefense.boost.clarity_small` | `clarity_boost_small` | Consumable |
 
-1. Open `ThoughtDefense.rbxl` → Rojo **Connect** → **Play**
-2. SoftWelcome + soft goals appear — plant Affirmation/Gratitude/Humor on pads
-3. Press **Begin wave 1** · hover pads for upgrade cost · click planted pad to deepen
-4. Survive a wave or two · try **Restart** / **R** if you want a fresh run
-5. Stop → **File → Publish to Roblox**
-6. Paste title/description from [`EXPERIENCE_COPY.md`](EXPERIENCE_COPY.md) → Thought Defense
-7. Genre: Adventure (or Strategy). Access: **Friends** for soft launch
-8. Thumbnail: Peace Core + path (no ToS-risk framing) · paste URL into [`PUBLISH_STATUS.md`](PUBLISH_STATUS.md)
-
-Note: Upgrade **button chrome** (drafts A/B/C) still waiting on your pick before next UX ship.
-
-## One-time setup
-
-1. Install [Rokit](https://github.com/rojo-rbx/rokit) + Rojo Studio plugin
-2. Create a Roblox experience (or one per game) under your account
-3. Optional later: Open Cloud API key for CLI upload (Perplexity Q-003) — store only in OpenClaw secrets
-
-## Per game (same pattern)
+## EAS
 
 ```bash
-cd games/<slug>
-rojo build -o <Name>.rbxl
-rojo serve
+cd mobile/thought-defense
+npx eas-cli@latest init   # paste projectId into app.json
+npx eas-cli@latest build --platform all --profile preview
+# after sandbox IAP works:
+npx eas-cli@latest build --platform all --profile production
+npx eas-cli@latest submit --platform ios --profile production
+npx eas-cli@latest submit --platform android --profile production
 ```
 
-1. Open the `.rbxl` in Studio → Rojo **Connect**
-2. Press **Play** — walk the loop once
-3. **File → Publish to Roblox** (or Publish as → new place)
-4. Set experience name, description, genre (hangout / adventure)
-5. Thumbnail: sit/float screenshot, soft lighting — no ToS-risk imagery
-6. Access: Public when ready; Friends for soft launch is fine
-7. Paste URL into [`PUBLISH_STATUS.md`](PUBLISH_STATUS.md)
-8. Use titles/descriptions from [`EXPERIENCE_COPY.md`](EXPERIENCE_COPY.md)
+Full notes: `mobile/thought-defense/docs/EAS_BUILD.md`
 
-## Game slugs
+## Before submit
 
-| Slug | Pitch |
-| --- | --- |
-| `haze-haven` | Chill loft lounge — **good first publish** |
-| `slow-orbit` | Purple-dusk planet + moonlet |
-| `couch-galaxy` | Apartment roof → night sky |
-| `puddle-mirror` | Puddles open secret nooks |
-| `bus-stop-forever` | Infinite calm bus stop |
-| `lantern-drift` | Fog lake raft + lanterns |
-| `star-porch` | Night porch + fireflies |
-| `thought-defense` | Negative thoughts vs positive towers |
+- [ ] Host Privacy + Terms HTTPS URLs
+- [ ] Screenshots (phone + optional tablet) — see `mobile/thought-defense/docs/SCREENSHOTS.md`
+- [ ] Native IAP (not stub-only) — Femmy picks **RevenueCat** or **react-native-iap**
+- [ ] Restore purchases tested in sandbox
+- [ ] Clarity Pass price confirm (shipping default **$2.99/mo** until answered)
+- [ ] Age rating / content questionnaire — metaphor game; **not** medical/therapy
+- [ ] Paste store URLs into [`PUBLISH_STATUS.md`](PUBLISH_STATUS.md)
+
+### Soft publish notes (v1.2.9)
+
+- Core loop + soft goals stay free; Pass/cosmetics/boost are optional comfort only.
+- Capture frames: Home · mid-wave plan view · Clarity shop · Settings (incl. Replay welcome).
+- Do not use medical claims, diagnosis language, or Roblox assets in store listing.
 
 ## Don't commit
 
-- `.ROBLOSECURITY` / Open Cloud keys
-- Cookie secrets
-
-## After publish
-
-Update `PUBLISH_STATUS.md` + ping OpenClaw so overnight work can target live places later.
+- ASC API keys, Play service accounts, `.p8` / `.jks`, `.env` secrets

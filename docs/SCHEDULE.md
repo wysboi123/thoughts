@@ -1,28 +1,33 @@
-# Overnight + hourly schedule
+# Overnight + hourly schedule (mobile pivot)
 
-Femmy order (2026-09-29): **Batch work — ~30 minutes every hour.** Respect usage limits; slow down before limits. Periodically consult on design. Email progress updates.
+Femmy order (2026-09-30): **Pivot to mobile app** with sensible microtransactions + basic subscription. iOS + Android publish path.
 
-Earlier order (2026-09-24): night window 23:00→05:00 UTC still applies as the outer envelope when overnight shipping.
+Prior order still applies for cadence: **~30 minutes every hour**, night envelope 23:00→05:00 UTC, email progress to `ngkdevid@gmail.com`.
 
 ## Hourly batch mode (active)
 
 | | |
 | --- | --- |
-| **Work** | ~30 minutes of focused shipping |
+| **Work** | ~30 minutes shipping on `mobile/thought-defense` |
 | **Rest** | ~30 minutes idle (timer wakes next batch) |
-| **Consult** | Ask Femmy on open design choices each batch (or when blocked) |
-| **Email** | Progress note to `ngkdevid@gmail.com` at end of each batch (and at 05:00 stop) |
-| **Limits** | If approaching Cursor usage limits: skip polish, commit+push, lengthen rest, shorter next batch |
+| **Focus** | Playable loop · store assets · IAP testing · EAS · listing copy |
+| **Consult** | Ask Femmy only when blocked (bundle ids, store accounts, legal) |
+| **Email** | Progress note to `ngkdevid@gmail.com` at end of each batch (and 05:00 stop) |
+| **Limits** | If approaching Cursor usage limits: commit+push, lengthen rest |
 
-### Timers (cursor-subscriptions)
+### Timers (cursor-subscriptions) — retargeted
 
 | Name | Type | Job |
 | --- | --- | --- |
-| `thought-defense-hourly` | cron `15 * * * *` | Start next 30-min batch |
+| `thought-defense-mobile-hourly` | cron `15 * * * *` | Start next 30-min **mobile** batch (`mobile/thought-defense`, PR **#4**) |
 | `overnight-stop-5am-utc` | once → 05:00 | Hard stop + digest if inside night window |
 | `overnight-daily-resume` | cron `0 23 * * *` | Night envelope resume |
 
-## Night envelope (still honored)
+**Retire / do not re-arm:** `thought-defense-hourly` — legacy Roblox payload (`games/thought-defense`, Upgrade chrome, PR #2). If it still fires, **ignore Roblox instructions** and run the mobile checklist below; then unsubscribe it and ensure `thought-defense-mobile-hourly` is the only hourly.
+
+**Correct hourly prompt must say:** app `mobile/thought-defense` · branch `cursor/mobile-thought-defense-5a0d` · PR #4 · Draft C locked · no Roblox TD / no PR #2.
+
+## Night envelope
 
 | | |
 | --- | --- |
@@ -30,19 +35,16 @@ Earlier order (2026-09-24): night window 23:00→05:00 UTC still applies as the 
 | **Stop** | 05:00 UTC — commit, push, wake note, digest email |
 | **Resume** | Daily 23:00 UTC |
 
-Outside 23:00–05:00: only run hourly batches if Femmy asked for daytime work; otherwise wait.
+## Batch checklist
 
-## Email
+1. Read `docs/APP_BACKLOG.md` + `docs/DESIGN_CONSULT.md`
+2. Ship one vertical slice in Expo app (code → typecheck → commit → push → PR)
+3. Append wake note
+4. Remember decisions in Adapter (when auth ok) / `docs/MEMORY.md`
+5. Email update
+6. Confirm `thought-defense-mobile-hourly` timer; **end turn**
 
-To: `ngkdevid@gmail.com`  
-Each hourly batch: short progress (what shipped, design questions, next batch).  
-05:00 stop: fuller digest (commits, PR, blockers).
+## Out of scope this pivot
 
-## During a batch
-
-1. Read `docs/DESIGN_CONSULT.md` + backlog  
-2. Ship one vertical slice (code → commit → push → PR update)  
-3. Append wake note  
-4. Remember decisions in Adapter (when auth ok) / `docs/`  
-5. Email update  
-6. Arm / confirm hourly timer; **end turn**
+- Roblox Studio / Rojo hourly TD (paused)
+- Upgrade chrome mockup A/B/C Luau (superseded)

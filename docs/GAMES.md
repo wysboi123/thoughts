@@ -1,27 +1,16 @@
-# Games gallery
+# Games / apps gallery
 
-Femmy’s chill Roblox line. All Rojo filesystem-first. Play: `cd games/<slug> && rojo serve`.
+## Primary (active)
 
-| Slug | Version | Verb | One-liner |
+| Slug | Platform | Version | One-liner |
 | --- | --- | --- | --- |
-| [`haze-haven`](../games/haze-haven) | 1.4 | float / sit | Hammock sway + rug + vibe board + pads |
-| [`slow-orbit`](../games/slow-orbit) | 1.2 | orbit | Bead sparkle + planet/moonlet glow |
-| [`couch-galaxy`](../games/couch-galaxy) | 1.1 | climb / float | Couch rug pulse + hammock + apt lights |
-| [`puddle-mirror`](../games/puddle-mirror) | 1.2 | ripple | Plaza breathe + nook puddles + dew |
-| [`bus-stop-forever`](../games/bus-stop-forever) | 1.2 | wait / wave | Dual shelter glow + tickets + planters |
-| [`lantern-drift`](../games/lantern-drift) | 1.1 | drift | Rope coil bob + gangway + shore lights |
-| [`star-porch`](../games/star-porch) | 1.1 | sit / glow | Yard path glow + jar + rockers |
-| [`thought-defense`](../games/thought-defense) | 0.2.4 | defend / plant | SoftGoals · Restart(R) · mockup vote open |
+| [`thought-defense`](../mobile/thought-defense) | Expo iOS+Android | 1.0.0-slice | Soft mindscape TD · Clarity Pass · stub IAP |
 
-Shared: [`packages/chill`](../packages/chill) · Publish: [`PUBLISH_CHECKLIST.md`](PUBLISH_CHECKLIST.md)
+## Legacy Roblox (paused)
 
-## Soft goals + welcome
+See [`LEGACY_ROBLOX.md`](LEGACY_ROBLOX.md). Do not schedule hourly Rojo work.
 
-Most hangout games use `Chill.SoftGoals`, `Chill.SoftWelcome`, `Chill.SoftSit`, and `Chill.Proximity`.
-**Thought Defense** is a tower-defense loop (Calm / Clarity) — see its README.
-
-## Blocked on Femmy
-
-1. Perplexity answers → `docs/research/` (esp. Q-004 audio ids)
-2. First Studio publish of any place
-3. **Thought Defense design consult** → [`DESIGN_CONSULT.md`](DESIGN_CONSULT.md)
+| Slug | Version | Notes |
+| --- | --- | --- |
+| haze-haven … star-porch | 1.x | Chill hangouts — paused |
+| thought-defense (Roblox) | 0.2.4 | Paused; mobile is canonical |

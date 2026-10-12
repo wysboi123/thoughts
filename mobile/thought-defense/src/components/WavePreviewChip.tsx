@@ -1,0 +1,388 @@
+import React, { useEffect } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import Animated, {
+  Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withDelay,
+  withTiming,
+} from 'react-native-reanimated';
+import { useReducedMotion } from '../a11y/useReducedMotion';
+import { describeWave, GAME } from '../game/config';
+import type { EnemyKind } from '../game/types';
+import { colors } from '../theme/colors';
+import { fonts } from '../theme/typography';
+
+const KIND_TINT: Record<EnemyKind, string> = {
+  Doubt: colors.doubt,
+  Worry: colors.worry,
+  SelfCritic: colors.critic,
+};
+
+const KIND_HINT: Record<EnemyKind, string> = {
+  Doubt: 'steady Affirmation helps',
+  Worry: 'Gratitude slows the flutter',
+  SelfCritic: 'Humor softens clusters',
+};
+
+type Props = {
+  waveIndex: number;
+  visible: boolean;
+  dawn?: boolean;
+};
+
+function KindPill({
+  kind,
+  count,
+  index,
+  total,
+  reduceMotion,
+  visible,
+}: {
+  kind: EnemyKind;
+  count: number;
+  index: number;
+  total: number;
+  reduceMotion: boolean;
+  visible: boolean;
+}) {
+  const enter = useSharedValue(reduceMotion || !visible ? 1 : 0);
+  const tint = KIND_TINT[kind];
+  const share = total > 0 ? count / total : 0;
+
+  useEffect(() => {
+    if (!visible) {
+      enter.value = 0;
+      return;
+    }
+    if (reduceMotion) {
+      enter.value = 1;
+      return;
+    }
+    enter.value = withDelay(
+      60 + index * 55,
+      withTiming(1, { duration: 280, easing: Easing.out(Easing.cubic) }),
+    );
+  }, [visible, kind, count, enter, index, reduceMotion]);
+
+  const style = useAnimatedStyle(() => ({
+    opacity: enter.value,
+    transform: [{ translateY: (1 - enter.value) * 5 }, { scale: 0.94 + enter.value * 0.06 }],
+  }));
+
+  return (
+    <Animated.View
+      style={[
+        styles.pill,
+        { borderColor: `${tint}66`, backgroundColor: `${tint}14` },
+        style,
+      ]}
+    >
+      <View pointerEvents="none" style={styles.chipSheen} />
+      <View style={[styles.dot, { backgroundColor: tint }]} />
+      <View style={styles.pillBody}>
+        <Text style={styles.pillText}>
+          {count} {GAME.enemies[kind].displayName}
+        </Text>
+        <View style={styles.miniTrack} accessibilityElementsHidden>
+          <View
+            style={[
+              styles.miniFill,
+              { width: `${Math.max(12, share * 100)}%` as `${number}%`, backgroundColor: tint },
+            ]}
+          />
+        </View>
+      </View>
+    </Animated.View>
+  );
+}
+
+/**
+ * Soft next-wave composition under the board during prep / intermission.
+ * Helps plan kindness without spoiling mid-wave tension.
+ */
+export function WavePreviewChip({ waveIndex, visible, dawn }: Props) {
+  const reduceMotion = useReducedMotion();
+  const enter = useSharedValue(reduceMotion || !visible ? 1 : 0);
+
+  useEffect(() => {
+    if (!visible) {
+      enter.value = 0;
+      return;
+    }
+    if (reduceMotion) {
+      enter.value = 1;
+      return;
+    }
+    enter.value = 0;
+    enter.value = withTiming(1, { duration: 340, easing: Easing.out(Easing.cubic) });
+  }, [visible, waveIndex, enter, reduceMotion]);
+
+  const style = useAnimatedStyle(() => ({
+    opacity: enter.value,
+    transform: [
+      { translateY: (1 - enter.value) * 8 },
+      { scale: 0.97 + enter.value * 0.03 },
+    ],
+  }));
+
+  if (!visible || waveIndex < 0 || waveIndex >= GAME.waveCount) return null;
+  const groups = describeWave(waveIndex);
+  if (groups.length === 0) return null;
+
+  const total = groups.reduce((sum, g) => sum + g.count, 0);
+  const heaviest = groups.reduce((a, b) => (b.count > a.count ? b : a), groups[0]);
+  const accent = KIND_TINT[heaviest.kind];
+  const tip = KIND_HINT[heaviest.kind];
+
+  return (
+    <Animated.View
+      style={[styles.wrap, dawn ? styles.wrapDawn : null, { borderLeftColor: accent }, style]}
+      accessibilityRole="summary"
+      accessibilityLabel={`Next wave composition: ${groups
+        .map((g) => `${g.count} ${GAME.enemies[g.kind].displayName}`)
+        .join(', ')}. ${total} thoughts total. Tip: ${tip}`}
+    >
+      <View pointerEvents="none" style={[styles.topAccent, { backgroundColor: accent }]} />
+      <View pointerEvents="none" style={styles.topSheen} />
+      <View
+        pointerEvents="none"
+        style={[styles.cornerWash, { backgroundColor: `${accent}18` }]}
+      />
+      <View style={styles.headRow}>
+        <View style={styles.headLeft}>
+          <Text style={styles.label}>
+            Next · wave {waveIndex + 1}/{GAME.waveCount}
+          </Text>
+          <View style={[styles.accentDot, { backgroundColor: accent }]} />
+        </View>
+        <View style={[styles.totalChip, dawn ? styles.totalChipDawn : null]}>
+          <View pointerEvents="none" style={styles.chipSheen} />
+          <View style={[styles.totalLead, { backgroundColor: accent }]} />
+          <Text style={styles.total}>{total} thoughts</Text>
+        </View>
+      </View>
+      <View
+        style={styles.waveTrack}
+        accessibilityRole="progressbar"
+        accessibilityValue={{
+          min: 1,
+          max: GAME.waveCount,
+          now: waveIndex + 1,
+        }}
+      >
+        <View
+          style={[
+            styles.waveFill,
+            {
+              width: `${Math.round(((waveIndex + 1) / GAME.waveCount) * 100)}%`,
+              backgroundColor: accent,
+            },
+          ]}
+        />
+      </View>
+      <View style={styles.row}>
+        {groups.map((g, i) => (
+          <KindPill
+            key={g.kind}
+            kind={g.kind}
+            count={g.count}
+            index={i}
+            total={total}
+            reduceMotion={reduceMotion}
+            visible={visible}
+          />
+        ))}
+      </View>
+      <View
+        style={[styles.tipChip, { borderColor: `${accent}44`, backgroundColor: `${accent}12` }]}
+      >
+        <View pointerEvents="none" style={styles.chipSheen} />
+        <View style={[styles.tipDot, { backgroundColor: accent }]} />
+        <Text style={styles.hint}>Plant before they walk · {tip}</Text>
+      </View>
+    </Animated.View>
+  );
+}
+
+const styles = StyleSheet.create({
+  wrap: {
+    alignSelf: 'center',
+    marginTop: 8,
+    marginBottom: 2,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    paddingTop: 12,
+    borderRadius: 16,
+    backgroundColor: 'rgba(255,255,255,0.55)',
+    borderWidth: 1,
+    borderColor: colors.line,
+    borderLeftWidth: 4,
+    maxWidth: 360,
+    gap: 7,
+    overflow: 'hidden',
+    shadowColor: '#243A34',
+    shadowOpacity: 0.12,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 5 },
+    elevation: 3,
+  },
+  wrapDawn: {
+    backgroundColor: 'rgba(255, 244, 220, 0.72)',
+    borderColor: 'rgba(201, 168, 90, 0.28)',
+  },
+  topAccent: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 2,
+    opacity: 0.55,
+    zIndex: 2,
+  },
+  topSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '36%',
+    backgroundColor: 'rgba(255,255,255,0.28)',
+  },
+  cornerWash: {
+    position: 'absolute',
+    width: 72,
+    height: 72,
+    borderRadius: 36,
+    right: -16,
+    bottom: -12,
+  },
+  chipSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '55%',
+    backgroundColor: 'rgba(255,255,255,0.32)',
+  },
+  headRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 8,
+  },
+  headLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+  },
+  label: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 11,
+    color: colors.calm,
+    letterSpacing: 0.3,
+    textTransform: 'uppercase',
+  },
+  accentDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+  },
+  totalChip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 8,
+    backgroundColor: 'rgba(63, 111, 98, 0.12)',
+    borderWidth: 1,
+    borderColor: 'rgba(63, 111, 98, 0.2)',
+    overflow: 'hidden',
+  },
+  totalChipDawn: {
+    backgroundColor: 'rgba(201, 168, 90, 0.16)',
+    borderColor: 'rgba(201, 168, 90, 0.3)',
+  },
+  totalLead: {
+    width: 5,
+    height: 5,
+    borderRadius: 3,
+  },
+  total: {
+    fontFamily: fonts.bodyBold,
+    fontSize: 11,
+    color: colors.brandDeep,
+  },
+  waveTrack: {
+    height: 3,
+    borderRadius: 3,
+    backgroundColor: 'rgba(36, 51, 58, 0.08)',
+    overflow: 'hidden',
+  },
+  waveFill: {
+    height: 3,
+    borderRadius: 3,
+  },
+  row: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 6,
+  },
+  pill: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    paddingHorizontal: 8,
+    paddingVertical: 5,
+    borderRadius: 10,
+    borderWidth: 1,
+    minWidth: 108,
+    overflow: 'hidden',
+  },
+  pillBody: {
+    flex: 1,
+    gap: 3,
+  },
+  dot: {
+    width: 7,
+    height: 7,
+    borderRadius: 4,
+  },
+  pillText: {
+    fontFamily: fonts.body,
+    fontSize: 12,
+    color: colors.ink,
+  },
+  miniTrack: {
+    height: 3,
+    borderRadius: 2,
+    backgroundColor: 'rgba(36,51,58,0.1)',
+    overflow: 'hidden',
+  },
+  miniFill: {
+    height: '100%',
+    borderRadius: 2,
+  },
+  tipChip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    paddingHorizontal: 8,
+    paddingVertical: 5,
+    borderRadius: 10,
+    borderWidth: 1,
+    overflow: 'hidden',
+  },
+  tipDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+  },
+  hint: {
+    fontFamily: fonts.body,
+    fontSize: 11,
+    lineHeight: 15,
+    color: colors.inkSoft,
+    flexShrink: 1,
+  },
+});
