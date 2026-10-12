@@ -20,13 +20,13 @@ Two worlds, one couch. Start in a cozy apartment, climb to the roof, step throug
 
 **Title:** Bus Stop Forever  
 **Description:**
-An infinite calm bus stop. The bus comes and goes; you don't have to. Soft goals work alone; wait together when friends arrive — the timetable, newsbox, and notepad know. Soft complete, then still waiting is fine — the stop remembers when company drifts back. Tickets, waves, soft rain.
+An infinite calm bus stop. The bus comes and goes; you don't have to. Soft goals work alone; wait together when friends arrive — the timetable, newsbox, and notepad know. Soft complete, then still waiting is enough — the stop remembers when company drifts back. Tickets, waves, soft rain.
 
 ### Star Porch
 
 **Title:** Star Porch  
 **Description:**
-A wooden night porch under soft stars. Rocking chairs, a porch swing, and fireflies that drift back. Soft goals work alone; the jar fills; string lights and the porch lamp warm when company is near — and soften when they drift. Soft complete — the jar remembers; stay.
+A wooden night porch under soft stars. Rocking chairs, a porch swing, and fireflies that drift back. Soft goals work alone; the jar fills; string lights and the porch lamp warm when company is near — and soften when they drift. Soft complete — still here is enough; the jar remembers; stay.
 
 ## Parked for later
 
