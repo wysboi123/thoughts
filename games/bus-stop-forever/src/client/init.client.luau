@@ -190,6 +190,7 @@ local _, complete, nudgeOptional = SoftGoals.mount(playerGui, "tonight's soft go
 		benchSit.softStay()
 		if softCompanyHandle then
 			softCompanyHandle.refresh()
+			softCompanyHandle.softStay()
 		end
 		if nearbyCount < 1 then
 			proximity.setBoost(1.12)
@@ -459,6 +460,14 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 			return "bus is here · wait together · stay"
 		end
 		return "wait together · stay soft"
+	end,
+	StayTextFn = function()
+		if softLingered and softCompleteOptionalOpen then
+			return "still here · enough · waiting together still open"
+		elseif softLingered then
+			return "still here · enough · wait continues"
+		end
+		return "alone is fine · enough"
 	end,
 	OneTextFn = function()
 		if softLingered then

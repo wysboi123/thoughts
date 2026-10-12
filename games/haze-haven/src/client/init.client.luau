@@ -67,6 +67,7 @@ local _, complete, nudgeOptional = SoftGoals.mount(playerGui, "tonight's soft go
 		hazeSit.softStay()
 		if softCompanyHandle then
 			softCompanyHandle.refresh()
+			softCompanyHandle.softStay()
 		end
 		VibeBoard.setLingered(true)
 		if not hazeCompanyNear then
@@ -235,6 +236,14 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 			return "soft-complete · vibes sync · stay"
 		end
 		return "vibes sync · stay soft"
+	end,
+	StayTextFn = function()
+		if softLingered and softCompleteOptionalOpen then
+			return "still here · enough · vibe sync still open"
+		elseif softLingered then
+			return "still here · enough · vibes soft"
+		end
+		return "alone is fine · enough"
 	end,
 	OneTextFn = function()
 		return if softLingered then "still here · vibes syncing" else "soft company · vibes syncing"

@@ -197,6 +197,7 @@ local _, complete, nudgeOptional = SoftGoals.mount(playerGui, "tonight's soft go
 		porchSit.softStay()
 		if softCompanyHandle then
 			softCompanyHandle.refresh()
+			softCompanyHandle.softStay()
 		end
 		if proximityHandle and not porchCompanyNear then
 			proximityHandle.setBoost(1.12)
@@ -350,6 +351,14 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 			return "soft-complete · jar glow · stay"
 		end
 		return "jar glow · stay soft"
+	end,
+	StayTextFn = function()
+		if softLingered and softCompleteOptionalOpen then
+			return "still here · enough · porch still open"
+		elseif softLingered then
+			return "still here · enough · jar remembers"
+		end
+		return "alone is fine · enough"
 	end,
 	OneTextFn = function()
 		return if softLingered then "still here · porch feels warmer" else "soft company · porch feels warmer"

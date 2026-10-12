@@ -18,6 +18,8 @@ export type SoftCompanyConfig = {
 	ReturnTextFn: (() -> string)?,
 	-- Soft bridge after ReturnTextFn hold before One/Many settle
 	AfterReturnTextFn: (() -> string)?,
+	-- Brief soft-stay copy when alone after linger (playtime enough)
+	StayTextFn: (() -> string)?,
 	OneText: string?,
 	OneTextFn: (() -> string)?,
 	ManyText: ((number) -> string)?,
@@ -32,6 +34,8 @@ export type SoftCompanyHud = {
 	gui: ScreenGui,
 	-- Immediate copy refresh (e.g. after OnLinger still-here flip); soft linger pulse
 	refresh: () -> (),
+	-- One soft-stay Alone/Stay pulse ~48s after arm (playtime)
+	softStay: () -> (),
 }
 
 local SoftCompany = {}
@@ -62,6 +66,8 @@ function SoftCompany.mount(playerGui: PlayerGui, localPlayer: Player, config: So
 	local departHoldUntil = 0.0
 	local returnHoldUntil = 0.0
 	local everDeparted = false
+	local softStayArmed = false
+	local stayHoldUntil = 0.0
 
 	local function getRoot(character: Model): BasePart?
 		local root = character:FindFirstChild("HumanoidRootPart")
@@ -259,7 +265,7 @@ function SoftCompany.mount(playerGui: PlayerGui, localPlayer: Player, config: So
 	end
 
 	local function refresh()
-		if os.clock() < departHoldUntil or os.clock() < returnHoldUntil then
+		if os.clock() < departHoldUntil or os.clock() < returnHoldUntil or os.clock() < stayHoldUntil then
 			return
 		end
 		local n = if lastCount < 0 then 0 else lastCount
@@ -270,6 +276,37 @@ function SoftCompany.mount(playerGui: PlayerGui, localPlayer: Player, config: So
 		elseif n > 0 or label.Text ~= "" then
 			pulseLinger()
 		end
+	end
+
+	local function softStay()
+		if softStayArmed then
+			return
+		end
+		softStayArmed = true
+		task.delay(48, function()
+			if not label.Parent or lastCount > 0 then
+				return
+			end
+			if os.clock() < departHoldUntil or os.clock() < returnHoldUntil then
+				return
+			end
+			local stay = if config.StayTextFn then config.StayTextFn() else aloneLine()
+			if stay == "" then
+				return
+			end
+			label.Text = stay
+			pulseLinger()
+			stayHoldUntil = os.clock() + 3.2
+			task.delay(3.2, function()
+				if lastCount > 0 or not label.Parent then
+					return
+				end
+				if os.clock() < stayHoldUntil - 0.05 then
+					return
+				end
+				applyCopy(0)
+			end)
+		end)
 	end
 
 	-- Refresh copy when zone flips without count change (e.g. Couch two worlds)
@@ -295,7 +332,7 @@ function SoftCompany.mount(playerGui: PlayerGui, localPlayer: Player, config: So
 			setCount(count)
 		elseif refreshAccum >= 0.75 and (config.OneTextFn or config.AloneTextFn or config.ManyText) then
 			refreshAccum = 0
-			if os.clock() < departHoldUntil or os.clock() < returnHoldUntil then
+			if os.clock() < departHoldUntil or os.clock() < returnHoldUntil or os.clock() < stayHoldUntil then
 				return
 			end
 			-- soft refresh label text without re-firing OnCountChanged
@@ -306,6 +343,7 @@ function SoftCompany.mount(playerGui: PlayerGui, localPlayer: Player, config: So
 	return {
 		gui = gui,
 		refresh = refresh,
+		softStay = softStay,
 	}
 end
 

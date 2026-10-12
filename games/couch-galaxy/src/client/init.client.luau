@@ -298,6 +298,7 @@ local _, complete, nudgeOptional = SoftGoals.mount(playerGui, "tonight's soft go
 		couchSit.softStay()
 		if softCompanyHandle then
 			softCompanyHandle.refresh()
+			softCompanyHandle.softStay()
 		end
 		if proximityHandle and not couchCompanyNear then
 			proximityHandle.setBoost(1.12)
@@ -590,6 +591,18 @@ softCompanyHandle = SoftCompany.mount(playerGui, player, {
 				else "soft-complete · couch · stay"
 		end
 		return if inGalaxy then "loft side · stay soft" else "couch side · stay soft"
+	end,
+	StayTextFn = function()
+		if softLingered and softCompleteOptionalOpen then
+			return if inGalaxy
+				then "still here · enough · loft company still open"
+				else "still here · enough · couch company still open"
+		elseif softLingered then
+			return if inGalaxy
+				then "still here · enough · loft stays"
+				else "still here · enough · couch stays"
+		end
+		return if inGalaxy then "alone is fine · loft enough" else "alone is fine · couch enough"
 	end,
 	OneTextFn = function()
 		if softLingered then
