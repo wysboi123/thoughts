@@ -161,6 +161,19 @@ export function PeaceCore({ left, top, themeDawn, stressed }: Props) {
           },
         ]}
       />
+      <View
+        pointerEvents="none"
+        style={[
+          styles.cornerWash,
+          {
+            backgroundColor: stressed
+              ? 'rgba(196, 120, 120, 0.12)'
+              : themeDawn
+                ? 'rgba(201, 168, 90, 0.12)'
+                : 'rgba(107, 184, 154, 0.12)',
+          },
+        ]}
+      />
       <Animated.View
         pointerEvents="none"
         style={[styles.midHalo, midStyle, { backgroundColor: midColor }]}
@@ -198,12 +211,26 @@ export function PeaceCore({ left, top, themeDawn, stressed }: Props) {
         />
         <View pointerEvents="none" style={styles.coreSheen} />
         <View
+          pointerEvents="none"
+          style={[
+            styles.coreBottomGlow,
+            {
+              backgroundColor: stressed
+                ? 'rgba(196, 120, 120, 0.22)'
+                : themeDawn
+                  ? 'rgba(201, 168, 90, 0.2)'
+                  : 'rgba(107, 184, 154, 0.22)',
+            },
+          ]}
+        />
+        <View
           style={[
             styles.coreInner,
             stressed ? styles.coreInnerStressed : null,
             themeDawn && !stressed ? styles.coreInnerDawn : null,
           ]}
         >
+          <View pointerEvents="none" style={styles.innerSheen} />
           <View style={styles.statusWrap}>
             <View
               pointerEvents="none"
@@ -213,6 +240,17 @@ export function PeaceCore({ left, top, themeDawn, stressed }: Props) {
                   backgroundColor: stressed
                     ? 'rgba(196, 120, 120, 0.28)'
                     : 'rgba(91, 138, 122, 0.22)',
+                },
+              ]}
+            />
+            <View
+              pointerEvents="none"
+              style={[
+                styles.statusRing,
+                {
+                  borderColor: stressed
+                    ? 'rgba(196, 120, 120, 0.4)'
+                    : 'rgba(91, 138, 122, 0.35)',
                 },
               ]}
             />
@@ -268,6 +306,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: 'transparent',
   },
+  cornerWash: {
+    position: 'absolute',
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    right: -14,
+    top: -10,
+  },
   midHalo: {
     position: 'absolute',
     width: 102,
@@ -288,10 +334,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderWidth: 2,
     overflow: 'hidden',
-    shadowOpacity: 0.32,
-    shadowRadius: 12,
-    shadowOffset: { width: 0, height: 4 },
-    elevation: 4,
+    shadowOpacity: 0.4,
+    shadowRadius: 14,
+    shadowOffset: { width: 0, height: 5 },
+    elevation: 5,
   },
   coreTopAccent: {
     position: 'absolute',
@@ -300,14 +346,24 @@ const styles = StyleSheet.create({
     right: 0,
     height: 2,
     opacity: 0.55,
+    zIndex: 2,
   },
   coreSheen: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
-    height: '42%',
-    backgroundColor: 'rgba(255,255,255,0.22)',
+    height: '45%',
+    backgroundColor: 'rgba(255,255,255,0.28)',
+  },
+  coreBottomGlow: {
+    position: 'absolute',
+    left: 10,
+    right: 10,
+    bottom: 0,
+    height: 14,
+    borderRadius: 10,
+    opacity: 0.75,
   },
   coreInner: {
     width: 48,
@@ -316,6 +372,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.55)',
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'hidden',
+  },
+  innerSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '50%',
+    backgroundColor: 'rgba(255,255,255,0.3)',
   },
   coreInnerDawn: {
     backgroundColor: 'rgba(255, 248, 230, 0.7)',
@@ -324,8 +389,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 236, 232, 0.7)',
   },
   statusWrap: {
-    width: 12,
-    height: 12,
+    width: 14,
+    height: 14,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 1,
@@ -335,6 +400,14 @@ const styles = StyleSheet.create({
     width: 12,
     height: 12,
     borderRadius: 6,
+  },
+  statusRing: {
+    position: 'absolute',
+    width: 14,
+    height: 14,
+    borderRadius: 7,
+    borderWidth: 1,
+    opacity: 0.85,
   },
   statusDot: {
     width: 5,
@@ -371,6 +444,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(196, 120, 120, 0.35)',
     overflow: 'hidden',
+    shadowColor: '#243A34',
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 1,
   },
   warnDot: {
     width: 5,
@@ -397,6 +475,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(107, 184, 154, 0.28)',
     overflow: 'hidden',
+    shadowColor: '#243A34',
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 1,
   },
   holdDot: {
     width: 5,
@@ -410,7 +493,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: '55%',
-    backgroundColor: 'rgba(255,255,255,0.22)',
+    backgroundColor: 'rgba(255,255,255,0.32)',
   },
   holdText: {
     fontFamily: fonts.bodyMedium,
