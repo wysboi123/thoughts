@@ -1,50 +1,45 @@
-# Overnight + hourly schedule (mobile pivot)
+# Overnight schedule
 
-Femmy order (2026-09-30): **Pivot to mobile app** with sensible microtransactions + basic subscription. iOS + Android publish path.
+Femmy order (2026-09-24): **Run until 5 AM. Stop and continue daily.**
 
-Prior order still applies for cadence: **~30 minutes every hour**, night envelope 23:00→05:00 UTC, email progress to `ngkdevid@gmail.com`.
-
-## Hourly batch mode (active)
-
-| | |
-| --- | --- |
-| **Work** | ~30 minutes shipping on `mobile/thought-defense` |
-| **Rest** | ~30 minutes idle (timer wakes next batch) |
-| **Focus** | Playable loop · store assets · IAP testing · EAS · listing copy |
-| **Consult** | Ask Femmy only when blocked (bundle ids, store accounts, legal) |
-| **Email** | Progress note to `ngkdevid@gmail.com` at end of each batch (and 05:00 stop) |
-| **Limits** | If approaching Cursor usage limits: commit+push, lengthen rest |
-
-### Timers (cursor-subscriptions) — retargeted
-
-| Name | Type | Job |
-| --- | --- | --- |
-| `thought-defense-mobile-hourly` | cron `15 * * * *` | Start next 30-min **mobile** batch (`mobile/thought-defense`, PR **#4**) |
-| `overnight-stop-5am-utc` | once → 05:00 | Hard stop + digest if inside night window |
-| `overnight-daily-resume` | cron `0 23 * * *` | Night envelope resume |
-
-**Retire / do not re-arm:** `thought-defense-hourly` — legacy Roblox payload (`games/thought-defense`, Upgrade chrome, PR #2). If it still fires, **ignore Roblox instructions** and run the mobile checklist below; then unsubscribe it and ensure `thought-defense-mobile-hourly` is the only hourly.
-
-**Correct hourly prompt must say:** app `mobile/thought-defense` · branch `cursor/mobile-thought-defense-5a0d` · PR #4 · Draft C locked · no Roblox TD / no PR #2.
-
-## Night envelope
+## Window
 
 | | |
 | --- | --- |
 | **Shift** | 23:00 → 05:00 **UTC** |
-| **Stop** | 05:00 UTC — commit, push, wake note, digest email |
-| **Resume** | Daily 23:00 UTC |
+| **Stop** | 05:00 UTC — commit, push, wake note, **one** digest email, no new features |
+| **Resume** | Daily at 23:00 UTC (timer `overnight-daily-resume`) |
 
-## Batch checklist
+If Femmy meant a different timezone for “5 AM”, say so and we retarget the timers.
 
-1. Read `docs/APP_BACKLOG.md` + `docs/DESIGN_CONSULT.md`
-2. Ship one vertical slice in Expo app (code → typecheck → commit → push → PR)
-3. Append wake note
-4. Remember decisions in Adapter (when auth ok) / `docs/MEMORY.md`
-5. Email update
-6. Confirm `thought-defense-mobile-hourly` timer; **end turn**
+## Email (Femmy 2026-09-27)
 
-## Out of scope this pivot
+**No mid-shift emails.** Do not send Gmail (or other digests) after each commit/push/PR update.
 
-- Roblox Studio / Rojo hourly TD (paused)
-- Upgrade chrome mockup A/B/C Luau (superseded)
+At **05:00 stop only**, send **one** email to `ngkdevid@gmail.com` with:
+- night number / date
+- full commit list for the shift (`git log` since 23:00 UTC)
+- PR link
+- what’s blocked / next night
+
+Mid-shift: batch work quietly; update the PR at most at checkpoints/stop, not after every commit.
+
+## Timers (cursor-subscriptions)
+
+| Name | Type | Job |
+| --- | --- | --- |
+| `overnight-stop-5am-utc` | once / delay to 05:00 | Hard stop + wrap-up + **one digest email** |
+| `overnight-daily-resume` | cron `0 23 * * *` | Start next night shift |
+
+At each resume: re-arm a fresh `overnight-stop-5am-utc` once-timer for that night.
+
+## During the shift
+
+1. Backlog → code → **batch** commit/push (not after every tiny edit)
+2. Queue Perplexity gaps in `docs/RESEARCH_QUEUE.md`
+3. Append `docs/WAKE_NOTES.md` at stop (and sparingly at major checkpoints)
+4. **One** digest email at stop only
+
+## Outside the window
+
+Do not start new game features. Answer Femmy if pinged; otherwise wait for daily resume.

@@ -1,5 +1,7 @@
 # Lantern Drift
 
+> **Parked for later (2026-09-29).** Files kept — do not erase. Active overnight focus is Haze / Couch / Bus / Porch.
+
 Fog lake. Soft raft. Floating lanterns. Sit and drift — no race, no fail.
 
 ## Play

@@ -1,16 +1,33 @@
-# Games / apps gallery
+# Games gallery
 
-## Primary (active)
+Femmy’s chill Roblox line. All Rojo filesystem-first. Play: `cd games/<slug> && rojo serve`.
 
-| Slug | Platform | Version | One-liner |
+## Active (USP pass)
+
+| Slug | Version | Verb | USP |
 | --- | --- | --- | --- |
-| [`thought-defense`](../mobile/thought-defense) | Expo iOS+Android | 1.0.0-slice | Soft mindscape TD · Clarity Pass · stub IAP |
+| [`haze-haven`](../games/haze-haven) | 3.36 | float / sit | Soft-complete · company still open |
+| [`couch-galaxy`](../games/couch-galaxy) | 3.34 | climb / float | Soft-complete · company still open |
+| [`bus-stop-forever`](../games/bus-stop-forever) | 3.35 | wait / wave | Soft-complete · together still open |
+| [`star-porch`](../games/star-porch) | 3.33 | sit / glow | Soft-complete · porch still open |
 
-## Legacy Roblox (paused)
+## Parked for later (files kept)
 
-See [`LEGACY_ROBLOX.md`](LEGACY_ROBLOX.md). Do not schedule hourly Rojo work.
+Do not delete. Resume when Femmy asks.
 
-| Slug | Version | Notes |
-| --- | --- | --- |
-| haze-haven … star-porch | 1.x | Chill hangouts — paused |
-| thought-defense (Roblox) | 0.2.4 | Paused; mobile is canonical |
+| Slug | Version | Verb | One-liner |
+| --- | --- | --- | --- |
+| [`slow-orbit`](../games/slow-orbit) | 1.2 | orbit | Bead sparkle + planet/moonlet glow |
+| [`puddle-mirror`](../games/puddle-mirror) | 1.2 | ripple | Plaza breathe + nook puddles + dew |
+| [`lantern-drift`](../games/lantern-drift) | 1.1 | drift | Rope coil bob + gangway + shore lights |
+
+Shared: [`packages/chill`](../packages/chill) · USPs: [`USPS.md`](USPS.md) · Publish: [`PUBLISH_CHECKLIST.md`](PUBLISH_CHECKLIST.md) · Soft invite (later): [`SOFT_INVITE.md`](SOFT_INVITE.md)
+
+## Soft goals + welcome + company
+
+Active games use `Chill.SoftGoals`, `Chill.SoftWelcome`, `Chill.SoftSit`, `Chill.Proximity`, and `Chill.SoftCompany`.
+
+## Blocked on Femmy
+
+1. Perplexity answers → `docs/research/` (esp. Q-004 audio ids)
+2. First Studio publish of any place
