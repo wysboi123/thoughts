@@ -9,6 +9,8 @@ local Remotes = require(Shared:WaitForChild("Remotes"))
 local PartFactory = require(ReplicatedStorage:WaitForChild("Chill"):WaitForChild("PartFactory"))
 
 local counts: { [number]: number } = {}
+local sessionFlies = 0
+local JAR_FILL_CAP = Config.JarFillCap
 
 PartFactory.clearDefaults(Workspace)
 local world = Instance.new("Folder")
@@ -315,7 +317,62 @@ jarLight.Brightness = 1.6
 jarLight.Range = 10
 jarLight.Color = Config.Firefly.Color
 jarLight.Parent = jarGlow
+jarGlow:SetAttribute("BaseSize", 0.7)
 jar.Parent = world
+
+local jarGui = Instance.new("SurfaceGui")
+jarGui.Name = "JarFillGui"
+jarGui.Face = Enum.NormalId.Front
+jarGui.SizingMode = Enum.SurfaceGuiSizingMode.PixelsPerStud
+jarGui.PixelsPerStud = 50
+jarGui.Parent = jar
+local jarLabel = Instance.new("TextLabel")
+jarLabel.Name = "JarFillLabel"
+jarLabel.Size = UDim2.fromScale(1, 1)
+jarLabel.BackgroundTransparency = 1
+jarLabel.Font = Enum.Font.GothamMedium
+jarLabel.TextSize = 18
+jarLabel.TextWrapped = true
+jarLabel.TextColor3 = Color3.fromRGB(210, 255, 180)
+jarLabel.Text = "jar\nempty"
+jarLabel.Parent = jarGui
+
+local function refreshJarFill()
+	local fill = math.clamp(sessionFlies / JAR_FILL_CAP, 0, 1)
+	local base = jarGlow:GetAttribute("BaseSize")
+	local baseN = if typeof(base) == "number" then base else 0.7
+	local size = baseN + fill * 1.1
+	jarGlow.Size = Vector3.new(size, size, size)
+	jarLight.Brightness = 1.4 + fill * 2.4
+	jarLight.Range = 10 + fill * 14
+	jar.Transparency = 0.5 - fill * 0.25
+	if fill <= 0 then
+		jarLabel.Text = "jar\nempty"
+	elseif fill < 0.5 then
+		jarLabel.Text = ("jar\n%d/%d"):format(sessionFlies, JAR_FILL_CAP)
+	elseif fill < 1 then
+		jarLabel.Text = "jar\nhalf"
+	else
+		jarLabel.Text = "jar\nfull"
+	end
+	local pathGlow = world:FindFirstChild("YardPathGlow")
+	if pathGlow and pathGlow:IsA("BasePart") then
+		local pathLight = pathGlow:FindFirstChildOfClass("PointLight")
+		if pathLight then
+			pathLight.Brightness = 0.85 + fill * 0.9
+			pathLight.Range = 12 + fill * 8
+		end
+		pathGlow.Transparency = 0.55 - fill * 0.2
+	end
+	for _, child in world:GetChildren() do
+		if string.find(child.Name, "StringLight", 1, true) and child:IsA("BasePart") then
+			local light = child:FindFirstChildOfClass("PointLight")
+			if light then
+				light:SetAttribute("JarFillBoost", fill)
+			end
+		end
+	end
+end
 
 -- Dual rocking chairs (Seats)
 local function makeSeat(name: string, pos: Vector3, color: Color3): Seat
@@ -473,7 +530,10 @@ for i = 1, Config.Firefly.Count do
 		fly.Transparency = 1
 		fly.CanTouch = false
 		counts[player.UserId] = (counts[player.UserId] or 0) + 1
+		sessionFlies += 1
+		refreshJarFill()
 		Remotes.FireflyCollected:FireClient(player, counts[player.UserId])
+		Remotes.JarFillChanged:FireAllClients(sessionFlies, JAR_FILL_CAP)
 		task.delay(Config.Firefly.RespawnSeconds, function()
 			if not fly.Parent then
 				return
@@ -485,40 +545,69 @@ for i = 1, Config.Firefly.Count do
 	end)
 end
 
+local function companyNearOnPorch(): boolean
+	local roots: { BasePart } = {}
+	for _, p in Players:GetPlayers() do
+		local character = p.Character
+		local root = character and character:FindFirstChild("HumanoidRootPart")
+		if root and root:IsA("BasePart") then
+			table.insert(roots, root)
+		end
+	end
+	local radius = Config.Proximity.Radius
+	for i = 1, #roots do
+		for j = i + 1, #roots do
+			if (roots[i].Position - roots[j].Position).Magnitude <= radius then
+				return true
+			end
+		end
+	end
+	return false
+end
+
 -- Firefly drift + soft chime sway
 task.spawn(function()
 	local t = 0
 	while true do
 		t += task.wait(0.04)
+		local companyOnPorch = companyNearOnPorch()
+		local jarPos = Vector3.new(10, 4.2, 11)
 		for i, fly in fireflies do
 			if fly:GetAttribute("Collected") then
 				continue
 			end
 			local home = fly:GetAttribute("HomePosition")
 			if typeof(home) == "Vector3" then
-				fly.Position = home
-					+ Vector3.new(
-						math.sin(t * 1.3 + i) * 1.4,
-						math.sin(t * 2.1 + i * 0.7) * 1.1,
-						math.cos(t * 1.1 + i) * 1.2
-					)
+				local drift = Vector3.new(
+					math.sin(t * 1.3 + i) * 1.4,
+					math.sin(t * 2.1 + i * 0.7) * 1.1,
+					math.cos(t * 1.1 + i) * 1.2
+				)
+				if companyOnPorch then
+					local toward = (jarPos - home) * 0.08
+					drift = drift + toward
+				end
+				fly.Position = home + drift
 			end
 		end
 		for _, child in world:GetChildren() do
 			if child:IsA("BasePart") and child:GetAttribute("IsChime") then
 				local home = child:GetAttribute("HomePosition")
 				if typeof(home) == "Vector3" then
-					local sway = math.sin(t * 1.4 + home.X) * 0.15
+					local amp = if companyOnPorch then 0.28 else 0.15
+					local sway = math.sin(t * 1.4 + home.X) * amp
 					child.CFrame = CFrame.new(home + Vector3.new(sway, 0, sway * 0.4))
-						* CFrame.Angles(0, 0, math.sin(t * 1.6 + home.X) * 0.08)
+						* CFrame.Angles(0, 0, math.sin(t * 1.6 + home.X) * (if companyOnPorch then 0.14 else 0.08))
 				end
 			elseif child.Name == "JarGlow" and child:IsA("BasePart") then
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then
-					light.Brightness = 1.2 + math.sin(t * 3) * 0.5
+					local fill = math.clamp(sessionFlies / JAR_FILL_CAP, 0, 1)
+					light.Brightness = (1.4 + fill * 2.4) + math.sin(t * 3) * (0.35 + fill * 0.25)
 				end
 			elseif child.Name == "FireflyJar" and child:IsA("BasePart") then
-				child.Transparency = 0.4 + math.sin(t * 1.5) * 0.1
+				local fill = math.clamp(sessionFlies / JAR_FILL_CAP, 0, 1)
+				child.Transparency = (0.5 - fill * 0.25) + math.sin(t * 1.5) * 0.06
 			elseif child.Name == "Moon" and child:IsA("BasePart") then
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then
@@ -528,7 +617,8 @@ task.spawn(function()
 			elseif child.Name == "WarmMug" and child:IsA("BasePart") then
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then
-					light.Brightness = 0.4 + math.sin(t * 2.2) * 0.25
+					local companyBoost = if companyOnPorch then 0.35 else 0
+					light.Brightness = 0.4 + companyBoost + math.sin(t * 2.2) * 0.25
 				end
 			elseif child.Name == "SideTable" and child:IsA("BasePart") then
 				local warm = (math.sin(t * 0.9) + 1) / 2
@@ -545,27 +635,44 @@ task.spawn(function()
 			elseif child.Name == "FirePitGlow" and child:IsA("BasePart") then
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then
-					light.Brightness = 1.4 + math.sin(t * 2.8) * 0.45
+					local companyBoost = if companyOnPorch then 0.55 else 0
+					light.Brightness = 1.4 + companyBoost + math.sin(t * 2.8) * 0.45
+					light.Range = if companyOnPorch then 22 else 18
 				end
-				child.Transparency = 0.22 + math.sin(t * 3.1) * 0.06
+				child.Transparency = (if companyOnPorch then 0.15 else 0.22) + math.sin(t * 3.1) * 0.06
 			elseif child.Name == "FirePitRing" and child:IsA("BasePart") then
 				local warm = (math.sin(t * 2.8) + 1) / 2
 				child.Color = Color3.fromRGB(70, 65, 60):Lerp(Color3.fromRGB(95, 75, 55), warm * 0.5)
 			elseif child.Name == "YardPathGlow" and child:IsA("BasePart") then
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then
-					light.Brightness = 0.85 + math.sin(t * 1.25) * 0.3
+					local companyBoost = if companyOnPorch then 0.35 else 0
+					light.Brightness = 0.85 + companyBoost + math.sin(t * 1.25) * 0.3
 				end
 				child.Transparency = 0.5 + math.sin(t * 1.25) * 0.1
 			elseif child.Name == "PorchLamp" and child:IsA("BasePart") then
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then
-					light.Brightness = 1.8 + math.sin(t * 1.3) * 0.4
+					local fillBoost = 0
+					local jarGlow = world:FindFirstChild("JarGlow")
+					if jarGlow and jarGlow:IsA("BasePart") then
+						local base = jarGlow:GetAttribute("BaseSize")
+						local baseN = if typeof(base) == "number" then base else 0.7
+						fillBoost = math.clamp((jarGlow.Size.X - baseN) / 1.1, 0, 1)
+					end
+					local companyBoost = if companyOnPorch then 0.45 else 0
+					light.Brightness = (1.8 + fillBoost * 0.6 + companyBoost) + math.sin(t * 1.3) * 0.4
+					light.Range = 22 + fillBoost * 8 + (if companyOnPorch then 4 else 0)
 				end
 			elseif string.find(child.Name, "StringLight", 1, true) and child:IsA("BasePart") then
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then
-					light.Brightness = 0.95 + math.sin(t * 2.1 + child.Position.X) * 0.35
+					local fillBoost = light:GetAttribute("JarFillBoost")
+					local fillN = if typeof(fillBoost) == "number" then fillBoost else 0
+					local companyBoost = if companyOnPorch then 0.35 else 0
+					light.Brightness = (0.95 + fillN * 0.85 + companyBoost)
+						+ math.sin(t * 2.1 + child.Position.X) * (0.35 + fillN * 0.15)
+					light.Range = 12 + fillN * 6 + (if companyOnPorch then 3 else 0)
 				end
 			elseif string.find(child.Name, "SkyStar", 1, true) and child:IsA("BasePart") then
 				child.Transparency = 0.15 + math.sin(t * 1.8 + child.Position.X) * 0.2
@@ -577,13 +684,15 @@ task.spawn(function()
 			elseif child:IsA("BasePart") and child:GetAttribute("IsRocker") then
 				local home = child:GetAttribute("HomePosition")
 				if typeof(home) == "Vector3" then
-					local sway = math.sin(t * 0.7 + home.X) * 0.08
+					local amp = if companyOnPorch then 0.16 else 0.08
+					local sway = math.sin(t * 0.7 + home.X) * amp
 					child.Position = home + Vector3.new(0, 0, sway)
 				end
 			elseif child:IsA("BasePart") and child:GetAttribute("IsSwing") then
 				local home = child:GetAttribute("HomePosition")
 				if typeof(home) == "Vector3" then
-					local sway = math.sin(t * 0.9) * 0.35
+					local amp = if companyOnPorch then 0.48 else 0.35
+					local sway = math.sin(t * 0.9) * amp
 					child.Position = home + Vector3.new(sway, 0, 0)
 				end
 			end
