@@ -15,6 +15,10 @@ Sources: Creator Hub Discovery (playtime / bounce). No new Perplexity answers ov
 
 SoftCompany **StayTextFn** + **softStay()** — ~48s after OnLinger when alone, brief “still here · enough …” then settle to AloneText.
 
+## CP2 deepen
+
+SoftWelcome soft-stay follow-up (~50s after OnLinger when sealed) — “still here · enough · no rush”. Publish checklist + EXPERIENCE_COPY soft-stay beat.
+
 ## SoftInvite / audio
 
 Still gated. SoftInvite post-publish only. Audio blocked on Q-004 — do not invent ids.

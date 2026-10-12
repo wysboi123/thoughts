@@ -216,6 +216,18 @@ local _, complete, nudgeOptional = SoftGoals.mount(playerGui, "tonight's soft go
 			FrameColor = busStyle.FrameColor,
 			HoldSeconds = 3.4,
 		})
+		if optionalLeft == 0 then
+			task.delay(50, function()
+				if not playerGui.Parent then
+					return
+				end
+				SoftWelcome.show(playerGui, "still here · enough", "another bus will come · no rush", {
+					AccentColor = busStyle.AccentColor,
+					FrameColor = busStyle.FrameColor,
+					HoldSeconds = 2.8,
+				})
+			end)
+		end
 		refreshStatus()
 	end,
 })

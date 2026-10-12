@@ -19,6 +19,7 @@ rojo serve
    - SoftWelcome toast holds ~6s + SoftCompany line at bottom-left
    - SoftGoals top-right: vibes · sit · float · vibe sync (◦ optional — solo soft-complete OK; “company still open”)
    - After ~48s soft-complete: SoftGoals title “still here · soft” + linger toast (playtime stay)
+   - Soft-stay (~42–54s after linger): SoftGoals “still here · enough”; SoftSit empty re-show; SoftCompany StayTextFn; SoftWelcome “enough · no rush”
    - Linger alone: soft proximity glow (~1.12); SoftCompany copy flips to “still here · …”
    - Company leaves: SoftCompany “they drifted · stay” + once SoftWelcome; seat SoftSit “seat open” briefly
    - Company returns after leave: SoftCompany “company again” + SoftGoals “still here · company again” if sync still open

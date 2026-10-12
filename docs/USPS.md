@@ -16,10 +16,10 @@ Research refresh 2026-10-02: Creator Hub ranks **intentional co-play days** as a
 
 | Priority | Game | USP | Why it sells | Implementation | Status |
 | --- | --- | --- | --- | --- | --- |
-| **P0** | Haze Haven | **Vibe sync** | Board + orbs feel better when friends are near | Soft-stay SoftGoals/Sit/Company | ✅ v3.35 |
-| **P0** | Bus Stop Forever | **Waiting together** | Timetable + HUD sit/company loop | Soft-stay SoftGoals/Sit/Company | ✅ v3.34 |
-| **P0** | Star Porch | **Jar that fills** | Fireflies return; jar visibly fills | Soft-stay SoftGoals/Sit/Company | ✅ v3.32 |
-| **P1** | Couch Galaxy | **Two worlds, one couch** | Clear home ↔ galaxy identity | Soft-stay SoftGoals/Sit/Company | ✅ v3.33 |
+| **P0** | Haze Haven | **Vibe sync** | Board + orbs feel better when friends are near | Soft-stay trio + enough toast | ✅ v3.36 |
+| **P0** | Bus Stop Forever | **Waiting together** | Timetable + HUD sit/company loop | Soft-stay trio + enough toast | ✅ v3.35 |
+| **P0** | Star Porch | **Jar that fills** | Fireflies return; jar visibly fills | Soft-stay trio + enough toast | ✅ v3.33 |
+| **P1** | Couch Galaxy | **Two worlds, one couch** | Clear home ↔ galaxy identity | Soft-stay trio + enough toast | ✅ v3.34 |
 | **P2** | Haze Haven | Shared vibe board | Soft ranks without competition toxicity | Already: VibeBoard | ✅ |
 | **P2** | Line (post-publish) | Soft invite prompt | Discovery co-play days | SocialService — after first Studio publish | ⏳ |
 | **Later** | Parked trio | Resume USPs when Femmy unparks | Files kept | — | Parked |
@@ -50,7 +50,7 @@ Research refresh 2026-10-02: Creator Hub ranks **intentional co-play days** as a
 
 **Night 17 deepen:** Place-warmth on company depart/return — Haze VibeBoard · Bus news/timetable · Porch jar hint · Couch beacon/portal/plaque · research `hangout-usps-2026-10-11.md`
 
-**Night 18 deepen:** SoftGoals “still here · enough” · SoftSit **softStay** · SoftCompany **StayTextFn** + **softStay** · research `hangout-usps-2026-10-12.md`
+**Night 18 deepen:** SoftGoals/SoftSit/SoftCompany soft-stay · SoftWelcome “enough · no rush” · research `hangout-usps-2026-10-12.md`
 
 ## Copy hooks (thumbnails / description)
 

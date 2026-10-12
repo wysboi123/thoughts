@@ -213,6 +213,18 @@ local _, complete, nudgeOptional = SoftGoals.mount(playerGui, "tonight's soft go
 			FrameColor = Color3.fromRGB(22, 28, 20),
 			HoldSeconds = 3.4,
 		})
+		if optionalLeft == 0 then
+			task.delay(50, function()
+				if not playerGui.Parent then
+					return
+				end
+				SoftWelcome.show(playerGui, "still here · enough", "jar remembers · no rush", {
+					AccentColor = Color3.fromRGB(140, 180, 120),
+					FrameColor = Color3.fromRGB(22, 28, 20),
+					HoldSeconds = 2.8,
+				})
+			end)
+		end
 	end,
 })
 
