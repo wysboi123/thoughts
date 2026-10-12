@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-12 02:20 UTC — Night hourly (v1.4.57 SoftFxLayer)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.57:** SoftFxLayer — outer wash · spark core · richer mote glow · extra mote · longer plant/clear life
+- Did not redo DualModeTray (1.4.56) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-12 01:20 UTC — Night hourly (v1.4.56 DualModeTray)
 
 - Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply

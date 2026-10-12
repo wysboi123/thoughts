@@ -19,9 +19,9 @@ type Props = {
 };
 
 const LIFE = {
-  plant: 0.96,
-  shot: 0.56,
-  clear: 0.86,
+  plant: 1.05,
+  shot: 0.58,
+  clear: 0.94,
 } as const;
 
 function SoftMote({
@@ -58,7 +58,7 @@ function SoftMote({
   }, [item.id, t, delay, reduceMotion]);
 
   const style = useAnimatedStyle(() => {
-    const size = 4 + t.value * 4;
+    const size = 4.5 + t.value * 5;
     return {
       position: 'absolute' as const,
       left: item.x * width + dx * t.value - size / 2,
@@ -67,9 +67,13 @@ function SoftMote({
       height: size,
       borderRadius: 999,
       backgroundColor: accent,
-      opacity: 0.72 * (1 - t.value),
-      borderWidth: 1,
-      borderColor: 'rgba(255,255,255,0.35)',
+      opacity: 0.78 * (1 - t.value),
+      borderWidth: 1.2,
+      borderColor: 'rgba(255,255,255,0.45)',
+      shadowColor: accent,
+      shadowOpacity: 0.35 * (1 - t.value),
+      shadowRadius: 3,
+      shadowOffset: { width: 0, height: 0 },
     };
   });
 
@@ -91,6 +95,7 @@ function FxRipple({
   const inner = useSharedValue(0);
   const mid = useSharedValue(0);
   const halo = useSharedValue(0);
+  const wash = useSharedValue(0);
   const spark = useSharedValue(0);
   const isPlant = item.kind === 'plant';
   const isClear = item.kind === 'clear';
@@ -101,13 +106,14 @@ function FxRipple({
     inner.value = 0;
     mid.value = 0;
     halo.value = 0;
+    wash.value = 0;
     spark.value = 0;
     if (reduceMotion) {
       progress.value = withTiming(1, { duration: 180, easing: Easing.out(Easing.quad) });
       spark.value = withTiming(1, { duration: 180, easing: Easing.out(Easing.quad) });
       return;
     }
-    const outerDur = isPlant ? 840 : isClear ? 760 : 520;
+    const outerDur = isPlant ? 900 : isClear ? 820 : 540;
     progress.value = withTiming(1, {
       duration: outerDur,
       easing: Easing.out(Easing.cubic),
@@ -127,19 +133,23 @@ function FxRipple({
       }),
     );
     if (isPlant || isClear) {
+      wash.value = withTiming(1, {
+        duration: outerDur * 1.12,
+        easing: Easing.out(Easing.cubic),
+      });
       halo.value = withDelay(
         30,
         withTiming(1, {
-          duration: outerDur * 1.08,
+          duration: outerDur * 1.1,
           easing: Easing.out(Easing.cubic),
         }),
       );
       spark.value = withTiming(1, {
-        duration: 600,
+        duration: 640,
         easing: Easing.out(Easing.cubic),
       });
     }
-  }, [item.id, progress, inner, mid, halo, spark, reduceMotion, isPlant, isClear]);
+  }, [item.id, progress, inner, mid, halo, wash, spark, reduceMotion, isPlant, isClear]);
 
   const outerStyle = useAnimatedStyle(() => {
     const grow = isPlant ? 36 : isClear ? 28 : 16;
@@ -199,8 +209,25 @@ function FxRipple({
     };
   });
 
+  const washStyle = useAnimatedStyle(() => {
+    const grow = isPlant ? 64 : 52;
+    const size = 28 + wash.value * grow * 2;
+    return {
+      position: 'absolute' as const,
+      left: item.x * width - size / 2,
+      top: item.y * height - size / 2,
+      width: size,
+      height: size,
+      borderRadius: 999,
+      borderWidth: 1,
+      borderColor: `${accent}33`,
+      opacity: 0.22 * (1 - wash.value),
+      backgroundColor: `${accent}06`,
+    };
+  });
+
   const haloStyle = useAnimatedStyle(() => {
-    const grow = isPlant ? 52 : 42;
+    const grow = isPlant ? 54 : 44;
     const size = 22 + halo.value * grow * 2;
     return {
       position: 'absolute' as const,
@@ -209,15 +236,15 @@ function FxRipple({
       width: size,
       height: size,
       borderRadius: 999,
-      borderWidth: 1,
+      borderWidth: 1.2,
       borderColor: `${accent}55`,
-      opacity: 0.32 * (1 - halo.value),
-      backgroundColor: `${accent}08`,
+      opacity: 0.36 * (1 - halo.value),
+      backgroundColor: `${accent}0a`,
     };
   });
 
   const sparkStyle = useAnimatedStyle(() => {
-    const size = (isPlant ? 12 : 9) * (0.55 + spark.value * 0.7);
+    const size = (isPlant ? 13 : 10) * (0.55 + spark.value * 0.7);
     return {
       position: 'absolute' as const,
       left: item.x * width - size / 2,
@@ -226,15 +253,19 @@ function FxRipple({
       height: size,
       borderRadius: 999,
       backgroundColor: accent,
-      opacity: 0.9 * (1 - spark.value * 0.85),
+      opacity: 0.92 * (1 - spark.value * 0.85),
       transform: [{ scale: 0.7 + spark.value * 0.55 }],
-      borderWidth: 1.5,
-      borderColor: 'rgba(255,255,255,0.45)',
+      borderWidth: 1.6,
+      borderColor: 'rgba(255,255,255,0.55)',
+      shadowColor: accent,
+      shadowOpacity: 0.4 * (1 - spark.value),
+      shadowRadius: 4,
+      shadowOffset: { width: 0, height: 0 },
     };
   });
 
   const sparkHaloStyle = useAnimatedStyle(() => {
-    const size = (isPlant ? 20 : 15) * (0.5 + spark.value * 0.9);
+    const size = (isPlant ? 22 : 16) * (0.5 + spark.value * 0.9);
     return {
       position: 'absolute' as const,
       left: item.x * width - size / 2,
@@ -242,21 +273,37 @@ function FxRipple({
       width: size,
       height: size,
       borderRadius: 999,
-      borderWidth: 1,
+      borderWidth: 1.2,
       borderColor: `${accent}88`,
-      opacity: 0.4 * (1 - spark.value),
-      backgroundColor: 'transparent',
+      opacity: 0.45 * (1 - spark.value),
+      backgroundColor: `${accent}10`,
+    };
+  });
+
+  const sparkCoreStyle = useAnimatedStyle(() => {
+    const size = (isPlant ? 6 : 4.5) * (0.8 + spark.value * 0.4);
+    return {
+      position: 'absolute' as const,
+      left: item.x * width - size / 2,
+      top: item.y * height - size / 2,
+      width: size,
+      height: size,
+      borderRadius: 999,
+      backgroundColor: 'rgba(255,255,255,0.75)',
+      opacity: 0.85 * (1 - spark.value * 0.9),
     };
   });
 
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill} accessibilityElementsHidden>
+      {!reduceMotion && (isPlant || isClear) ? <Animated.View style={washStyle} /> : null}
       {!reduceMotion && (isPlant || isClear) ? <Animated.View style={haloStyle} /> : null}
       <Animated.View style={outerStyle} />
       {!reduceMotion ? <Animated.View style={midStyle} /> : null}
       {!reduceMotion ? <Animated.View style={innerStyle} /> : null}
       {isClear || isPlant ? <Animated.View style={sparkHaloStyle} /> : null}
       {isClear || isPlant ? <Animated.View style={sparkStyle} /> : null}
+      {isClear || isPlant ? <Animated.View style={sparkCoreStyle} /> : null}
       {!reduceMotion && (isPlant || isClear) ? (
         <>
           <SoftMote
@@ -307,6 +354,16 @@ function FxRipple({
             dx={16}
             dy={6}
             delay={180}
+            reduceMotion={reduceMotion}
+          />
+          <SoftMote
+            item={item}
+            width={width}
+            height={height}
+            accent={accent}
+            dx={-16}
+            dy={2}
+            delay={210}
             reduceMotion={reduceMotion}
           />
         </>

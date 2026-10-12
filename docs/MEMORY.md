@@ -84,15 +84,16 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-11 ~23:20:** SoftPlayHud polish v1.4.54 — corner orb · pill rings · footer/hint chip sheens · richer wrap/pill shadows.
 - **2026-10-12 ~00:20:** FirstRunTipChip polish v1.4.55 — corner orb · progress sheen · Got it accent ring · richer chip/dismiss shadows.
 - **2026-10-12 ~01:20:** DualModeTray polish v1.4.56 — corner orb · card/cost/hint/footer sheens · richer shadows (Draft C locked).
+- **2026-10-12 ~02:20:** SoftFxLayer polish v1.4.57 — outer wash · spark core · richer mote glow · extra mote · longer plant/clear life.
 
 ## State
 
-- Version: **mobile 1.4.56** (DualModeTray polish)
+- Version: **mobile 1.4.57** (SoftFxLayer polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: `247278d` (v1.4.56 DualModeTray · prior tip `1dedca2` / ship `2f92473`)
+- Tip: (after push) v1.4.57 SoftFxLayer · prior tip `0c79296` / ship `247278d`
 - Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
 - Night envelope: **OPEN** · overnight-stop armed (`sub_93be1d91…`, ~05:00 Oct 12) · `overnight-daily-resume` armed (`sub_d6468578…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
-- Next: night hourlies until ~05:00 · SoftFxLayer next polish candidate
+- Next: night hourlies until ~05:00 · PeaceCore next polish candidate
