@@ -195,7 +195,7 @@ export function PadDisc({
           style={[
             styles.selectRing,
             selectRingStyle,
-            { backgroundColor: `${colors.brand}12` },
+            { backgroundColor: `${colors.brand}14` },
           ]}
         />
       ) : null}
@@ -232,14 +232,27 @@ export function PadDisc({
                 ? lanternRim ?? '#E8D48A'
                 : selected
                   ? colors.brand
-                  : 'transparent',
-            shadowOpacity: lantern && filled ? 0.55 : selected ? 0.25 : 0,
-            shadowRadius: lantern && filled ? 8 : selected ? 6 : 0,
-            shadowOffset: { width: 0, height: 0 },
-            elevation: lantern && filled ? 3 : selected ? 2 : 0,
+                  : '#243A34',
+            shadowOpacity: lantern && filled ? 0.6 : selected ? 0.32 : filled ? 0.12 : 0.08,
+            shadowRadius: lantern && filled ? 9 : selected ? 7 : 5,
+            shadowOffset: { width: 0, height: filled || selected ? 2 : 1 },
+            elevation: lantern && filled ? 4 : selected ? 3 : 1,
           },
         ]}
       >
+        <View
+          pointerEvents="none"
+          style={[
+            styles.cornerWash,
+            {
+              backgroundColor: filled
+                ? 'rgba(255,255,255,0.18)'
+                : dawn
+                  ? 'rgba(200,170,120,0.16)'
+                  : 'rgba(91,138,122,0.14)',
+            },
+          ]}
+        />
         {filled ? (
           <View
             pointerEvents="none"
@@ -262,7 +275,26 @@ export function PadDisc({
             style={[styles.filledGlow, { backgroundColor: `${fillColor}55` }]}
           />
         )}
+        {!filled ? (
+          <View
+            pointerEvents="none"
+            style={[
+              styles.emptyGlow,
+              {
+                backgroundColor: dawn
+                  ? 'rgba(200,170,120,0.2)'
+                  : 'rgba(91,138,122,0.18)',
+              },
+            ]}
+          />
+        ) : null}
         {filled ? <View style={styles.innerSheen} pointerEvents="none" /> : null}
+        {selected ? (
+          <View
+            pointerEvents="none"
+            style={[styles.selectCoreRing, { borderColor: `${colors.brand}44` }]}
+          />
+        ) : null}
         {lantern && filled ? <Text style={styles.lanternDot}>✦</Text> : null}
         <Text style={[styles.padText, !filled && styles.padTextEmpty]}>{label}</Text>
         {!filled ? (
@@ -329,6 +361,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     overflow: 'hidden',
   },
+  cornerWash: {
+    position: 'absolute',
+    width: PAD * 0.55,
+    height: PAD * 0.55,
+    borderRadius: PAD * 0.28,
+    right: -PAD * 0.12,
+    top: -PAD * 0.1,
+  },
   emptyAccent: {
     position: 'absolute',
     top: 0,
@@ -336,6 +376,7 @@ const styles = StyleSheet.create({
     right: 0,
     height: 2,
     opacity: 0.55,
+    zIndex: 2,
   },
   filledAccent: {
     position: 'absolute',
@@ -344,14 +385,24 @@ const styles = StyleSheet.create({
     right: 0,
     height: 2,
     opacity: 0.7,
+    zIndex: 2,
   },
   emptySheen: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
-    height: '40%',
-    backgroundColor: 'rgba(255,255,255,0.28)',
+    height: '45%',
+    backgroundColor: 'rgba(255,255,255,0.34)',
+  },
+  emptyGlow: {
+    position: 'absolute',
+    left: 8,
+    right: 8,
+    bottom: 2,
+    height: 10,
+    borderRadius: 8,
+    opacity: 0.65,
   },
   filledGlow: {
     position: 'absolute',
@@ -360,7 +411,7 @@ const styles = StyleSheet.create({
     bottom: 2,
     height: 10,
     borderRadius: 8,
-    opacity: 0.55,
+    opacity: 0.65,
   },
   innerSheen: {
     position: 'absolute',
@@ -369,7 +420,17 @@ const styles = StyleSheet.create({
     width: PAD * 0.45,
     height: PAD * 0.28,
     borderRadius: 999,
-    backgroundColor: 'rgba(255,255,255,0.35)',
+    backgroundColor: 'rgba(255,255,255,0.42)',
+  },
+  selectCoreRing: {
+    position: 'absolute',
+    top: 4,
+    left: 4,
+    right: 4,
+    bottom: 4,
+    borderRadius: (PAD - 8) / 2,
+    borderWidth: 1,
+    opacity: 0.85,
   },
   lanternDot: {
     position: 'absolute',
@@ -401,6 +462,11 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     borderWidth: 1,
     borderColor: 'rgba(36,51,58,0.08)',
+    shadowColor: '#243A34',
+    shadowOpacity: 0.08,
+    shadowRadius: 3,
+    shadowOffset: { width: 0, height: 1 },
+    elevation: 1,
   },
   plantChipSheen: {
     position: 'absolute',
@@ -408,7 +474,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: '55%',
-    backgroundColor: 'rgba(255,255,255,0.35)',
+    backgroundColor: 'rgba(255,255,255,0.42)',
   },
   plantDot: {
     width: 4,
