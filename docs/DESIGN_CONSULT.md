@@ -27,7 +27,7 @@ Stub IAP stays until you pick + we wire. Reply **RC** / **RNIap** / other.
 
 *Clarity Pass price still unanswered — keeping **$2.99/mo** default until you say otherwise (not re-asking price this batch).*
 
-Night hourly ~04:20 Oct 12 — **v1.4.59** PadDisc (last slice before ~05:00). Overnight-stop left armed. Open ask unchanged: **RC vs RNIap** · Pass **$2.99** default.
+Night closed ~05:00 Oct 12 after **v1.4.59** PadDisc. Overnight-stop **not** re-armed. Next resume **23:00 UTC**. Open ask unchanged: **RC vs RNIap** · Pass **$2.99** default.
 
 ## Defaults
 

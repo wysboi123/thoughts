@@ -87,6 +87,7 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-12 ~02:20:** SoftFxLayer polish v1.4.57 — outer wash · spark core · richer mote glow · extra mote · longer plant/clear life.
 - **2026-10-12 ~03:20:** PeaceCore polish v1.4.58 — corner wash · core bottom glow · inner sheen · status ring · richer core/chip shadows.
 - **2026-10-12 ~04:20:** PadDisc polish v1.4.59 — corner wash · empty glow · select core ring · richer pad/plant-chip shadows (last before ~05:00).
+- **2026-10-12 ~05:00 OVERNIGHT STOP:** Hard stop after night ship v1.4.53→v1.4.59. Did **not** re-arm overnight-stop. Next resume 23:00 UTC.
 
 ## State
 
@@ -94,8 +95,8 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: `b060aa4` (v1.4.59 PadDisc · prior tip `1dd54f2` / ship `16671a3`)
+- Tip: (after push) overnight STOP docs · ship `b060aa4` v1.4.59
 - Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
-- Night envelope: **OPEN** · overnight-stop armed (`sub_93be1d91…`, ~05:00 Oct 12) · `overnight-daily-resume` armed (`sub_d6468578…`)
+- Night envelope: **CLOSED** · overnight-stop **not** re-armed · `overnight-daily-resume` armed (`sub_d6468578…`) · next resume **23:00 UTC**
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
-- Next: overnight STOP ~05:00 · SoftButton next polish candidate after night resume
+- Next: daytime idle / apply Femmy answers · night resume 23:00 UTC · SoftButton next polish candidate

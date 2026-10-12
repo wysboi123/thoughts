@@ -2,6 +2,16 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-12 05:00 UTC — OVERNIGHT STOP (mobile night wrap)
+
+- Timer `overnight-stop-5am-utc` fired ~05:00 UTC Oct 12 — **HARD STOP**. **No new features.** Docs + digest only.
+- Night envelope (SCHEDULE): **23:00 → 05:00 UTC** closed. Next resume **23:00 UTC**.
+- Git: clean on `cursor/mobile-thought-defense-5a0d` · tip was `ecb4116` / ship `b060aa4` (v1.4.59); this stop note → tip after push.
+- **Night ship summary (v1.4.53 → v1.4.59):** SoftWelcomeSheet (1.4.53) · SoftPlayHud (1.4.54) · FirstRunTipChip (1.4.55) · DualModeTray (1.4.56) · SoftFxLayer (1.4.57) · PeaceCore (1.4.58) · PadDisc (1.4.59).
+- Timers: leave `thought-defense-mobile-hourly` + `overnight-daily-resume` armed · **did not** re-arm `overnight-stop-5am-utc` until next night resume.
+- Ask Femmy still open: **RC vs RNIap** · Clarity Pass price (**$2.99** default) · bundle id · EAS · store products · legal URLs.
+- No more coding until **23:00 UTC** (or Femmy reply). Daytime hourlies = idle / apply answers only.
+
 ## 2026-10-12 04:20 UTC — Night hourly (v1.4.59 PadDisc)
 
 - Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
