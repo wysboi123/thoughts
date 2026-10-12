@@ -26,8 +26,17 @@ Paste into Perplexity:
 
 ## Open
 
-### Q-001 — Roblox hangout UX that retains
+### Q-006 — Expo IAP for Clarity Pass (RevenueCat vs react-native-iap)
 Status: Open  
+Needed for: Thought Defense mobile store build  
+Paste into Perplexity:
+
+"""
+For an Expo SDK 57 React Native app publishing to iOS App Store and Google Play in 2026, compare RevenueCat vs react-native-iap for: one auto-renewable monthly subscription, two non-consumable cosmetics, one consumable currency boost. Prefer Expo-compatible setup, sandbox testing steps, and restore-purchases requirements for App Review. Cite official docs.
+"""
+
+### Q-001 — Roblox hangout UX that retains
+Status: Open (legacy — deprioritized after 2026-09-30 mobile pivot)  
 Needed for: Haze Haven v0.1 / chill line  
 Paste into Perplexity:
 

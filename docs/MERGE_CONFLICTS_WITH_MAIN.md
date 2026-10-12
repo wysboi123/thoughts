@@ -1,75 +1,72 @@
 # Merge conflicts: `cursor/roblox-overnight-pipeline-debf` × `main`
 
-Fetched `origin/main` at `4eb6957` (Thought Defense v0.2 + Upgrade UI mockups, PR #2).
-Conflict review while merging `main` into PR #1’s branch.
+Fetched latest `origin/main` at `c938505` (Thought Defense mobile Expo PR **#4** squash-merged into `main`).
+
+Conflict review while merging `main` into PR **#1**’s overnight branch (`cursor/resolve-pr1-main-conflicts-5a0d`).
 
 ## Simple (resolved)
 
-These were **add/add** or content conflicts where overnight Night 6 work is a strict superset of `main`. Kept **ours** (PR #1):
-
 | File | Resolution |
 | --- | --- |
-| `games/*/Config.luau` (Haze 1.8, Couch 1.5, Bus 1.7, Porch 1.6) | Keep higher Night 6 versions |
-| `games/bus-stop-forever/.../init.server.luau` | Keep dual-roof / bench pulse polish |
-| `games/couch-galaxy/.../init.server.luau` | Keep bookshelf / couch fabric pulse |
-| `games/haze-haven/.../AtmosphereService.luau` + `OrbService.luau` | Keep loft warm / candle / table / orb light |
-| `games/star-porch/.../init.server.luau` | Keep house wall / deck / fire-pit polish |
-| Parked READMEs (`slow-orbit`, `puddle-mirror`, `lantern-drift`) | Keep “Parked for later” banners |
-| `docs/RESEARCH_QUEUE.md` | Kept overnight queue **+** added `Q-005` + TD agent note from `main` |
-| `docs/WAKE_NOTES.md` | **Merged both** histories (newest first; deduped headings) |
-
-Also took all non-conflicting additions from `main` (Thought Defense Roblox game under `games/thought-defense/`, `DESIGN_CONSULT.md`, `MEMORY.md`, research note).
+| `docs/WAKE_NOTES.md` | **Merged both** histories under labeled tracks (chill overnight PR #1/#3 · mobile PR #4), then shared earlier notes. Newest-first within each track. |
+| Non-conflict adds from `main` | Took `mobile/thought-defense/**`, `docs/APP_BACKLOG.md`, `docs/LEGACY_ROBLOX.md`, `docs/MOBILE_STACK.md`, and related auto-merges (`AGENTS.md`, `MEMORY.md`, `RESEARCH_QUEUE.md`, etc.) |
 
 ## Complicated — conflicting intents (needs Femmy)
 
-These are **not** mechanical. Overnight and `main` disagree on product/ops intent. For this merge commit, **overnight (ours) was kept** so PR #1 stays coherent; `main`’s alternate text is **not** applied. Decide below before treating the merge as final.
+These are **not** mechanical. Overnight hangout ops and `main`’s **mobile-primary** pivot disagree. For this merge commit, **overnight (ours) was kept** on these files so PR #1 stays coherent. Mobile **code** from `main` is in the tree under `mobile/thought-defense/`; docs below still describe chill-first overnight work.
 
-### 1. Schedule / email policy — `docs/SCHEDULE.md`
+### 1. Product / README — `README.md`
 
-| Overnight (kept) | `main` (Thought Defense hourly) |
+| Overnight (kept) | `main` (after PR #4) |
 | --- | --- |
-| Night window 23:00→05:00 UTC | Same night envelope **plus** hourly ~30‑min batches |
-| **One** digest email at 05:00 only | Email after **each** hourly batch |
-| Timers: stop + daily resume | Adds `thought-defense-hourly` cron |
+| OpenClaw / Colin / Head coder overnight strip | Thought Defense mobile product strip (Expo · IAP · EAS) |
+| Games list: 4 active + 3 parked chill | Quick start → `mobile/thought-defense`; no chill gallery |
 
-**Conflict:** quiet overnight vs continuous hourly TD shipping + email cadence.
+**Conflict:** Is this repo still a Roblox overnight hangout lab, or a mobile TD lab?
 
-### 2. Active vs parked lineup — `docs/GAMES.md`, `docs/GAME_BACKLOG.md`, `docs/EXPERIENCE_COPY.md`
+### 2. Schedule / email / timers — `docs/SCHEDULE.md`
 
 | Overnight (kept) | `main` |
 | --- | --- |
-| Active: Haze / Couch / Bus / Porch (Night 6 versions) | All 7 chill games listed active at older versions |
-| Parked: Slow Orbit / Puddle / Lantern (Femmy 2026‑09‑29) | No parked split |
-| No Thought Defense in gallery | Adds `thought-defense` 0.2.4 |
+| Quiet night 23:00→05:00 · **one** digest at stop | Hourly ~30‑min **mobile** batches + email each batch |
+| Timers: stop + daily resume | Adds `thought-defense-mobile-hourly`; retires Roblox hourly |
 
-**Conflict:** Femmy’s focus cut + park order vs `main`’s flat gallery that also introduces TD. Code for TD **is** in the tree now; docs still describe hangout-only active set.
+**Conflict:** quiet overnight vs continuous mobile hourlies (and which timers are authoritative).
 
-### 3. README status strip — `README.md`
+### 3. Gallery / backlog / copy — `docs/GAMES.md`, `docs/GAME_BACKLOG.md`, `docs/EXPERIENCE_COPY.md`
 
 | Overnight (kept) | `main` |
 | --- | --- |
-| “4 active + 3 parked” | “7 chill games” |
-| Games table matches park split | Flat list + Thought Defense |
+| Active: Haze / Couch / Bus / Porch (Night 18 versions) | Primary: Thought Defense **mobile** |
+| Parked: Slow Orbit / Puddle / Lantern | Chill + Roblox TD marked **paused / legacy** |
+| Full Studio experience paste copy | Mobile store listing primary; Roblox copy archived |
 
-Same lineup intent conflict as (2).
+**Conflict:** Femmy’s active-four chill focus vs mobile-as-canonical product.
 
 ### 4. Publish docs — `docs/PUBLISH_CHECKLIST.md`, `docs/PUBLISH_STATUS.md`
 
 | Overnight (kept) | `main` |
 | --- | --- |
-| Active / parked slug tables | Flat slug list + Thought Defense first‑10‑minutes + status row |
+| Haze First-10 Studio publish · active/parked slug tables | EAS / App Store / Play checklist · IAP sandbox rows |
 
-**Conflict:** whether TD is a first-class publish target alongside Haze, and whether parked games stay labeled.
+**Conflict:** next publish target — Roblox Haze vs Expo Thought Defense.
 
 ## Recommended Femmy decisions
 
-1. **Ops:** overnight-only quiet email **or** hourly TD batches (or dual-track: hangout nights vs TD hourlies on separate branches/PRs).
-2. **Lineup:** keep Active/Parked split **and** add Thought Defense as its own track (docs), or flatten all games again.
-3. **Publish:** whether TD joins the “first publish” candidates next to Haze.
+1. **Canonical product:** keep overnight chill on PR #1 **or** close/park PR #1 and treat mobile (`main` / former PR #4) as the only active track.
+2. **Ops:** quiet overnight-only email **or** mobile hourlies (or dual-track on separate branches — already partially true).
+3. **Docs truth:** after (1), rewrite README / SCHEDULE / GAMES / PUBLISH_* to one story (do not leave dual intent).
 
-Until then: PR #1 merge commit preserves Night 6 hangout docs; TD **code** from `main` is present under `games/thought-defense/`.
+Until then: this merge preserves Night 18 hangout docs; mobile app from `main` is present under `mobile/thought-defense/`.
 
-## Not conflicting
+## Other PRs (this fetch)
 
-- PR #4 (`cursor/mobile-thought-defense-5a0d` → `main`): **MERGEABLE / CLEAN** (already contains `main`).
-- `cursor/roblox-hourly-batch-5a0d` → `main`: merges cleanly (auto).
+| PR | vs `main` | Notes |
+| --- | --- | --- |
+| **#4** mobile Thought Defense | **MERGED** into `main` at `c938505` | No further conflict work |
+| **#3** Chill USPs → overnight base | CLEAN vs its base (`cursor/roblox-overnight-pipeline-debf`) | Stacked on PR #1 |
+| **#1** overnight pipeline → `main` | Was CONFLICTING; this merge addresses content conflicts | Intent items above still open |
+
+## Not silently rewritten
+
+Complicated files were **not** rewritten to `main`’s mobile-first wording. Choosing `main`’s side would redefine PR #1’s purpose without Femmy.
