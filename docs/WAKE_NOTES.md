@@ -2,6 +2,15 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-12 23:05 UTC — Night resume (v1.4.60 SoftButton)
+
+- Timer `overnight-daily-resume` · NIGHT resume · no Femmy Gmail reply
+- **Shipped v1.4.60:** SoftButton — corner wash · soft halo · primary inner rim · lead halos · richer shadows
+- Re-armed `overnight-stop-5am-utc` (`sub_4019050a…`, ~05:00 Oct 13) · daily-resume + hourly left armed
+- Did not redo PadDisc (1.4.59) · Draft C locked
+- Note: PR #4 already merged to main — open follow-up PR for night polish
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-12 05:00 UTC — OVERNIGHT STOP (mobile night wrap)
 
 - Timer `overnight-stop-5am-utc` fired ~05:00 UTC Oct 12 — **HARD STOP**. **No new features.** Docs + digest only.

@@ -88,15 +88,16 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-12 ~03:20:** PeaceCore polish v1.4.58 — corner wash · core bottom glow · inner sheen · status ring · richer core/chip shadows.
 - **2026-10-12 ~04:20:** PadDisc polish v1.4.59 — corner wash · empty glow · select core ring · richer pad/plant-chip shadows (last before ~05:00).
 - **2026-10-12 ~05:00 OVERNIGHT STOP:** Hard stop after night ship v1.4.53→v1.4.59. Did **not** re-arm overnight-stop. Next resume 23:00 UTC.
+- **2026-10-12 ~23:05 night resume:** SoftButton polish v1.4.60 — corner wash · soft halo · primary inner rim · lead halos · richer shadows. Re-armed overnight-stop (`sub_4019050a…`). PR #4 already merged — follow-up PR for continued polish.
 
 ## State
 
-- Version: **mobile 1.4.59** (PadDisc polish)
+- Version: **mobile 1.4.60** (SoftButton polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
-- PR: https://github.com/wysboi123/thoughts/pull/4
-- Tip: `79253df` (overnight STOP docs · ship `b060aa4` v1.4.59)
+- PR: (follow-up after #4 merged)
+- Tip: (after push) v1.4.60 SoftButton · prior tip `1654905` / stop `79253df`
 - Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
-- Night envelope: **CLOSED** · overnight-stop **not** re-armed · `overnight-daily-resume` armed (`sub_d6468578…`) · next resume **23:00 UTC**
+- Night envelope: **OPEN** · overnight-stop armed (`sub_4019050a…`, ~05:00 Oct 13) · `overnight-daily-resume` armed (`sub_d6468578…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
-- Next: daytime idle / apply Femmy answers · night resume 23:00 UTC · SoftButton next polish candidate
+- Next: night hourlies until ~05:00 · HomeMindscapePreview next polish candidate
