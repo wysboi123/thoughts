@@ -124,6 +124,15 @@ export function DualModeTray({
         ]}
       />
       <View pointerEvents="none" style={styles.topSheen} />
+      <View
+        pointerEvents="none"
+        style={[
+          styles.cornerOrb,
+          {
+            backgroundColor: selectMode ? `${selectAccent}14` : `${colors.brand}12`,
+          },
+        ]}
+      />
       <View style={styles.titleRow}>
         <View
           style={[
@@ -188,12 +197,17 @@ export function DualModeTray({
                 !selectMode && !canAfford && styles.plantCardSoft,
               ]}
             >
-              {active ? (
-                <View
-                  pointerEvents="none"
-                  style={[styles.cardSheen, { backgroundColor: `${KIND_ACCENT[k]}18` }]}
-                />
-              ) : null}
+              <View
+                pointerEvents="none"
+                style={[
+                  styles.cardSheen,
+                  {
+                    backgroundColor: active
+                      ? `${KIND_ACCENT[k]}18`
+                      : 'rgba(255,255,255,0.28)',
+                  },
+                ]}
+              />
               {active ? (
                 <View
                   pointerEvents="none"
@@ -220,15 +234,23 @@ export function DualModeTray({
               <Text style={[styles.plantName, selectMode && styles.dimText]}>
                 {GAME.towers[k].displayName}
               </Text>
-              <Text
+              <View
                 style={[
-                  styles.plantCost,
-                  selectMode && styles.dimText,
-                  !canAfford && !selectMode && styles.plantCostLow,
+                  styles.costChip,
+                  !canAfford && !selectMode ? styles.costChipLow : null,
                 ]}
               >
-                {cost} Clarity
-              </Text>
+                <View pointerEvents="none" style={styles.chipSheen} />
+                <Text
+                  style={[
+                    styles.plantCost,
+                    selectMode && styles.dimText,
+                    !canAfford && !selectMode && styles.plantCostLow,
+                  ]}
+                >
+                  {cost} Clarity
+                </Text>
+              </View>
               {!selectMode && active ? (
                 <Text style={styles.plantBlurb} numberOfLines={2}>
                   {GAME.towers[k].blurb}
@@ -263,11 +285,25 @@ export function DualModeTray({
       </Animated.View>
 
       <Animated.View style={plantHintStyle} pointerEvents="none">
-        <Text style={styles.hint}>Tap an empty pad to plant · tap a planted thought to upgrade</Text>
+        <View style={styles.hintChip}>
+          <View pointerEvents="none" style={styles.chipSheen} />
+          <Text style={styles.hint}>
+            Tap an empty pad to plant · tap a planted thought to upgrade
+          </Text>
+        </View>
       </Animated.View>
 
       <View style={styles.footer} accessibilityRole="text">
-        <View style={styles.footerLead}>
+        <View
+          style={[
+            styles.footerBadge,
+            {
+              backgroundColor: selectMode ? `${selectAccent}14` : `${colors.brand}14`,
+              borderColor: selectMode ? `${selectAccent}33` : `${colors.brand}33`,
+            },
+          ]}
+        >
+          <View pointerEvents="none" style={styles.chipSheen} />
           <View
             style={[
               styles.footerDot,
@@ -276,9 +312,12 @@ export function DualModeTray({
           />
           <Text style={styles.footerLabel}>Draft C tray</Text>
         </View>
-        <Text style={styles.footerHint}>
-          {selectMode ? 'Upgrade · Sell · Back' : 'Plant · dim on select'}
-        </Text>
+        <View style={styles.footerHintChip}>
+          <View pointerEvents="none" style={styles.chipSheen} />
+          <Text style={styles.footerHint}>
+            {selectMode ? 'Upgrade · Sell · Back' : 'Plant · dim on select'}
+          </Text>
+        </View>
       </View>
     </Animated.View>
   );
@@ -296,10 +335,10 @@ const styles = StyleSheet.create({
     gap: 10,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.1,
-    shadowRadius: 12,
-    shadowOffset: { width: 0, height: 5 },
-    elevation: 3,
+    shadowOpacity: 0.15,
+    shadowRadius: 14,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 4,
   },
   trayDawn: {
     backgroundColor: 'rgba(255, 244, 220, 0.78)',
@@ -312,14 +351,31 @@ const styles = StyleSheet.create({
     right: 0,
     height: 3,
     opacity: 0.8,
+    zIndex: 2,
   },
   topSheen: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
-    height: 26,
-    backgroundColor: 'rgba(255,255,255,0.16)',
+    height: 28,
+    backgroundColor: 'rgba(255,255,255,0.2)',
+  },
+  cornerOrb: {
+    position: 'absolute',
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    right: -20,
+    top: 40,
+  },
+  chipSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '55%',
+    backgroundColor: 'rgba(255,255,255,0.32)',
   },
   titleRow: {
     flexDirection: 'row',
@@ -379,10 +435,10 @@ const styles = StyleSheet.create({
     borderColor: 'transparent',
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
-    shadowOffset: { width: 0, height: 2 },
-    elevation: 1,
+    shadowOpacity: 0.08,
+    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 3 },
+    elevation: 2,
   },
   plantCardActive: {
     backgroundColor: 'rgba(255,255,255,0.92)',
@@ -429,11 +485,24 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: colors.ink,
   },
+  costChip: {
+    marginTop: 2,
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 8,
+    backgroundColor: 'rgba(106,158,174,0.12)',
+    borderWidth: 1,
+    borderColor: 'rgba(106,158,174,0.22)',
+    overflow: 'hidden',
+  },
+  costChipLow: {
+    backgroundColor: 'rgba(36,58,52,0.06)',
+    borderColor: 'rgba(36,58,52,0.1)',
+  },
   plantCost: {
     fontFamily: fonts.body,
     fontSize: 11,
     color: colors.clarity,
-    marginTop: 2,
   },
   plantCostLow: {
     color: colors.inkSoft,
@@ -486,6 +555,16 @@ const styles = StyleSheet.create({
   },
   actionBtn: { flex: 1, paddingVertical: 12 },
   backBtn: { paddingVertical: 12, paddingHorizontal: 14 },
+  hintChip: {
+    alignSelf: 'center',
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 10,
+    backgroundColor: 'rgba(255,255,255,0.4)',
+    borderWidth: 1,
+    borderColor: 'rgba(36,58,52,0.1)',
+    overflow: 'hidden',
+  },
   hint: {
     fontFamily: fonts.body,
     fontSize: 11,
@@ -498,11 +577,17 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 2,
     paddingTop: 2,
+    gap: 8,
   },
-  footerLead: {
+  footerBadge: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 5,
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 10,
+    borderWidth: 1,
+    overflow: 'hidden',
   },
   footerDot: {
     width: 5,
@@ -515,6 +600,15 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: colors.inkSoft,
     letterSpacing: 0.2,
+  },
+  footerHintChip: {
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 10,
+    backgroundColor: 'rgba(255,255,255,0.4)',
+    borderWidth: 1,
+    borderColor: 'rgba(36,58,52,0.1)',
+    overflow: 'hidden',
   },
   footerHint: {
     fontFamily: fonts.body,

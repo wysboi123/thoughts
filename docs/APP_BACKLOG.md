@@ -89,6 +89,7 @@ Priority order. Agents pick the top unchecked item unless Femmy overrides.
 - [x] **v1.4.53 night resume** — SoftWelcomeSheet (corner orb · eyebrow badge · chip sheens · richer card/next shadows)
 - [x] **v1.4.54 hourly polish** — SoftPlayHud (corner orb · pill rings · footer/hint chip sheens · richer wrap/pill shadows)
 - [x] **v1.4.55 hourly polish** — FirstRunTipChip (corner orb · progress sheen · Got it accent ring · richer chip/dismiss shadows)
+- [x] **v1.4.56 hourly polish** — DualModeTray (corner orb · card/cost/hint/footer sheens · richer shadows · Draft C locked)
 - [ ] **Native IAP** — wire RevenueCat or react-native-iap; turn off stubMode for store builds
 - [ ] **EAS project** — Femmy: `eas init` + real `projectId` + credentials
 - [ ] **Store products** — create IAP ids in App Store Connect + Play Console

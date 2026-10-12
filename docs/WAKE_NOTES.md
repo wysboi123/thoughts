@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-12 01:20 UTC — Night hourly (v1.4.56 DualModeTray)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.56:** DualModeTray — corner orb · card/cost/hint/footer sheens · richer tray/card shadows (Draft C UX locked)
+- Did not redo FirstRunTipChip (1.4.55) · Draft C locked · stop timer left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-12 00:20 UTC — Night hourly (v1.4.55 FirstRunTipChip)
 
 - Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
