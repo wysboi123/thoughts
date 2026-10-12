@@ -188,6 +188,10 @@ export function SoftWelcomeSheet() {
             pointerEvents="none"
             style={[styles.orbSoft, { backgroundColor: `${current.accent}18` }]}
           />
+          <View
+            pointerEvents="none"
+            style={[styles.bottomWash, { backgroundColor: `${current.accent}10` }]}
+          />
           <View style={styles.topRow}>
             <View
               style={[
@@ -213,12 +217,14 @@ export function SoftWelcomeSheet() {
             accessibilityRole="progressbar"
             accessibilityValue={{ min: 0, max: 100, now: Math.round(progress * 100) }}
           >
+            <View pointerEvents="none" style={styles.progressSheen} />
             <View
               style={[
                 styles.progressFill,
                 {
                   width: `${Math.round(progress * 100)}%`,
                   backgroundColor: current.accent,
+                  shadowColor: current.accent,
                 },
               ]}
             />
@@ -231,6 +237,9 @@ export function SoftWelcomeSheet() {
               <Text style={[styles.chipLabel, { color: current.accent }]}>{current.chip}</Text>
             </View>
             <Text style={styles.title}>{current.title}</Text>
+            <Text style={[styles.softHint, { color: current.accent }]}>
+              Soft start · no rush
+            </Text>
             <Text style={styles.body}>{current.body}</Text>
           </Animated.View>
 
@@ -243,6 +252,14 @@ export function SoftWelcomeSheet() {
                   i === page && styles.dotOn,
                   i === page ? { backgroundColor: p.accent } : null,
                   i < page ? { backgroundColor: `${p.accent}88` } : null,
+                  i === page
+                    ? {
+                        shadowColor: p.accent,
+                        shadowOpacity: 0.45,
+                        shadowRadius: 5,
+                        shadowOffset: { width: 0, height: 0 },
+                      }
+                    : null,
                 ]}
               />
             ))}
@@ -272,16 +289,22 @@ export function SoftWelcomeSheet() {
             >
               <Text style={styles.skipLabel}>Skip</Text>
             </Pressable>
-            <Pressable
-              accessibilityRole="button"
-              accessibilityLabel={isLast ? 'Enter Thought Defense' : 'Next'}
-              hitSlop={TAP_SLOP}
-              onPress={onNext}
-              style={[styles.next, { backgroundColor: current.accent }]}
-            >
-              <View pointerEvents="none" style={styles.nextSheen} />
-              <Text style={styles.nextLabel}>{isLast ? 'Enter' : 'Next'}</Text>
-            </Pressable>
+            <View style={styles.nextWrap}>
+              <View
+                pointerEvents="none"
+                style={[styles.nextHalo, { backgroundColor: `${current.accent}33` }]}
+              />
+              <Pressable
+                accessibilityRole="button"
+                accessibilityLabel={isLast ? 'Enter Thought Defense' : 'Next'}
+                hitSlop={TAP_SLOP}
+                onPress={onNext}
+                style={[styles.next, { backgroundColor: current.accent }]}
+              >
+                <View pointerEvents="none" style={styles.nextSheen} />
+                <Text style={styles.nextLabel}>{isLast ? 'Enter' : 'Next'}</Text>
+              </Pressable>
+            </View>
           </View>
         </Animated.View>
       </View>
@@ -372,6 +395,14 @@ const styles = StyleSheet.create({
     height: 110,
     borderRadius: 110,
   },
+  bottomWash: {
+    position: 'absolute',
+    left: 12,
+    right: 12,
+    bottom: 8,
+    height: 64,
+    borderRadius: 20,
+  },
   topRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -419,15 +450,26 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   progressTrack: {
-    height: 4,
-    borderRadius: 4,
+    height: 5,
+    borderRadius: 5,
     backgroundColor: 'rgba(36, 58, 52, 0.08)',
     overflow: 'hidden',
     marginBottom: 2,
   },
+  progressSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '50%',
+    backgroundColor: 'rgba(255,255,255,0.35)',
+  },
   progressFill: {
-    height: 4,
-    borderRadius: 4,
+    height: 5,
+    borderRadius: 5,
+    shadowOpacity: 0.35,
+    shadowRadius: 4,
+    shadowOffset: { width: 0, height: 0 },
   },
   chip: {
     alignSelf: 'flex-start',
@@ -455,6 +497,12 @@ const styles = StyleSheet.create({
     fontSize: 28,
     lineHeight: 34,
     color: colors.brandDeep,
+  },
+  softHint: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 12,
+    letterSpacing: 0.3,
+    marginTop: -4,
   },
   body: {
     fontFamily: fonts.body,
@@ -525,6 +573,17 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: colors.inkSoft,
   },
+  nextWrap: {
+    position: 'relative',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  nextHalo: {
+    position: 'absolute',
+    width: '118%',
+    height: '128%',
+    borderRadius: 20,
+  },
   next: {
     minHeight: MIN_TAP,
     paddingHorizontal: 22,
@@ -534,10 +593,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.22,
-    shadowRadius: 10,
-    shadowOffset: { width: 0, height: 5 },
-    elevation: 4,
+    shadowOpacity: 0.26,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 5,
   },
   nextSheen: {
     ...StyleSheet.absoluteFill,

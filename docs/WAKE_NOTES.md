@@ -4,6 +4,16 @@ Newest first. Overnight agents append after every push.
 
 ## Mobile Thought Defense overnight (from `main`)
 
+## 2026-10-12 23:00 UTC — Night 19 resume (merge + mobile)
+
+- Daily resume fired · merged `origin/main` into `cursor/chill-usps-soft-company-debf`
+- Conflicts: docs inventory + WAKE_NOTES fixed earlier; README + SCHEDULE resolved **mobile-primary** with **one digest email at 05:00 only** (Femmy 2026-09-27)
+- Roblox chill overnight **paused** (`LEGACY_ROBLOX` / GAME_BACKLOG Night 19+)
+- **Shipped v1.4.60:** SoftWelcomeSheet — bottom wash · progress sheen/glow · soft-start hint · active-dot glow · Next halo
+- Timers: re-armed `overnight-stop-5am-utc` · quiet CP ~01:00 / ~03:00 · daily resume still armed
+- Still blocked: Native IAP · EAS projectId · store products · legal URLs · Perplexity Q-006
+- Quiet mode; **one digest email at stop only**
+
 ## 2026-10-12 05:00 UTC — OVERNIGHT STOP (mobile night wrap)
 
 - Timer `overnight-stop-5am-utc` fired ~05:00 UTC Oct 12 — **HARD STOP**. **No new features.** Docs + digest only.
