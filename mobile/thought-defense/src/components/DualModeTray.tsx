@@ -133,6 +133,16 @@ export function DualModeTray({
           },
         ]}
       />
+      <View
+        pointerEvents="none"
+        style={[
+          styles.cornerWash,
+          {
+            backgroundColor: selectMode ? `${selectAccent}10` : `${colors.calm}10`,
+          },
+        ]}
+      />
+      <View pointerEvents="none" style={styles.trayGlow} />
       <View style={styles.titleRow}>
         <View
           style={[
@@ -208,6 +218,17 @@ export function DualModeTray({
                   },
                 ]}
               />
+              <View
+                pointerEvents="none"
+                style={[
+                  styles.cardRing,
+                  {
+                    borderColor: active
+                      ? `${KIND_ACCENT[k]}33`
+                      : 'rgba(63,111,98,0.12)',
+                  },
+                ]}
+              />
               {active ? (
                 <View
                   pointerEvents="none"
@@ -267,6 +288,10 @@ export function DualModeTray({
             <View
               pointerEvents="none"
               style={[styles.selectBannerSheen, { backgroundColor: `${selectAccent}14` }]}
+            />
+            <View
+              pointerEvents="none"
+              style={[styles.selectBannerRing, { borderColor: `${selectAccent}28` }]}
             />
             <View style={[styles.selectDot, { backgroundColor: selectAccent }]} />
             <Text style={styles.selectStats}>{selectStats}</Text>
@@ -335,10 +360,10 @@ const styles = StyleSheet.create({
     gap: 10,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.15,
-    shadowRadius: 14,
-    shadowOffset: { width: 0, height: 6 },
-    elevation: 4,
+    shadowOpacity: 0.19,
+    shadowRadius: 16,
+    shadowOffset: { width: 0, height: 7 },
+    elevation: 5,
   },
   trayDawn: {
     backgroundColor: 'rgba(255, 244, 220, 0.78)',
@@ -358,8 +383,8 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: 28,
-    backgroundColor: 'rgba(255,255,255,0.2)',
+    height: 30,
+    backgroundColor: 'rgba(255,255,255,0.26)',
   },
   cornerOrb: {
     position: 'absolute',
@@ -368,6 +393,23 @@ const styles = StyleSheet.create({
     borderRadius: 40,
     right: -20,
     top: 40,
+  },
+  cornerWash: {
+    position: 'absolute',
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    left: -16,
+    bottom: -12,
+  },
+  trayGlow: {
+    position: 'absolute',
+    left: 20,
+    right: 20,
+    bottom: 0,
+    height: 16,
+    borderRadius: 12,
+    backgroundColor: 'rgba(91, 138, 122, 0.1)',
   },
   chipSheen: {
     position: 'absolute',
@@ -435,10 +477,10 @@ const styles = StyleSheet.create({
     borderColor: 'transparent',
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.08,
-    shadowRadius: 6,
+    shadowOpacity: 0.12,
+    shadowRadius: 7,
     shadowOffset: { width: 0, height: 3 },
-    elevation: 2,
+    elevation: 3,
   },
   plantCardActive: {
     backgroundColor: 'rgba(255,255,255,0.92)',
@@ -455,6 +497,16 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: '40%',
+  },
+  cardRing: {
+    position: 'absolute',
+    top: 3,
+    left: 3,
+    right: 3,
+    bottom: 3,
+    borderRadius: 13,
+    borderWidth: 1,
+    opacity: 0.85,
   },
   cardTopAccent: {
     position: 'absolute',
@@ -537,6 +589,16 @@ const styles = StyleSheet.create({
     right: 0,
     height: '50%',
   },
+  selectBannerRing: {
+    position: 'absolute',
+    top: 3,
+    left: 3,
+    right: 3,
+    bottom: 3,
+    borderRadius: 9,
+    borderWidth: 1,
+    opacity: 0.85,
+  },
   selectDot: {
     width: 8,
     height: 8,
@@ -588,6 +650,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     overflow: 'hidden',
+    shadowColor: '#243A34',
+    shadowOpacity: 0.06,
+    shadowRadius: 4,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 1,
   },
   footerDot: {
     width: 5,

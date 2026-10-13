@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-13 23:00 UTC — Night resume (v1.4.66 DualModeTray)
+
+- Timer `overnight-daily-resume` · NIGHT resume · no Femmy Gmail reply
+- **Shipped v1.4.66:** DualModeTray — corner wash · tray glow · plant card rings · select banner ring · footer elevation · richer shadows (Draft C locked)
+- Re-armed `overnight-stop-5am-utc` (`sub_a8bbe662…`, ~05:00 Oct 14) · daily-resume + hourly left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default · PR **#7**
+
 ## 2026-10-13 05:00 UTC — OVERNIGHT STOP (mobile night wrap)
 
 - Timer `overnight-stop-5am-utc` fired ~05:00 UTC Oct 13 — **HARD STOP**. **No new features.** Docs + digest only.
