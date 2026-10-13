@@ -4,6 +4,13 @@ Newest first. Overnight agents append after every push.
 
 ## Mobile Thought Defense overnight (from `main`)
 
+## 2026-10-13 03:00 UTC — Night 19 quiet CP2
+
+- **Shipped v1.4.63:** DualModeTray — bottom wash · mode hint · active card glow · select banner glow (Draft C locked)
+- Parked Roblox untouched; no email
+- Still blocked: Native IAP · EAS · store products · Q-006
+- Stop 05:00 · **one digest email at stop only** · PR #8
+
 ## 2026-10-12 23:00 UTC — Night 19 resume (merge + mobile)
 
 - Daily resume fired · merged `origin/main` into `cursor/chill-usps-soft-company-debf`

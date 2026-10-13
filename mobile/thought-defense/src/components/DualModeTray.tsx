@@ -133,6 +133,15 @@ export function DualModeTray({
           },
         ]}
       />
+      <View
+        pointerEvents="none"
+        style={[
+          styles.bottomWash,
+          {
+            backgroundColor: selectMode ? `${selectAccent}10` : `${colors.brand}0C`,
+          },
+        ]}
+      />
       <View style={styles.titleRow}>
         <View
           style={[
@@ -159,13 +168,23 @@ export function DualModeTray({
             {selectMode ? 'Selected' : 'Plant'}
           </Text>
         </View>
-        <Text style={styles.title} numberOfLines={1}>
-          {selectMode
-            ? `${GAME.towers[selected.kind].displayName} · L${selected.level}`
-            : themeLantern
-              ? 'Plant kindness · lantern light'
-              : 'Plant kindness'}
-        </Text>
+        <View style={styles.titleCol}>
+          <Text style={styles.title} numberOfLines={1}>
+            {selectMode
+              ? `${GAME.towers[selected.kind].displayName} · L${selected.level}`
+              : themeLantern
+                ? 'Plant kindness · lantern light'
+                : 'Plant kindness'}
+          </Text>
+          <Text
+            style={[
+              styles.modeHint,
+              { color: selectMode ? selectAccent : colors.brand },
+            ]}
+          >
+            {selectMode ? 'Hold gently · draft locked' : 'Soft plant · no rush'}
+          </Text>
+        </View>
       </View>
 
       <Animated.View style={[styles.plantRow, plantRowStyle]}>
@@ -212,6 +231,12 @@ export function DualModeTray({
                 <View
                   pointerEvents="none"
                   style={[styles.cardTopAccent, { backgroundColor: KIND_ACCENT[k] }]}
+                />
+              ) : null}
+              {active ? (
+                <View
+                  pointerEvents="none"
+                  style={[styles.cardGlow, { backgroundColor: `${KIND_ACCENT[k]}22` }]}
                 />
               ) : null}
               <View
@@ -267,6 +292,10 @@ export function DualModeTray({
             <View
               pointerEvents="none"
               style={[styles.selectBannerSheen, { backgroundColor: `${selectAccent}14` }]}
+            />
+            <View
+              pointerEvents="none"
+              style={[styles.selectBannerGlow, { backgroundColor: `${selectAccent}18` }]}
             />
             <View style={[styles.selectDot, { backgroundColor: selectAccent }]} />
             <Text style={styles.selectStats}>{selectStats}</Text>
@@ -335,10 +364,10 @@ const styles = StyleSheet.create({
     gap: 10,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.15,
-    shadowRadius: 14,
-    shadowOffset: { width: 0, height: 6 },
-    elevation: 4,
+    shadowOpacity: 0.18,
+    shadowRadius: 16,
+    shadowOffset: { width: 0, height: 7 },
+    elevation: 5,
   },
   trayDawn: {
     backgroundColor: 'rgba(255, 244, 220, 0.78)',
@@ -368,6 +397,14 @@ const styles = StyleSheet.create({
     borderRadius: 40,
     right: -20,
     top: 40,
+  },
+  bottomWash: {
+    position: 'absolute',
+    left: 12,
+    right: 12,
+    bottom: 6,
+    height: 36,
+    borderRadius: 16,
   },
   chipSheen: {
     position: 'absolute',
@@ -412,11 +449,20 @@ const styles = StyleSheet.create({
     letterSpacing: 0.3,
     textTransform: 'uppercase',
   },
+  titleCol: {
+    flexShrink: 1,
+    gap: 1,
+  },
   title: {
     fontFamily: fonts.bodyBold,
     fontSize: 13,
     color: colors.brandDeep,
-    flexShrink: 1,
+  },
+  modeHint: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 10,
+    letterSpacing: 0.2,
+    opacity: 0.9,
   },
   plantRow: {
     flexDirection: 'row',
@@ -463,6 +509,14 @@ const styles = StyleSheet.create({
     right: 0,
     height: 2,
     opacity: 0.6,
+  },
+  cardGlow: {
+    position: 'absolute',
+    left: 6,
+    right: 6,
+    bottom: 4,
+    height: 14,
+    borderRadius: 10,
   },
   swatch: {
     width: 18,
@@ -536,6 +590,14 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: '50%',
+  },
+  selectBannerGlow: {
+    position: 'absolute',
+    left: 8,
+    right: 8,
+    bottom: 0,
+    height: 8,
+    borderRadius: 6,
   },
   selectDot: {
     width: 8,
