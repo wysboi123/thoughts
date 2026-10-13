@@ -174,6 +174,19 @@ export function PeaceCore({ left, top, themeDawn, stressed }: Props) {
           },
         ]}
       />
+      <View
+        pointerEvents="none"
+        style={[
+          styles.groundWash,
+          {
+            backgroundColor: stressed
+              ? 'rgba(196, 120, 120, 0.14)'
+              : themeDawn
+                ? 'rgba(201, 168, 90, 0.14)'
+                : 'rgba(107, 184, 154, 0.14)',
+          },
+        ]}
+      />
       <Animated.View
         pointerEvents="none"
         style={[styles.midHalo, midStyle, { backgroundColor: midColor }]}
@@ -270,12 +283,20 @@ export function PeaceCore({ left, top, themeDawn, stressed }: Props) {
       {stressed ? (
         <View style={styles.warnChip} accessibilityElementsHidden>
           <View pointerEvents="none" style={styles.chipSheen} />
+          <View
+            pointerEvents="none"
+            style={[styles.chipGlow, { backgroundColor: 'rgba(196, 120, 120, 0.28)' }]}
+          />
           <View style={styles.warnDot} />
           <Text style={styles.warnText}>calm soft</Text>
         </View>
       ) : (
         <View style={styles.holdChip} accessibilityElementsHidden>
           <View pointerEvents="none" style={styles.chipSheen} />
+          <View
+            pointerEvents="none"
+            style={[styles.chipGlow, { backgroundColor: 'rgba(91, 138, 122, 0.22)' }]}
+          />
           <View style={styles.holdDot} />
           <Text style={styles.holdText}>holding gently</Text>
         </View>
@@ -314,6 +335,14 @@ const styles = StyleSheet.create({
     right: -14,
     top: -10,
   },
+  groundWash: {
+    position: 'absolute',
+    width: 64,
+    height: 22,
+    borderRadius: 14,
+    bottom: -6,
+    opacity: 0.85,
+  },
   midHalo: {
     position: 'absolute',
     width: 102,
@@ -334,10 +363,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderWidth: 2,
     overflow: 'hidden',
-    shadowOpacity: 0.4,
-    shadowRadius: 14,
-    shadowOffset: { width: 0, height: 5 },
-    elevation: 5,
+    shadowOpacity: 0.48,
+    shadowRadius: 16,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 6,
   },
   coreTopAccent: {
     position: 'absolute',
@@ -494,6 +523,14 @@ const styles = StyleSheet.create({
     right: 0,
     height: '55%',
     backgroundColor: 'rgba(255,255,255,0.32)',
+  },
+  chipGlow: {
+    position: 'absolute',
+    left: 4,
+    right: 4,
+    bottom: 0,
+    height: 6,
+    borderRadius: 4,
   },
   holdText: {
     fontFamily: fonts.bodyMedium,

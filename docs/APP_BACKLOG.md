@@ -98,6 +98,8 @@ Priority order. Agents pick the top unchecked item unless Femmy overrides.
 - [x] **v1.4.62 hourly polish** — FirstRunTipChip (side wash · soft-hint · active-dot glow · Got it halo)
 - [x] **v1.4.63 quiet CP2** — DualModeTray (bottom wash · mode hint · active card glow · select banner glow · Draft C locked)
 - [x] **Night 19 envelope** — merge main + polish v1.4.60–1.4.63 · stop 05:00 UTC 2026-10-13
+- [x] **v1.4.64 night resume** — SoftFxLayer (longer plant/clear life · shot wash · richer motes · extra mote)
+- [x] **v1.4.65 night resume** — PeaceCore (ground wash · chip glow · richer core shadow)
 - [ ] **Native IAP** — wire RevenueCat or react-native-iap; turn off stubMode for store builds
 - [ ] **EAS project** — Femmy: `eas init` + real `projectId` + credentials
 - [ ] **Store products** — create IAP ids in App Store Connect + Play Console
