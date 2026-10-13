@@ -151,10 +151,19 @@ export function PauseOverlay({
                 { backgroundColor: dawn ? 'rgba(232, 201, 160, 0.2)' : 'rgba(91, 138, 122, 0.16)' },
               ]}
             />
+            <View
+              pointerEvents="none"
+              style={[
+                styles.cornerWash,
+                { backgroundColor: dawn ? 'rgba(232, 201, 160, 0.14)' : 'rgba(91, 138, 122, 0.12)' },
+              ]}
+            />
             <Animated.View
               pointerEvents="none"
               style={[styles.breathOrb, dawn ? styles.breathOrbDawn : null, orbStyle]}
-            />
+            >
+              <View pointerEvents="none" style={styles.breathOrbSheen} />
+            </Animated.View>
             <View style={styles.eyebrowRow}>
               <View style={[styles.eyebrowBadge, dawn ? styles.eyebrowBadgeDawn : null]}>
                 <View pointerEvents="none" style={styles.chipSheen} />
@@ -193,7 +202,8 @@ export function PauseOverlay({
               </View>
             ) : null}
 
-            <View style={styles.metaRow}>
+            <View style={[styles.metaChip, dawn ? styles.metaChipDawn : null]}>
+              <View pointerEvents="none" style={styles.chipSheen} />
               <View style={[styles.metaLead, dawn ? styles.metaLeadDawn : null]} />
               <Text style={styles.meta}>{waveLabel}</Text>
             </View>
@@ -207,6 +217,17 @@ export function PauseOverlay({
                   ]}
                 >
                   <View pointerEvents="none" style={styles.chipSheen} />
+                  <View
+                    pointerEvents="none"
+                    style={[
+                      styles.snapshotRing,
+                      {
+                        borderColor: calmLow
+                          ? 'rgba(196, 120, 120, 0.28)'
+                          : 'rgba(91, 138, 122, 0.25)',
+                      },
+                    ]}
+                  />
                   <View style={styles.snapshotTop}>
                     <View
                       style={[
@@ -241,6 +262,13 @@ export function PauseOverlay({
                   style={[styles.snapshotPill, styles.snapshotClarity, pillBStyle]}
                 >
                   <View pointerEvents="none" style={styles.chipSheen} />
+                  <View
+                    pointerEvents="none"
+                    style={[
+                      styles.snapshotRing,
+                      { borderColor: 'rgba(106, 158, 174, 0.28)' },
+                    ]}
+                  />
                   <View style={styles.snapshotTop}>
                     <View style={[styles.snapshotDot, { backgroundColor: colors.clarity }]} />
                     <Text style={styles.snapshotLabel}>Clarity</Text>
@@ -270,6 +298,7 @@ export function PauseOverlay({
                   <Text style={styles.goalsPct}>{progressPct}%</Text>
                 </View>
                 <View style={styles.track}>
+                  <View pointerEvents="none" style={styles.trackSheen} />
                   <Animated.View
                     style={[
                       styles.fill,
@@ -346,10 +375,10 @@ const styles = StyleSheet.create({
     gap: 8,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.2,
-    shadowRadius: 20,
-    shadowOffset: { width: 0, height: 11 },
-    elevation: 6,
+    shadowOpacity: 0.24,
+    shadowRadius: 22,
+    shadowOffset: { width: 0, height: 12 },
+    elevation: 7,
   },
   cardDawn: {
     backgroundColor: '#F3E8D6',
@@ -386,6 +415,14 @@ const styles = StyleSheet.create({
     left: -22,
     bottom: 40,
   },
+  cornerWash: {
+    position: 'absolute',
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    right: 40,
+    bottom: -16,
+  },
   breathOrb: {
     position: 'absolute',
     top: -28,
@@ -394,9 +431,18 @@ const styles = StyleSheet.create({
     height: 110,
     borderRadius: 110,
     backgroundColor: 'rgba(91, 138, 122, 0.28)',
+    overflow: 'hidden',
   },
   breathOrbDawn: {
     backgroundColor: 'rgba(255, 220, 150, 0.45)',
+  },
+  breathOrbSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '45%',
+    backgroundColor: 'rgba(255,255,255,0.22)',
   },
   chipSheen: {
     position: 'absolute',
@@ -509,11 +555,23 @@ const styles = StyleSheet.create({
   phaseTextDawn: {
     color: colors.gratitude,
   },
-  metaRow: {
+  metaChip: {
+    alignSelf: 'flex-start',
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
     marginBottom: 2,
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 10,
+    backgroundColor: 'rgba(106, 158, 174, 0.12)',
+    borderWidth: 1,
+    borderColor: 'rgba(106, 158, 174, 0.22)',
+    overflow: 'hidden',
+  },
+  metaChipDawn: {
+    backgroundColor: 'rgba(201, 168, 90, 0.14)',
+    borderColor: 'rgba(201, 168, 90, 0.28)',
   },
   metaLead: {
     width: 5,
@@ -544,6 +602,21 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(91, 138, 122, 0.22)',
     overflow: 'hidden',
+    shadowColor: '#243A34',
+    shadowOpacity: 0.08,
+    shadowRadius: 5,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 1,
+  },
+  snapshotRing: {
+    position: 'absolute',
+    top: 3,
+    left: 3,
+    right: 3,
+    bottom: 3,
+    borderRadius: 11,
+    borderWidth: 1,
+    opacity: 0.85,
   },
   snapshotCalmLow: {
     backgroundColor: 'rgba(196, 120, 120, 0.14)',
@@ -633,6 +706,14 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     backgroundColor: 'rgba(63, 111, 98, 0.12)',
     overflow: 'hidden',
+  },
+  trackSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '55%',
+    backgroundColor: 'rgba(255,255,255,0.28)',
   },
   fill: {
     height: '100%',
