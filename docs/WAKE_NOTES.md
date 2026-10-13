@@ -4,6 +4,20 @@ Newest first. Overnight agents append after every push.
 
 ## Mobile Thought Defense overnight (from `main`)
 
+## 2026-10-13 05:00 UTC — OVERNIGHT STOP (Night 19)
+
+Night 19 complete. No new features this wrap. One digest email sent.
+
+**Shipped Night 19**
+- Merged `origin/main` → mobile-primary docs; Roblox chill paused
+- SoftWelcomeSheet **v1.4.60** · SoftPlayHud **v1.4.61** · FirstRunTipChip **v1.4.62** · DualModeTray **v1.4.63**
+- PR: https://github.com/wysboi123/thoughts/pull/8
+
+**Versions end:** Thought Defense mobile **1.4.63**
+**Blocked:** Native IAP (Q-006) · EAS projectId · store products · legal URLs · Clarity Pass price
+**Timers:** left `overnight-daily-resume` armed · did **not** re-arm `overnight-stop-5am-utc` until next night resume
+**Next (Night 20):** SoftFxLayer / PeaceCore cycle · apply Femmy answers if any · no Roblox unless un-paused
+
 ## 2026-10-13 03:00 UTC — Night 19 quiet CP2
 
 - **Shipped v1.4.63:** DualModeTray — bottom wash · mode hint · active card glow · select banner glow (Draft C locked)
