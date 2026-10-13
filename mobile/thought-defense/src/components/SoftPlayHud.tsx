@@ -114,6 +114,13 @@ function HudPill({
         <Text style={[styles.pillLabel, { color: warn ? colors.dangerSoft : accent }]}>{label}</Text>
       </View>
       <Text style={[styles.pillValue, warn && styles.pillValueWarn]}>{value}</Text>
+      <View
+        pointerEvents="none"
+        style={[
+          styles.pillValueGlow,
+          { backgroundColor: warn ? `${colors.dangerSoft}28` : `${accent}24` },
+        ]}
+      />
     </Animated.View>
   );
 }
@@ -142,6 +149,14 @@ export function SoftPlayHud({ calm, clarity, waveLabel, dawn, calmLow }: Props) 
           { backgroundColor: dawn ? 'rgba(201,168,90,0.12)' : `${colors.brand}12` },
         ]}
       />
+      <View
+        pointerEvents="none"
+        style={[
+          styles.cornerWash,
+          { backgroundColor: dawn ? 'rgba(201,168,90,0.1)' : `${colors.calm}10` },
+        ]}
+      />
+      <View pointerEvents="none" style={styles.wrapGlow} />
       <View style={styles.row}>
         <HudPill
           label="Calm"
@@ -208,10 +223,10 @@ const styles = StyleSheet.create({
     gap: 6,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.14,
-    shadowRadius: 14,
-    shadowOffset: { width: 0, height: 5 },
-    elevation: 3,
+    shadowOpacity: 0.18,
+    shadowRadius: 16,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 4,
   },
   wrapDawn: {
     backgroundColor: 'rgba(255, 244, 220, 0.7)',
@@ -236,8 +251,8 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: 24,
-    backgroundColor: 'rgba(255,255,255,0.2)',
+    height: 26,
+    backgroundColor: 'rgba(255,255,255,0.26)',
   },
   cornerOrb: {
     position: 'absolute',
@@ -246,6 +261,23 @@ const styles = StyleSheet.create({
     borderRadius: 36,
     right: -18,
     top: 28,
+  },
+  cornerWash: {
+    position: 'absolute',
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    left: -14,
+    bottom: -10,
+  },
+  wrapGlow: {
+    position: 'absolute',
+    left: 16,
+    right: 16,
+    bottom: 0,
+    height: 14,
+    borderRadius: 10,
+    backgroundColor: 'rgba(91, 138, 122, 0.1)',
   },
   chipSheen: {
     position: 'absolute',
@@ -326,6 +358,15 @@ const styles = StyleSheet.create({
   pillValueWarn: {
     color: colors.dangerSoft,
   },
+  pillValueGlow: {
+    position: 'absolute',
+    left: 12,
+    right: 12,
+    bottom: 3,
+    height: 3,
+    borderRadius: 2,
+    opacity: 0.75,
+  },
   footer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -344,6 +385,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     overflow: 'hidden',
+    shadowColor: '#243A34',
+    shadowOpacity: 0.06,
+    shadowRadius: 4,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 1,
   },
   footerDot: {
     width: 5,

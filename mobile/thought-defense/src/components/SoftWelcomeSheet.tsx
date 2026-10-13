@@ -178,16 +178,23 @@ export function SoftWelcomeSheet() {
           />
           <View
             pointerEvents="none"
+            style={[styles.cornerWash, { backgroundColor: `${current.accent}10` }]}
+          />
+          <View
+            pointerEvents="none"
             style={[styles.orbHalo, { backgroundColor: `${current.accent}22` }]}
           />
           <View
             pointerEvents="none"
             style={[styles.orb, { backgroundColor: `${current.accent}44` }]}
-          />
+          >
+            <View pointerEvents="none" style={styles.orbSheen} />
+          </View>
           <View
             pointerEvents="none"
             style={[styles.orbSoft, { backgroundColor: `${current.accent}18` }]}
           />
+          <View pointerEvents="none" style={styles.bottomGlow} />
           <View style={styles.topRow}>
             <View
               style={[
@@ -213,6 +220,7 @@ export function SoftWelcomeSheet() {
             accessibilityRole="progressbar"
             accessibilityValue={{ min: 0, max: 100, now: Math.round(progress * 100) }}
           >
+            <View pointerEvents="none" style={styles.progressSheen} />
             <View
               style={[
                 styles.progressFill,
@@ -270,6 +278,7 @@ export function SoftWelcomeSheet() {
               onPress={() => void dismiss()}
               style={styles.skip}
             >
+              <View pointerEvents="none" style={styles.skipSheen} />
               <Text style={styles.skipLabel}>Skip</Text>
             </Pressable>
             <Pressable
@@ -280,6 +289,7 @@ export function SoftWelcomeSheet() {
               style={[styles.next, { backgroundColor: current.accent }]}
             >
               <View pointerEvents="none" style={styles.nextSheen} />
+              <View pointerEvents="none" style={styles.nextRing} />
               <Text style={styles.nextLabel}>{isLast ? 'Enter' : 'Next'}</Text>
             </Pressable>
           </View>
@@ -306,10 +316,10 @@ const styles = StyleSheet.create({
     gap: 10,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.18,
-    shadowRadius: 20,
-    shadowOffset: { width: 0, height: 11 },
-    elevation: 7,
+    shadowOpacity: 0.22,
+    shadowRadius: 22,
+    shadowOffset: { width: 0, height: 12 },
+    elevation: 8,
   },
   cardDawn: {
     backgroundColor: '#F6EBDA',
@@ -329,8 +339,8 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: 28,
-    backgroundColor: 'rgba(255,255,255,0.2)',
+    height: 30,
+    backgroundColor: 'rgba(255,255,255,0.26)',
   },
   chipSheen: {
     position: 'absolute',
@@ -348,6 +358,23 @@ const styles = StyleSheet.create({
     left: -22,
     top: 56,
   },
+  cornerWash: {
+    position: 'absolute',
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    right: 36,
+    bottom: -14,
+  },
+  bottomGlow: {
+    position: 'absolute',
+    left: 24,
+    right: 24,
+    bottom: 0,
+    height: 18,
+    borderRadius: 12,
+    backgroundColor: 'rgba(91, 138, 122, 0.12)',
+  },
   orbHalo: {
     position: 'absolute',
     top: -48,
@@ -363,6 +390,15 @@ const styles = StyleSheet.create({
     width: 120,
     height: 120,
     borderRadius: 120,
+    overflow: 'hidden',
+  },
+  orbSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '42%',
+    backgroundColor: 'rgba(255,255,255,0.22)',
   },
   orbSoft: {
     position: 'absolute',
@@ -424,6 +460,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(36, 58, 52, 0.08)',
     overflow: 'hidden',
     marginBottom: 2,
+  },
+  progressSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '55%',
+    backgroundColor: 'rgba(255,255,255,0.35)',
   },
   progressFill: {
     height: 4,
@@ -517,8 +561,22 @@ const styles = StyleSheet.create({
   skip: {
     minHeight: MIN_TAP,
     minWidth: MIN_TAP,
-    paddingHorizontal: 8,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
     justifyContent: 'center',
+    borderRadius: 12,
+    backgroundColor: 'rgba(255,255,255,0.35)',
+    borderWidth: 1,
+    borderColor: 'rgba(36,58,52,0.1)',
+    overflow: 'hidden',
+  },
+  skipSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '55%',
+    backgroundColor: 'rgba(255,255,255,0.28)',
   },
   skipLabel: {
     fontFamily: fonts.bodyMedium,
@@ -534,15 +592,25 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.22,
-    shadowRadius: 10,
-    shadowOffset: { width: 0, height: 5 },
-    elevation: 4,
+    shadowOpacity: 0.26,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 5,
   },
   nextSheen: {
     ...StyleSheet.absoluteFill,
-    backgroundColor: 'rgba(255,255,255,0.16)',
+    backgroundColor: 'rgba(255,255,255,0.18)',
     height: '45%',
+  },
+  nextRing: {
+    position: 'absolute',
+    top: 3,
+    left: 3,
+    right: 3,
+    bottom: 3,
+    borderRadius: 13,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.28)',
   },
   nextLabel: {
     fontFamily: fonts.bodyBold,
