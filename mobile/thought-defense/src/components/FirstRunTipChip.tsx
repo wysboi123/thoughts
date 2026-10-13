@@ -149,19 +149,27 @@ export function FirstRunTipChip({ visible, dawn }: Props) {
         />
         <View
           pointerEvents="none"
+          style={[styles.cornerWash, { backgroundColor: `${current.accent}10` }]}
+        />
+        <View
+          pointerEvents="none"
           style={[styles.glow, { backgroundColor: `${current.accent}28` }]}
         />
         <View
           pointerEvents="none"
           style={[styles.glowSoft, { backgroundColor: `${current.accent}14` }]}
         />
+        <View pointerEvents="none" style={styles.chipGlow} />
         <Animated.View style={[styles.textWrap, { opacity: tipFade }]}>
           <View style={[styles.badge, { borderColor: `${current.accent}66` }]}>
             <View pointerEvents="none" style={styles.badgeSheen} />
             <View style={[styles.badgeDot, { backgroundColor: current.accent }]} />
             <Text style={[styles.badgeLabel, { color: current.accent }]}>Soft tip</Text>
           </View>
-          <Text style={styles.text}>{current.text}</Text>
+          <View style={styles.tipRow}>
+            <View style={[styles.tipLead, { backgroundColor: current.accent }]} />
+            <Text style={styles.text}>{current.text}</Text>
+          </View>
           <View
             style={styles.progressTrack}
             accessibilityRole="progressbar"
@@ -233,10 +241,10 @@ const styles = StyleSheet.create({
     borderLeftWidth: 4,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.16,
-    shadowRadius: 12,
-    shadowOffset: { width: 0, height: 5 },
-    elevation: 4,
+    shadowOpacity: 0.2,
+    shadowRadius: 14,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 5,
   },
   chipDawn: {
     backgroundColor: 'rgba(255, 244, 220, 0.75)',
@@ -256,8 +264,8 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: 24,
-    backgroundColor: 'rgba(255,255,255,0.2)',
+    height: 26,
+    backgroundColor: 'rgba(255,255,255,0.26)',
   },
   cornerOrb: {
     position: 'absolute',
@@ -266,6 +274,23 @@ const styles = StyleSheet.create({
     borderRadius: 32,
     left: -16,
     bottom: -18,
+  },
+  cornerWash: {
+    position: 'absolute',
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    right: 56,
+    top: -12,
+  },
+  chipGlow: {
+    position: 'absolute',
+    left: 20,
+    right: 48,
+    bottom: 0,
+    height: 12,
+    borderRadius: 8,
+    backgroundColor: 'rgba(91, 138, 122, 0.12)',
   },
   glow: {
     position: 'absolute',
@@ -317,7 +342,20 @@ const styles = StyleSheet.create({
     fontSize: 10,
     letterSpacing: 0.2,
   },
+  tipRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 6,
+  },
+  tipLead: {
+    width: 4,
+    height: 4,
+    borderRadius: 2,
+    marginTop: 6,
+    opacity: 0.85,
+  },
   text: {
+    flexShrink: 1,
     fontFamily: fonts.bodyMedium,
     fontSize: 12,
     lineHeight: 16,
@@ -367,10 +405,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.line,
     shadowColor: '#243A34',
-    shadowOpacity: 0.1,
-    shadowRadius: 6,
+    shadowOpacity: 0.14,
+    shadowRadius: 7,
     shadowOffset: { width: 0, height: 3 },
-    elevation: 2,
+    elevation: 3,
   },
   dismissSheen: {
     ...StyleSheet.absoluteFill,

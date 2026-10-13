@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-13 04:15 UTC — Night hourly (v1.4.65 FirstRunTipChip)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.65:** FirstRunTipChip — corner wash · chip bottom glow · tip lead · richer chip/dismiss shadows
+- Did not redo SoftPlayHud (1.4.64) · Draft C locked · stop timer left armed · PR **#7**
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-13 03:15 UTC — Night hourly catch-up (v1.4.63–1.4.64)
 
 - Timers `thought-defense-mobile-hourly` · NIGHT polish catch-up (02:15 + 03:15) · no Femmy Gmail reply
