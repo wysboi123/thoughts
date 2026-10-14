@@ -174,6 +174,19 @@ export function PeaceCore({ left, top, themeDawn, stressed }: Props) {
           },
         ]}
       />
+      <View
+        pointerEvents="none"
+        style={[
+          styles.cornerWashSoft,
+          {
+            backgroundColor: stressed
+              ? 'rgba(196, 120, 120, 0.1)'
+              : themeDawn
+                ? 'rgba(201, 168, 90, 0.1)'
+                : 'rgba(107, 184, 154, 0.1)',
+          },
+        ]}
+      />
       <Animated.View
         pointerEvents="none"
         style={[styles.midHalo, midStyle, { backgroundColor: midColor }]}
@@ -231,6 +244,19 @@ export function PeaceCore({ left, top, themeDawn, stressed }: Props) {
           ]}
         >
           <View pointerEvents="none" style={styles.innerSheen} />
+          <View
+            pointerEvents="none"
+            style={[
+              styles.innerRing,
+              {
+                borderColor: stressed
+                  ? 'rgba(196, 120, 120, 0.35)'
+                  : themeDawn
+                    ? 'rgba(201, 168, 90, 0.35)'
+                    : 'rgba(91, 138, 122, 0.3)',
+              },
+            ]}
+          />
           <View style={styles.statusWrap}>
             <View
               pointerEvents="none"
@@ -270,12 +296,14 @@ export function PeaceCore({ left, top, themeDawn, stressed }: Props) {
       {stressed ? (
         <View style={styles.warnChip} accessibilityElementsHidden>
           <View pointerEvents="none" style={styles.chipSheen} />
+          <View pointerEvents="none" style={styles.warnChipRing} />
           <View style={styles.warnDot} />
           <Text style={styles.warnText}>calm soft</Text>
         </View>
       ) : (
         <View style={styles.holdChip} accessibilityElementsHidden>
           <View pointerEvents="none" style={styles.chipSheen} />
+          <View pointerEvents="none" style={styles.holdChipRing} />
           <View style={styles.holdDot} />
           <Text style={styles.holdText}>holding gently</Text>
         </View>
@@ -314,6 +342,14 @@ const styles = StyleSheet.create({
     right: -14,
     top: -10,
   },
+  cornerWashSoft: {
+    position: 'absolute',
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    left: -12,
+    bottom: -8,
+  },
   midHalo: {
     position: 'absolute',
     width: 102,
@@ -334,10 +370,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderWidth: 2,
     overflow: 'hidden',
-    shadowOpacity: 0.4,
-    shadowRadius: 14,
-    shadowOffset: { width: 0, height: 5 },
-    elevation: 5,
+    shadowOpacity: 0.48,
+    shadowRadius: 16,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 6,
   },
   coreTopAccent: {
     position: 'absolute',
@@ -353,17 +389,17 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: '45%',
-    backgroundColor: 'rgba(255,255,255,0.28)',
+    height: '48%',
+    backgroundColor: 'rgba(255,255,255,0.34)',
   },
   coreBottomGlow: {
     position: 'absolute',
-    left: 10,
-    right: 10,
+    left: 8,
+    right: 8,
     bottom: 0,
-    height: 14,
+    height: 16,
     borderRadius: 10,
-    opacity: 0.75,
+    opacity: 0.82,
   },
   coreInner: {
     width: 48,
@@ -381,6 +417,16 @@ const styles = StyleSheet.create({
     right: 0,
     height: '50%',
     backgroundColor: 'rgba(255,255,255,0.3)',
+  },
+  innerRing: {
+    position: 'absolute',
+    top: 3,
+    left: 3,
+    right: 3,
+    bottom: 3,
+    borderRadius: 21,
+    borderWidth: 1,
+    opacity: 0.85,
   },
   coreInnerDawn: {
     backgroundColor: 'rgba(255, 248, 230, 0.7)',
@@ -445,10 +491,21 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(196, 120, 120, 0.35)',
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
+    shadowOpacity: 0.14,
+    shadowRadius: 5,
     shadowOffset: { width: 0, height: 2 },
-    elevation: 1,
+    elevation: 2,
+  },
+  warnChipRing: {
+    position: 'absolute',
+    top: 2,
+    left: 2,
+    right: 2,
+    bottom: 2,
+    borderRadius: 6,
+    borderWidth: 1,
+    borderColor: 'rgba(196, 120, 120, 0.28)',
+    opacity: 0.85,
   },
   warnDot: {
     width: 5,
@@ -476,10 +533,21 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(107, 184, 154, 0.28)',
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
+    shadowOpacity: 0.14,
+    shadowRadius: 5,
     shadowOffset: { width: 0, height: 2 },
-    elevation: 1,
+    elevation: 2,
+  },
+  holdChipRing: {
+    position: 'absolute',
+    top: 2,
+    left: 2,
+    right: 2,
+    bottom: 2,
+    borderRadius: 6,
+    borderWidth: 1,
+    borderColor: 'rgba(107, 184, 154, 0.28)',
+    opacity: 0.85,
   },
   holdDot: {
     width: 5,
