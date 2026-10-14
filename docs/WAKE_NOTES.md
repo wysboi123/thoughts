@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-14 23:00 UTC — Night resume (v1.4.73 SoftPlayHud)
+
+- Timer `overnight-daily-resume` · NIGHT resume · no Femmy Gmail reply
+- **Shipped v1.4.73:** SoftPlayHud — alt corner wash · pill top accents · footer/hint/soft chip rings · richer wrap/pill shadows
+- Re-armed `overnight-stop-5am-utc` (`sub_b9e38876…`, ~05:00 Oct 15) · daily-resume + hourly left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default · PR **#7**
+
 ## 2026-10-14 05:00 UTC — OVERNIGHT STOP (mobile night wrap)
 
 - Timer `overnight-stop-5am-utc` fired ~05:00 UTC Oct 14 — **HARD STOP**. **No new features.** Docs + digest only.

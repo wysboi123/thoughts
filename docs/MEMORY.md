@@ -102,15 +102,16 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-14 ~03:15:** SoftWelcomeSheet polish v1.4.71 — title lead · chip/comfort/skip rings · eyebrow elevation · richer card/next shadows.
 - **2026-10-14 ~04:15:** HomeMindscapePreview polish v1.4.72 — wrap glow · pad filled rings · core inner ring · look/caption rings · richer shadows.
 - **2026-10-14 ~05:00 OVERNIGHT STOP:** Hard stop after night ship v1.4.66→v1.4.72. Did **not** re-arm overnight-stop. Next resume 23:00 UTC.
+- **2026-10-14 ~23:00 night resume:** SoftPlayHud polish v1.4.73 — alt corner wash · pill top accents · footer/hint/soft chip rings · richer shadows. Re-armed overnight-stop (`sub_b9e38876…`).
 
 ## State
 
-- Version: **mobile 1.4.72** (HomeMindscapePreview polish · night wrap)
+- Version: **mobile 1.4.73** (SoftPlayHud polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/7
-- Tip: `5e07b1a` (overnight-stop docs · ship tip `d61a45f` / prior docs `74dc446`)
+- Tip: (pending push) v1.4.73 SoftPlayHud · prior tip `5e07b1a`
 - Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
-- Night envelope: **CLOSED** · overnight-stop **not** re-armed · `overnight-daily-resume` armed (`sub_d6468578…`) · hourly left armed
+- Night envelope: **OPEN** · overnight-stop armed (`sub_b9e38876…`, ~05:00 Oct 15) · `overnight-daily-resume` armed (`sub_d6468578…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
-- Next: daytime idle until 23:00 · resume polish SoftPlayHud / PauseOverlay
+- Next: night hourlies until ~05:00 · PauseOverlay next polish candidate

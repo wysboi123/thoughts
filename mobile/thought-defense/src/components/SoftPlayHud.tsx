@@ -94,6 +94,13 @@ function HudPill({
       <View pointerEvents="none" style={[styles.pillSheen, { backgroundColor: `${accent}14` }]} />
       <View
         pointerEvents="none"
+        style={[
+          styles.pillTopAccent,
+          { backgroundColor: warn ? colors.dangerSoft : accent },
+        ]}
+      />
+      <View
+        pointerEvents="none"
         style={[styles.pillGlow, { backgroundColor: warn ? `${colors.dangerSoft}22` : `${accent}18` }]}
       />
       <View
@@ -156,6 +163,13 @@ export function SoftPlayHud({ calm, clarity, waveLabel, dawn, calmLow }: Props) 
           { backgroundColor: dawn ? 'rgba(201,168,90,0.1)' : `${colors.calm}10` },
         ]}
       />
+      <View
+        pointerEvents="none"
+        style={[
+          styles.cornerWashAlt,
+          { backgroundColor: dawn ? 'rgba(201,168,90,0.08)' : `${colors.clarity}0c` },
+        ]}
+      />
       <View pointerEvents="none" style={styles.wrapGlow} />
       <View style={styles.row}>
         <HudPill
@@ -191,18 +205,31 @@ export function SoftPlayHud({ calm, clarity, waveLabel, dawn, calmLow }: Props) 
           ]}
         >
           <View pointerEvents="none" style={styles.chipSheen} />
+          <View
+            pointerEvents="none"
+            style={[
+              styles.footerBadgeRing,
+              {
+                borderColor: dawn
+                  ? 'rgba(201,168,90,0.28)'
+                  : `${colors.brand}28`,
+              },
+            ]}
+          />
           <View style={[styles.footerDot, dawn ? styles.footerDotDawn : null]} />
           <Text style={styles.footerLabel}>Mindscape meters</Text>
         </View>
         {calmLow ? (
           <View style={styles.softChip}>
             <View pointerEvents="none" style={styles.softChipSheen} />
+            <View pointerEvents="none" style={styles.softChipRing} />
             <View style={styles.softChipDot} />
             <Text style={styles.softChipLabel}>Calm soft — breathe</Text>
           </View>
         ) : (
           <View style={styles.hintChip}>
             <View pointerEvents="none" style={styles.chipSheen} />
+            <View pointerEvents="none" style={styles.hintChipRing} />
             <Text style={styles.footerHint}>Metaphor only · not medical</Text>
           </View>
         )}
@@ -223,10 +250,10 @@ const styles = StyleSheet.create({
     gap: 6,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.18,
-    shadowRadius: 16,
-    shadowOffset: { width: 0, height: 6 },
-    elevation: 4,
+    shadowOpacity: 0.22,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 7 },
+    elevation: 5,
   },
   wrapDawn: {
     backgroundColor: 'rgba(255, 244, 220, 0.7)',
@@ -251,8 +278,8 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: 26,
-    backgroundColor: 'rgba(255,255,255,0.26)',
+    height: 28,
+    backgroundColor: 'rgba(255,255,255,0.3)',
   },
   cornerOrb: {
     position: 'absolute',
@@ -269,6 +296,14 @@ const styles = StyleSheet.create({
     borderRadius: 28,
     left: -14,
     bottom: -10,
+  },
+  cornerWashAlt: {
+    position: 'absolute',
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    right: 36,
+    bottom: -8,
   },
   wrapGlow: {
     position: 'absolute',
@@ -303,10 +338,10 @@ const styles = StyleSheet.create({
     gap: 2,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.08,
-    shadowRadius: 6,
+    shadowOpacity: 0.12,
+    shadowRadius: 7,
     shadowOffset: { width: 0, height: 3 },
-    elevation: 2,
+    elevation: 3,
   },
   pillSheen: {
     position: 'absolute',
@@ -314,6 +349,15 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: '42%',
+  },
+  pillTopAccent: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 2,
+    opacity: 0.55,
+    zIndex: 2,
   },
   pillGlow: {
     position: 'absolute',
@@ -386,10 +430,20 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.06,
-    shadowRadius: 4,
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
     shadowOffset: { width: 0, height: 2 },
-    elevation: 1,
+    elevation: 2,
+  },
+  footerBadgeRing: {
+    position: 'absolute',
+    top: 2,
+    left: 2,
+    right: 2,
+    bottom: 2,
+    borderRadius: 8,
+    borderWidth: 1,
+    opacity: 0.85,
   },
   footerDot: {
     width: 5,
@@ -418,6 +472,17 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(36,58,52,0.1)',
     overflow: 'hidden',
   },
+  hintChipRing: {
+    position: 'absolute',
+    top: 2,
+    left: 2,
+    right: 2,
+    bottom: 2,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(36,58,52,0.08)',
+    opacity: 0.85,
+  },
   footerHint: {
     fontFamily: fonts.body,
     fontSize: 10,
@@ -443,6 +508,17 @@ const styles = StyleSheet.create({
     right: 0,
     height: '50%',
     backgroundColor: 'rgba(255,255,255,0.2)',
+  },
+  softChipRing: {
+    position: 'absolute',
+    top: 2,
+    left: 2,
+    right: 2,
+    bottom: 2,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(196,120,120,0.28)',
+    opacity: 0.85,
   },
   softChipDot: {
     width: 5,
