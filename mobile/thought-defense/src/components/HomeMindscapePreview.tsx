@@ -153,6 +153,7 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
           { backgroundColor: dawn ? 'rgba(232, 201, 160, 0.14)' : 'rgba(91, 138, 122, 0.12)' },
         ]}
       />
+      <View pointerEvents="none" style={styles.wrapGlow} />
       <Animated.View
         pointerEvents="none"
         style={[
@@ -214,6 +215,7 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
       >
         <View pointerEvents="none" style={styles.padFilledGlow} />
         <View pointerEvents="none" style={styles.padFilledSheen} />
+        <View pointerEvents="none" style={styles.padFilledRing} />
       </View>
       <View
         style={[
@@ -224,6 +226,7 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
       >
         <View pointerEvents="none" style={styles.padFilledGlow} />
         <View pointerEvents="none" style={styles.padFilledSheen} />
+        <View pointerEvents="none" style={styles.padFilledRing} />
       </View>
       <View
         style={[
@@ -234,6 +237,7 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
       >
         <View pointerEvents="none" style={styles.padFilledGlow} />
         <View pointerEvents="none" style={styles.padFilledSheen} />
+        <View pointerEvents="none" style={styles.padFilledRing} />
       </View>
       <Animated.View
         style={[
@@ -252,6 +256,17 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
       <View style={[styles.core, dawn ? { backgroundColor: colors.coreGlow } : null]}>
         <View pointerEvents="none" style={styles.coreTopAccent} />
         <View pointerEvents="none" style={styles.coreSheen} />
+        <View
+          pointerEvents="none"
+          style={[
+            styles.coreInnerRing,
+            {
+              borderColor: dawn
+                ? 'rgba(201, 168, 90, 0.35)'
+                : 'rgba(255,255,255,0.35)',
+            },
+          ]}
+        />
         <View style={styles.coreDotWrap}>
           <View pointerEvents="none" style={styles.coreDotHalo} />
           <View style={styles.coreDot} />
@@ -262,12 +277,24 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
       {lookLabel ? (
         <View style={[styles.lookChip, dawn ? styles.lookChipDawn : null]}>
           <View pointerEvents="none" style={styles.lookChipSheen} />
+          <View
+            pointerEvents="none"
+            style={[
+              styles.lookChipRing,
+              {
+                borderColor: dawn
+                  ? 'rgba(201, 168, 90, 0.35)'
+                  : 'rgba(91, 138, 122, 0.28)',
+              },
+            ]}
+          />
           <View style={[styles.lookDot, dawn ? styles.lookDotDawn : null]} />
           <Text style={styles.lookChipText}>{lookLabel}</Text>
         </View>
       ) : null}
       <View style={styles.captionChip}>
         <View pointerEvents="none" style={styles.captionSheen} />
+        <View pointerEvents="none" style={styles.captionRing} />
         <View style={styles.captionLead} />
         <Text style={styles.caption}>
           {lookLabel
@@ -293,10 +320,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.line,
     shadowColor: '#243A34',
-    shadowOpacity: 0.16,
-    shadowRadius: 16,
-    shadowOffset: { width: 0, height: 6 },
-    elevation: 4,
+    shadowOpacity: 0.2,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 7 },
+    elevation: 5,
   },
   wrapDawn: {
     backgroundColor: 'rgba(255, 246, 230, 0.55)',
@@ -336,6 +363,15 @@ const styles = StyleSheet.create({
     borderRadius: 28,
     right: 48,
     top: -12,
+  },
+  wrapGlow: {
+    position: 'absolute',
+    left: 20,
+    right: 20,
+    bottom: 0,
+    height: 16,
+    borderRadius: 12,
+    backgroundColor: 'rgba(91, 138, 122, 0.1)',
   },
   mistWash: {
     position: 'absolute',
@@ -510,6 +546,17 @@ const styles = StyleSheet.create({
     height: '40%',
     backgroundColor: 'rgba(255,255,255,0.28)',
   },
+  padFilledRing: {
+    position: 'absolute',
+    top: 2,
+    left: 2,
+    right: 2,
+    bottom: 2,
+    borderRadius: 9,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.35)',
+    opacity: 0.85,
+  },
   padPlus: {
     fontFamily: fonts.bodyBold,
     fontSize: 11,
@@ -562,10 +609,10 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255,255,255,0.8)',
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.12,
-    shadowRadius: 4,
+    shadowOpacity: 0.16,
+    shadowRadius: 5,
     shadowOffset: { width: 0, height: 2 },
-    elevation: 2,
+    elevation: 3,
   },
   coreTopAccent: {
     position: 'absolute',
@@ -582,8 +629,18 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: '48%',
-    backgroundColor: 'rgba(255,255,255,0.28)',
+    height: '50%',
+    backgroundColor: 'rgba(255,255,255,0.34)',
+  },
+  coreInnerRing: {
+    position: 'absolute',
+    top: 3,
+    left: 3,
+    right: 3,
+    bottom: 3,
+    borderRadius: 16,
+    borderWidth: 1,
+    opacity: 0.85,
   },
   coreDotWrap: {
     width: 10,
@@ -632,6 +689,21 @@ const styles = StyleSheet.create({
     borderColor: colors.line,
     overflow: 'hidden',
     zIndex: 3,
+    shadowColor: '#243A34',
+    shadowOpacity: 0.08,
+    shadowRadius: 4,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 1,
+  },
+  lookChipRing: {
+    position: 'absolute',
+    top: 2,
+    left: 2,
+    right: 2,
+    bottom: 2,
+    borderRadius: 6,
+    borderWidth: 1,
+    opacity: 0.85,
   },
   lookChipDawn: {
     backgroundColor: 'rgba(255, 246, 230, 0.85)',
@@ -676,6 +748,11 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(36,51,58,0.06)',
     overflow: 'hidden',
     zIndex: 3,
+    shadowColor: '#243A34',
+    shadowOpacity: 0.08,
+    shadowRadius: 5,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 1,
   },
   captionSheen: {
     position: 'absolute',
@@ -684,6 +761,17 @@ const styles = StyleSheet.create({
     right: 0,
     height: '55%',
     backgroundColor: 'rgba(255,255,255,0.28)',
+  },
+  captionRing: {
+    position: 'absolute',
+    top: 2,
+    left: 2,
+    right: 2,
+    bottom: 2,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(36,51,58,0.08)',
+    opacity: 0.85,
   },
   captionLead: {
     width: 5,

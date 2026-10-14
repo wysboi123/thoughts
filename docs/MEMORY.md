@@ -100,15 +100,16 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-14 ~01:15:** PadDisc polish v1.4.69 — soft corner wash · empty core ring · plant-chip ring · richer pad/chip shadows.
 - **2026-10-14 ~02:15:** SoftButton polish v1.4.70 — alt corner wash · soft/ghost inner rims · lead rings · ghost bottom glow · richer shadows.
 - **2026-10-14 ~03:15:** SoftWelcomeSheet polish v1.4.71 — title lead · chip/comfort/skip rings · eyebrow elevation · richer card/next shadows.
+- **2026-10-14 ~04:15:** HomeMindscapePreview polish v1.4.72 — wrap glow · pad filled rings · core inner ring · look/caption rings · richer shadows.
 
 ## State
 
-- Version: **mobile 1.4.71** (SoftWelcomeSheet polish)
+- Version: **mobile 1.4.72** (HomeMindscapePreview polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/7
-- Tip: `0ecdb9d` (v1.4.71 SoftWelcomeSheet · prior tip `08e5f09` / docs `1697f5a`)
+- Tip: (pending push) v1.4.72 HomeMindscapePreview · prior tip `0ecdb9d`
 - Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
 - Night envelope: **OPEN** · overnight-stop armed (`sub_a8bbe662…`, ~05:00 Oct 14) · `overnight-daily-resume` armed (`sub_d6468578…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
-- Next: night hourlies until ~05:00 · HomeMindscapePreview / SoftPlayHud next
+- Next: overnight stop ~05:00 · SoftPlayHud next after resume
