@@ -199,6 +199,19 @@ export function PadDisc({
           ]}
         />
       ) : null}
+      <View
+        pointerEvents="none"
+        style={[
+          styles.groundWash,
+          {
+            backgroundColor: filled
+              ? `${fillColor}33`
+              : dawn
+                ? 'rgba(200,170,120,0.18)'
+                : 'rgba(91,138,122,0.16)',
+          },
+        ]}
+      />
       <Pressable
         accessibilityRole="button"
         accessibilityLabel={a11yLabel}
@@ -233,10 +246,10 @@ export function PadDisc({
                 : selected
                   ? colors.brand
                   : '#243A34',
-            shadowOpacity: lantern && filled ? 0.6 : selected ? 0.32 : filled ? 0.12 : 0.08,
-            shadowRadius: lantern && filled ? 9 : selected ? 7 : 5,
-            shadowOffset: { width: 0, height: filled || selected ? 2 : 1 },
-            elevation: lantern && filled ? 4 : selected ? 3 : 1,
+            shadowOpacity: lantern && filled ? 0.65 : selected ? 0.36 : filled ? 0.16 : 0.1,
+            shadowRadius: lantern && filled ? 10 : selected ? 8 : 6,
+            shadowOffset: { width: 0, height: filled || selected ? 3 : 2 },
+            elevation: lantern && filled ? 5 : selected ? 4 : 2,
           },
         ]}
       >
@@ -301,6 +314,17 @@ export function PadDisc({
           <View style={styles.plantChip}>
             <View pointerEvents="none" style={styles.plantChipSheen} />
             <View
+              pointerEvents="none"
+              style={[
+                styles.plantChipGlow,
+                {
+                  backgroundColor: dawn
+                    ? 'rgba(200,170,120,0.28)'
+                    : 'rgba(91,138,122,0.24)',
+                },
+              ]}
+            />
+            <View
               style={[
                 styles.plantDot,
                 { backgroundColor: dawn ? 'rgba(200,170,120,0.9)' : colors.calm },
@@ -352,6 +376,15 @@ const styles = StyleSheet.create({
     top: -5,
     borderWidth: 2,
     borderColor: colors.brand,
+  },
+  groundWash: {
+    position: 'absolute',
+    width: PAD * 0.85,
+    height: 12,
+    borderRadius: 8,
+    left: PAD * 0.075,
+    bottom: -4,
+    opacity: 0.8,
   },
   pad: {
     width: PAD,
@@ -475,6 +508,14 @@ const styles = StyleSheet.create({
     right: 0,
     height: '55%',
     backgroundColor: 'rgba(255,255,255,0.42)',
+  },
+  plantChipGlow: {
+    position: 'absolute',
+    left: 3,
+    right: 3,
+    bottom: 0,
+    height: 5,
+    borderRadius: 3,
   },
   plantDot: {
     width: 4,
