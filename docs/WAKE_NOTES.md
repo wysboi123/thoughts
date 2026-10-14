@@ -4,6 +4,13 @@ Newest first. Overnight agents append after every push.
 
 ## Mobile Thought Defense overnight (from `main`)
 
+## 2026-10-14 03:00 UTC — Night 20 quiet CP2
+
+- **Shipped v1.4.67:** SoftButton — soft halo · corner wash · ghost lead/glow · richer shadows
+- Roblox untouched; no email
+- Still blocked: Native IAP · EAS · store products · Q-006
+- Stop 05:00 · **one digest email at stop only** · PR #8
+
 ## 2026-10-14 01:00 UTC — Night 20 quiet CP1
 
 - **Shipped v1.4.66:** PadDisc — ground wash · plant-chip glow · richer pad shadows
