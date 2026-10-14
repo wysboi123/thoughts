@@ -102,6 +102,7 @@ Priority order. Agents pick the top unchecked item unless Femmy overrides.
 - [x] **v1.4.66 night resume** — DualModeTray (corner wash · tray glow · plant card rings · select banner ring · footer elevation · Draft C locked)
 - [x] **v1.4.67 hourly polish** — SoftFxLayer (longer plant/clear/shot life · richer motes · 7th mote · wash/halo bump · shot spark flash)
 - [x] **v1.4.68 hourly polish** — PeaceCore (soft corner wash · inner ring · chip rings · richer core/chip shadows · sheen/glow bump)
+- [x] **v1.4.69 hourly polish** — PadDisc (soft corner wash · empty core ring · plant-chip ring · richer pad/chip shadows · sheen/glow bump)
 - [ ] **Native IAP** — wire RevenueCat or react-native-iap; turn off stubMode for store builds
 - [ ] **EAS project** — Femmy: `eas init` + real `projectId` + credentials
 - [ ] **Store products** — create IAP ids in App Store Connect + Play Console
