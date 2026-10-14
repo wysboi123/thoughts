@@ -235,10 +235,17 @@ export function SoftWelcomeSheet() {
           <Animated.View style={{ opacity: pageFade, gap: 10 }}>
             <View style={[styles.chip, { borderColor: `${current.accent}66` }]}>
               <View pointerEvents="none" style={styles.chipSheen} />
+              <View
+                pointerEvents="none"
+                style={[styles.chipRing, { borderColor: `${current.accent}33` }]}
+              />
               <View style={[styles.chipDot, { backgroundColor: current.accent }]} />
               <Text style={[styles.chipLabel, { color: current.accent }]}>{current.chip}</Text>
             </View>
-            <Text style={styles.title}>{current.title}</Text>
+            <View style={styles.pageTitleRow}>
+              <View style={[styles.titleLead, { backgroundColor: current.accent }]} />
+              <Text style={styles.title}>{current.title}</Text>
+            </View>
             <Text style={styles.body}>{current.body}</Text>
           </Animated.View>
 
@@ -259,6 +266,7 @@ export function SoftWelcomeSheet() {
           {isLast ? (
             <View style={styles.comfortStrip} accessibilityRole="summary">
               <View pointerEvents="none" style={styles.chipSheen} />
+              <View pointerEvents="none" style={styles.comfortRing} />
               <View style={styles.comfortHead}>
                 <View style={styles.comfortDot} />
                 <Text style={styles.comfortTitle}>Metaphor only</Text>
@@ -279,6 +287,7 @@ export function SoftWelcomeSheet() {
               style={styles.skip}
             >
               <View pointerEvents="none" style={styles.skipSheen} />
+              <View pointerEvents="none" style={styles.skipRing} />
               <Text style={styles.skipLabel}>Skip</Text>
             </Pressable>
             <Pressable
@@ -316,10 +325,10 @@ const styles = StyleSheet.create({
     gap: 10,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.22,
-    shadowRadius: 22,
-    shadowOffset: { width: 0, height: 12 },
-    elevation: 8,
+    shadowOpacity: 0.26,
+    shadowRadius: 24,
+    shadowOffset: { width: 0, height: 13 },
+    elevation: 9,
   },
   cardDawn: {
     backgroundColor: '#F6EBDA',
@@ -371,9 +380,9 @@ const styles = StyleSheet.create({
     left: 24,
     right: 24,
     bottom: 0,
-    height: 18,
+    height: 20,
     borderRadius: 12,
-    backgroundColor: 'rgba(91, 138, 122, 0.12)',
+    backgroundColor: 'rgba(91, 138, 122, 0.14)',
   },
   orbHalo: {
     position: 'absolute',
@@ -422,6 +431,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     overflow: 'hidden',
+    shadowColor: '#243A34',
+    shadowOpacity: 0.06,
+    shadowRadius: 4,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 1,
   },
   eyebrowDot: {
     width: 6,
@@ -484,6 +498,21 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: 'rgba(255,255,255,0.45)',
     overflow: 'hidden',
+    shadowColor: '#243A34',
+    shadowOpacity: 0.06,
+    shadowRadius: 4,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 1,
+  },
+  chipRing: {
+    position: 'absolute',
+    top: 2,
+    left: 2,
+    right: 2,
+    bottom: 2,
+    borderRadius: 10,
+    borderWidth: 1,
+    opacity: 0.85,
   },
   chipDot: {
     width: 7,
@@ -494,7 +523,20 @@ const styles = StyleSheet.create({
     fontFamily: fonts.bodyMedium,
     fontSize: 11,
   },
+  pageTitleRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 8,
+  },
+  titleLead: {
+    width: 4,
+    height: 18,
+    borderRadius: 2,
+    marginTop: 8,
+    opacity: 0.85,
+  },
   title: {
+    flexShrink: 1,
     fontFamily: fonts.display,
     fontSize: 28,
     lineHeight: 34,
@@ -529,6 +571,22 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(106, 158, 174, 0.22)',
     gap: 3,
     overflow: 'hidden',
+    shadowColor: '#243A34',
+    shadowOpacity: 0.06,
+    shadowRadius: 5,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 1,
+  },
+  comfortRing: {
+    position: 'absolute',
+    top: 3,
+    left: 3,
+    right: 3,
+    bottom: 3,
+    borderRadius: 11,
+    borderWidth: 1,
+    borderColor: 'rgba(106, 158, 174, 0.22)',
+    opacity: 0.85,
   },
   comfortHead: {
     flexDirection: 'row',
@@ -578,6 +636,17 @@ const styles = StyleSheet.create({
     height: '55%',
     backgroundColor: 'rgba(255,255,255,0.28)',
   },
+  skipRing: {
+    position: 'absolute',
+    top: 2,
+    left: 2,
+    right: 2,
+    bottom: 2,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: 'rgba(36,58,52,0.1)',
+    opacity: 0.85,
+  },
   skipLabel: {
     fontFamily: fonts.bodyMedium,
     fontSize: 14,
@@ -592,10 +661,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.26,
-    shadowRadius: 12,
-    shadowOffset: { width: 0, height: 6 },
-    elevation: 5,
+    shadowOpacity: 0.3,
+    shadowRadius: 14,
+    shadowOffset: { width: 0, height: 7 },
+    elevation: 6,
   },
   nextSheen: {
     ...StyleSheet.absoluteFill,
