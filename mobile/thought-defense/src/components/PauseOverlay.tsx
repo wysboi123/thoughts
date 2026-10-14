@@ -167,18 +167,38 @@ export function PauseOverlay({
             <View style={styles.eyebrowRow}>
               <View style={[styles.eyebrowBadge, dawn ? styles.eyebrowBadgeDawn : null]}>
                 <View pointerEvents="none" style={styles.chipSheen} />
+                <View
+                  pointerEvents="none"
+                  style={[
+                    styles.eyebrowRing,
+                    {
+                      borderColor: dawn
+                        ? 'rgba(201, 168, 90, 0.3)'
+                        : 'rgba(91, 138, 122, 0.28)',
+                    },
+                  ]}
+                />
                 <View style={[styles.eyebrowDot, dawn ? styles.eyebrowDotDawn : null]} />
                 <Text style={styles.eyebrow}>Mindscape paused</Text>
               </View>
               {calmLow ? (
                 <View style={styles.calmWarnChip} accessibilityRole="text">
                   <View pointerEvents="none" style={styles.chipSheen} />
+                  <View pointerEvents="none" style={styles.calmWarnRing} />
                   <View style={styles.calmWarnDot} />
                   <Text style={styles.calmWarnText}>calm soft</Text>
                 </View>
               ) : null}
             </View>
-            <Text style={styles.title}>Take a breath</Text>
+            <View style={styles.titleRow}>
+              <View
+                style={[
+                  styles.titleLead,
+                  { backgroundColor: dawn ? colors.gratitude : colors.brand },
+                ]}
+              />
+              <Text style={styles.title}>Take a breath</Text>
+            </View>
             <Text style={styles.lead}>
               The path holds still. Planting, upgrades, and soft goals wait exactly where you left
               them. Metaphor only — not therapy.
@@ -190,6 +210,17 @@ export function PauseOverlay({
                 accessibilityRole="text"
               >
                 <View pointerEvents="none" style={styles.chipSheen} />
+                <View
+                  pointerEvents="none"
+                  style={[
+                    styles.phaseRing,
+                    {
+                      borderColor: dawn
+                        ? 'rgba(201, 168, 90, 0.28)'
+                        : 'rgba(106, 158, 174, 0.28)',
+                    },
+                  ]}
+                />
                 <View
                   style={[
                     styles.phaseLead,
@@ -204,6 +235,17 @@ export function PauseOverlay({
 
             <View style={[styles.metaChip, dawn ? styles.metaChipDawn : null]}>
               <View pointerEvents="none" style={styles.chipSheen} />
+              <View
+                pointerEvents="none"
+                style={[
+                  styles.metaRing,
+                  {
+                    borderColor: dawn
+                      ? 'rgba(201, 168, 90, 0.28)'
+                      : 'rgba(106, 158, 174, 0.25)',
+                  },
+                ]}
+              />
               <View style={[styles.metaLead, dawn ? styles.metaLeadDawn : null]} />
               <Text style={styles.meta}>{waveLabel}</Text>
             </View>
@@ -288,6 +330,17 @@ export function PauseOverlay({
             {softGoalsTotal > 0 ? (
               <View style={styles.goalsStrip} accessibilityRole="summary">
                 <View pointerEvents="none" style={styles.chipSheen} />
+                <View
+                  pointerEvents="none"
+                  style={[
+                    styles.goalsRing,
+                    {
+                      borderColor: dawn
+                        ? 'rgba(201, 168, 90, 0.22)'
+                        : 'rgba(63, 111, 98, 0.16)',
+                    },
+                  ]}
+                />
                 <View style={styles.goalsRow}>
                   <View style={styles.goalsLabelRow}>
                     <View style={[styles.goalsLead, dawn ? styles.goalsLeadDawn : null]} />
@@ -312,6 +365,17 @@ export function PauseOverlay({
 
             <View style={styles.comfortStrip} accessibilityRole="summary">
               <View pointerEvents="none" style={styles.chipSheen} />
+              <View
+                pointerEvents="none"
+                style={[
+                  styles.comfortRing,
+                  {
+                    borderColor: dawn
+                      ? 'rgba(201, 168, 90, 0.22)'
+                      : 'rgba(36, 58, 52, 0.1)',
+                  },
+                ]}
+              />
               <View style={styles.comfortHead}>
                 <View style={[styles.comfortLead, dawn ? styles.comfortLeadDawn : null]} />
                 <Text style={styles.comfortTitle}>Pause is part of the loop</Text>
@@ -375,10 +439,10 @@ const styles = StyleSheet.create({
     gap: 8,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.24,
-    shadowRadius: 22,
-    shadowOffset: { width: 0, height: 12 },
-    elevation: 7,
+    shadowOpacity: 0.28,
+    shadowRadius: 24,
+    shadowOffset: { width: 0, height: 13 },
+    elevation: 8,
   },
   cardDawn: {
     backgroundColor: '#F3E8D6',
@@ -475,6 +539,16 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(201, 168, 90, 0.18)',
     borderColor: 'rgba(201, 168, 90, 0.35)',
   },
+  eyebrowRing: {
+    position: 'absolute',
+    top: 2,
+    left: 2,
+    right: 2,
+    bottom: 2,
+    borderRadius: 8,
+    borderWidth: 1,
+    opacity: 0.85,
+  },
   eyebrowDot: {
     width: 6,
     height: 6,
@@ -503,6 +577,17 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(196, 120, 120, 0.3)',
     overflow: 'hidden',
   },
+  calmWarnRing: {
+    position: 'absolute',
+    top: 2,
+    left: 2,
+    right: 2,
+    bottom: 2,
+    borderRadius: 6,
+    borderWidth: 1,
+    borderColor: 'rgba(196, 120, 120, 0.28)',
+    opacity: 0.85,
+  },
   calmWarnDot: {
     width: 5,
     height: 5,
@@ -514,7 +599,20 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: colors.dangerSoft,
   },
+  titleRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 8,
+  },
+  titleLead: {
+    width: 4,
+    height: 18,
+    borderRadius: 2,
+    marginTop: 8,
+    opacity: 0.85,
+  },
   title: {
+    flexShrink: 1,
     fontFamily: fonts.display,
     fontSize: 28,
     color: colors.brandDeep,
@@ -541,6 +639,16 @@ const styles = StyleSheet.create({
   phaseChipDawn: {
     backgroundColor: 'rgba(201, 168, 90, 0.16)',
     borderColor: 'rgba(201, 168, 90, 0.32)',
+  },
+  phaseRing: {
+    position: 'absolute',
+    top: 2,
+    left: 2,
+    right: 2,
+    bottom: 2,
+    borderRadius: 10,
+    borderWidth: 1,
+    opacity: 0.85,
   },
   phaseLead: {
     width: 5,
@@ -572,6 +680,16 @@ const styles = StyleSheet.create({
   metaChipDawn: {
     backgroundColor: 'rgba(201, 168, 90, 0.14)',
     borderColor: 'rgba(201, 168, 90, 0.28)',
+  },
+  metaRing: {
+    position: 'absolute',
+    top: 2,
+    left: 2,
+    right: 2,
+    bottom: 2,
+    borderRadius: 8,
+    borderWidth: 1,
+    opacity: 0.85,
   },
   metaLead: {
     width: 5,
@@ -671,6 +789,21 @@ const styles = StyleSheet.create({
     borderColor: colors.line,
     gap: 6,
     overflow: 'hidden',
+    shadowColor: '#243A34',
+    shadowOpacity: 0.06,
+    shadowRadius: 5,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 1,
+  },
+  goalsRing: {
+    position: 'absolute',
+    top: 3,
+    left: 3,
+    right: 3,
+    bottom: 3,
+    borderRadius: 11,
+    borderWidth: 1,
+    opacity: 0.85,
   },
   goalsRow: {
     flexDirection: 'row',
@@ -730,8 +863,23 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.45)',
     borderWidth: 1,
     borderColor: colors.line,
+    shadowColor: '#243A34',
+    shadowOpacity: 0.06,
+    shadowRadius: 4,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 1,
     gap: 2,
     overflow: 'hidden',
+  },
+  comfortRing: {
+    position: 'absolute',
+    top: 3,
+    left: 3,
+    right: 3,
+    bottom: 3,
+    borderRadius: 9,
+    borderWidth: 1,
+    opacity: 0.85,
   },
   comfortHead: {
     flexDirection: 'row',

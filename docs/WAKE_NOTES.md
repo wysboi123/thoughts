@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-14 23:15 UTC — Night hourly (v1.4.74 PauseOverlay)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.74:** PauseOverlay — title lead · eyebrow/phase/meta/goals/comfort rings · richer card/strip shadows
+- Did not redo SoftPlayHud (1.4.73) · Draft C locked · stop timer left armed · PR **#7**
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-14 23:00 UTC — Night resume (v1.4.73 SoftPlayHud)
 
 - Timer `overnight-daily-resume` · NIGHT resume · no Femmy Gmail reply

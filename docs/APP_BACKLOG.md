@@ -107,6 +107,7 @@ Priority order. Agents pick the top unchecked item unless Femmy overrides.
 - [x] **v1.4.71 hourly polish** — SoftWelcomeSheet (title lead · chip/comfort/skip rings · eyebrow elevation · richer card/next shadows)
 - [x] **v1.4.72 hourly polish** — HomeMindscapePreview (wrap glow · pad filled rings · core inner ring · look/caption rings · richer wrap/core shadows)
 - [x] **v1.4.73 night resume** — SoftPlayHud (alt corner wash · pill top accents · footer/hint/soft chip rings · richer wrap/pill shadows)
+- [x] **v1.4.74 hourly polish** — PauseOverlay (title lead · eyebrow/phase/meta/goals/comfort rings · richer card/strip shadows)
 - [ ] **Native IAP** — wire RevenueCat or react-native-iap; turn off stubMode for store builds
 - [ ] **EAS project** — Femmy: `eas init` + real `projectId` + credentials
 - [ ] **Store products** — create IAP ids in App Store Connect + Play Console
