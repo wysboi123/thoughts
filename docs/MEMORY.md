@@ -98,15 +98,16 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-13 ~23:15:** SoftFxLayer polish v1.4.67 — longer FX life · richer motes · 7th mote · wash/halo bump · shot spark flash.
 - **2026-10-14 ~00:15:** PeaceCore polish v1.4.68 — soft corner wash · inner ring · chip rings · richer core/chip shadows.
 - **2026-10-14 ~01:15:** PadDisc polish v1.4.69 — soft corner wash · empty core ring · plant-chip ring · richer pad/chip shadows.
+- **2026-10-14 ~02:15:** SoftButton polish v1.4.70 — alt corner wash · soft/ghost inner rims · lead rings · ghost bottom glow · richer shadows.
 
 ## State
 
-- Version: **mobile 1.4.69** (PadDisc polish)
+- Version: **mobile 1.4.70** (SoftButton polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/7
-- Tip: `06f6665` (v1.4.69 PadDisc · prior tip `e60d0f1` / docs `8222461`)
+- Tip: (pending push) v1.4.70 SoftButton · prior tip `06f6665`
 - Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
 - Night envelope: **OPEN** · overnight-stop armed (`sub_a8bbe662…`, ~05:00 Oct 14) · `overnight-daily-resume` armed (`sub_d6468578…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
-- Next: night hourlies until ~05:00 · SoftButton / SoftWelcomeSheet rotation next
+- Next: night hourlies until ~05:00 · SoftWelcomeSheet / HomeMindscapePreview next
