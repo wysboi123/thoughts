@@ -151,6 +151,17 @@ export function PauseOverlay({
                 { backgroundColor: dawn ? 'rgba(232, 201, 160, 0.2)' : 'rgba(91, 138, 122, 0.16)' },
               ]}
             />
+            <View
+              pointerEvents="none"
+              style={[
+                styles.bottomWash,
+                {
+                  backgroundColor: dawn
+                    ? 'rgba(232, 201, 160, 0.12)'
+                    : 'rgba(91, 138, 122, 0.1)',
+                },
+              ]}
+            />
             <Animated.View
               pointerEvents="none"
               style={[styles.breathOrb, dawn ? styles.breathOrbDawn : null, orbStyle]}
@@ -158,6 +169,17 @@ export function PauseOverlay({
             <View style={styles.eyebrowRow}>
               <View style={[styles.eyebrowBadge, dawn ? styles.eyebrowBadgeDawn : null]}>
                 <View pointerEvents="none" style={styles.chipSheen} />
+                <View
+                  pointerEvents="none"
+                  style={[
+                    styles.chipGlow,
+                    {
+                      backgroundColor: dawn
+                        ? 'rgba(201, 168, 90, 0.22)'
+                        : 'rgba(91, 138, 122, 0.2)',
+                    },
+                  ]}
+                />
                 <View style={[styles.eyebrowDot, dawn ? styles.eyebrowDotDawn : null]} />
                 <Text style={styles.eyebrow}>Mindscape paused</Text>
               </View>
@@ -170,6 +192,9 @@ export function PauseOverlay({
               ) : null}
             </View>
             <Text style={styles.title}>Take a breath</Text>
+            <Text style={[styles.softHint, dawn ? styles.softHintDawn : null]}>
+              Soft pause · no rush
+            </Text>
             <Text style={styles.lead}>
               The path holds still. Planting, upgrades, and soft goals wait exactly where you left
               them. Metaphor only — not therapy.
@@ -386,6 +411,14 @@ const styles = StyleSheet.create({
     left: -22,
     bottom: 40,
   },
+  bottomWash: {
+    position: 'absolute',
+    left: 14,
+    right: 14,
+    bottom: 10,
+    height: 40,
+    borderRadius: 18,
+  },
   breathOrb: {
     position: 'absolute',
     top: -28,
@@ -405,6 +438,14 @@ const styles = StyleSheet.create({
     right: 0,
     height: '55%',
     backgroundColor: 'rgba(255,255,255,0.32)',
+  },
+  chipGlow: {
+    position: 'absolute',
+    left: 4,
+    right: 4,
+    bottom: 0,
+    height: 5,
+    borderRadius: 4,
   },
   eyebrowRow: {
     flexDirection: 'row',
@@ -472,6 +513,16 @@ const styles = StyleSheet.create({
     fontFamily: fonts.display,
     fontSize: 28,
     color: colors.brandDeep,
+  },
+  softHint: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 12,
+    letterSpacing: 0.25,
+    color: colors.brand,
+    marginTop: -4,
+  },
+  softHintDawn: {
+    color: '#C9A85A',
   },
   lead: {
     fontFamily: fonts.body,

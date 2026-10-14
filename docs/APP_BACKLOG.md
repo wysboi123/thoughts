@@ -103,6 +103,8 @@ Priority order. Agents pick the top unchecked item unless Femmy overrides.
 - [x] **v1.4.66 quiet CP1** — PadDisc (ground wash · plant-chip glow · richer pad shadows)
 - [x] **v1.4.67 quiet CP2** — SoftButton (soft halo · corner wash · ghost lead/glow · richer shadows)
 - [x] **Night 20 envelope** — polish v1.4.64–1.4.67 · stop 05:00 UTC 2026-10-14
+- [x] **v1.4.68 night resume** — HomeMindscapePreview (bottom wash · core glow · chip glows · soft caption)
+- [x] **v1.4.69 night resume** — PauseOverlay (bottom wash · eyebrow chip glow · soft-pause hint)
 - [ ] **Native IAP** — wire RevenueCat or react-native-iap; turn off stubMode for store builds
 - [ ] **EAS project** — Femmy: `eas init` + real `projectId` + credentials
 - [ ] **Store products** — create IAP ids in App Store Connect + Play Console

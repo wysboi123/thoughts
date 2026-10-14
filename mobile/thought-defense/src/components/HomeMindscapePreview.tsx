@@ -146,6 +146,13 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
           { backgroundColor: dawn ? 'rgba(232, 201, 160, 0.22)' : 'rgba(107, 184, 154, 0.18)' },
         ]}
       />
+      <View
+        pointerEvents="none"
+        style={[
+          styles.bottomWash,
+          { backgroundColor: dawn ? 'rgba(232, 201, 160, 0.14)' : 'rgba(107, 184, 154, 0.12)' },
+        ]}
+      />
       <Animated.View
         pointerEvents="none"
         style={[
@@ -227,6 +234,17 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
       />
       <View style={[styles.core, dawn ? { backgroundColor: colors.coreGlow } : null]}>
         <View pointerEvents="none" style={styles.coreTopAccent} />
+        <View
+          pointerEvents="none"
+          style={[
+            styles.coreBottomGlow,
+            {
+              backgroundColor: dawn
+                ? 'rgba(201, 168, 90, 0.28)'
+                : 'rgba(107, 184, 154, 0.28)',
+            },
+          ]}
+        />
         <View style={styles.coreDot} />
         <Text style={styles.coreLabel}>Peace</Text>
         <Text style={styles.coreSub}>still</Text>
@@ -234,19 +252,41 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
       {lookLabel ? (
         <View style={[styles.lookChip, dawn ? styles.lookChipDawn : null]}>
           <View pointerEvents="none" style={styles.lookChipSheen} />
+          <View
+            pointerEvents="none"
+            style={[
+              styles.chipGlow,
+              {
+                backgroundColor: dawn
+                  ? 'rgba(201, 168, 90, 0.25)'
+                  : 'rgba(91, 138, 122, 0.2)',
+              },
+            ]}
+          />
           <View style={[styles.lookDot, dawn ? styles.lookDotDawn : null]} />
           <Text style={styles.lookChipText}>{lookLabel}</Text>
         </View>
       ) : null}
       <View style={styles.captionChip}>
         <View pointerEvents="none" style={styles.captionSheen} />
+        <View
+          pointerEvents="none"
+          style={[
+            styles.chipGlow,
+            {
+              backgroundColor: dawn
+                ? 'rgba(201, 168, 90, 0.18)'
+                : 'rgba(91, 138, 122, 0.16)',
+            },
+          ]}
+        />
         <View style={styles.captionLead} />
         <Text style={styles.caption}>
           {lookLabel
             ? `plan view · ${lookLabel} looks`
             : 'plan view · plant kindness · hold Peace'}
         </Text>
-        <Text style={styles.captionMeta}>metaphor only</Text>
+        <Text style={styles.captionMeta}>metaphor only · soft preview</Text>
       </View>
     </Animated.View>
   );
@@ -262,10 +302,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.line,
     shadowColor: '#243A34',
-    shadowOpacity: 0.12,
-    shadowRadius: 14,
-    shadowOffset: { width: 0, height: 5 },
-    elevation: 3,
+    shadowOpacity: 0.16,
+    shadowRadius: 16,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 4,
   },
   wrapDawn: {
     backgroundColor: 'rgba(255, 246, 230, 0.55)',
@@ -297,6 +337,14 @@ const styles = StyleSheet.create({
     borderRadius: 36,
     left: -18,
     bottom: 28,
+  },
+  bottomWash: {
+    position: 'absolute',
+    left: 14,
+    right: 14,
+    bottom: 8,
+    height: 28,
+    borderRadius: 14,
   },
   mistWash: {
     position: 'absolute',
@@ -481,6 +529,14 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     backgroundColor: 'rgba(255,255,255,0.45)',
   },
+  coreBottomGlow: {
+    position: 'absolute',
+    left: 6,
+    right: 6,
+    bottom: 2,
+    height: 8,
+    borderRadius: 6,
+  },
   coreDot: {
     width: 4,
     height: 4,
@@ -527,6 +583,14 @@ const styles = StyleSheet.create({
     right: 0,
     height: '55%',
     backgroundColor: 'rgba(255,255,255,0.35)',
+  },
+  chipGlow: {
+    position: 'absolute',
+    left: 4,
+    right: 4,
+    bottom: 0,
+    height: 5,
+    borderRadius: 4,
   },
   lookDot: {
     width: 5,
