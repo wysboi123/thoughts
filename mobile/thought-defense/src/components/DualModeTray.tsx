@@ -142,6 +142,15 @@ export function DualModeTray({
           },
         ]}
       />
+      <View
+        pointerEvents="none"
+        style={[
+          styles.cornerWashAlt,
+          {
+            backgroundColor: selectMode ? `${selectAccent}0c` : `${colors.clarity}0c`,
+          },
+        ]}
+      />
       <View pointerEvents="none" style={styles.trayGlow} />
       <View style={styles.titleRow}>
         <View
@@ -153,7 +162,23 @@ export function DualModeTray({
             },
           ]}
         >
+          <View
+            pointerEvents="none"
+            style={[
+              styles.modeChipTopAccent,
+              { backgroundColor: selectMode ? selectAccent : colors.brand },
+            ]}
+          />
           <View pointerEvents="none" style={styles.modeChipSheen} />
+          <View
+            pointerEvents="none"
+            style={[
+              styles.modeChipRing,
+              {
+                borderColor: selectMode ? `${selectAccent}33` : 'rgba(63,111,98,0.22)',
+              },
+            ]}
+          />
           <View
             style={[
               styles.modeDot,
@@ -169,13 +194,21 @@ export function DualModeTray({
             {selectMode ? 'Selected' : 'Plant'}
           </Text>
         </View>
-        <Text style={styles.title} numberOfLines={1}>
-          {selectMode
-            ? `${GAME.towers[selected.kind].displayName} · L${selected.level}`
-            : themeLantern
-              ? 'Plant kindness · lantern light'
-              : 'Plant kindness'}
-        </Text>
+        <View style={styles.titleCluster}>
+          <View
+            style={[
+              styles.titleLead,
+              { backgroundColor: selectMode ? selectAccent : colors.brand },
+            ]}
+          />
+          <Text style={styles.title} numberOfLines={1}>
+            {selectMode
+              ? `${GAME.towers[selected.kind].displayName} · L${selected.level}`
+              : themeLantern
+                ? 'Plant kindness · lantern light'
+                : 'Plant kindness'}
+          </Text>
+        </View>
       </View>
 
       <Animated.View style={[styles.plantRow, plantRowStyle]}>
@@ -262,6 +295,17 @@ export function DualModeTray({
                 ]}
               >
                 <View pointerEvents="none" style={styles.chipSheen} />
+                <View
+                  pointerEvents="none"
+                  style={[
+                    styles.costChipRing,
+                    {
+                      borderColor: !canAfford && !selectMode
+                        ? 'rgba(36,58,52,0.12)'
+                        : 'rgba(106,158,174,0.28)',
+                    },
+                  ]}
+                />
                 <Text
                   style={[
                     styles.plantCost,
@@ -293,6 +337,10 @@ export function DualModeTray({
               pointerEvents="none"
               style={[styles.selectBannerRing, { borderColor: `${selectAccent}28` }]}
             />
+            <View
+              pointerEvents="none"
+              style={[styles.selectBannerGlow, { backgroundColor: `${selectAccent}22` }]}
+            />
             <View style={[styles.selectDot, { backgroundColor: selectAccent }]} />
             <Text style={styles.selectStats}>{selectStats}</Text>
           </View>
@@ -312,6 +360,7 @@ export function DualModeTray({
       <Animated.View style={plantHintStyle} pointerEvents="none">
         <View style={styles.hintChip}>
           <View pointerEvents="none" style={styles.chipSheen} />
+          <View pointerEvents="none" style={styles.hintChipRing} />
           <Text style={styles.hint}>
             Tap an empty pad to plant · tap a planted thought to upgrade
           </Text>
@@ -330,6 +379,15 @@ export function DualModeTray({
         >
           <View pointerEvents="none" style={styles.chipSheen} />
           <View
+            pointerEvents="none"
+            style={[
+              styles.footerBadgeRing,
+              {
+                borderColor: selectMode ? `${selectAccent}28` : `${colors.brand}28`,
+              },
+            ]}
+          />
+          <View
             style={[
               styles.footerDot,
               { backgroundColor: selectMode ? selectAccent : colors.brand },
@@ -339,6 +397,7 @@ export function DualModeTray({
         </View>
         <View style={styles.footerHintChip}>
           <View pointerEvents="none" style={styles.chipSheen} />
+          <View pointerEvents="none" style={styles.footerHintChipRing} />
           <Text style={styles.footerHint}>
             {selectMode ? 'Upgrade · Sell · Back' : 'Plant · dim on select'}
           </Text>
@@ -360,10 +419,10 @@ const styles = StyleSheet.create({
     gap: 10,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.19,
-    shadowRadius: 16,
-    shadowOffset: { width: 0, height: 7 },
-    elevation: 5,
+    shadowOpacity: 0.23,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 8 },
+    elevation: 6,
   },
   trayDawn: {
     backgroundColor: 'rgba(255, 244, 220, 0.78)',
@@ -383,8 +442,8 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: 30,
-    backgroundColor: 'rgba(255,255,255,0.26)',
+    height: 32,
+    backgroundColor: 'rgba(255,255,255,0.3)',
   },
   cornerOrb: {
     position: 'absolute',
@@ -402,14 +461,22 @@ const styles = StyleSheet.create({
     left: -16,
     bottom: -12,
   },
+  cornerWashAlt: {
+    position: 'absolute',
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    right: 36,
+    bottom: -8,
+  },
   trayGlow: {
     position: 'absolute',
     left: 20,
     right: 20,
     bottom: 0,
-    height: 16,
+    height: 18,
     borderRadius: 12,
-    backgroundColor: 'rgba(91, 138, 122, 0.1)',
+    backgroundColor: 'rgba(91, 138, 122, 0.12)',
   },
   chipSheen: {
     position: 'absolute',
@@ -435,6 +502,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     overflow: 'hidden',
   },
+  modeChipTopAccent: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 2,
+    opacity: 0.55,
+    zIndex: 2,
+  },
   modeChipSheen: {
     position: 'absolute',
     top: 0,
@@ -442,6 +518,16 @@ const styles = StyleSheet.create({
     right: 0,
     height: '55%',
     backgroundColor: 'rgba(255,255,255,0.28)',
+  },
+  modeChipRing: {
+    position: 'absolute',
+    top: 2,
+    left: 2,
+    right: 2,
+    bottom: 2,
+    borderRadius: 8,
+    borderWidth: 1,
+    opacity: 0.85,
   },
   modeDot: {
     width: 6,
@@ -453,6 +539,18 @@ const styles = StyleSheet.create({
     fontSize: 10,
     letterSpacing: 0.3,
     textTransform: 'uppercase',
+  },
+  titleCluster: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    flexShrink: 1,
+  },
+  titleLead: {
+    width: 3,
+    height: 12,
+    borderRadius: 2,
+    opacity: 0.75,
   },
   title: {
     fontFamily: fonts.bodyBold,
@@ -477,10 +575,10 @@ const styles = StyleSheet.create({
     borderColor: 'transparent',
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.12,
-    shadowRadius: 7,
-    shadowOffset: { width: 0, height: 3 },
-    elevation: 3,
+    shadowOpacity: 0.16,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 4,
   },
   plantCardActive: {
     backgroundColor: 'rgba(255,255,255,0.92)',
@@ -547,6 +645,16 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(106,158,174,0.22)',
     overflow: 'hidden',
   },
+  costChipRing: {
+    position: 'absolute',
+    top: 1,
+    left: 1,
+    right: 1,
+    bottom: 1,
+    borderRadius: 7,
+    borderWidth: 1,
+    opacity: 0.85,
+  },
   costChipLow: {
     backgroundColor: 'rgba(36,58,52,0.06)',
     borderColor: 'rgba(36,58,52,0.1)',
@@ -599,6 +707,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     opacity: 0.85,
   },
+  selectBannerGlow: {
+    position: 'absolute',
+    left: 12,
+    right: 12,
+    bottom: 2,
+    height: 3,
+    borderRadius: 2,
+    opacity: 0.75,
+  },
   selectDot: {
     width: 8,
     height: 8,
@@ -627,6 +744,17 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(36,58,52,0.1)',
     overflow: 'hidden',
   },
+  hintChipRing: {
+    position: 'absolute',
+    top: 2,
+    left: 2,
+    right: 2,
+    bottom: 2,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(36,58,52,0.1)',
+    opacity: 0.85,
+  },
   hint: {
     fontFamily: fonts.body,
     fontSize: 11,
@@ -651,10 +779,20 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.06,
-    shadowRadius: 4,
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
     shadowOffset: { width: 0, height: 2 },
-    elevation: 1,
+    elevation: 2,
+  },
+  footerBadgeRing: {
+    position: 'absolute',
+    top: 2,
+    left: 2,
+    right: 2,
+    bottom: 2,
+    borderRadius: 8,
+    borderWidth: 1,
+    opacity: 0.85,
   },
   footerDot: {
     width: 5,
@@ -676,6 +814,17 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(36,58,52,0.1)',
     overflow: 'hidden',
+  },
+  footerHintChipRing: {
+    position: 'absolute',
+    top: 2,
+    left: 2,
+    right: 2,
+    bottom: 2,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(36,58,52,0.1)',
+    opacity: 0.85,
   },
   footerHint: {
     fontFamily: fonts.body,
