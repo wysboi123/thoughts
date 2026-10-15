@@ -27,7 +27,7 @@ Stub IAP stays until you pick + we wire. Reply **RC** / **RNIap** / other.
 
 *Clarity Pass price still unanswered — keeping **$2.99/mo** default until you say otherwise (not re-asking price this batch).*
 
-Night polish ~00:20 Oct 15 — **v1.4.76** DualModeTray. Overnight-stop left armed (~05:00 Oct 15). Open ask unchanged: **RC vs RNIap** · Pass **$2.99** default.
+Overnight STOP ~05:00 Oct 15 — night wrap **v1.4.73→v1.4.76**. Did **not** re-arm overnight-stop. Next resume **23:00 UTC**. Open ask unchanged: **RC vs RNIap** · Pass **$2.99** default.
 
 ## Defaults
 
