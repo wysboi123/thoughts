@@ -4,6 +4,19 @@ Newest first. Overnight agents append after every push.
 
 ## Mobile Thought Defense overnight (from `main`)
 
+## 2026-10-15 05:00 UTC — OVERNIGHT STOP (Night 21)
+
+Night 21 complete. No new features this wrap. One digest email sent.
+
+**Shipped Night 21**
+- HomeMindscapePreview **v1.4.68** · PauseOverlay **v1.4.69** · WavePreviewChip **v1.4.70** · Atmosphere **v1.4.71**
+- PR: https://github.com/wysboi123/thoughts/pull/8
+
+**Versions end:** Thought Defense mobile **1.4.71**
+**Blocked:** Native IAP (Q-006) · EAS projectId · store products · legal URLs · Clarity Pass price
+**Timers:** left `overnight-daily-resume` armed (expires ~2026-10-18) · did **not** re-arm `overnight-stop-5am-utc` until next night resume
+**Next (Night 22):** Shop / GameBoard cycle · re-arm daily resume if near expiry · no Roblox unless un-paused
+
 ## 2026-10-15 03:00 UTC — Night 21 quiet CP2
 
 - **Shipped v1.4.71:** Atmosphere — floor wash · richer orb halos · extra mote · Dawn tint
