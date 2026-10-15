@@ -149,15 +149,26 @@ export function WavePreviewChip({ waveIndex, visible, dawn }: Props) {
         pointerEvents="none"
         style={[styles.cornerWash, { backgroundColor: `${accent}18` }]}
       />
+      <View
+        pointerEvents="none"
+        style={[styles.bottomWash, { backgroundColor: `${accent}10` }]}
+      />
       <View style={styles.headRow}>
         <View style={styles.headLeft}>
-          <Text style={styles.label}>
-            Next · wave {waveIndex + 1}/{GAME.waveCount}
-          </Text>
+          <View>
+            <Text style={styles.label}>
+              Next · wave {waveIndex + 1}/{GAME.waveCount}
+            </Text>
+            <Text style={[styles.softHint, { color: accent }]}>Soft preview · plan kindly</Text>
+          </View>
           <View style={[styles.accentDot, { backgroundColor: accent }]} />
         </View>
         <View style={[styles.totalChip, dawn ? styles.totalChipDawn : null]}>
           <View pointerEvents="none" style={styles.chipSheen} />
+          <View
+            pointerEvents="none"
+            style={[styles.chipGlow, { backgroundColor: `${accent}28` }]}
+          />
           <View style={[styles.totalLead, { backgroundColor: accent }]} />
           <Text style={styles.total}>{total} thoughts</Text>
         </View>
@@ -171,6 +182,7 @@ export function WavePreviewChip({ waveIndex, visible, dawn }: Props) {
           now: waveIndex + 1,
         }}
       >
+        <View pointerEvents="none" style={styles.waveSheen} />
         <View
           style={[
             styles.waveFill,
@@ -198,6 +210,10 @@ export function WavePreviewChip({ waveIndex, visible, dawn }: Props) {
         style={[styles.tipChip, { borderColor: `${accent}44`, backgroundColor: `${accent}12` }]}
       >
         <View pointerEvents="none" style={styles.chipSheen} />
+        <View
+          pointerEvents="none"
+          style={[styles.chipGlow, { backgroundColor: `${accent}22` }]}
+        />
         <View style={[styles.tipDot, { backgroundColor: accent }]} />
         <Text style={styles.hint}>Plant before they walk · {tip}</Text>
       </View>
@@ -222,10 +238,10 @@ const styles = StyleSheet.create({
     gap: 7,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.12,
-    shadowRadius: 12,
-    shadowOffset: { width: 0, height: 5 },
-    elevation: 3,
+    shadowOpacity: 0.16,
+    shadowRadius: 14,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 4,
   },
   wrapDawn: {
     backgroundColor: 'rgba(255, 244, 220, 0.72)',
@@ -256,6 +272,14 @@ const styles = StyleSheet.create({
     right: -16,
     bottom: -12,
   },
+  bottomWash: {
+    position: 'absolute',
+    left: 12,
+    right: 12,
+    bottom: 6,
+    height: 28,
+    borderRadius: 12,
+  },
   chipSheen: {
     position: 'absolute',
     top: 0,
@@ -263,6 +287,14 @@ const styles = StyleSheet.create({
     right: 0,
     height: '55%',
     backgroundColor: 'rgba(255,255,255,0.32)',
+  },
+  chipGlow: {
+    position: 'absolute',
+    left: 4,
+    right: 4,
+    bottom: 0,
+    height: 5,
+    borderRadius: 4,
   },
   headRow: {
     flexDirection: 'row',
@@ -281,6 +313,12 @@ const styles = StyleSheet.create({
     color: colors.calm,
     letterSpacing: 0.3,
     textTransform: 'uppercase',
+  },
+  softHint: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 10,
+    letterSpacing: 0.2,
+    marginTop: 1,
   },
   accentDot: {
     width: 6,
@@ -314,14 +352,22 @@ const styles = StyleSheet.create({
     color: colors.brandDeep,
   },
   waveTrack: {
-    height: 3,
-    borderRadius: 3,
+    height: 4,
+    borderRadius: 4,
     backgroundColor: 'rgba(36, 51, 58, 0.08)',
     overflow: 'hidden',
   },
+  waveSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '50%',
+    backgroundColor: 'rgba(255,255,255,0.35)',
+  },
   waveFill: {
-    height: 3,
-    borderRadius: 3,
+    height: 4,
+    borderRadius: 4,
   },
   row: {
     flexDirection: 'row',

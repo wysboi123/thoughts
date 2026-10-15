@@ -4,6 +4,13 @@ Newest first. Overnight agents append after every push.
 
 ## Mobile Thought Defense overnight (from `main`)
 
+## 2026-10-15 01:00 UTC — Night 21 quiet CP1
+
+- **Shipped v1.4.70:** WavePreviewChip — bottom wash · soft hint · chip glows · wave sheen
+- Roblox untouched; no email
+- Still blocked: Native IAP · EAS · store products · Q-006
+- Stop 05:00 · **one digest email at stop only** · PR #8
+
 ## 2026-10-14 23:00 UTC — Night 21 resume
 
 - Daily resume fired · no new Perplexity answers
