@@ -187,12 +187,38 @@ export function PeaceCore({ left, top, themeDawn, stressed }: Props) {
           },
         ]}
       />
+      <View
+        pointerEvents="none"
+        style={[
+          styles.cornerWashAlt,
+          {
+            backgroundColor: stressed
+              ? 'rgba(196, 120, 120, 0.08)'
+              : themeDawn
+                ? 'rgba(201, 168, 90, 0.08)'
+                : 'rgba(106, 158, 174, 0.1)',
+          },
+        ]}
+      />
       <Animated.View
         pointerEvents="none"
         style={[styles.midHalo, midStyle, { backgroundColor: midColor }]}
       />
       <Animated.View
         style={[styles.halo, ringStyle, { backgroundColor: haloColor }]}
+      />
+      <View
+        pointerEvents="none"
+        style={[
+          styles.coreOuterRing,
+          {
+            borderColor: stressed
+              ? 'rgba(196, 120, 120, 0.28)'
+              : themeDawn
+                ? 'rgba(201, 168, 90, 0.28)'
+                : 'rgba(107, 184, 154, 0.28)',
+          },
+        ]}
       />
       <View
         style={[
@@ -229,10 +255,10 @@ export function PeaceCore({ left, top, themeDawn, stressed }: Props) {
             styles.coreBottomGlow,
             {
               backgroundColor: stressed
-                ? 'rgba(196, 120, 120, 0.22)'
+                ? 'rgba(196, 120, 120, 0.26)'
                 : themeDawn
-                  ? 'rgba(201, 168, 90, 0.2)'
-                  : 'rgba(107, 184, 154, 0.22)',
+                  ? 'rgba(201, 168, 90, 0.24)'
+                  : 'rgba(107, 184, 154, 0.26)',
             },
           ]}
         />
@@ -287,7 +313,21 @@ export function PeaceCore({ left, top, themeDawn, stressed }: Props) {
               ]}
             />
           </View>
-          <Text style={[styles.coreLabel, stressed && styles.coreLabelStressed]}>Peace</Text>
+          <View style={styles.labelRow}>
+            <View
+              style={[
+                styles.labelLead,
+                {
+                  backgroundColor: stressed
+                    ? colors.dangerSoft
+                    : themeDawn
+                      ? '#C9A85A'
+                      : colors.calm,
+                },
+              ]}
+            />
+            <Text style={[styles.coreLabel, stressed && styles.coreLabelStressed]}>Peace</Text>
+          </View>
           <Text style={[styles.coreSub, stressed && styles.coreSubStressed]}>
             {stressed ? 'soft hold' : 'still'}
           </Text>
@@ -295,15 +335,19 @@ export function PeaceCore({ left, top, themeDawn, stressed }: Props) {
       </View>
       {stressed ? (
         <View style={styles.warnChip} accessibilityElementsHidden>
+          <View pointerEvents="none" style={styles.warnChipTopAccent} />
           <View pointerEvents="none" style={styles.chipSheen} />
           <View pointerEvents="none" style={styles.warnChipRing} />
+          <View pointerEvents="none" style={styles.warnChipGlow} />
           <View style={styles.warnDot} />
           <Text style={styles.warnText}>calm soft</Text>
         </View>
       ) : (
         <View style={styles.holdChip} accessibilityElementsHidden>
+          <View pointerEvents="none" style={styles.holdChipTopAccent} />
           <View pointerEvents="none" style={styles.chipSheen} />
           <View pointerEvents="none" style={styles.holdChipRing} />
+          <View pointerEvents="none" style={styles.holdChipGlow} />
           <View style={styles.holdDot} />
           <Text style={styles.holdText}>holding gently</Text>
         </View>
@@ -350,6 +394,14 @@ const styles = StyleSheet.create({
     left: -12,
     bottom: -8,
   },
+  cornerWashAlt: {
+    position: 'absolute',
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    right: 18,
+    bottom: -10,
+  },
   midHalo: {
     position: 'absolute',
     width: 102,
@@ -362,6 +414,14 @@ const styles = StyleSheet.create({
     height: 96,
     borderRadius: 48,
   },
+  coreOuterRing: {
+    position: 'absolute',
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    borderWidth: 1,
+    opacity: 0.85,
+  },
   coreRing: {
     width: 72,
     height: 72,
@@ -370,10 +430,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderWidth: 2,
     overflow: 'hidden',
-    shadowOpacity: 0.48,
-    shadowRadius: 16,
-    shadowOffset: { width: 0, height: 6 },
-    elevation: 6,
+    shadowOpacity: 0.54,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 7 },
+    elevation: 7,
   },
   coreTopAccent: {
     position: 'absolute',
@@ -381,7 +441,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: 2,
-    opacity: 0.55,
+    opacity: 0.6,
     zIndex: 2,
   },
   coreSheen: {
@@ -389,17 +449,17 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: '48%',
-    backgroundColor: 'rgba(255,255,255,0.34)',
+    height: '52%',
+    backgroundColor: 'rgba(255,255,255,0.38)',
   },
   coreBottomGlow: {
     position: 'absolute',
-    left: 8,
-    right: 8,
+    left: 6,
+    right: 6,
     bottom: 0,
-    height: 16,
+    height: 18,
     borderRadius: 10,
-    opacity: 0.82,
+    opacity: 0.88,
   },
   coreInner: {
     width: 48,
@@ -415,8 +475,8 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: '50%',
-    backgroundColor: 'rgba(255,255,255,0.3)',
+    height: '55%',
+    backgroundColor: 'rgba(255,255,255,0.34)',
   },
   innerRing: {
     position: 'absolute',
@@ -460,6 +520,17 @@ const styles = StyleSheet.create({
     height: 5,
     borderRadius: 3,
   },
+  labelRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+  },
+  labelLead: {
+    width: 2,
+    height: 9,
+    borderRadius: 1,
+    opacity: 0.75,
+  },
   coreLabel: {
     fontFamily: fonts.bodyMedium,
     fontSize: 11,
@@ -491,10 +562,20 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(196, 120, 120, 0.35)',
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.14,
-    shadowRadius: 5,
+    shadowOpacity: 0.18,
+    shadowRadius: 6,
     shadowOffset: { width: 0, height: 2 },
-    elevation: 2,
+    elevation: 3,
+  },
+  warnChipTopAccent: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 2,
+    backgroundColor: colors.dangerSoft,
+    opacity: 0.55,
+    zIndex: 2,
   },
   warnChipRing: {
     position: 'absolute',
@@ -506,6 +587,16 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(196, 120, 120, 0.28)',
     opacity: 0.85,
+  },
+  warnChipGlow: {
+    position: 'absolute',
+    left: 6,
+    right: 6,
+    bottom: 1,
+    height: 2,
+    borderRadius: 2,
+    backgroundColor: 'rgba(196, 120, 120, 0.35)',
+    opacity: 0.75,
   },
   warnDot: {
     width: 5,
@@ -533,10 +624,20 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(107, 184, 154, 0.28)',
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.14,
-    shadowRadius: 5,
+    shadowOpacity: 0.18,
+    shadowRadius: 6,
     shadowOffset: { width: 0, height: 2 },
-    elevation: 2,
+    elevation: 3,
+  },
+  holdChipTopAccent: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 2,
+    backgroundColor: colors.calm,
+    opacity: 0.55,
+    zIndex: 2,
   },
   holdChipRing: {
     position: 'absolute',
@@ -548,6 +649,16 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(107, 184, 154, 0.28)',
     opacity: 0.85,
+  },
+  holdChipGlow: {
+    position: 'absolute',
+    left: 6,
+    right: 6,
+    bottom: 1,
+    height: 2,
+    borderRadius: 2,
+    backgroundColor: 'rgba(107, 184, 154, 0.35)',
+    opacity: 0.75,
   },
   holdDot: {
     width: 5,
