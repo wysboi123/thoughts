@@ -116,7 +116,7 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/7
-- Tip: *(ship SHA after push)* (v1.4.78 PeaceCore · prior tip `c3cb0cb` / docs `0fc85af`)
+- Tip: `999434c` (v1.4.78 PeaceCore · prior tip `c3cb0cb` / docs `0fc85af`)
 - Hourly timer: **`thought-defense-mobile-hourly`** (`sub_f388e268…`, cron `15 * * * *`)
 - Night envelope: **OPEN** · overnight-stop armed (`sub_9e275694…`, ~05:00 Oct 16) · `overnight-daily-resume` armed (`sub_e96eb095…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
