@@ -213,9 +213,14 @@ export function Atmosphere({ children, dawn }: Props) {
         pointerEvents="none"
         style={[styles.centerGlowRim, dawn ? styles.centerGlowRimDawn : null]}
       />
+      <View
+        pointerEvents="none"
+        style={[styles.floorWash, dawn ? styles.floorWashDawn : null]}
+      />
       <View pointerEvents="none" style={styles.moteA} />
       <View pointerEvents="none" style={styles.moteB} />
       <View pointerEvents="none" style={styles.moteC} />
+      <View pointerEvents="none" style={[styles.moteD, dawn ? styles.moteDDawn : null]} />
       <Animated.View style={contentStyle}>{children}</Animated.View>
     </View>
   );
@@ -275,12 +280,12 @@ const styles = StyleSheet.create({
   orbHalo: {
     ...StyleSheet.absoluteFill,
     borderRadius: 999,
-    borderWidth: 1.5,
-    borderColor: 'rgba(255,255,255,0.35)',
-    transform: [{ scale: 1.12 }],
+    borderWidth: 1.6,
+    borderColor: 'rgba(255,255,255,0.4)',
+    transform: [{ scale: 1.14 }],
   },
   orbHaloDawn: {
-    borderColor: 'rgba(255, 244, 220, 0.45)',
+    borderColor: 'rgba(255, 244, 220, 0.5)',
   },
   orbA: {
     width: 220,
@@ -365,31 +370,55 @@ const styles = StyleSheet.create({
   centerGlowRimDawn: {
     borderColor: 'rgba(255, 236, 210, 0.16)',
   },
+  floorWash: {
+    position: 'absolute',
+    left: 28,
+    right: 28,
+    bottom: 48,
+    height: 64,
+    borderRadius: 32,
+    backgroundColor: 'rgba(255,255,255,0.06)',
+  },
+  floorWashDawn: {
+    backgroundColor: 'rgba(255, 244, 220, 0.1)',
+  },
   moteA: {
     position: 'absolute',
     top: '22%',
     left: '18%',
-    width: 5,
-    height: 5,
+    width: 6,
+    height: 6,
     borderRadius: 3,
-    backgroundColor: 'rgba(255,255,255,0.35)',
+    backgroundColor: 'rgba(255,255,255,0.38)',
   },
   moteB: {
     position: 'absolute',
     top: '64%',
     right: '22%',
-    width: 4,
-    height: 4,
-    borderRadius: 2,
-    backgroundColor: 'rgba(255,255,255,0.28)',
+    width: 5,
+    height: 5,
+    borderRadius: 3,
+    backgroundColor: 'rgba(255,255,255,0.3)',
   },
   moteC: {
     position: 'absolute',
     bottom: '18%',
     left: '40%',
+    width: 4,
+    height: 4,
+    borderRadius: 2,
+    backgroundColor: 'rgba(255,255,255,0.24)',
+  },
+  moteD: {
+    position: 'absolute',
+    top: '40%',
+    right: '38%',
     width: 3,
     height: 3,
     borderRadius: 2,
-    backgroundColor: 'rgba(255,255,255,0.22)',
+    backgroundColor: 'rgba(107, 184, 154, 0.28)',
+  },
+  moteDDawn: {
+    backgroundColor: 'rgba(201, 168, 90, 0.32)',
   },
 });
