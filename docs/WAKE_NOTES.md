@@ -9,7 +9,7 @@ Newest first. Overnight agents append after every push.
 - Git: clean on `cursor/mobile-thought-defense-5a0d` · tip `de186ce` / docs `0bfaa23` (v1.4.76); this stop note → tip after push.
 - **Night ship summary (23:00→05:00):** SoftPlayHud **1.4.73** → PauseOverlay **1.4.74** → FirstRunTipChip **1.4.75** → DualModeTray **1.4.76**
 - Draft C locked · no Femmy Gmail answers · open ask **RC vs RNIap** · Pass **$2.99** default
-- Left armed: `thought-defense-mobile-hourly` + `overnight-daily-resume` · **did not** re-arm overnight-stop · PR **#7**
+- Timers were empty at stop — re-armed `thought-defense-mobile-hourly` (`sub_f388e268…`) + `overnight-daily-resume` (`sub_e96eb095…`) · **did not** re-arm overnight-stop · PR **#7**
 - Next polish candidate at night resume: SoftFxLayer
 
 ## 2026-10-15 00:20 UTC — Night polish (v1.4.76 DualModeTray)

@@ -114,8 +114,8 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/7
-- Tip: `de186ce` (v1.4.76 DualModeTray · prior tip `a5fa759` / docs `c3cfa4e`)
-- Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
-- Night envelope: **CLOSED** · overnight-stop **not** re-armed · `overnight-daily-resume` left armed for 23:00 UTC
+- Tip: `5627c4e` (overnight STOP docs · prior tip `de186ce` / docs `0bfaa23`)
+- Hourly timer: **`thought-defense-mobile-hourly`** re-armed (`sub_f388e268…`, cron `15 * * * *`) · daytime = idle / apply Femmy answers only
+- Night envelope: **CLOSED** · overnight-stop **not** re-armed · `overnight-daily-resume` re-armed (`sub_e96eb095…`, cron `0 23 * * *`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
 - Next: daytime idle · SoftFxLayer next polish at 23:00 night resume
