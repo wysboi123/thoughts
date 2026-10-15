@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-15 23:00 UTC — Night resume (v1.4.77 SoftFxLayer)
+
+- Timer `overnight-daily-resume` · NIGHT resume · no Femmy Gmail reply
+- **Shipped v1.4.77:** SoftFxLayer — longer plant/clear/shot life · richer motes · 8th mote · wash/halo/ring bump · shot motes · richer spark flash
+- Re-armed `overnight-stop-5am-utc` (`sub_9e275694…`, ~05:00 Oct 16) · daily-resume + hourly left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default · PR **#7**
+
 ## 2026-10-15 05:00 UTC — OVERNIGHT STOP (mobile night wrap)
 
 - Timer `overnight-stop-5am-utc` fired ~05:00 UTC Oct 15 — **HARD STOP**. **No new features.** Docs + digest only.

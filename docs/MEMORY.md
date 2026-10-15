@@ -107,15 +107,16 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-15 ~00:15:** FirstRunTipChip polish v1.4.75 — alt corner wash · badge ring · dismiss glow · thicker progress · richer shadows.
 - **2026-10-15 ~00:20:** DualModeTray polish v1.4.76 — alt corner wash · title lead · mode chip accent/ring · cost/hint/footer rings · select banner glow · richer shadows.
 - **2026-10-15 ~05:00 OVERNIGHT STOP:** Hard stop after night ship v1.4.73→v1.4.76. Did **not** re-arm overnight-stop. Next resume 23:00 UTC.
+- **2026-10-15 ~23:00 night resume:** SoftFxLayer polish v1.4.77 — longer FX life · richer motes · 8th mote · wash/halo/ring bump · shot motes · richer spark. Re-armed overnight-stop (`sub_9e275694…`).
 
 ## State
 
-- Version: **mobile 1.4.76** (DualModeTray polish · night wrap)
+- Version: **mobile 1.4.77** (SoftFxLayer polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/7
-- Tip: `5627c4e` (overnight STOP docs · prior tip `de186ce` / docs `0bfaa23`)
-- Hourly timer: **`thought-defense-mobile-hourly`** re-armed (`sub_f388e268…`, cron `15 * * * *`) · daytime = idle / apply Femmy answers only
-- Night envelope: **CLOSED** · overnight-stop **not** re-armed · `overnight-daily-resume` re-armed (`sub_e96eb095…`, cron `0 23 * * *`)
+- Tip: *(ship SHA after push)* (v1.4.77 SoftFxLayer · prior tip `de186ce` / docs `ccb06b4`)
+- Hourly timer: **`thought-defense-mobile-hourly`** (`sub_f388e268…`, cron `15 * * * *`)
+- Night envelope: **OPEN** · overnight-stop armed (`sub_9e275694…`, ~05:00 Oct 16) · `overnight-daily-resume` armed (`sub_e96eb095…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
-- Next: daytime idle · SoftFxLayer next polish at 23:00 night resume
+- Next: night hourlies until ~05:00 · PeaceCore next polish candidate
