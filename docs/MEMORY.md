@@ -104,15 +104,16 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-14 ~05:00 OVERNIGHT STOP:** Hard stop after night ship v1.4.66→v1.4.72. Did **not** re-arm overnight-stop. Next resume 23:00 UTC.
 - **2026-10-14 ~23:00 night resume:** SoftPlayHud polish v1.4.73 — alt corner wash · pill top accents · footer/hint/soft chip rings · richer shadows. Re-armed overnight-stop (`sub_b9e38876…`).
 - **2026-10-14 ~23:15:** PauseOverlay polish v1.4.74 — title lead · eyebrow/phase/meta/goals/comfort rings · richer card/strip shadows.
+- **2026-10-15 ~00:15:** FirstRunTipChip polish v1.4.75 — alt corner wash · badge ring · dismiss glow · thicker progress · richer shadows.
 
 ## State
 
-- Version: **mobile 1.4.74** (PauseOverlay polish)
+- Version: **mobile 1.4.75** (FirstRunTipChip polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/7
-- Tip: `dcc85bc` (v1.4.74 PauseOverlay · prior tip `3951287` / docs `81535ec`)
+- Tip: (pending push) v1.4.75 FirstRunTipChip · prior tip `dcc85bc`
 - Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
 - Night envelope: **OPEN** · overnight-stop armed (`sub_b9e38876…`, ~05:00 Oct 15) · `overnight-daily-resume` armed (`sub_d6468578…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
-- Next: night hourlies until ~05:00 · FirstRunTipChip / DualModeTray next
+- Next: night hourlies until ~05:00 · DualModeTray next polish candidate

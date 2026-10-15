@@ -153,6 +153,10 @@ export function FirstRunTipChip({ visible, dawn }: Props) {
         />
         <View
           pointerEvents="none"
+          style={[styles.cornerWashAlt, { backgroundColor: `${current.accent}0c` }]}
+        />
+        <View
+          pointerEvents="none"
           style={[styles.glow, { backgroundColor: `${current.accent}28` }]}
         />
         <View
@@ -163,6 +167,10 @@ export function FirstRunTipChip({ visible, dawn }: Props) {
         <Animated.View style={[styles.textWrap, { opacity: tipFade }]}>
           <View style={[styles.badge, { borderColor: `${current.accent}66` }]}>
             <View pointerEvents="none" style={styles.badgeSheen} />
+            <View
+              pointerEvents="none"
+              style={[styles.badgeRing, { borderColor: `${current.accent}33` }]}
+            />
             <View style={[styles.badgeDot, { backgroundColor: current.accent }]} />
             <Text style={[styles.badgeLabel, { color: current.accent }]}>Soft tip</Text>
           </View>
@@ -212,6 +220,10 @@ export function FirstRunTipChip({ visible, dawn }: Props) {
             pointerEvents="none"
             style={[styles.dismissRing, { borderColor: `${current.accent}33` }]}
           />
+          <View
+            pointerEvents="none"
+            style={[styles.dismissGlow, { backgroundColor: `${current.accent}22` }]}
+          />
           <Text style={styles.dismissLabel}>Got it</Text>
         </Pressable>
       </View>
@@ -241,10 +253,10 @@ const styles = StyleSheet.create({
     borderLeftWidth: 4,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.2,
-    shadowRadius: 14,
-    shadowOffset: { width: 0, height: 6 },
-    elevation: 5,
+    shadowOpacity: 0.24,
+    shadowRadius: 16,
+    shadowOffset: { width: 0, height: 7 },
+    elevation: 6,
   },
   chipDawn: {
     backgroundColor: 'rgba(255, 244, 220, 0.75)',
@@ -264,8 +276,8 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: 26,
-    backgroundColor: 'rgba(255,255,255,0.26)',
+    height: 28,
+    backgroundColor: 'rgba(255,255,255,0.3)',
   },
   cornerOrb: {
     position: 'absolute',
@@ -282,6 +294,14 @@ const styles = StyleSheet.create({
     borderRadius: 24,
     right: 56,
     top: -12,
+  },
+  cornerWashAlt: {
+    position: 'absolute',
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    left: 40,
+    bottom: -10,
   },
   chipGlow: {
     position: 'absolute',
@@ -323,6 +343,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: 'rgba(255,255,255,0.45)',
     overflow: 'hidden',
+    shadowColor: '#243A34',
+    shadowOpacity: 0.06,
+    shadowRadius: 3,
+    shadowOffset: { width: 0, height: 1 },
+    elevation: 1,
   },
   badgeSheen: {
     position: 'absolute',
@@ -331,6 +356,16 @@ const styles = StyleSheet.create({
     right: 0,
     height: '55%',
     backgroundColor: 'rgba(255,255,255,0.35)',
+  },
+  badgeRing: {
+    position: 'absolute',
+    top: 2,
+    left: 2,
+    right: 2,
+    bottom: 2,
+    borderRadius: 8,
+    borderWidth: 1,
+    opacity: 0.85,
   },
   badgeDot: {
     width: 6,
@@ -362,8 +397,8 @@ const styles = StyleSheet.create({
     color: colors.brandDeep,
   },
   progressTrack: {
-    height: 3,
-    borderRadius: 3,
+    height: 4,
+    borderRadius: 4,
     backgroundColor: 'rgba(36, 58, 52, 0.08)',
     overflow: 'hidden',
     marginTop: 1,
@@ -377,8 +412,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.35)',
   },
   progressFill: {
-    height: 3,
-    borderRadius: 3,
+    height: 4,
+    borderRadius: 4,
   },
   dots: {
     flexDirection: 'row',
@@ -405,10 +440,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.line,
     shadowColor: '#243A34',
-    shadowOpacity: 0.14,
-    shadowRadius: 7,
+    shadowOpacity: 0.18,
+    shadowRadius: 8,
     shadowOffset: { width: 0, height: 3 },
-    elevation: 3,
+    elevation: 4,
   },
   dismissSheen: {
     ...StyleSheet.absoluteFill,
@@ -424,6 +459,15 @@ const styles = StyleSheet.create({
     borderRadius: 9,
     borderWidth: 1,
     opacity: 0.85,
+  },
+  dismissGlow: {
+    position: 'absolute',
+    left: 8,
+    right: 8,
+    bottom: 2,
+    height: 3,
+    borderRadius: 2,
+    opacity: 0.75,
   },
   dismissLabel: {
     fontFamily: fonts.bodyMedium,
