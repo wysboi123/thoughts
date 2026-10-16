@@ -110,6 +110,7 @@ Priority order. Agents pick the top unchecked item unless Femmy overrides.
 - [x] **Night 21 envelope** — polish v1.4.68–1.4.71 · stop 05:00 UTC 2026-10-15
 - [x] **v1.4.72 night resume** — Shop (soft hint · free/comfort strip glows · Pass live glow)
 - [x] **v1.4.73 night resume** — GameBoard (bottom wash · legend/compass chip glows · richer shadow)
+- [x] **v1.4.74 quiet CP1** — Settings (soft hint · version/comfort/footer chip glows)
 - [ ] **Native IAP** — wire RevenueCat or react-native-iap; turn off stubMode for store builds
 - [ ] **EAS project** — Femmy: `eas init` + real `projectId` + credentials
 - [ ] **Store products** — create IAP ids in App Store Connect + Play Console

@@ -93,12 +93,24 @@ export default function SettingsScreen() {
             <Text style={styles.brand}>Settings</Text>
             <View style={[styles.versionChip, looks.dawn ? styles.versionChipDawn : null]}>
               <View pointerEvents="none" style={styles.chipSheen} />
+              <View
+                pointerEvents="none"
+                style={[
+                  styles.chipGlow,
+                  {
+                    backgroundColor: looks.dawn
+                      ? 'rgba(201, 168, 90, 0.25)'
+                      : 'rgba(91, 138, 122, 0.22)',
+                  },
+                ]}
+              />
               <View style={[styles.versionDot, looks.dawn ? styles.versionDotDawn : null]} />
               <Text style={styles.versionChipText}>
                 {GAME.version.replace('-mobile', '')}
               </Text>
             </View>
           </View>
+          <Text style={styles.softHint}>Soft comfort · metaphor only</Text>
           <Text style={styles.meta}>
             {GAME.name} · soft mindscape comfort
           </Text>
@@ -110,6 +122,17 @@ export default function SettingsScreen() {
             accessibilityRole="summary"
           >
             <View pointerEvents="none" style={styles.chipSheen} />
+            <View
+              pointerEvents="none"
+              style={[
+                styles.chipGlow,
+                {
+                  backgroundColor: looks.dawn
+                    ? 'rgba(201, 168, 90, 0.2)'
+                    : 'rgba(91, 138, 122, 0.18)',
+                },
+              ]}
+            />
             <View style={styles.comfortHead}>
               <View style={[styles.leadDot, looks.dawn ? styles.leadDotDawn : null]} />
               <Text style={styles.comfortTitle}>On-device comfort</Text>
@@ -328,6 +351,10 @@ export default function SettingsScreen() {
             </Text>
             <View style={styles.footerStrip} accessibilityRole="summary">
               <View pointerEvents="none" style={styles.chipSheen} />
+              <View
+                pointerEvents="none"
+                style={[styles.chipGlow, { backgroundColor: 'rgba(91, 138, 122, 0.16)' }]}
+              />
               <View style={styles.footerHead}>
                 <View style={styles.footerDot} />
                 <Text style={styles.footerTitle}>Metaphor only</Text>
@@ -361,6 +388,21 @@ const styles = StyleSheet.create({
     right: 0,
     height: '55%',
     backgroundColor: 'rgba(255,255,255,0.28)',
+  },
+  chipGlow: {
+    position: 'absolute',
+    left: 6,
+    right: 6,
+    bottom: 0,
+    height: 6,
+    borderRadius: 4,
+  },
+  softHint: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 12,
+    letterSpacing: 0.25,
+    color: colors.brand,
+    marginTop: 2,
   },
   versionChip: {
     flexDirection: 'row',
