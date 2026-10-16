@@ -151,7 +151,25 @@ export function DualModeTray({
           },
         ]}
       />
+      <View
+        pointerEvents="none"
+        style={[
+          styles.cornerWashMid,
+          {
+            backgroundColor: selectMode ? `${selectAccent}0a` : `${colors.calm}0a`,
+          },
+        ]}
+      />
       <View pointerEvents="none" style={styles.trayGlow} />
+      <View
+        pointerEvents="none"
+        style={[
+          styles.trayBottomGlow,
+          {
+            backgroundColor: selectMode ? `${selectAccent}16` : 'rgba(107, 184, 154, 0.14)',
+          },
+        ]}
+      />
       <View style={styles.titleRow}>
         <View
           style={[
@@ -195,12 +213,23 @@ export function DualModeTray({
           </Text>
         </View>
         <View style={styles.titleCluster}>
-          <View
-            style={[
-              styles.titleLead,
-              { backgroundColor: selectMode ? selectAccent : colors.brand },
-            ]}
-          />
+          <View style={styles.titleLeadWrap}>
+            <View
+              pointerEvents="none"
+              style={[
+                styles.titleLeadHalo,
+                {
+                  backgroundColor: selectMode ? `${selectAccent}33` : `${colors.brand}33`,
+                },
+              ]}
+            />
+            <View
+              style={[
+                styles.titleLead,
+                { backgroundColor: selectMode ? selectAccent : colors.brand },
+              ]}
+            />
+          </View>
           <Text style={styles.title} numberOfLines={1}>
             {selectMode
               ? `${GAME.towers[selected.kind].displayName} · L${selected.level}`
@@ -294,6 +323,16 @@ export function DualModeTray({
                   !canAfford && !selectMode ? styles.costChipLow : null,
                 ]}
               >
+                <View
+                  pointerEvents="none"
+                  style={[
+                    styles.chipTopAccent,
+                    {
+                      backgroundColor:
+                        !canAfford && !selectMode ? colors.inkSoft : colors.clarity,
+                    },
+                  ]}
+                />
                 <View pointerEvents="none" style={styles.chipSheen} />
                 <View
                   pointerEvents="none"
@@ -331,6 +370,10 @@ export function DualModeTray({
           <View style={[styles.selectBanner, { borderColor: `${selectAccent}55` }]}>
             <View
               pointerEvents="none"
+              style={[styles.chipTopAccent, { backgroundColor: selectAccent }]}
+            />
+            <View
+              pointerEvents="none"
               style={[styles.selectBannerSheen, { backgroundColor: `${selectAccent}14` }]}
             />
             <View
@@ -339,7 +382,7 @@ export function DualModeTray({
             />
             <View
               pointerEvents="none"
-              style={[styles.selectBannerGlow, { backgroundColor: `${selectAccent}22` }]}
+              style={[styles.selectBannerGlow, { backgroundColor: `${selectAccent}28` }]}
             />
             <View style={[styles.selectDot, { backgroundColor: selectAccent }]} />
             <Text style={styles.selectStats}>{selectStats}</Text>
@@ -359,6 +402,10 @@ export function DualModeTray({
 
       <Animated.View style={plantHintStyle} pointerEvents="none">
         <View style={styles.hintChip}>
+          <View
+            pointerEvents="none"
+            style={[styles.chipTopAccent, { backgroundColor: colors.brand }]}
+          />
           <View pointerEvents="none" style={styles.chipSheen} />
           <View pointerEvents="none" style={styles.hintChipRing} />
           <Text style={styles.hint}>
@@ -377,6 +424,13 @@ export function DualModeTray({
             },
           ]}
         >
+          <View
+            pointerEvents="none"
+            style={[
+              styles.chipTopAccent,
+              { backgroundColor: selectMode ? selectAccent : colors.brand },
+            ]}
+          />
           <View pointerEvents="none" style={styles.chipSheen} />
           <View
             pointerEvents="none"
@@ -396,6 +450,10 @@ export function DualModeTray({
           <Text style={styles.footerLabel}>Draft C tray</Text>
         </View>
         <View style={styles.footerHintChip}>
+          <View
+            pointerEvents="none"
+            style={[styles.chipTopAccent, { backgroundColor: colors.clarity }]}
+          />
           <View pointerEvents="none" style={styles.chipSheen} />
           <View pointerEvents="none" style={styles.footerHintChipRing} />
           <Text style={styles.footerHint}>
@@ -419,10 +477,10 @@ const styles = StyleSheet.create({
     gap: 10,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.23,
-    shadowRadius: 18,
-    shadowOffset: { width: 0, height: 8 },
-    elevation: 6,
+    shadowOpacity: 0.27,
+    shadowRadius: 20,
+    shadowOffset: { width: 0, height: 9 },
+    elevation: 7,
   },
   trayDawn: {
     backgroundColor: 'rgba(255, 244, 220, 0.78)',
@@ -433,8 +491,8 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: 3,
-    opacity: 0.8,
+    height: 3.5,
+    opacity: 0.85,
     zIndex: 2,
   },
   topSheen: {
@@ -442,8 +500,8 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: 32,
-    backgroundColor: 'rgba(255,255,255,0.3)',
+    height: 34,
+    backgroundColor: 'rgba(255,255,255,0.34)',
   },
   cornerOrb: {
     position: 'absolute',
@@ -469,14 +527,30 @@ const styles = StyleSheet.create({
     right: 36,
     bottom: -8,
   },
+  cornerWashMid: {
+    position: 'absolute',
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    left: 48,
+    top: 52,
+  },
   trayGlow: {
     position: 'absolute',
     left: 20,
     right: 20,
     bottom: 0,
-    height: 18,
+    height: 20,
     borderRadius: 12,
-    backgroundColor: 'rgba(91, 138, 122, 0.12)',
+    backgroundColor: 'rgba(91, 138, 122, 0.14)',
+  },
+  trayBottomGlow: {
+    position: 'absolute',
+    left: 36,
+    right: 36,
+    bottom: 0,
+    height: 10,
+    borderRadius: 8,
   },
   chipSheen: {
     position: 'absolute',
@@ -484,7 +558,16 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: '55%',
-    backgroundColor: 'rgba(255,255,255,0.32)',
+    backgroundColor: 'rgba(255,255,255,0.36)',
+  },
+  chipTopAccent: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 2,
+    opacity: 0.55,
+    zIndex: 2,
   },
   titleRow: {
     flexDirection: 'row',
@@ -527,7 +610,7 @@ const styles = StyleSheet.create({
     bottom: 2,
     borderRadius: 8,
     borderWidth: 1,
-    opacity: 0.85,
+    opacity: 0.9,
   },
   modeDot: {
     width: 6,
@@ -546,11 +629,23 @@ const styles = StyleSheet.create({
     gap: 6,
     flexShrink: 1,
   },
+  titleLeadWrap: {
+    width: 10,
+    height: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  titleLeadHalo: {
+    position: 'absolute',
+    width: 10,
+    height: 14,
+    borderRadius: 4,
+  },
   titleLead: {
     width: 3,
     height: 12,
     borderRadius: 2,
-    opacity: 0.75,
+    opacity: 0.85,
   },
   title: {
     fontFamily: fonts.bodyBold,
@@ -575,10 +670,10 @@ const styles = StyleSheet.create({
     borderColor: 'transparent',
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.16,
-    shadowRadius: 8,
+    shadowOpacity: 0.2,
+    shadowRadius: 9,
     shadowOffset: { width: 0, height: 4 },
-    elevation: 4,
+    elevation: 5,
   },
   plantCardActive: {
     backgroundColor: 'rgba(255,255,255,0.92)',
@@ -712,9 +807,9 @@ const styles = StyleSheet.create({
     left: 12,
     right: 12,
     bottom: 2,
-    height: 3,
+    height: 4,
     borderRadius: 2,
-    opacity: 0.75,
+    opacity: 0.8,
   },
   selectDot: {
     width: 8,
@@ -753,7 +848,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 1,
     borderColor: 'rgba(36,58,52,0.1)',
-    opacity: 0.85,
+    opacity: 0.9,
   },
   hint: {
     fontFamily: fonts.body,
@@ -779,10 +874,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
+    shadowOpacity: 0.14,
+    shadowRadius: 6,
     shadowOffset: { width: 0, height: 2 },
-    elevation: 2,
+    elevation: 3,
   },
   footerBadgeRing: {
     position: 'absolute',
@@ -792,13 +887,13 @@ const styles = StyleSheet.create({
     bottom: 2,
     borderRadius: 8,
     borderWidth: 1,
-    opacity: 0.85,
+    opacity: 0.9,
   },
   footerDot: {
     width: 5,
     height: 5,
     borderRadius: 3,
-    opacity: 0.7,
+    opacity: 0.75,
   },
   footerLabel: {
     fontFamily: fonts.bodyMedium,
@@ -824,7 +919,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 1,
     borderColor: 'rgba(36,58,52,0.1)',
-    opacity: 0.85,
+    opacity: 0.9,
   },
   footerHint: {
     fontFamily: fonts.body,
