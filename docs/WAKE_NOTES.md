@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-16 23:00 UTC — Night resume (v1.4.84 FirstRunTipChip)
+
+- Timer `overnight-daily-resume` · NIGHT resume · no Femmy Gmail reply
+- **Shipped v1.4.84:** FirstRunTipChip — mid corner wash · chip bottom glow · badge top accent · tip lead halo · dismiss top accent · thicker progress · richer chip/dismiss shadows
+- Re-armed `overnight-stop-5am-utc` (`sub_2c60fd6f…`, ~05:00 Oct 17) · daily-resume + hourly left armed
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default · PR **#7**
+
 ## 2026-10-16 05:00 UTC — OVERNIGHT STOP (mobile night wrap)
 
 - Timer `overnight-stop-5am-utc` · past night envelope · **no features**

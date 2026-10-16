@@ -157,6 +157,10 @@ export function FirstRunTipChip({ visible, dawn }: Props) {
         />
         <View
           pointerEvents="none"
+          style={[styles.cornerWashMid, { backgroundColor: `${current.accent}0a` }]}
+        />
+        <View
+          pointerEvents="none"
           style={[styles.glow, { backgroundColor: `${current.accent}28` }]}
         />
         <View
@@ -164,8 +168,16 @@ export function FirstRunTipChip({ visible, dawn }: Props) {
           style={[styles.glowSoft, { backgroundColor: `${current.accent}14` }]}
         />
         <View pointerEvents="none" style={styles.chipGlow} />
+        <View
+          pointerEvents="none"
+          style={[styles.chipBottomGlow, { backgroundColor: `${current.accent}18` }]}
+        />
         <Animated.View style={[styles.textWrap, { opacity: tipFade }]}>
           <View style={[styles.badge, { borderColor: `${current.accent}66` }]}>
+            <View
+              pointerEvents="none"
+              style={[styles.badgeTopAccent, { backgroundColor: current.accent }]}
+            />
             <View pointerEvents="none" style={styles.badgeSheen} />
             <View
               pointerEvents="none"
@@ -175,7 +187,13 @@ export function FirstRunTipChip({ visible, dawn }: Props) {
             <Text style={[styles.badgeLabel, { color: current.accent }]}>Soft tip</Text>
           </View>
           <View style={styles.tipRow}>
-            <View style={[styles.tipLead, { backgroundColor: current.accent }]} />
+            <View style={styles.tipLeadWrap}>
+              <View
+                pointerEvents="none"
+                style={[styles.tipLeadHalo, { backgroundColor: `${current.accent}33` }]}
+              />
+              <View style={[styles.tipLead, { backgroundColor: current.accent }]} />
+            </View>
             <Text style={styles.text}>{current.text}</Text>
           </View>
           <View
@@ -215,6 +233,10 @@ export function FirstRunTipChip({ visible, dawn }: Props) {
           onPress={onDismiss}
           style={styles.dismiss}
         >
+          <View
+            pointerEvents="none"
+            style={[styles.dismissTopAccent, { backgroundColor: current.accent }]}
+          />
           <View pointerEvents="none" style={styles.dismissSheen} />
           <View
             pointerEvents="none"
@@ -222,7 +244,7 @@ export function FirstRunTipChip({ visible, dawn }: Props) {
           />
           <View
             pointerEvents="none"
-            style={[styles.dismissGlow, { backgroundColor: `${current.accent}22` }]}
+            style={[styles.dismissGlow, { backgroundColor: `${current.accent}28` }]}
           />
           <Text style={styles.dismissLabel}>Got it</Text>
         </Pressable>
@@ -253,10 +275,10 @@ const styles = StyleSheet.create({
     borderLeftWidth: 4,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.24,
-    shadowRadius: 16,
-    shadowOffset: { width: 0, height: 7 },
-    elevation: 6,
+    shadowOpacity: 0.28,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 8 },
+    elevation: 7,
   },
   chipDawn: {
     backgroundColor: 'rgba(255, 244, 220, 0.75)',
@@ -267,8 +289,8 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: 2,
-    opacity: 0.55,
+    height: 2.5,
+    opacity: 0.6,
     zIndex: 2,
   },
   topSheen: {
@@ -276,8 +298,8 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: 28,
-    backgroundColor: 'rgba(255,255,255,0.3)',
+    height: 30,
+    backgroundColor: 'rgba(255,255,255,0.34)',
   },
   cornerOrb: {
     position: 'absolute',
@@ -303,14 +325,30 @@ const styles = StyleSheet.create({
     left: 40,
     bottom: -10,
   },
+  cornerWashMid: {
+    position: 'absolute',
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    right: 28,
+    bottom: 8,
+  },
   chipGlow: {
     position: 'absolute',
     left: 20,
     right: 48,
     bottom: 0,
-    height: 12,
+    height: 14,
     borderRadius: 8,
-    backgroundColor: 'rgba(91, 138, 122, 0.12)',
+    backgroundColor: 'rgba(91, 138, 122, 0.14)',
+  },
+  chipBottomGlow: {
+    position: 'absolute',
+    left: 28,
+    right: 56,
+    bottom: 0,
+    height: 8,
+    borderRadius: 6,
   },
   glow: {
     position: 'absolute',
@@ -344,10 +382,19 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.45)',
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.06,
-    shadowRadius: 3,
-    shadowOffset: { width: 0, height: 1 },
-    elevation: 1,
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 2,
+  },
+  badgeTopAccent: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 2,
+    opacity: 0.55,
+    zIndex: 2,
   },
   badgeSheen: {
     position: 'absolute',
@@ -355,7 +402,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: '55%',
-    backgroundColor: 'rgba(255,255,255,0.35)',
+    backgroundColor: 'rgba(255,255,255,0.4)',
   },
   badgeRing: {
     position: 'absolute',
@@ -365,7 +412,7 @@ const styles = StyleSheet.create({
     bottom: 2,
     borderRadius: 8,
     borderWidth: 1,
-    opacity: 0.85,
+    opacity: 0.9,
   },
   badgeDot: {
     width: 6,
@@ -382,12 +429,24 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     gap: 6,
   },
+  tipLeadWrap: {
+    width: 10,
+    height: 10,
+    marginTop: 3,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  tipLeadHalo: {
+    position: 'absolute',
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+  },
   tipLead: {
     width: 4,
     height: 4,
     borderRadius: 2,
-    marginTop: 6,
-    opacity: 0.85,
+    opacity: 0.9,
   },
   text: {
     flexShrink: 1,
@@ -397,8 +456,8 @@ const styles = StyleSheet.create({
     color: colors.brandDeep,
   },
   progressTrack: {
-    height: 4,
-    borderRadius: 4,
+    height: 5,
+    borderRadius: 5,
     backgroundColor: 'rgba(36, 58, 52, 0.08)',
     overflow: 'hidden',
     marginTop: 1,
@@ -409,11 +468,11 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: '55%',
-    backgroundColor: 'rgba(255,255,255,0.35)',
+    backgroundColor: 'rgba(255,255,255,0.4)',
   },
   progressFill: {
-    height: 4,
-    borderRadius: 4,
+    height: 5,
+    borderRadius: 5,
   },
   dots: {
     flexDirection: 'row',
@@ -440,14 +499,23 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.line,
     shadowColor: '#243A34',
-    shadowOpacity: 0.18,
-    shadowRadius: 8,
+    shadowOpacity: 0.22,
+    shadowRadius: 9,
     shadowOffset: { width: 0, height: 3 },
-    elevation: 4,
+    elevation: 5,
+  },
+  dismissTopAccent: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 2,
+    opacity: 0.55,
+    zIndex: 2,
   },
   dismissSheen: {
     ...StyleSheet.absoluteFill,
-    backgroundColor: 'rgba(255,255,255,0.35)',
+    backgroundColor: 'rgba(255,255,255,0.4)',
     height: '45%',
   },
   dismissRing: {
@@ -458,16 +526,16 @@ const styles = StyleSheet.create({
     bottom: 3,
     borderRadius: 9,
     borderWidth: 1,
-    opacity: 0.85,
+    opacity: 0.9,
   },
   dismissGlow: {
     position: 'absolute',
     left: 8,
     right: 8,
     bottom: 2,
-    height: 3,
+    height: 4,
     borderRadius: 2,
-    opacity: 0.75,
+    opacity: 0.8,
   },
   dismissLabel: {
     fontFamily: fonts.bodyMedium,

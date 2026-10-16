@@ -115,15 +115,16 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-16 ~03:15:** HomeMindscapePreview polish v1.4.82 — alt corner wash · wrap bottom glow · path bend sheen · walker ring · pad top accents/glows · look/caption top accents · meta ring · richer shadows.
 - **2026-10-16 ~04:15:** PauseOverlay polish v1.4.83 — alt corner wash · card bottom glow · breath orb ring/glow · chip top accents · thicker goals track · richer card/strip shadows (last slice before ~05:00).
 - **2026-10-16 ~05:00 OVERNIGHT STOP:** Hard stop after night ship v1.4.77→v1.4.83. Did **not** re-arm overnight-stop. Next resume 23:00 UTC.
+- **2026-10-16 ~23:00 night resume:** FirstRunTipChip polish v1.4.84 — mid corner wash · chip bottom glow · badge top accent · tip lead halo · dismiss top accent · thicker progress · richer shadows. Re-armed overnight-stop (`sub_2c60fd6f…`).
 
 ## State
 
-- Version: **mobile 1.4.83** (PauseOverlay polish · night wrap)
+- Version: **mobile 1.4.84** (FirstRunTipChip polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/7
-- Tip: `6241110` (v1.4.83 PauseOverlay · prior tip `c8f3337` / docs `778c177`)
-- Hourly timer: **`thought-defense-mobile-hourly`** (`sub_f388e268…`, cron `15 * * * *`) — daytime IDLE until 23:00
-- Night envelope: **CLOSED** · overnight-stop **not** re-armed · `overnight-daily-resume` armed (`sub_e96eb095…`)
+- Tip: `TIP_SHA` (v1.4.84 FirstRunTipChip · prior tip `6241110` / docs `874c2ae`)
+- Hourly timer: **`thought-defense-mobile-hourly`** (`sub_f388e268…`, cron `15 * * * *`)
+- Night envelope: **OPEN** · overnight-stop armed (`sub_2c60fd6f…`, ~05:00 Oct 17) · `overnight-daily-resume` armed (`sub_e96eb095…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
-- Next: daytime Femmy consult only · night resume **23:00 UTC** · FirstRunTipChip next polish candidate
+- Next: night hourlies until ~05:00 · DualModeTray next polish candidate
