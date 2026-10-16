@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-16 04:15 UTC — Night hourly (v1.4.83 PauseOverlay)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.83:** PauseOverlay — alt corner wash · card bottom glow · breath orb ring/glow · chip top accents (eyebrow/phase/meta/snapshot/goals/comfort) · thicker goals track · richer card/strip shadows
+- Did not redo HomeMindscapePreview (1.4.82) · Draft C locked · stop timer left armed · PR **#7**
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default · last slice before ~05:00
+
 ## 2026-10-16 03:15 UTC — Night hourly (v1.4.82 HomeMindscapePreview)
 
 - Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply

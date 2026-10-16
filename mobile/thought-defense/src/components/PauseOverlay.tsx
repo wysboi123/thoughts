@@ -158,14 +158,31 @@ export function PauseOverlay({
                 { backgroundColor: dawn ? 'rgba(232, 201, 160, 0.14)' : 'rgba(91, 138, 122, 0.12)' },
               ]}
             />
+            <View
+              pointerEvents="none"
+              style={[
+                styles.cornerWashAlt,
+                { backgroundColor: dawn ? 'rgba(232, 201, 160, 0.1)' : 'rgba(107, 184, 154, 0.1)' },
+              ]}
+            />
+            <View pointerEvents="none" style={styles.cardBottomGlow} />
             <Animated.View
               pointerEvents="none"
               style={[styles.breathOrb, dawn ? styles.breathOrbDawn : null, orbStyle]}
             >
               <View pointerEvents="none" style={styles.breathOrbSheen} />
+              <View pointerEvents="none" style={styles.breathOrbRing} />
+              <View pointerEvents="none" style={styles.breathOrbGlow} />
             </Animated.View>
             <View style={styles.eyebrowRow}>
               <View style={[styles.eyebrowBadge, dawn ? styles.eyebrowBadgeDawn : null]}>
+                <View
+                  pointerEvents="none"
+                  style={[
+                    styles.chipTopAccent,
+                    { backgroundColor: dawn ? colors.gratitude : colors.brand },
+                  ]}
+                />
                 <View pointerEvents="none" style={styles.chipSheen} />
                 <View
                   pointerEvents="none"
@@ -183,6 +200,7 @@ export function PauseOverlay({
               </View>
               {calmLow ? (
                 <View style={styles.calmWarnChip} accessibilityRole="text">
+                  <View pointerEvents="none" style={styles.calmWarnTopAccent} />
                   <View pointerEvents="none" style={styles.chipSheen} />
                   <View pointerEvents="none" style={styles.calmWarnRing} />
                   <View style={styles.calmWarnDot} />
@@ -209,6 +227,13 @@ export function PauseOverlay({
                 style={[styles.phaseChip, dawn ? styles.phaseChipDawn : null]}
                 accessibilityRole="text"
               >
+                <View
+                  pointerEvents="none"
+                  style={[
+                    styles.chipTopAccent,
+                    { backgroundColor: dawn ? colors.gratitude : colors.clarity },
+                  ]}
+                />
                 <View pointerEvents="none" style={styles.chipSheen} />
                 <View
                   pointerEvents="none"
@@ -234,6 +259,13 @@ export function PauseOverlay({
             ) : null}
 
             <View style={[styles.metaChip, dawn ? styles.metaChipDawn : null]}>
+              <View
+                pointerEvents="none"
+                style={[
+                  styles.chipTopAccent,
+                  { backgroundColor: dawn ? colors.gratitude : colors.clarity },
+                ]}
+              />
               <View pointerEvents="none" style={styles.chipSheen} />
               <View
                 pointerEvents="none"
@@ -258,6 +290,15 @@ export function PauseOverlay({
                     pillAStyle,
                   ]}
                 >
+                  <View
+                    pointerEvents="none"
+                    style={[
+                      styles.chipTopAccent,
+                      {
+                        backgroundColor: calmLow ? colors.dangerSoft : colors.calm,
+                      },
+                    ]}
+                  />
                   <View pointerEvents="none" style={styles.chipSheen} />
                   <View
                     pointerEvents="none"
@@ -294,8 +335,8 @@ export function PauseOverlay({
                       styles.snapshotGlow,
                       {
                         backgroundColor: calmLow
-                          ? 'rgba(196, 120, 120, 0.35)'
-                          : 'rgba(91, 138, 122, 0.3)',
+                          ? 'rgba(196, 120, 120, 0.4)'
+                          : 'rgba(91, 138, 122, 0.35)',
                       },
                     ]}
                   />
@@ -303,6 +344,10 @@ export function PauseOverlay({
                 <Animated.View
                   style={[styles.snapshotPill, styles.snapshotClarity, pillBStyle]}
                 >
+                  <View
+                    pointerEvents="none"
+                    style={[styles.chipTopAccent, { backgroundColor: colors.clarity }]}
+                  />
                   <View pointerEvents="none" style={styles.chipSheen} />
                   <View
                     pointerEvents="none"
@@ -320,7 +365,7 @@ export function PauseOverlay({
                     pointerEvents="none"
                     style={[
                       styles.snapshotGlow,
-                      { backgroundColor: 'rgba(106, 158, 174, 0.3)' },
+                      { backgroundColor: 'rgba(106, 158, 174, 0.35)' },
                     ]}
                   />
                 </Animated.View>
@@ -329,6 +374,13 @@ export function PauseOverlay({
 
             {softGoalsTotal > 0 ? (
               <View style={styles.goalsStrip} accessibilityRole="summary">
+                <View
+                  pointerEvents="none"
+                  style={[
+                    styles.chipTopAccent,
+                    { backgroundColor: dawn ? colors.gratitude : colors.brand },
+                  ]}
+                />
                 <View pointerEvents="none" style={styles.chipSheen} />
                 <View
                   pointerEvents="none"
@@ -364,6 +416,13 @@ export function PauseOverlay({
             ) : null}
 
             <View style={styles.comfortStrip} accessibilityRole="summary">
+              <View
+                pointerEvents="none"
+                style={[
+                  styles.chipTopAccent,
+                  { backgroundColor: dawn ? colors.gratitude : colors.brand },
+                ]}
+              />
               <View pointerEvents="none" style={styles.chipSheen} />
               <View
                 pointerEvents="none"
@@ -439,10 +498,10 @@ const styles = StyleSheet.create({
     gap: 8,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.28,
-    shadowRadius: 24,
-    shadowOffset: { width: 0, height: 13 },
-    elevation: 8,
+    shadowOpacity: 0.32,
+    shadowRadius: 26,
+    shadowOffset: { width: 0, height: 14 },
+    elevation: 9,
   },
   cardDawn: {
     backgroundColor: '#F3E8D6',
@@ -465,11 +524,11 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: '28%',
-    backgroundColor: 'rgba(255,255,255,0.28)',
+    height: '30%',
+    backgroundColor: 'rgba(255,255,255,0.32)',
   },
   topSheenDawn: {
-    backgroundColor: 'rgba(255, 248, 230, 0.35)',
+    backgroundColor: 'rgba(255, 248, 230, 0.38)',
   },
   cornerOrb: {
     position: 'absolute',
@@ -486,6 +545,23 @@ const styles = StyleSheet.create({
     borderRadius: 32,
     right: 40,
     bottom: -16,
+  },
+  cornerWashAlt: {
+    position: 'absolute',
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    left: 56,
+    bottom: -10,
+  },
+  cardBottomGlow: {
+    position: 'absolute',
+    left: 28,
+    right: 28,
+    bottom: 0,
+    height: 18,
+    borderRadius: 12,
+    backgroundColor: 'rgba(91, 138, 122, 0.14)',
   },
   breathOrb: {
     position: 'absolute',
@@ -505,7 +581,27 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: '45%',
+    height: '48%',
+    backgroundColor: 'rgba(255,255,255,0.26)',
+  },
+  breathOrbRing: {
+    position: 'absolute',
+    top: 10,
+    left: 10,
+    right: 10,
+    bottom: 10,
+    borderRadius: 90,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.28)',
+    opacity: 0.85,
+  },
+  breathOrbGlow: {
+    position: 'absolute',
+    left: 24,
+    right: 24,
+    bottom: 14,
+    height: 10,
+    borderRadius: 8,
     backgroundColor: 'rgba(255,255,255,0.22)',
   },
   chipSheen: {
@@ -514,7 +610,16 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: '55%',
-    backgroundColor: 'rgba(255,255,255,0.32)',
+    backgroundColor: 'rgba(255,255,255,0.36)',
+  },
+  chipTopAccent: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 2,
+    opacity: 0.55,
+    zIndex: 2,
   },
   eyebrowRow: {
     flexDirection: 'row',
@@ -547,7 +652,7 @@ const styles = StyleSheet.create({
     bottom: 2,
     borderRadius: 8,
     borderWidth: 1,
-    opacity: 0.85,
+    opacity: 0.9,
   },
   eyebrowDot: {
     width: 6,
@@ -577,6 +682,16 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(196, 120, 120, 0.3)',
     overflow: 'hidden',
   },
+  calmWarnTopAccent: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 2,
+    backgroundColor: colors.dangerSoft,
+    opacity: 0.55,
+    zIndex: 2,
+  },
   calmWarnRing: {
     position: 'absolute',
     top: 2,
@@ -586,7 +701,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     borderWidth: 1,
     borderColor: 'rgba(196, 120, 120, 0.28)',
-    opacity: 0.85,
+    opacity: 0.9,
   },
   calmWarnDot: {
     width: 5,
@@ -606,10 +721,10 @@ const styles = StyleSheet.create({
   },
   titleLead: {
     width: 4,
-    height: 18,
+    height: 20,
     borderRadius: 2,
-    marginTop: 8,
-    opacity: 0.85,
+    marginTop: 7,
+    opacity: 0.9,
   },
   title: {
     flexShrink: 1,
@@ -648,7 +763,7 @@ const styles = StyleSheet.create({
     bottom: 2,
     borderRadius: 10,
     borderWidth: 1,
-    opacity: 0.85,
+    opacity: 0.9,
   },
   phaseLead: {
     width: 5,
@@ -689,14 +804,14 @@ const styles = StyleSheet.create({
     bottom: 2,
     borderRadius: 8,
     borderWidth: 1,
-    opacity: 0.85,
+    opacity: 0.9,
   },
   metaLead: {
     width: 5,
     height: 5,
     borderRadius: 3,
     backgroundColor: colors.clarity,
-    opacity: 0.8,
+    opacity: 0.85,
   },
   metaLeadDawn: {
     backgroundColor: colors.gratitude,
@@ -721,10 +836,10 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(91, 138, 122, 0.22)',
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.08,
-    shadowRadius: 5,
+    shadowOpacity: 0.12,
+    shadowRadius: 6,
     shadowOffset: { width: 0, height: 2 },
-    elevation: 1,
+    elevation: 2,
   },
   snapshotRing: {
     position: 'absolute',
@@ -734,7 +849,7 @@ const styles = StyleSheet.create({
     bottom: 3,
     borderRadius: 11,
     borderWidth: 1,
-    opacity: 0.85,
+    opacity: 0.9,
   },
   snapshotCalmLow: {
     backgroundColor: 'rgba(196, 120, 120, 0.14)',
@@ -776,9 +891,9 @@ const styles = StyleSheet.create({
     left: 10,
     right: 10,
     bottom: 2,
-    height: 3,
+    height: 4,
     borderRadius: 2,
-    opacity: 0.7,
+    opacity: 0.75,
   },
   goalsStrip: {
     marginTop: 4,
@@ -790,10 +905,10 @@ const styles = StyleSheet.create({
     gap: 6,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.06,
-    shadowRadius: 5,
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
     shadowOffset: { width: 0, height: 2 },
-    elevation: 1,
+    elevation: 2,
   },
   goalsRing: {
     position: 'absolute',
@@ -803,7 +918,7 @@ const styles = StyleSheet.create({
     bottom: 3,
     borderRadius: 11,
     borderWidth: 1,
-    opacity: 0.85,
+    opacity: 0.9,
   },
   goalsRow: {
     flexDirection: 'row',
@@ -835,8 +950,8 @@ const styles = StyleSheet.create({
     color: colors.brandDeep,
   },
   track: {
-    height: 7,
-    borderRadius: 7,
+    height: 8,
+    borderRadius: 8,
     backgroundColor: 'rgba(63, 111, 98, 0.12)',
     overflow: 'hidden',
   },
@@ -846,11 +961,11 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: '55%',
-    backgroundColor: 'rgba(255,255,255,0.28)',
+    backgroundColor: 'rgba(255,255,255,0.32)',
   },
   fill: {
     height: '100%',
-    borderRadius: 7,
+    borderRadius: 8,
     backgroundColor: colors.brand,
   },
   fillDawn: {
@@ -864,10 +979,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.line,
     shadowColor: '#243A34',
-    shadowOpacity: 0.06,
-    shadowRadius: 4,
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
     shadowOffset: { width: 0, height: 2 },
-    elevation: 1,
+    elevation: 2,
     gap: 2,
     overflow: 'hidden',
   },
@@ -879,7 +994,7 @@ const styles = StyleSheet.create({
     bottom: 3,
     borderRadius: 9,
     borderWidth: 1,
-    opacity: 0.85,
+    opacity: 0.9,
   },
   comfortHead: {
     flexDirection: 'row',
