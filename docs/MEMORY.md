@@ -114,15 +114,16 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-16 ~02:15:** SoftWelcomeSheet polish v1.4.81 — alt corner wash · eyebrow/step/chip top accents+rings · skip/next glows · thicker progress · richer shadows.
 - **2026-10-16 ~03:15:** HomeMindscapePreview polish v1.4.82 — alt corner wash · wrap bottom glow · path bend sheen · walker ring · pad top accents/glows · look/caption top accents · meta ring · richer shadows.
 - **2026-10-16 ~04:15:** PauseOverlay polish v1.4.83 — alt corner wash · card bottom glow · breath orb ring/glow · chip top accents · thicker goals track · richer card/strip shadows (last slice before ~05:00).
+- **2026-10-16 ~05:00 OVERNIGHT STOP:** Hard stop after night ship v1.4.77→v1.4.83. Did **not** re-arm overnight-stop. Next resume 23:00 UTC.
 
 ## State
 
-- Version: **mobile 1.4.83** (PauseOverlay polish)
+- Version: **mobile 1.4.83** (PauseOverlay polish · night wrap)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/7
 - Tip: `6241110` (v1.4.83 PauseOverlay · prior tip `c8f3337` / docs `778c177`)
-- Hourly timer: **`thought-defense-mobile-hourly`** (`sub_f388e268…`, cron `15 * * * *`)
-- Night envelope: **OPEN** · overnight-stop armed (`sub_9e275694…`, ~05:00 Oct 16) · `overnight-daily-resume` armed (`sub_e96eb095…`)
+- Hourly timer: **`thought-defense-mobile-hourly`** (`sub_f388e268…`, cron `15 * * * *`) — daytime IDLE until 23:00
+- Night envelope: **CLOSED** · overnight-stop **not** re-armed · `overnight-daily-resume` armed (`sub_e96eb095…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
-- Next: ~05:00 OVERNIGHT STOP (docs/digest only) · next night resume 23:00 · FirstRunTipChip next polish candidate
+- Next: daytime Femmy consult only · night resume **23:00 UTC** · FirstRunTipChip next polish candidate
