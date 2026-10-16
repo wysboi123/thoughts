@@ -4,6 +4,20 @@ Newest first. Overnight agents append after every push.
 
 ## Mobile Thought Defense overnight (from `main`)
 
+## 2026-10-16 05:00 UTC — OVERNIGHT STOP (Night 22)
+
+Night 22 complete. No new features this wrap. One digest email sent.
+
+**Shipped Night 22**
+- Shop **v1.4.72** · GameBoard **v1.4.73** · Settings **v1.4.74** · SoftActionToast **v1.4.75**
+- Re-armed `overnight-daily-resume` (expiry extended ~2026-10-22)
+- PR: https://github.com/wysboi123/thoughts/pull/8
+
+**Versions end:** Thought Defense mobile **1.4.75**
+**Blocked:** Native IAP (Q-006) · EAS projectId · store products · legal URLs · Clarity Pass price
+**Timers:** left `overnight-daily-resume` armed · did **not** re-arm `overnight-stop-5am-utc` until next night resume
+**Next (Night 23):** SoftWelcomeSheet cycle restart · apply Femmy answers if any · no Roblox unless un-paused
+
 ## 2026-10-16 03:00 UTC — Night 22 quiet CP2
 
 - **Shipped v1.4.75:** SoftActionToast — side wash · badge glow · bar sheen · richer shadow
