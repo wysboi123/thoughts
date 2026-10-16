@@ -113,6 +113,8 @@ Priority order. Agents pick the top unchecked item unless Femmy overrides.
 - [x] **v1.4.74 quiet CP1** — Settings (soft hint · version/comfort/footer chip glows)
 - [x] **v1.4.75 quiet CP2** — SoftActionToast (side wash · badge glow · bar sheen · richer shadow)
 - [x] **Night 22 envelope** — polish v1.4.72–1.4.75 · stop 05:00 UTC 2026-10-16 · daily resume re-armed
+- [x] **v1.4.76 night resume** — SoftWelcomeSheet (comfort glow · Skip underline)
+- [x] **v1.4.77 night resume** — SoftPlayHud (footer/hint/soft-chip glows)
 - [ ] **Native IAP** — wire RevenueCat or react-native-iap; turn off stubMode for store builds
 - [ ] **EAS project** — Femmy: `eas init` + real `projectId` + credentials
 - [ ] **Store products** — create IAP ids in App Store Connect + Play Console

@@ -268,6 +268,10 @@ export function SoftWelcomeSheet() {
           {isLast ? (
             <View style={styles.comfortStrip} accessibilityRole="summary">
               <View pointerEvents="none" style={styles.chipSheen} />
+              <View
+                pointerEvents="none"
+                style={[styles.comfortGlow, { backgroundColor: `${current.accent}18` }]}
+              />
               <View style={styles.comfortHead}>
                 <View style={styles.comfortDot} />
                 <Text style={styles.comfortTitle}>Metaphor only</Text>
@@ -287,6 +291,10 @@ export function SoftWelcomeSheet() {
               onPress={() => void dismiss()}
               style={styles.skip}
             >
+              <View
+                pointerEvents="none"
+                style={[styles.skipUnderline, { backgroundColor: `${current.accent}44` }]}
+              />
               <Text style={styles.skipLabel}>Skip</Text>
             </Pressable>
             <View style={styles.nextWrap}>
@@ -534,6 +542,14 @@ const styles = StyleSheet.create({
     gap: 3,
     overflow: 'hidden',
   },
+  comfortGlow: {
+    position: 'absolute',
+    left: 8,
+    right: 8,
+    bottom: 0,
+    height: 8,
+    borderRadius: 6,
+  },
   comfortHead: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -567,6 +583,15 @@ const styles = StyleSheet.create({
     minWidth: MIN_TAP,
     paddingHorizontal: 8,
     justifyContent: 'center',
+    alignItems: 'center',
+  },
+  skipUnderline: {
+    position: 'absolute',
+    bottom: 10,
+    width: 28,
+    height: 2,
+    borderRadius: 2,
+    opacity: 0.7,
   },
   skipLabel: {
     fontFamily: fonts.bodyMedium,

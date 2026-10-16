@@ -4,6 +4,14 @@ Newest first. Overnight agents append after every push.
 
 ## Mobile Thought Defense overnight (from `main`)
 
+## 2026-10-16 23:00 UTC — Night 23 resume
+
+- Daily resume fired · no new Perplexity answers
+- **Shipped v1.4.76–1.4.77:** SoftWelcomeSheet · SoftPlayHud polish (cycle restart)
+- Timers: re-armed `overnight-stop-5am-utc` · quiet CP ~01:00 / ~03:00 · daily resume still armed (~Oct 22)
+- Still blocked: Native IAP · EAS · store products · Q-006
+- Quiet mode; **one digest email at stop only** · PR #8
+
 ## 2026-10-16 05:00 UTC — OVERNIGHT STOP (Night 22)
 
 Night 22 complete. No new features this wrap. One digest email sent.

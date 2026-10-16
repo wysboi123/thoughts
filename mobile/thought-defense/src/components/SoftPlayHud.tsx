@@ -190,18 +190,44 @@ export function SoftPlayHud({ calm, clarity, waveLabel, dawn, calmLow }: Props) 
           ]}
         >
           <View pointerEvents="none" style={styles.chipSheen} />
+          <View
+            pointerEvents="none"
+            style={[
+              styles.footerGlow,
+              {
+                backgroundColor: dawn
+                  ? 'rgba(201,168,90,0.22)'
+                  : `${colors.brand}22`,
+              },
+            ]}
+          />
           <View style={[styles.footerDot, dawn ? styles.footerDotDawn : null]} />
           <Text style={styles.footerLabel}>Mindscape meters</Text>
         </View>
         {calmLow ? (
           <View style={styles.softChip}>
             <View pointerEvents="none" style={styles.softChipSheen} />
+            <View
+              pointerEvents="none"
+              style={[styles.footerGlow, { backgroundColor: 'rgba(196,120,120,0.25)' }]}
+            />
             <View style={styles.softChipDot} />
             <Text style={styles.softChipLabel}>Calm soft — breathe</Text>
           </View>
         ) : (
           <View style={styles.hintChip}>
             <View pointerEvents="none" style={styles.chipSheen} />
+            <View
+              pointerEvents="none"
+              style={[
+                styles.footerGlow,
+                {
+                  backgroundColor: dawn
+                    ? 'rgba(201,168,90,0.18)'
+                    : `${colors.brand}18`,
+                },
+              ]}
+            />
             <Text style={styles.footerHint}>Metaphor only · not medical</Text>
           </View>
         )}
@@ -373,6 +399,14 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     overflow: 'hidden',
+  },
+  footerGlow: {
+    position: 'absolute',
+    left: 4,
+    right: 4,
+    bottom: 0,
+    height: 4,
+    borderRadius: 3,
   },
   footerDot: {
     width: 5,
