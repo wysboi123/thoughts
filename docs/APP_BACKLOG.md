@@ -114,6 +114,7 @@ Priority order. Agents pick the top unchecked item unless Femmy overrides.
 - [x] **v1.4.78 hourly polish** — PeaceCore (alt corner wash · label lead · core outer ring · chip top accents/glows · richer core/chip shadows)
 - [x] **v1.4.79 hourly polish** — PadDisc (alt corner wash · filled core ring · select bottom glow · plant-chip top accent/glow · richer pad/chip shadows)
 - [x] **v1.4.80 hourly polish** — SoftButton (mid corner wash · top edge accents · outer rings · ghost lead · richer shadows/halos/glows)
+- [x] **v1.4.81 hourly polish** — SoftWelcomeSheet (alt corner wash · eyebrow/step/chip top accents+rings · skip/next glows · thicker progress · richer shadows)
 - [ ] **Native IAP** — wire RevenueCat or react-native-iap; turn off stubMode for store builds
 - [ ] **EAS project** — Femmy: `eas init` + real `projectId` + credentials
 - [ ] **Store products** — create IAP ids in App Store Connect + Play Console

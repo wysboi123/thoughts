@@ -111,15 +111,16 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-15 ~23:15:** PeaceCore polish v1.4.78 — alt corner wash · label lead · core outer ring · chip top accents/glows · richer core/chip shadows.
 - **2026-10-16 ~00:15:** PadDisc polish v1.4.79 — alt corner wash · filled core ring · select bottom glow · plant-chip top accent/glow · richer pad/chip shadows.
 - **2026-10-16 ~01:15:** SoftButton polish v1.4.80 — mid corner wash · top edge accents · outer rings · ghost lead · richer shadows/halos/glows.
+- **2026-10-16 ~02:15:** SoftWelcomeSheet polish v1.4.81 — alt corner wash · eyebrow/step/chip top accents+rings · skip/next glows · thicker progress · richer shadows.
 
 ## State
 
-- Version: **mobile 1.4.80** (SoftButton polish)
+- Version: **mobile 1.4.81** (SoftWelcomeSheet polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/7
-- Tip: `8977216` (v1.4.80 SoftButton · prior tip `80b2975` / docs `66bdab0`)
+- Tip: *(ship SHA after push)* (v1.4.81 SoftWelcomeSheet · prior tip `8977216` / docs `b24dc6b`)
 - Hourly timer: **`thought-defense-mobile-hourly`** (`sub_f388e268…`, cron `15 * * * *`)
 - Night envelope: **OPEN** · overnight-stop armed (`sub_9e275694…`, ~05:00 Oct 16) · `overnight-daily-resume` armed (`sub_e96eb095…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
-- Next: night hourlies until ~05:00 · SoftWelcomeSheet next polish candidate
+- Next: night hourlies until ~05:00 · HomeMindscapePreview next polish candidate

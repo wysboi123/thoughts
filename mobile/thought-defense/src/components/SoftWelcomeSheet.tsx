@@ -182,6 +182,10 @@ export function SoftWelcomeSheet() {
           />
           <View
             pointerEvents="none"
+            style={[styles.cornerWashAlt, { backgroundColor: `${current.accent}0c` }]}
+          />
+          <View
+            pointerEvents="none"
             style={[styles.orbHalo, { backgroundColor: `${current.accent}22` }]}
           />
           <View
@@ -202,12 +206,28 @@ export function SoftWelcomeSheet() {
                 { backgroundColor: `${current.accent}18`, borderColor: `${current.accent}33` },
               ]}
             >
+              <View
+                pointerEvents="none"
+                style={[styles.eyebrowTopAccent, { backgroundColor: current.accent }]}
+              />
               <View pointerEvents="none" style={styles.chipSheen} />
+              <View
+                pointerEvents="none"
+                style={[styles.eyebrowRing, { borderColor: `${current.accent}28` }]}
+              />
               <View style={[styles.eyebrowDot, { backgroundColor: current.accent }]} />
               <Text style={[styles.eyebrow, { color: current.accent }]}>Welcome</Text>
             </View>
             <View style={[styles.stepChip, { borderColor: `${current.accent}44` }]}>
+              <View
+                pointerEvents="none"
+                style={[styles.stepTopAccent, { backgroundColor: current.accent }]}
+              />
               <View pointerEvents="none" style={styles.chipSheen} />
+              <View
+                pointerEvents="none"
+                style={[styles.stepRing, { borderColor: `${current.accent}28` }]}
+              />
               <View style={[styles.stepDot, { backgroundColor: current.accent }]} />
               <Text style={[styles.step, { color: current.accent }]}>
                 {page + 1} of {PAGES.length}
@@ -234,6 +254,10 @@ export function SoftWelcomeSheet() {
 
           <Animated.View style={{ opacity: pageFade, gap: 10 }}>
             <View style={[styles.chip, { borderColor: `${current.accent}66` }]}>
+              <View
+                pointerEvents="none"
+                style={[styles.chipTopAccent, { backgroundColor: current.accent }]}
+              />
               <View pointerEvents="none" style={styles.chipSheen} />
               <View
                 pointerEvents="none"
@@ -288,6 +312,7 @@ export function SoftWelcomeSheet() {
             >
               <View pointerEvents="none" style={styles.skipSheen} />
               <View pointerEvents="none" style={styles.skipRing} />
+              <View pointerEvents="none" style={styles.skipGlow} />
               <Text style={styles.skipLabel}>Skip</Text>
             </Pressable>
             <Pressable
@@ -299,6 +324,10 @@ export function SoftWelcomeSheet() {
             >
               <View pointerEvents="none" style={styles.nextSheen} />
               <View pointerEvents="none" style={styles.nextRing} />
+              <View
+                pointerEvents="none"
+                style={[styles.nextGlow, { backgroundColor: `${current.accent}55` }]}
+              />
               <Text style={styles.nextLabel}>{isLast ? 'Enter' : 'Next'}</Text>
             </Pressable>
           </View>
@@ -325,10 +354,10 @@ const styles = StyleSheet.create({
     gap: 10,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.26,
-    shadowRadius: 24,
-    shadowOffset: { width: 0, height: 13 },
-    elevation: 9,
+    shadowOpacity: 0.3,
+    shadowRadius: 26,
+    shadowOffset: { width: 0, height: 14 },
+    elevation: 10,
   },
   cardDawn: {
     backgroundColor: '#F6EBDA',
@@ -348,8 +377,8 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: 30,
-    backgroundColor: 'rgba(255,255,255,0.26)',
+    height: 32,
+    backgroundColor: 'rgba(255,255,255,0.3)',
   },
   chipSheen: {
     position: 'absolute',
@@ -375,14 +404,22 @@ const styles = StyleSheet.create({
     right: 36,
     bottom: -14,
   },
+  cornerWashAlt: {
+    position: 'absolute',
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    left: 48,
+    bottom: -10,
+  },
   bottomGlow: {
     position: 'absolute',
     left: 24,
     right: 24,
     bottom: 0,
-    height: 20,
+    height: 22,
     borderRadius: 12,
-    backgroundColor: 'rgba(91, 138, 122, 0.14)',
+    backgroundColor: 'rgba(91, 138, 122, 0.16)',
   },
   orbHalo: {
     position: 'absolute',
@@ -432,10 +469,29 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.06,
-    shadowRadius: 4,
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
     shadowOffset: { width: 0, height: 2 },
-    elevation: 1,
+    elevation: 2,
+  },
+  eyebrowTopAccent: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 2,
+    opacity: 0.55,
+    zIndex: 2,
+  },
+  eyebrowRing: {
+    position: 'absolute',
+    top: 2,
+    left: 2,
+    right: 2,
+    bottom: 2,
+    borderRadius: 8,
+    borderWidth: 1,
+    opacity: 0.85,
   },
   eyebrowDot: {
     width: 6,
@@ -459,6 +515,25 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.4)',
     overflow: 'hidden',
   },
+  stepTopAccent: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 2,
+    opacity: 0.55,
+    zIndex: 2,
+  },
+  stepRing: {
+    position: 'absolute',
+    top: 2,
+    left: 2,
+    right: 2,
+    bottom: 2,
+    borderRadius: 8,
+    borderWidth: 1,
+    opacity: 0.85,
+  },
   stepDot: {
     width: 5,
     height: 5,
@@ -469,8 +544,8 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   progressTrack: {
-    height: 4,
-    borderRadius: 4,
+    height: 5,
+    borderRadius: 5,
     backgroundColor: 'rgba(36, 58, 52, 0.08)',
     overflow: 'hidden',
     marginBottom: 2,
@@ -484,8 +559,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.35)',
   },
   progressFill: {
-    height: 4,
-    borderRadius: 4,
+    height: 5,
+    borderRadius: 5,
   },
   chip: {
     alignSelf: 'flex-start',
@@ -499,10 +574,19 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.45)',
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.06,
-    shadowRadius: 4,
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
     shadowOffset: { width: 0, height: 2 },
-    elevation: 1,
+    elevation: 2,
+  },
+  chipTopAccent: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 2,
+    opacity: 0.55,
+    zIndex: 2,
   },
   chipRing: {
     position: 'absolute',
@@ -647,6 +731,16 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(36,58,52,0.1)',
     opacity: 0.85,
   },
+  skipGlow: {
+    position: 'absolute',
+    left: 8,
+    right: 8,
+    bottom: 2,
+    height: 2,
+    borderRadius: 2,
+    backgroundColor: 'rgba(91, 138, 122, 0.22)',
+    opacity: 0.75,
+  },
   skipLabel: {
     fontFamily: fonts.bodyMedium,
     fontSize: 14,
@@ -661,15 +755,24 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.3,
-    shadowRadius: 14,
-    shadowOffset: { width: 0, height: 7 },
-    elevation: 6,
+    shadowOpacity: 0.34,
+    shadowRadius: 16,
+    shadowOffset: { width: 0, height: 8 },
+    elevation: 7,
   },
   nextSheen: {
     ...StyleSheet.absoluteFill,
     backgroundColor: 'rgba(255,255,255,0.18)',
     height: '45%',
+  },
+  nextGlow: {
+    position: 'absolute',
+    left: 12,
+    right: 12,
+    bottom: 2,
+    height: 3,
+    borderRadius: 2,
+    opacity: 0.8,
   },
   nextRing: {
     position: 'absolute',
