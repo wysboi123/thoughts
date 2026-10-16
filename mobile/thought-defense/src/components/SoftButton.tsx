@@ -136,6 +136,15 @@ export function SoftButton({
             variant === 'ghost' && styles.cornerWashAltGhost,
           ]}
         />
+        <View
+          pointerEvents="none"
+          style={[
+            styles.cornerWashMid,
+            variant === 'primary' && styles.cornerWashMidPrimary,
+            variant === 'soft' && styles.cornerWashMidSoft,
+            variant === 'ghost' && styles.cornerWashMidGhost,
+          ]}
+        />
         {showAccent ? (
           <View
             pointerEvents="none"
@@ -147,6 +156,15 @@ export function SoftButton({
             ]}
           />
         ) : null}
+        <View
+          pointerEvents="none"
+          style={[
+            styles.topEdgeAccent,
+            variant === 'primary' && styles.topEdgePrimary,
+            variant === 'soft' && styles.topEdgeSoft,
+            variant === 'ghost' && styles.topEdgeGhost,
+          ]}
+        />
         {(variant === 'primary' || variant === 'soft') && !reduceMotion ? (
           <Animated.View
             pointerEvents="none"
@@ -172,6 +190,15 @@ export function SoftButton({
           <View pointerEvents="none" style={styles.ghostInnerRim} />
         ) : null}
         {variant === 'primary' ? (
+          <View pointerEvents="none" style={styles.primaryOuterRing} />
+        ) : null}
+        {variant === 'soft' ? (
+          <View pointerEvents="none" style={styles.softOuterRing} />
+        ) : null}
+        {variant === 'ghost' ? (
+          <View pointerEvents="none" style={styles.ghostOuterRing} />
+        ) : null}
+        {variant === 'primary' ? (
           <View pointerEvents="none" style={styles.bottomGlow} />
         ) : null}
         {variant === 'soft' ? (
@@ -195,6 +222,13 @@ export function SoftButton({
               <View style={styles.softLeadDot} />
             </View>
           ) : null}
+          {variant === 'ghost' ? (
+            <View style={styles.leadWrap}>
+              <View pointerEvents="none" style={styles.ghostLeadHalo} />
+              <View pointerEvents="none" style={styles.ghostLeadRing} />
+              <View style={styles.ghostLeadDot} />
+            </View>
+          ) : null}
           <Text
             style={[
               styles.label,
@@ -216,14 +250,14 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginHorizontal: -3,
     marginVertical: -3,
-    backgroundColor: 'rgba(91, 138, 122, 0.18)',
+    backgroundColor: 'rgba(91, 138, 122, 0.22)',
   },
   softHalo: {
     ...StyleSheet.absoluteFill,
     borderRadius: 20,
     marginHorizontal: -2,
     marginVertical: -2,
-    backgroundColor: 'rgba(91, 138, 122, 0.1)',
+    backgroundColor: 'rgba(91, 138, 122, 0.14)',
   },
   base: {
     minHeight: MIN_TAP,
@@ -237,32 +271,32 @@ const styles = StyleSheet.create({
   primary: {
     backgroundColor: colors.brand,
     shadowColor: colors.brandDeep,
-    shadowOpacity: 0.4,
-    shadowRadius: 16,
-    shadowOffset: { width: 0, height: 7 },
-    elevation: 6,
+    shadowOpacity: 0.46,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 8 },
+    elevation: 7,
     borderWidth: 1,
-    borderColor: 'rgba(247, 251, 249, 0.26)',
+    borderColor: 'rgba(247, 251, 249, 0.3)',
   },
   ghost: {
     backgroundColor: 'rgba(255,255,255,0.28)',
     borderWidth: 1,
     borderColor: colors.line,
     shadowColor: '#243A34',
-    shadowOpacity: 0.14,
-    shadowRadius: 7,
-    shadowOffset: { width: 0, height: 3 },
-    elevation: 3,
+    shadowOpacity: 0.18,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 4,
   },
   soft: {
     backgroundColor: colors.surfaceStrong,
     borderWidth: 1,
     borderColor: 'rgba(63, 111, 98, 0.18)',
     shadowColor: '#243A34',
-    shadowOpacity: 0.18,
-    shadowRadius: 12,
-    shadowOffset: { width: 0, height: 5 },
-    elevation: 4,
+    shadowOpacity: 0.22,
+    shadowRadius: 14,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 5,
   },
   disabled: { opacity: 0.45 },
   cornerWash: {
@@ -299,6 +333,23 @@ const styles = StyleSheet.create({
   cornerWashAltGhost: {
     backgroundColor: 'rgba(91, 138, 122, 0.06)',
   },
+  cornerWashMid: {
+    position: 'absolute',
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    left: 28,
+    top: -8,
+  },
+  cornerWashMidPrimary: {
+    backgroundColor: 'rgba(255,255,255,0.08)',
+  },
+  cornerWashMidSoft: {
+    backgroundColor: 'rgba(106, 158, 174, 0.1)',
+  },
+  cornerWashMidGhost: {
+    backgroundColor: 'rgba(106, 158, 174, 0.08)',
+  },
   accentBar: {
     position: 'absolute',
     left: 0,
@@ -317,21 +368,39 @@ const styles = StyleSheet.create({
   accentGhost: {
     backgroundColor: colors.calm,
   },
+  topEdgeAccent: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 2,
+    opacity: 0.55,
+    zIndex: 2,
+  },
+  topEdgePrimary: {
+    backgroundColor: 'rgba(247, 251, 249, 0.45)',
+  },
+  topEdgeSoft: {
+    backgroundColor: colors.brand,
+  },
+  topEdgeGhost: {
+    backgroundColor: colors.calm,
+  },
   sheen: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
-    height: '50%',
-    backgroundColor: 'rgba(255,255,255,0.42)',
+    height: '52%',
+    backgroundColor: 'rgba(255,255,255,0.46)',
   },
   ghostSheen: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
-    height: '50%',
-    backgroundColor: 'rgba(255,255,255,0.4)',
+    height: '52%',
+    backgroundColor: 'rgba(255,255,255,0.44)',
   },
   pressWash: {
     ...StyleSheet.absoluteFill,
@@ -345,7 +414,7 @@ const styles = StyleSheet.create({
     bottom: 3,
     borderRadius: 15,
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.22)',
+    borderColor: 'rgba(255,255,255,0.26)',
     opacity: 0.95,
   },
   softInnerRim: {
@@ -356,7 +425,7 @@ const styles = StyleSheet.create({
     bottom: 3,
     borderRadius: 15,
     borderWidth: 1,
-    borderColor: 'rgba(91, 138, 122, 0.2)',
+    borderColor: 'rgba(91, 138, 122, 0.24)',
     opacity: 0.9,
   },
   ghostInnerRim: {
@@ -367,35 +436,68 @@ const styles = StyleSheet.create({
     bottom: 3,
     borderRadius: 15,
     borderWidth: 1,
+    borderColor: 'rgba(91, 138, 122, 0.18)',
+    opacity: 0.85,
+  },
+  primaryOuterRing: {
+    position: 'absolute',
+    top: 5,
+    left: 5,
+    right: 5,
+    bottom: 5,
+    borderRadius: 13,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.12)',
+    opacity: 0.9,
+  },
+  softOuterRing: {
+    position: 'absolute',
+    top: 5,
+    left: 5,
+    right: 5,
+    bottom: 5,
+    borderRadius: 13,
+    borderWidth: 1,
     borderColor: 'rgba(91, 138, 122, 0.14)',
     opacity: 0.85,
+  },
+  ghostOuterRing: {
+    position: 'absolute',
+    top: 5,
+    left: 5,
+    right: 5,
+    bottom: 5,
+    borderRadius: 13,
+    borderWidth: 1,
+    borderColor: 'rgba(91, 138, 122, 0.1)',
+    opacity: 0.8,
   },
   bottomGlow: {
     position: 'absolute',
     left: 12,
     right: 12,
     bottom: 0,
-    height: 5,
+    height: 6,
     borderRadius: 2,
-    backgroundColor: 'rgba(247, 251, 249, 0.36)',
+    backgroundColor: 'rgba(247, 251, 249, 0.42)',
   },
   softBottomGlow: {
     position: 'absolute',
     left: 14,
     right: 14,
     bottom: 0,
-    height: 4,
+    height: 5,
     borderRadius: 2,
-    backgroundColor: 'rgba(91, 138, 122, 0.36)',
+    backgroundColor: 'rgba(91, 138, 122, 0.4)',
   },
   ghostBottomGlow: {
     position: 'absolute',
     left: 14,
     right: 14,
     bottom: 0,
-    height: 3,
+    height: 4,
     borderRadius: 2,
-    backgroundColor: 'rgba(91, 138, 122, 0.18)',
+    backgroundColor: 'rgba(91, 138, 122, 0.22)',
   },
   row: {
     flexDirection: 'row',
@@ -438,6 +540,21 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(91, 138, 122, 0.35)',
   },
+  ghostLeadHalo: {
+    position: 'absolute',
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    backgroundColor: 'rgba(91, 138, 122, 0.16)',
+  },
+  ghostLeadRing: {
+    position: 'absolute',
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: 'rgba(91, 138, 122, 0.3)',
+  },
   leadDot: {
     width: 6,
     height: 6,
@@ -450,6 +567,13 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     backgroundColor: colors.brand,
     opacity: 0.9,
+  },
+  ghostLeadDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: colors.calm,
+    opacity: 0.85,
   },
   label: {
     fontFamily: fonts.bodyBold,
