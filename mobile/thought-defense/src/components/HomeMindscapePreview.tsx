@@ -160,8 +160,22 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
           { backgroundColor: dawn ? 'rgba(232, 201, 160, 0.12)' : 'rgba(107, 184, 154, 0.1)' },
         ]}
       />
+      <View
+        pointerEvents="none"
+        style={[
+          styles.cornerWashMid,
+          { backgroundColor: dawn ? 'rgba(232, 201, 160, 0.1)' : 'rgba(107, 184, 154, 0.08)' },
+        ]}
+      />
       <View pointerEvents="none" style={styles.wrapGlow} />
       <View pointerEvents="none" style={styles.wrapBottomGlow} />
+      <View
+        pointerEvents="none"
+        style={[
+          styles.wrapMidGlow,
+          { backgroundColor: dawn ? 'rgba(232, 201, 160, 0.12)' : 'rgba(107, 184, 154, 0.12)' },
+        ]}
+      />
       <Animated.View
         pointerEvents="none"
         style={[
@@ -320,7 +334,16 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
               },
             ]}
           />
-          <View style={[styles.lookDot, dawn ? styles.lookDotDawn : null]} />
+          <View style={styles.lookDotWrap}>
+            <View
+              pointerEvents="none"
+              style={[
+                styles.lookDotHalo,
+                { backgroundColor: dawn ? 'rgba(201, 168, 90, 0.3)' : 'rgba(91, 138, 122, 0.28)' },
+              ]}
+            />
+            <View style={[styles.lookDot, dawn ? styles.lookDotDawn : null]} />
+          </View>
           <Text style={styles.lookChipText}>{lookLabel}</Text>
         </View>
       ) : null}
@@ -328,7 +351,10 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
         <View pointerEvents="none" style={styles.captionTopAccent} />
         <View pointerEvents="none" style={styles.captionSheen} />
         <View pointerEvents="none" style={styles.captionRing} />
-        <View style={styles.captionLead} />
+        <View style={styles.captionLeadWrap}>
+          <View pointerEvents="none" style={styles.captionLeadHalo} />
+          <View style={styles.captionLead} />
+        </View>
         <Text style={styles.caption}>
           {lookLabel
             ? `plan view · ${lookLabel} looks`
@@ -355,10 +381,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.line,
     shadowColor: '#243A34',
-    shadowOpacity: 0.24,
-    shadowRadius: 20,
-    shadowOffset: { width: 0, height: 8 },
-    elevation: 6,
+    shadowOpacity: 0.28,
+    shadowRadius: 22,
+    shadowOffset: { width: 0, height: 9 },
+    elevation: 7,
   },
   wrapDawn: {
     backgroundColor: 'rgba(255, 246, 230, 0.55)',
@@ -369,9 +395,9 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: 2.5,
+    height: 3,
     backgroundColor: colors.brand,
-    opacity: 0.5,
+    opacity: 0.58,
     zIndex: 2,
   },
   topSheen: {
@@ -379,8 +405,8 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: '32%',
-    backgroundColor: 'rgba(255,255,255,0.3)',
+    height: '34%',
+    backgroundColor: 'rgba(255,255,255,0.34)',
     zIndex: 1,
   },
   cornerOrb: {
@@ -407,23 +433,39 @@ const styles = StyleSheet.create({
     left: 52,
     bottom: 40,
   },
+  cornerWashMid: {
+    position: 'absolute',
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    right: 72,
+    top: 48,
+  },
   wrapGlow: {
     position: 'absolute',
     left: 20,
     right: 20,
     bottom: 0,
-    height: 18,
+    height: 20,
     borderRadius: 12,
-    backgroundColor: 'rgba(91, 138, 122, 0.12)',
+    backgroundColor: 'rgba(91, 138, 122, 0.14)',
   },
   wrapBottomGlow: {
     position: 'absolute',
     left: 36,
     right: 36,
     bottom: 0,
-    height: 10,
+    height: 12,
     borderRadius: 8,
-    backgroundColor: 'rgba(107, 184, 154, 0.14)',
+    backgroundColor: 'rgba(107, 184, 154, 0.16)',
+  },
+  wrapMidGlow: {
+    position: 'absolute',
+    left: 48,
+    right: 48,
+    bottom: 0,
+    height: 8,
+    borderRadius: 6,
   },
   mistWash: {
     position: 'absolute',
@@ -529,12 +571,12 @@ const styles = StyleSheet.create({
   },
   walkerHalo: {
     position: 'absolute',
-    width: 18,
-    height: 18,
-    borderRadius: 9,
-    marginLeft: -4,
-    marginTop: -4,
-    backgroundColor: 'rgba(176, 140, 110, 0.26)',
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    marginLeft: -5,
+    marginTop: -5,
+    backgroundColor: 'rgba(176, 140, 110, 0.3)',
   },
   walker: {
     position: 'absolute',
@@ -591,10 +633,10 @@ const styles = StyleSheet.create({
     top: 0,
     left: 3,
     right: 3,
-    height: 2,
+    height: 2.5,
     borderRadius: 2,
-    backgroundColor: 'rgba(255,255,255,0.5)',
-    opacity: 0.7,
+    backgroundColor: 'rgba(255,255,255,0.55)',
+    opacity: 0.78,
     zIndex: 2,
   },
   padEmptySheen: {
@@ -602,8 +644,8 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: '45%',
-    backgroundColor: 'rgba(255,255,255,0.38)',
+    height: '48%',
+    backgroundColor: 'rgba(255,255,255,0.42)',
   },
   padEmptyRing: {
     position: 'absolute',
@@ -629,17 +671,17 @@ const styles = StyleSheet.create({
     left: 3,
     right: 3,
     bottom: 1,
-    height: 5,
+    height: 6,
     borderRadius: 3,
-    backgroundColor: 'rgba(255,255,255,0.4)',
+    backgroundColor: 'rgba(255,255,255,0.45)',
   },
   padFilledSheen: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
-    height: '42%',
-    backgroundColor: 'rgba(255,255,255,0.32)',
+    height: '46%',
+    backgroundColor: 'rgba(255,255,255,0.36)',
   },
   padFilledRing: {
     position: 'absolute',
@@ -704,19 +746,19 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255,255,255,0.8)',
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.2,
-    shadowRadius: 6,
+    shadowOpacity: 0.24,
+    shadowRadius: 7,
     shadowOffset: { width: 0, height: 3 },
-    elevation: 4,
+    elevation: 5,
   },
   coreTopAccent: {
     position: 'absolute',
     top: 0,
     left: 4,
     right: 4,
-    height: 3,
+    height: 3.5,
     borderRadius: 2,
-    backgroundColor: 'rgba(255,255,255,0.5)',
+    backgroundColor: 'rgba(255,255,255,0.55)',
     zIndex: 2,
   },
   coreSheen: {
@@ -724,8 +766,8 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: '52%',
-    backgroundColor: 'rgba(255,255,255,0.38)',
+    height: '55%',
+    backgroundColor: 'rgba(255,255,255,0.42)',
   },
   coreInnerRing: {
     position: 'absolute',
@@ -755,10 +797,10 @@ const styles = StyleSheet.create({
   },
   coreDotHalo: {
     position: 'absolute',
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-    backgroundColor: 'rgba(91, 138, 122, 0.28)',
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    backgroundColor: 'rgba(91, 138, 122, 0.32)',
   },
   coreDot: {
     width: 4,
@@ -794,18 +836,18 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     zIndex: 3,
     shadowColor: '#243A34',
-    shadowOpacity: 0.12,
-    shadowRadius: 5,
+    shadowOpacity: 0.16,
+    shadowRadius: 6,
     shadowOffset: { width: 0, height: 2 },
-    elevation: 2,
+    elevation: 3,
   },
   lookChipTopAccent: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
-    height: 2,
-    opacity: 0.55,
+    height: 2.5,
+    opacity: 0.62,
     zIndex: 2,
   },
   lookChipRing: {
@@ -827,8 +869,20 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: '55%',
-    backgroundColor: 'rgba(255,255,255,0.4)',
+    height: '58%',
+    backgroundColor: 'rgba(255,255,255,0.44)',
+  },
+  lookDotWrap: {
+    width: 10,
+    height: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  lookDotHalo: {
+    position: 'absolute',
+    width: 10,
+    height: 10,
+    borderRadius: 5,
   },
   lookDot: {
     width: 5,
@@ -862,19 +916,19 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     zIndex: 3,
     shadowColor: '#243A34',
-    shadowOpacity: 0.12,
-    shadowRadius: 6,
+    shadowOpacity: 0.16,
+    shadowRadius: 7,
     shadowOffset: { width: 0, height: 2 },
-    elevation: 2,
+    elevation: 3,
   },
   captionTopAccent: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
-    height: 2,
+    height: 2.5,
     backgroundColor: colors.brand,
-    opacity: 0.45,
+    opacity: 0.52,
     zIndex: 2,
   },
   captionSheen: {
@@ -882,8 +936,8 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: '55%',
-    backgroundColor: 'rgba(255,255,255,0.32)',
+    height: '58%',
+    backgroundColor: 'rgba(255,255,255,0.36)',
   },
   captionRing: {
     position: 'absolute',
@@ -894,14 +948,27 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 1,
     borderColor: 'rgba(36,51,58,0.1)',
-    opacity: 0.9,
+    opacity: 0.95,
+  },
+  captionLeadWrap: {
+    width: 10,
+    height: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  captionLeadHalo: {
+    position: 'absolute',
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: 'rgba(91, 138, 122, 0.3)',
   },
   captionLead: {
     width: 5,
     height: 5,
     borderRadius: 3,
     backgroundColor: colors.brand,
-    opacity: 0.8,
+    opacity: 0.88,
   },
   caption: {
     fontFamily: fonts.body,
@@ -924,9 +991,9 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: 1.5,
+    height: 2,
     backgroundColor: colors.clarity,
-    opacity: 0.5,
+    opacity: 0.58,
     zIndex: 2,
   },
   captionMetaSheen: {
@@ -934,8 +1001,8 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: '55%',
-    backgroundColor: 'rgba(255,255,255,0.34)',
+    height: '58%',
+    backgroundColor: 'rgba(255,255,255,0.38)',
   },
   captionMetaRing: {
     position: 'absolute',
@@ -945,8 +1012,8 @@ const styles = StyleSheet.create({
     bottom: 1,
     borderRadius: 6,
     borderWidth: 1,
-    borderColor: 'rgba(106,158,174,0.28)',
-    opacity: 0.85,
+    borderColor: 'rgba(106,158,174,0.32)',
+    opacity: 0.9,
   },
   captionMeta: {
     fontFamily: fonts.bodyMedium,

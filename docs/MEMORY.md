@@ -123,15 +123,16 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-17 ~03:15:** SoftButton polish v1.4.89 — richer wash/sheen · thicker accent/top edge · taller bottom glows · richer lead halos · richer primary/soft/ghost shadows.
 - **2026-10-17 ~04:15:** SoftWelcomeSheet polish v1.4.90 — mid corner wash · card bottom glow · title lead halo · comfort top accent/dot halo · thicker progress · richer card/next shadows (last slice before ~05:00).
 - **2026-10-17 ~05:00 OVERNIGHT STOP:** Hard stop after night ship v1.4.84→v1.4.90. Did **not** re-arm overnight-stop. Next resume 23:00 UTC.
+- **2026-10-17 ~23:00 night resume:** HomeMindscapePreview polish v1.4.91 — mid corner wash · wrap mid glow · caption lead halo · look-dot halo · thicker accents · richer wrap/core/chip shadows. Re-armed overnight-stop (`sub_eaaa8aa5…`).
 
 ## State
 
-- Version: **mobile 1.4.90** (SoftWelcomeSheet polish)
+- Version: **mobile 1.4.91** (HomeMindscapePreview polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/7
-- Tip: `ab0d3ed` (v1.4.90 SoftWelcomeSheet · prior tip `a374fd1` / docs `73f2b80`)
+- Tip: *(pending commit)*
 - Hourly timer: **`thought-defense-mobile-hourly`** (`sub_f388e268…`, cron `15 * * * *`)
-- Night envelope: **CLOSED** · overnight-stop **not** armed · `overnight-daily-resume` armed (`sub_e96eb095…`)
+- Night envelope: **OPEN** · overnight-stop armed (`sub_eaaa8aa5…`, ~05:00 Oct 18) · `overnight-daily-resume` armed (`sub_e96eb095…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
-- Next: daytime idle · next night resume **23:00 UTC** · HomeMindscapePreview next polish candidate
+- Next: night hourly polish · PauseOverlay next candidate
