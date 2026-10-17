@@ -4,6 +4,13 @@ Newest first. Overnight agents append after every push.
 
 ## Mobile Thought Defense overnight (from `main`)
 
+## 2026-10-17 ~03:25 UTC — Night 23 HomeMindscapePreview
+
+- **Shipped v1.4.84:** HomeMindscapePreview — side wash · core label glow · chip washes · caption lead glow · richer shadows
+- Roblox untouched; no email
+- Still blocked: Native IAP · EAS · store products · Q-006
+- Stop 05:00 · **one digest email at stop only** · PR #8
+
 ## 2026-10-17 ~03:20 UTC — Night 23 SoftButton
 
 - **Shipped v1.4.83:** SoftButton — lead glows · label underlines · soft/ghost corner washes · richer shadows
