@@ -4,6 +4,22 @@ Newest first. Overnight agents append after every push.
 
 ## Mobile Thought Defense overnight (from `main`)
 
+## 2026-10-17 05:00 UTC — OVERNIGHT STOP (Night 23)
+
+Night 23 complete. No new features this wrap. One digest email sent.
+
+**Shipped Night 23**
+- SoftWelcomeSheet / SoftPlayHud **v1.4.76–1.4.77**
+- FirstRunTipChip **v1.4.78** · DualModeTray **v1.4.79** (Draft C locked)
+- SoftFxLayer **v1.4.80** · PeaceCore **v1.4.81** · PadDisc **v1.4.82** · SoftButton **v1.4.83**
+- HomeMindscapePreview **v1.4.84** · PauseOverlay **v1.4.85** · WavePreviewChip **v1.4.86** · Atmosphere **v1.4.87**
+- PR: https://github.com/wysboi123/thoughts/pull/8
+
+**Versions end:** Thought Defense mobile **1.4.87**
+**Blocked:** Native IAP (Q-006) · EAS projectId · store products · legal URLs · Clarity Pass price
+**Timers:** left `overnight-daily-resume` armed (expires ~2026-10-22) · did **not** re-arm `overnight-stop-5am-utc` until next night resume
+**Next (Night 24):** Shop / GameBoard cycle restart · apply Femmy answers if any · no Roblox unless un-paused
+
 ## 2026-10-17 ~03:40 UTC — Night 23 Atmosphere
 
 - **Shipped v1.4.87:** Atmosphere — floor side wash · soft veil · extra mote · richer orb halos · Dawn tints
