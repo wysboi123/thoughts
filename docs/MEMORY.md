@@ -96,7 +96,8 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/4
 - Tip: `79253df` (overnight STOP docs · ship `b060aa4` v1.4.59)
-- Hourly timer: **`thought-defense-mobile-hourly`** (daytime = idle / apply Femmy answers only)
-- Night envelope: **CLOSED** · overnight-stop **not** re-armed · `overnight-daily-resume` armed (`sub_d6468578…`) · next resume **23:00 UTC**
+- **Schedule: CANCELLED (2026-10-17)** — Femmy ordered cancel. Do **not** re-arm hourly / overnight-resume / overnight-stop. See `docs/SCHEDULE.md`.
+- Hourly timer: **OFF** (was `thought-defense-mobile-hourly`)
+- Night envelope: **OFF**
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
-- Next: daytime idle / apply Femmy answers · night resume 23:00 UTC · SoftButton next polish candidate
+- Next: wait for Femmy — no scheduled batches
