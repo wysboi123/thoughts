@@ -117,15 +117,16 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-16 ~05:00 OVERNIGHT STOP:** Hard stop after night ship v1.4.77→v1.4.83. Did **not** re-arm overnight-stop. Next resume 23:00 UTC.
 - **2026-10-16 ~23:00 night resume:** FirstRunTipChip polish v1.4.84 — mid corner wash · chip bottom glow · badge top accent · tip lead halo · dismiss top accent · thicker progress · richer shadows. Re-armed overnight-stop (`sub_2c60fd6f…`).
 - **2026-10-16 ~23:15:** DualModeTray polish v1.4.85 — mid corner wash · tray bottom glow · title lead halo · cost/hint/footer top accents · select glow bump · richer shadows (Draft C locked).
+- **2026-10-17 ~00:15:** SoftFxLayer polish v1.4.86 — longer FX life · richer motes · 9th mote · wash/halo/ring bump · 3rd shot mote · richer spark.
 
 ## State
 
-- Version: **mobile 1.4.85** (DualModeTray polish)
+- Version: **mobile 1.4.86** (SoftFxLayer polish)
 - Path: `mobile/thought-defense`
 - Branch: `cursor/mobile-thought-defense-5a0d`
 - PR: https://github.com/wysboi123/thoughts/pull/7
-- Tip: `2291a16` (v1.4.85 DualModeTray · prior tip `883cd4b` / docs `ad1c3d5`)
+- Tip: `TIP_SHA` (v1.4.86 SoftFxLayer · prior tip `2291a16` / docs `d53743f`)
 - Hourly timer: **`thought-defense-mobile-hourly`** (`sub_f388e268…`, cron `15 * * * *`)
 - Night envelope: **OPEN** · overnight-stop armed (`sub_2c60fd6f…`, ~05:00 Oct 17) · `overnight-daily-resume` armed (`sub_e96eb095…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
-- Next: night hourlies until ~05:00 · SoftFxLayer next polish candidate
+- Next: night hourlies until ~05:00 · PeaceCore next polish candidate
