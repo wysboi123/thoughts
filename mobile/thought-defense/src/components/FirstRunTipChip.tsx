@@ -159,9 +159,17 @@ export function FirstRunTipChip({ visible, dawn }: Props) {
           pointerEvents="none"
           style={[styles.sideWash, { backgroundColor: `${current.accent}12` }]}
         />
+        <View
+          pointerEvents="none"
+          style={[styles.bottomWash, { backgroundColor: `${current.accent}10` }]}
+        />
         <Animated.View style={[styles.textWrap, { opacity: tipFade }]}>
           <View style={[styles.badge, { borderColor: `${current.accent}66` }]}>
             <View pointerEvents="none" style={styles.badgeSheen} />
+            <View
+              pointerEvents="none"
+              style={[styles.badgeGlow, { backgroundColor: `${current.accent}28` }]}
+            />
             <View style={[styles.badgeDot, { backgroundColor: current.accent }]} />
             <Text style={[styles.badgeLabel, { color: current.accent }]}>Soft tip</Text>
           </View>
@@ -252,10 +260,10 @@ const styles = StyleSheet.create({
     borderLeftWidth: 4,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.16,
-    shadowRadius: 12,
-    shadowOffset: { width: 0, height: 5 },
-    elevation: 4,
+    shadowOpacity: 0.2,
+    shadowRadius: 14,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 5,
   },
   chipDawn: {
     backgroundColor: 'rgba(255, 244, 220, 0.75)',
@@ -311,6 +319,14 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 18,
     borderBottomLeftRadius: 18,
   },
+  bottomWash: {
+    position: 'absolute',
+    left: 10,
+    right: 48,
+    bottom: 6,
+    height: 20,
+    borderRadius: 10,
+  },
   textWrap: {
     flexShrink: 1,
     gap: 5,
@@ -334,6 +350,14 @@ const styles = StyleSheet.create({
     right: 0,
     height: '55%',
     backgroundColor: 'rgba(255,255,255,0.35)',
+  },
+  badgeGlow: {
+    position: 'absolute',
+    left: 3,
+    right: 3,
+    bottom: 0,
+    height: 4,
+    borderRadius: 3,
   },
   badgeDot: {
     width: 6,
