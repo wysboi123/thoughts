@@ -192,6 +192,10 @@ export function SoftWelcomeSheet() {
             pointerEvents="none"
             style={[styles.bottomWash, { backgroundColor: `${current.accent}10` }]}
           />
+          <View
+            pointerEvents="none"
+            style={[styles.sideWash, { backgroundColor: `${current.accent}0e` }]}
+          />
           <View style={styles.topRow}>
             <View
               style={[
@@ -200,11 +204,19 @@ export function SoftWelcomeSheet() {
               ]}
             >
               <View pointerEvents="none" style={styles.chipSheen} />
+              <View
+                pointerEvents="none"
+                style={[styles.chipGlow, { backgroundColor: `${current.accent}28` }]}
+              />
               <View style={[styles.eyebrowDot, { backgroundColor: current.accent }]} />
               <Text style={[styles.eyebrow, { color: current.accent }]}>Welcome</Text>
             </View>
             <View style={[styles.stepChip, { borderColor: `${current.accent}44` }]}>
               <View pointerEvents="none" style={styles.chipSheen} />
+              <View
+                pointerEvents="none"
+                style={[styles.chipGlow, { backgroundColor: `${current.accent}22` }]}
+              />
               <View style={[styles.stepDot, { backgroundColor: current.accent }]} />
               <Text style={[styles.step, { color: current.accent }]}>
                 {page + 1} of {PAGES.length}
@@ -233,13 +245,23 @@ export function SoftWelcomeSheet() {
           <Animated.View style={{ opacity: pageFade, gap: 10 }}>
             <View style={[styles.chip, { borderColor: `${current.accent}66` }]}>
               <View pointerEvents="none" style={styles.chipSheen} />
+              <View
+                pointerEvents="none"
+                style={[styles.chipGlow, { backgroundColor: `${current.accent}28` }]}
+              />
               <View style={[styles.chipDot, { backgroundColor: current.accent }]} />
               <Text style={[styles.chipLabel, { color: current.accent }]}>{current.chip}</Text>
             </View>
             <Text style={styles.title}>{current.title}</Text>
-            <Text style={[styles.softHint, { color: current.accent }]}>
-              Soft start · no rush
-            </Text>
+            <View style={styles.softHintRow}>
+              <Text style={[styles.softHint, { color: current.accent }]}>
+                Soft start · no rush
+              </Text>
+              <View
+                pointerEvents="none"
+                style={[styles.softHintGlow, { backgroundColor: `${current.accent}33` }]}
+              />
+            </View>
             <Text style={styles.body}>{current.body}</Text>
           </Animated.View>
 
@@ -272,8 +294,18 @@ export function SoftWelcomeSheet() {
                 pointerEvents="none"
                 style={[styles.comfortGlow, { backgroundColor: `${current.accent}18` }]}
               />
+              <View
+                pointerEvents="none"
+                style={[styles.comfortWash, { backgroundColor: `${current.accent}10` }]}
+              />
               <View style={styles.comfortHead}>
-                <View style={styles.comfortDot} />
+                <View style={styles.comfortDotWrap}>
+                  <View
+                    pointerEvents="none"
+                    style={[styles.comfortDotGlow, { backgroundColor: `${current.accent}33` }]}
+                  />
+                  <View style={styles.comfortDot} />
+                </View>
                 <Text style={styles.comfortTitle}>Metaphor only</Text>
               </View>
               <Text style={styles.comfortBody}>
@@ -337,10 +369,10 @@ const styles = StyleSheet.create({
     gap: 10,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.18,
-    shadowRadius: 20,
-    shadowOffset: { width: 0, height: 11 },
-    elevation: 7,
+    shadowOpacity: 0.22,
+    shadowRadius: 22,
+    shadowOffset: { width: 0, height: 12 },
+    elevation: 8,
   },
   cardDawn: {
     backgroundColor: '#F6EBDA',
@@ -370,6 +402,14 @@ const styles = StyleSheet.create({
     right: 0,
     height: '55%',
     backgroundColor: 'rgba(255,255,255,0.32)',
+  },
+  chipGlow: {
+    position: 'absolute',
+    left: 4,
+    right: 4,
+    bottom: 0,
+    height: 4,
+    borderRadius: 3,
   },
   cornerOrb: {
     position: 'absolute',
@@ -410,6 +450,15 @@ const styles = StyleSheet.create({
     bottom: 8,
     height: 64,
     borderRadius: 20,
+  },
+  sideWash: {
+    position: 'absolute',
+    top: 28,
+    bottom: 28,
+    right: 0,
+    width: 22,
+    borderTopLeftRadius: 14,
+    borderBottomLeftRadius: 14,
   },
   topRow: {
     flexDirection: 'row',
@@ -506,11 +555,21 @@ const styles = StyleSheet.create({
     lineHeight: 34,
     color: colors.brandDeep,
   },
+  softHintRow: {
+    marginTop: -4,
+    alignSelf: 'flex-start',
+  },
   softHint: {
     fontFamily: fonts.bodyMedium,
     fontSize: 12,
     letterSpacing: 0.3,
-    marginTop: -4,
+  },
+  softHintGlow: {
+    marginTop: 3,
+    height: 2,
+    borderRadius: 1,
+    width: '70%',
+    opacity: 0.9,
   },
   body: {
     fontFamily: fonts.body,
@@ -541,6 +600,11 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(106, 158, 174, 0.22)',
     gap: 3,
     overflow: 'hidden',
+    shadowColor: '#243A34',
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 3 },
+    elevation: 2,
   },
   comfortGlow: {
     position: 'absolute',
@@ -550,10 +614,30 @@ const styles = StyleSheet.create({
     height: 8,
     borderRadius: 6,
   },
+  comfortWash: {
+    position: 'absolute',
+    left: 8,
+    right: 8,
+    top: 2,
+    height: 10,
+    borderRadius: 6,
+  },
   comfortHead: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
+  },
+  comfortDotWrap: {
+    width: 12,
+    height: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  comfortDotGlow: {
+    position: 'absolute',
+    width: 10,
+    height: 10,
+    borderRadius: 5,
   },
   comfortDot: {
     width: 6,
