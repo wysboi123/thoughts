@@ -161,6 +161,10 @@ export function SoftActionToast({ message, kind, dawn }: Props) {
           pointerEvents="none"
           style={[styles.sideWash, { backgroundColor: `${tint.accent}12` }]}
         />
+        <View
+          pointerEvents="none"
+          style={[styles.bottomWash, { backgroundColor: `${tint.accent}10` }]}
+        />
         <View style={styles.accentWrap}>
           <View
             pointerEvents="none"
@@ -182,6 +186,10 @@ export function SoftActionToast({ message, kind, dawn }: Props) {
           <View
             pointerEvents="none"
             style={[styles.badgeGlow, { backgroundColor: `${tint.accent}28` }]}
+          />
+          <View
+            pointerEvents="none"
+            style={[styles.badgeWash, { backgroundColor: `${tint.accent}14` }]}
           />
           <View style={[styles.badgeDot, { backgroundColor: tint.accent }]} />
           <Text style={[styles.badge, { color: tint.ink }]}>{tint.label}</Text>
@@ -225,10 +233,10 @@ const styles = StyleSheet.create({
     borderColor: colors.line,
     borderLeftWidth: 4,
     overflow: 'hidden',
-    shadowOpacity: 0.3,
-    shadowRadius: 14,
-    shadowOffset: { width: 0, height: 5 },
-    elevation: 5,
+    shadowOpacity: 0.34,
+    shadowRadius: 16,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 6,
   },
   topAccent: {
     position: 'absolute',
@@ -263,6 +271,14 @@ const styles = StyleSheet.create({
     width: 28,
     borderTopLeftRadius: 14,
     borderBottomLeftRadius: 14,
+  },
+  bottomWash: {
+    position: 'absolute',
+    left: 14,
+    right: 40,
+    bottom: 6,
+    height: 18,
+    borderRadius: 10,
   },
   accentWrap: {
     width: 16,
@@ -313,6 +329,14 @@ const styles = StyleSheet.create({
     right: 3,
     bottom: 0,
     height: 4,
+    borderRadius: 3,
+  },
+  badgeWash: {
+    position: 'absolute',
+    left: 3,
+    right: 3,
+    top: 1,
+    height: 5,
     borderRadius: 3,
   },
   badgeDot: {
