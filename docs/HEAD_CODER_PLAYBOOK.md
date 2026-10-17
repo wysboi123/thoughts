@@ -22,16 +22,16 @@ Queue gaps in `docs/RESEARCH_QUEUE.md` (Expo / IAP / store policy). Prefer docs 
 
 ## Schedule
 
-See `docs/SCHEDULE.md`. Night window **23:00–05:00 UTC**. Hourly ~30 min batches. Timer: `thought-defense-mobile-hourly`.
+**CANCELLED (2026-10-17).** See `docs/SCHEDULE.md`. Do not re-arm timers. Work only when Femmy asks.
 
-## Loop (every batch)
+## Loop (when Femmy requests work)
 
 1. **Scan** `docs/APP_BACKLOG.md`
-2. **Build** in `mobile/thought-defense` (TypeScript)
+2. **Build** in `mobile/thought-defense` (TypeScript) — unless Femmy overrides (e.g. Roblox plan)
 3. **Self-check** `npx tsc --noEmit`
-4. **Commit + push** on `cursor/*-5a0d`
+4. **Commit + push** on the active `cursor/*` branch
 5. **PR** via ManagePullRequest when available
-6. **Wake note** + email `ngkdevid@gmail.com`
+6. **Wake note** (+ email only if Femmy still wants digests)
 
 ## Definition of done (one batch)
 

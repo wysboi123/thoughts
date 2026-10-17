@@ -2,6 +2,14 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-17 23:17 UTC — CANCEL SCHEDULE (Femmy)
+
+- Femmy: **cancel schedule**
+- This agent (`bc-01a12f0d…` Roblox plan): `list_subscriptions` → **empty** (no timers to unsubscribe here)
+- Docs marked **CANCELLED**: `docs/SCHEDULE.md` · `docs/MEMORY.md` · `docs/HEAD_CODER_PLAYBOOK.md`
+- Any future timer wake must: idle → unsubscribe all → end (do not re-arm)
+- Note: live hourly/resume may still be armed on a **different** long-lived agent chat (e.g. overnight mobile / roblox pipeline). Femmy may need to open that chat and say cancel / stop agent if wakes continue.
+
 ## 2026-10-12 07:41 UTC — Femmy override: Roblox two-game plan
 
 - Femmy asked for **2 Roblox game concepts** + monetisation + Claude Code prompt (research-backed, immediate rollout).
