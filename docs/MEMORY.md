@@ -122,6 +122,7 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - **2026-10-17 ~02:15:** PadDisc polish v1.4.88 — mid corner wash · thicker accents · plant-dot halo · select glow bump · richer sheen/glow · richer pad/chip shadows.
 - **2026-10-17 ~03:15:** SoftButton polish v1.4.89 — richer wash/sheen · thicker accent/top edge · taller bottom glows · richer lead halos · richer primary/soft/ghost shadows.
 - **2026-10-17 ~04:15:** SoftWelcomeSheet polish v1.4.90 — mid corner wash · card bottom glow · title lead halo · comfort top accent/dot halo · thicker progress · richer card/next shadows (last slice before ~05:00).
+- **2026-10-17 ~05:00 OVERNIGHT STOP:** Hard stop after night ship v1.4.84→v1.4.90. Did **not** re-arm overnight-stop. Next resume 23:00 UTC.
 
 ## State
 
@@ -131,6 +132,6 @@ Adapter MCP preferred when authenticated. This file is the durable fallback.
 - PR: https://github.com/wysboi123/thoughts/pull/7
 - Tip: `ab0d3ed` (v1.4.90 SoftWelcomeSheet · prior tip `a374fd1` / docs `73f2b80`)
 - Hourly timer: **`thought-defense-mobile-hourly`** (`sub_f388e268…`, cron `15 * * * *`)
-- Night envelope: **OPEN** · overnight-stop armed (`sub_2c60fd6f…`, ~05:00 Oct 17) · `overnight-daily-resume` armed (`sub_e96eb095…`)
+- Night envelope: **CLOSED** · overnight-stop **not** armed · `overnight-daily-resume` armed (`sub_e96eb095…`)
 - Blocked on Femmy: Apple/Play accounts · bundle ids · IAP products · EAS projectId · legal URLs · Clarity Pass price confirm (default **$2.99**) · **RevenueCat vs RNIap**
-- Next: ~05:00 OVERNIGHT STOP (docs/digest only) · next night resume 23:00 · HomeMindscapePreview next polish candidate
+- Next: daytime idle · next night resume **23:00 UTC** · HomeMindscapePreview next polish candidate

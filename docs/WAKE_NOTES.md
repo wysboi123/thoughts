@@ -2,6 +2,15 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-17 05:00 UTC — OVERNIGHT STOP (mobile night wrap)
+
+- Timer `overnight-stop-5am-utc` · past night envelope · **no features**
+- **Night ship summary (23:00→05:00):** FirstRunTipChip **1.4.84** → DualModeTray **1.4.85** → SoftFxLayer **1.4.86** → PeaceCore **1.4.87** → PadDisc **1.4.88** → SoftButton **1.4.89** → SoftWelcomeSheet **1.4.90**
+- Tip at stop: `ab0d3ed` / wake `915657a` · Draft C locked · PR **#7**
+- Left `thought-defense-mobile-hourly` + `overnight-daily-resume` armed · did **not** re-arm overnight-stop
+- Next resume **23:00 UTC** · HomeMindscapePreview next polish candidate
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-17 04:15 UTC — Night hourly (v1.4.90 SoftWelcomeSheet)
 
 - Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
