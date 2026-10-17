@@ -120,6 +120,7 @@ Priority order. Agents pick the top unchecked item unless Femmy overrides.
 - [x] **v1.4.80 hourly polish** — SoftFxLayer (soft bloom · mote cores · shot spark · extra mote · longer life)
 - [x] **v1.4.81 hourly polish** — PeaceCore (status/label glows · chip wash · richer core/chip shadows)
 - [x] **v1.4.82 hourly polish** — PadDisc (side wash · select/label glows · plant-chip wash · richer pad shadows)
+- [x] **v1.4.83 hourly polish** — SoftButton (lead glows · label underlines · soft/ghost corner washes · richer shadows)
 - [ ] **Native IAP** — wire RevenueCat or react-native-iap; turn off stubMode for store builds
 - [ ] **EAS project** — Femmy: `eas init` + real `projectId` + credentials
 - [ ] **Store products** — create IAP ids in App Store Connect + Play Console
