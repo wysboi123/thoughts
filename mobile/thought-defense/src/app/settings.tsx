@@ -93,11 +93,47 @@ export default function SettingsScreen() {
             <Text style={styles.brand}>Settings</Text>
             <View style={[styles.versionChip, looks.dawn ? styles.versionChipDawn : null]}>
               <View pointerEvents="none" style={styles.chipSheen} />
+              <View
+                pointerEvents="none"
+                style={[
+                  styles.chipGlow,
+                  {
+                    backgroundColor: looks.dawn
+                      ? 'rgba(201, 168, 90, 0.25)'
+                      : 'rgba(91, 138, 122, 0.22)',
+                  },
+                ]}
+              />
+              <View
+                pointerEvents="none"
+                style={[
+                  styles.chipWash,
+                  {
+                    backgroundColor: looks.dawn
+                      ? 'rgba(201, 168, 90, 0.1)'
+                      : 'rgba(91, 138, 122, 0.08)',
+                  },
+                ]}
+              />
               <View style={[styles.versionDot, looks.dawn ? styles.versionDotDawn : null]} />
               <Text style={styles.versionChipText}>
                 {GAME.version.replace('-mobile', '')}
               </Text>
             </View>
+          </View>
+          <View style={styles.softHintRow}>
+            <Text style={styles.softHint}>Soft comfort · metaphor only</Text>
+            <View
+              pointerEvents="none"
+              style={[
+                styles.softHintGlow,
+                {
+                  backgroundColor: looks.dawn
+                    ? 'rgba(201, 168, 90, 0.35)'
+                    : 'rgba(91, 138, 122, 0.3)',
+                },
+              ]}
+            />
           </View>
           <Text style={styles.meta}>
             {GAME.name} · soft mindscape comfort
@@ -110,8 +146,43 @@ export default function SettingsScreen() {
             accessibilityRole="summary"
           >
             <View pointerEvents="none" style={styles.chipSheen} />
+            <View
+              pointerEvents="none"
+              style={[
+                styles.chipGlow,
+                {
+                  backgroundColor: looks.dawn
+                    ? 'rgba(201, 168, 90, 0.2)'
+                    : 'rgba(91, 138, 122, 0.18)',
+                },
+              ]}
+            />
+            <View
+              pointerEvents="none"
+              style={[
+                styles.chipWash,
+                {
+                  backgroundColor: looks.dawn
+                    ? 'rgba(201, 168, 90, 0.08)'
+                    : 'rgba(91, 138, 122, 0.07)',
+                },
+              ]}
+            />
             <View style={styles.comfortHead}>
-              <View style={[styles.leadDot, looks.dawn ? styles.leadDotDawn : null]} />
+              <View style={styles.leadDotWrap}>
+                <View
+                  pointerEvents="none"
+                  style={[
+                    styles.leadDotGlow,
+                    {
+                      backgroundColor: looks.dawn
+                        ? 'rgba(201, 168, 90, 0.35)'
+                        : 'rgba(91, 138, 122, 0.3)',
+                    },
+                  ]}
+                />
+                <View style={[styles.leadDot, looks.dawn ? styles.leadDotDawn : null]} />
+              </View>
               <Text style={styles.comfortTitle}>On-device comfort</Text>
             </View>
             <Text style={styles.comfortBody}>
@@ -328,8 +399,19 @@ export default function SettingsScreen() {
             </Text>
             <View style={styles.footerStrip} accessibilityRole="summary">
               <View pointerEvents="none" style={styles.chipSheen} />
+              <View
+                pointerEvents="none"
+                style={[styles.chipGlow, { backgroundColor: 'rgba(91, 138, 122, 0.16)' }]}
+              />
+              <View
+                pointerEvents="none"
+                style={[styles.chipWash, { backgroundColor: 'rgba(91, 138, 122, 0.08)' }]}
+              />
               <View style={styles.footerHead}>
-                <View style={styles.footerDot} />
+                <View style={styles.footerDotWrap}>
+                  <View pointerEvents="none" style={styles.footerDotGlow} />
+                  <View style={styles.footerDot} />
+                </View>
                 <Text style={styles.footerTitle}>Metaphor only</Text>
               </View>
               <Text style={styles.footerBody}>
@@ -362,6 +444,39 @@ const styles = StyleSheet.create({
     height: '55%',
     backgroundColor: 'rgba(255,255,255,0.28)',
   },
+  chipGlow: {
+    position: 'absolute',
+    left: 6,
+    right: 6,
+    bottom: 0,
+    height: 6,
+    borderRadius: 4,
+  },
+  chipWash: {
+    position: 'absolute',
+    left: 6,
+    right: 6,
+    top: 1,
+    height: 8,
+    borderRadius: 4,
+  },
+  softHintRow: {
+    marginTop: 2,
+    alignSelf: 'flex-start',
+  },
+  softHint: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 12,
+    letterSpacing: 0.25,
+    color: colors.brand,
+  },
+  softHintGlow: {
+    marginTop: 3,
+    height: 2,
+    borderRadius: 1,
+    width: '70%',
+    opacity: 0.9,
+  },
   versionChip: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -373,6 +488,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(63, 111, 98, 0.25)',
     overflow: 'hidden',
+    shadowColor: '#243A34',
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 2,
   },
   versionChipDawn: {
     backgroundColor: 'rgba(201, 168, 90, 0.18)',
@@ -404,10 +524,10 @@ const styles = StyleSheet.create({
     gap: 4,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.08,
-    shadowRadius: 10,
-    shadowOffset: { width: 0, height: 3 },
-    elevation: 2,
+    shadowOpacity: 0.12,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 3,
   },
   comfortStripDawn: {
     backgroundColor: 'rgba(255, 246, 230, 0.72)',
@@ -417,6 +537,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
+  },
+  leadDotWrap: {
+    width: 14,
+    height: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  leadDotGlow: {
+    position: 'absolute',
+    width: 12,
+    height: 12,
+    borderRadius: 6,
   },
   leadDot: {
     width: 7,
@@ -604,11 +736,29 @@ const styles = StyleSheet.create({
     borderColor: colors.line,
     gap: 2,
     overflow: 'hidden',
+    shadowColor: '#243A34',
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 3 },
+    elevation: 2,
   },
   footerHead: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
+  },
+  footerDotWrap: {
+    width: 12,
+    height: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  footerDotGlow: {
+    position: 'absolute',
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: 'rgba(91, 138, 122, 0.28)',
   },
   footerDot: {
     width: 6,

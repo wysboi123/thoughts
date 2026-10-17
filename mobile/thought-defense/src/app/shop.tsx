@@ -151,6 +151,20 @@ export default function ShopScreen() {
         <SoftButton label="← Home" variant="ghost" onPress={() => router.back()} style={styles.back} />
         <SoftCardEnter index={0} reduceMotion={reduceMotion}>
           <Text style={styles.brand}>Clarity shop</Text>
+          <View style={styles.softHintRow}>
+            <Text style={styles.softHint}>Soft thank-yous · never required</Text>
+            <View
+              pointerEvents="none"
+              style={[
+                styles.softHintGlow,
+                {
+                  backgroundColor: looks.dawn
+                    ? 'rgba(201, 168, 90, 0.35)'
+                    : 'rgba(91, 138, 122, 0.3)',
+                },
+              ]}
+            />
+          </View>
           <Text style={styles.lead}>
             Optional comfort only — plant, clear waves, and soft goals stay free. No fake urgency, no
             medical claims.
@@ -163,8 +177,43 @@ export default function ShopScreen() {
             accessibilityRole="text"
           >
             <View pointerEvents="none" style={styles.chipSheen} />
+            <View
+              pointerEvents="none"
+              style={[
+                styles.stripGlow,
+                {
+                  backgroundColor: looks.dawn
+                    ? 'rgba(201, 168, 90, 0.22)'
+                    : 'rgba(91, 138, 122, 0.2)',
+                },
+              ]}
+            />
+            <View
+              pointerEvents="none"
+              style={[
+                styles.stripWash,
+                {
+                  backgroundColor: looks.dawn
+                    ? 'rgba(201, 168, 90, 0.1)'
+                    : 'rgba(91, 138, 122, 0.08)',
+                },
+              ]}
+            />
             <View style={styles.freeStripHead}>
-              <View style={[styles.leadDot, looks.dawn ? styles.leadDotDawn : null]} />
+              <View style={styles.leadDotWrap}>
+                <View
+                  pointerEvents="none"
+                  style={[
+                    styles.leadDotGlow,
+                    {
+                      backgroundColor: looks.dawn
+                        ? 'rgba(201, 168, 90, 0.35)'
+                        : 'rgba(91, 138, 122, 0.3)',
+                    },
+                  ]}
+                />
+                <View style={[styles.leadDot, looks.dawn ? styles.leadDotDawn : null]} />
+              </View>
               <Text style={styles.freeStripTitle}>Core loop stays free</Text>
             </View>
             <Text style={styles.freeStripBody}>
@@ -208,11 +257,32 @@ export default function ShopScreen() {
               ]}
             />
             <View pointerEvents="none" style={styles.chipSheen} />
+            <View
+              pointerEvents="none"
+              style={[
+                styles.statusSideWash,
+                {
+                  backgroundColor: entitlements.clarityPassActive
+                    ? 'rgba(91, 138, 122, 0.1)'
+                    : looks.dawn
+                      ? 'rgba(201, 168, 90, 0.1)'
+                      : 'rgba(106, 158, 174, 0.1)',
+                },
+              ]}
+            />
             <View style={styles.statusHead}>
               <Text style={styles.statusTitle}>Your comfort</Text>
               {entitlements.clarityPassActive ? (
                 <View style={styles.passLiveChip}>
                   <View pointerEvents="none" style={styles.chipSheen} />
+                  <View
+                    pointerEvents="none"
+                    style={[styles.stripGlow, { backgroundColor: 'rgba(91, 138, 122, 0.28)' }]}
+                  />
+                  <View
+                    pointerEvents="none"
+                    style={[styles.stripWash, { backgroundColor: 'rgba(91, 138, 122, 0.12)' }]}
+                  />
                   <View style={styles.passLiveDot} />
                   <Text style={styles.passLiveText}>Pass live</Text>
                 </View>
@@ -406,8 +476,19 @@ export default function ShopScreen() {
         <SoftCardEnter index={cardIndex + 1} reduceMotion={reduceMotion}>
           <View style={styles.comfortStrip} accessibilityRole="summary">
             <View pointerEvents="none" style={styles.chipSheen} />
+            <View
+              pointerEvents="none"
+              style={[styles.stripGlow, { backgroundColor: 'rgba(91, 138, 122, 0.16)' }]}
+            />
+            <View
+              pointerEvents="none"
+              style={[styles.stripWash, { backgroundColor: 'rgba(91, 138, 122, 0.08)' }]}
+            />
             <View style={styles.comfortHead}>
-              <View style={styles.comfortDot} />
+              <View style={styles.comfortDotWrap}>
+                <View pointerEvents="none" style={styles.comfortDotGlow} />
+                <View style={styles.comfortDot} />
+              </View>
               <Text style={styles.comfortTitle}>Metaphor only</Text>
             </View>
             <Text style={styles.comfortBody}>
@@ -438,6 +519,23 @@ const styles = StyleSheet.create({
     fontSize: 36,
     color: colors.brandDeep,
   },
+  softHintRow: {
+    marginTop: 4,
+    alignSelf: 'flex-start',
+  },
+  softHint: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 12,
+    letterSpacing: 0.25,
+    color: colors.brand,
+  },
+  softHintGlow: {
+    marginTop: 3,
+    height: 2,
+    borderRadius: 1,
+    width: '72%',
+    opacity: 0.9,
+  },
   lead: {
     marginTop: 8,
     marginBottom: 10,
@@ -454,6 +552,22 @@ const styles = StyleSheet.create({
     height: '55%',
     backgroundColor: 'rgba(255,255,255,0.28)',
   },
+  stripGlow: {
+    position: 'absolute',
+    left: 8,
+    right: 8,
+    bottom: 0,
+    height: 8,
+    borderRadius: 6,
+  },
+  stripWash: {
+    position: 'absolute',
+    left: 10,
+    right: 10,
+    top: 2,
+    height: 10,
+    borderRadius: 6,
+  },
   freeStrip: {
     marginBottom: 12,
     paddingVertical: 12,
@@ -464,6 +578,11 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(91, 138, 122, 0.28)',
     gap: 4,
     overflow: 'hidden',
+    shadowColor: '#243A34',
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 3 },
+    elevation: 2,
   },
   freeStripDawn: {
     backgroundColor: 'rgba(232, 201, 160, 0.22)',
@@ -473,6 +592,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
+  },
+  leadDotWrap: {
+    width: 14,
+    height: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  leadDotGlow: {
+    position: 'absolute',
+    width: 12,
+    height: 12,
+    borderRadius: 6,
   },
   leadDot: {
     width: 7,
@@ -517,6 +648,11 @@ const styles = StyleSheet.create({
     borderColor: colors.line,
     gap: 4,
     overflow: 'hidden',
+    shadowColor: '#243A34',
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 2,
   },
   statusTopAccent: {
     position: 'absolute',
@@ -525,6 +661,15 @@ const styles = StyleSheet.create({
     right: 0,
     height: 2,
     opacity: 0.55,
+  },
+  statusSideWash: {
+    position: 'absolute',
+    top: 12,
+    bottom: 12,
+    right: 0,
+    width: 18,
+    borderTopLeftRadius: 12,
+    borderBottomLeftRadius: 12,
   },
   statusCardPass: {
     borderColor: 'rgba(91, 138, 122, 0.4)',
@@ -807,11 +952,29 @@ const styles = StyleSheet.create({
     borderColor: colors.line,
     gap: 2,
     overflow: 'hidden',
+    shadowColor: '#243A34',
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 3 },
+    elevation: 2,
   },
   comfortHead: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
+  },
+  comfortDotWrap: {
+    width: 12,
+    height: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  comfortDotGlow: {
+    position: 'absolute',
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: 'rgba(91, 138, 122, 0.28)',
   },
   comfortDot: {
     width: 6,

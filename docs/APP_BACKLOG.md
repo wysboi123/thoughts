@@ -93,6 +93,45 @@ Priority order. Agents pick the top unchecked item unless Femmy overrides.
 - [x] **v1.4.57 hourly polish** — SoftFxLayer (outer wash · spark core · richer mote glow · extra mote · longer plant/clear life)
 - [x] **v1.4.58 hourly polish** — PeaceCore (corner wash · core bottom glow · inner sheen · status ring · richer core/chip shadows)
 - [x] **v1.4.59 hourly polish** — PadDisc (corner wash · empty glow · select core ring · richer pad/plant-chip shadows · last before ~05:00)
+- [x] **v1.4.60 night resume** — SoftWelcomeSheet (bottom wash · progress sheen/glow · soft-start hint · active-dot glow · Next halo)
+- [x] **v1.4.61 hourly polish** — SoftPlayHud (bottom wash · pill underlines · richer wrap shadow)
+- [x] **v1.4.62 hourly polish** — FirstRunTipChip (side wash · soft-hint · active-dot glow · Got it halo)
+- [x] **v1.4.63 quiet CP2** — DualModeTray (bottom wash · mode hint · active card glow · select banner glow · Draft C locked)
+- [x] **Night 19 envelope** — merge main + polish v1.4.60–1.4.63 · stop 05:00 UTC 2026-10-13
+- [x] **v1.4.64 night resume** — SoftFxLayer (longer plant/clear life · shot wash · richer motes · extra mote)
+- [x] **v1.4.65 night resume** — PeaceCore (ground wash · chip glow · richer core shadow)
+- [x] **v1.4.66 quiet CP1** — PadDisc (ground wash · plant-chip glow · richer pad shadows)
+- [x] **v1.4.67 quiet CP2** — SoftButton (soft halo · corner wash · ghost lead/glow · richer shadows)
+- [x] **Night 20 envelope** — polish v1.4.64–1.4.67 · stop 05:00 UTC 2026-10-14
+- [x] **v1.4.68 night resume** — HomeMindscapePreview (bottom wash · core glow · chip glows · soft caption)
+- [x] **v1.4.69 night resume** — PauseOverlay (bottom wash · eyebrow chip glow · soft-pause hint)
+- [x] **v1.4.70 quiet CP1** — WavePreviewChip (bottom wash · soft hint · chip glows · wave sheen)
+- [x] **v1.4.71 quiet CP2** — Atmosphere (floor wash · richer orbs · extra mote · Dawn tint)
+- [x] **Night 21 envelope** — polish v1.4.68–1.4.71 · stop 05:00 UTC 2026-10-15
+- [x] **v1.4.72 night resume** — Shop (soft hint · free/comfort strip glows · Pass live glow)
+- [x] **v1.4.73 night resume** — GameBoard (bottom wash · legend/compass chip glows · richer shadow)
+- [x] **v1.4.74 quiet CP1** — Settings (soft hint · version/comfort/footer chip glows)
+- [x] **v1.4.75 quiet CP2** — SoftActionToast (side wash · badge glow · bar sheen · richer shadow)
+- [x] **Night 22 envelope** — polish v1.4.72–1.4.75 · stop 05:00 UTC 2026-10-16 · daily resume re-armed
+- [x] **v1.4.76 night resume** — SoftWelcomeSheet (comfort glow · Skip underline)
+- [x] **v1.4.77 night resume** — SoftPlayHud (footer/hint/soft-chip glows)
+- [x] **v1.4.78 quiet CP1** — FirstRunTipChip (bottom wash · badge glow · richer chip shadow)
+- [x] **v1.4.79 quiet CP2** — DualModeTray (cost/footer glows · richer tray shadow · Draft C locked)
+- [x] **v1.4.80 hourly polish** — SoftFxLayer (soft bloom · mote cores · shot spark · extra mote · longer life)
+- [x] **v1.4.81 hourly polish** — PeaceCore (status/label glows · chip wash · richer core/chip shadows)
+- [x] **v1.4.82 hourly polish** — PadDisc (side wash · select/label glows · plant-chip wash · richer pad shadows)
+- [x] **v1.4.83 hourly polish** — SoftButton (lead glows · label underlines · soft/ghost corner washes · richer shadows)
+- [x] **v1.4.84 hourly polish** — HomeMindscapePreview (side wash · core label glow · chip washes · caption lead glow · richer shadows)
+- [x] **v1.4.85 hourly polish** — PauseOverlay (side wash · eyebrow/comfort chip washes · soft-hint glow · richer card shadow)
+- [x] **v1.4.86 hourly polish** — WavePreviewChip (side wash · soft-hint glow · accent/tip/total chip washes · richer shadow)
+- [x] **v1.4.87 hourly polish** — Atmosphere (floor side wash · soft veil · extra mote · richer orb halos · Dawn tints)
+- [x] **Night 23 envelope** — polish v1.4.76–1.4.87 · stop 05:00 UTC 2026-10-17 · daily resume left armed
+- [x] **v1.4.88 night resume** — Shop (soft-hint glow · free/status/comfort strip washes · lead/comfort glows · richer shadows)
+- [x] **v1.4.89 night resume** — GameBoard (side wash · legend/compass chip washes · richer board/chip shadows)
+- [x] **v1.4.90 quiet CP1** — Settings (soft-hint glow · version/comfort/footer chip washes · lead/footer glows · richer shadows)
+- [x] **v1.4.91 quiet CP2** — SoftActionToast (bottom wash · badge wash · richer chip shadow)
+- [x] **v1.4.92 hourly polish** — SoftWelcomeSheet (side wash · eyebrow/step/page chip glows · soft-hint glow · comfort wash · richer card shadow)
+- [x] **v1.4.93 hourly polish** — SoftPlayHud (side wash · footer/hint/soft-chip washes · richer wrap shadow)
 - [ ] **Native IAP** — wire RevenueCat or react-native-iap; turn off stubMode for store builds
 - [ ] **EAS project** — Femmy: `eas init` + real `projectId` + credentials
 - [ ] **Store products** — create IAP ids in App Store Connect + Play Console

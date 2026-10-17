@@ -135,6 +135,37 @@ local function buildApartment(world: Folder)
 		Parent = world,
 	})
 
+	-- Two-worlds plaque (USP beat — roof first)
+	local plaque = part({
+		Name = "TwoWorldsPlaque",
+		Size = Vector3.new(4, 2.2, 0.25),
+		Position = Vector3.new(-12, 4.2, -10.5),
+		Color = Color3.fromRGB(42, 34, 58),
+		Material = Enum.Material.SmoothPlastic,
+		Parent = world,
+	})
+	local plaqueGui = Instance.new("SurfaceGui")
+	plaqueGui.Face = Enum.NormalId.Front
+	plaqueGui.Parent = plaque
+	local plaqueTitle = Instance.new("TextLabel")
+	plaqueTitle.Size = UDim2.new(1, 0, 0.4, 0)
+	plaqueTitle.BackgroundTransparency = 1
+	plaqueTitle.Font = Enum.Font.GothamMedium
+	plaqueTitle.TextSize = 22
+	plaqueTitle.TextColor3 = Color3.fromRGB(220, 200, 255)
+	plaqueTitle.Text = "two worlds"
+	plaqueTitle.Parent = plaqueGui
+	local plaqueBody = Instance.new("TextLabel")
+	plaqueBody.Position = UDim2.new(0, 0, 0.4, 0)
+	plaqueBody.Size = UDim2.new(1, -8, 0.55, 0)
+	plaqueBody.BackgroundTransparency = 1
+	plaqueBody.Font = Enum.Font.Gotham
+	plaqueBody.TextSize = 16
+	plaqueBody.TextWrapped = true
+	plaqueBody.TextColor3 = Color3.fromRGB(170, 155, 200)
+	plaqueBody.Text = "one couch\nroof first"
+	plaqueBody.Parent = plaqueGui
+
 	-- Coffee table + warm lamp
 	part({
 		Name = "CoffeeTable",
@@ -350,6 +381,17 @@ local function buildApartment(world: Folder)
 	pl.Range = 18
 	pl.Color = Color3.fromRGB(160, 140, 255)
 	pl.Parent = portal
+	local portalGui = Instance.new("SurfaceGui")
+	portalGui.Face = Enum.NormalId.Top
+	portalGui.Parent = portal
+	local portalLabel = Instance.new("TextLabel")
+	portalLabel.Size = UDim2.fromScale(1, 1)
+	portalLabel.BackgroundTransparency = 1
+	portalLabel.Font = Enum.Font.GothamMedium
+	portalLabel.TextSize = 22
+	portalLabel.TextColor3 = Color3.fromRGB(230, 220, 255)
+	portalLabel.Text = "galaxy loft · step through"
+	portalLabel.Parent = portalGui
 
 	local spawn = Instance.new("SpawnLocation")
 	spawn.Name = "AptSpawn"
@@ -420,6 +462,17 @@ local function buildGalaxy(world: Folder)
 	})
 	returnBeacon:SetAttribute("IsPortal", true)
 	returnBeacon:SetAttribute("PortalTarget", "Home")
+	local beaconGui = Instance.new("SurfaceGui")
+	beaconGui.Face = Enum.NormalId.Top
+	beaconGui.Parent = returnBeacon
+	local beaconLabel = Instance.new("TextLabel")
+	beaconLabel.Size = UDim2.fromScale(1, 1)
+	beaconLabel.BackgroundTransparency = 1
+	beaconLabel.Font = Enum.Font.GothamMedium
+	beaconLabel.TextSize = 20
+	beaconLabel.TextColor3 = Color3.fromRGB(255, 220, 180)
+	beaconLabel.Text = "couch side · come home"
+	beaconLabel.Parent = beaconGui
 
 	local cloudPositions = {
 		Vector3.new(12, 0, -10),
@@ -605,6 +658,13 @@ task.spawn(function()
 				if typeof(home) == "Vector3" then
 					child.Position = home + Vector3.new(0, math.sin(t * 2 + child.Position.X) * 1.2, 0)
 				end
+				local beam = child:FindFirstChild("ConstBeam")
+				if beam and beam:IsA("Beam") then
+					local pulse = 0.25 + (math.sin(t * 1.1 + child.Position.X) + 1) / 2 * 0.35
+					beam.Transparency = NumberSequence.new(pulse)
+					beam.Width0 = 0.12 + (1 - pulse) * 0.08
+					beam.Width1 = beam.Width0
+				end
 			elseif child.Name == "SkylightPortal" and child:IsA("BasePart") then
 				local light = child:FindFirstChildOfClass("PointLight")
 				if light then
@@ -625,9 +685,24 @@ task.spawn(function()
 						light.Brightness = 1.3 + math.sin(t * 1.1 + home.Z) * 0.35
 					end
 				end
+			elseif child.Name == "TwoWorldsPlaque" and child:IsA("BasePart") then
+				local warm = (math.sin(t * 0.7) + 1) / 2
+				child.Color = Color3.fromRGB(42, 34, 58):Lerp(Color3.fromRGB(62, 48, 85), warm * 0.55)
 			elseif child.Name == "CouchRug" and child:IsA("BasePart") then
 				local warm = (math.sin(t * 0.55) + 1) / 2
 				child.Color = Color3.fromRGB(95, 55, 90):Lerp(Color3.fromRGB(120, 70, 115), warm * 0.55)
+			elseif child.Name == "CoffeeTable" and child:IsA("BasePart") then
+				local warm = (math.sin(t * 0.55) + 1) / 2
+				child.Color = Color3.fromRGB(70, 55, 45):Lerp(Color3.fromRGB(95, 70, 55), warm * 0.5)
+			elseif child.Name == "CouchBase" and child:IsA("BasePart") then
+				local warm = (math.sin(t * 0.45) + 1) / 2
+				child.Color = Color3.fromRGB(90, 70, 110):Lerp(Color3.fromRGB(115, 85, 135), warm * 0.45)
+			elseif child.Name == "CouchBack" and child:IsA("BasePart") then
+				local warm = (math.sin(t * 0.45 + 0.4) + 1) / 2
+				child.Color = Color3.fromRGB(80, 60, 100):Lerp(Color3.fromRGB(105, 75, 125), warm * 0.45)
+			elseif child.Name == "Bookshelf" and child:IsA("BasePart") then
+				local warm = (math.sin(t * 0.5) + 1) / 2
+				child.Color = Color3.fromRGB(65, 50, 40):Lerp(Color3.fromRGB(90, 70, 55), warm * 0.4)
 			elseif child.Name == "ReturnBeacon" and child:IsA("BasePart") then
 				child.Transparency = 0.05 + math.sin(t * 1.3) * 0.08
 			elseif child.Name == "GalaxyHammockCloth" and child:IsA("BasePart") then

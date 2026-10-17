@@ -39,5 +39,6 @@ end
 
 return {
 	FireflyCollected = getRemote("FireflyCollected"),
+	JarFillChanged = getRemote("JarFillChanged"),
 	SitChanged = getRemote("SitChanged"),
 }

@@ -12,7 +12,7 @@ Roblox chill games + Roblox Thought Defense under `games/` are **paused / legacy
 | Stack | Expo SDK 57 · React Native · Expo Router |
 | Monetization | Clarity Pass + cosmetic packs + optional Clarity boost (stub IAP) |
 | Publish path | EAS Build / Submit — needs Femmy store credentials |
-| Cadence | ~30 min / hour · night envelope 23:00–05:00 UTC |
+| Cadence | Night envelope 23:00–05:00 UTC · **one** digest email at 05:00 stop only |
 
 ## Quick start
 
@@ -26,4 +26,4 @@ npx expo start
 
 See `docs/SCHEDULE.md`. Agents pick work from `docs/APP_BACKLOG.md`.
 
-Publish: [`docs/PUBLISH_CHECKLIST.md`](docs/PUBLISH_CHECKLIST.md) · Status: [`docs/PUBLISH_STATUS.md`](docs/PUBLISH_STATUS.md) · Copy: [`docs/EXPERIENCE_COPY.md`](docs/EXPERIENCE_COPY.md)
+Publish: [`docs/PUBLISH_CHECKLIST.md`](docs/PUBLISH_CHECKLIST.md) · Status: [`docs/PUBLISH_STATUS.md`](docs/PUBLISH_STATUS.md) · Copy: [`docs/EXPERIENCE_COPY.md`](docs/EXPERIENCE_COPY.md) · Gallery: [`docs/GAMES.md`](docs/GAMES.md) · Legacy Roblox: [`docs/LEGACY_ROBLOX.md`](docs/LEGACY_ROBLOX.md)

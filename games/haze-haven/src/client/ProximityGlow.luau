@@ -6,8 +6,12 @@ local ChillProximity = require(ReplicatedStorage:WaitForChild("Chill"):WaitForCh
 
 local ProximityGlow = {}
 
-function ProximityGlow.start(localPlayer: Player)
-	ChillProximity.start(localPlayer, {
+export type Handle = {
+	setBoost: (mult: number) -> (),
+}
+
+function ProximityGlow.start(localPlayer: Player): Handle
+	return ChillProximity.start(localPlayer, {
 		Radius = Config.Proximity.Radius,
 		GlowColor = Config.Proximity.GlowColor,
 		Brightness = Config.Proximity.Brightness,
