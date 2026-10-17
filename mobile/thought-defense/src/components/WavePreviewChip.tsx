@@ -153,21 +153,41 @@ export function WavePreviewChip({ waveIndex, visible, dawn }: Props) {
         pointerEvents="none"
         style={[styles.bottomWash, { backgroundColor: `${accent}10` }]}
       />
+      <View
+        pointerEvents="none"
+        style={[styles.sideWash, { backgroundColor: `${accent}0e` }]}
+      />
       <View style={styles.headRow}>
         <View style={styles.headLeft}>
           <View>
             <Text style={styles.label}>
               Next · wave {waveIndex + 1}/{GAME.waveCount}
             </Text>
-            <Text style={[styles.softHint, { color: accent }]}>Soft preview · plan kindly</Text>
+            <View style={styles.softHintRow}>
+              <Text style={[styles.softHint, { color: accent }]}>Soft preview · plan kindly</Text>
+              <View
+                pointerEvents="none"
+                style={[styles.softHintGlow, { backgroundColor: `${accent}33` }]}
+              />
+            </View>
           </View>
-          <View style={[styles.accentDot, { backgroundColor: accent }]} />
+          <View style={styles.accentDotWrap}>
+            <View
+              pointerEvents="none"
+              style={[styles.accentDotGlow, { backgroundColor: `${accent}44` }]}
+            />
+            <View style={[styles.accentDot, { backgroundColor: accent }]} />
+          </View>
         </View>
         <View style={[styles.totalChip, dawn ? styles.totalChipDawn : null]}>
           <View pointerEvents="none" style={styles.chipSheen} />
           <View
             pointerEvents="none"
             style={[styles.chipGlow, { backgroundColor: `${accent}28` }]}
+          />
+          <View
+            pointerEvents="none"
+            style={[styles.chipWash, { backgroundColor: `${accent}14` }]}
           />
           <View style={[styles.totalLead, { backgroundColor: accent }]} />
           <Text style={styles.total}>{total} thoughts</Text>
@@ -214,6 +234,10 @@ export function WavePreviewChip({ waveIndex, visible, dawn }: Props) {
           pointerEvents="none"
           style={[styles.chipGlow, { backgroundColor: `${accent}22` }]}
         />
+        <View
+          pointerEvents="none"
+          style={[styles.chipWash, { backgroundColor: `${accent}12` }]}
+        />
         <View style={[styles.tipDot, { backgroundColor: accent }]} />
         <Text style={styles.hint}>Plant before they walk · {tip}</Text>
       </View>
@@ -238,10 +262,10 @@ const styles = StyleSheet.create({
     gap: 7,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.16,
-    shadowRadius: 14,
-    shadowOffset: { width: 0, height: 6 },
-    elevation: 4,
+    shadowOpacity: 0.2,
+    shadowRadius: 16,
+    shadowOffset: { width: 0, height: 7 },
+    elevation: 5,
   },
   wrapDawn: {
     backgroundColor: 'rgba(255, 244, 220, 0.72)',
@@ -280,6 +304,15 @@ const styles = StyleSheet.create({
     height: 28,
     borderRadius: 12,
   },
+  sideWash: {
+    position: 'absolute',
+    top: 14,
+    bottom: 14,
+    right: 0,
+    width: 16,
+    borderTopLeftRadius: 10,
+    borderBottomLeftRadius: 10,
+  },
   chipSheen: {
     position: 'absolute',
     top: 0,
@@ -295,6 +328,14 @@ const styles = StyleSheet.create({
     bottom: 0,
     height: 5,
     borderRadius: 4,
+  },
+  chipWash: {
+    position: 'absolute',
+    left: 4,
+    right: 4,
+    top: 1,
+    height: 6,
+    borderRadius: 3,
   },
   headRow: {
     flexDirection: 'row',
@@ -314,11 +355,33 @@ const styles = StyleSheet.create({
     letterSpacing: 0.3,
     textTransform: 'uppercase',
   },
+  softHintRow: {
+    marginTop: 1,
+    alignSelf: 'flex-start',
+  },
   softHint: {
     fontFamily: fonts.bodyMedium,
     fontSize: 10,
     letterSpacing: 0.2,
-    marginTop: 1,
+  },
+  softHintGlow: {
+    marginTop: 2,
+    height: 2,
+    borderRadius: 1,
+    width: '78%',
+    opacity: 0.9,
+  },
+  accentDotWrap: {
+    width: 12,
+    height: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  accentDotGlow: {
+    position: 'absolute',
+    width: 10,
+    height: 10,
+    borderRadius: 5,
   },
   accentDot: {
     width: 6,
