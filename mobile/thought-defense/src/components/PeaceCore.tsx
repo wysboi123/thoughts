@@ -259,6 +259,17 @@ export function PeaceCore({ left, top, themeDawn, stressed }: Props) {
             <View
               pointerEvents="none"
               style={[
+                styles.statusGlow,
+                {
+                  backgroundColor: stressed
+                    ? 'rgba(196, 120, 120, 0.35)'
+                    : 'rgba(91, 138, 122, 0.28)',
+                },
+              ]}
+            />
+            <View
+              pointerEvents="none"
+              style={[
                 styles.statusRing,
                 {
                   borderColor: stressed
@@ -275,6 +286,19 @@ export function PeaceCore({ left, top, themeDawn, stressed }: Props) {
             />
           </View>
           <Text style={[styles.coreLabel, stressed && styles.coreLabelStressed]}>Peace</Text>
+          <View
+            pointerEvents="none"
+            style={[
+              styles.labelGlow,
+              {
+                backgroundColor: stressed
+                  ? 'rgba(196, 120, 120, 0.32)'
+                  : themeDawn
+                    ? 'rgba(201, 168, 90, 0.28)'
+                    : 'rgba(91, 138, 122, 0.26)',
+              },
+            ]}
+          />
           <Text style={[styles.coreSub, stressed && styles.coreSubStressed]}>
             {stressed ? 'soft hold' : 'still'}
           </Text>
@@ -287,6 +311,10 @@ export function PeaceCore({ left, top, themeDawn, stressed }: Props) {
             pointerEvents="none"
             style={[styles.chipGlow, { backgroundColor: 'rgba(196, 120, 120, 0.28)' }]}
           />
+          <View
+            pointerEvents="none"
+            style={[styles.chipWash, { backgroundColor: 'rgba(196, 120, 120, 0.12)' }]}
+          />
           <View style={styles.warnDot} />
           <Text style={styles.warnText}>calm soft</Text>
         </View>
@@ -296,6 +324,10 @@ export function PeaceCore({ left, top, themeDawn, stressed }: Props) {
           <View
             pointerEvents="none"
             style={[styles.chipGlow, { backgroundColor: 'rgba(91, 138, 122, 0.22)' }]}
+          />
+          <View
+            pointerEvents="none"
+            style={[styles.chipWash, { backgroundColor: 'rgba(91, 138, 122, 0.1)' }]}
           />
           <View style={styles.holdDot} />
           <Text style={styles.holdText}>holding gently</Text>
@@ -363,10 +395,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderWidth: 2,
     overflow: 'hidden',
-    shadowOpacity: 0.48,
-    shadowRadius: 16,
-    shadowOffset: { width: 0, height: 6 },
-    elevation: 6,
+    shadowOpacity: 0.52,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 7 },
+    elevation: 7,
   },
   coreTopAccent: {
     position: 'absolute',
@@ -430,6 +462,14 @@ const styles = StyleSheet.create({
     height: 12,
     borderRadius: 6,
   },
+  statusGlow: {
+    position: 'absolute',
+    width: 10,
+    height: 4,
+    borderRadius: 2,
+    bottom: 0,
+    opacity: 0.85,
+  },
   statusRing: {
     position: 'absolute',
     width: 14,
@@ -450,6 +490,14 @@ const styles = StyleSheet.create({
   },
   coreLabelStressed: {
     color: colors.dangerSoft,
+  },
+  labelGlow: {
+    width: 22,
+    height: 3,
+    borderRadius: 2,
+    marginTop: 1,
+    marginBottom: 1,
+    opacity: 0.9,
   },
   coreSub: {
     fontFamily: fonts.body,
@@ -474,10 +522,10 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(196, 120, 120, 0.35)',
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
+    shadowOpacity: 0.12,
+    shadowRadius: 5,
     shadowOffset: { width: 0, height: 2 },
-    elevation: 1,
+    elevation: 2,
   },
   warnDot: {
     width: 5,
@@ -505,10 +553,10 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(107, 184, 154, 0.28)',
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
+    shadowOpacity: 0.12,
+    shadowRadius: 5,
     shadowOffset: { width: 0, height: 2 },
-    elevation: 1,
+    elevation: 2,
   },
   holdDot: {
     width: 5,
@@ -530,6 +578,14 @@ const styles = StyleSheet.create({
     right: 4,
     bottom: 0,
     height: 6,
+    borderRadius: 4,
+  },
+  chipWash: {
+    position: 'absolute',
+    left: 6,
+    right: 6,
+    top: 1,
+    height: 8,
     borderRadius: 4,
   },
   holdText: {
