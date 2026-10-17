@@ -4,6 +4,13 @@ Newest first. Overnight agents append after every push.
 
 ## Mobile Thought Defense overnight (from `main`)
 
+## 2026-10-17 ~03:05 UTC — Night 23 SoftFxLayer
+
+- **Shipped v1.4.80:** SoftFxLayer — soft bloom · mote cores · shot spark · extra mote · longer life
+- Roblox untouched; no email
+- Still blocked: Native IAP · EAS · store products · Q-006
+- Stop 05:00 · **one digest email at stop only** · PR #8
+
 ## 2026-10-17 03:00 UTC — Night 23 quiet CP2
 
 - **Shipped v1.4.79:** DualModeTray — cost/footer glows · richer tray shadow (Draft C locked)
