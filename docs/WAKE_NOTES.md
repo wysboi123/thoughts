@@ -4,6 +4,13 @@ Newest first. Overnight agents append after every push.
 
 ## Mobile Thought Defense overnight (from `main`)
 
+## 2026-10-17 ~03:40 UTC — Night 23 Atmosphere
+
+- **Shipped v1.4.87:** Atmosphere — floor side wash · soft veil · extra mote · richer orb halos · Dawn tints
+- Roblox untouched; no email
+- Still blocked: Native IAP · EAS · store products · Q-006
+- Stop 05:00 · **one digest email at stop only** · PR #8
+
 ## 2026-10-17 ~03:35 UTC — Night 23 WavePreviewChip
 
 - **Shipped v1.4.86:** WavePreviewChip — side wash · soft-hint glow · accent/tip/total chip washes · richer shadow
