@@ -233,10 +233,10 @@ export function PadDisc({
                 : selected
                   ? colors.brand
                   : '#243A34',
-            shadowOpacity: lantern && filled ? 0.7 : selected ? 0.4 : filled ? 0.2 : 0.14,
-            shadowRadius: lantern && filled ? 11 : selected ? 9 : 7,
-            shadowOffset: { width: 0, height: filled || selected ? 4 : 3 },
-            elevation: lantern && filled ? 6 : selected ? 5 : 3,
+            shadowOpacity: lantern && filled ? 0.74 : selected ? 0.46 : filled ? 0.24 : 0.18,
+            shadowRadius: lantern && filled ? 12 : selected ? 10 : 8,
+            shadowOffset: { width: 0, height: filled || selected ? 5 : 3 },
+            elevation: lantern && filled ? 7 : selected ? 6 : 4,
           },
         ]}
       >
@@ -279,17 +279,30 @@ export function PadDisc({
             },
           ]}
         />
+        <View
+          pointerEvents="none"
+          style={[
+            styles.cornerWashMid,
+            {
+              backgroundColor: filled
+                ? 'rgba(255,255,255,0.08)'
+                : dawn
+                  ? 'rgba(200,170,120,0.08)'
+                  : 'rgba(91,138,122,0.1)',
+            },
+          ]}
+        />
         {filled ? (
           <View
             pointerEvents="none"
-            style={[styles.filledAccent, { backgroundColor: 'rgba(255,255,255,0.5)' }]}
+            style={[styles.filledAccent, { backgroundColor: 'rgba(255,255,255,0.55)' }]}
           />
         ) : (
           <View
             pointerEvents="none"
             style={[
               styles.emptyAccent,
-              { backgroundColor: dawn ? 'rgba(200,170,120,0.55)' : colors.calm },
+              { backgroundColor: dawn ? 'rgba(200,170,120,0.6)' : colors.calm },
             ]}
           />
         )}
@@ -298,7 +311,7 @@ export function PadDisc({
         ) : (
           <View
             pointerEvents="none"
-            style={[styles.filledGlow, { backgroundColor: `${fillColor}55` }]}
+            style={[styles.filledGlow, { backgroundColor: `${fillColor}60` }]}
           />
         )}
         {!filled ? (
@@ -308,8 +321,8 @@ export function PadDisc({
               styles.emptyGlow,
               {
                 backgroundColor: dawn
-                  ? 'rgba(200,170,120,0.24)'
-                  : 'rgba(91,138,122,0.22)',
+                  ? 'rgba(200,170,120,0.28)'
+                  : 'rgba(91,138,122,0.26)',
               },
             ]}
           />
@@ -321,28 +334,28 @@ export function PadDisc({
               styles.emptyCoreRing,
               {
                 borderColor: dawn
-                  ? 'rgba(200,170,120,0.28)'
-                  : 'rgba(91,138,122,0.25)',
+                  ? 'rgba(200,170,120,0.32)'
+                  : 'rgba(91,138,122,0.3)',
               },
             ]}
           />
         ) : (
           <View
             pointerEvents="none"
-            style={[styles.filledCoreRing, { borderColor: 'rgba(255,255,255,0.28)' }]}
+            style={[styles.filledCoreRing, { borderColor: 'rgba(255,255,255,0.34)' }]}
           />
         )}
         {filled ? <View style={styles.innerSheen} pointerEvents="none" /> : null}
         {selected ? (
           <View
             pointerEvents="none"
-            style={[styles.selectCoreRing, { borderColor: `${colors.brand}44` }]}
+            style={[styles.selectCoreRing, { borderColor: `${colors.brand}55` }]}
           />
         ) : null}
         {selected ? (
           <View
             pointerEvents="none"
-            style={[styles.selectBottomGlow, { backgroundColor: `${colors.brand}33` }]}
+            style={[styles.selectBottomGlow, { backgroundColor: `${colors.brand}40` }]}
           />
         ) : null}
         {lantern && filled ? <Text style={styles.lanternDot}>✦</Text> : null}
@@ -363,8 +376,8 @@ export function PadDisc({
                 styles.plantChipRing,
                 {
                   borderColor: dawn
-                    ? 'rgba(200,170,120,0.35)'
-                    : 'rgba(91,138,122,0.3)',
+                    ? 'rgba(200,170,120,0.4)'
+                    : 'rgba(91,138,122,0.35)',
                 },
               ]}
             />
@@ -374,17 +387,30 @@ export function PadDisc({
                 styles.plantChipGlow,
                 {
                   backgroundColor: dawn
-                    ? 'rgba(200,170,120,0.35)'
-                    : 'rgba(91,138,122,0.32)',
+                    ? 'rgba(200,170,120,0.4)'
+                    : 'rgba(91,138,122,0.38)',
                 },
               ]}
             />
-            <View
-              style={[
-                styles.plantDot,
-                { backgroundColor: dawn ? 'rgba(200,170,120,0.9)' : colors.calm },
-              ]}
-            />
+            <View style={styles.plantDotWrap}>
+              <View
+                pointerEvents="none"
+                style={[
+                  styles.plantDotHalo,
+                  {
+                    backgroundColor: dawn
+                      ? 'rgba(200,170,120,0.35)'
+                      : 'rgba(91,138,122,0.32)',
+                  },
+                ]}
+              />
+              <View
+                style={[
+                  styles.plantDot,
+                  { backgroundColor: dawn ? 'rgba(200,170,120,0.9)' : colors.calm },
+                ]}
+              />
+            </View>
             <Text style={styles.plantHint}>plant</Text>
           </View>
         ) : null}
@@ -464,13 +490,21 @@ const styles = StyleSheet.create({
     right: PAD * 0.12,
     bottom: -PAD * 0.08,
   },
+  cornerWashMid: {
+    position: 'absolute',
+    width: PAD * 0.3,
+    height: PAD * 0.3,
+    borderRadius: PAD * 0.15,
+    left: PAD * 0.18,
+    top: -PAD * 0.06,
+  },
   emptyAccent: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
-    height: 2,
-    opacity: 0.6,
+    height: 2.5,
+    opacity: 0.65,
     zIndex: 2,
   },
   filledAccent: {
@@ -478,8 +512,8 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: 2,
-    opacity: 0.75,
+    height: 2.5,
+    opacity: 0.8,
     zIndex: 2,
   },
   emptySheen: {
@@ -487,26 +521,26 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: '52%',
-    backgroundColor: 'rgba(255,255,255,0.42)',
+    height: '54%',
+    backgroundColor: 'rgba(255,255,255,0.46)',
   },
   emptyGlow: {
     position: 'absolute',
     left: 6,
     right: 6,
     bottom: 2,
-    height: 13,
+    height: 15,
     borderRadius: 8,
-    opacity: 0.78,
+    opacity: 0.82,
   },
   filledGlow: {
     position: 'absolute',
     left: 7,
     right: 7,
     bottom: 2,
-    height: 12,
+    height: 14,
     borderRadius: 8,
-    opacity: 0.72,
+    opacity: 0.78,
   },
   innerSheen: {
     position: 'absolute',
@@ -515,7 +549,7 @@ const styles = StyleSheet.create({
     width: PAD * 0.45,
     height: PAD * 0.28,
     borderRadius: 999,
-    backgroundColor: 'rgba(255,255,255,0.48)',
+    backgroundColor: 'rgba(255,255,255,0.52)',
   },
   emptyCoreRing: {
     position: 'absolute',
@@ -525,7 +559,7 @@ const styles = StyleSheet.create({
     bottom: 5,
     borderRadius: (PAD - 10) / 2,
     borderWidth: 1,
-    opacity: 0.8,
+    opacity: 0.88,
   },
   filledCoreRing: {
     position: 'absolute',
@@ -535,7 +569,7 @@ const styles = StyleSheet.create({
     bottom: 5,
     borderRadius: (PAD - 10) / 2,
     borderWidth: 1,
-    opacity: 0.85,
+    opacity: 0.9,
   },
   selectCoreRing: {
     position: 'absolute',
@@ -544,17 +578,17 @@ const styles = StyleSheet.create({
     right: 4,
     bottom: 4,
     borderRadius: (PAD - 8) / 2,
-    borderWidth: 1.2,
-    opacity: 0.9,
+    borderWidth: 1.4,
+    opacity: 0.92,
   },
   selectBottomGlow: {
     position: 'absolute',
     left: 8,
     right: 8,
     bottom: 3,
-    height: 3,
+    height: 4,
     borderRadius: 2,
-    opacity: 0.8,
+    opacity: 0.85,
   },
   lanternDot: {
     position: 'absolute',
@@ -587,10 +621,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(36,51,58,0.08)',
     shadowColor: '#243A34',
-    shadowOpacity: 0.16,
-    shadowRadius: 5,
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
     shadowOffset: { width: 0, height: 2 },
-    elevation: 3,
+    elevation: 4,
   },
   plantChipTopAccent: {
     position: 'absolute',
@@ -598,7 +632,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: 2,
-    opacity: 0.55,
+    opacity: 0.6,
     zIndex: 2,
   },
   plantChipSheen: {
@@ -607,7 +641,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: '55%',
-    backgroundColor: 'rgba(255,255,255,0.42)',
+    backgroundColor: 'rgba(255,255,255,0.46)',
   },
   plantChipRing: {
     position: 'absolute',
@@ -617,16 +651,28 @@ const styles = StyleSheet.create({
     bottom: 1,
     borderRadius: 5,
     borderWidth: 1,
-    opacity: 0.85,
+    opacity: 0.9,
   },
   plantChipGlow: {
     position: 'absolute',
     left: 4,
     right: 4,
     bottom: 1,
-    height: 2,
+    height: 3,
     borderRadius: 2,
-    opacity: 0.75,
+    opacity: 0.8,
+  },
+  plantDotWrap: {
+    width: 8,
+    height: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  plantDotHalo: {
+    position: 'absolute',
+    width: 8,
+    height: 8,
+    borderRadius: 4,
   },
   plantDot: {
     width: 4,
