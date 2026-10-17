@@ -114,6 +114,13 @@ function HudPill({
         <Text style={[styles.pillLabel, { color: warn ? colors.dangerSoft : accent }]}>{label}</Text>
       </View>
       <Text style={[styles.pillValue, warn && styles.pillValueWarn]}>{value}</Text>
+      <View
+        pointerEvents="none"
+        style={[
+          styles.pillUnderline,
+          { backgroundColor: warn ? `${colors.dangerSoft}55` : `${accent}44` },
+        ]}
+      />
     </Animated.View>
   );
 }
@@ -140,6 +147,13 @@ export function SoftPlayHud({ calm, clarity, waveLabel, dawn, calmLow }: Props) 
         style={[
           styles.cornerOrb,
           { backgroundColor: dawn ? 'rgba(201,168,90,0.12)' : `${colors.brand}12` },
+        ]}
+      />
+      <View
+        pointerEvents="none"
+        style={[
+          styles.bottomWash,
+          { backgroundColor: dawn ? 'rgba(201,168,90,0.1)' : `${colors.brand}0C` },
         ]}
       />
       <View style={styles.row}>
@@ -176,18 +190,44 @@ export function SoftPlayHud({ calm, clarity, waveLabel, dawn, calmLow }: Props) 
           ]}
         >
           <View pointerEvents="none" style={styles.chipSheen} />
+          <View
+            pointerEvents="none"
+            style={[
+              styles.footerGlow,
+              {
+                backgroundColor: dawn
+                  ? 'rgba(201,168,90,0.22)'
+                  : `${colors.brand}22`,
+              },
+            ]}
+          />
           <View style={[styles.footerDot, dawn ? styles.footerDotDawn : null]} />
           <Text style={styles.footerLabel}>Mindscape meters</Text>
         </View>
         {calmLow ? (
           <View style={styles.softChip}>
             <View pointerEvents="none" style={styles.softChipSheen} />
+            <View
+              pointerEvents="none"
+              style={[styles.footerGlow, { backgroundColor: 'rgba(196,120,120,0.25)' }]}
+            />
             <View style={styles.softChipDot} />
             <Text style={styles.softChipLabel}>Calm soft — breathe</Text>
           </View>
         ) : (
           <View style={styles.hintChip}>
             <View pointerEvents="none" style={styles.chipSheen} />
+            <View
+              pointerEvents="none"
+              style={[
+                styles.footerGlow,
+                {
+                  backgroundColor: dawn
+                    ? 'rgba(201,168,90,0.18)'
+                    : `${colors.brand}18`,
+                },
+              ]}
+            />
             <Text style={styles.footerHint}>Metaphor only · not medical</Text>
           </View>
         )}
@@ -208,10 +248,10 @@ const styles = StyleSheet.create({
     gap: 6,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.14,
-    shadowRadius: 14,
-    shadowOffset: { width: 0, height: 5 },
-    elevation: 3,
+    shadowOpacity: 0.18,
+    shadowRadius: 16,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 4,
   },
   wrapDawn: {
     backgroundColor: 'rgba(255, 244, 220, 0.7)',
@@ -246,6 +286,14 @@ const styles = StyleSheet.create({
     borderRadius: 36,
     right: -18,
     top: 28,
+  },
+  bottomWash: {
+    position: 'absolute',
+    left: 10,
+    right: 10,
+    bottom: 4,
+    height: 28,
+    borderRadius: 14,
   },
   chipSheen: {
     position: 'absolute',
@@ -326,6 +374,13 @@ const styles = StyleSheet.create({
   pillValueWarn: {
     color: colors.dangerSoft,
   },
+  pillUnderline: {
+    width: 18,
+    height: 2,
+    borderRadius: 2,
+    marginTop: 2,
+    opacity: 0.85,
+  },
   footer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -344,6 +399,14 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     overflow: 'hidden',
+  },
+  footerGlow: {
+    position: 'absolute',
+    left: 4,
+    right: 4,
+    bottom: 0,
+    height: 4,
+    borderRadius: 3,
   },
   footerDot: {
     width: 5,

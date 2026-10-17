@@ -45,7 +45,7 @@ local function ensureNameplate(character: Model, player: Player)
 	vibeLabel.Text = "vibes 0"
 	vibeLabel.Parent = billboard
 
-	local function refresh()
+	local function refreshCount()
 		local count = player:GetAttribute("VibeCount")
 		if typeof(count) ~= "number" then
 			count = 0
@@ -53,8 +53,16 @@ local function ensureNameplate(character: Model, player: Player)
 		vibeLabel.Text = ("vibes %d"):format(count)
 	end
 
-	refresh()
-	player:GetAttributeChangedSignal("VibeCount"):Connect(refresh)
+	local function refreshSync()
+		local synced = workspace:GetAttribute("HazeVibeSynced") == true
+		nameLabel.TextColor3 = if synced then Color3.fromRGB(255, 235, 255) else Color3.fromRGB(235, 220, 255)
+		vibeLabel.TextColor3 = if synced then Color3.fromRGB(240, 200, 255) else Color3.fromRGB(210, 170, 230)
+	end
+
+	refreshCount()
+	refreshSync()
+	player:GetAttributeChangedSignal("VibeCount"):Connect(refreshCount)
+	workspace:GetAttributeChangedSignal("HazeVibeSynced"):Connect(refreshSync)
 end
 
 function NameplateService.start()

@@ -276,13 +276,46 @@ export function GameBoard({
           },
         ]}
       />
+      <View
+        pointerEvents="none"
+        style={[
+          styles.boardBottomWash,
+          {
+            backgroundColor: themeDawn
+              ? 'rgba(232, 201, 160, 0.12)'
+              : 'rgba(91, 138, 122, 0.1)',
+          },
+        ]}
+      />
       <View style={[styles.chip, styles.legendChip, themeDawn ? styles.chipDawn : null]}>
         <View pointerEvents="none" style={styles.chipSheen} />
+        <View
+          pointerEvents="none"
+          style={[
+            styles.chipGlow,
+            {
+              backgroundColor: themeDawn
+                ? 'rgba(201, 168, 90, 0.22)'
+                : 'rgba(91, 138, 122, 0.2)',
+            },
+          ]}
+        />
         <View style={[styles.chipDot, themeDawn ? styles.chipDotDawn : null]} />
         <Text style={styles.legend}>path → Peace · discs = thoughts</Text>
       </View>
       <View style={[styles.chip, styles.compassChip, themeDawn ? styles.chipDawn : null]}>
         <View pointerEvents="none" style={styles.chipSheen} />
+        <View
+          pointerEvents="none"
+          style={[
+            styles.chipGlow,
+            {
+              backgroundColor: themeDawn
+                ? 'rgba(201, 168, 90, 0.22)'
+                : 'rgba(91, 138, 122, 0.2)',
+            },
+          ]}
+        />
         <View style={[styles.chipDot, themeDawn ? styles.chipDotDawn : null]} />
         <Text style={styles.compass}>plan · N ↑</Text>
       </View>
@@ -445,10 +478,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.line,
     shadowColor: '#243A34',
-    shadowOpacity: 0.14,
-    shadowRadius: 16,
-    shadowOffset: { width: 0, height: 7 },
-    elevation: 4,
+    shadowOpacity: 0.18,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 8 },
+    elevation: 5,
   },
   boardDawn: {
     borderColor: 'rgba(201, 168, 90, 0.35)',
@@ -469,6 +502,15 @@ const styles = StyleSheet.create({
     borderRadius: 48,
     left: -28,
     bottom: -20,
+    zIndex: 0,
+  },
+  boardBottomWash: {
+    position: 'absolute',
+    left: 16,
+    right: 16,
+    bottom: 10,
+    height: 36,
+    borderRadius: 18,
     zIndex: 0,
   },
   boardRim: {
@@ -511,6 +553,14 @@ const styles = StyleSheet.create({
     right: 0,
     height: '55%',
     backgroundColor: 'rgba(255,255,255,0.32)',
+  },
+  chipGlow: {
+    position: 'absolute',
+    left: 4,
+    right: 4,
+    bottom: 0,
+    height: 4,
+    borderRadius: 3,
   },
   chipDot: {
     width: 5,

@@ -57,3 +57,21 @@ Full notes: `mobile/thought-defense/docs/EAS_BUILD.md`
 ## Don't commit
 
 - ASC API keys, Play service accounts, `.p8` / `.jks`, `.env` secrets
+
+---
+
+## Legacy Roblox Studio checklist (paused)
+
+Only if Femmy un-pauses Roblox. Prefer Haze Haven first.
+
+### Haze Haven verify beats (last USP ship)
+
+1. Open `HazeHaven.rbxl` in Roblox Studio → Rojo plugin → **Connect**
+2. Press **Play** — sit a cushion, float pad, loft hammock, emote 1/2/3
+3. **WelcomeSign / soft-stay / place-warmth verify** before Stop:
+   - SoftGoals soft-complete → linger → soft-stay “still here · enough”
+   - SoftSit empty re-show · SoftCompany StayTextFn · SoftWelcome “enough · no rush”
+   - Company leave/return + place-warmth (~4s) on board / news / jar / plaque
+4. Stop Play → **File → Publish to Roblox** when un-paused
+5. Paste URL into [`PUBLISH_STATUS.md`](PUBLISH_STATUS.md) legacy table
+6. Titles/descriptions: [`EXPERIENCE_COPY.md`](EXPERIENCE_COPY.md) legacy section

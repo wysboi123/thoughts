@@ -146,6 +146,20 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
           { backgroundColor: dawn ? 'rgba(232, 201, 160, 0.22)' : 'rgba(107, 184, 154, 0.18)' },
         ]}
       />
+      <View
+        pointerEvents="none"
+        style={[
+          styles.bottomWash,
+          { backgroundColor: dawn ? 'rgba(232, 201, 160, 0.14)' : 'rgba(107, 184, 154, 0.12)' },
+        ]}
+      />
+      <View
+        pointerEvents="none"
+        style={[
+          styles.sideWash,
+          { backgroundColor: dawn ? 'rgba(232, 201, 160, 0.1)' : 'rgba(107, 184, 154, 0.09)' },
+        ]}
+      />
       <Animated.View
         pointerEvents="none"
         style={[
@@ -227,26 +241,95 @@ export function HomeMindscapePreview({ dawn, lantern }: Props) {
       />
       <View style={[styles.core, dawn ? { backgroundColor: colors.coreGlow } : null]}>
         <View pointerEvents="none" style={styles.coreTopAccent} />
+        <View
+          pointerEvents="none"
+          style={[
+            styles.coreBottomGlow,
+            {
+              backgroundColor: dawn
+                ? 'rgba(201, 168, 90, 0.28)'
+                : 'rgba(107, 184, 154, 0.28)',
+            },
+          ]}
+        />
         <View style={styles.coreDot} />
         <Text style={styles.coreLabel}>Peace</Text>
+        <View
+          pointerEvents="none"
+          style={[
+            styles.coreLabelGlow,
+            {
+              backgroundColor: dawn
+                ? 'rgba(201, 168, 90, 0.3)'
+                : 'rgba(91, 138, 122, 0.26)',
+            },
+          ]}
+        />
         <Text style={styles.coreSub}>still</Text>
       </View>
       {lookLabel ? (
         <View style={[styles.lookChip, dawn ? styles.lookChipDawn : null]}>
           <View pointerEvents="none" style={styles.lookChipSheen} />
+          <View
+            pointerEvents="none"
+            style={[
+              styles.chipGlow,
+              {
+                backgroundColor: dawn
+                  ? 'rgba(201, 168, 90, 0.25)'
+                  : 'rgba(91, 138, 122, 0.2)',
+              },
+            ]}
+          />
+          <View
+            pointerEvents="none"
+            style={[
+              styles.chipWash,
+              {
+                backgroundColor: dawn
+                  ? 'rgba(201, 168, 90, 0.1)'
+                  : 'rgba(91, 138, 122, 0.08)',
+              },
+            ]}
+          />
           <View style={[styles.lookDot, dawn ? styles.lookDotDawn : null]} />
           <Text style={styles.lookChipText}>{lookLabel}</Text>
         </View>
       ) : null}
       <View style={styles.captionChip}>
         <View pointerEvents="none" style={styles.captionSheen} />
-        <View style={styles.captionLead} />
+        <View
+          pointerEvents="none"
+          style={[
+            styles.chipGlow,
+            {
+              backgroundColor: dawn
+                ? 'rgba(201, 168, 90, 0.18)'
+                : 'rgba(91, 138, 122, 0.16)',
+            },
+          ]}
+        />
+        <View
+          pointerEvents="none"
+          style={[
+            styles.chipWash,
+            {
+              backgroundColor: dawn
+                ? 'rgba(201, 168, 90, 0.08)'
+                : 'rgba(91, 138, 122, 0.07)',
+            },
+          ]}
+        />
+        <View style={styles.captionLeadWrap}>
+          <View pointerEvents="none" style={styles.captionLeadGlow} />
+          <View style={styles.captionLead} />
+        </View>
         <Text style={styles.caption}>
           {lookLabel
             ? `plan view · ${lookLabel} looks`
             : 'plan view · plant kindness · hold Peace'}
         </Text>
-        <Text style={styles.captionMeta}>metaphor only</Text>
+        <Text style={styles.captionMeta}>metaphor only · soft preview</Text>
       </View>
     </Animated.View>
   );
@@ -262,10 +345,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.line,
     shadowColor: '#243A34',
-    shadowOpacity: 0.12,
-    shadowRadius: 14,
-    shadowOffset: { width: 0, height: 5 },
-    elevation: 3,
+    shadowOpacity: 0.2,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 7 },
+    elevation: 5,
   },
   wrapDawn: {
     backgroundColor: 'rgba(255, 246, 230, 0.55)',
@@ -297,6 +380,23 @@ const styles = StyleSheet.create({
     borderRadius: 36,
     left: -18,
     bottom: 28,
+  },
+  bottomWash: {
+    position: 'absolute',
+    left: 14,
+    right: 14,
+    bottom: 8,
+    height: 28,
+    borderRadius: 14,
+  },
+  sideWash: {
+    position: 'absolute',
+    top: 18,
+    bottom: 36,
+    left: 0,
+    width: 18,
+    borderTopRightRadius: 12,
+    borderBottomRightRadius: 12,
   },
   mistWash: {
     position: 'absolute',
@@ -481,6 +581,14 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     backgroundColor: 'rgba(255,255,255,0.45)',
   },
+  coreBottomGlow: {
+    position: 'absolute',
+    left: 6,
+    right: 6,
+    bottom: 2,
+    height: 8,
+    borderRadius: 6,
+  },
   coreDot: {
     width: 4,
     height: 4,
@@ -493,6 +601,14 @@ const styles = StyleSheet.create({
     fontSize: 9,
     color: colors.brandDeep,
     letterSpacing: 0.2,
+  },
+  coreLabelGlow: {
+    width: 16,
+    height: 2,
+    borderRadius: 1,
+    marginTop: 1,
+    marginBottom: 1,
+    opacity: 0.9,
   },
   coreSub: {
     fontFamily: fonts.body,
@@ -515,6 +631,11 @@ const styles = StyleSheet.create({
     borderColor: colors.line,
     overflow: 'hidden',
     zIndex: 3,
+    shadowColor: '#243A34',
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    shadowOffset: { width: 0, height: 1 },
+    elevation: 2,
   },
   lookChipDawn: {
     backgroundColor: 'rgba(255, 246, 230, 0.85)',
@@ -527,6 +648,22 @@ const styles = StyleSheet.create({
     right: 0,
     height: '55%',
     backgroundColor: 'rgba(255,255,255,0.35)',
+  },
+  chipGlow: {
+    position: 'absolute',
+    left: 4,
+    right: 4,
+    bottom: 0,
+    height: 5,
+    borderRadius: 4,
+  },
+  chipWash: {
+    position: 'absolute',
+    left: 5,
+    right: 5,
+    top: 1,
+    height: 7,
+    borderRadius: 4,
   },
   lookDot: {
     width: 5,
@@ -559,6 +696,11 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(36,51,58,0.06)',
     overflow: 'hidden',
     zIndex: 3,
+    shadowColor: '#243A34',
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 2,
   },
   captionSheen: {
     position: 'absolute',
@@ -567,6 +709,19 @@ const styles = StyleSheet.create({
     right: 0,
     height: '55%',
     backgroundColor: 'rgba(255,255,255,0.28)',
+  },
+  captionLeadWrap: {
+    width: 10,
+    height: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  captionLeadGlow: {
+    position: 'absolute',
+    width: 9,
+    height: 9,
+    borderRadius: 5,
+    backgroundColor: 'rgba(91, 138, 122, 0.28)',
   },
   captionLead: {
     width: 5,

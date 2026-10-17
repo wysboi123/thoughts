@@ -157,6 +157,10 @@ export function SoftActionToast({ message, kind, dawn }: Props) {
           pointerEvents="none"
           style={[styles.cornerWash, { backgroundColor: `${tint.accent}18` }]}
         />
+        <View
+          pointerEvents="none"
+          style={[styles.sideWash, { backgroundColor: `${tint.accent}12` }]}
+        />
         <View style={styles.accentWrap}>
           <View
             pointerEvents="none"
@@ -175,6 +179,10 @@ export function SoftActionToast({ message, kind, dawn }: Props) {
           ]}
         >
           <View pointerEvents="none" style={styles.badgeSheen} />
+          <View
+            pointerEvents="none"
+            style={[styles.badgeGlow, { backgroundColor: `${tint.accent}28` }]}
+          />
           <View style={[styles.badgeDot, { backgroundColor: tint.accent }]} />
           <Text style={[styles.badge, { color: tint.ink }]}>{tint.label}</Text>
         </View>
@@ -186,6 +194,7 @@ export function SoftActionToast({ message, kind, dawn }: Props) {
           style={[styles.bottomGlow, { backgroundColor: `${tint.accent}28` }]}
         />
         <View style={styles.barTrack} accessibilityElementsHidden>
+          <View pointerEvents="none" style={styles.barSheen} />
           <Animated.View
             style={[styles.barFill, { backgroundColor: tint.accent }, barStyle]}
           />
@@ -216,10 +225,10 @@ const styles = StyleSheet.create({
     borderColor: colors.line,
     borderLeftWidth: 4,
     overflow: 'hidden',
-    shadowOpacity: 0.26,
-    shadowRadius: 12,
-    shadowOffset: { width: 0, height: 4 },
-    elevation: 4,
+    shadowOpacity: 0.3,
+    shadowRadius: 14,
+    shadowOffset: { width: 0, height: 5 },
+    elevation: 5,
   },
   topAccent: {
     position: 'absolute',
@@ -245,6 +254,15 @@ const styles = StyleSheet.create({
     borderRadius: 28,
     right: -12,
     bottom: -10,
+  },
+  sideWash: {
+    position: 'absolute',
+    right: 0,
+    top: 8,
+    bottom: 8,
+    width: 28,
+    borderTopLeftRadius: 14,
+    borderBottomLeftRadius: 14,
   },
   accentWrap: {
     width: 16,
@@ -289,6 +307,14 @@ const styles = StyleSheet.create({
     height: '55%',
     backgroundColor: 'rgba(255,255,255,0.32)',
   },
+  badgeGlow: {
+    position: 'absolute',
+    left: 3,
+    right: 3,
+    bottom: 0,
+    height: 4,
+    borderRadius: 3,
+  },
   badgeDot: {
     width: 5,
     height: 5,
@@ -322,6 +348,15 @@ const styles = StyleSheet.create({
     bottom: 0,
     height: 3,
     backgroundColor: 'rgba(36,51,58,0.08)',
+    overflow: 'hidden',
+  },
+  barSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '50%',
+    backgroundColor: 'rgba(255,255,255,0.35)',
   },
   barFill: {
     height: '100%',

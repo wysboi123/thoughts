@@ -1,5 +1,7 @@
 # Puddle Mirror
 
+> **Parked for later (2026-09-29).** Files kept — do not erase. Active overnight focus is Haze / Couch / Bus / Porch.
+
 Reflective floor world. Step on puddles to unlock secret nooks — then a deeper mirror room.
 
 ## Play

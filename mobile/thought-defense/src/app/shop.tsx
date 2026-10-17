@@ -151,6 +151,7 @@ export default function ShopScreen() {
         <SoftButton label="← Home" variant="ghost" onPress={() => router.back()} style={styles.back} />
         <SoftCardEnter index={0} reduceMotion={reduceMotion}>
           <Text style={styles.brand}>Clarity shop</Text>
+          <Text style={styles.softHint}>Soft thank-yous · never required</Text>
           <Text style={styles.lead}>
             Optional comfort only — plant, clear waves, and soft goals stay free. No fake urgency, no
             medical claims.
@@ -163,6 +164,17 @@ export default function ShopScreen() {
             accessibilityRole="text"
           >
             <View pointerEvents="none" style={styles.chipSheen} />
+            <View
+              pointerEvents="none"
+              style={[
+                styles.stripGlow,
+                {
+                  backgroundColor: looks.dawn
+                    ? 'rgba(201, 168, 90, 0.22)'
+                    : 'rgba(91, 138, 122, 0.2)',
+                },
+              ]}
+            />
             <View style={styles.freeStripHead}>
               <View style={[styles.leadDot, looks.dawn ? styles.leadDotDawn : null]} />
               <Text style={styles.freeStripTitle}>Core loop stays free</Text>
@@ -213,6 +225,10 @@ export default function ShopScreen() {
               {entitlements.clarityPassActive ? (
                 <View style={styles.passLiveChip}>
                   <View pointerEvents="none" style={styles.chipSheen} />
+                  <View
+                    pointerEvents="none"
+                    style={[styles.stripGlow, { backgroundColor: 'rgba(91, 138, 122, 0.28)' }]}
+                  />
                   <View style={styles.passLiveDot} />
                   <Text style={styles.passLiveText}>Pass live</Text>
                 </View>
@@ -406,6 +422,10 @@ export default function ShopScreen() {
         <SoftCardEnter index={cardIndex + 1} reduceMotion={reduceMotion}>
           <View style={styles.comfortStrip} accessibilityRole="summary">
             <View pointerEvents="none" style={styles.chipSheen} />
+            <View
+              pointerEvents="none"
+              style={[styles.stripGlow, { backgroundColor: 'rgba(91, 138, 122, 0.16)' }]}
+            />
             <View style={styles.comfortHead}>
               <View style={styles.comfortDot} />
               <Text style={styles.comfortTitle}>Metaphor only</Text>
@@ -438,6 +458,13 @@ const styles = StyleSheet.create({
     fontSize: 36,
     color: colors.brandDeep,
   },
+  softHint: {
+    marginTop: 4,
+    fontFamily: fonts.bodyMedium,
+    fontSize: 12,
+    letterSpacing: 0.25,
+    color: colors.brand,
+  },
   lead: {
     marginTop: 8,
     marginBottom: 10,
@@ -453,6 +480,14 @@ const styles = StyleSheet.create({
     right: 0,
     height: '55%',
     backgroundColor: 'rgba(255,255,255,0.28)',
+  },
+  stripGlow: {
+    position: 'absolute',
+    left: 8,
+    right: 8,
+    bottom: 0,
+    height: 8,
+    borderRadius: 6,
   },
   freeStrip: {
     marginBottom: 12,

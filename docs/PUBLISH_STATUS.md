@@ -19,6 +19,16 @@ Femmy: after TestFlight / Play internal / production links exist, paste them her
 | Lantern Towers | _pending_ | _pending_ | no |
 | Clarity boost small | _pending_ | _pending_ | no |
 
-## Legacy Roblox places
+## Legacy Roblox places (paused)
 
 All Roblox place publishes remain `_pending_` and **paused** — see `LEGACY_ROBLOX.md`.
+
+| Slug | Place URL | Place ID | Notes |
+| --- | --- | --- | --- |
+| haze-haven | _pending_ | | Was recommended first — v3.36 publish-ready if un-paused |
+| couch-galaxy | _pending_ | | v3.34 |
+| bus-stop-forever | _pending_ | | v3.35 |
+| star-porch | _pending_ | | v3.33 |
+| slow-orbit | _pending_ | | Parked — files kept |
+| puddle-mirror | _pending_ | | Parked — files kept |
+| lantern-drift | _pending_ | | Parked — files kept |
