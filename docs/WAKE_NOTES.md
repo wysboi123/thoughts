@@ -4,6 +4,13 @@ Newest first. Overnight agents append after every push.
 
 ## Mobile Thought Defense overnight (from `main`)
 
+## 2026-10-17 ~23:05 UTC — Night 24 GameBoard
+
+- **Shipped v1.4.89:** GameBoard — side wash · legend/compass chip washes · richer board/chip shadows
+- Roblox untouched; no email
+- Still blocked: Native IAP · EAS · store products · Q-006
+- Stop 05:00 · **one digest email at stop only** · PR #8
+
 ## 2026-10-17 23:00 UTC — Night 24 resume
 
 - Daily resume fired · no new Perplexity answers (Q-006 still Open)
