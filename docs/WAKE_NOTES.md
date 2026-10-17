@@ -4,6 +4,13 @@ Newest first. Overnight agents append after every push.
 
 ## Mobile Thought Defense overnight (from `main`)
 
+## 2026-10-17 ~23:25 UTC — Night 24 SoftPlayHud
+
+- **Shipped v1.4.93:** SoftPlayHud — side wash · footer/hint/soft-chip washes · richer wrap shadow
+- Roblox untouched; no email
+- Still blocked: Native IAP · EAS · store products · Q-006
+- Stop 05:00 · **one digest email at stop only** · PR #8
+
 ## 2026-10-17 ~23:20 UTC — Night 24 SoftWelcomeSheet
 
 - **Shipped v1.4.92:** SoftWelcomeSheet — side wash · eyebrow/step/page chip glows · soft-hint glow · comfort wash · richer card shadow

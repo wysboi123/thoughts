@@ -156,6 +156,13 @@ export function SoftPlayHud({ calm, clarity, waveLabel, dawn, calmLow }: Props) 
           { backgroundColor: dawn ? 'rgba(201,168,90,0.1)' : `${colors.brand}0C` },
         ]}
       />
+      <View
+        pointerEvents="none"
+        style={[
+          styles.sideWash,
+          { backgroundColor: dawn ? 'rgba(201,168,90,0.09)' : `${colors.brand}0A` },
+        ]}
+      />
       <View style={styles.row}>
         <HudPill
           label="Calm"
@@ -201,6 +208,17 @@ export function SoftPlayHud({ calm, clarity, waveLabel, dawn, calmLow }: Props) 
               },
             ]}
           />
+          <View
+            pointerEvents="none"
+            style={[
+              styles.footerWash,
+              {
+                backgroundColor: dawn
+                  ? 'rgba(201,168,90,0.1)'
+                  : `${colors.brand}10`,
+              },
+            ]}
+          />
           <View style={[styles.footerDot, dawn ? styles.footerDotDawn : null]} />
           <Text style={styles.footerLabel}>Mindscape meters</Text>
         </View>
@@ -210,6 +228,10 @@ export function SoftPlayHud({ calm, clarity, waveLabel, dawn, calmLow }: Props) 
             <View
               pointerEvents="none"
               style={[styles.footerGlow, { backgroundColor: 'rgba(196,120,120,0.25)' }]}
+            />
+            <View
+              pointerEvents="none"
+              style={[styles.footerWash, { backgroundColor: 'rgba(196,120,120,0.12)' }]}
             />
             <View style={styles.softChipDot} />
             <Text style={styles.softChipLabel}>Calm soft — breathe</Text>
@@ -225,6 +247,17 @@ export function SoftPlayHud({ calm, clarity, waveLabel, dawn, calmLow }: Props) 
                   backgroundColor: dawn
                     ? 'rgba(201,168,90,0.18)'
                     : `${colors.brand}18`,
+                },
+              ]}
+            />
+            <View
+              pointerEvents="none"
+              style={[
+                styles.footerWash,
+                {
+                  backgroundColor: dawn
+                    ? 'rgba(201,168,90,0.08)'
+                    : `${colors.brand}0C`,
                 },
               ]}
             />
@@ -248,10 +281,10 @@ const styles = StyleSheet.create({
     gap: 6,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.18,
-    shadowRadius: 16,
-    shadowOffset: { width: 0, height: 6 },
-    elevation: 4,
+    shadowOpacity: 0.22,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 7 },
+    elevation: 5,
   },
   wrapDawn: {
     backgroundColor: 'rgba(255, 244, 220, 0.7)',
@@ -294,6 +327,15 @@ const styles = StyleSheet.create({
     bottom: 4,
     height: 28,
     borderRadius: 14,
+  },
+  sideWash: {
+    position: 'absolute',
+    top: 14,
+    bottom: 14,
+    left: 0,
+    width: 16,
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
   },
   chipSheen: {
     position: 'absolute',
@@ -406,6 +448,14 @@ const styles = StyleSheet.create({
     right: 4,
     bottom: 0,
     height: 4,
+    borderRadius: 3,
+  },
+  footerWash: {
+    position: 'absolute',
+    left: 4,
+    right: 4,
+    top: 1,
+    height: 5,
     borderRadius: 3,
   },
   footerDot: {
