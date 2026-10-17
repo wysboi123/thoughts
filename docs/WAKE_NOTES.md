@@ -2,6 +2,13 @@
 
 Newest first. Overnight agents append after every push.
 
+## 2026-10-17 01:15 UTC — Night hourly (v1.4.87 PeaceCore)
+
+- Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
+- **Shipped v1.4.87:** PeaceCore — mid corner wash · label lead halo · thicker outer ring · richer sheen/glow · chip glow bump · richer core/chip shadows
+- Did not redo SoftFxLayer (1.4.86) · Draft C locked · stop timer left armed · PR **#7**
+- Ask Femmy: **RC vs RNIap** · Pass **$2.99** default
+
 ## 2026-10-17 00:15 UTC — Night hourly (v1.4.86 SoftFxLayer)
 
 - Timer `thought-defense-mobile-hourly` · NIGHT polish · no Femmy Gmail reply
