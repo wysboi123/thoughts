@@ -4,6 +4,13 @@ Newest first. Overnight agents append after every push.
 
 ## Mobile Thought Defense overnight (from `main`)
 
+## 2026-10-17 ~03:15 UTC — Night 23 PadDisc
+
+- **Shipped v1.4.82:** PadDisc — side wash · select/label glows · plant-chip wash · richer pad shadows
+- Roblox untouched; no email
+- Still blocked: Native IAP · EAS · store products · Q-006
+- Stop 05:00 · **one digest email at stop only** · PR #8
+
 ## 2026-10-17 ~03:10 UTC — Night 23 PeaceCore
 
 - **Shipped v1.4.81:** PeaceCore — status/label glows · chip wash · richer core/chip shadows

@@ -246,10 +246,10 @@ export function PadDisc({
                 : selected
                   ? colors.brand
                   : '#243A34',
-            shadowOpacity: lantern && filled ? 0.65 : selected ? 0.36 : filled ? 0.16 : 0.1,
-            shadowRadius: lantern && filled ? 10 : selected ? 8 : 6,
-            shadowOffset: { width: 0, height: filled || selected ? 3 : 2 },
-            elevation: lantern && filled ? 5 : selected ? 4 : 2,
+            shadowOpacity: lantern && filled ? 0.68 : selected ? 0.4 : filled ? 0.18 : 0.12,
+            shadowRadius: lantern && filled ? 12 : selected ? 10 : 7,
+            shadowOffset: { width: 0, height: filled || selected ? 4 : 2 },
+            elevation: lantern && filled ? 6 : selected ? 5 : 3,
           },
         ]}
       >
@@ -263,6 +263,19 @@ export function PadDisc({
                 : dawn
                   ? 'rgba(200,170,120,0.16)'
                   : 'rgba(91,138,122,0.14)',
+            },
+          ]}
+        />
+        <View
+          pointerEvents="none"
+          style={[
+            styles.sideWash,
+            {
+              backgroundColor: filled
+                ? 'rgba(255,255,255,0.12)'
+                : dawn
+                  ? 'rgba(200,170,120,0.12)'
+                  : 'rgba(91,138,122,0.1)',
             },
           ]}
         />
@@ -308,8 +321,27 @@ export function PadDisc({
             style={[styles.selectCoreRing, { borderColor: `${colors.brand}44` }]}
           />
         ) : null}
+        {selected ? (
+          <View
+            pointerEvents="none"
+            style={[styles.selectGlow, { backgroundColor: `${colors.brand}22` }]}
+          />
+        ) : null}
         {lantern && filled ? <Text style={styles.lanternDot}>✦</Text> : null}
         <Text style={[styles.padText, !filled && styles.padTextEmpty]}>{label}</Text>
+        <View
+          pointerEvents="none"
+          style={[
+            styles.labelGlow,
+            {
+              backgroundColor: filled
+                ? 'rgba(255,255,255,0.35)'
+                : dawn
+                  ? 'rgba(200,170,120,0.3)'
+                  : 'rgba(91,138,122,0.26)',
+            },
+          ]}
+        />
         {!filled ? (
           <View style={styles.plantChip}>
             <View pointerEvents="none" style={styles.plantChipSheen} />
@@ -321,6 +353,17 @@ export function PadDisc({
                   backgroundColor: dawn
                     ? 'rgba(200,170,120,0.28)'
                     : 'rgba(91,138,122,0.24)',
+                },
+              ]}
+            />
+            <View
+              pointerEvents="none"
+              style={[
+                styles.plantChipWash,
+                {
+                  backgroundColor: dawn
+                    ? 'rgba(200,170,120,0.12)'
+                    : 'rgba(91,138,122,0.1)',
                 },
               ]}
             />
@@ -402,6 +445,15 @@ const styles = StyleSheet.create({
     right: -PAD * 0.12,
     top: -PAD * 0.1,
   },
+  sideWash: {
+    position: 'absolute',
+    width: 12,
+    top: 8,
+    bottom: 8,
+    left: 0,
+    borderTopRightRadius: 8,
+    borderBottomRightRadius: 8,
+  },
   emptyAccent: {
     position: 'absolute',
     top: 0,
@@ -465,6 +517,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     opacity: 0.85,
   },
+  selectGlow: {
+    position: 'absolute',
+    left: 10,
+    right: 10,
+    bottom: 6,
+    height: 8,
+    borderRadius: 6,
+    opacity: 0.85,
+  },
   lanternDot: {
     position: 'absolute',
     top: 2,
@@ -482,6 +543,13 @@ const styles = StyleSheet.create({
     color: colors.calm,
     marginTop: -2,
   },
+  labelGlow: {
+    width: 16,
+    height: 3,
+    borderRadius: 2,
+    marginTop: 1,
+    opacity: 0.85,
+  },
   plantChip: {
     position: 'absolute',
     bottom: 4,
@@ -496,10 +564,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(36,51,58,0.08)',
     shadowColor: '#243A34',
-    shadowOpacity: 0.08,
-    shadowRadius: 3,
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
     shadowOffset: { width: 0, height: 1 },
-    elevation: 1,
+    elevation: 2,
   },
   plantChipSheen: {
     position: 'absolute',
@@ -515,6 +583,14 @@ const styles = StyleSheet.create({
     right: 3,
     bottom: 0,
     height: 5,
+    borderRadius: 3,
+  },
+  plantChipWash: {
+    position: 'absolute',
+    left: 4,
+    right: 4,
+    top: 1,
+    height: 6,
     borderRadius: 3,
   },
   plantDot: {
