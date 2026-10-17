@@ -266,6 +266,17 @@ export function DualModeTray({
                 ]}
               >
                 <View pointerEvents="none" style={styles.chipSheen} />
+                <View
+                  pointerEvents="none"
+                  style={[
+                    styles.costGlow,
+                    {
+                      backgroundColor: !canAfford && !selectMode
+                        ? 'rgba(36,58,52,0.12)'
+                        : 'rgba(106,158,174,0.22)',
+                    },
+                  ]}
+                />
                 <Text
                   style={[
                     styles.plantCost,
@@ -334,6 +345,15 @@ export function DualModeTray({
         >
           <View pointerEvents="none" style={styles.chipSheen} />
           <View
+            pointerEvents="none"
+            style={[
+              styles.footerGlow,
+              {
+                backgroundColor: selectMode ? `${selectAccent}22` : `${colors.brand}22`,
+              },
+            ]}
+          />
+          <View
             style={[
               styles.footerDot,
               { backgroundColor: selectMode ? selectAccent : colors.brand },
@@ -343,6 +363,15 @@ export function DualModeTray({
         </View>
         <View style={styles.footerHintChip}>
           <View pointerEvents="none" style={styles.chipSheen} />
+          <View
+            pointerEvents="none"
+            style={[
+              styles.footerGlow,
+              {
+                backgroundColor: selectMode ? `${selectAccent}18` : `${colors.brand}18`,
+              },
+            ]}
+          />
           <Text style={styles.footerHint}>
             {selectMode ? 'Upgrade · Sell · Back' : 'Plant · dim on select'}
           </Text>
@@ -364,10 +393,10 @@ const styles = StyleSheet.create({
     gap: 10,
     overflow: 'hidden',
     shadowColor: '#243A34',
-    shadowOpacity: 0.18,
-    shadowRadius: 16,
-    shadowOffset: { width: 0, height: 7 },
-    elevation: 5,
+    shadowOpacity: 0.2,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 8 },
+    elevation: 6,
   },
   trayDawn: {
     backgroundColor: 'rgba(255, 244, 220, 0.78)',
@@ -549,6 +578,14 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(106,158,174,0.22)',
     overflow: 'hidden',
   },
+  costGlow: {
+    position: 'absolute',
+    left: 2,
+    right: 2,
+    bottom: 0,
+    height: 3,
+    borderRadius: 2,
+  },
   costChipLow: {
     backgroundColor: 'rgba(36,58,52,0.06)',
     borderColor: 'rgba(36,58,52,0.1)',
@@ -650,6 +687,14 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     overflow: 'hidden',
+  },
+  footerGlow: {
+    position: 'absolute',
+    left: 4,
+    right: 4,
+    bottom: 0,
+    height: 4,
+    borderRadius: 3,
   },
   footerDot: {
     width: 5,
