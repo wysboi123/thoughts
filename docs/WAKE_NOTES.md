@@ -4,6 +4,13 @@ Newest first. Overnight agents append after every push.
 
 ## Mobile Thought Defense overnight (from `main`)
 
+## 2026-10-17 ~23:10 UTC — Night 24 quiet CP1 Settings
+
+- **Shipped v1.4.90:** Settings — soft-hint glow · version/comfort/footer chip washes · lead/footer glows · richer shadows
+- Roblox untouched; no email
+- Still blocked: Native IAP · EAS · store products · Q-006
+- Stop 05:00 · **one digest email at stop only** · PR #8
+
 ## 2026-10-17 ~23:05 UTC — Night 24 GameBoard
 
 - **Shipped v1.4.89:** GameBoard — side wash · legend/compass chip washes · richer board/chip shadows
